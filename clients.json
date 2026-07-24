@@ -1,201 +1,236 @@
 {
+ "source": "quarry-brain",
  "updated": "2026-07-24",
  "clients": [
   {
    "name": "a16z",
+   "domain": "a16z.com",
+   "lead": "Brandon Taleisnik",
+   "description": "",
    "work": [
     "BizOps",
     "Embedded Recruiting"
-   ],
-   "domain": "a16z.com",
-   "lead": "Brandon T."
+   ]
   },
   {
    "name": "Altana",
+   "domain": "altana.ai",
+   "lead": "Sam Blumenthal",
+   "description": "",
    "work": [
     "Embedded Recruiting",
     "Talent Platform"
-   ],
-   "domain": "altana.ai",
-   "lead": "Sam B."
+   ]
   },
   {
    "name": "Amazon",
-   "work": [],
    "domain": "amazon.com",
-   "lead": ""
+   "lead": "",
+   "description": "",
+   "work": []
   },
   {
    "name": "Anthropic",
+   "domain": "anthropic.com",
+   "lead": "",
+   "description": "",
    "work": [
     "Activation quick wins",
     "Platform Mining",
     "Product / AI Sprint",
     "Talent Narrative"
-   ],
-   "domain": "anthropic.com",
-   "lead": ""
+   ]
   },
   {
    "name": "Avoca AI",
+   "domain": "avoca.ai",
+   "lead": "Joe Penn",
+   "description": "",
    "work": [
     "Talent Platform"
-   ],
-   "domain": "avoca.ai",
-   "lead": "Joe P."
+   ]
   },
   {
    "name": "Bee AI",
+   "domain": "bee.computer",
+   "lead": "Heath Jamieson",
+   "description": "",
    "work": [
     "Finance"
-   ],
-   "domain": "bee.computer",
-   "lead": "Heath J."
+   ]
   },
   {
    "name": "Better",
+   "domain": "better.com",
+   "lead": "Tina Khoury",
+   "description": "",
    "work": [
     "AIGC",
     "Broker UGC (NEO)",
-    "Embedded Recruiting (paused)",
     "Paid Media",
     "Programmatic SEO"
-   ],
-   "domain": "better.com",
-   "lead": "Tina K."
+   ]
   },
   {
    "name": "Brave Health",
+   "domain": "bebravehealth.com",
+   "lead": "Sam Blumenthal",
+   "description": "",
    "work": [
     "BizOps"
-   ],
-   "domain": "bebravehealth.com",
-   "lead": "Sam B."
+   ]
   },
   {
    "name": "Coast",
+   "domain": "coastpay.com",
+   "lead": "Kenna Anderson",
+   "description": "",
    "work": [
     "Embedded Recruiting"
-   ],
-   "domain": "coastpay.com",
-   "lead": "Kenna A."
+   ]
   },
   {
    "name": "Cybernetic Labs",
+   "domain": "cyberneticlabs.io",
+   "lead": "Brandon Taleisnik",
+   "description": "",
    "work": [
     "Embedded Recruiting"
-   ],
-   "domain": "cyberneticlabs.io",
-   "lead": "Brandon T."
+   ]
   },
   {
    "name": "Deeptune",
+   "domain": "deeptune.com",
+   "lead": "Joe Penn",
+   "description": "",
    "work": [
     "Finance",
     "Talent Platform"
-   ],
-   "domain": "deeptune.com",
-   "lead": "Joe P."
+   ]
+  },
+  {
+   "name": "Delta Sandbox",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": [
+    "Prototype ready to test"
+   ]
   },
   {
    "name": "Forge",
+   "domain": "withforge.com",
+   "lead": "Joe Penn",
+   "description": "",
    "work": [
     "Talent Platform"
-   ],
-   "domain": "withforge.com",
-   "lead": "Joe P."
+   ]
   },
   {
    "name": "Formulary",
+   "domain": "formulary.co",
+   "lead": "Arthur Matuszewski",
+   "description": "",
    "work": [
     "Embedded Recruiting",
     "Talent Platform"
-   ],
-   "domain": "formulary.co",
-   "lead": "Arthur M."
+   ]
   },
   {
    "name": "Fundamental Technologies",
+   "domain": "fundamental.tech",
+   "lead": "Kenna Anderson",
+   "description": "",
    "work": [
     "People"
-   ],
-   "domain": "fundamental.tech",
-   "lead": "Kenna A."
+   ]
   },
   {
    "name": "Grindr",
+   "domain": "grindr.com",
+   "lead": "Arthur Matuszewski",
+   "description": "",
    "work": [
     "Activate the market",
     "Ads platform",
     "Build assets",
     "Build narrative"
-   ],
-   "domain": "grindr.com",
-   "lead": "Arthur M."
+   ]
   },
   {
    "name": "Hertz",
+   "domain": "hertz.com",
+   "lead": "Heath Jamieson",
+   "description": "",
    "work": [
     "BizOps"
-   ],
-   "domain": "hertz.com",
-   "lead": "Heath J."
+   ]
   },
   {
    "name": "Hinge",
+   "domain": "hinge.co",
+   "lead": "Sam Blumenthal",
+   "description": "",
    "work": [
     "Careers Page / Web Build",
     "Carrara Operations / RecOps",
     "Embedded Recruiting",
+    "Engagement management",
     "Talent Platform"
-   ],
-   "domain": "hinge.co",
-   "lead": "Sam B."
+   ]
   },
   {
    "name": "January",
+   "domain": "january.com",
+   "lead": "Brandon Taleisnik",
+   "description": "",
    "work": [
     "Embedded Recruiting",
     "Talent Platform"
-   ],
-   "domain": "january.com",
-   "lead": "Brandon T."
+   ]
   },
   {
    "name": "Lipdub AI",
+   "domain": "lipdub.ai",
+   "lead": "Gonz Sanchez",
+   "description": "",
    "work": [
     "Marketing/Growth"
-   ],
-   "domain": "lipdub.ai",
-   "lead": "Gonz S."
+   ]
   },
   {
    "name": "Long Lake",
+   "domain": "llmh.com",
+   "lead": "Joe Penn",
+   "description": "",
    "work": [
     "Talent Platform"
-   ],
-   "domain": "llmh.com",
-   "lead": "Joe P."
+   ]
   },
   {
    "name": "Luminai",
+   "domain": "luminai.com",
+   "lead": "Heath Jamieson",
+   "description": "",
    "work": [
     "Finance",
     "Talent Platform"
-   ],
-   "domain": "luminai.com",
-   "lead": "Heath J."
+   ]
   },
   {
    "name": "Magic AI",
+   "domain": "magic.dev",
+   "lead": "Kenna Anderson",
+   "description": "",
    "work": [
     "People"
-   ],
-   "domain": "magic.dev",
-   "lead": "Kenna A."
+   ]
   },
   {
    "name": "Modal Labs",
+   "domain": "modal.com",
+   "lead": "Sol Silbenberg",
+   "description": "",
    "work": [
     "Embedded Recruiting",
     "FDE GTM & Mini-site",
@@ -203,94 +238,102 @@
     "People",
     "RecOps / Recruiter Enablement",
     "Series C Hiring & Events",
+    "Sol — engagement lead",
     "Talent Platform"
-   ],
-   "domain": "modal.com",
-   "lead": "Sol S."
+   ]
   },
   {
    "name": "Perchwell",
+   "domain": "perchwell.com",
+   "lead": "Joe Penn",
+   "description": "",
    "work": [
     "Embedded Recruiting"
-   ],
-   "domain": "perchwell.com",
-   "lead": "Joe P."
+   ]
   },
   {
    "name": "Profound",
+   "domain": "tryprofound.com",
+   "lead": "Joe Penn",
+   "description": "",
    "work": [
     "Embedded Recruiting",
     "People",
     "Talent Platform"
-   ],
-   "domain": "tryprofound.com",
-   "lead": "Joe P."
+   ]
   },
   {
    "name": "Raindrop",
+   "domain": "raindrop.ai",
+   "lead": "Joe Penn",
+   "description": "",
    "work": [
     "Build candidate top of funnel",
     "Careers Page",
     "Comms",
     "Hiring Event with OpenAI"
-   ],
-   "domain": "raindrop.ai",
-   "lead": "Joe P."
+   ]
   },
   {
    "name": "Roger",
+   "domain": "chatroger.com",
+   "lead": "Heath Jamieson",
+   "description": "Gindr special project, JV Carrara <> Grindr <> Lumbridge",
    "work": [
     "Geo-unblock",
     "Growth Marketing",
     "Moderation & Support",
     "Payment",
     "Product"
-   ],
-   "domain": "chatroger.com",
-   "lead": "Heath J."
+   ]
   },
   {
    "name": "Runlayer",
+   "domain": "runlayer.com",
+   "lead": "Brandon Taleisnik",
+   "description": "",
    "work": [
     "Embedded Recruiting",
     "Talent Platform"
-   ],
-   "domain": "runlayer.com",
-   "lead": "Brandon T."
+   ]
   },
   {
    "name": "Sphere",
+   "domain": "getsphere.com",
+   "lead": "Gonz Sanchez",
+   "description": "",
    "work": [
     "Case studies",
     "Comms",
     "Ground Truth ft. a16z",
     "Small event - early August",
     "Weekly socials for Nick and Alex"
-   ],
-   "domain": "getsphere.com",
-   "lead": "Gonz S."
+   ]
   },
   {
    "name": "Untitled",
+   "domain": "untitled.stream",
+   "lead": "Joe Penn",
+   "description": "",
    "work": [
     "Careers Page",
     "Employer Brand / Amplification",
     "Events",
     "RecOps / Offer Ops",
+    "Sol — engagement lead",
     "Sourcing / Recruiting",
     "Talent Platform"
-   ],
-   "domain": "untitled.stream",
-   "lead": "Joe P."
+   ]
   },
   {
    "name": "Village Global",
+   "domain": "villageglobal.com",
+   "lead": "Gonz Sanchez",
+   "description": "",
    "work": [
     "Build website",
     "Marketing/Growth"
-   ],
-   "domain": "villageglobal.com",
-   "lead": "Gonz S."
+   ]
   }
  ]
 }

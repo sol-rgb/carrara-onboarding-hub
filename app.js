@@ -376,11 +376,12 @@
         : esc(c.name.charAt(0));
       d.innerHTML = '<div class="clogo">' + logo + '</div><div><div class="cn">' + esc(c.name) + '</div>'
         + (c.lead ? '<div class="lead">lead: ' + esc(c.lead) + '</div>' : '')
+        + (c.description ? '<div class="cdesc">' + esc(c.description) + '</div>' : '')
         + (c.work && c.work.length ? '<div class="client-tags">' + c.work.map(function (w) { return '<span>' + esc(w) + '</span>'; }).join('') + '</div>' : '')
         + '</div>';
       grid.appendChild(d);
     });
-    $('#client-note').textContent = 'Snapshot from the Quarry Brain, ' + (data.updated || '') + '. Click a client to open their site.';
+    $('#client-note').textContent = 'Live from the Quarry Brain, refreshed weekly. Last update: ' + (data.updated || '') + '. Click a client to open their site.';
     applyKitToHub();
   });
   var clientData = [];
