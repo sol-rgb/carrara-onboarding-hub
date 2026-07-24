@@ -103,15 +103,13 @@
     { n: 'Zapier', dmn: 'zapier.com', url: 'https://zapier.com', d: 'Automations between tools. Kill the repetitive stuff.', tag: '' }
   ];
 
+  /* the [MASTER] templates on the current brand; kind 'pptx' = an Office file on Drive */
   var CORE_TEMPLATES = [
-    { name: 'Base doc', type: 'doc', id: '12m40X2CCW2d-sLEwVbCAXvGulfDPzng4wCGzWUPkZBs', kind: 'document' },
-    { name: 'Memo', type: 'doc', id: '1Ah-no2QSKuhgJSEU26-zwB0PLl-EXgcV4vRE-bpi-AM', kind: 'document' },
-    { name: 'Deck', type: 'deck', id: '12BrVVJrFzqdXM3_RvTBI2oJrVFmqnlK-TqVi53Kg_Eo', kind: 'presentation' },
-    { name: 'Sheets', type: 'sheet', id: '1Az9Bdv8E9CrGxKoyLRFzGHoQ1ETDL45V1gdjZVjXwBk', kind: 'spreadsheets' },
-    { name: 'Weekly sync agenda', type: 'doc', id: '1fsD8N-7-i3XSNtV-RrNzEnTyZyCzOYghIbulRz6jIDc', kind: 'document' },
-    { name: 'Retrospective', type: 'doc', id: '1HrcW0cfglGwjKQ_YTtvXJyWE4cKuDUpUNOXjLAwoEpA', kind: 'document' },
-    { name: 'Weekly hiring report', type: 'doc', id: '1RTy89hMeGi56JgcCJLabv8n35nlzHSU5skknu28GcMA', kind: 'document' },
-    { name: 'Graph with brand colors', type: 'sheet', id: '1tYiJNUJE9SQembM-e-okfplldhwRJ-LO2JJ_AfSk8YM', kind: 'spreadsheets' }
+    { name: 'Template doc', type: 'doc', id: '1unt6z2OuRNQp6n0yWZYuaANZV41YDnwhN0WUI_vjJs8', kind: 'document' },
+    { name: 'Template sheet', type: 'sheet', id: '1klabm2NzLaoleA0gRMHNWUdPiiERtCim-INpTGJXyLE', kind: 'spreadsheets' },
+    { name: 'What is Carrara', type: 'deck', id: '1wMkxaNbMhm1AUhRVs26rVFaU2kafOiYVSYT25O9aKWY', kind: 'presentation' },
+    { name: 'Generic deck', type: 'deck', id: '1efBsbpLq8aTsao2sulAUddJ_Uzty2PEu', kind: 'pptx' },
+    { name: 'All Hands deck', type: 'deck', id: '1Y--CeCXloO0Pk91UjtKnprimiwBIWQP0', kind: 'pptx' }
   ];
   var BRAND_FOLDER = '1z2fPx_iK4xBdTGiTrwo6JNQ1OQxDkzoM';
 
@@ -438,16 +436,23 @@
   /* ---------- templates ---------- */
   var tplMounted = false;
   function frameFor(t) {
-    var url;
-    if (t.kind === 'presentation') url = 'https://docs.google.com/presentation/d/' + t.id + '/embed?start=false&loop=false';
-    else if (t.kind === 'spreadsheets') url = 'https://docs.google.com/spreadsheets/d/' + t.id + '/preview';
-    else url = 'https://docs.google.com/document/d/' + t.id + '/preview';
-    var open = 'https://docs.google.com/' + (t.kind === 'presentation' ? 'presentation' : t.kind === 'spreadsheets' ? 'spreadsheets' : 'document') + '/d/' + t.id + '/edit';
-    var copy = open.replace(/\/edit$/, '/copy');
+    var url, open, copy;
+    if (t.kind === 'pptx') {
+      // Office file stored on Drive: preview via Drive, open via Slides office-compat
+      url = 'https://drive.google.com/file/d/' + t.id + '/preview';
+      open = 'https://docs.google.com/presentation/d/' + t.id + '/edit';
+      copy = '';
+    } else {
+      if (t.kind === 'presentation') url = 'https://docs.google.com/presentation/d/' + t.id + '/embed?start=false&loop=false';
+      else if (t.kind === 'spreadsheets') url = 'https://docs.google.com/spreadsheets/d/' + t.id + '/preview';
+      else url = 'https://docs.google.com/document/d/' + t.id + '/preview';
+      open = 'https://docs.google.com/' + (t.kind === 'presentation' ? 'presentation' : t.kind === 'spreadsheets' ? 'spreadsheets' : 'document') + '/d/' + t.id + '/edit';
+      copy = open.replace(/\/edit$/, '/copy');
+    }
     var wrap = document.createElement('div');
     wrap.className = 'tpl';
     wrap.innerHTML = '<div class="tpl-head"><span class="tn">' + esc(t.name) + '</span><span class="tt">' + t.type + '</span>'
-      + '<span class="acts"><a href="' + open + '" target="_blank" rel="noopener">Open</a><a href="' + copy + '" target="_blank" rel="noopener">Make a copy</a></span></div>'
+      + '<span class="acts"><a href="' + open + '" target="_blank" rel="noopener">Open</a>' + (copy ? '<a href="' + copy + '" target="_blank" rel="noopener">Make a copy</a>' : '') + '</span></div>'
       + '<div class="tpl-frame"><iframe loading="lazy" src="' + url + '" title="' + esc(t.name) + '"></iframe></div>';
     return wrap;
   }
