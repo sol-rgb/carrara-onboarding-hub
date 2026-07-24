@@ -409,10 +409,7 @@ table.clean td:last-child { font-family: var(--rigid); font-size: 11px; letter-s
 
 /* ---------- tour chrome: nav on top ---------- */
 .tour-bar { display: none; position: sticky; top: 0; z-index: 30; background: var(--canvas); border-bottom: 1px solid var(--hairline); padding: 12px clamp(28px, 4vw, 72px); }
-.tour-active .tour-bar { display: flex; align-items: center; gap: 18px; }
-.tour-bar .stepnum { font-family: var(--rigid); font-size: 11px; letter-spacing: 0.12em; color: var(--taupe); white-space: nowrap; }
-.tour-bar .tbar { flex: 1; height: 3px; background: rgba(31, 29, 26, 0.1); min-width: 60px; }
-.tour-bar .tbar span { display: block; height: 100%; background: var(--sage); transition: width 0.4s ease; }
+.tour-active .tour-bar { display: flex; align-items: center; justify-content: flex-end; gap: 18px; }
 .tour-bar .exit { font-family: var(--rigid); font-size: 10.5px; letter-spacing: 0.06em; color: var(--taupe); background: none; border: none; cursor: pointer; text-decoration: underline; }
 .btn-ghost {
   font-family: var(--rigid); font-size: 11px; letter-spacing: 0.07em;

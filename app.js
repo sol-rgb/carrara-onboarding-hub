@@ -429,8 +429,6 @@
     document.body.classList.toggle('tour-active', !!tour.active);
     if (!tour.active) { $('#meta-tour').hidden = true; return; }
     var n = tour.step + 1;
-    $('#tour-stepnum').textContent = '[step ' + n + ' of ' + TOUR_TOTAL + ']';
-    $('#tour-fill').style.width = (n / TOUR_TOTAL * 100) + '%';
     $('#meta-tour').hidden = false;
     $('#meta-tour').textContent = 'tour: step ' + n + ' of ' + TOUR_TOTAL;
     $('#tour-back').style.visibility = tour.step === 0 ? 'hidden' : 'visible';
