@@ -45,8 +45,8 @@ One-time Slack app setup:
 
 ## Updating snapshots
 
-- `team.json`: team roster fallback.
-- `clients.json`: client roster and workstreams, exported from the Quarry Brain.
+- `team.json`: team roster fallback (live data comes from Slack when `SLACK_BOT_TOKEN` is set).
+- `clients.json`: client roster, leads, workstreams and descriptions, exported from the Quarry Brain. A scheduled Claude Code task on Sol's machine ("refresh-hub-clients", Mondays 8:46am) re-exports it weekly and pushes; Vercel redeploys automatically. Client descriptions come from the brain's entity description field ("Legal name" notes are filtered out) — write a real description in the brain and it appears here on the next refresh.
 
 ## Access
 
