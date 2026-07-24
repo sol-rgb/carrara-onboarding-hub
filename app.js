@@ -76,6 +76,21 @@
     return (window.LINKS && window.LINKS[k]) || '';
   }
 
+  /* pages.js content opens as an in-hub popup instead of linking out */
+  function pageFor(k) { return (window.PAGES && window.PAGES[k]) || null; }
+  function openPage(k) {
+    var pg = pageFor(k);
+    if (!pg) return;
+    openModal('<div class="m-eyebrow">[from the carrara library]</div><h3>' + esc(pg.title) + '</h3><div class="pg">' + pg.html + '</div>'
+      + '<p class="pg-note">Snapshot from Notion, Jul 24, 2026.</p>');
+  }
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest ? e.target.closest('[data-page]') : null;
+    if (!t) return;
+    e.preventDefault();
+    openPage(t.dataset.page);
+  });
+
   var TOOLS = [
     { n: 'Claude', dmn: 'claude.ai', url: 'https://claude.ai', d: 'Our go-to AI. Deep research, client deliverables, coding, MCP workflows. The Quarry is built on it.', tag: '' },
     { n: 'Granola', dmn: 'granola.ai', url: 'https://granola.ai', d: 'AI meeting notes so you stay present. We run it on every client call.', tag: 'carrara provided' },
@@ -233,6 +248,10 @@
       function details() {
         var linksHtml = '';
         (item.links || []).forEach(function (l) {
+          if (pageFor(l.k)) {
+            linksHtml += '<a class="textlink" style="margin-right:16px" href="#" data-page="' + esc(l.k) + '">' + esc(l.t) + '</a>';
+            return;
+          }
           var u = linkFor(l.k);
           if (!u) return;
           var internal = u.charAt(0) === '#';
@@ -644,8 +663,10 @@
       });
       TOOLS.forEach(function (t) { ix.push({ label: t.n, hint: 'tool', go: function () { window.open(t.url, '_blank'); } }); });
       [['Home Base', 'notionHomeBase'], ['The Quarry', 'quarry'], ['Brand Vault', 'brandVault'], ['Team Roundup', 'teamRoundup'],
-       ['Time-off policy', 'timeOffPolicy'], ['This is Carrara on Notion', 'thisIsCarrara'], ['Ashby', 'ashby'],
+       ['Time-off policy', 'timeOffPolicy'], ['Brand palette & typography', 'brandVaultArchive'], ['This is Carrara', 'thisIsCarrara'],
+       ['Coordinator OOO template', 'coordinatorOOO'], ['Weekly Talent Jam', 'talentTeamMeeting'], ['Ashby', 'ashby'],
        ['carrara.is', 'site']].forEach(function (r) {
+        if (pageFor(r[1])) { ix.push({ label: r[0], hint: 'library', go: function () { openPage(r[1]); } }); return; }
         var u = linkFor(r[1]);
         if (u) ix.push({ label: r[0], hint: 'resource', go: function () { window.open(u, '_blank'); } });
       });
