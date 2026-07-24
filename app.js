@@ -277,7 +277,7 @@
       teamData = data.members || [];
       renderTeam('');
       if (data.source === 'slack') {
-        $('#team-note').textContent = 'Live from the #g-announcements Slack channel. Photos and roles come from Slack profiles: set yours and it shows here.';
+        $('#team-note').textContent = 'Live from the #f-company-ops-general Slack channel, refreshed every two weeks. Photos and roles come from Slack profiles: set yours and it shows here.';
       }
     })
     .catch(function () { $('#team-note').textContent = 'Team list is unavailable right now.'; });

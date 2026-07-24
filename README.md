@@ -9,9 +9,9 @@ The site works with zero configuration using bundled snapshots. Two optional env
 ### Team index (Slack)
 
 - `SLACK_BOT_TOKEN`: a bot token from a Slack app installed in the carrarais workspace, with scopes `channels:read`, `users:read`, `users:read.email`.
-- `SLACK_CHANNEL_ID`: optional, defaults to `C27MYMF3K` (#g-announcements).
+- `SLACK_CHANNEL_ID`: optional, defaults to `C08A7KYJTEE` (#f-company-ops-general).
 
-With the token set, `/api/team` pulls the live member list, titles and avatars from Slack (cached 1 hour). Without it, the bundled `team.json` snapshot (Jul 24, 2026) is served.
+With the token set, `/api/team` pulls the live member list, titles and avatars from Slack. The response is edge-cached for two weeks, and a Vercel cron (`vercel.json`) re-warms it on the 1st and 15th of each month, so the team page refreshes on a biweekly cadence. Without the token, the bundled `team.json` snapshot (#f-company-ops-general members as of Jul 24, 2026, no photos) is served.
 
 To create the Slack app: api.slack.com/apps, Create New App, add the three scopes under OAuth and Permissions, install to workspace, copy the Bot User OAuth Token.
 

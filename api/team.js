@@ -16,8 +16,9 @@ async function slackGet(method, params, token) {
 
 module.exports = async (req, res) => {
   const token = process.env.SLACK_BOT_TOKEN;
-  const channel = process.env.SLACK_CHANNEL_ID || 'C27MYMF3K'; // #g-announcements
-  res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=86400');
+  const channel = process.env.SLACK_CHANNEL_ID || 'C08A7KYJTEE'; // #f-company-ops-general
+  // Refresh every two weeks; serve the stale copy while revalidating.
+  res.setHeader('Cache-Control', 's-maxage=1209600, stale-while-revalidate=604800');
 
   if (!token) {
     const snap = snapshot();
@@ -51,7 +52,7 @@ module.exports = async (req, res) => {
     } while (cursor);
 
     members.sort((a, b) => a.name.localeCompare(b.name));
-    return res.status(200).json({ source: 'slack', updated: new Date().toISOString(), channel: '#g-announcements', members });
+    return res.status(200).json({ source: 'slack', updated: new Date().toISOString(), channel: '#f-company-ops-general', members });
   } catch (e) {
     const snap = snapshot();
     snap.error = String(e.message || e);
