@@ -1,0 +1,296 @@
+{
+ "updated": "2026-07-24",
+ "clients": [
+  {
+   "name": "a16z",
+   "work": [
+    "BizOps",
+    "Embedded Recruiting"
+   ],
+   "domain": "a16z.com",
+   "lead": "Brandon T."
+  },
+  {
+   "name": "Altana",
+   "work": [
+    "Embedded Recruiting",
+    "Talent Platform"
+   ],
+   "domain": "altana.ai",
+   "lead": "Sam B."
+  },
+  {
+   "name": "Amazon",
+   "work": [],
+   "domain": "amazon.com",
+   "lead": ""
+  },
+  {
+   "name": "Anthropic",
+   "work": [
+    "Activation quick wins",
+    "Platform Mining",
+    "Product / AI Sprint",
+    "Talent Narrative"
+   ],
+   "domain": "anthropic.com",
+   "lead": ""
+  },
+  {
+   "name": "Avoca AI",
+   "work": [
+    "Talent Platform"
+   ],
+   "domain": "avoca.ai",
+   "lead": "Joe P."
+  },
+  {
+   "name": "Bee AI",
+   "work": [
+    "Finance"
+   ],
+   "domain": "bee.computer",
+   "lead": "Heath J."
+  },
+  {
+   "name": "Better",
+   "work": [
+    "AIGC",
+    "Broker UGC (NEO)",
+    "Embedded Recruiting (paused)",
+    "Paid Media",
+    "Programmatic SEO"
+   ],
+   "domain": "better.com",
+   "lead": "Tina K."
+  },
+  {
+   "name": "Brave Health",
+   "work": [
+    "BizOps"
+   ],
+   "domain": "bebravehealth.com",
+   "lead": "Sam B."
+  },
+  {
+   "name": "Coast",
+   "work": [
+    "Embedded Recruiting"
+   ],
+   "domain": "coastpay.com",
+   "lead": "Kenna A."
+  },
+  {
+   "name": "Cybernetic Labs",
+   "work": [
+    "Embedded Recruiting"
+   ],
+   "domain": "cyberneticlabs.io",
+   "lead": "Brandon T."
+  },
+  {
+   "name": "Deeptune",
+   "work": [
+    "Finance",
+    "Talent Platform"
+   ],
+   "domain": "deeptune.com",
+   "lead": "Joe P."
+  },
+  {
+   "name": "Forge",
+   "work": [
+    "Talent Platform"
+   ],
+   "domain": "withforge.com",
+   "lead": "Joe P."
+  },
+  {
+   "name": "Formulary",
+   "work": [
+    "Embedded Recruiting",
+    "Talent Platform"
+   ],
+   "domain": "formulary.co",
+   "lead": "Arthur M."
+  },
+  {
+   "name": "Fundamental Technologies",
+   "work": [
+    "People"
+   ],
+   "domain": "fundamental.tech",
+   "lead": "Kenna A."
+  },
+  {
+   "name": "Grindr",
+   "work": [
+    "Activate the market",
+    "Ads platform",
+    "Build assets",
+    "Build narrative"
+   ],
+   "domain": "grindr.com",
+   "lead": "Arthur M."
+  },
+  {
+   "name": "Hertz",
+   "work": [
+    "BizOps"
+   ],
+   "domain": "hertz.com",
+   "lead": "Heath J."
+  },
+  {
+   "name": "Hinge",
+   "work": [
+    "Careers Page / Web Build",
+    "Carrara Operations / RecOps",
+    "Embedded Recruiting",
+    "Talent Platform"
+   ],
+   "domain": "hinge.co",
+   "lead": "Sam B."
+  },
+  {
+   "name": "January",
+   "work": [
+    "Embedded Recruiting",
+    "Talent Platform"
+   ],
+   "domain": "january.com",
+   "lead": "Brandon T."
+  },
+  {
+   "name": "Lipdub AI",
+   "work": [
+    "Marketing/Growth"
+   ],
+   "domain": "lipdub.ai",
+   "lead": "Gonz S."
+  },
+  {
+   "name": "Long Lake",
+   "work": [
+    "Talent Platform"
+   ],
+   "domain": "llmh.com",
+   "lead": "Joe P."
+  },
+  {
+   "name": "Luminai",
+   "work": [
+    "Finance",
+    "Talent Platform"
+   ],
+   "domain": "luminai.com",
+   "lead": "Heath J."
+  },
+  {
+   "name": "Magic AI",
+   "work": [
+    "People"
+   ],
+   "domain": "magic.dev",
+   "lead": "Kenna A."
+  },
+  {
+   "name": "Modal Labs",
+   "work": [
+    "Embedded Recruiting",
+    "FDE GTM & Mini-site",
+    "Marketing/Growth",
+    "People",
+    "RecOps / Recruiter Enablement",
+    "Series C Hiring & Events",
+    "Talent Platform"
+   ],
+   "domain": "modal.com",
+   "lead": "Sol S."
+  },
+  {
+   "name": "Perchwell",
+   "work": [
+    "Embedded Recruiting"
+   ],
+   "domain": "perchwell.com",
+   "lead": "Joe P."
+  },
+  {
+   "name": "Profound",
+   "work": [
+    "Embedded Recruiting",
+    "People",
+    "Talent Platform"
+   ],
+   "domain": "tryprofound.com",
+   "lead": "Joe P."
+  },
+  {
+   "name": "Raindrop",
+   "work": [
+    "Build candidate top of funnel",
+    "Careers Page",
+    "Comms",
+    "Hiring Event with OpenAI"
+   ],
+   "domain": "raindrop.ai",
+   "lead": "Joe P."
+  },
+  {
+   "name": "Roger",
+   "work": [
+    "Geo-unblock",
+    "Growth Marketing",
+    "Moderation & Support",
+    "Payment",
+    "Product"
+   ],
+   "domain": "chatroger.com",
+   "lead": "Heath J."
+  },
+  {
+   "name": "Runlayer",
+   "work": [
+    "Embedded Recruiting",
+    "Talent Platform"
+   ],
+   "domain": "runlayer.com",
+   "lead": "Brandon T."
+  },
+  {
+   "name": "Sphere",
+   "work": [
+    "Case studies",
+    "Comms",
+    "Ground Truth ft. a16z",
+    "Small event - early August",
+    "Weekly socials for Nick and Alex"
+   ],
+   "domain": "getsphere.com",
+   "lead": "Gonz S."
+  },
+  {
+   "name": "Untitled",
+   "work": [
+    "Careers Page",
+    "Employer Brand / Amplification",
+    "Events",
+    "RecOps / Offer Ops",
+    "Sourcing / Recruiting",
+    "Talent Platform"
+   ],
+   "domain": "untitled.stream",
+   "lead": "Joe P."
+  },
+  {
+   "name": "Village Global",
+   "work": [
+    "Build website",
+    "Marketing/Growth"
+   ],
+   "domain": "villageglobal.com",
+   "lead": "Gonz S."
+  }
+ ]
+}
