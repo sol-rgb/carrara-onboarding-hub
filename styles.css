@@ -5,12 +5,12 @@
 
 :root {
   /* Carrara palette: Marmol canvas, Grafite ink, Nuvola neutral, Ember signature */
-  --canvas: #EDEBEA;
+  --canvas: #FAF9F7; /* grainy white */
   --ink: #2D2A2A;
   --taupe: #9A938E;   /* Nuvola */
   --ardesia: #59534F;
   --sage: #A2C59B;    /* Moss accent */
-  --sage-soft: #FFFFFF; /* cards read as white blocks on Marmol */
+  --sage-soft: #EDEBEA; /* cards read as Marmol blocks on grainy white */
   --orange: #EB4E19;  /* Ember */
   --blue: #B2CDED;    /* Cielo */
   --hairline: rgba(45, 42, 42, 0.14);
@@ -626,17 +626,3 @@ body::after {
 /* headline emphasis underlines are dotted, like the site */
 .u { text-decoration-style: dotted; text-decoration-thickness: 2.5px; text-underline-offset: 8px; text-decoration-color: rgba(45, 42, 42, 0.75); }
 
-/* the block-pattern strip above the footer, ember block sitting in the row */
-.block-strip {
-  display: grid; grid-template-columns: repeat(12, 1fr); gap: 9px;
-  padding: 9px; margin-top: 40px;
-  border-top: 1px solid var(--hairline);
-}
-.block-strip span { background: #fff; min-height: 120px; }
-.block-strip .b-ember { position: relative; overflow: visible; }
-.block-strip .b-ember img { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 88%; }
-@media (max-width: 900px) {
-  .block-strip { grid-template-columns: repeat(6, 1fr); }
-  .block-strip span:nth-child(n+7) { display: none; }
-  .block-strip .b-ember { display: block; grid-row: 1; grid-column: 5; }
-}

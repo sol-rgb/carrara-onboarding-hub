@@ -5,7 +5,6 @@
   var SECTIONS = [
     { id: 'start',     label: 'Start here' },
     { id: 'who',       label: 'Who we are' },
-    { id: 'how',       label: 'How we work' },
     { id: 'week',      label: 'Your first week' },
     { id: 'team',      label: 'The team' },
     { id: 'slack',     label: 'Slack' },
