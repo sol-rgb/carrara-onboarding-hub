@@ -8,7 +8,6 @@
     { id: 'week',      label: 'Your first week' },
     { id: 'team',      label: 'The team' },
     { id: 'slack',     label: 'Slack' },
-    { id: 'sessions',  label: 'Sessions' },
     { id: 'checklist', label: 'Checklist' },
     { id: 'business',  label: 'The business' },
     { id: 'clients',   label: 'Clients' },

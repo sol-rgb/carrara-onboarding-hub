@@ -5,7 +5,7 @@
 
 :root {
   /* Carrara palette: Marmol canvas, Grafite ink, Nuvola neutral, Ember signature */
-  --canvas: #FAF9F7; /* grainy white */
+  --canvas: #FFFFFF; /* grainy white */
   --ink: #2D2A2A;
   --taupe: #9A938E;   /* Nuvola */
   --ardesia: #59534F;
