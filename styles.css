@@ -538,3 +538,61 @@ footer img { width: 26px; }
   .wk { right: 14px; bottom: 14px; }
   .wk-panel { max-height: 68vh; }
 }
+
+/* ---------- link & navigation dynamics ---------- */
+.side-search {
+  font-family: var(--rigid); font-size: 10.5px; letter-spacing: 0.05em;
+  color: var(--taupe); background: none; border: none; cursor: pointer;
+  text-align: left; padding: 0; margin-bottom: 2px;
+}
+.side-search:hover { color: var(--orange); }
+
+a.stat { text-decoration: none; color: inherit; }
+a.stat:hover .num { color: var(--orange); }
+
+.ch-row b a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(31, 29, 26, 0.25); }
+.ch-row b a:hover { color: var(--orange); border-bottom-color: var(--orange); }
+
+a.client-row { text-decoration: none; color: inherit; }
+a.client-row:hover .cn { color: var(--orange); }
+.client-row.mine { outline: 2px solid var(--orange); outline-offset: -2px; }
+.mine-tag {
+  font-family: var(--rigid); font-size: 9.5px; letter-spacing: 0.08em;
+  color: var(--orange); border: 1px solid rgba(255, 92, 3, 0.4);
+  padding: 2px 7px; margin-left: 10px; vertical-align: 2px; white-space: nowrap;
+}
+
+.next-nav { margin-top: 72px; padding-top: 22px; border-top: 1px solid var(--hairline); }
+.next-nav a {
+  font-family: var(--rigid); font-size: 12px; letter-spacing: 0.06em;
+  color: var(--ink); text-decoration: none;
+}
+.next-nav a:hover { color: var(--orange); }
+.tour-active .next-nav { display: none; }
+
+/* ---------- search palette ---------- */
+.pal-back {
+  display: none; position: fixed; inset: 0; z-index: 80;
+  background: rgba(31, 29, 26, 0.35);
+  align-items: flex-start; justify-content: center; padding-top: 14vh;
+}
+.pal-back.show { display: flex; }
+.pal {
+  width: 520px; max-width: calc(100vw - 40px);
+  background: var(--canvas); border: 1px solid var(--hairline);
+  box-shadow: 0 24px 60px rgba(31, 29, 26, 0.25);
+  clip-path: var(--chamfer);
+}
+.pal input {
+  width: 100%; font-family: var(--sans); font-size: 15px; color: var(--ink);
+  background: transparent; border: none; border-bottom: 1px solid var(--hairline);
+  padding: 16px 18px; outline: none;
+}
+.pal-list { max-height: 46vh; overflow-y: auto; padding: 6px 0; }
+.pal-item {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 14px;
+  font-size: 14px; padding: 9px 18px; cursor: pointer;
+}
+.pal-item span { font-family: var(--rigid); font-size: 10px; letter-spacing: 0.06em; color: var(--taupe); white-space: nowrap; }
+.pal-item:hover, .pal-item.sel { background: var(--sage-soft); }
+.pal-empty { font-size: 13px; color: var(--taupe); padding: 16px 18px; }

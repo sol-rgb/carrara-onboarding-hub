@@ -17,6 +17,7 @@
     <nav id="nav"></nav>
   </div>
   <div class="side-meta">
+    <button id="btn-search" class="side-search">search &#8984;K</button>
     <span id="meta-checklist">checklist: 0/20</span>
     <span id="meta-tour" hidden></span>
   </div>
@@ -46,9 +47,9 @@
       </div>
       <button class="startover" id="btn-startover" hidden>Start over</button>
       <div class="stat-strip">
-        <div class="stat"><div class="num" data-count="8">0</div><div class="lbl">partners</div></div>
-        <div class="stat"><div class="num" data-count="30" data-plus="1">0</div><div class="lbl">team members</div></div>
-        <div class="stat"><div class="num" data-count="30" data-plus="1">0</div><div class="lbl">companies served</div></div>
+        <a class="stat" href="#/who"><div class="num" data-count="8">0</div><div class="lbl">partners</div></a>
+        <a class="stat" href="#/team"><div class="num" data-count="30" data-plus="1">0</div><div class="lbl">team members</div></a>
+        <a class="stat" href="#/clients"><div class="num" data-count="30" data-plus="1">0</div><div class="lbl">companies served</div></a>
       </div>
     </div>
   </section>
@@ -94,8 +95,8 @@
     <h1 class="display">Your first week, step by step.</h1>
     <div class="timeline">
       <div class="t-step" tabindex="0"><h3>Get set up</h3><p>Slack, Notion, Google, payroll, Ashby. Email signature and Slack profile.</p></div>
-      <div class="t-step" tabindex="0"><h3>Install the Quarry</h3><p>Our AI harness: shared tools and conventions so all Carrarians do AI the same way.</p></div>
-      <div class="t-step" tabindex="0"><h3>Soak up the Notion</h3><p>Start with Home Base and the Brand Vault, then click around.</p></div>
+      <div class="t-step" tabindex="0"><h3>Install the Quarry</h3><p>Our AI harness: shared tools and conventions so all Carrarians do AI the same way. <a class="textlink" href="https://app.notion.com/p/34b6b1a6e6e780f6b170e6a9124c7fd4" target="_blank" rel="noopener">Open the Quarry</a></p></div>
+      <div class="t-step" tabindex="0"><h3>Soak up the Notion</h3><p>Start with <a class="textlink" href="https://app.notion.com/p/a0d65c510b1344b59b5fea56210ecd4b" target="_blank" rel="noopener">Home Base</a> and the <a class="textlink" href="https://app.notion.com/p/1516b1a6e6e78010be78fef3dd8e4b7b" target="_blank" rel="noopener">Brand Vault</a>, then click around.</p></div>
       <div class="t-step" tabindex="0"><h3>Finalize your 30-day plan</h3><p>Review it, then align live with your manager.</p></div>
       <div class="t-step" tabindex="0"><h3>Soak up org context</h3><p>Shadow meetings, ask questions, build context on clients and direction.</p></div>
     </div>
@@ -103,7 +104,7 @@
       <img src="/assets/logo/block-04-orange.png" alt="">
       <div>
         <div class="t">Your week one brief</div>
-        <div class="d">What you'll be working on, your first client, and who to meet. Your manager sets this up before you arrive: enter your access code in the welcome kit at the bottom right to see yours.</div>
+        <div class="d" id="brief-desc">What you'll be working on, your first client, and who to meet. Your manager sets this up before you arrive: enter your access code in the welcome kit at the bottom right to see yours.</div>
       </div>
     </div>
     <h2 class="sub">Beyond week one</h2>
@@ -254,7 +255,7 @@
     <div class="res-cols">
       <div>
         <div class="section-lbl">[read and watch]</div>
-        <div class="res-item"><a class="textlink" href="https://www.carrara.is/letter" target="_blank" rel="noopener">Focus on the Work</a><div class="d">Our founding blog post.</div></div>
+        <div class="res-item"><a class="textlink" href="https://www.carrara.is/ideas/focus-on-the-work-by-carrara" target="_blank" rel="noopener">Focus on the Work</a><div class="d">Our founding blog post.</div></div>
         <div class="res-item"><a class="textlink" href="https://www.carrara.is/ideas" target="_blank" rel="noopener">Ideas</a><div class="d">Thinking from the space, including our partners.</div></div>
         <div class="res-item"><a class="textlink" href="https://www.loom.com/share/1c5d6c14583c41bdb22ab925b8314cd6" target="_blank" rel="noopener">How to be a great operator</a><div class="d">Heath on ownership, structure, judgment.</div></div>
         <div class="res-item"><a class="textlink" href="https://drive.google.com/file/d/114-BybZQZxs-Y1Siifzi9JeE1rzqPNWw/view" target="_blank" rel="noopener">2025 offsite recap</a><div class="d">Video, plus the <a class="textlink" href="https://docs.google.com/presentation/d/1sGfuP0ktZGGgY3F5wsaawcbPWLEWD3Bb-cFjti6kNzY/edit" target="_blank" rel="noopener">master deck</a>.</div></div>
@@ -297,6 +298,14 @@
   <span class="fm">Carrara. Focus on the work. <a href="https://www.carrara.is" target="_blank" rel="noopener">carrara.is</a></span>
 </footer>
 
+<!-- search palette -->
+<div class="pal-back" id="pal-back">
+  <div class="pal">
+    <input id="pal-input" type="text" placeholder="Search sections, people, clients, channels" autocomplete="off" spellcheck="false">
+    <div class="pal-list" id="pal-list"></div>
+  </div>
+</div>
+
 <!-- welcome kit popup -->
 <div class="wk" id="wk">
   <div class="wk-panel" id="wk-panel" hidden>
@@ -309,6 +318,7 @@
   <button class="wk-pill" id="wk-pill" aria-expanded="false"><span class="wk-dot"></span><span id="wk-pill-label">New here? Open your welcome kit</span></button>
 </div>
 
+<script src="/links.js"></script>
 <script src="/app.js"></script>
 </body>
 </html>

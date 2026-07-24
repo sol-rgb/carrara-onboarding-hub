@@ -36,34 +36,45 @@
     { n: '#f-talent-general', d: 'everything talent services.', ex: ['Weekly Talent Jam prep and open roles reminders', 'Client interview process questions', 'Hiring experiments worth copying'] }
   ];
 
+  /* item.links: [{t, k}] where k is a LINKS key, a '#/section' hash, a full URL,
+     or 'ch:<channel>' for a Slack channel. Unresolvable keys simply do not render,
+     so filling a blank in links.js lights the link up everywhere at once. */
   var CHECKLIST = [
     { g: 'day one', cls: '', items: [
-      { t: 'Set up your Slack workspace', d: 'Join carrarais.slack.com. Set your photo, title and timezone: the team page pulls from your Slack profile. Then read the Slack section of this hub so the channel prefixes make sense.' },
-      { t: 'Ensure tool and system access', d: 'Confirm you can open Google, Notion, Slack and the tools for your role. Anything blocked, ping Eric on Slack.' },
-      { t: 'Payroll setup (Deel, Bill.com, or Ramp)', d: 'Deel for full-time employees, Bill.com for US contractors, Ramp for international contractors. You will get an invite for the one that applies to you.' },
-      { t: 'Set up email signature and Slack profile', d: 'Use the Carrara signature format from the brand templates, and fill out your Slack profile completely.' },
+      { t: 'Set up your Slack workspace', d: 'Join carrarais.slack.com. Set your photo, title and timezone: the team page pulls from your Slack profile. Then read the Slack section of this hub so the channel prefixes make sense.', links: [{ t: 'Open Slack', k: 'slackWorkspace' }, { t: 'The Slack guide', k: '#/slack' }] },
+      { t: 'Ensure tool and system access', d: 'Confirm you can open Google, Notion, Slack and the tools for your role. Anything blocked, ping Eric on Slack.', links: [{ t: 'Notion Home Base', k: 'notionHomeBase' }] },
+      { t: 'Payroll setup (Deel, Bill.com, or Ramp)', d: 'Deel for full-time employees, Bill.com for US contractors, Ramp for international contractors. You will get an invite for the one that applies to you.', links: [{ t: 'Deel', k: 'deel' }, { t: 'Bill.com', k: 'bill' }, { t: 'Ramp', k: 'ramp' }] },
+      { t: 'Set up email signature and Slack profile', d: 'Use the Carrara signature format from the brand templates, and fill out your Slack profile completely.', links: [{ t: 'Brand templates', k: '#/templates' }] },
       { t: 'Day 1 manager 1:1', d: 'Your first 1:1: align on your 90-day plan, week one priorities, and how you will work together.' },
-      { t: 'Submit your Top 5', d: 'Share your Top 5 with the team so everyone knows how you work best. Your manager will point you to the form.' },
-      { t: 'Look through open roles', d: 'Browse the roles we are currently hiring for across clients. It is the fastest way to understand what the talent side of the business actually does.' }
+      { t: 'Submit your Top 5', d: 'Share your Top 5 with the team so everyone knows how you work best.', links: [{ t: 'Top 5 form', k: 'top5Form' }] },
+      { t: 'Look through open roles', d: 'Browse the roles we are currently hiring for across clients. It is the fastest way to understand what the talent side of the business actually does.', links: [{ t: 'Open roles', k: 'openRoles' }] }
     ]},
     { g: 'week one', cls: 'blue', items: [
-      { t: 'Attend the tool tips session', d: 'A live walkthrough of the tools the team runs on, with tips from people who use them daily.' },
+      { t: 'Attend the tool tips session', d: 'A live walkthrough of the tools the team runs on, with tips from people who use them daily.', links: [{ t: 'The tools we use', k: '#/tools' }] },
       { t: 'Set up a recurring 1:1 with your manager', d: 'Get a weekly slot on the calendar before the week ends.' },
-      { t: "Confirm you're added to all team calls", d: 'Standing team meetings, the monthly Team Roundup, and any client syncs relevant to your role.' },
-      { t: 'Get oriented on our Notion', d: 'Start at Home Base and click around. The good-places-to-start list is linked from your Notion onboarding page.' },
-      { t: 'Review the PTO policy', d: 'Read the Time off section of this hub, then the full policy on Notion. Two minutes now saves confusion later.', link: '#/timeoff' },
-      { t: 'Set up time tracking', d: 'Set up time tracking following your team lead’s instructions for your role and client.' },
-      { t: 'Explore and fill out the People Pavilion', d: 'The team directory in Notion. Fill in your entry so people can get to know you.' }
+      { t: "Confirm you're added to all team calls", d: 'Standing team meetings, the monthly Team Roundup, and any client syncs relevant to your role.', links: [{ t: 'Team Roundup', k: 'teamRoundup' }] },
+      { t: 'Get oriented on our Notion', d: 'Start at Home Base and click around.', links: [{ t: 'Home Base', k: 'notionHomeBase' }] },
+      { t: 'Review the PTO policy', d: 'Read the Time off section of this hub, then the full policy on Notion. Two minutes now saves confusion later.', links: [{ t: 'Time off section', k: '#/timeoff' }, { t: 'Full policy on Notion', k: 'timeOffPolicy' }] },
+      { t: 'Set up time tracking', d: 'Set up time tracking following your team lead’s instructions for your role and client.', links: [{ t: 'Time tracking', k: 'timeTracking' }] },
+      { t: 'Explore and fill out the People Pavilion', d: 'The team directory in Notion. Fill in your entry so people can get to know you.', links: [{ t: 'People Pavilion', k: 'peoplePavilion' }] }
     ]},
     { g: 'week two', cls: '', items: [
-      { t: 'Meet with teammates', d: 'Grab meet and greet 1:1s with the people you will work with most.' },
-      { t: 'Read the company operating principles', d: 'The Ways of Working page in Notion: what the four principles look like in practice.' },
-      { t: 'Read the company context docs', d: 'Company history, direction, and how we engage clients. Linked from Home Base.' },
-      { t: 'Read tips on people and management', d: 'A short Notion read on how we think about people, feedback and management.' },
-      { t: 'Review the Carrara Brand Vault', d: 'Brand story, messaging and visual identity. Everything you make should feel like Carrara.' },
-      { t: 'Talent team only: get oriented on Ashby', d: 'Our ATS. Ask in #g-ashby-support if you get stuck.' }
+      { t: 'Meet with teammates', d: 'Grab meet and greet 1:1s with the people you will work with most.', links: [{ t: 'The team wall', k: '#/team' }] },
+      { t: 'Read the company operating principles', d: 'The Ways of Working page in Notion: what the four principles look like in practice.', links: [{ t: 'Ways of Working', k: 'waysOfWorking' }] },
+      { t: 'Read the company context docs', d: 'Company history, direction, and how we engage clients.', links: [{ t: 'Company context', k: 'companyContext' }, { t: 'Home Base', k: 'notionHomeBase' }] },
+      { t: 'Read tips on people and management', d: 'A short Notion read on how we think about people, feedback and management.', links: [{ t: 'Read it on Notion', k: 'peopleMgmtTips' }] },
+      { t: 'Review the Carrara Brand Vault', d: 'Brand story, messaging and visual identity. Everything you make should feel like Carrara.', links: [{ t: 'Brand Vault', k: 'brandVault' }] },
+      { t: 'Talent team only: get oriented on Ashby', d: 'Our ATS. Ask in #g-ashby-support if you get stuck.', links: [{ t: 'Open Ashby', k: 'ashby' }, { t: '#g-ashby-support', k: 'ch:g-ashby-support' }] }
     ]}
   ];
+
+  /* resolve a link key from links.js to a real destination */
+  function linkFor(k) {
+    if (!k) return '';
+    if (k.charAt(0) === '#' || /^https?:/.test(k)) return k;
+    if (k.indexOf('ch:') === 0) return (window.channelUrl && window.channelUrl(k.slice(3))) || '';
+    return (window.LINKS && window.LINKS[k]) || '';
+  }
 
   var TOOLS = [
     { n: 'Claude', dmn: 'claude.ai', url: 'https://claude.ai', d: 'Our go-to AI. Deep research, client deliverables, coding, MCP workflows. The Quarry is built on it.', tag: '' },
@@ -132,11 +143,26 @@
     reveal(el);
     if (sec === 'start') countUp();
     if (sec === 'templates') mountTemplates();
+    nextNav(el, sec);
     syncTourChrome();
     setTimeout(function () { if (typeof updateRail === 'function') updateRail(); }, 60);
   }
   function route() { show((location.hash || '#/start').replace('#/', '')); }
   window.addEventListener('hashchange', route);
+
+  /* footer link so the hub reads front to back without going via the sidebar */
+  function nextNav(root, sec) {
+    if (!root) return;
+    var old = root.querySelector('.next-nav');
+    if (old) old.parentNode.removeChild(old);
+    var i = SECTIONS.findIndex(function (s) { return s.id === sec; });
+    if (i < 0 || i >= SECTIONS.length - 1) return;
+    var nxt = SECTIONS[i + 1];
+    var d = document.createElement('div');
+    d.className = 'next-nav';
+    d.innerHTML = '<a href="#/' + nxt.id + '">Next: ' + esc(nxt.label) + ' →</a>';
+    root.appendChild(d);
+  }
 
   /* orange progress rail: the fill tip tracks the active section item, growing through it as you scroll */
   function updateRail() {
@@ -205,8 +231,17 @@
         renderProgress();
       }
       function details() {
+        var linksHtml = '';
+        (item.links || []).forEach(function (l) {
+          var u = linkFor(l.k);
+          if (!u) return;
+          var internal = u.charAt(0) === '#';
+          linksHtml += '<a class="textlink" style="margin-right:16px" href="' + esc(u) + '"'
+            + (internal ? ' onclick="document.getElementById(\'modal-back\').classList.remove(\'show\')"' : ' target="_blank" rel="noopener"')
+            + '>' + esc(l.t) + (internal ? '' : ' ↗') + '</a>';
+        });
         openModal('<div class="m-eyebrow">[' + grp.g + ']</div><h3>' + esc(item.t) + '</h3><p>' + esc(item.d) + '</p>'
-          + (item.link ? '<p style="margin-top:12px"><a class="textlink" href="' + item.link + '" onclick="document.getElementById(\'modal-back\').classList.remove(\'show\')">Read it here</a></p>' : ''));
+          + (linksHtml ? '<p style="margin-top:14px">' + linksHtml + '</p>' : ''));
       }
       row.querySelector('.box').addEventListener('click', toggle);
       row.querySelector('.box').addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
@@ -306,12 +341,36 @@
     });
   });
 
+  /* ---------- welcome kit -> hub personalization ---------- */
+  var kitData = null;
+  function applyKitToHub() {
+    if (!kitData) return;
+    var brief = $('#brief-desc');
+    if (brief && kitData.client) {
+      brief.innerHTML = 'Your first client is <b>' + esc(kitData.client.name) + '</b>'
+        + (kitData.client.lead ? ', led by ' + esc(kitData.client.lead.replace(/\.+$/, '')) + '.' : '.')
+        + (kitData.manager && kitData.manager.name ? ' Your manager is ' + esc(kitData.manager.name) + '.' : '')
+        + ' Open your welcome kit at the bottom right for who to meet and how your team works.';
+    }
+    if (kitData.client) {
+      $$('#client-grid .client-row').forEach(function (row) {
+        var nm = row.querySelector('.cn');
+        if (nm && nm.textContent === kitData.client.name && !row.querySelector('.mine-tag')) {
+          row.classList.add('mine');
+          nm.insertAdjacentHTML('beforeend', '<span class="mine-tag">your first client</span>');
+        }
+      });
+    }
+  }
+
   /* ---------- clients ---------- */
   (window.__CLIENTS__ ? Promise.resolve(window.__CLIENTS__) : fetch('/clients.json').then(function (r) { return r.json(); })).then(function (data) {
     var grid = $('#client-grid');
-    (data.clients || []).forEach(function (c) {
-      var d = document.createElement('div');
+    clientData = data.clients || [];
+    clientData.forEach(function (c) {
+      var d = document.createElement(c.domain ? 'a' : 'div');
       d.className = 'client-row';
+      if (c.domain) { d.href = 'https://' + c.domain; d.target = '_blank'; d.rel = 'noopener'; }
       var logo = c.domain
         ? '<img src="' + favicon(c.domain, 64) + '" alt="" loading="lazy" onerror="this.parentNode.textContent=\'' + esc(c.name.charAt(0)) + '\'">'
         : esc(c.name.charAt(0));
@@ -321,8 +380,10 @@
         + '</div>';
       grid.appendChild(d);
     });
-    $('#client-note').textContent = 'Snapshot from the Quarry Brain, ' + (data.updated || '') + '. Channels and owners live in Slack.';
+    $('#client-note').textContent = 'Snapshot from the Quarry Brain, ' + (data.updated || '') + '. Click a client to open their site.';
+    applyKitToHub();
   });
+  var clientData = [];
 
   /* ---------- slack channels ---------- */
   (function () {
@@ -331,7 +392,9 @@
     CHANNELS.forEach(function (c) {
       var d = document.createElement('div');
       d.className = 'flat-row ch-row';
-      d.innerHTML = '<b>' + esc(c.n) + '</b><span class="d">: ' + esc(c.d) + '</span>'
+      var u = window.channelUrl ? window.channelUrl(c.n) : '';
+      var nameHtml = u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(c.n) + '</a>' : esc(c.n);
+      d.innerHTML = '<b>' + nameHtml + '</b><span class="d">: ' + esc(c.d) + '</span>'
         + '<div class="hovercard"><div class="hlbl">[what gets posted here]</div><ul>'
         + c.ex.map(function (e) { return '<li>' + esc(e) + '</li>'; }).join('') + '</ul></div>';
       grid.appendChild(d);
@@ -497,6 +560,8 @@
     }
 
     function renderKit(d) {
+      kitData = d;
+      applyKitToHub();
       var html = '<h3>Welcome, ' + esc(d.firstName) + '.</h3>'
         + '<p>Here is your personal starting point. Everything below is specific to you.</p>';
       if (d.manager && d.manager.name) {
@@ -549,6 +614,80 @@
       /* nudge first-time visitors once */
       if (!store('carrara_welcome_seen')) setTimeout(open, 1400);
     }
+  })();
+
+  /* ---------- search palette (Cmd/Ctrl+K) ---------- */
+  (function () {
+    var back = $('#pal-back'), input = $('#pal-input'), list = $('#pal-list');
+    if (!back) return;
+    var sel = 0;
+
+    function buildIndex() {
+      var ix = [];
+      SECTIONS.forEach(function (s) { ix.push({ label: s.label, hint: 'section', go: function () { location.hash = '#/' + s.id; } }); });
+      CHECKLIST.forEach(function (g) { g.items.forEach(function (it) {
+        ix.push({ label: it.t, hint: 'checklist · ' + g.g, go: function () { location.hash = '#/checklist'; } });
+      }); });
+      teamData.forEach(function (m) {
+        ix.push({ label: m.name, hint: (m.title ? cleanTitle(m.title) + ' · ' : '') + 'team', go: function () {
+          location.hash = '#/team';
+          setTimeout(function () { var f = $('#team-search'); f.value = m.name; renderTeam(m.name); }, 60);
+        } });
+      });
+      clientData.forEach(function (c) {
+        ix.push({ label: c.name, hint: 'client' + (c.lead ? ' · lead: ' + c.lead : ''), go: function () { location.hash = '#/clients'; } });
+      });
+      CHANNELS.forEach(function (c) {
+        var u = window.channelUrl ? window.channelUrl(c.n) : '';
+        ix.push({ label: c.n, hint: 'slack channel', go: function () { if (u) window.open(u, '_blank'); else location.hash = '#/slack'; } });
+      });
+      TOOLS.forEach(function (t) { ix.push({ label: t.n, hint: 'tool', go: function () { window.open(t.url, '_blank'); } }); });
+      [['Home Base', 'notionHomeBase'], ['The Quarry', 'quarry'], ['Brand Vault', 'brandVault'], ['Team Roundup', 'teamRoundup'],
+       ['Time-off policy', 'timeOffPolicy'], ['This is Carrara on Notion', 'thisIsCarrara'], ['Ashby', 'ashby'],
+       ['carrara.is', 'site']].forEach(function (r) {
+        var u = linkFor(r[1]);
+        if (u) ix.push({ label: r[0], hint: 'resource', go: function () { window.open(u, '_blank'); } });
+      });
+      return ix;
+    }
+
+    var results = [];
+    function render(q) {
+      var ix = buildIndex();
+      q = (q || '').toLowerCase().trim();
+      results = !q ? ix.slice(0, 8) : ix.filter(function (r) {
+        return r.label.toLowerCase().indexOf(q) >= 0 || r.hint.toLowerCase().indexOf(q) >= 0;
+      }).slice(0, 10);
+      sel = 0;
+      list.innerHTML = results.length
+        ? results.map(function (r, i) {
+            return '<div class="pal-item' + (i === sel ? ' sel' : '') + '" data-i="' + i + '">' + esc(r.label) + '<span>' + esc(r.hint) + '</span></div>';
+          }).join('')
+        : '<div class="pal-empty">Nothing found. Try a section, a name, a client, or a channel.</div>';
+      $$('.pal-item').forEach(function (el) {
+        el.addEventListener('click', function () { pick(parseInt(el.dataset.i, 10)); });
+      });
+    }
+    function pick(i) { if (results[i]) { closePal(); results[i].go(); } }
+    function openPal() { back.classList.add('show'); input.value = ''; render(''); input.focus(); }
+    function closePal() { back.classList.remove('show'); }
+
+    input.addEventListener('input', function () { render(input.value); });
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') pick(sel);
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        sel = Math.max(0, Math.min(results.length - 1, sel + (e.key === 'ArrowDown' ? 1 : -1)));
+        $$('.pal-item').forEach(function (el, i) { el.classList.toggle('sel', i === sel); });
+      }
+    });
+    back.addEventListener('click', function (e) { if (e.target === back) closePal(); });
+    document.addEventListener('keydown', function (e) {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); back.classList.contains('show') ? closePal() : openPal(); }
+      if (e.key === 'Escape') closePal();
+    });
+    var btn = $('#btn-search');
+    if (btn) btn.addEventListener('click', openPal);
   })();
 
   if (tour.active && TOUR[tour.step]) {
