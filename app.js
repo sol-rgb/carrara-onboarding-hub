@@ -113,10 +113,10 @@
     var a = document.createElement('a');
     a.href = '#/' + s.id;
     a.dataset.id = s.id;
-    a.innerHTML = '<span class="idx">' + String(i + 1).padStart(2, '0') + '</span>' + s.label;
+    a.textContent = s.label;
     nav.appendChild(a);
     var o = document.createElement('option');
-    o.value = s.id; o.textContent = String(i + 1).padStart(2, '0') + '  ' + s.label;
+    o.value = s.id; o.textContent = s.label;
     mnav.appendChild(o);
   });
   mnav.addEventListener('change', function () { location.hash = '#/' + mnav.value; });
@@ -468,6 +468,99 @@
     location.hash = '#/start'; syncHome(); syncTourChrome();
   });
   $('#btn-home').addEventListener('click', function () { location.hash = '#/start'; syncHome(); });
+
+  /* ---------- welcome kit popup ---------- */
+  (function () {
+    var wk = $('#wk');
+    if (!wk) return;
+    var pill = $('#wk-pill'), pillLabel = $('#wk-pill-label'), panel = $('#wk-panel'), body = $('#wk-body'), closeBtn = $('#wk-close');
+    var saved = store('carrara_welcome'); /* { code, data } */
+
+    function open() { panel.hidden = false; pill.setAttribute('aria-expanded', 'true'); pill.style.display = 'none'; }
+    function close() { panel.hidden = true; pill.setAttribute('aria-expanded', 'false'); pill.style.display = ''; store('carrara_welcome_seen', true); }
+    pill.addEventListener('click', open);
+    closeBtn.addEventListener('click', close);
+
+    function renderLocked(errMsg) {
+      body.innerHTML = '<h3>Welcome to Carrara</h3>'
+        + '<p>Your hiring manager set up a welcome kit just for you: your first client, who to meet, and how your team works.</p>'
+        + '<label>Access code</label><input id="wk-code" autocomplete="off" spellcheck="false" placeholder="Paste the code you were sent">'
+        + '<div class="wk-err" id="wk-error"></div>'
+        + '<div class="wk-actions"><button class="btn-primary" id="wk-unlock">Unlock</button></div>'
+        + '<p style="margin-top:14px;font-size:12px">No code? Ask your hiring manager: it was posted in #new-hires when you were added.</p>';
+      if (errMsg) { var e = $('#wk-error'); e.textContent = errMsg; e.classList.add('show'); }
+      function go() {
+        var code = $('#wk-code').value.trim();
+        if (!code) { $('#wk-code').focus(); return; }
+        $('#wk-unlock').textContent = 'Unlocking…';
+        fetch('/api/welcome', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code: code }) })
+          .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+          .then(function (res) {
+            if (!res.ok) { renderLocked(res.j.error || 'That code does not look right.'); return; }
+            saved = { code: code, data: res.j };
+            store('carrara_welcome', saved);
+            renderKit(res.j);
+          })
+          .catch(function () { renderLocked('Could not reach the hub. Check your connection and try again.'); });
+      }
+      $('#wk-unlock').addEventListener('click', go);
+      $('#wk-code').addEventListener('keydown', function (e) { if (e.key === 'Enter') go(); });
+    }
+
+    function renderKit(d) {
+      var html = '<h3>Welcome, ' + esc(d.firstName) + '.</h3>'
+        + '<p>Here is your personal starting point. Everything below is specific to you.</p>';
+      if (d.manager && d.manager.name) {
+        html += '<div class="wk-sec"><div class="wk-lbl">[your hiring manager]</div>'
+          + '<p><b style="color:var(--ink);font-weight:500">' + esc(d.manager.name) + '</b>. Your day-one 1:1 is with them: your 90-day plan and week-one priorities.</p></div>';
+      }
+      if (d.syncWith && d.syncWith.length) {
+        html += '<div class="wk-sec"><div class="wk-lbl">[sync with them in week one]</div><ul>'
+          + d.syncWith.map(function (s) { return '<li><b>' + esc(s.name) + '</b>: ' + esc(s.why) + '</li>'; }).join('')
+          + '</ul></div>';
+      }
+      if (d.client) {
+        html += '<div class="wk-sec"><div class="wk-lbl">[your first client]</div>'
+          + '<p><b style="color:var(--ink);font-weight:500">' + esc(d.client.name) + '</b>'
+          + (d.client.lead ? ', led by ' + esc(d.client.lead.replace(/\.+$/, '')) : '') + '.</p>'
+          + (d.client.work && d.client.work.length ? '<div class="wk-tags">' + d.client.work.map(function (w) { return '<span>' + esc(w) + '</span>'; }).join('') + '</div>' : '')
+          + '</div>';
+      }
+      if (d.team && d.team.how && d.team.how.length) {
+        html += '<div class="wk-sec"><div class="wk-lbl">[how ' + esc(d.team.label.toLowerCase()) + ' works here]</div><ul>'
+          + d.team.how.map(function (h) { return '<li>' + esc(h) + '</li>'; }).join('') + '</ul></div>';
+      }
+      if (d.country && d.country.notes && d.country.notes.length) {
+        html += '<div class="wk-sec"><div class="wk-lbl">[joining from ' + esc(d.country.label.toLowerCase()) + ']</div><ul>'
+          + d.country.notes.map(function (n) { return '<li>' + esc(n) + '</li>'; }).join('') + '</ul></div>';
+      }
+      if (d.links && d.links.length) {
+        html += '<div class="wk-sec"><div class="wk-lbl">[start with these]</div><div class="wk-links">'
+          + d.links.map(function (l) {
+              var ext = l.external || /^https?:/.test(l.href);
+              return '<a href="' + esc(l.href) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' + esc(l.label) + (ext ? ' ↗' : '') + '</a>';
+            }).join('') + '</div></div>';
+      }
+      html += '<button class="wk-reset" id="wk-reset">Not you? Enter a different code</button>';
+      body.innerHTML = html;
+      pillLabel.textContent = 'Your welcome kit, ' + d.firstName;
+      $('#wk-reset').addEventListener('click', function () {
+        saved = null; store('carrara_welcome', null);
+        pillLabel.textContent = 'New here? Open your welcome kit';
+        renderLocked();
+      });
+      body.querySelectorAll('.wk-links a[href^="#/"]').forEach(function (a) { a.addEventListener('click', close); });
+    }
+
+    if (saved && saved.data) {
+      renderKit(saved.data);
+      pillLabel.textContent = 'Your welcome kit, ' + saved.data.firstName;
+    } else {
+      renderLocked();
+      /* nudge first-time visitors once */
+      if (!store('carrara_welcome_seen')) setTimeout(open, 1400);
+    }
+  })();
 
   if (tour.active && TOUR[tour.step]) {
     location.hash = '#/' + TOUR[tour.step].id;

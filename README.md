@@ -24,16 +24,22 @@ With the key set (and the folder shared as "anyone with the link can view"), `/a
 
 ### New hires bot (Slack)
 
-`/api/slack-newhire` powers the survey bot for #new-hires. A partner types `/new-hire` in Slack, a modal asks for name, position, project types, first client, and location, and the answers post as a formatted message to #new-hires.
+`/api/slack-newhire` powers the survey bot for #new-hires and the personalized welcome kit popup on the hub.
+
+The flow: the hiring manager types `/new-hire` in Slack. A modal asks for the new joiner's name, country (US / Argentina / Australia / other), project type (talent / finance / go-to-market / other), and first client (picked from clients.json). Submitting generates a signed access code, posts it with the details to #new-hires, and shows it to the manager in the modal. The manager sends the code to the new joiner.
+
+The new joiner opens the hub and pastes the code into the welcome kit popup (sticky, bottom right). The popup unlocks a kit personalized to them: their hiring manager, who to sync with in week one (the client lead from clients.json plus team defaults), their first client with links, how their team works, and country-specific onboarding notes. The kit persists in their browser via localStorage.
+
+Codes are stateless: the survey answers travel inside the code, signed with `WELCOME_SECRET`, so there is no database. `/api/welcome` verifies and unpacks them. All kit content is editable in `welcome.json` (teams, countries, links); client facts come from `clients.json`.
 
 One-time Slack app setup:
 
 1. api.slack.com/apps, Create New App ("New Hires"), workspace carrarais.
 2. Slash command `/new-hire`, request URL `https://<domain>/api/slack-newhire`.
 3. Interactivity: on, same request URL.
-4. Bot token scopes: `commands`, `chat:write` (plus `channels:read`, `users:read`, `users:read.email` if the same app powers the team index).
+4. Bot token scopes: `commands`, `chat:write`, `users:read` (plus `channels:read`, `users:read.email` if the same app powers the team index).
 5. Install to workspace, invite the bot to #new-hires (channel ID C0BK7NG1PMM).
-6. Vercel env vars: `SLACK_BOT_TOKEN`, `SLACK_SIGNING_SECRET`, optional `NEW_HIRES_CHANNEL_ID`. Redeploy.
+6. Vercel env vars: `SLACK_BOT_TOKEN`, `SLACK_SIGNING_SECRET`, `WELCOME_SECRET` (any long random string; keeps access codes forgery-proof), optional `NEW_HIRES_CHANNEL_ID`. Redeploy.
 
 `/api/profile` uses the same token to post new joiner self-intros from the team page.
 

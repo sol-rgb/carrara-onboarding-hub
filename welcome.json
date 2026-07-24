@@ -1,0 +1,95 @@
+{
+  "_readme": "Content for the personalized welcome kit popup. /api/welcome merges this with clients.json based on the access code. Edit freely: teams keys are finance/talent/gtm/other, countries keys are US/AR/AU/OTHER.",
+  "teams": {
+    "talent": {
+      "label": "Talent",
+      "how": [
+        "Talent runs on embedded pods per client: you will live inside the client's team, not outside it.",
+        "Ashby is the ATS. Get oriented in week one and ask anything in #g-ashby-support.",
+        "The weekly rhythm: pipeline reviews with your client, a weekly hiring report (template in the hub), and the Talent Jam with the wider talent team.",
+        "#f-talent-general is the channel for everything talent: open roles, process questions, and experiments worth copying."
+      ],
+      "syncWith": [
+        { "name": "Your client's lead", "why": "owns the account and sets week-one priorities" },
+        { "name": "A talent partner on a neighboring client", "why": "fastest way to absorb how pods actually run" }
+      ]
+    },
+    "finance": {
+      "label": "Finance",
+      "how": [
+        "Finance and BizOps engagements run lean: usually one or two people embedded per client.",
+        "Deliverables live in the Base doc and Sheets templates from the hub. Everything client-facing follows the brand templates.",
+        "Weekly client syncs use the sync agenda template; keep a rolling doc per client.",
+        "When in doubt on scope or billing, ask your client lead before the client does."
+      ],
+      "syncWith": [
+        { "name": "Your client's lead", "why": "context on the engagement and what good looks like" },
+        { "name": "Eric Fernandez", "why": "tools, systems and access for finance work" }
+      ]
+    },
+    "gtm": {
+      "label": "Go-to-market",
+      "how": [
+        "GTM covers comms, content, growth, events and employer brand across clients.",
+        "Every deliverable should feel like the client's brand, not ours: start from their brand vault or site before writing a word.",
+        "Weekly cadence: a socials/content calendar per client, plus async Loom walkthroughs instead of extra meetings.",
+        "Share wins and launches in #g-amplify so the whole team can boost them."
+      ],
+      "syncWith": [
+        { "name": "Your client's lead", "why": "owns the narrative and the client relationship" },
+        { "name": "Gonz Sanchez", "why": "runs several GTM engagements and knows the playbooks" }
+      ]
+    },
+    "other": {
+      "label": "Your team",
+      "how": [
+        "Your manager will walk you through how your specific team runs in your day-one 1:1.",
+        "Default operating mode across Carrara: async first (Loom + Slack), briefs in the Base doc template, and Granola on every client call.",
+        "Read the Ways of Working page in Notion in week two: the four principles and what they look like in practice."
+      ],
+      "syncWith": [
+        { "name": "Your client's lead", "why": "context on the account you are joining" }
+      ]
+    }
+  },
+  "countries": {
+    "US": {
+      "label": "United States",
+      "notes": [
+        "Payroll: Deel if you are a full-time employee, Bill.com if you are a US contractor. The invite comes to your email; ping Eric if it does not.",
+        "Send any tax paperwork (W-9 or equivalent) back the same week so your first payment is not delayed.",
+        "Holidays and time off follow the policy in the Time off section of this hub; post planned time off in #g-ooo."
+      ]
+    },
+    "AR": {
+      "label": "Argentina",
+      "notes": [
+        "Payroll: international contractors run through Ramp. You will get an invite; invoice monthly in USD.",
+        "Ping Eric on Slack for the invoicing format and payment schedule before your first month closes.",
+        "Most client work runs on US hours: agree your overlap window with your manager in week one.",
+        "Post planned time off in #g-ooo, including local holidays you plan to take."
+      ]
+    },
+    "AU": {
+      "label": "Australia",
+      "notes": [
+        "Payroll: international contractors run through Ramp. You will get an invite; invoice monthly in USD.",
+        "The timezone gap with the US is real: agree a standing overlap window with your manager and lean on async (Loom, Slack) for the rest.",
+        "Post planned time off in #g-ooo, including local holidays you plan to take."
+      ]
+    },
+    "OTHER": {
+      "label": "Your country",
+      "notes": [
+        "Payroll: international contractors run through Ramp, full-time employees through Deel. Eric will confirm which applies to you.",
+        "Agree your overlap window with your manager in week one if your client runs on US hours.",
+        "Post planned time off in #g-ooo."
+      ]
+    }
+  },
+  "commonLinks": [
+    { "label": "Your first week, step by step", "href": "#/week" },
+    { "label": "The onboarding checklist", "href": "#/checklist" },
+    { "label": "Slack channels and how we use them", "href": "#/slack" }
+  ]
+}
