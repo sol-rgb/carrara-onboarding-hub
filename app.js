@@ -22,10 +22,7 @@
   /* the guided tour skips Start here so the first click takes you somewhere new */
   var TOUR = SECTIONS.slice(1);
   var TOUR_TOTAL = TOUR.length;
-  var NEW_HIRES_URL = 'https://carrarais.slack.com/archives/C0BK7NG1PMM';
-
   var CHANNELS = [
-    { n: '#new-hires', d: 'intro threads and week one briefs for every new joiner.', ex: ['New joiner intros: name, location, first client', 'Week one briefs posted by managers'] },
     { n: '#g-announcements', d: 'team-wide announcements.', ex: ['Company-wide updates from the partners', 'Policy and process changes everyone should see'] },
     { n: '#g-no-dumb-questions', d: 'ask anything.', ex: ['"Anyone know a freelancer for podcast booking?"', '"Has anyone used Noon.ai?"', '"What do people use to track event attendees?"'] },
     { n: '#g-ooo', d: 'post your time off here.', ex: ['"Eric - OOO (01/01 - 01/05) | Visiting family"', 'Coverage notes before longer trips'] },
@@ -291,8 +288,8 @@
       + '<label>Location</label><input id="pf-loc" placeholder="City, country" value="' + esc(p.location || '') + '">'
       + '<label>A fun fact about you</label><textarea id="pf-fact" rows="2">' + esc(p.fact || '') + '</textarea>'
       + '<label>What you’ll be working on at Carrara</label><input id="pf-work" placeholder="e.g. Talent Partner, Modal + Hinge" value="' + esc(p.work || '') + '">'
-      + '<div class="m-actions"><button class="btn-primary" id="pf-save">Post to #new-hires</button></div>'
-      + '<p class="m-note">Your intro is copied to your clipboard and #new-hires opens: paste it there so the team can welcome you.</p>'
+      + '<div class="m-actions"><button class="btn-primary" id="pf-save">Add me to the wall</button></div>'
+      + '<p class="m-note">Your intro is shared with the team so they can give you a proper welcome.</p>'
     );
     $('#pf-save').addEventListener('click', function () {
       var prof = {
@@ -303,15 +300,9 @@
       };
       if (!prof.name) { $('#pf-name').focus(); return; }
       myProfile = prof; store('carrara_profile', prof);
-      var msg = 'New joiner: ' + prof.name
-        + (prof.location ? '\nLocation: ' + prof.location : '')
-        + (prof.work ? '\nWorking on: ' + prof.work : '')
-        + (prof.fact ? '\nFun fact: ' + prof.fact : '');
       fetch('/api/profile', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(prof) }).catch(function () {});
-      if (navigator.clipboard) navigator.clipboard.writeText(msg).catch(function () {});
       renderTeam($('#team-search').value);
       closeModal();
-      window.open(NEW_HIRES_URL, '_blank');
     });
   });
 
@@ -487,7 +478,7 @@
         + '<label>Access code</label><input id="wk-code" autocomplete="off" spellcheck="false" placeholder="Paste the code you were sent">'
         + '<div class="wk-err" id="wk-error"></div>'
         + '<div class="wk-actions"><button class="btn-primary" id="wk-unlock">Unlock</button></div>'
-        + '<p style="margin-top:14px;font-size:12px">No code? Ask your hiring manager: it was posted in #new-hires when you were added.</p>';
+        + '<p style="margin-top:14px;font-size:12px">No code? Ask your hiring manager for it.</p>';
       if (errMsg) { var e = $('#wk-error'); e.textContent = errMsg; e.classList.add('show'); }
       function go() {
         var code = $('#wk-code').value.trim();
