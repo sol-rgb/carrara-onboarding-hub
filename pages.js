@@ -133,6 +133,7 @@ window.PAGES = {
   },
   skuEmbeddedRecruiting: {
     title: 'Embedded Recruiting',
+    eyebrow: '',
     note: '',
     html: '<ul>'
       + '<li>Operates as an extension of the client’s team, using data and tight operating cadences to improve hiring speed, quality, and candidate experience.</li>'
@@ -142,6 +143,7 @@ window.PAGES = {
   },
   skuTalentPlatform: {
     title: 'Talent Platform',
+    eyebrow: '',
     note: '',
     html: '<ul>'
       + '<li>Acts as a fractional Head of Talent, owning the strategy and operating system behind the entire talent function rather than simply filling roles.</li>'
@@ -151,6 +153,7 @@ window.PAGES = {
   },
   skuExecutiveSearch: {
     title: 'Executive Search',
+    eyebrow: '',
     note: '',
     html: '<ul>'
       + '<li>Runs high-touch searches for mission-critical leadership roles, typically at the C-suite, VP, or other highly specialized level.</li>'
@@ -160,6 +163,7 @@ window.PAGES = {
   },
   skuPeopleOps: {
     title: 'People Ops',
+    eyebrow: '',
     note: '',
     html: '<ul>'
       + '<li>Builds and runs the infrastructure supporting employees after they join: contracts, onboarding, offboarding, payroll, benefits, HR systems, policies, and compliance.</li>'
@@ -169,6 +173,7 @@ window.PAGES = {
   },
   skuFinance: {
     title: 'Finance',
+    eyebrow: '',
     note: '',
     html: '<ul>'
       + '<li>Provides an embedded finance function spanning bookkeeping, monthly close, AP/AR, management reporting, forecasting, budgeting, and KPI dashboards.</li>'
@@ -178,6 +183,7 @@ window.PAGES = {
   },
   skuBizOps: {
     title: 'BizOps',
+    eyebrow: '',
     note: '',
     html: '<ul>'
       + '<li>Tackles important, ambiguous, cross-functional problems that do not sit neatly within one department — our “special projects” or embedded fixer-team offering.</li>'
@@ -187,6 +193,7 @@ window.PAGES = {
   },
   skuMarketingGrowth: {
     title: 'Marketing and Growth',
+    eyebrow: '',
     note: '',
     html: '<ul>'
       + '<li>Helps companies diagnose and unlock growth across positioning, acquisition, activation, retention, monetization, and go-to-market execution.</li>'

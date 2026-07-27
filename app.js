@@ -79,7 +79,9 @@
   function openPage(k) {
     var pg = pageFor(k);
     if (!pg) return;
-    openModal('<div class="m-eyebrow">[from the carrara library]</div><h3>' + esc(pg.title) + '</h3><div class="pg">' + pg.html + '</div>'
+    openModal((pg.eyebrow === undefined ? '<div class="m-eyebrow">[from the carrara library]</div>'
+        : (pg.eyebrow ? '<div class="m-eyebrow">' + esc(pg.eyebrow) + '</div>' : ''))
+      + '<h3>' + esc(pg.title) + '</h3><div class="pg">' + pg.html + '</div>'
       + (pg.note === undefined ? '<p class="pg-note">Snapshot from Notion, Jul 24, 2026.</p>'
         : (pg.note ? '<p class="pg-note">' + esc(pg.note) + '</p>' : '')));
   }
