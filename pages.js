@@ -133,7 +133,7 @@ window.PAGES = {
   },
   skuEmbeddedRecruiting: {
     title: 'Embedded Recruiting',
-    note: 'Offering overview, updated Jul 27, 2026.',
+    note: '',
     html: '<ul>'
       + '<li>Operates as an extension of the client’s team, using data and tight operating cadences to improve hiring speed, quality, and candidate experience.</li>'
       + '<li>Runs the full recruiting workflow: sourcing, outreach, screening, candidate management, interview coordination, and closing support.</li>'
@@ -142,7 +142,7 @@ window.PAGES = {
   },
   skuTalentPlatform: {
     title: 'Talent Platform',
-    note: 'Offering overview, updated Jul 27, 2026.',
+    note: '',
     html: '<ul>'
       + '<li>Acts as a fractional Head of Talent, owning the strategy and operating system behind the entire talent function rather than simply filling roles.</li>'
       + '<li>Builds hiring plans, role prioritization, assessment processes, interview architecture, recruiting analytics, tooling, and agency strategy.</li>'
@@ -151,7 +151,7 @@ window.PAGES = {
   },
   skuExecutiveSearch: {
     title: 'Executive Search',
-    note: 'Offering overview, updated Jul 27, 2026.',
+    note: '',
     html: '<ul>'
       + '<li>Runs high-touch searches for mission-critical leadership roles, typically at the C-suite, VP, or other highly specialized level.</li>'
       + '<li>Develops the success profile, maps the market, activates Carrara’s network, conducts targeted outreach, and manages assessment, references, and closing.</li>'
@@ -160,7 +160,7 @@ window.PAGES = {
   },
   skuPeopleOps: {
     title: 'People Ops',
-    note: 'Offering overview, updated Jul 27, 2026.',
+    note: '',
     html: '<ul>'
       + '<li>Builds and runs the infrastructure supporting employees after they join: contracts, onboarding, offboarding, payroll, benefits, HR systems, policies, and compliance.</li>'
       + '<li>Supports higher-order people strategy, including headcount planning, compensation philosophy and pay bands, performance management, engagement, and people analytics.</li>'
@@ -169,7 +169,7 @@ window.PAGES = {
   },
   skuFinance: {
     title: 'Finance',
-    note: 'Offering overview, updated Jul 27, 2026.',
+    note: '',
     html: '<ul>'
       + '<li>Provides an embedded finance function spanning bookkeeping, monthly close, AP/AR, management reporting, forecasting, budgeting, and KPI dashboards.</li>'
       + '<li>Acts as a strategic finance partner on unit economics, pricing, capital allocation, growth planning, board reporting, fundraising, and investor readiness.</li>'
@@ -178,7 +178,7 @@ window.PAGES = {
   },
   skuBizOps: {
     title: 'BizOps',
-    note: 'Offering overview, updated Jul 27, 2026.',
+    note: '',
     html: '<ul>'
       + '<li>Tackles important, ambiguous, cross-functional problems that do not sit neatly within one department — our “special projects” or embedded fixer-team offering.</li>'
       + '<li>Diagnoses the business across product, customers, GTM, operations, finance, and organizational design; identifies the highest-leverage problems; and then executes against them.</li>'
@@ -187,7 +187,7 @@ window.PAGES = {
   },
   skuMarketingGrowth: {
     title: 'Marketing and Growth',
-    note: 'Offering overview, updated Jul 27, 2026.',
+    note: '',
     html: '<ul>'
       + '<li>Helps companies diagnose and unlock growth across positioning, acquisition, activation, retention, monetization, and go-to-market execution.</li>'
       + '<li>Work can include product launches, growth strategy, funnel and channel audits, performance marketing, pricing, lifecycle campaigns, brand and narrative, creative, and GTM operations.</li>'
