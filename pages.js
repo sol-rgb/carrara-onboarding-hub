@@ -131,6 +131,69 @@ window.PAGES = {
     html: '<p>The full talent team syncs once a week: open roles across clients, process questions, hiring experiments worth copying, and team news.</p>'
       + '<p>If you are on the talent side you will be added to the invite in week one. Past jams are archived; day to day the conversation lives in #f-talent-general.</p>'
   },
+  skuEmbeddedRecruiting: {
+    title: 'Embedded Recruiting',
+    note: 'Offering overview, updated Jul 27, 2026.',
+    html: '<ul>'
+      + '<li>Operates as an extension of the client’s team, using data and tight operating cadences to improve hiring speed, quality, and candidate experience.</li>'
+      + '<li>Runs the full recruiting workflow: sourcing, outreach, screening, candidate management, interview coordination, and closing support.</li>'
+      + '<li>Adds dedicated recruiting capacity against a defined set of roles, functions, or hiring goals.</li>'
+      + '</ul>'
+  },
+  skuTalentPlatform: {
+    title: 'Talent Platform',
+    note: 'Offering overview, updated Jul 27, 2026.',
+    html: '<ul>'
+      + '<li>Acts as a fractional Head of Talent, owning the strategy and operating system behind the entire talent function rather than simply filling roles.</li>'
+      + '<li>Builds hiring plans, role prioritization, assessment processes, interview architecture, recruiting analytics, tooling, and agency strategy.</li>'
+      + '<li>Improves the broader talent proposition through candidate experience, talent brand, compensation inputs, onboarding design, and stronger talent-density decisions.</li>'
+      + '</ul>'
+  },
+  skuExecutiveSearch: {
+    title: 'Executive Search',
+    note: 'Offering overview, updated Jul 27, 2026.',
+    html: '<ul>'
+      + '<li>Runs high-touch searches for mission-critical leadership roles, typically at the C-suite, VP, or other highly specialized level.</li>'
+      + '<li>Develops the success profile, maps the market, activates Carrara’s network, conducts targeted outreach, and manages assessment, references, and closing.</li>'
+      + '<li>Usually builds on an existing Carrara relationship, giving the search team a deeper understanding of the client’s strategy, culture, and leadership needs than a standalone search firm would have.</li>'
+      + '</ul>'
+  },
+  skuPeopleOps: {
+    title: 'People Ops',
+    note: 'Offering overview, updated Jul 27, 2026.',
+    html: '<ul>'
+      + '<li>Builds and runs the infrastructure supporting employees after they join: contracts, onboarding, offboarding, payroll, benefits, HR systems, policies, and compliance.</li>'
+      + '<li>Supports higher-order people strategy, including headcount planning, compensation philosophy and pay bands, performance management, engagement, and people analytics.</li>'
+      + '<li>Designs systems and automations that can scale with the company, then helps transition ownership to an internal team when appropriate.</li>'
+      + '</ul>'
+  },
+  skuFinance: {
+    title: 'Finance',
+    note: 'Offering overview, updated Jul 27, 2026.',
+    html: '<ul>'
+      + '<li>Provides an embedded finance function spanning bookkeeping, monthly close, AP/AR, management reporting, forecasting, budgeting, and KPI dashboards.</li>'
+      + '<li>Acts as a strategic finance partner on unit economics, pricing, capital allocation, growth planning, board reporting, fundraising, and investor readiness.</li>'
+      + '<li>Supports major transactions and inflection points, including M&amp;A diligence and execution, post-acquisition integration, scenario modeling, and building the eventual in-house finance team.</li>'
+      + '</ul>'
+  },
+  skuBizOps: {
+    title: 'BizOps',
+    note: 'Offering overview, updated Jul 27, 2026.',
+    html: '<ul>'
+      + '<li>Tackles important, ambiguous, cross-functional problems that do not sit neatly within one department — our “special projects” or embedded fixer-team offering.</li>'
+      + '<li>Diagnoses the business across product, customers, GTM, operations, finance, and organizational design; identifies the highest-leverage problems; and then executes against them.</li>'
+      + '<li>Can operate as a fractional Chief of Staff, Head of Ops, Head of Strategy or cross-functional delivery team, building processes, systems, automations, and operating cadences while driving the work forward.</li>'
+      + '</ul>'
+  },
+  skuMarketingGrowth: {
+    title: 'Marketing and Growth',
+    note: 'Offering overview, updated Jul 27, 2026.',
+    html: '<ul>'
+      + '<li>Helps companies diagnose and unlock growth across positioning, acquisition, activation, retention, monetization, and go-to-market execution.</li>'
+      + '<li>Work can include product launches, growth strategy, funnel and channel audits, performance marketing, pricing, lifecycle campaigns, brand and narrative, creative, and GTM operations.</li>'
+      + '<li>Carrara assembles the right mix of strategists, performance marketers, designers, writers, analysts, and product or engineering talent to launch experiments, measure results, and scale what works.</li>'
+      + '</ul>'
+  },
   thisIsCarrara: {
     title: 'This is Carrara',
     html: '<p>The brand guidelines home: logo, color palette, typography and the elements that define the visual identity. It holds the most up-to-date branding, logos and templates.</p>'

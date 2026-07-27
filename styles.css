@@ -256,6 +256,7 @@ table.clean td:last-child { font-family: var(--rigid); font-size: 11px; letter-s
   transition: transform 0.25s ease;
 }
 .rock-card:hover { transform: translateY(-3px); }
+.rock-card[data-page] { cursor: pointer; }
 .rock-card h3 { font-family: var(--serif); font-weight: 500; font-size: clamp(20px, 1.7vw, 26px); letter-spacing: -0.015em; line-height: 1.15; }
 .rock-card p { font-size: 13px; line-height: 1.55; margin-top: 20px; color: rgba(45, 42, 42, 0.72); }
 .rock-card.c-sage { background: var(--sage-soft); }

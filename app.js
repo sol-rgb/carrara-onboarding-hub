@@ -80,10 +80,17 @@
     var pg = pageFor(k);
     if (!pg) return;
     openModal('<div class="m-eyebrow">[from the carrara library]</div><h3>' + esc(pg.title) + '</h3><div class="pg">' + pg.html + '</div>'
-      + '<p class="pg-note">Snapshot from Notion, Jul 24, 2026.</p>');
+      + '<p class="pg-note">' + esc(pg.note || 'Snapshot from Notion, Jul 24, 2026.') + '</p>');
   }
   document.addEventListener('click', function (e) {
     var t = e.target.closest ? e.target.closest('[data-page]') : null;
+    if (!t) return;
+    e.preventDefault();
+    openPage(t.dataset.page);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    var t = e.target.closest ? e.target.closest('[data-page][role="button"]') : null;
     if (!t) return;
     e.preventDefault();
     openPage(t.dataset.page);
