@@ -168,7 +168,24 @@
     syncTourChrome();
     setTimeout(function () { if (typeof updateRail === 'function') updateRail(); }, 60);
   }
-  function route() { show((location.hash || '#/start').replace('#/', '')); }
+  function showClientPage(slug) {
+    current = 'clientpage';
+    $$('.view').forEach(function (v) { v.classList.remove('visible'); });
+    if (window.renderClientPage) window.renderClientPage(slug);
+    var el = $('#view-clientpage');
+    if (el) el.classList.add('visible');
+    $$('#nav a').forEach(function (a) { a.classList.toggle('active', a.dataset.id === 'clients'); });
+    mnav.value = 'clients';
+    window.scrollTo(0, 0);
+    reveal(el);
+    syncTourChrome();
+    setTimeout(function () { if (typeof updateRail === 'function') updateRail(); }, 60);
+  }
+  function route() {
+    var h = (location.hash || '#/start').replace('#/', '');
+    if (h.indexOf('client/') === 0) { showClientPage(h.slice(7)); return; }
+    show(h);
+  }
   window.addEventListener('hashchange', route);
 
   /* footer link so the hub reads front to back without going via the sidebar */
@@ -302,6 +319,30 @@
     if (!t) return '';
     return t.replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{200D}]/gu, '').trim();
   }
+  function openMemberModal(m) {
+    var p = profileData[m.name];
+    var role = cleanTitle(m.title);
+    var av = m.avatar ? '<img src="' + m.avatar + '" alt="">' : initials(m.name);
+    var html = '<div class="m-eyebrow">[the team]</div>'
+      + '<div class="member-head"><div class="avatar big">' + av + '</div><div>'
+      + '<h3>' + esc(m.name) + '</h3>'
+      + (role ? '<div class="rl">' + esc(role) + (m.extra ? ' · ' + esc(m.extra) : '') + '</div>' : (m.extra ? '<div class="rl">' + esc(m.extra) + '</div>' : ''))
+      + '</div></div><div class="pg">';
+    if (p && p.summary) html += '<p>' + esc(p.summary) + '</p>';
+    if (p && p.prior && p.prior.length) {
+      html += '<div class="wk-sec"><div class="wk-lbl">[before carrara]</div><ul>'
+        + p.prior.map(function (x) {
+            return '<li>' + (x.role ? '<b>' + esc(x.role) + '</b>, ' + esc(x.company) : '<b>' + esc(x.company) + '</b>') + '</li>';
+          }).join('') + '</ul></div>';
+    }
+    var linksH = [];
+    if (m.email) linksH.push('<a href="mailto:' + esc(m.email) + '">' + esc(m.email) + '</a>');
+    if (p && p.linkedin) linksH.push('<a href="' + esc(p.linkedin) + '" target="_blank" rel="noopener">LinkedIn ↗</a>');
+    if (linksH.length) html += '<div class="wk-sec"><div class="wk-lbl">[reach them]</div><div class="wk-links">' + linksH.join('') + '</div></div>';
+    html += '</div>';
+    if (!p) html += '<p class="pg-note">No enriched profile yet. Share a LinkedIn link to add one.</p>';
+    openModal(html);
+  }
   function renderTeam(filter) {
     var grid = $('#team-grid');
     grid.innerHTML = '';
@@ -316,25 +357,21 @@
     shown.forEach(function (m) {
       var d = document.createElement('div');
       d.className = 'member';
+      d.setAttribute('role', 'button');
+      d.setAttribute('tabindex', '0');
       var av = m.avatar ? '<img src="' + m.avatar + '" alt="" loading="lazy">' : initials(m.name);
-      var role = cleanTitle(m.title);
       var p = profileData[m.name];
-      var priorH = '';
-      if (p && p.prior && p.prior.length) {
-        priorH = '<div class="prior">before: ' + p.prior.map(function (x) {
-          return esc(x.role ? x.role + ', ' + x.company : x.company);
-        }).join(' · ') + '</div>';
-      }
       d.innerHTML = '<div class="avatar">' + av + '</div><div class="info">'
         + '<div class="nm">' + esc(m.name) + (m.isNew ? ' <span class="newtag">[new]</span>' : '') + '</div>'
-        + (role ? '<div class="rl">' + esc(role) + (m.extra ? ' · ' + esc(m.extra) : '') + '</div>' : (m.extra ? '<div class="rl">' + esc(m.extra) + '</div>' : ''))
-        + priorH
-        + (p && p.summary ? '<div class="bio">' + esc(p.summary) + '</div>' : '')
-        + '<div class="em">'
-        + (m.email ? '<a href="mailto:' + m.email + '">' + m.email + '</a>' : '')
-        + (p && p.linkedin ? (m.email ? ' · ' : '') + '<a href="' + esc(p.linkedin) + '" target="_blank" rel="noopener">LinkedIn ↗</a>' : '')
-        + '</div>'
+        + (p && p.linkedin ? '<div class="em"><a href="' + esc(p.linkedin) + '" target="_blank" rel="noopener">LinkedIn ↗</a></div>' : '')
         + '</div>';
+      d.addEventListener('click', function (e) {
+        if (e.target.closest('a')) return;
+        openMemberModal(m);
+      });
+      d.addEventListener('keydown', function (e) {
+        if ((e.key === 'Enter' || e.key === ' ') && !e.target.closest('a')) { e.preventDefault(); openMemberModal(m); }
+      });
       grid.appendChild(d);
     });
     $('#team-count').textContent = shown.length + ' people';
@@ -408,40 +445,67 @@
 
   /* ---------- clients ---------- */
   var codexData = { clients: {} };
-  function openClientModal(c) {
-    var cx = (codexData.clients || {})[c.name];
-    var types = (cx && cx.projectTypes && cx.projectTypes.length) ? cx.projectTypes : (c.work || []);
-    var desc = c.description || (cx && cx.quickPitch) || '';
-    var html = '<div class="m-eyebrow">[from the client codex]</div><h3>' + esc(c.name)
-      + (cx && cx.status ? ' <span class="cstatus' + (cx.status === 'Active' ? ' on' : '') + '">' + esc(cx.status.toLowerCase()) + '</span>' : '')
-      + '</h3><div class="pg">';
-    if (desc) html += '<p>' + esc(desc) + '</p>';
-    if (types.length) html += '<div class="wk-tags">' + types.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>';
+  function clientSlug(name) { return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }
+  window.renderClientPage = function (slug) {
+    var el = $('#view-clientpage');
+    if (!el) return;
+    var c = clientData.filter(function (x) { return clientSlug(x.name) === slug; })[0];
+    if (!c) {
+      el.innerHTML = '<div class="client-page"><a class="textlink" href="#/clients">← All clients</a>'
+        + '<p class="body-copy" style="margin-top:24px">' + (clientData.length ? 'No client with that address.' : 'Loading…') + '</p></div>';
+      return;
+    }
+    var cx = (codexData.clients || {})[c.name] || {};
+    var types = (cx.projectTypes && cx.projectTypes.length) ? cx.projectTypes : (c.work || []);
+    var logo = c.domain
+      ? '<img src="' + favicon(c.domain, 128) + '" alt="" onerror="this.parentNode.textContent=\'' + esc(c.name.charAt(0)) + '\'">'
+      : esc(c.name.charAt(0));
+    var html = '<div class="client-page"><a class="textlink" href="#/clients">← All clients</a>'
+      + '<div class="cp-head"><div class="clogo cp-logo">' + logo + '</div><div>'
+      + '<h1 class="cp-name">' + esc(c.name)
+      + (cx.status ? ' <span class="cstatus' + (cx.status === 'Active' ? ' on' : '') + '">' + esc(cx.status.toLowerCase()) + '</span>' : '')
+      + '</h1>'
+      + (types.length ? '<div class="wk-tags">' + types.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>' : '')
+      + '</div></div>';
+    var about = cx.about || c.description || '';
+    if (about) html += '<p class="body-copy cp-about">' + esc(about) + '</p>';
+    var ov = cx.overview || {};
+    var facts = [
+      ['Location', ov.location], ['Founded', ov.founded], ['Stage', ov.stage],
+      ['Team', ov.teamSize], ['Key people', ov.leaders], ['Revenue model', ov.howTheyMakeMoney]
+    ].filter(function (f) { return f[1]; });
+    if (facts.length || cx.background) {
+      html += '<div class="wk-sec"><div class="wk-lbl">[the company]</div>';
+      if (facts.length) html += '<ul>' + facts.map(function (f) { return '<li><b>' + esc(f[0]) + '</b>: ' + esc(f[1]) + '</li>'; }).join('') + '</ul>';
+      if (cx.background) html += '<p class="cp-bg">' + esc(cx.background) + '</p>';
+      html += '</div>';
+    }
+    var lowerTypes = types.map(function (t) { return t.toLowerCase(); });
+    var streams = (c.work || []).filter(function (w) { return lowerTypes.indexOf(w.toLowerCase()) === -1; });
+    if ((cx.engagement && cx.engagement.length) || streams.length) {
+      html += '<div class="wk-sec"><div class="wk-lbl">[what we do for them]</div><ul>'
+        + (cx.engagement || []).map(function (b) { return '<li>' + esc(b) + '</li>'; }).join('')
+        + (streams.length ? '<li><b>Active workstreams</b>: ' + streams.map(esc).join(', ') + '</li>' : '')
+        + '</ul></div>';
+    }
     var team = [];
     if (c.lead) team.push(['Engagement lead', [c.lead]]);
-    if (cx && cx.accountManagers && cx.accountManagers.length) team.push(['Account manager' + (cx.accountManagers.length > 1 ? 's' : ''), cx.accountManagers]);
-    if (cx && cx.talentPartners && cx.talentPartners.length) team.push(['Talent partner' + (cx.talentPartners.length > 1 ? 's' : ''), cx.talentPartners]);
-    if (cx && cx.coordination && cx.coordination.length) team.push(['Coordination support', cx.coordination]);
+    if (cx.accountManagers && cx.accountManagers.length) team.push(['Account manager' + (cx.accountManagers.length > 1 ? 's' : ''), cx.accountManagers]);
+    if (cx.talentPartners && cx.talentPartners.length) team.push(['Talent partner' + (cx.talentPartners.length > 1 ? 's' : ''), cx.talentPartners]);
+    if (cx.coordination && cx.coordination.length) team.push(['Coordination support', cx.coordination]);
     if (team.length) {
       html += '<div class="wk-sec"><div class="wk-lbl">[who runs it at carrara]</div><ul>'
         + team.map(function (t) { return '<li><b>' + esc(t[0]) + '</b>: ' + esc(t[1].join(', ')) + '</li>'; }).join('') + '</ul></div>';
     }
-    /* workstream detail from the brain, minus anything already shown as a product-line tag */
-    var lowerTypes = types.map(function (t) { return t.toLowerCase(); });
-    var streams = (c.work || []).filter(function (w) { return lowerTypes.indexOf(w.toLowerCase()) === -1; });
-    if (streams.length) {
-      html += '<div class="wk-sec"><div class="wk-lbl">[active workstreams]</div><ul>'
-        + streams.map(function (w) { return '<li>' + esc(w) + '</li>'; }).join('') + '</ul></div>';
-    }
     var linksH = [];
     if (c.domain) linksH.push('<a href="https://' + esc(c.domain) + '" target="_blank" rel="noopener">' + esc(c.domain) + ' ↗</a>');
-    if (cx && cx.notionUrl) linksH.push('<a href="' + esc(cx.notionUrl) + '" target="_blank" rel="noopener">Client hub in Notion ↗</a>');
-    if (codexData.codexUrl) linksH.push('<a href="' + esc(codexData.codexUrl) + '" target="_blank" rel="noopener">Client Codex ↗</a>');
-    if (linksH.length) html += '<div class="wk-sec"><div class="wk-lbl">[go deeper]</div><div class="wk-links">' + linksH.join('') + '</div></div>';
+    (cx.docs || []).forEach(function (d2) {
+      linksH.push('<a href="' + esc(d2.url) + '" target="_blank" rel="noopener">' + esc(d2.label) + ' ↗</a>');
+    });
+    if (linksH.length) html += '<div class="wk-sec"><div class="wk-lbl">[links and docs]</div><div class="wk-links">' + linksH.join('') + '</div></div>';
     html += '</div>';
-    if (!cx) html += '<p class="pg-note">No Client Codex entry for this one yet; details come from the Quarry Brain.</p>';
-    openModal(html);
-  }
+    el.innerHTML = html;
+  };
   Promise.all([
     (window.__CLIENTS__ ? Promise.resolve(window.__CLIENTS__) : fetch('/clients.json').then(function (r) { return r.json(); })),
     fetch('/codex.json').then(function (r) { return r.json(); }).catch(function () { return { clients: {} }; })
@@ -463,12 +527,14 @@
         + (c.description ? '<div class="cdesc">' + esc(c.description) + '</div>' : '')
         + (c.work && c.work.length ? '<div class="client-tags">' + c.work.map(function (w) { return '<span>' + esc(w) + '</span>'; }).join('') + '</div>' : '')
         + '</div>';
-      d.addEventListener('click', function () { openClientModal(c); });
-      d.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openClientModal(c); } });
+      d.addEventListener('click', function () { location.hash = '#/client/' + clientSlug(c.name); });
+      d.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); location.hash = '#/client/' + clientSlug(c.name); } });
       grid.appendChild(d);
     });
-    $('#client-note').textContent = 'Live from the Quarry Brain and the Client Codex in Notion. Last update: ' + (data.updated || '') + '. Click a client for the full picture.';
+    $('#client-note').textContent = 'Sourced from the Client Codex and the Quarry Brain, kept on the hub. Last update: ' + (data.updated || '') + '. Click a client for its full page.';
     applyKitToHub();
+    /* deep links to a client page arriving before data loaded */
+    if (location.hash.indexOf('#/client/') === 0 && window.renderClientPage) window.renderClientPage(location.hash.slice(9));
   });
   var clientData = [];
 

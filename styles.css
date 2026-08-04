@@ -310,8 +310,19 @@ table.clean td:last-child { font-family: var(--rigid); font-size: 11px; letter-s
 .member .em a { color: var(--taupe); text-decoration: none; }
 .member .em a:hover { color: var(--orange); }
 .member .newtag { font-family: var(--rigid); font-size: 9px; letter-spacing: 0.08em; color: var(--orange); }
-.member .prior { font-family: var(--rigid); font-size: 10px; letter-spacing: 0.04em; color: var(--ardesia); line-height: 1.5; margin-top: 3px; }
-.member .bio { font-size: 12px; line-height: 1.5; color: rgba(45, 42, 42, 0.62); margin-top: 3px; max-width: 52ch; }
+.member { cursor: pointer; }
+.member:hover .nm { color: var(--orange); }
+.member-head { display: flex; gap: 16px; align-items: center; margin-bottom: 14px; }
+.member-head .avatar {
+  width: 56px; height: 56px; flex: none; background: var(--sage);
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--rigid); font-weight: 600; font-size: 16px; color: var(--ink);
+  overflow: hidden;
+}
+.member-head .avatar img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); }
+.member-head h3 { margin: 0; }
+.member-head .rl { font-size: 12.5px; color: var(--taupe); margin-top: 3px; }
 .team-note { margin-top: 26px; font-size: 13px; color: var(--taupe); max-width: 66ch; }
 
 /* ---------- clients ---------- */
@@ -319,6 +330,19 @@ table.clean td:last-child { font-family: var(--rigid); font-size: 11px; letter-s
 .client-row { display: flex; gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--hairline); align-items: flex-start; cursor: pointer; }
 .cstatus { font-family: var(--rigid); font-size: 10px; letter-spacing: 0.1em; color: var(--taupe); border: 1px solid var(--hairline); padding: 2px 8px; margin-left: 10px; vertical-align: middle; }
 .cstatus.on { color: var(--orange); border-color: currentColor; }
+.client-page { max-width: 720px; }
+.cp-head { display: flex; gap: 22px; align-items: center; margin: 28px 0 8px; }
+.cp-logo {
+  width: 64px; height: 64px; flex: none; background: var(--sage-soft);
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-size: 24px;
+}
+.cp-logo img { width: 30px; height: 30px; object-fit: contain; }
+.cp-name { font-family: var(--serif); font-weight: 500; font-size: clamp(28px, 3vw, 40px); letter-spacing: -0.015em; line-height: 1.1; }
+.cp-about { margin-top: 10px; }
+.cp-bg { font-size: 13.5px; line-height: 1.6; color: rgba(45, 42, 42, 0.72); margin-top: 12px; }
+.client-page .wk-sec { margin-top: 30px; padding-top: 22px; }
 .client-row .clogo {
   width: 34px; height: 34px; flex: none; background: #fff; margin-top: 2px;
   clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);

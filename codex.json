@@ -1,26 +1,7 @@
 {
- "source": "notion-client-codex",
+ "source": "notion-client-codex + quarry brain + internal research",
  "updated": "2026-08-04",
- "codexUrl": "https://app.notion.com/p/carrara/Client-Codex-6b9b531c33b34434a80c91000e376f2e",
  "clients": {
-  "a16z": {
-   "status": "Active",
-   "projectTypes": [
-    "Managed Services",
-    "Embedded recruiting"
-   ],
-   "accountManagers": [
-    "Brandon Taleisnik",
-    "Heath Jamieson"
-   ],
-   "talentPartners": [
-    "Julia Tupy",
-    "Bryan Gunawan"
-   ],
-   "coordination": [],
-   "quickPitch": null,
-   "notionUrl": "https://app.notion.com/p/2926b1a6e6e7806a9e18e9f9607b3aa0"
-  },
   "Altana": {
    "status": "Active",
    "projectTypes": [
@@ -32,8 +13,19 @@
    ],
    "talentPartners": [],
    "coordination": [],
-   "quickPitch": null,
-   "notionUrl": "https://app.notion.com/p/2bc6b1a6e6e780d7a151efbfd750716e"
+   "about": "AI platform for global supply chain intelligence, used by governments and enterprises to map and manage value chains.",
+   "engagement": [
+    "Embedded recruiting across active searches.",
+    "Agency ROI analysis, pipeline dashboards, comp and leveling support."
+   ],
+   "overview": {
+    "location": "New York, NY",
+    "founded": "2019",
+    "leaders": "Evan Smith (Co-Founder, CEO), Raphael Tehranian (Co-Founder, COO), Peter Swartz (Co-Founder, CSO), Ian Cadieu (CTO). Carrara champion: Kerry Van Voris (Interim CPO).",
+    "stage": "$200M Series C (July 2024); $300M+ raised across 4 rounds."
+   },
+   "background": null,
+   "docs": []
   },
   "Amazon": {
    "status": "Active",
@@ -45,8 +37,14 @@
    ],
    "talentPartners": [],
    "coordination": [],
-   "quickPitch": null,
-   "notionUrl": "https://app.notion.com/p/3796b1a6e6e780d69a71d2b6035a6766"
+   "about": "Post-acquisition finance and integration work following Amazon's acquisition of Bee.",
+   "engagement": [
+    "Finance diligence stream through the acquisition.",
+    "Staying on through post-acquisition integration."
+   ],
+   "overview": {},
+   "background": null,
+   "docs": []
   },
   "Anthropic": {
    "status": "Active",
@@ -58,8 +56,16 @@
    ],
    "talentPartners": [],
    "coordination": [],
-   "quickPitch": null,
-   "notionUrl": "https://app.notion.com/p/3796b1a6e6e780ea9699e9080aca50bf"
+   "about": "AI safety and research company, maker of Claude.",
+   "engagement": [
+    "Talent activation for the Platform engineering org.",
+    "Sourcing engine targeting 25-50 qualified staff-level candidates per week.",
+    "Talent narrative: discovery interviews, Provocation Session, Platform mini-site.",
+    "Hiring-manager calibrations, events strategy, recruiter enablement."
+   ],
+   "overview": {},
+   "background": null,
+   "docs": []
   },
   "Avoca AI": {
    "status": "Paused",
@@ -73,8 +79,32 @@
    "coordination": [
     "Hayley Samuels"
    ],
-   "quickPitch": "Avoca.ai is an AI workforce platform for service businesses that handles inbound and outbound customer communications across calls, chats, texts, and email. It integrates deeply with ServiceTitan to update customer, job, and performance data in real time.",
-   "notionUrl": "https://app.notion.com/p/2a86b1a6e6e78071ba0dd178fe432302"
+   "about": "Avoca.ai is an AI workforce platform for service businesses that handles inbound and outbound customer communications across calls, chats, texts, and email. It integrates deeply with ServiceTitan to update customer, job, and performance data in real time.",
+   "engagement": [],
+   "overview": {
+    "location": "New York, NY",
+    "founded": "2022",
+    "leaders": "Apurva Shrivastava (Founder), Tyson Chen (Founder), Andrew Green (Head of Ops)",
+    "stage": "Series B",
+    "teamSize": "~80 FTE",
+    "howTheyMakeMoney": "Sells AI communication products (Respond, Capture, Nurture, Coach) to service businesses; subscription and usage-based."
+   },
+   "background": null,
+   "docs": []
+  },
+  "Bee AI": {
+   "status": null,
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "AI wearable company (Bee), acquired by Amazon.",
+   "engagement": [
+    "Finance diligence through the Amazon acquisition; continuing work lives under the Amazon client."
+   ],
+   "overview": {},
+   "background": null,
+   "docs": []
   },
   "Better": {
    "status": "Active",
@@ -87,8 +117,16 @@
    ],
    "talentPartners": [],
    "coordination": [],
-   "quickPitch": null,
-   "notionUrl": "https://app.notion.com/p/3336b1a6e6e780618160edbe1d5a172c"
+   "about": "Online mortgage lender (better.com).",
+   "engagement": [
+    "GTM and growth takeover with the goal of doubling the business.",
+    "Paid media is the p0 workstream: Google, Meta, Bing, plus landing pages and daily standups.",
+    "Programmatic SEO competitor pages and a broker UGC video program.",
+    "Embedded recruiting currently paused."
+   ],
+   "overview": {},
+   "background": null,
+   "docs": []
   },
   "Brave Health": {
    "status": "Active",
@@ -100,8 +138,13 @@
    ],
    "talentPartners": [],
    "coordination": [],
-   "quickPitch": null,
-   "notionUrl": "https://app.notion.com/p/2bc6b1a6e6e780f9ab5cd44c2a3c5cad"
+   "about": "Virtual behavioral health provider focused on Medicaid populations.",
+   "engagement": [
+    "BizOps managed services; earlier surge project building payroll and benefits."
+   ],
+   "overview": {},
+   "background": null,
+   "docs": []
   },
   "Coast": {
    "status": "Paused",
@@ -117,8 +160,41 @@
     "Nicole Henderson"
    ],
    "coordination": [],
-   "quickPitch": null,
-   "notionUrl": "https://app.notion.com/p/2956b1a6e6e78030b5cfddd5efac907f"
+   "about": "The financial platform for the future of transportation: fleet and fuel payments, 'Ramp for companies with vehicles.'",
+   "engagement": [
+    "Embedded recruiting and managed services across GTM and G&A roles."
+   ],
+   "overview": {
+    "location": "New York, NY (HQ) + Salt Lake City",
+    "founded": "September 2020",
+    "leaders": "Daniel Simon (CEO & Founder; previously founded Bread, acquired for $500M+), Anton (CTO), Zach Meyer (CRO), Stephen (Head of Operations).",
+    "stage": "Series B; $165M raised from Iconiq, Accel, Insight Partners, Bessemer, and others.",
+    "teamSize": "115 people: 85 NYC, 27 Salt Lake City, 3 remote. ~40% Product & Eng, ~40% GTM, ~20% G&A.",
+    "howTheyMakeMoney": "$4 per active user per month plus interchange on every transaction. Tens of millions in annual revenue, doubling YoY; 90% of spend retained after 6 months."
+   },
+   "background": "Values-driven culture (8 values spelling COASTERS). 3-4 days a week in office. Unusually transparent: board decks shared company-wide, unscreened AMAs.",
+   "docs": [
+    {
+     "label": "Coast folder on Drive",
+     "url": "https://drive.google.com/drive/u/0/folders/1A33Udis7-TMZhudxf8k_NQE1JobQIOe3"
+    },
+    {
+     "label": "Kickoff with Stephen (doc)",
+     "url": "https://docs.google.com/document/d/1MY3vYjmKe67DHgQmyNrZiFhk6T9JwPGU7CSqD773FIo/edit"
+    }
+   ]
+  },
+  "Cybernetic Labs": {
+   "status": null,
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
   },
   "Deeptune": {
    "status": "Active",
@@ -132,8 +208,26 @@
    ],
    "talentPartners": [],
    "coordination": [],
-   "quickPitch": null,
-   "notionUrl": "https://app.notion.com/p/30a6b1a6e6e78038af0ef17c2c929f83"
+   "about": "AI voice and dubbing startup, acquired by Mercor in July 2026.",
+   "engagement": [
+    "Talent platform and finance support.",
+    "Carrara supported the company through the Mercor acquisition."
+   ],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Delta Sandbox": {
+   "status": null,
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "Internal agent-infrastructure sandbox, not a commercial client.",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
   },
   "Forge": {
    "status": "Active",
@@ -150,8 +244,25 @@
     "Giovanna Borgiotti"
    ],
    "coordination": [],
-   "quickPitch": null,
-   "notionUrl": "https://app.notion.com/p/3566b1a6e6e78024b26af48e72a7a0c9"
+   "about": "Now Poetic; raised a $50M Series A in June 2026.",
+   "engagement": [
+    "Embedded recruiting, talent platform, and marketing/growth workstreams."
+   ],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Formulary": {
+   "status": null,
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
   },
   "Fundamental Technologies": {
    "status": "Active",
@@ -164,8 +275,13 @@
    ],
    "talentPartners": [],
    "coordination": [],
-   "quickPitch": null,
-   "notionUrl": "https://app.notion.com/p/3796b1a6e6e7804ba143f8973683bc2e"
+   "about": null,
+   "engagement": [
+    "People ops engagement."
+   ],
+   "overview": {},
+   "background": null,
+   "docs": []
   },
   "Grindr": {
    "status": "Active",
@@ -181,8 +297,14 @@
     "Ania Sielski"
    ],
    "coordination": [],
-   "quickPitch": null,
-   "notionUrl": "https://app.notion.com/p/28d6b1a6e6e78019b420d3d2b1732439"
+   "about": "The world's largest social app for gay, bi, trans and queer people; publicly listed.",
+   "engagement": [
+    "Ads platform rebuild: SMB self-serve advertising on top of Google Ad Manager, targeting a 20%+ uplift on roughly $60M/yr of ad revenue.",
+    "Earlier: engineering employer brand and talent narrative work (careers page, 'Get to Know the Team')."
+   ],
+   "overview": {},
+   "background": null,
+   "docs": []
   },
   "Hertz": {
    "status": "Active",
@@ -196,8 +318,16 @@
     "Bryan Gunawan"
    ],
    "coordination": [],
-   "quickPitch": null,
-   "notionUrl": "https://app.notion.com/p/3796b1a6e6e780d4abf5ebf552ec1679"
+   "about": "Global car rental company; Carrara's fifth project with them.",
+   "engagement": [
+    "Built a production AI collections agent aggregating eight legacy systems.",
+    "Relocation-marketplace spin-out on a 90-day timeline.",
+    "Headcount models and bizops support.",
+    "Outcome-based pricing: diagnostics fee creditable against outcomes plus a share of savings."
+   ],
+   "overview": {},
+   "background": null,
+   "docs": []
   },
   "Hinge": {
    "status": "Active",
@@ -212,8 +342,22 @@
     "Beth Werkstell"
    ],
    "coordination": [],
-   "quickPitch": null,
-   "notionUrl": "https://app.notion.com/p/2bc6b1a6e6e78042922de3bee34a0c0f"
+   "about": "Dating app built for long-term relationships, a wholly-owned subsidiary of Match Group.",
+   "engagement": [
+    "Full talent narrative: 11 stakeholder interviews, three directions, chosen story implemented across everything candidate-facing.",
+    "Careers-page rebuild in Sanity, JD rewrites, LinkedIn and Glassdoor refresh, recruiter and HM training.",
+    "Embedded recruiting covering most active roles (13 of 15 at peak)."
+   ],
+   "overview": {
+    "location": "New York, NY",
+    "founded": "2012",
+    "leaders": "Justin McLeod (Founder, CEO), Jackie Jantos (President, CMO). Carrara champions: Wama D (VP Operations), Katarina Acuna (People & Talent Director).",
+    "stage": "Wholly-owned subsidiary of Match Group.",
+    "teamSize": "200+",
+    "howTheyMakeMoney": "Freemium subscriptions (Hinge+ and HingeX) plus in-app purchases like Roses and Boosts."
+   },
+   "background": null,
+   "docs": []
   },
   "January": {
    "status": "Active",
@@ -231,8 +375,21 @@
    "coordination": [
     "Tess Wicks"
    ],
-   "quickPitch": null,
-   "notionUrl": "https://app.notion.com/p/27d6b1a6e6e780888cc7cecb97abd161"
+   "about": "Software that helps lenders manage and modernize borrower collections with data-driven, compassionate repayment workflows.",
+   "engagement": [
+    "Embedded recruiting plus a 'Talent OS' systems build.",
+    "Gamified referral programs and candidate-objection playbooks."
+   ],
+   "overview": {
+    "location": "New York, NY",
+    "founded": "2017",
+    "leaders": "Jake Cahan (Co-Founder & CEO), Jared Kaplan (Executive Chair), Ben Hassen (COO), Ali Hussain (CTO)",
+    "stage": "Series B",
+    "teamSize": "~137 employees",
+    "howTheyMakeMoney": "B2B SaaS and enterprise contracts with lenders and servicers, priced on portfolio volumes and performance."
+   },
+   "background": null,
+   "docs": []
   },
   "Lipdub AI": {
    "status": "Active",
@@ -244,8 +401,13 @@
    ],
    "talentPartners": [],
    "coordination": [],
-   "quickPitch": null,
-   "notionUrl": "https://app.notion.com/p/3796b1a6e6e78041b910c5f8aaac97a8"
+   "about": "AI video translation and lip-sync technology.",
+   "engagement": [
+    "Marketing/growth engagement run on two-week sprints."
+   ],
+   "overview": {},
+   "background": null,
+   "docs": []
   },
   "Long Lake": {
    "status": "Active",
@@ -257,8 +419,13 @@
    ],
    "talentPartners": [],
    "coordination": [],
-   "quickPitch": null,
-   "notionUrl": "https://app.notion.com/p/3566b1a6e6e7802883cddc3b75d1089a"
+   "about": null,
+   "engagement": [
+    "Talent platform engagement."
+   ],
+   "overview": {},
+   "background": null,
+   "docs": []
   },
   "Luminai": {
    "status": "Active",
@@ -277,8 +444,25 @@
     "Hayley Samuels",
     "Anna Jones"
    ],
-   "quickPitch": "Luminai builds AI workflow automation for healthcare in a Palantir-esque model, backed by ~$60M from Peak XV, General Catalyst, and Kevin Weil, with 5x growth and 40+ enterprise customers.",
-   "notionUrl": "https://app.notion.com/p/1a46b1a6e6e780b58f4dec851141a9da"
+   "about": "AI workflow automation for healthcare in a Palantir-esque model: integrates with existing software and executes SOPs end to end.",
+   "engagement": [
+    "Talent platform (Ashby run by Carrara) and finance support."
+   ],
+   "overview": {
+    "location": "San Mateo, CA",
+    "founded": "2019",
+    "leaders": "Kesava Kirupa Dinakaran and co-founders",
+    "stage": "~$35M Series B (unannounced) from General Catalyst, P15, Define Ventures, and Kevin Weil.",
+    "teamSize": "~30-35 people, ~15 engineers",
+    "howTheyMakeMoney": "Subscription plus usage-based pricing tied to task volume; custom integrations for larger customers."
+   },
+   "background": null,
+   "docs": [
+    {
+     "label": "Company overview doc",
+     "url": "https://docs.google.com/document/d/1aFWy7-NbpJyZk2NESp3CFBos8NEmd_jLIXmc8fnoSRo/edit"
+    }
+   ]
   },
   "Magic AI": {
    "status": "Active",
@@ -290,8 +474,13 @@
    ],
    "talentPartners": [],
    "coordination": [],
-   "quickPitch": null,
-   "notionUrl": "https://app.notion.com/p/3796b1a6e6e78048aadadd82f0c5647c"
+   "about": null,
+   "engagement": [
+    "People ops engagement."
+   ],
+   "overview": {},
+   "background": null,
+   "docs": []
   },
   "Modal Labs": {
    "status": "Active",
@@ -315,8 +504,17 @@
    "coordination": [
     "Maggie Stout"
    ],
-   "quickPitch": null,
-   "notionUrl": "https://app.notion.com/p/28d6b1a6e6e780aab74ccb78aff73c57"
+   "about": "Serverless cloud compute platform for AI teams. Scaled from ~30 to 132 headcount across the engagement; Series C at a $4.65B valuation.",
+   "engagement": [
+    "Carrara's flagship, 2+ year land-and-expand: started with RecOps at ~30 headcount.",
+    "Embedded recruiting, comp bands, equity calculator, onboarding, 401k and equity admin.",
+    "Full talent narrative: careers page, FDE mini-site with video case studies, recruiter playbook.",
+    "FDE hiring sprint (target 30 by August), events motion with a16z co-hosts, Series C hiring support.",
+    "~10 Carrara people staffed at peak."
+   ],
+   "overview": {},
+   "background": null,
+   "docs": []
   },
   "Perchwell": {
    "status": "Active",
@@ -331,8 +529,32 @@
     "Hallie Slamowitz"
    ],
    "coordination": [],
-   "quickPitch": "Perchwell is the modern listings and collaboration platform that powers the real estate economy, giving agents, brokers, and MLSs clean data, intelligent workflows, and branded client experiences.",
-   "notionUrl": "https://app.notion.com/p/2486b1a6e6e780d4a411ce3853483355"
+   "about": "Modern data and workflow platform for residential real estate: MLSs, brokerages, and agents.",
+   "engagement": [
+    "Embedded recruiting across GTM and data/engineering roles."
+   ],
+   "overview": {
+    "location": "SoHo, New York, NY",
+    "founded": "2015",
+    "stage": "$25M Series B",
+    "teamSize": "60 FTE",
+    "howTheyMakeMoney": "Subscription/licensing fees from brokerages, MLSs, and agents."
+   },
+   "background": "Ashby ATS, shared Slack. Hybrid NYC; only eng and data hire remote. Sell: mature repeat founders, 10+ year business. They pay 75th percentile with high leveling expectations, so offer-stage losses to bigger payers happen; candidate taste is 6+ YOE, high slope, autonomous.",
+   "docs": [
+    {
+     "label": "Sizzle reel",
+     "url": "https://next.frame.io/share/22a8f625-2a78-4e20-a423-fa4c5fde8f73/view/124be20b-8c44-4c7f-a5f7-c28897767d91"
+    },
+    {
+     "label": "GTM calibration agenda",
+     "url": "https://docs.google.com/document/d/1_i58Ge8HI3JVBZsQrxYnSqjxJAwPg7WrTj5FHCH-ZTE/edit"
+    },
+    {
+     "label": "Data/Eng calibration agenda",
+     "url": "https://docs.google.com/document/d/1_Q6RC4WM0WyiYWsrYGfZQ2btBwYcxTKrQ38dVZg1SRo/edit"
+    }
+   ]
   },
   "Profound": {
    "status": "Active",
@@ -349,8 +571,19 @@
    "coordination": [
     "Hayley Samuels"
    ],
-   "quickPitch": null,
-   "notionUrl": "https://app.notion.com/p/22a6b1a6e6e780778f0af7cbee12ddc5"
+   "about": "Helps brands measure and optimize their visibility inside AI-powered search and answer engines.",
+   "engagement": [
+    "Hiring engine through their $35M Series B; talent platform plus managed services."
+   ],
+   "overview": {
+    "location": "New York, NY",
+    "founded": "2024",
+    "leaders": "James Cadwallader (Co-Founder/CEO), Dylan Babbs (Co-Founder/CTO)",
+    "stage": "Series B",
+    "teamSize": "81 employees"
+   },
+   "background": null,
+   "docs": []
   },
   "Raindrop": {
    "status": "Active",
@@ -363,8 +596,30 @@
    ],
    "talentPartners": [],
    "coordination": [],
-   "quickPitch": null,
-   "notionUrl": "https://app.notion.com/p/3566b1a6e6e78060a7d7c04d8c2f07f6"
+   "about": "AI-native monitoring and observability for AI products (raindrop.ai).",
+   "engagement": [
+    "Recruiting for security, infra, and AI engineers plus agency management.",
+    "Launch support: launch party, Product Hunt, ads, careers page.",
+    "Referral sprints and candidate top-of-funnel; client goal of 5-10 engineers hired per month."
+   ],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Roger": {
+   "status": null,
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "AI companion consumer app (ChatRoger), created as a joint venture between Carrara, Grindr, and Lumbridge Labs.",
+   "engagement": [
+    "Carrara ran the seven-month legal and operational spinout out of Grindr: entity creation, investor docs, HoldCo structuring.",
+    "Operated the company end to end: growth and paid, payments, moderation, hiring, finance, board materials."
+   ],
+   "overview": {},
+   "background": null,
+   "docs": []
   },
   "Runlayer": {
    "status": "Active",
@@ -383,8 +638,13 @@
    "coordination": [
     "Maggie Stout"
    ],
-   "quickPitch": null,
-   "notionUrl": "https://app.notion.com/p/3336b1a6e6e780699921e6956e42747a"
+   "about": "Enterprise MCP security platform; raised a $30M Series A in June 2026.",
+   "engagement": [
+    "Talent platform and embedded recruiting."
+   ],
+   "overview": {},
+   "background": null,
+   "docs": []
   },
   "Sphere": {
    "status": "Active",
@@ -396,8 +656,16 @@
    ],
    "talentPartners": [],
    "coordination": [],
-   "quickPitch": null,
-   "notionUrl": "https://app.notion.com/p/3796b1a6e6e780ceb193d6f2fc53aa41"
+   "about": "AI tax software aimed at CFOs (getsphere.com); a16z-backed, YC alumni founders.",
+   "engagement": [
+    "Full GTM retainer: Carrara operates as the embedded marketing team.",
+    "Founder comms ghost-written 5x/week for the CEO and Head of Engineering.",
+    "Events: recruiting events, World Cup party, Ground Truth conference with a16z.",
+    "Documentary customer case studies, podcast placement, website redesign, weekly metrics."
+   ],
+   "overview": {},
+   "background": null,
+   "docs": []
   },
   "Untitled": {
    "status": "Active",
@@ -409,8 +677,17 @@
    ],
    "talentPartners": [],
    "coordination": [],
-   "quickPitch": null,
-   "notionUrl": "https://app.notion.com/p/3526b1a6e6e780a1b176db5b092ccd20"
+   "about": "Consumer music app (untitled.stream) based in Brooklyn.",
+   "engagement": [
+    "Embedded recruiting: iOS, full-stack, and a Head of Engineering search.",
+    "Recruiting ops: Notion ATS revamp, interview coordination, full offer process ownership.",
+    "Careers page in Framer, engineering events (Craft & Code), founder LinkedIn amplification."
+   ],
+   "overview": {
+    "location": "Brooklyn, NY"
+   },
+   "background": null,
+   "docs": []
   },
   "Village Global": {
    "status": "Active",
@@ -422,8 +699,39 @@
    ],
    "talentPartners": [],
    "coordination": [],
-   "quickPitch": null,
-   "notionUrl": "https://app.notion.com/p/3796b1a6e6e7809eae84dc6594bfd90b"
+   "about": "Early-stage venture fund (~$500M AUM) built around a network of iconic founders.",
+   "engagement": [
+    "Built the fund's media engine: in-office podcast studio, end-to-end production, clipping, multi-platform distribution, LP list strategy.",
+    "Engagement handing off to a full-time in-house owner."
+   ],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "a16z": {
+   "status": "Active",
+   "projectTypes": [
+    "Managed Services",
+    "Embedded recruiting"
+   ],
+   "accountManagers": [
+    "Brandon Taleisnik",
+    "Heath Jamieson"
+   ],
+   "talentPartners": [
+    "Julia Tupy",
+    "Bryan Gunawan"
+   ],
+   "coordination": [],
+   "about": "Andreessen Horowitz, one of the largest venture capital firms in the world.",
+   "engagement": [
+    "BD playbook build for the investment team, since replicated for other clients.",
+    "Embedded recruiting support.",
+    "Relationship started on the finance side and expanded into people ops and recruiting."
+   ],
+   "overview": {},
+   "background": null,
+   "docs": []
   }
  }
 }
