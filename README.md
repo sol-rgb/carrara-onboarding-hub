@@ -47,6 +47,8 @@ One-time Slack app setup:
 
 - `team.json`: team roster fallback (live data comes from Slack when `SLACK_BOT_TOKEN` is set).
 - `clients.json`: client roster, leads, workstreams and descriptions, exported from the Quarry Brain. A scheduled Claude Code task on Sol's machine ("refresh-hub-clients", Mondays 8:46am) re-exports it weekly and pushes; Vercel redeploys automatically. Client descriptions come from the brain's entity description field ("Legal name" notes are filtered out) — write a real description in the brain and it appears here on the next refresh.
+- `codex.json`: per-client detail for the popups on the Clients page (status, project types, account managers, talent partners, coordination support, Notion hub links), exported from the Client Codex database in Notion. Keyed by the exact client name in `clients.json`. Snapshot, not live: re-export from Notion when accounts or staffing change.
+- `profiles.json`: LinkedIn links and prior-two-companies enrichment for the Team page, researched from public web search (no LinkedIn scraping). Keyed by the exact name in `team.json`. Entries carry a `confidence` field: `high` = Carrara affiliation publicly confirmed, `medium` = strong name/context match. People with no confident public match are simply absent — add them by hand as they share their links.
 
 ## Access
 

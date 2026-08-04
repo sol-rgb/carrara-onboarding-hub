@@ -1,0 +1,664 @@
+{
+ "source": "public web search",
+ "updated": "2026-08-04",
+ "_readme": "LinkedIn + prior-roles enrichment for the team page, from public search only. confidence: high = Carrara affiliation confirmed publicly, medium = strong name/context match but not directly confirmed. Keyed by the exact name in team.json.",
+ "profiles": {
+  "Ali Horowitz": {
+   "linkedin": "https://www.linkedin.com/in/ali-horowitz-08a61515/",
+   "prior": [
+    {
+     "company": "Profitero",
+     "role": "Head of Recruiting"
+    }
+   ],
+   "summary": "NYC recruiter with 15+ years of full-cycle recruiting experience; joined Carrara after leading recruiting at Profitero, with earlier roles at AlphaSense, Newsela, and Dentsu Aegis Network.",
+   "confidence": "high"
+  },
+  "Alicia Donenfeld": {
+   "linkedin": "https://www.linkedin.com/in/alicia-glick-donenfeld-8647b1a2/",
+   "prior": [
+    {
+     "company": "Human Capital",
+     "role": "Senior Principal"
+    },
+    {
+     "company": "Human Capital",
+     "role": "Principal"
+    }
+   ],
+   "summary": "LA-based Partner at Carrara since October 2024, previously Senior Principal (and before that Principal) at Human Capital; Cornell grad.",
+   "confidence": "high"
+  },
+  "Andrew Call": {
+   "linkedin": "https://www.linkedin.com/in/andrewcall/",
+   "prior": [
+    {
+     "company": "Human Interest",
+     "role": "Senior Technical Recruiter"
+    }
+   ],
+   "summary": "CPCC-certified recruiter and coach at Carrara; previously Senior Technical Recruiter at Human Interest and ran his own coaching and recruiting practice, with earlier roles at Houzz, Uber, and Facebook.",
+   "confidence": "high"
+  },
+  "Andrew Unger": {
+   "linkedin": "https://www.linkedin.com/in/andrewunger/",
+   "prior": [
+    {
+     "company": "High Slope",
+     "role": "Founder & Managing Partner"
+    }
+   ],
+   "summary": "Brooklyn-based investor-recruiter who founded High Slope, has spent two decades building founding teams and investing (including in Modal Labs).",
+   "confidence": "medium"
+  },
+  "Ania Sielski": {
+   "linkedin": "https://www.linkedin.com/in/ania-sielski/",
+   "prior": [
+    {
+     "company": "Teamshares",
+     "role": "Head of People"
+    }
+   ],
+   "summary": "Denver-based people and recruiting leader with 13+ years of experience (Teamshares Head of People, Perchwell, Quizlet).",
+   "confidence": "medium"
+  },
+  "Arthur Matuszewski": {
+   "linkedin": "https://www.linkedin.com/in/arthurmatuszewski/",
+   "prior": [
+    {
+     "company": "Shine Capital",
+     "role": "Venture Partner"
+    },
+    {
+     "company": "Human Capital",
+     "role": "Head of Portfolio Operations"
+    }
+   ],
+   "summary": "Founder and Managing Partner of Carrara; previously Venture Partner at Shine Capital and Head of Portfolio Operations at Human Capital, with earlier stints as VP of Talent & People at Better and talent sourcing at Wayfair; Brown grad.",
+   "confidence": "high"
+  },
+  "Austin Kane": {
+   "prior": [
+    {
+     "company": "Kingdom Supercultures",
+     "role": "Business Operations Associate"
+    }
+   ],
+   "summary": "NY-based operations and talent team member at Carrara, previously Business Operations Associate at Kingdom Supercultures and before that at Blue Haven Initiative; Tufts grad.",
+   "confidence": "medium"
+  },
+  "Beth Werkstell": {
+   "linkedin": "https://www.linkedin.com/in/beth-werkstell-0162a85/",
+   "prior": [
+    {
+     "company": "Altana",
+     "role": "Head of Global Talent Acquisition"
+    },
+    {
+     "company": "Carta",
+     "role": "Manager, Business Recruiting"
+    }
+   ],
+   "summary": "NYC talent acquisition leader, previously Head of Global Talent Acquisition at Altana and business recruiting manager at Carta, with earlier roles at Better and Button.",
+   "confidence": "high"
+  },
+  "Brandon Taleisnik": {
+   "linkedin": "https://www.linkedin.com/in/brandon-taleisnik/",
+   "prior": [
+    {
+     "company": "On Deck",
+     "role": "VP of Operations (founding team)"
+    },
+    {
+     "company": "SpaceX",
+     "role": "Innovation strategy"
+    }
+   ],
+   "summary": "Founding team and VP of Operations at On Deck, with earlier innovation-strategy work at SpaceX and Delta; University of Michigan grad.",
+   "confidence": "high"
+  },
+  "Bryan Gunawan": {
+   "linkedin": "https://www.linkedin.com/in/b-gunawan/",
+   "prior": [
+    {
+     "company": "Adyen",
+     "role": "Manager, Account Management"
+    }
+   ],
+   "summary": "San Francisco-based Carrara team member, previously Manager of Account Management at Adyen in Sydney; UNSW grad.",
+   "confidence": "high"
+  },
+  "Catherine Ardila": {
+   "linkedin": "https://www.linkedin.com/in/catherineardila/",
+   "prior": [
+    {
+     "company": "Isaac",
+     "role": "Sales Enablement"
+    },
+    {
+     "company": "AB InBev",
+     "role": "Customer Experience Strategy Intern"
+    }
+   ],
+   "summary": "Princeton economics grad from Sao Paulo doing Talent and Operations at Carrara, with earlier internships at AB InBev and Citigroup.",
+   "confidence": "high"
+  },
+  "Chiara Libertini": {
+   "linkedin": "https://www.linkedin.com/in/chiaralibertini/",
+   "prior": [
+    {
+     "company": "Cocos Capital",
+     "role": ""
+    }
+   ],
+   "summary": "Argentina-based (Universidad Torcuato Di Tella) with experience at fintech Cocos Capital.",
+   "confidence": "medium"
+  },
+  "chris hubli": {
+   "linkedin": "https://www.linkedin.com/in/chrishubli/",
+   "prior": [
+    {
+     "company": "AlphaSense",
+     "role": "Principal Recruiter, Revenue"
+    },
+    {
+     "company": "Attentive",
+     "role": "Recruiter"
+    }
+   ],
+   "summary": "GTM/revenue recruiter who rose to Principal Recruiter, Revenue at AlphaSense, with earlier recruiting roles at Attentive and AC Lion.",
+   "confidence": "high"
+  },
+  "Dan Sia": {
+   "linkedin": "https://www.linkedin.com/in/danieltsia/",
+   "prior": [
+    {
+     "company": "Paytime",
+     "role": "Co-Founder"
+    },
+    {
+     "company": "Bain & Company",
+     "role": "Consultant"
+    }
+   ],
+   "summary": "University of Melbourne commerce grad; co-founded Australian earned-wage-access startup Paytime after consulting at Bain.",
+   "confidence": "medium"
+  },
+  "Daniel Morales": {
+   "linkedin": "https://www.linkedin.com/in/danielcmorales/",
+   "prior": [
+    {
+     "company": "Chainlink Labs",
+     "role": "Senior Manager, People Solutions & AI"
+    }
+   ],
+   "summary": "Las Vegas-based people/talent operations leader, most recently Senior Manager of People Solutions & AI at Chainlink Labs.",
+   "confidence": "medium"
+  },
+  "Drew Koloski": {
+   "linkedin": "https://www.linkedin.com/in/drewk/",
+   "prior": [
+    {
+     "company": "Fonzi",
+     "role": "Lead, Technical Recruiting"
+    },
+    {
+     "company": "Gray Scalable",
+     "role": "Head of Tech Recruiting"
+    }
+   ],
+   "summary": "Technical recruiting leader who co-founded HR-tech startup Upsider and led talent acquisition at XO Group and Experian earlier in his career.",
+   "confidence": "high"
+  },
+  "Emily Kasper": {
+   "linkedin": "https://www.linkedin.com/in/emily-kasper-0916572a",
+   "prior": [
+    {
+     "company": "Kasper Talent",
+     "role": ""
+    },
+    {
+     "company": "Grindr",
+     "role": ""
+    }
+   ],
+   "summary": "Ojai, CA-based talent and people-ops professional, previously at her own practice Kasper Talent, Grindr, and Almanac.",
+   "confidence": "high"
+  },
+  "Enzo Budasoff": {
+   "linkedin": "https://ar.linkedin.com/in/enzo-budasoff",
+   "prior": [
+    {
+     "company": "Rappi",
+     "role": ""
+    }
+   ],
+   "summary": "Buenos Aires-based Carrara team member with prior experience at Rappi.",
+   "confidence": "high"
+  },
+  "Eric Fernandez": {
+   "linkedin": "https://www.linkedin.com/in/ericfernandez1012/",
+   "prior": [
+    {
+     "company": "Chore",
+     "role": ""
+    },
+    {
+     "company": "Commsor",
+     "role": ""
+    }
+   ],
+   "summary": "Fort Lauderdale-based finance and business operations professional with earlier stints at Chore, Commsor, and Enjoy Technology.",
+   "confidence": "high"
+  },
+  "Giovanna Borgiotti": {
+   "linkedin": "https://www.linkedin.com/in/giovanna-borgiotti",
+   "prior": [
+    {
+     "company": "Brave Health",
+     "role": "Talent Acquisition Lead"
+    }
+   ],
+   "summary": "Talent acquisition specialist in healthtech, previously leading recruiting at Brave Health.",
+   "confidence": "medium"
+  },
+  "Gonz Sanchez": {
+   "prior": [
+    {
+     "company": "Seedtable",
+     "role": "Founder"
+    },
+    {
+     "company": "On Deck",
+     "role": "VP of Marketing / Partner"
+    }
+   ],
+   "summary": "Growth and GTM leader who founded European-tech data platform Seedtable and led marketing/growth at On Deck.",
+   "confidence": "high"
+  },
+  "Greg Troxell": {
+   "linkedin": "https://www.linkedin.com/in/greg-troxell",
+   "prior": [
+    {
+     "company": "Function Health",
+     "role": "Director of Talent Acquisition"
+    },
+    {
+     "company": "Midi Health",
+     "role": "Head of Talent"
+    }
+   ],
+   "summary": "Talent acquisition leader with prior recruiting roles at Function Health, Midi Health, Wheel, Zoox, DoorDash, and Binc.",
+   "confidence": "high"
+  },
+  "Hallie Slamowitz": {
+   "linkedin": "https://www.linkedin.com/in/hallie-slamowitz-09bb1349/",
+   "prior": [
+    {
+     "company": "Messari",
+     "role": "Recruiting Manager"
+    },
+    {
+     "company": "Better.com",
+     "role": ""
+    }
+   ],
+   "summary": "New York-based talent leader with 10+ years in talent acquisition across Messari, Better.com, and Convene.",
+   "confidence": "high"
+  },
+  "Hayley Samuels": {
+   "linkedin": "https://www.linkedin.com/in/hayley-samuels-m-ed/",
+   "prior": [
+    {
+     "company": "BLOOM",
+     "role": "Founder"
+    }
+   ],
+   "summary": "Denver-based recruiter with 20+ years of experience, the last 9 focused on behavioral-health hiring.",
+   "confidence": "high"
+  },
+  "Heath": {
+   "linkedin": "https://www.linkedin.com/in/heathjamieson/",
+   "prior": [
+    {
+     "company": "On Deck",
+     "role": "VP of Finance"
+    },
+    {
+     "company": "Antler",
+     "role": ""
+    }
+   ],
+   "summary": "Partner at Carrara with prior finance/operating experience at On Deck, Antler, and Bain; University of Melbourne grad.",
+   "confidence": "high"
+  },
+  "Jenna Caminiti": {
+   "linkedin": "https://www.linkedin.com/in/jenna-caminiti/",
+   "prior": [
+    {
+     "company": "Northbeam",
+     "role": "Senior Recruiting Operations Specialist"
+    },
+    {
+     "company": "Apollo GraphQL",
+     "role": ""
+    }
+   ],
+   "summary": "Boston-based recruiting operations specialist who supported Peloton's technical hiring before roles at Apollo GraphQL and Northbeam.",
+   "confidence": "high"
+  },
+  "Jennah Holycross": {
+   "linkedin": "https://www.linkedin.com/in/jennah-holycross-7b90142a/",
+   "summary": "New York-based recruiting/talent acquisition professional at Carrara; Roger Williams University graduate.",
+   "confidence": "high"
+  },
+  "Jin Stedge": {
+   "linkedin": "https://www.linkedin.com/in/jinstedge/",
+   "prior": [
+    {
+     "company": "TrueNorth",
+     "role": "Co-founder & CEO"
+    },
+    {
+     "company": "Scotty Labs",
+     "role": "Chief of Staff"
+    }
+   ],
+   "summary": "MIT aerospace engineer and YC 2020 founder who led trucking-software startup TrueNorth.",
+   "confidence": "medium"
+  },
+  "Joe Penn": {
+   "linkedin": "https://www.linkedin.com/in/josephpenn/",
+   "prior": [
+    {
+     "company": "DesignBake",
+     "role": "Founder"
+    }
+   ],
+   "summary": "San Francisco-based talent partner who founded DesignBake, a service helping early-stage startups hire product designers, before Carrara.",
+   "confidence": "high"
+  },
+  "Julia Tupy": {
+   "linkedin": "https://www.linkedin.com/in/julia-tupy-a0b009b4/",
+   "prior": [
+    {
+     "company": "Independent recruiting",
+     "role": "Recruiter"
+    },
+    {
+     "company": "Lev",
+     "role": ""
+    }
+   ],
+   "summary": "New York-based recruiter with earlier roles at Lev, Tray.io and Flockjay.",
+   "confidence": "high"
+  },
+  "Justin Colsky": {
+   "linkedin": "https://www.linkedin.com/in/justin-colsky-64265b3/",
+   "prior": [
+    {
+     "company": "HeadRace",
+     "role": "VP of Operations"
+    },
+    {
+     "company": "Riviera Partners",
+     "role": ""
+    }
+   ],
+   "summary": "San Francisco talent and recruiting-operations leader with prior stints at HeadRace, Riviera Partners and NextRoll/RollWorks.",
+   "confidence": "high"
+  },
+  "Katie Nguyen": {
+   "linkedin": "https://www.linkedin.com/in/katietnguyen/",
+   "prior": [
+    {
+     "company": "Palette Media",
+     "role": "Head of Recruiting"
+    },
+    {
+     "company": "Opendoor",
+     "role": "Senior Recruiter"
+    }
+   ],
+   "summary": "Los Angeles-based recruiting leader with prior recruiting roles at Palette Media, Opendoor, MasterClass and Quora.",
+   "confidence": "high"
+  },
+  "Katie Roe": {
+   "linkedin": "https://www.linkedin.com/in/kathleen-roe",
+   "summary": "New York-based Operating Partner at Carrara; UPenn grad with prior talent/operations roles in Berlin.",
+   "confidence": "high"
+  },
+  "Kelley Lantigua": {
+   "linkedin": "https://www.linkedin.com/in/kelleylantigua",
+   "confidence": "high"
+  },
+  "Kenna Meyerhoff": {
+   "linkedin": "https://www.linkedin.com/in/kenna-meyerhoff-77339565/",
+   "prior": [
+    {
+     "company": "A.Team",
+     "role": ""
+    },
+    {
+     "company": "Ellavate",
+     "role": ""
+    }
+   ],
+   "summary": "New York talent leader who earlier scaled Better.com's talent org as Director of Talent Acquisition.",
+   "confidence": "high"
+  },
+  "Macarena Gonzalez Cazon": {
+   "linkedin": "https://ar.linkedin.com/in/macarenagonzalezcazon",
+   "summary": "Argentina-based designer.",
+   "confidence": "medium"
+  },
+  "Maggie Stout": {
+   "linkedin": "https://www.linkedin.com/in/maggie-stout/",
+   "confidence": "high"
+  },
+  "Mary Petrino": {
+   "linkedin": "https://www.linkedin.com/in/marypetrino/",
+   "prior": [
+    {
+     "company": "Whop",
+     "role": "Project Manager, Internal Operations"
+    }
+   ],
+   "summary": "New York operations professional who ran internal operations projects at Whop before Carrara.",
+   "confidence": "high"
+  },
+  "Nathan Peadon": {
+   "linkedin": "https://www.linkedin.com/in/nathan-peadon/",
+   "prior": [
+    {
+     "company": "Bain & Company",
+     "role": "Consultant"
+    }
+   ],
+   "summary": "University of Technology Sydney grad (LLB/BSc) and Bain consultant.",
+   "confidence": "medium"
+  },
+  "Nic Touron": {
+   "linkedin": "https://www.linkedin.com/in/nicolas-touron/",
+   "prior": [
+    {
+     "company": "Hexa (eFounders)",
+     "role": "Senior Product Manager"
+    },
+    {
+     "company": "Antler",
+     "role": ""
+    }
+   ],
+   "summary": "France-based product and AI operator, Product and AI Operating Partner at Carrara, previously at Hexa and Antler.",
+   "confidence": "high"
+  },
+  "Nicolás Ruperez": {
+   "linkedin": "https://www.linkedin.com/in/nicol%C3%A1s-ruperez/",
+   "prior": [
+    {
+     "company": "Winclap",
+     "role": "Analytics Product Specialist"
+    }
+   ],
+   "summary": "Buenos Aires analytics specialist, previously at Winclap.",
+   "confidence": "medium"
+  },
+  "Pranav Mutatkar": {
+   "linkedin": "https://www.linkedin.com/in/pranavmutatkar/",
+   "prior": [
+    {
+     "company": "Got Users",
+     "role": "Co-Founder"
+    },
+    {
+     "company": "Milliman",
+     "role": "Healthcare Technology Consultant"
+    }
+   ],
+   "summary": "Growth operator who co-founded Got Users; earlier a healthcare data consultant at Milliman.",
+   "confidence": "medium"
+  },
+  "Reza Saeedi": {
+   "linkedin": "https://www.linkedin.com/in/rezasaeedi/",
+   "prior": [
+    {
+     "company": "Contra",
+     "role": "Head of Growth"
+    },
+    {
+     "company": "Passage",
+     "role": "Growth Lead"
+    }
+   ],
+   "summary": "Toronto-based GTM/growth operator (Head of Growth at Contra, ex-Passage, ex-Director of Marketing at On Deck).",
+   "confidence": "medium"
+  },
+  "Roohi Ahuja": {
+   "linkedin": "https://www.linkedin.com/in/roohi-ahuja14/",
+   "prior": [
+    {
+     "company": "Messari",
+     "role": "Manager, People Operations & Development"
+    },
+    {
+     "company": "Evolent Health",
+     "role": "Associate Director, DEI"
+    }
+   ],
+   "summary": "NYC-area people operations and DEI leader (Messari, Evolent, Melio, earlier SoulCycle).",
+   "confidence": "medium"
+  },
+  "Sadiqeh Agah": {
+   "linkedin": "https://www.linkedin.com/in/sadiqeh/",
+   "prior": [
+    {
+     "company": "You.com",
+     "role": "Recruiting Operations"
+    }
+   ],
+   "summary": "Recruiting operations professional, previously at You.com.",
+   "confidence": "medium"
+  },
+  "Sam Blumenthal": {
+   "linkedin": "https://www.linkedin.com/in/sam-blumenthal-48108248/",
+   "prior": [
+    {
+     "company": "Lev",
+     "role": "Operations"
+    },
+    {
+     "company": "Better.com",
+     "role": ""
+    }
+   ],
+   "summary": "Brooklyn-based Operating Partner at Carrara (Boston College, finance/economics) with prior stints at Lev, Better.com, and LinkedIn.",
+   "confidence": "high"
+  },
+  "Sara Hennings": {
+   "linkedin": "https://www.linkedin.com/in/sara-hennings",
+   "prior": [
+    {
+     "company": "Indalo Travel",
+     "role": "Head of Operations"
+    },
+    {
+     "company": "TechGC",
+     "role": ""
+    }
+   ],
+   "summary": "Operations leader who was employee ~20 at On Deck building the Founders Program before ops roles at TechGC and Indalo Travel.",
+   "confidence": "medium"
+  },
+  "Sol Silbenberg": {
+   "prior": [
+    {
+     "company": "AlixPartners",
+     "role": "Consultant (TMT, Buenos Aires)"
+    },
+    {
+     "company": "CRISIL",
+     "role": "Private Equity Research Analyst"
+    }
+   ],
+   "summary": "Buenos Aires-based consultant formerly at AlixPartners' TMT practice with prior PE research work.",
+   "confidence": "medium"
+  },
+  "Tess Wicks": {
+   "linkedin": "https://www.linkedin.com/in/tess-wicks/",
+   "prior": [
+    {
+     "company": "VML",
+     "role": ""
+    },
+    {
+     "company": "Stealth Startup",
+     "role": ""
+    }
+   ],
+   "summary": "Detroit-based talent/TA operations specialist with people-ops experience at hyper-growth startups including JOKR and Shiftsmart, plus VML.",
+   "confidence": "high"
+  },
+  "Tina Khoury": {
+   "linkedin": "https://www.linkedin.com/in/tinakhoury/",
+   "prior": [
+    {
+     "company": "DoorDash",
+     "role": ""
+    },
+    {
+     "company": "Uber",
+     "role": "Early employee"
+    }
+   ],
+   "summary": "New York-based Operating Partner at Carrara, a strategist/operator from high-growth consumer tech (DoorDash, early Uber, Amazon).",
+   "confidence": "high"
+  },
+  "Tom Callahan": {
+   "linkedin": "https://www.linkedin.com/in/tom-callahan/",
+   "prior": [
+    {
+     "company": "Applied",
+     "role": "Recruiting"
+    }
+   ],
+   "summary": "San Francisco-based talent partner at Carrara (Columbia University) who previously did recruiting at Applied.",
+   "confidence": "high"
+  },
+  "Yanel Bottini": {
+   "linkedin": "https://www.linkedin.com/in/yanelbottini/",
+   "prior": [
+    {
+     "company": "StartOps",
+     "role": "Senior Product Designer"
+    },
+    {
+     "company": "Independent consultancy",
+     "role": "Senior Product Designer / Visual Branding Specialist"
+    }
+   ],
+   "summary": "Buenos Aires-based brand and product designer with 15+ years of experience in UX, branding, and interface design.",
+   "confidence": "medium"
+  }
+ }
+}

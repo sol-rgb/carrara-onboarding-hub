@@ -1,0 +1,429 @@
+{
+ "source": "notion-client-codex",
+ "updated": "2026-08-04",
+ "codexUrl": "https://app.notion.com/p/carrara/Client-Codex-6b9b531c33b34434a80c91000e376f2e",
+ "clients": {
+  "a16z": {
+   "status": "Active",
+   "projectTypes": [
+    "Managed Services",
+    "Embedded recruiting"
+   ],
+   "accountManagers": [
+    "Brandon Taleisnik",
+    "Heath Jamieson"
+   ],
+   "talentPartners": [
+    "Julia Tupy",
+    "Bryan Gunawan"
+   ],
+   "coordination": [],
+   "quickPitch": null,
+   "notionUrl": "https://app.notion.com/p/2926b1a6e6e7806a9e18e9f9607b3aa0"
+  },
+  "Altana": {
+   "status": "Active",
+   "projectTypes": [
+    "Talent Platform",
+    "Embedded recruiting"
+   ],
+   "accountManagers": [
+    "Sam Blumenthal"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "quickPitch": null,
+   "notionUrl": "https://app.notion.com/p/2bc6b1a6e6e780d7a151efbfd750716e"
+  },
+  "Amazon": {
+   "status": "Active",
+   "projectTypes": [
+    "Finance"
+   ],
+   "accountManagers": [
+    "Heath Jamieson"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "quickPitch": null,
+   "notionUrl": "https://app.notion.com/p/3796b1a6e6e780d69a71d2b6035a6766"
+  },
+  "Anthropic": {
+   "status": "Active",
+   "projectTypes": [
+    "Talent Platform"
+   ],
+   "accountManagers": [
+    "Brandon Taleisnik"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "quickPitch": null,
+   "notionUrl": "https://app.notion.com/p/3796b1a6e6e780ea9699e9080aca50bf"
+  },
+  "Avoca AI": {
+   "status": "Paused",
+   "projectTypes": [
+    "Talent Platform"
+   ],
+   "accountManagers": [
+    "Joe Penn"
+   ],
+   "talentPartners": [],
+   "coordination": [
+    "Hayley Samuels"
+   ],
+   "quickPitch": "Avoca.ai is an AI workforce platform for service businesses that handles inbound and outbound customer communications across calls, chats, texts, and email. It integrates deeply with ServiceTitan to update customer, job, and performance data in real time.",
+   "notionUrl": "https://app.notion.com/p/2a86b1a6e6e78071ba0dd178fe432302"
+  },
+  "Better": {
+   "status": "Active",
+   "projectTypes": [
+    "Embedded recruiting"
+   ],
+   "accountManagers": [
+    "Arthur Matuszewski",
+    "Tina Khoury"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "quickPitch": null,
+   "notionUrl": "https://app.notion.com/p/3336b1a6e6e780618160edbe1d5a172c"
+  },
+  "Brave Health": {
+   "status": "Active",
+   "projectTypes": [
+    "Managed Services"
+   ],
+   "accountManagers": [
+    "Sam Blumenthal"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "quickPitch": null,
+   "notionUrl": "https://app.notion.com/p/2bc6b1a6e6e780f9ab5cd44c2a3c5cad"
+  },
+  "Coast": {
+   "status": "Paused",
+   "projectTypes": [
+    "Embedded recruiting",
+    "Managed Services"
+   ],
+   "accountManagers": [
+    "Kenna Meyerhoff"
+   ],
+   "talentPartners": [
+    "Jennah Holycross",
+    "Nicole Henderson"
+   ],
+   "coordination": [],
+   "quickPitch": null,
+   "notionUrl": "https://app.notion.com/p/2956b1a6e6e78030b5cfddd5efac907f"
+  },
+  "Deeptune": {
+   "status": "Active",
+   "projectTypes": [
+    "Talent Platform",
+    "Finance"
+   ],
+   "accountManagers": [
+    "Joe Penn",
+    "Heath Jamieson"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "quickPitch": null,
+   "notionUrl": "https://app.notion.com/p/30a6b1a6e6e78038af0ef17c2c929f83"
+  },
+  "Forge": {
+   "status": "Active",
+   "projectTypes": [
+    "Embedded recruiting",
+    "Talent Platform",
+    "Marketing/Growth"
+   ],
+   "accountManagers": [
+    "Alicia Donenfeld",
+    "Joe Penn"
+   ],
+   "talentPartners": [
+    "Giovanna Borgiotti"
+   ],
+   "coordination": [],
+   "quickPitch": null,
+   "notionUrl": "https://app.notion.com/p/3566b1a6e6e78024b26af48e72a7a0c9"
+  },
+  "Fundamental Technologies": {
+   "status": "Active",
+   "projectTypes": [
+    "People"
+   ],
+   "accountManagers": [
+    "Kenna Meyerhoff",
+    "Tina Khoury"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "quickPitch": null,
+   "notionUrl": "https://app.notion.com/p/3796b1a6e6e7804ba143f8973683bc2e"
+  },
+  "Grindr": {
+   "status": "Active",
+   "projectTypes": [
+    "Talent Platform"
+   ],
+   "accountManagers": [
+    "Tina Khoury",
+    "Arthur Matuszewski"
+   ],
+   "talentPartners": [
+    "Jennah Holycross",
+    "Ania Sielski"
+   ],
+   "coordination": [],
+   "quickPitch": null,
+   "notionUrl": "https://app.notion.com/p/28d6b1a6e6e78019b420d3d2b1732439"
+  },
+  "Hertz": {
+   "status": "Active",
+   "projectTypes": [
+    "BizOps"
+   ],
+   "accountManagers": [
+    "Heath Jamieson"
+   ],
+   "talentPartners": [
+    "Bryan Gunawan"
+   ],
+   "coordination": [],
+   "quickPitch": null,
+   "notionUrl": "https://app.notion.com/p/3796b1a6e6e780d4abf5ebf552ec1679"
+  },
+  "Hinge": {
+   "status": "Active",
+   "projectTypes": [
+    "Talent Platform",
+    "Embedded recruiting"
+   ],
+   "accountManagers": [
+    "Sam Blumenthal"
+   ],
+   "talentPartners": [
+    "Beth Werkstell"
+   ],
+   "coordination": [],
+   "quickPitch": null,
+   "notionUrl": "https://app.notion.com/p/2bc6b1a6e6e78042922de3bee34a0c0f"
+  },
+  "January": {
+   "status": "Active",
+   "projectTypes": [
+    "Embedded recruiting",
+    "Talent Platform"
+   ],
+   "accountManagers": [
+    "Brandon Taleisnik"
+   ],
+   "talentPartners": [
+    "Tenzing Bhutia",
+    "Drew Koloski"
+   ],
+   "coordination": [
+    "Tess Wicks"
+   ],
+   "quickPitch": null,
+   "notionUrl": "https://app.notion.com/p/27d6b1a6e6e780888cc7cecb97abd161"
+  },
+  "Lipdub AI": {
+   "status": "Active",
+   "projectTypes": [
+    "Marketing/Growth"
+   ],
+   "accountManagers": [
+    "Gonz Sanchez"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "quickPitch": null,
+   "notionUrl": "https://app.notion.com/p/3796b1a6e6e78041b910c5f8aaac97a8"
+  },
+  "Long Lake": {
+   "status": "Active",
+   "projectTypes": [
+    "Talent Platform"
+   ],
+   "accountManagers": [
+    "Joe Penn"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "quickPitch": null,
+   "notionUrl": "https://app.notion.com/p/3566b1a6e6e7802883cddc3b75d1089a"
+  },
+  "Luminai": {
+   "status": "Active",
+   "projectTypes": [
+    "Talent Platform",
+    "Finance"
+   ],
+   "accountManagers": [
+    "Joe Penn",
+    "Heath Jamieson"
+   ],
+   "talentPartners": [
+    "Ania Sielski"
+   ],
+   "coordination": [
+    "Hayley Samuels",
+    "Anna Jones"
+   ],
+   "quickPitch": "Luminai builds AI workflow automation for healthcare in a Palantir-esque model, backed by ~$60M from Peak XV, General Catalyst, and Kevin Weil, with 5x growth and 40+ enterprise customers.",
+   "notionUrl": "https://app.notion.com/p/1a46b1a6e6e780b58f4dec851141a9da"
+  },
+  "Magic AI": {
+   "status": "Active",
+   "projectTypes": [
+    "People"
+   ],
+   "accountManagers": [
+    "Kenna Meyerhoff"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "quickPitch": null,
+   "notionUrl": "https://app.notion.com/p/3796b1a6e6e78048aadadd82f0c5647c"
+  },
+  "Modal Labs": {
+   "status": "Active",
+   "projectTypes": [
+    "Talent Platform",
+    "Embedded recruiting",
+    "People",
+    "Marketing/Growth"
+   ],
+   "accountManagers": [
+    "Kenna Meyerhoff",
+    "Tina Khoury"
+   ],
+   "talentPartners": [
+    "Justin Colsky",
+    "Ania Sielski",
+    "Chris Hubli",
+    "Maggie Stout",
+    "Tom Callahan"
+   ],
+   "coordination": [
+    "Maggie Stout"
+   ],
+   "quickPitch": null,
+   "notionUrl": "https://app.notion.com/p/28d6b1a6e6e780aab74ccb78aff73c57"
+  },
+  "Perchwell": {
+   "status": "Active",
+   "projectTypes": [
+    "Embedded recruiting"
+   ],
+   "accountManagers": [
+    "Joe Penn"
+   ],
+   "talentPartners": [
+    "Emily Kasper",
+    "Hallie Slamowitz"
+   ],
+   "coordination": [],
+   "quickPitch": "Perchwell is the modern listings and collaboration platform that powers the real estate economy, giving agents, brokers, and MLSs clean data, intelligent workflows, and branded client experiences.",
+   "notionUrl": "https://app.notion.com/p/2486b1a6e6e780d4a411ce3853483355"
+  },
+  "Profound": {
+   "status": "Active",
+   "projectTypes": [
+    "Talent Platform",
+    "Managed Services"
+   ],
+   "accountManagers": [
+    "Joe Penn",
+    "Alicia Donenfeld",
+    "Kenna Meyerhoff"
+   ],
+   "talentPartners": [],
+   "coordination": [
+    "Hayley Samuels"
+   ],
+   "quickPitch": null,
+   "notionUrl": "https://app.notion.com/p/22a6b1a6e6e780778f0af7cbee12ddc5"
+  },
+  "Raindrop": {
+   "status": "Active",
+   "projectTypes": [
+    "Talent Platform"
+   ],
+   "accountManagers": [
+    "Joe Penn",
+    "Gonz Sanchez"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "quickPitch": null,
+   "notionUrl": "https://app.notion.com/p/3566b1a6e6e78060a7d7c04d8c2f07f6"
+  },
+  "Runlayer": {
+   "status": "Active",
+   "projectTypes": [
+    "Talent Platform",
+    "Embedded recruiting"
+   ],
+   "accountManagers": [
+    "Brandon Taleisnik",
+    "Alicia Donenfeld"
+   ],
+   "talentPartners": [
+    "Alicia Donenfeld",
+    "Giovanna Borgiotti"
+   ],
+   "coordination": [
+    "Maggie Stout"
+   ],
+   "quickPitch": null,
+   "notionUrl": "https://app.notion.com/p/3336b1a6e6e780699921e6956e42747a"
+  },
+  "Sphere": {
+   "status": "Active",
+   "projectTypes": [
+    "Marketing/Growth"
+   ],
+   "accountManagers": [
+    "Gonz Sanchez"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "quickPitch": null,
+   "notionUrl": "https://app.notion.com/p/3796b1a6e6e780ceb193d6f2fc53aa41"
+  },
+  "Untitled": {
+   "status": "Active",
+   "projectTypes": [
+    "Talent Platform"
+   ],
+   "accountManagers": [
+    "Joe Penn"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "quickPitch": null,
+   "notionUrl": "https://app.notion.com/p/3526b1a6e6e780a1b176db5b092ccd20"
+  },
+  "Village Global": {
+   "status": "Active",
+   "projectTypes": [
+    "Marketing/Growth"
+   ],
+   "accountManagers": [
+    "Gonz Sanchez"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "quickPitch": null,
+   "notionUrl": "https://app.notion.com/p/3796b1a6e6e7809eae84dc6594bfd90b"
+  }
+ }
+}

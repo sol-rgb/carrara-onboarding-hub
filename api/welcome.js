@@ -75,7 +75,7 @@ module.exports = async (req, res) => {
   return res.status(200).json({
     name: who.name,
     firstName: who.name.split(/\s+/)[0] || who.name,
-    manager: { name: who.manager },
+    manager: { name: who.manager, id: who.managerId || '' },
     countryLabel: country.label || COUNTRY_LABELS[who.country] || who.country,
     client: clientInfo ? {
       name: clientInfo.name,

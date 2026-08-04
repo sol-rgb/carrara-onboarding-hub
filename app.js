@@ -318,19 +318,37 @@
       d.className = 'member';
       var av = m.avatar ? '<img src="' + m.avatar + '" alt="" loading="lazy">' : initials(m.name);
       var role = cleanTitle(m.title);
+      var p = profileData[m.name];
+      var priorH = '';
+      if (p && p.prior && p.prior.length) {
+        priorH = '<div class="prior">before: ' + p.prior.map(function (x) {
+          return esc(x.role ? x.role + ', ' + x.company : x.company);
+        }).join(' · ') + '</div>';
+      }
       d.innerHTML = '<div class="avatar">' + av + '</div><div class="info">'
         + '<div class="nm">' + esc(m.name) + (m.isNew ? ' <span class="newtag">[new]</span>' : '') + '</div>'
         + (role ? '<div class="rl">' + esc(role) + (m.extra ? ' · ' + esc(m.extra) : '') + '</div>' : (m.extra ? '<div class="rl">' + esc(m.extra) + '</div>' : ''))
-        + (m.email ? '<div class="em"><a href="mailto:' + m.email + '">' + m.email + '</a></div>' : '')
+        + priorH
+        + (p && p.summary ? '<div class="bio">' + esc(p.summary) + '</div>' : '')
+        + '<div class="em">'
+        + (m.email ? '<a href="mailto:' + m.email + '">' + m.email + '</a>' : '')
+        + (p && p.linkedin ? (m.email ? ' · ' : '') + '<a href="' + esc(p.linkedin) + '" target="_blank" rel="noopener">LinkedIn ↗</a>' : '')
+        + '</div>'
         + '</div>';
       grid.appendChild(d);
     });
     $('#team-count').textContent = shown.length + ' people';
   }
   $('#team-search').addEventListener('input', function (e) { renderTeam(e.target.value); });
-  (window.__TEAM__ ? Promise.resolve(window.__TEAM__) : fetch('/api/team').then(function (r) { if (!r.ok) throw 0; return r.json(); }))
-    .catch(function () { return fetch('/team.json').then(function (r) { return r.json(); }); })
-    .then(function (data) {
+  var profileData = {};
+  Promise.all([
+    (window.__TEAM__ ? Promise.resolve(window.__TEAM__) : fetch('/api/team').then(function (r) { if (!r.ok) throw 0; return r.json(); }))
+      .catch(function () { return fetch('/team.json').then(function (r) { return r.json(); }); }),
+    fetch('/profiles.json').then(function (r) { return r.json(); }).catch(function () { return { profiles: {} }; })
+  ])
+    .then(function (both) {
+      var data = both[0];
+      profileData = (both[1] && both[1].profiles) || {};
       teamData = data.members || [];
       renderTeam('');
       if (data.source === 'slack') {
@@ -389,13 +407,54 @@
   }
 
   /* ---------- clients ---------- */
-  (window.__CLIENTS__ ? Promise.resolve(window.__CLIENTS__) : fetch('/clients.json').then(function (r) { return r.json(); })).then(function (data) {
+  var codexData = { clients: {} };
+  function openClientModal(c) {
+    var cx = (codexData.clients || {})[c.name];
+    var types = (cx && cx.projectTypes && cx.projectTypes.length) ? cx.projectTypes : (c.work || []);
+    var desc = c.description || (cx && cx.quickPitch) || '';
+    var html = '<div class="m-eyebrow">[from the client codex]</div><h3>' + esc(c.name)
+      + (cx && cx.status ? ' <span class="cstatus' + (cx.status === 'Active' ? ' on' : '') + '">' + esc(cx.status.toLowerCase()) + '</span>' : '')
+      + '</h3><div class="pg">';
+    if (desc) html += '<p>' + esc(desc) + '</p>';
+    if (types.length) html += '<div class="wk-tags">' + types.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>';
+    var team = [];
+    if (c.lead) team.push(['Engagement lead', [c.lead]]);
+    if (cx && cx.accountManagers && cx.accountManagers.length) team.push(['Account manager' + (cx.accountManagers.length > 1 ? 's' : ''), cx.accountManagers]);
+    if (cx && cx.talentPartners && cx.talentPartners.length) team.push(['Talent partner' + (cx.talentPartners.length > 1 ? 's' : ''), cx.talentPartners]);
+    if (cx && cx.coordination && cx.coordination.length) team.push(['Coordination support', cx.coordination]);
+    if (team.length) {
+      html += '<div class="wk-sec"><div class="wk-lbl">[who runs it at carrara]</div><ul>'
+        + team.map(function (t) { return '<li><b>' + esc(t[0]) + '</b>: ' + esc(t[1].join(', ')) + '</li>'; }).join('') + '</ul></div>';
+    }
+    /* workstream detail from the brain, minus anything already shown as a product-line tag */
+    var lowerTypes = types.map(function (t) { return t.toLowerCase(); });
+    var streams = (c.work || []).filter(function (w) { return lowerTypes.indexOf(w.toLowerCase()) === -1; });
+    if (streams.length) {
+      html += '<div class="wk-sec"><div class="wk-lbl">[active workstreams]</div><ul>'
+        + streams.map(function (w) { return '<li>' + esc(w) + '</li>'; }).join('') + '</ul></div>';
+    }
+    var linksH = [];
+    if (c.domain) linksH.push('<a href="https://' + esc(c.domain) + '" target="_blank" rel="noopener">' + esc(c.domain) + ' ↗</a>');
+    if (cx && cx.notionUrl) linksH.push('<a href="' + esc(cx.notionUrl) + '" target="_blank" rel="noopener">Client hub in Notion ↗</a>');
+    if (codexData.codexUrl) linksH.push('<a href="' + esc(codexData.codexUrl) + '" target="_blank" rel="noopener">Client Codex ↗</a>');
+    if (linksH.length) html += '<div class="wk-sec"><div class="wk-lbl">[go deeper]</div><div class="wk-links">' + linksH.join('') + '</div></div>';
+    html += '</div>';
+    if (!cx) html += '<p class="pg-note">No Client Codex entry for this one yet; details come from the Quarry Brain.</p>';
+    openModal(html);
+  }
+  Promise.all([
+    (window.__CLIENTS__ ? Promise.resolve(window.__CLIENTS__) : fetch('/clients.json').then(function (r) { return r.json(); })),
+    fetch('/codex.json').then(function (r) { return r.json(); }).catch(function () { return { clients: {} }; })
+  ]).then(function (both) {
+    var data = both[0];
+    codexData = both[1] || { clients: {} };
     var grid = $('#client-grid');
     clientData = data.clients || [];
     clientData.forEach(function (c) {
-      var d = document.createElement(c.domain ? 'a' : 'div');
+      var d = document.createElement('div');
       d.className = 'client-row';
-      if (c.domain) { d.href = 'https://' + c.domain; d.target = '_blank'; d.rel = 'noopener'; }
+      d.setAttribute('role', 'button');
+      d.setAttribute('tabindex', '0');
       var logo = c.domain
         ? '<img src="' + favicon(c.domain, 64) + '" alt="" loading="lazy" onerror="this.parentNode.textContent=\'' + esc(c.name.charAt(0)) + '\'">'
         : esc(c.name.charAt(0));
@@ -404,9 +463,11 @@
         + (c.description ? '<div class="cdesc">' + esc(c.description) + '</div>' : '')
         + (c.work && c.work.length ? '<div class="client-tags">' + c.work.map(function (w) { return '<span>' + esc(w) + '</span>'; }).join('') + '</div>' : '')
         + '</div>';
+      d.addEventListener('click', function () { openClientModal(c); });
+      d.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openClientModal(c); } });
       grid.appendChild(d);
     });
-    $('#client-note').textContent = 'Live from the Quarry Brain, refreshed weekly. Last update: ' + (data.updated || '') + '. Click a client to open their site.';
+    $('#client-note').textContent = 'Live from the Quarry Brain and the Client Codex in Notion. Last update: ' + (data.updated || '') + '. Click a client for the full picture.';
     applyKitToHub();
   });
   var clientData = [];
@@ -621,6 +682,17 @@
         html += '<div class="wk-sec"><div class="wk-lbl">[joining from ' + esc(d.country.label.toLowerCase()) + ']</div><ul>'
           + d.country.notes.map(function (n) { return '<li>' + esc(n) + '</li>'; }).join('') + '</ul></div>';
       }
+      /* enneagram: the test is external and free; results are not sent anywhere
+         automatically, so the kit asks the joiner to share their type with their manager */
+      var mgrDm = d.manager && d.manager.id ? window.LINKS.slackWorkspace + '/team/' + d.manager.id : '';
+      html += '<div class="wk-sec"><div class="wk-lbl">[before your first 1:1]</div>'
+        + '<p>Take the free Enneagram test below (about 10 minutes, no signup). When you have your type, send it'
+        + (d.manager && d.manager.name ? ' to ' + esc(d.manager.name) : ' to your manager')
+        + ' so they can shape how you two work together.</p>'
+        + '<div class="wk-links">'
+        + '<a href="https://www.eclecticenergies.com/enneagram/test" target="_blank" rel="noopener">Take the Enneagram test ↗</a>'
+        + (mgrDm ? '<a href="' + esc(mgrDm) + '" target="_blank" rel="noopener">DM your result to ' + esc(d.manager.name) + ' ↗</a>' : '')
+        + '</div></div>';
       if (d.links && d.links.length) {
         html += '<div class="wk-sec"><div class="wk-lbl">[start with these]</div><div class="wk-links">'
           + d.links.map(function (l) {

@@ -310,11 +310,15 @@ table.clean td:last-child { font-family: var(--rigid); font-size: 11px; letter-s
 .member .em a { color: var(--taupe); text-decoration: none; }
 .member .em a:hover { color: var(--orange); }
 .member .newtag { font-family: var(--rigid); font-size: 9px; letter-spacing: 0.08em; color: var(--orange); }
+.member .prior { font-family: var(--rigid); font-size: 10px; letter-spacing: 0.04em; color: var(--ardesia); line-height: 1.5; margin-top: 3px; }
+.member .bio { font-size: 12px; line-height: 1.5; color: rgba(45, 42, 42, 0.62); margin-top: 3px; max-width: 52ch; }
 .team-note { margin-top: 26px; font-size: 13px; color: var(--taupe); max-width: 66ch; }
 
 /* ---------- clients ---------- */
 .client-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 72px; margin-top: 44px; }
-.client-row { display: flex; gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--hairline); align-items: flex-start; }
+.client-row { display: flex; gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--hairline); align-items: flex-start; cursor: pointer; }
+.cstatus { font-family: var(--rigid); font-size: 10px; letter-spacing: 0.1em; color: var(--taupe); border: 1px solid var(--hairline); padding: 2px 8px; margin-left: 10px; vertical-align: middle; }
+.cstatus.on { color: var(--orange); border-color: currentColor; }
 .client-row .clogo {
   width: 34px; height: 34px; flex: none; background: #fff; margin-top: 2px;
   clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
