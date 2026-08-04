@@ -506,12 +506,21 @@
     html += '</div>';
     el.innerHTML = html;
   };
-  Promise.all([
-    (window.__CLIENTS__ ? Promise.resolve(window.__CLIENTS__) : fetch('/clients.json').then(function (r) { return r.json(); })),
-    fetch('/codex.json').then(function (r) { return r.json(); }).catch(function () { return { clients: {} }; })
-  ]).then(function (both) {
-    var data = both[0];
-    codexData = both[1] || { clients: {} };
+  /* live from Notion via /api/clients when NOTION_TOKEN is set; bundled snapshots otherwise */
+  (window.__CLIENTS__ ? Promise.resolve({ clients: window.__CLIENTS__.clients, codex: null, updated: window.__CLIENTS__.updated })
+    : fetch('/api/clients').then(function (r) { if (!r.ok) throw 0; return r.json(); })
+        .then(function (d) { return { clients: d.clients, codex: { clients: d.codex }, updated: d.updated, source: d.source }; })
+        .catch(function () {
+          return Promise.all([
+            fetch('/clients.json').then(function (r) { return r.json(); }),
+            fetch('/codex.json').then(function (r) { return r.json(); }).catch(function () { return { clients: {} }; })
+          ]).then(function (both) { return { clients: both[0].clients, codex: both[1], updated: both[0].updated, source: 'snapshot' }; });
+        })
+  ).then(function (data) {
+    codexData = data.codex || { clients: {} };
+    if (!data.codex) {
+      fetch('/codex.json').then(function (r) { return r.json(); }).then(function (d) { codexData = d; }).catch(function () {});
+    }
     var grid = $('#client-grid');
     clientData = data.clients || [];
     clientData.forEach(function (c) {
@@ -531,7 +540,10 @@
       d.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); location.hash = '#/client/' + clientSlug(c.name); } });
       grid.appendChild(d);
     });
-    $('#client-note').textContent = 'Sourced from the Client Codex and the Quarry Brain, kept on the hub. Last update: ' + (data.updated || '') + '. Click a client for its full page.';
+    $('#client-note').textContent = (data.source === 'notion'
+      ? 'Live from the Client Codex in Notion, refreshed hourly. Last update: '
+      : 'Sourced from the Client Codex and the Quarry Brain. Last update: ')
+      + (data.updated || '') + '. Click a client for its full page.';
     applyKitToHub();
     /* deep links to a client page arriving before data loaded */
     if (location.hash.indexOf('#/client/') === 0 && window.renderClientPage) window.renderClientPage(location.hash.slice(9));
