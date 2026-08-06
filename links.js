@@ -45,14 +45,15 @@ window.LINKS = {
   ideas: 'https://www.carrara.is/ideas',
   letter: 'https://www.carrara.is/ideas/focus-on-the-work-by-carrara',
 
-  /* Known destinations, URL still needed — fill these in */
-  top5Form: '',
-  peoplePavilion: '',
-  waysOfWorking: '',
-  companyContext: '',
-  peopleMgmtTips: '',
-  openRoles: '',
-  timeTracking: ''
+  /* Sourced from the Notion master onboarding checklist and HQ, Aug 2026 */
+  top5Form: 'https://app.notion.com/p/30d6b1a6e6e780e69d70dc7d82d175ce',
+  peoplePavilion: 'https://app.notion.com/p/c611c15591624864be36996f0eaa0064',
+  waysOfWorking: 'https://app.notion.com/p/b4013243faa141feaba7ff984da2544b',
+  companyContext: 'https://app.notion.com/p/1936b1a6e6e781948e1fe13da159dd3c',
+  openRoles: 'https://app.notion.com/p/28c6b1a6e6e780a987bff0430f8bf140',
+  timeTracking: 'https://app.notion.com/p/25b6b1a6e6e780b78173c35bee5612db',
+  clientCodex: 'https://app.notion.com/p/6b9b531c33b34434a80c91000e376f2e',
+  onboardingChecklistDb: 'https://app.notion.com/p/1936b1a6e6e781538075c58f5a6a1ea5'
 };
 window.channelUrl = function (name) {
   var id = window.LINKS.channels[name.replace(/^#/, '')];

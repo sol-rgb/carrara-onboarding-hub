@@ -643,6 +643,8 @@ a.client-row:hover .cn { color: var(--orange); }
 .pg-swatch span { width: 34px; height: 22px; flex: none; }
 .pg-swatch b { font-weight: 500; color: var(--ink); margin-right: 4px; white-space: nowrap; }
 .pg-note { font-family: var(--rigid); font-size: 10px; letter-spacing: 0.08em; color: var(--taupe); margin-top: 18px; }
+.pg-clients { font-size: 13.5px; color: var(--taupe); margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(45,42,42,0.1); }
+.pg-clients b { color: var(--ink); font-weight: 500; }
 .modal { max-height: 80vh; overflow-y: auto; }
 
 /* ---------- carrara.is signatures: grain, dotted rules, block strip ---------- */

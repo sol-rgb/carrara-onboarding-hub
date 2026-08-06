@@ -48,7 +48,7 @@
       <button class="startover" id="btn-startover" hidden>Start over</button>
       <div class="stat-strip">
         <a class="stat" href="#/who"><div class="num" data-count="8">0</div><div class="lbl">partners</div></a>
-        <a class="stat" href="#/team"><div class="num" data-count="30" data-plus="1">0</div><div class="lbl">team members</div></a>
+        <a class="stat" href="#/team"><div class="num" id="stat-team" data-count="75" data-plus="1">0</div><div class="lbl">team members</div></a>
         <a class="stat" href="#/clients"><div class="num" data-count="30" data-plus="1">0</div><div class="lbl">companies served</div></a>
       </div>
     </div>
@@ -61,8 +61,8 @@
       <div>
         <p class="body-copy">We help build exceptional companies by embedding ourselves across Talent, Finance, Go-to-Market and Ops. We also build, found, and lead new ventures.</p>
         <div class="fact-list">
-          <div class="fact"><img src="/assets/logo/carrara-iso-ember.svg" alt=""><span><b>Partner group of 8</b>, team of 30+, serving 30+ companies</span></div>
-          <div class="fact"><img src="/assets/logo/carrara-iso-ember.svg" alt=""><span>Backgrounds spanning <b>Bridgewater, Bain, Uber, On Deck</b></span></div>
+          <div class="fact"><img src="/assets/logo/carrara-iso-ember.svg" alt=""><span><b>Partner group of 8</b>, <b id="fact-team">75+</b> Carrarians, serving 30+ companies</span></div>
+          <div class="fact"><img src="/assets/logo/carrara-iso-ember.svg" alt=""><span>Backgrounds spanning <b>On Deck, Bain, Uber, Human Capital, Better</b></span></div>
           <div class="fact"><img src="/assets/logo/carrara-iso-ember.svg" alt=""><span>Recruiting engines, finance functions, <b>products from scratch</b></span></div>
           <div class="fact"><img src="/assets/logo/carrara-iso-ember.svg" alt=""><span>Every project differs. The through line: <b>we get in the room and do The Work</b></span></div>
         </div>
@@ -142,6 +142,17 @@
       <div class="flat-row"><b>ext-</b><span class="d">: shared with the client. Watch what you write.</span></div>
       <div class="flat-row"><b>temp-</b><span class="d">: sprints, archived after.</span></div>
     </div>
+    <h2 class="sub">Set up your profile properly</h2>
+    <p class="body-copy">Your Slack profile is how the rest of the company finds you, and the team page in this hub pulls straight from it. Fill in all of it on day one.</p>
+    <div class="flat-grid three">
+      <div class="flat-row"><b>Photo</b><span class="d">: a real photo of your face, not a logo or an avatar.</span></div>
+      <div class="flat-row"><b>Full name</b><span class="d">: the name people will search for.</span></div>
+      <div class="flat-row"><b>Title</b><span class="d">: your role and the clients you sit on.</span></div>
+      <div class="flat-row"><b>Email</b><span class="d">: your carrara.is address.</span></div>
+      <div class="flat-row"><b>Where you're based</b><span class="d">: city and country, so people know your hours.</span></div>
+      <div class="flat-row"><b>Timezone</b><span class="d">: set it correctly. We work across four continents.</span></div>
+    </div>
+    <p class="body-copy muted" style="font-size:13px">Phone number is optional, add it if you're happy being reached that way.</p>
     <h2 class="sub">Know these from day one</h2>
     <p class="body-copy muted" style="font-size:13px">Hover a channel to see the kind of thing that gets posted there.</p>
     <div class="flat-grid" id="channel-grid"></div>

@@ -140,6 +140,7 @@ window.PAGES = {
       + '<li>Runs the full recruiting workflow: sourcing, outreach, screening, candidate management, interview coordination, and closing support.</li>'
       + '<li>Adds dedicated recruiting capacity against a defined set of roles, functions, or hiring goals.</li>'
       + '</ul>'
+      + '<p class="pg-clients"><b>Recent clients:</b> a16z, Altana, Hinge, Modal Labs, Runlayer, Profound.</p>'
   },
   skuTalentPlatform: {
     title: 'Talent Platform',
@@ -150,6 +151,7 @@ window.PAGES = {
       + '<li>Builds hiring plans, role prioritization, assessment processes, interview architecture, recruiting analytics, tooling, and agency strategy.</li>'
       + '<li>Improves the broader talent proposition through candidate experience, talent brand, compensation inputs, onboarding design, and stronger talent-density decisions.</li>'
       + '</ul>'
+      + '<p class="pg-clients"><b>Recent clients:</b> Hinge, Modal Labs, Altana, Runlayer, Profound, Untitled.</p>'
   },
   skuExecutiveSearch: {
     title: 'Executive Search',
@@ -160,6 +162,7 @@ window.PAGES = {
       + '<li>Develops the success profile, maps the market, activates Carrara’s network, conducts targeted outreach, and manages assessment, references, and closing.</li>'
       + '<li>Usually builds on an existing Carrara relationship, giving the search team a deeper understanding of the client’s strategy, culture, and leadership needs than a standalone search firm would have.</li>'
       + '</ul>'
+      + '<p class="pg-clients">Searches usually grow out of an account we already run, so ask the client lead rather than looking for a standalone list.</p>'
   },
   skuPeopleOps: {
     title: 'People Ops',
@@ -170,6 +173,7 @@ window.PAGES = {
       + '<li>Supports higher-order people strategy, including headcount planning, compensation philosophy and pay bands, performance management, engagement, and people analytics.</li>'
       + '<li>Designs systems and automations that can scale with the company, then helps transition ownership to an internal team when appropriate.</li>'
       + '</ul>'
+      + '<p class="pg-clients"><b>Recent clients:</b> Modal Labs, Profound, Magic AI, Fundamental Technologies.</p>'
   },
   skuFinance: {
     title: 'Finance',
@@ -180,6 +184,7 @@ window.PAGES = {
       + '<li>Acts as a strategic finance partner on unit economics, pricing, capital allocation, growth planning, board reporting, fundraising, and investor readiness.</li>'
       + '<li>Supports major transactions and inflection points, including M&amp;A diligence and execution, post-acquisition integration, scenario modeling, and building the eventual in-house finance team.</li>'
       + '</ul>'
+      + '<p class="pg-clients"><b>Recent clients:</b> Bee AI, Deeptune, Luminai.</p>'
   },
   skuBizOps: {
     title: 'BizOps',
@@ -190,6 +195,7 @@ window.PAGES = {
       + '<li>Diagnoses the business across product, customers, GTM, operations, finance, and organizational design; identifies the highest-leverage problems; and then executes against them.</li>'
       + '<li>Can operate as a fractional Chief of Staff, Head of Ops, Head of Strategy or cross-functional delivery team, building processes, systems, automations, and operating cadences while driving the work forward.</li>'
       + '</ul>'
+      + '<p class="pg-clients"><b>Recent clients:</b> a16z, Brave Health, Hertz.</p>'
   },
   skuMarketingGrowth: {
     title: 'Marketing and Growth',
@@ -200,6 +206,7 @@ window.PAGES = {
       + '<li>Work can include product launches, growth strategy, funnel and channel audits, performance marketing, pricing, lifecycle campaigns, brand and narrative, creative, and GTM operations.</li>'
       + '<li>Carrara assembles the right mix of strategists, performance marketers, designers, writers, analysts, and product or engineering talent to launch experiments, measure results, and scale what works.</li>'
       + '</ul>'
+      + '<p class="pg-clients"><b>Recent clients:</b> Modal Labs, Village Global, Grindr, Better, Roger.</p>'
   },
   thisIsCarrara: {
     title: 'This is Carrara',
