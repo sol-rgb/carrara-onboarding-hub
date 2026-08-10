@@ -35,10 +35,22 @@ module.exports = async (req, res) => {
 
   const config = JSON.parse(JSON.stringify(require('../welcome.json')));
   const clients = require('../clients.json').clients || [];
+  const codex = require('../codex.json').clients || {};
 
-  const team = config.teams[who.project] || config.teams.other;
+  // Eric's POps tool sends the offering as free-ish text ("People Ops", "talent",
+  // "Marketing/Growth"), so normalize through the alias map before looking it up.
+  // Unknown offerings fall through to `other` rather than 404ing the whole kit.
+  const offerings = config.offerings || {};
+  const offeringKey = (raw) => {
+    const k = String(raw || '').trim();
+    if (offerings[k]) return k;
+    const alias = (config.offeringAliases || {})[k.toLowerCase()];
+    return alias && offerings[alias] ? alias : 'other';
+  };
+  const team = offerings[offeringKey(who.project)] || offerings.other;
   const country = config.countries[who.country] || config.countries.OTHER;
   const clientInfo = clients.find((c) => c.name === who.client) || null;
+  const clientCodex = (clientInfo && codex[clientInfo.name]) || {};
 
   // week-one syncs: hiring manager first, then the client lead, then the team's defaults.
   // Names come from different sources ("Sol S." in clients.json vs "Sol Silbenberg" from
@@ -52,6 +64,15 @@ module.exports = async (req, res) => {
     const lb = (pb[1] || '').replace(/\./g, '');
     return !la || !lb || la.charAt(0) === lb.charAt(0);
   };
+  // manager map is keyed by full name; match loosely so "Heath" or "Kenna Anderson"
+  // still resolve to the right entry rather than silently dropping the section.
+  const managerEntry = (() => {
+    const map = config.managers || {};
+    if (map[who.manager]) return map[who.manager];
+    const hit = Object.keys(map).find((n) => samePerson(n, who.manager));
+    return hit ? map[hit] : null;
+  })();
+
   // the manager has their own section in the popup, so they anchor the dedup but are not re-listed
   const sync = [];
   const seen = who.manager ? [who.manager] : [];
@@ -59,6 +80,10 @@ module.exports = async (req, res) => {
     sync.push({ name: clientInfo.lead, why: 'leads the ' + clientInfo.name + ' account' });
     seen.push(clientInfo.lead);
   }
+  // people the hiring manager actually works with, then the offering's defaults
+  ((managerEntry && managerEntry.meet) || []).forEach((s) => {
+    if (!seen.some((n) => samePerson(n, s.name))) { sync.push(s); seen.push(s.name); }
+  });
   (team.syncWith || []).forEach((s) => {
     // the generic placeholder is only useful when we could not resolve the actual lead
     if (/^your client/i.test(s.name) && clientInfo && clientInfo.lead) return;
@@ -81,10 +106,14 @@ module.exports = async (req, res) => {
       name: clientInfo.name,
       domain: clientInfo.domain || '',
       lead: clientInfo.lead || '',
-      work: clientInfo.work || []
+      work: clientInfo.work || [],
+      // the narrative lives in codex.json, which is what the client page already renders
+      about: clientCodex.about || clientInfo.description || '',
+      engagement: clientCodex.engagement || []
     } : null,
-    team: { key: who.project, label: team.label, how: team.how || [] },
+    team: { key: offeringKey(who.project), label: team.label, how: team.how || [], examples: team.examples || [] },
     country: { key: who.country, label: country.label, notes: country.notes || [] },
+    managerBrief: managerEntry ? { runs: managerEntry.runs || '', accounts: managerEntry.accounts || [] } : null,
     syncWith: sync,
     links
   });

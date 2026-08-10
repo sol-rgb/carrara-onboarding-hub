@@ -754,7 +754,12 @@
         + '<p>Here is your personal starting point. Everything below is specific to you.</p>';
       if (d.manager && d.manager.name) {
         html += '<div class="wk-sec"><div class="wk-lbl">[your hiring manager]</div>'
-          + '<p><b style="color:var(--ink);font-weight:500">' + esc(d.manager.name) + '</b>. Your day-one 1:1 is with them: your 90-day plan and week-one priorities.</p></div>';
+          + '<p><b style="color:var(--ink);font-weight:500">' + esc(d.manager.name) + '</b>. Your day-one 1:1 is with them: your 90-day plan and week-one priorities.</p>'
+          + (d.managerBrief && d.managerBrief.runs ? '<p>' + esc(d.managerBrief.runs) + '</p>' : '')
+          + (d.managerBrief && d.managerBrief.accounts && d.managerBrief.accounts.length
+              ? '<div class="wk-tags">' + d.managerBrief.accounts.map(function (a) { return '<span>' + esc(a) + '</span>'; }).join('') + '</div>'
+              : '')
+          + '</div>';
       }
       if (d.syncWith && d.syncWith.length) {
         html += '<div class="wk-sec"><div class="wk-lbl">[sync with them in week one]</div><ul>'
@@ -766,6 +771,11 @@
           + '<p><b style="color:var(--ink);font-weight:500">' + esc(d.client.name) + '</b>'
           + (d.client.lead ? ', led by ' + esc(d.client.lead.replace(/\.+$/, '')) : '') + '.</p>'
           + (d.client.work && d.client.work.length ? '<div class="wk-tags">' + d.client.work.map(function (w) { return '<span>' + esc(w) + '</span>'; }).join('') + '</div>' : '')
+          + (d.client.about ? '<p>' + esc(d.client.about) + '</p>' : '')
+          + (d.client.engagement && d.client.engagement.length
+              ? '<div class="wk-lbl" style="margin-top:12px">[what we do for them]</div><ul>'
+                + d.client.engagement.map(function (e2) { return '<li>' + esc(e2) + '</li>'; }).join('') + '</ul>'
+              : '')
           + '</div>';
       }
       if (d.team && d.team.how && d.team.how.length) {

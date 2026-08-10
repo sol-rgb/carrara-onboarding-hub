@@ -1,92 +1,336 @@
 {
-  "_readme": "Content for the personalized welcome kit popup. /api/welcome merges this with clients.json based on the access code. Edit freely: teams keys are finance/talent/gtm/other, countries keys are US/AR/AU/OTHER.",
-  "teams": {
-    "talent": {
-      "label": "Talent",
+  "_readme": "Content for the personalized welcome kit popup. /api/welcome merges this with clients.json + codex.json based on the access code. Four maps, one per field Eric's POps tool sends: offering, country, manager, and (via clients.json/codex.json) client. Edit freely — this file is hand-owned, unlike clients.json/codex.json which are generated snapshots.",
+  "_sources": "Offerings and manager maps are drawn from public Slack (Aug 2026): #f-talent-general, #f-gtm-general, #f-coordination-general, #c-avoca People Ops scope thread, #c-console, #c-modal, plus per-client staffing in codex.json. Country notes are public research and MUST be confirmed with Eric before they ship.",
+
+  "offeringAliases": {
+    "talent": "embeddedRecruiting",
+    "embedded recruiting": "embeddedRecruiting",
+    "embedded-recruiting": "embeddedRecruiting",
+    "talent platform": "talentPlatform",
+    "talent-platform": "talentPlatform",
+    "people": "peopleOps",
+    "people ops": "peopleOps",
+    "people-ops": "peopleOps",
+    "go-to-market": "gtm",
+    "go to market": "gtm",
+    "marketing": "gtm",
+    "marketing/growth": "gtm",
+    "marketing and growth": "gtm",
+    "biz ops": "bizops",
+    "executive search": "executiveSearch",
+    "exec search": "executiveSearch",
+    "coordination": "coordination",
+    "recops": "coordination"
+  },
+
+  "offerings": {
+    "embeddedRecruiting": {
+      "label": "Embedded Recruiting",
       "how": [
-        "Talent runs on embedded pods per client: you will live inside the client's team, not outside it.",
-        "Ashby is the ATS. Get oriented in week one and ask anything in #g-ashby-support.",
-        "The weekly rhythm: pipeline reviews with your client, a weekly hiring report (template in the hub), and the Talent Jam with the wider talent team.",
-        "#f-talent-general is the channel for everything talent: open roles, process questions, and experiments worth copying."
+        "You work inside the client's team, not alongside it: their Slack, their Ashby, their hiring meetings. The client should experience you as one of their recruiters.",
+        "Ashby is the ATS and the system of record for every search. Get oriented in week one and ask anything in #g-ashby-support.",
+        "The weekly loop is pipeline health role by role: who is in play, what is stalled, how long candidates have been idle, and which hiring manager owes feedback. Bring the numbers, not impressions.",
+        "Sourcing is measured, not vibes: sequences enrolled, click rate, reply rate, conversion. Outreach copy gets A/B tested and the winners get shared.",
+        "Aperture (aperture.is) is our own sourcing and market research tool. Log in with your Carrara Google account and use it for sourcing, company research and talent-market questions.",
+        "Friday is the Talent Jam: the whole talent team fills in the Notion agenda before standup, and every open role in the Open Roles DB gets confirmed accurate. Log new roles and closed hires in the forms linked there.",
+        "#f-talent-general is where the team trades comp data, interview scripts, backchannel asks and process experiments. Use it early and often."
       ],
+      "examples": ["a16z", "Altana", "Hinge", "Modal Labs", "Runlayer", "Profound", "Perchwell", "January"],
       "syncWith": [
-        { "name": "Your client's lead", "why": "owns the account and sets week-one priorities" },
-        { "name": "A talent partner on a neighboring client", "why": "fastest way to absorb how pods actually run" }
+        { "name": "Mary Petrino", "why": "runs the Talent Jam, the Open Roles DB and Ashby reporting; the fastest route to how the team actually operates" },
+        { "name": "Hayley Samuels", "why": "leads recruiting coordination, so she owns scheduling and ATS hygiene on your account" }
       ]
     },
+
+    "talentPlatform": {
+      "label": "Talent Platform",
+      "how": [
+        "This is the fractional Head of Talent seat, not a req-filling seat: you own the operating system behind hiring, and the client's leadership is your audience.",
+        "Typical scope: the hiring plan and role prioritization, interview architecture and scorecards, comp bands and leveling, recruiting analytics, agency strategy and ATS build-out.",
+        "Comp work is a recurring ask. We build bands off market anchors (frontier labs, same-stage AI, adjacent enterprise SaaS) rather than a single source, and Pave is a reference point rather than the answer.",
+        "Expect to design the process a hiring manager should follow before they come asking for headcount, so requests arrive shaped rather than half-baked.",
+        "You will usually sit on top of an embedded recruiting pod. Know who is sourcing and coordinating on your account before you change anything."
+      ],
+      "examples": ["Hinge", "Modal Labs", "Altana", "Runlayer", "Profound", "Untitled", "Luminai"],
+      "syncWith": [
+        { "name": "Joe Penn", "why": "runs the talent side of the business and sets what good looks like on platform engagements" }
+      ]
+    },
+
+    "peopleOps": {
+      "label": "People Ops",
+      "how": [
+        "People Ops is everything after someone signs: contracts, onboarding, payroll, benefits, policy, compliance and the systems that hold them together.",
+        "The scope the team works from has ten focus areas: compliance and risk, payroll and benefits ownership, onboarding operations, the new-hire experience, policies and documentation, infrastructure for scale (performance cycles, promotions, comp bands, leveling, org chart), workplace ops, manager and employee support, vendor and tool management, and planning three to six months ahead.",
+        "You own the vendor relationships, not just the tickets: HRIS (Rippling is common at our clients), brokers, background checks and PEOs.",
+        "You are the first-line responder for HR questions at the client and you coach their managers on basic people practices and escalation paths.",
+        "Build light systems that survive you. The goal on most engagements is that the client can eventually run it without us.",
+        "Track the boring metrics: time to onboard, error rates, satisfaction signals. They are how you show the work landed."
+      ],
+      "examples": ["Modal Labs", "Profound", "Magic AI", "Fundamental Technologies"],
+      "syncWith": [
+        { "name": "Kenna Meyerhoff", "why": "leads People at Carrara and owns how we run people work for clients and internally" },
+        { "name": "Eric Fernandez", "why": "runs internal ops, payroll and systems, and is the reference point for how this works in practice" }
+      ]
+    },
+
     "finance": {
       "label": "Finance",
       "how": [
-        "Finance and BizOps engagements run lean: usually one or two people embedded per client.",
-        "Deliverables live in the Base doc and Sheets templates from the hub. Everything client-facing follows the brand templates.",
-        "Weekly client syncs use the sync agenda template; keep a rolling doc per client.",
-        "When in doubt on scope or billing, ask your client lead before the client does."
+        "Engagements run lean, usually one or two people embedded per client, so you will own a whole workstream rather than a slice of one.",
+        "The work spans embedded finance (bookkeeping, monthly close, AP/AR, management reporting, forecasting, budgeting, KPI dashboards) and strategic finance (unit economics, pricing, capital allocation, board reporting, fundraising and investor readiness).",
+        "Transactions are a real part of the job. Recent work carried clients through acquisitions on both sides, including diligence and post-deal continuation.",
+        "Deliverables follow the brand templates in the hub, and every client gets a rolling doc. When in doubt on scope or billing, ask your client lead before the client does.",
+        "#z-finance-labs pipes in the CFO newsletters the team reads. It is a good way to pick up the vocabulary fast."
       ],
+      "examples": ["Bee AI", "Deeptune", "Luminai"],
       "syncWith": [
-        { "name": "Your client's lead", "why": "context on the engagement and what good looks like" },
-        { "name": "Eric Fernandez", "why": "tools, systems and access for finance work" }
+        { "name": "Heath Jamieson", "why": "leads the finance accounts and will set your first-month priorities" }
       ]
     },
+
+    "bizops": {
+      "label": "BizOps",
+      "how": [
+        "BizOps is the ambiguous-problem seat: the important, cross-functional work that does not sit neatly in one department.",
+        "You diagnose across product, customers, GTM, operations, finance and org design, find the highest-leverage problem, then actually execute against it.",
+        "Recent work: a production AI collections agent aggregating eight legacy systems, a relocation-marketplace spin-out on a 90-day timeline, headcount models, and BD playbooks that got replicated across clients.",
+        "Some engagements are outcome-priced (a diagnostics fee creditable against outcomes, plus a share of savings), so be precise about what you claim.",
+        "Expect to operate as a fractional Chief of Staff or Head of Ops: build the process, then run it until it holds without you."
+      ],
+      "examples": ["Hertz", "a16z", "Brave Health", "Roger"],
+      "syncWith": [
+        { "name": "Heath Jamieson", "why": "leads the bizops book and the venture-style builds" }
+      ]
+    },
+
+    "executiveSearch": {
+      "label": "Executive Search",
+      "how": [
+        "High-touch searches for mission-critical leadership roles, typically C-suite, VP or a highly specialized senior seat.",
+        "You own the whole arc: success profile, market map, network activation, targeted outreach, assessment, references and closing.",
+        "Searches usually grow out of an account we already run, which is the advantage. You start with real context on the client's strategy, culture and leadership needs rather than a brief.",
+        "Because these run off existing accounts, your first move is to find the client lead and absorb what they already know before you touch the market."
+      ],
+      "examples": [],
+      "syncWith": [
+        { "name": "Joe Penn", "why": "runs the talent side and will point you at the right client lead" }
+      ]
+    },
+
     "gtm": {
       "label": "Go-to-market",
       "how": [
-        "GTM covers comms, content, growth, events and employer brand across clients.",
-        "Every deliverable should feel like the client's brand, not ours: start from their brand vault or site before writing a word.",
-        "Weekly cadence: a socials/content calendar per client, plus async Loom walkthroughs instead of extra meetings.",
-        "Share wins and launches in #g-amplify so the whole team can boost them."
+        "GTM covers narrative, comms, content, growth, paid media, events, employer brand and web builds across clients.",
+        "Every deliverable should feel like the client's brand, not ours. Start from their site and brand vault before writing a word.",
+        "The weekly GTM sync covers progress, priorities and blockers, and deliberately focuses on the accounts that do not have their own sync. The agenda lives in a Slack canvas with a sub-canvas per client.",
+        "Keep Linear updated. It is how priorities, resourcing and blockers get tracked, and it feeds the weekly client comms.",
+        "Talent Narrative is the crossover product with the talent team: employer brand and hiring story work that runs GTM and Talent together.",
+        "Design lives with Yanel and Macarena, and the Carrara design system is in Figma. Post launches and wins in #g-amplify so the team can boost them."
       ],
+      "examples": ["Sphere", "Grindr", "Village Global", "Lipdub AI", "Better", "Roger", "Raindrop", "Untitled"],
       "syncWith": [
-        { "name": "Your client's lead", "why": "owns the narrative and the client relationship" },
-        { "name": "Gonz Sanchez", "why": "runs several GTM engagements and knows the playbooks" }
+        { "name": "Gonz Sanchez", "why": "runs GTM, owns the narrative work and the client relationships across it" }
       ]
     },
+
+    "coordination": {
+      "label": "Recruiting Coordination",
+      "how": [
+        "Five focus areas: interview coordination, candidate experience, pipeline and process ops, agency and external partner logistics, and light workplace support.",
+        "You own Ashby scheduling end to end: screens, panels, onsite loops, reschedules, confirmations and reminders.",
+        "ATS hygiene is the job, not admin around the job. Clean statuses, tags and scorecards are what make the client's reporting true.",
+        "You are the point of contact for agencies: track submissions, interview progress and feedback back to them.",
+        "The coord team has its own weekly and a shared #f-coordination-general channel. Ask there before inventing a workaround; someone has usually solved it."
+      ],
+      "examples": ["Perchwell", "January", "Modal Labs", "Runlayer", "Luminai", "Profound"],
+      "syncWith": [
+        { "name": "Hayley Samuels", "why": "leads coordination, runs the weekly and will onboard you onto your client's Ashby" }
+      ]
+    },
+
     "other": {
       "label": "Your team",
       "how": [
         "Your manager will walk you through how your specific team runs in your day-one 1:1.",
-        "Default operating mode across Carrara: async first (Loom + Slack), briefs in the Base doc template, and Granola on every client call.",
+        "Default operating mode across Carrara: async first (Loom and Slack), briefs in the Base doc template, and Granola on every client call.",
+        "Set up the Quarry in week one. Most of how we work assumes it.",
         "Read the Ways of Working page in Notion in week two: the four principles and what they look like in practice."
       ],
-      "syncWith": [
-        { "name": "Your client's lead", "why": "context on the account you are joining" }
-      ]
+      "examples": [],
+      "syncWith": []
     }
   },
+
   "countries": {
     "US": {
       "label": "United States",
       "notes": [
-        "Payroll: Deel if you are a full-time employee, Bill.com if you are a US contractor. The invite comes to your email; ping Eric if it does not.",
-        "Send any tax paperwork (W-9 or equivalent) back the same week so your first payment is not delayed.",
+        "Payroll: Deel if you are a full-time employee, Bill.com if you are a US contractor. The invite comes to your email; ping Eric if it does not arrive in your first few days.",
+        "Contractors: send your W-9 back the same week so your first payment is not delayed. Your 1099 is delivered electronically through Bill.com's tax partner at year end, and you will get a consent email to accept eDelivery.",
+        "Full-time employees complete I-9 employment eligibility verification. Eric sends it over.",
+        "As a contractor you are responsible for your own quarterly estimated taxes. Nothing is withheld from what we pay you.",
         "Holidays and time off follow the policy in the Time off section of this hub; post planned time off in #g-ooo."
-      ]
+      ],
+      "confirm": []
     },
+
     "AR": {
       "label": "Argentina",
       "notes": [
+        "You are contracted by Carrara in the US and paid in USD as an independent contractor. There is no Argentine employment relationship, so nothing local is withheld for you.",
         "Payroll: international contractors run through Ramp. You will get an invite; invoice monthly in USD.",
-        "Ping Eric on Slack for the invoicing format and payment schedule before your first month closes.",
+        "Most people here register as monotributista and invoice Carrara with a Factura E, the export-of-services invoice. Income that is a genuine service export does not count toward your monotributo billing ceiling.",
+        "Since the BCRA lifted the USD 36,000 annual cap on foreign-currency inflows in September 2025, there is no cap on what you can receive.",
+        "US travel needs planning. Argentina is not in the Visa Waiver Program, so ESTA is not available to you and you need a B-1/B-2 visitor visa for offsites or client visits. Restoration talks are paused with no timeline. Appointment waits are long, so start early if travel is likely.",
         "Most client work runs on US hours: agree your overlap window with your manager in week one.",
         "Post planned time off in #g-ooo, including local holidays you plan to take."
+      ],
+      "confirm": [
+        "Whether Carrara requires a W-8BEN on file for non-US contractors.",
+        "Whether Carrara covers or reimburses the B-1/B-2 visa cost for team offsites.",
+        "The exact invoicing format and monthly cut-off Eric expects."
       ]
     },
+
     "AU": {
       "label": "Australia",
       "notes": [
+        "You are contracted by Carrara in the US and paid in USD as an independent contractor, so no Australian employment obligations sit with us.",
         "Payroll: international contractors run through Ramp. You will get an invite; invoice monthly in USD.",
-        "The timezone gap with the US is real: agree a standing overlap window with your manager and lean on async (Loom, Slack) for the rest.",
+        "Most contractors here operate as a sole trader with an ABN and invoice against it. You lodge your own return with the ATO and manage PAYG instalments yourself.",
+        "GST: registration is only required once turnover reaches or is expected to reach A$75,000. Services exported to a non-resident are generally GST-free, so you normally do not add GST to a Carrara invoice even if you are registered. Confirm your own position with your accountant.",
+        "US travel is straightforward: Australia is in the Visa Waiver Program, so an approved ESTA covers offsites and client meetings as a business visitor.",
+        "The timezone gap with the US is real. Agree a standing overlap window with your manager and lean on async (Loom, Slack) for the rest.",
         "Post planned time off in #g-ooo, including local holidays you plan to take."
+      ],
+      "confirm": [
+        "Whether Carrara requires a W-8BEN on file for non-US contractors."
       ]
     },
+
+    "CA": {
+      "label": "Canada",
+      "notes": [
+        "You are contracted by Carrara in the US and paid in USD as an independent contractor.",
+        "Payroll: international contractors run through Ramp. You will get an invite; invoice monthly in USD.",
+        "You will likely be asked for a W-8BEN. It certifies you are not a US person; because the work is performed outside the US the income is foreign-source, so the 30% US withholding does not apply. It is valid for three calendar years.",
+        "You report the income to CRA as business income on form T2125 and make your own quarterly instalments, since nothing is withheld at source.",
+        "GST/HST: registration is required once taxable supplies pass CAD 30,000 in a quarter or across four consecutive quarters. Services to a US client are zero-rated exports, so you charge 0% but still register and file once you cross the threshold.",
+        "Self-employed contributors pay both halves of CPP; EI is generally optional.",
+        "US travel is straightforward: Canadian citizens are visa-exempt for business visits.",
+        "Post planned time off in #g-ooo."
+      ],
+      "confirm": [
+        "Whether Carrara requires a W-8BEN on file for non-US contractors."
+      ]
+    },
+
     "OTHER": {
       "label": "Your country",
       "notes": [
         "Payroll: international contractors run through Ramp, full-time employees through Deel. Eric will confirm which applies to you.",
+        "You are contracted by Carrara in the US and paid in USD as an independent contractor, so your local tax registration and filings are yours to manage. Check with a local accountant on how to invoice a foreign client.",
+        "Expect to be asked for a W-8BEN so we can document that you are not a US person.",
+        "If US travel is likely for offsites or client visits, check early whether your passport is Visa Waiver eligible or whether you need a B-1/B-2 appointment. Waits can run months.",
         "Agree your overlap window with your manager in week one if your client runs on US hours.",
         "Post planned time off in #g-ooo."
+      ],
+      "confirm": [
+        "Country-specific payment rail and paperwork — Eric confirms case by case."
       ]
     }
   },
+
+  "managers": {
+    "Joe Penn": {
+      "runs": "The talent side of the business: embedded recruiting and talent platform engagements across a wide book of accounts.",
+      "accounts": ["Profound", "Perchwell", "Untitled", "Raindrop", "Long Lake", "Forge", "Luminai", "Deeptune", "Console", "Avoca AI"],
+      "meet": [
+        { "name": "Mary Petrino", "why": "runs the Talent Jam, Open Roles DB and Ashby reporting" },
+        { "name": "Hayley Samuels", "why": "leads coordination and staffs several of Joe's accounts" },
+        { "name": "Alicia Donenfeld", "why": "co-manages Forge and Profound with him" },
+        { "name": "Dan Sia", "why": "partners with Joe on Console and the interview-design work" }
+      ]
+    },
+    "Brandon Taleisnik": {
+      "runs": "Embedded recruiting and talent platform accounts, plus much of the AI tooling the talent team runs on.",
+      "accounts": ["a16z", "Runlayer", "January", "Cybernetic Labs", "Anthropic", "Forus"],
+      "meet": [
+        { "name": "Alicia Donenfeld", "why": "co-manages Runlayer with him" },
+        { "name": "Giovanna Borgiotti", "why": "talent partner across his accounts" },
+        { "name": "Maggie Stout", "why": "coordination on Runlayer" },
+        { "name": "Nic Touron", "why": "builds Aperture and the Ashby MCP work Brandon drives" }
+      ]
+    },
+    "Kenna Meyerhoff": {
+      "runs": "People at Carrara: the People Ops offering for clients, and internally the performance cycle and how we manage.",
+      "accounts": ["Modal Labs", "Profound", "Magic AI", "Fundamental Technologies", "Coast"],
+      "meet": [
+        { "name": "Tina Khoury", "why": "co-manages Modal and Fundamental with her" },
+        { "name": "Eric Fernandez", "why": "runs internal ops and systems alongside her" },
+        { "name": "Mary Petrino", "why": "wrote the People Ops and coordinator scopes the team works from" },
+        { "name": "Maggie Stout", "why": "coordination on Modal" }
+      ]
+    },
+    "Gonz Sanchez": {
+      "runs": "Go-to-market: narrative, comms, growth, paid media, events and web across the GTM book.",
+      "accounts": ["Sphere", "Village Global", "Lipdub AI", "Raindrop", "Grindr", "Modal Labs", "Runway"],
+      "meet": [
+        { "name": "Reza Saeedi", "why": "growth, SEO/AEO and paid across GTM accounts" },
+        { "name": "Matias Sanchez", "why": "long-standing GTM delivery across the book" },
+        { "name": "Yanel Bottini", "why": "design, and owner of the Carrara design system in Figma" },
+        { "name": "Sol Silbenberg", "why": "runs the Talent Narrative crossover work with GTM" }
+      ]
+    },
+    "Heath Jamieson": {
+      "runs": "Finance and BizOps: embedded finance engagements, headcount and diligence work, and the venture-style builds.",
+      "accounts": ["Hertz", "Roger", "Luminai", "Bee AI", "Deeptune", "Amazon", "a16z"],
+      "meet": [
+        { "name": "Bryan Gunawan", "why": "works with Heath across Hertz and a16z" },
+        { "name": "Dan Sia", "why": "partners on Hertz" },
+        { "name": "Joe Penn", "why": "co-manages the accounts that run finance and talent together" },
+        { "name": "Ben", "why": "finance content and the venture-side work" }
+      ]
+    },
+    "Arthur Matuszewski": {
+      "runs": "Embedded recruiting and talent platform work, with a consumer and marketplace lean.",
+      "accounts": ["Grindr", "Better", "Formulary"],
+      "meet": [
+        { "name": "Tina Khoury", "why": "co-manages Grindr and Better with him" },
+        { "name": "Jennah Holycross", "why": "talent partner on Grindr" },
+        { "name": "Ania Sielski", "why": "talent partner across his accounts" }
+      ]
+    },
+    "Dan Sia": {
+      "runs": "Talent and process design on Console and Hertz: interview architecture, rubrics, hiring frameworks and recruiting analytics.",
+      "accounts": ["Console", "Hertz"],
+      "meet": [
+        { "name": "Sol Silbenberg", "why": "builds the recruiting dashboards and reporting with him" },
+        { "name": "Hayley Samuels", "why": "runs the Ashby and coordination side of Console" },
+        { "name": "Greg Troxell", "why": "owns sourcing and outbound on Console" },
+        { "name": "Joe Penn", "why": "oversees the account" }
+      ]
+    },
+    "Sam Blumenthal": {
+      "runs": "Embedded recruiting and talent platform on the larger consumer and enterprise accounts.",
+      "accounts": ["Hinge", "Altana", "Brave Health"],
+      "meet": [
+        { "name": "Beth Werkstell", "why": "talent partner on Hinge" },
+        { "name": "Joe Penn", "why": "sets the standard across talent engagements" }
+      ]
+    },
+    "Tina Khoury": {
+      "runs": "Account management across talent and people engagements, with a lot of the comp and leveling work.",
+      "accounts": ["Modal Labs", "Grindr", "Better", "Fundamental Technologies"],
+      "meet": [
+        { "name": "Kenna Meyerhoff", "why": "co-manages Modal and Fundamental with her" },
+        { "name": "Arthur Matuszewski", "why": "co-manages Grindr and Better with her" },
+        { "name": "Tom Callahan", "why": "talent partner on Modal" }
+      ]
+    }
+  },
+
   "commonLinks": [
     { "label": "Your first week, step by step", "href": "#/week" },
     { "label": "The onboarding checklist", "href": "#/checklist" },
