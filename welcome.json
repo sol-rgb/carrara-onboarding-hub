@@ -35,10 +35,11 @@
         "Friday is the Talent Jam. Fill in the Notion agenda before standup and confirm your roles in the Open Roles DB are accurate. New roles and closed hires go in the forms linked there.",
         "#f-talent-general is where the team trades comp data, interview scripts, backchannel asks and process experiments. Use it early."
       ],
-      "examples": ["a16z", "Altana", "Hinge", "Modal Labs", "Runlayer", "Profound", "Perchwell", "January"],
+      "examples": ["Modal Labs", "Forus", "Hinge", "January", "Perchwell", "Raindrop", "Altana", "a16z"],
       "syncWith": [
-        { "name": "Mary Petrino", "why": "runs the Talent Jam, the Open Roles DB and Ashby reporting, so she's the fastest route to how the team really operates" },
-        { "name": "Hayley Samuels", "why": "leads recruiting coordination and owns scheduling and ATS hygiene on your account" }
+        { "name": "Tom Callahan", "why": "closes more searches than anyone on the team, mostly Modal engineering, and is the best person to watch run a process" },
+        { "name": "Hayley Samuels", "why": "leads recruiting coordination, so she owns scheduling and ATS hygiene on your account" },
+        { "name": "Mary Petrino", "why": "runs talent operations: the Talent Jam, the Open Roles DB and Ashby reporting" }
       ]
     },
 
@@ -247,9 +248,9 @@
       "runs": "The talent side of the business: embedded recruiting and talent platform engagements across a wide book of accounts.",
       "accounts": ["Profound", "Perchwell", "Untitled", "Raindrop", "Long Lake", "Forge", "Luminai", "Deeptune", "Console", "Avoca AI"],
       "meet": [
-        { "name": "Mary Petrino", "why": "runs the Talent Jam, Open Roles DB and Ashby reporting" },
+        { "name": "Alicia Donenfeld", "why": "Partner, co-manages Forge and Profound with him" },
         { "name": "Hayley Samuels", "why": "leads coordination and staffs several of Joe's accounts" },
-        { "name": "Alicia Donenfeld", "why": "co-manages Forge and Profound with him" },
+        { "name": "Mary Petrino", "why": "runs talent operations: the Talent Jam, Open Roles DB and Ashby reporting" },
         { "name": "Dan Sia", "why": "partners with Joe on Console and the interview design work" }
       ]
     },
@@ -267,10 +268,10 @@
       "runs": "People at Carrara: the People Ops offering for clients, and internally the performance cycle and how we manage.",
       "accounts": ["Modal Labs", "Profound", "Magic AI", "Fundamental Technologies", "Coast"],
       "meet": [
-        { "name": "Tina Khoury", "why": "co-manages Modal and Fundamental with her" },
+        { "name": "Tina Khoury", "why": "Operating Partner, co-manages Modal and Fundamental with her" },
         { "name": "Eric Fernandez", "why": "runs internal ops and systems alongside her" },
         { "name": "Mary Petrino", "why": "wrote the People Ops and coordinator scopes the team works from" },
-        { "name": "Maggie Stout", "why": "coordination on Modal" }
+        { "name": "Kim Hackmann", "why": "People Ops and FinOps across internal and client work, mostly on Fundamental" }
       ]
     },
     "Gonz Sanchez": {
@@ -287,10 +288,10 @@
       "runs": "Finance and BizOps: embedded finance engagements, headcount and diligence work, and the venture-style builds.",
       "accounts": ["Hertz", "Roger", "Luminai", "Bee AI", "Deeptune", "Amazon", "a16z"],
       "meet": [
-        { "name": "Bryan Gunawan", "why": "works with Heath across Hertz and a16z" },
-        { "name": "Dan Sia", "why": "partners on Hertz" },
-        { "name": "Joe Penn", "why": "co-manages the accounts running finance and talent together" },
-        { "name": "Ben", "why": "finance content and the venture-side work" }
+        { "name": "Bryan Gunawan", "why": "product and BizOps, built the internal tool for the a16z ecosystem team" },
+        { "name": "Dan Sia", "why": "partners on Hertz, and runs the process design side" },
+        { "name": "Enzo Budasoff", "why": "associate on Hertz alongside Dan, strategy and ops background" },
+        { "name": "Joe Penn", "why": "co-manages the accounts running finance and talent together" }
       ]
     },
     "Arthur Matuszewski": {
@@ -321,7 +322,7 @@
       ]
     },
     "Tina Khoury": {
-      "runs": "Account management across talent and people engagements, including a lot of the comp and leveling work.",
+      "runs": "Operating Partner across talent and people engagements, including a lot of the comp and leveling work.",
       "accounts": ["Modal Labs", "Grindr", "Better", "Fundamental Technologies"],
       "meet": [
         { "name": "Kenna Meyerhoff", "why": "co-manages Modal and Fundamental with her" },
