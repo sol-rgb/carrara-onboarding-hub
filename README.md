@@ -43,6 +43,24 @@ One-time Slack app setup:
 
 `/api/profile` uses the same token to post new joiner self-intros from the team page.
 
+### Access codes from POps (`/api/mint`)
+
+`POST /api/mint` lets Carrara's People Ops app (POps) generate a welcome-kit access code without a hiring manager running `/new-hire` in Slack — POps already knows the new joiner's details, so it mints the code and sends it with the welcome email. The code is the same signed, stateless format the Slack flow produces; `/api/welcome` decodes both identically, so nothing else in the hub changes.
+
+- `POPS_HUB_TOKEN`: a shared secret (any long random string), set in Vercel env vars here and in POps. Requests authenticate with an `Authorization: Bearer <token>` header.
+
+Request body: `{ name, country, project, client, manager, managerId }` — the same survey answers the Slack modal collects, plus the manager's Slack user id. `country` is one of `US` / `AR` / `AU` / `OTHER`, `project` one of `talent` / `finance` / `gtm` / `other`, `client` an exact name from `clients.json`. `name` and `manager` are required; everything else is optional.
+
+Response: `{ url, code, warnings }` — `url` is the hub link with the code attached, `warnings` is an array of strings.
+
+**Dormant by default.** With `POPS_HUB_TOKEN` unset, every request is refused with a 401, so deploying this endpoint before the secret exists is a no-op. That is what makes shipping it to `main`, which deploys automatically, safe: the endpoint only wakes up when someone sets the env var.
+
+`extra`, `location` and `employmentType` are accepted and ignored — POps sends them on every request so this side can start consuming them later without a contract change.
+
+`warnings` reports an unrecognized `project`, `country` or `client` instead of failing, because those values fail soft downstream: an unknown project quietly yields the generic kit rather than an error. The client check reads the bundled `clients.json`, so a client that exists only in Notion (served live by `/api/clients`) warns even though it is real — acceptable for now; add it to `clients.json` or ignore that warning.
+
+After any change to the code format, on either side, run `WELCOME_SECRET=test-secret node scripts/verify-mint.js`. It mints a code, decodes it with `api/welcome.js`'s own logic, checks every field survives, and exercises the auth gate. It prints `round-trip OK` and exits non-zero on any mismatch.
+
 ## Updating snapshots
 
 - `team.json`: team roster fallback (live data comes from Slack when `SLACK_BOT_TOKEN` is set).
