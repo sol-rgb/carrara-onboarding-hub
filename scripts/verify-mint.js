@@ -9,6 +9,9 @@
 //                    right bearer 200 with a warnings array
 //   3. warnings    — unknown project / country / client each report themselves
 //   4. pass-through— extra, location and employmentType are accepted and ignored
+//   5. bad text    — a lone surrogate is a 400, not an unhandled throw / 500
+//   6. bad types   — non-string field values are refused, never String()-coerced
+//   7. headers     — every response is no-store, including the 405
 // Exits non-zero on the first failure count > 0.
 
 const mint = require('../api/mint.js');
@@ -42,6 +45,22 @@ async function callMint(body, bearer, opts) {
   const res = fakeRes();
   await mint(req, res);
   return res;
+}
+
+// Same call, but a throw is captured instead of aborting the run: the point of
+// several cases below is that the handler answers rather than rejects.
+async function callMintSafe(body, bearer, opts) {
+  try {
+    return { res: await callMint(body, bearer, opts) };
+  } catch (e) {
+    return { threw: e };
+  }
+}
+
+// A regression should be reported as a FAIL, not crash the harness on a read
+// of `undefined.body`, so unwrap defensively.
+function bodyOf(r) {
+  return (r && r.res && r.res.body) || {};
 }
 
 async function callWelcome(code) {
@@ -78,6 +97,11 @@ async function main() {
   check('missing Authorization header -> 401', missingHeader.statusCode === 401, missingHeader.body);
   const notPost = await callMint(valid, TOKEN, { method: 'GET' });
   check('GET -> 405', notPost.statusCode === 405, notPost.body);
+  // the 405 returns before any minting, but it is still a response from a
+  // credential endpoint: it must not be cacheable either.
+  check('405 carries Cache-Control: no-store', notPost.headers['cache-control'] === 'no-store', notPost.headers);
+  const notPostNoAuth = await callMint(valid, null, { method: 'DELETE' });
+  check('405 is no-store even with no bearer', notPostNoAuth.statusCode === 405 && notPostNoAuth.headers['cache-control'] === 'no-store', notPostNoAuth.headers);
 
   const ok = await callMint(valid, TOKEN);
   check('right bearer -> 200', ok.statusCode === 200, ok.body);
@@ -159,6 +183,60 @@ async function main() {
   check('response shape is unchanged', JSON.stringify(Object.keys(withExtras.body).sort()) === JSON.stringify(['code', 'url', 'warnings']), Object.keys(withExtras.body));
   const extrasBack = await callWelcome(withExtras.body.code);
   check('they do not reach the welcome kit', JSON.stringify(extrasBack.body).indexOf('sentinel-') === -1, extrasBack.body);
+
+  // ----------------------------------------------------------- unencodable text
+  // A lone surrogate (half of a pair, with no partner) is valid JSON and
+  // survives JSON.parse, but encodeURIComponent throws URIError on it. That
+  // throw used to reject the handler's promise and surface as a bare 500.
+  console.log('\n[bad text] a lone surrogate is a clean 400, not a crash');
+  const LONE = 'Ada\uD800';
+  for (const field of ['name', 'country', 'project', 'client', 'manager', 'managerId']) {
+    const r = await callMintSafe(Object.assign({}, valid, { [field]: LONE }), TOKEN);
+    check(field + ': lone surrogate did not throw', !r.threw, r.threw && String(r.threw));
+    if (r.threw) continue;
+    check(field + ': lone surrogate -> 400', r.res.statusCode === 400, r.res.body);
+    check(field + ': no code minted', !bodyOf(r).code, r.res.body);
+  }
+  const loneName = await callMintSafe(Object.assign({}, valid, { name: LONE }), TOKEN);
+  check('lone surrogate error message is generic', bodyOf(loneName).error === 'field values must be valid text', bodyOf(loneName));
+  check('lone surrogate error does not echo the value', JSON.stringify(bodyOf(loneName)).indexOf('Ada') === -1, bodyOf(loneName));
+  // a trailing high surrogate followed by a real low surrogate is a legal pair
+  const pair = await callMintSafe(Object.assign({}, valid, { name: 'Ada 😀' }), TOKEN);
+  check('a well-formed surrogate pair (emoji) still mints', !pair.threw && pair.res.statusCode === 200, pair.threw ? String(pair.threw) : pair.res.body);
+
+  // ------------------------------------------------------------- field types
+  // Before this guard String() coerced silently: { a: 1 } as a name minted a
+  // kit that greeted the new hire as "[object Object]".
+  console.log('\n[bad types] non-string field values are refused, not coerced');
+  const SENTINEL = 'sentinel-type-7c2';
+  const badValues = [
+    ['number', 1],
+    ['object', { q: SENTINEL }],
+    ['array', [SENTINEL]],
+    ['boolean', true]
+  ];
+  for (const [kind, value] of badValues) {
+    for (const field of ['name', 'country', 'project', 'client', 'manager', 'managerId']) {
+      const r = await callMintSafe(Object.assign({}, valid, { [field]: value }), TOKEN);
+      check(field + ' as ' + kind + ' -> 400', !r.threw && r.res.statusCode === 400, r.threw ? String(r.threw) : r.res.body);
+      if (!r.threw) check(field + ' as ' + kind + ': no code minted', !bodyOf(r).code, r.res.body);
+    }
+  }
+  const objName = await callMintSafe(Object.assign({}, valid, { name: { q: SENTINEL } }), TOKEN);
+  check('type error message is generic', bodyOf(objName).error === 'field values must be strings', bodyOf(objName));
+  check('type error echoes no field value', JSON.stringify(bodyOf(objName)).indexOf(SENTINEL) === -1, bodyOf(objName));
+  check('type error does not leak "[object Object]"', JSON.stringify(bodyOf(objName)).indexOf('object Object') === -1, bodyOf(objName));
+  // the regression itself: no code may exist that decodes to "[object Object]"
+  check('an object name mints nothing at all', !bodyOf(objName).code && !bodyOf(objName).url, bodyOf(objName));
+
+  // null / undefined stay legal for the optional fields — encode() maps them to ''
+  const nulls = await callMintSafe({ name: 'Ada Lovelace', manager: 'Sol Silbenberg', country: null, project: null, client: null, managerId: null }, TOKEN);
+  check('null optional fields still mint 200', !nulls.threw && nulls.res.statusCode === 200, nulls.threw ? String(nulls.threw) : nulls.res.body);
+  check('null optional fields warn about nothing', (bodyOf(nulls).warnings || []).length === 0, bodyOf(nulls).warnings);
+  check('null optional fields match the omitted-field code', bodyOf(nulls).code === omitted.body.code, { nulls: bodyOf(nulls).code, omitted: omitted.body.code });
+  // and the required checks still bite first, with their own message
+  const zeroName = await callMintSafe(Object.assign({}, valid, { name: 0 }), TOKEN);
+  check('name: 0 still reports the required-field error', !zeroName.threw && zeroName.res.statusCode === 400 && bodyOf(zeroName).error === 'name and manager are required', bodyOf(zeroName));
 
   console.log('');
   if (failures) {

@@ -49,9 +49,13 @@ One-time Slack app setup:
 
 - `POPS_HUB_TOKEN`: a shared secret (any long random string), set in Vercel env vars here and in POps. Requests authenticate with an `Authorization: Bearer <token>` header.
 
-Request body: `{ name, country, project, client, manager, managerId }` — the same survey answers the Slack modal collects, plus the manager's Slack user id. `country` is one of `US` / `AR` / `AU` / `OTHER`, `project` one of `talent` / `finance` / `gtm` / `other`, `client` an exact name from `clients.json`. `name` and `manager` are required; everything else is optional.
+Request body: `{ name, country, project, client, manager, managerId }` — the same survey answers the Slack modal collects, plus the manager's Slack user id. `country` is one of `US` / `AR` / `AU` / `OTHER`, `project` one of `talent` / `finance` / `gtm` / `other`, `client` an exact name from `clients.json`. `name` and `manager` are required; everything else is optional. Every value must be a string or null — a number or object is refused with a 400 rather than coerced into the code.
 
-Response: `{ url, code, warnings }` — `url` is the hub link with the code attached, `warnings` is an array of strings.
+Response: `{ url, code, warnings }`.
+
+- `code` is the payload that matters: the new joiner pastes it into the welcome kit popup, and POps shows it in the welcome email. Nothing else unlocks the kit.
+- `url` opens the hub homepage. The `?code=` parameter on it is inert today — the front-end never reads the query string, so following the link still lands on a popup waiting for a paste. It is carried in the response so a future front-end change can consume it without a contract change here; until then, treat the link and the code as two separate things the email needs.
+- `warnings` is an array of strings.
 
 **Dormant by default.** With `POPS_HUB_TOKEN` unset, every request is refused with a 401, so deploying this endpoint before the secret exists is a no-op. That is what makes shipping it to `main`, which deploys automatically, safe: the endpoint only wakes up when someone sets the env var.
 

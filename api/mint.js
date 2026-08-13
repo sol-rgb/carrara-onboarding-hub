@@ -13,8 +13,12 @@ function welcomeSecret() {
   return process.env.WELCOME_SECRET || process.env.SLACK_SIGNING_SECRET || 'carrara-onboarding-hub';
 }
 
+// The packed field order IS the code format api/welcome.js decodes. Never
+// reorder or extend it without changing that decoder in the same commit.
+const FIELDS = ['name', 'country', 'project', 'client', 'manager', 'managerId'];
+
 function encode(f) {
-  const packed = [f.name, f.country, f.project, f.client, f.manager, f.managerId || '']
+  const packed = FIELDS.map((k) => f[k])
     .map((v) => encodeURIComponent(v == null ? '' : String(v)))
     .join('|');
   const b64 = Buffer.from(packed, 'utf8').toString('base64url');
@@ -34,8 +38,10 @@ function authorized(req) {
 }
 
 module.exports = async (req, res) => {
-  if (req.method !== 'POST') return res.status(405).json({ error: 'POST only' });
+  // Set before the method check so a 405 carries it too: every response from
+  // this endpoint mints or refuses a credential, and none of them are cacheable.
   res.setHeader('Cache-Control', 'no-store');
+  if (req.method !== 'POST') return res.status(405).json({ error: 'POST only' });
 
   if (!authorized(req)) return res.status(401).json({ error: 'Unauthorized' });
 
@@ -47,6 +53,17 @@ module.exports = async (req, res) => {
   }
   if (!body.name || !body.manager) {
     return res.status(400).json({ error: 'name and manager are required' });
+  }
+
+  // Every packed field must actually be text. Without this, String() would
+  // coerce silently and mint a kit that greets the new hire as "[object
+  // Object]". null/undefined stay legal: encode() maps them to ''. Checked
+  // before the warnings below so those never interpolate a non-string either.
+  // Errors here never echo the value back — POps logs these responses.
+  for (const field of FIELDS) {
+    if (body[field] != null && typeof body[field] !== 'string') {
+      return res.status(400).json({ error: 'field values must be strings' });
+    }
   }
 
   // project and client fail SOFT downstream: welcome.js resolves the team as
@@ -68,7 +85,20 @@ module.exports = async (req, res) => {
 
   // body.extra, body.location and body.employmentType are accepted and ignored:
   // they are not part of the code, and nothing here reads them.
-  const code = encode(body);
+
+  // encodeURIComponent throws URIError on a lone surrogate — half of a pair,
+  // e.g. '\uD800', which survives JSON.parse but is not encodable text. Without
+  // this, such a name would reject the promise and surface as an opaque 500.
+  // Only URIError is treated as the caller's fault; anything else is ours and
+  // should keep failing loudly rather than being mislabelled a 400.
+  let code;
+  try {
+    code = encode(body);
+  } catch (e) {
+    if (!(e instanceof URIError)) throw e;
+    return res.status(400).json({ error: 'field values must be valid text' });
+  }
+
   const host = req.headers['x-forwarded-host'] || req.headers.host || process.env.VERCEL_URL || '';
   if (!host) warnings.push('could not determine the hub host; use the code, not the url');
   return res.status(200).json({
