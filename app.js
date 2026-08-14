@@ -789,7 +789,22 @@
       body.querySelectorAll('.wk-links a[href^="#/"]').forEach(function (a) { a.addEventListener('click', close); });
     }
 
-    if (saved && saved.data) {
+    /* POps welcome emails link here with ?code=…; unlock with it automatically so
+       the joiner never has to paste. The param is scrubbed from the address bar right
+       away (the code is the whole authorization — it should not linger anywhere
+       shareable), then fed through the exact same path as a manual paste: same
+       endpoint, same error message, and the input stays there if the code is bad.
+       A code in the link outranks a kit saved on this browser — on a shared machine
+       the link belongs to whoever just clicked it. */
+    var urlCode = new URLSearchParams(location.search).get('code');
+    if (urlCode) history.replaceState(null, '', location.pathname + location.hash);
+
+    if (urlCode) {
+      renderLocked();
+      $('#wk-code').value = urlCode;
+      open();
+      $('#wk-unlock').click();
+    } else if (saved && saved.data) {
       renderKit(saved.data);
       pillLabel.textContent = 'Your welcome kit, ' + saved.data.firstName;
     } else {

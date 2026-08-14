@@ -54,7 +54,7 @@ Request body: `{ name, country, project, client, manager, managerId }` — the s
 Response: `{ url, code, warnings }`.
 
 - `code` is the payload that matters: the new joiner pastes it into the welcome kit popup, and POps shows it in the welcome email. Nothing else unlocks the kit.
-- `url` opens the hub homepage. The `?code=` parameter on it is inert today — the front-end never reads the query string, so following the link still lands on a popup waiting for a paste. It is carried in the response so a future front-end change can consume it without a contract change here; until then, treat the link and the code as two separate things the email needs.
+- `url` opens the hub with the code in the query string, and the front-end consumes it: following the link unlocks the welcome kit automatically (the popup opens already personalized, and the code is scrubbed from the address bar). A bad or expired code falls back to the normal locked popup with the usual error, where pasting still works — so the email should carry both the link and the code, link as the main path, code as the fallback.
 - `warnings` is an array of strings.
 
 **Dormant by default.** With `POPS_HUB_TOKEN` unset, every request is refused with a 401, so deploying this endpoint before the secret exists is a no-op. That is what makes shipping it to `main`, which deploys automatically, safe: the endpoint only wakes up when someone sets the env var.
