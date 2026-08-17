@@ -173,9 +173,16 @@
   function revealed() { return MO.allVisited(visited, OTHER_IDS); }
 
   function recordVisit(id) {
-    var next = MO.addVisit(visited, id);
-    if (next.length === visited.length) return;
+    // Re-read the store rather than trusting this tab's in-memory `visited`:
+    // two tabs open at once each hold their own snapshot from load time, and
+    // writing that stale snapshot wholesale would erase whatever the OTHER
+    // tab persisted since (a completed walkthrough, section and all). Union
+    // the freshest known state with this visit before writing, so no other
+    // tab's progress is ever clobbered.
+    var latest = store(MO.VISITED_KEY) || [];
+    var next = MO.addVisit(latest, id);
     visited = next;
+    if (next.length === latest.length) return;
     store(MO.VISITED_KEY, visited);
   }
 
@@ -205,8 +212,12 @@
       // The badge is spent the moment the section is opened, and the visit is
       // what triggers the refetch: the section re-verifies with the saved code
       // on EVERY visit (spec decision 6), never renders a cached copy as if it
-      // were current.
-      store(MO.SEEN_KEY, true);
+      // were current. But only once the section has actually been REVEALED --
+      // a direct #/my-onboarding hash visit before the walk is complete must
+      // not spend a badge that was never earned, or the hire loses the NEW
+      // indicator (and their UI route back to it) the moment they finish the
+      // walk for real.
+      if (revealed()) store(MO.SEEN_KEY, true);
       mountMyOnboarding();
       refreshKit();
     }
@@ -523,6 +534,13 @@
      lead can change, and the plan itself lives in POps. One refresh in flight
      at a time -- a hire clicking between sections must not queue five. */
   var kitRefreshing = false;
+  // A plan is either not there at all (null) or there with every field blank
+  // (POps answers the shape but the manager hasn't written anything yet) --
+  // both read as "nothing to show" and both are the SAME "empty" a refetch
+  // must never let overwrite real content.
+  function planIsEmpty(plan) {
+    return !plan || !Object.keys(plan).some(function (k) { return plan[k]; });
+  }
   function refreshKit() {
     var saved = store('carrara_welcome');
     if (!saved || !saved.code || kitRefreshing) return;
@@ -535,6 +553,19 @@
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (j) {
         if (!j) return;
+        // A manager cannot un-submit: a fresh empty plan (POps down, a
+        // retired/stale plan key, an upstream gap) must never overwrite a
+        // plan already on screen -- that always means the READ failed, never
+        // that the content was deleted. The manager's syncs travel WITH the
+        // plan (they are the same submission), so both are kept together;
+        // everything else -- client, team, links, country -- still comes
+        // from the fresh response. A real update still replaces stored: this
+        // is not a one-way freeze, only a floor under real content.
+        var stored = saved.data || {};
+        if (planIsEmpty(j.plan) && !planIsEmpty(stored.plan)) {
+          j.plan = stored.plan;
+          j.syncWith = stored.syncWith;
+        }
         store('carrara_welcome', { code: saved.code, data: j });
         kitData = j;
         applyKitToHub();

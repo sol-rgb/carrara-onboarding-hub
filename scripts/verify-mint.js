@@ -18,6 +18,19 @@
 const mint = require('../api/mint.js');
 const welcome = require('../api/welcome.js');
 
+// A verifier that STOPS EARLY must never look like a verifier that passed.
+// Node exits with status 0 the moment the event loop empties, and an await
+// that never settles empties it -- so a truncated run would otherwise be
+// silent green. Completion is asserted here, not assumed. (Ported from
+// scripts/verify-my-onboarding.js, which owns the original of this guard.)
+let finished = false;
+process.on('exit', (code) => {
+  if (!finished && code === 0) {
+    console.error('\nFAILED: the verifier exited before finishing -- something awaited never settled');
+    process.exitCode = 1;
+  }
+});
+
 const TOKEN = 'pops-hub-test-token';
 let failures = 0;
 
@@ -72,6 +85,28 @@ async function callWelcome(code) {
 
 async function main() {
   console.log('secret in use: WELCOME_SECRET=' + (process.env.WELCOME_SECRET ? 'set' : 'UNSET (falling back)'));
+
+  // ---------------------------------------------------------------- network
+  // /api/mint never calls POps, but several codes minted below carry a
+  // non-empty planKey purely to prove that field round-trips through
+  // api/welcome.js's decode() -- and api/welcome.js's fetchPlan() DOES call
+  // POps for any non-empty planKey once POPS_PLAN_TOKEN is set. This script
+  // used to inherit that token (and POPS_PLAN_URL) from whatever the
+  // operator's shell happened to export, so it fired a REAL bearer at the
+  // REAL POps host on every one of those calls (measured: 4 requests, one
+  // per callWelcome() below whose code carries a non-empty planKey, before
+  // this fix). Both vars are pinned to fixed test values here -- never
+  // inherited from the ambient environment -- and global.fetch is stubbed
+  // for the whole run, exactly like verify-my-onboarding.js's stubPops():
+  // this script must be network-independent.
+  process.env.POPS_PLAN_TOKEN = 'verify-mint-should-never-reach-pops';
+  process.env.POPS_PLAN_URL = 'https://pops.invalid.test/api/hub-plan';
+  const realFetch = global.fetch;
+  let stubCalls = 0;
+  global.fetch = async () => {
+    stubCalls++;
+    return { ok: false, status: 404, json: async () => ({ error: 'verify-mint.js stub: no real POps call' }) };
+  };
 
   // ---------------------------------------------------------------- auth gate
   console.log('\n[auth] dormant: POPS_HUB_TOKEN unset refuses every request');
@@ -278,7 +313,18 @@ async function main() {
   const zeroName = await callMintSafe(Object.assign({}, valid, { name: 0 }), TOKEN);
   check('name: 0 still reports the required-field error', !zeroName.threw && zeroName.res.statusCode === 400 && bodyOf(zeroName).error === 'name and manager are required', bodyOf(zeroName));
 
+  // ---------------------------------------------------------------- network
+  // Confirm the stub actually did the job above, rather than sitting unused:
+  // exactly the 4 calls the investigator measured against the real POps host
+  // must have landed on the LOCAL stub instead, and zero of them on the real
+  // fetch this script saved off and never once invoked.
+  console.log('\n[network] this script never reaches the real POps');
+  global.fetch = realFetch;
+  check('every non-empty-planKey lookup went through the local stub, never the real network',
+    stubCalls === 4, stubCalls);
+
   console.log('');
+  finished = true;
   if (failures) {
     console.error(failures + ' check(s) FAILED');
     process.exit(1);
