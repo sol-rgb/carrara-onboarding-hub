@@ -2,6 +2,11 @@
 (function () {
   'use strict';
 
+  /* my-onboarding.js, loaded just above this file. Read once, at parse time:
+     if the script order in index.html ever slips, this throws here rather than
+     failing quietly somewhere downstream. */
+  var MO = window.MyOnboarding;
+
   var SECTIONS = [
     { id: 'start',     label: 'Start here' },
     { id: 'who',       label: 'Who we are' },
@@ -14,12 +19,24 @@
     { id: 'tools',     label: 'Tools' },
     { id: 'templates', label: 'Templates and brand' },
     { id: 'timeoff',   label: 'Time off' },
-    { id: 'resources', label: 'Resources' }
+    { id: 'resources', label: 'Resources' },
+    /* LAST, and hidden until every section above has been visited. */
+    { id: MO.SECTION_ID, label: 'My onboarding' }
   ];
-  var TOTAL = SECTIONS.length;
-  /* the guided tour skips Start here so the first click takes you somewhere new */
-  var TOUR = SECTIONS.slice(1);
-  var TOUR_TOTAL = TOUR.length;
+  /* every id except the hire's own section: what the reveal is decided from */
+  var OTHER_IDS = SECTIONS.filter(function (s) { return s.id !== MO.SECTION_ID; })
+    .map(function (s) { return s.id; });
+
+  /* the guided tour skips Start here so the first click takes you somewhere new.
+     Computed on demand, not once: My Onboarding joins the tour the moment it is
+     revealed, which by construction is while the hire is on the LAST step --
+     so the tour gains its finale exactly when the spec says it should
+     (decision 2). The step counter grows by one at that moment, honestly. */
+  function tourSteps() {
+    return SECTIONS.slice(1).filter(function (s) {
+      return s.id !== MO.SECTION_ID || revealed();
+    });
+  }
   var CHANNELS = [
     { n: '#g-announcements', d: 'team-wide announcements.', ex: ['Company-wide updates from the partners', 'Policy and process changes everyone should see'] },
     { n: '#g-no-dumb-questions', d: 'ask anything.', ex: ['"Anyone know a freelancer for podcast booking?"', '"Has anyone used Noon.ai?"', '"What do people use to track event attendees?"'] },
@@ -150,11 +167,50 @@
   });
   mnav.addEventListener('change', function () { location.hash = '#/' + mnav.value; });
 
+  /* ---------- my onboarding: visits, reveal, badge ---------- */
+  var visited = store(MO.VISITED_KEY) || [];
+
+  function revealed() { return MO.allVisited(visited, OTHER_IDS); }
+
+  function recordVisit(id) {
+    var next = MO.addVisit(visited, id);
+    if (next.length === visited.length) return;
+    visited = next;
+    store(MO.VISITED_KEY, visited);
+  }
+
+  /* The nav link and the mobile option exist from load and are hidden, rather
+     than being created on reveal: one place builds them, and the reveal is a
+     single attribute flip that also survives a hashchange mid-tour. */
+  function syncMyOnboardingNav() {
+    var state = MO.navState(visited, OTHER_IDS, !!store(MO.SEEN_KEY));
+    var link = document.querySelector('#nav a[data-id="' + MO.SECTION_ID + '"]');
+    var opt = mnav.querySelector('option[value="' + MO.SECTION_ID + '"]');
+    if (link) {
+      link.hidden = state === 'hidden';
+      var badge = link.querySelector('.nav-new');
+      if (state === 'new' && !badge) link.insertAdjacentHTML('beforeend', '<span class="nav-new">new</span>');
+      if (state !== 'new' && badge) badge.parentNode.removeChild(badge);
+    }
+    if (opt) opt.hidden = state === 'hidden';
+  }
+
   /* ---------- router ---------- */
   var current = null;
   function show(id) {
     var sec = SECTIONS.some(function (s) { return s.id === id; }) || id === 'complete' ? id : 'start';
     current = sec;
+    recordVisit(sec);
+    if (sec === MO.SECTION_ID) {
+      // The badge is spent the moment the section is opened, and the visit is
+      // what triggers the refetch: the section re-verifies with the saved code
+      // on EVERY visit (spec decision 6), never renders a cached copy as if it
+      // were current.
+      store(MO.SEEN_KEY, true);
+      mountMyOnboarding();
+      refreshKit();
+    }
+    syncMyOnboardingNav();
     $$('.view').forEach(function (v) { v.classList.remove('visible'); });
     var el = $('#view-' + sec);
     if (el) el.classList.add('visible');
@@ -196,6 +252,10 @@
     var i = SECTIONS.findIndex(function (s) { return s.id === sec; });
     if (i < 0 || i >= SECTIONS.length - 1) return;
     var nxt = SECTIONS[i + 1];
+    /* Resources' "next" is the hire's own section, which must not be announced
+       here before the reveal announces it -- a footer link would give away a
+       section the sidebar is still hiding. */
+    if (nxt.id === MO.SECTION_ID && !revealed()) return;
     var d = document.createElement('div');
     d.className = 'next-nav';
     d.innerHTML = '<a href="#/' + nxt.id + '">Next: ' + esc(nxt.label) + ' →</a>';
@@ -430,7 +490,12 @@
       brief.innerHTML = 'Your first client is <b>' + esc(kitData.client.name) + '</b>'
         + (kitData.client.lead ? ', led by ' + esc(kitData.client.lead.replace(/\.+$/, '')) + '.' : '.')
         + (kitData.manager && kitData.manager.name ? ' Your manager is ' + esc(kitData.manager.name) + '.' : '')
-        + ' Open your welcome kit at the bottom right for who to meet and how your team works.';
+        /* The popup no longer holds any of this, so it is no longer where this
+           line sends people: before the reveal there is nowhere to send them
+           yet, and after it there is exactly one place. */
+        + (revealed()
+            ? ' <a class="textlink" href="#/' + MO.SECTION_ID + '">My onboarding</a> has who to meet and your first 90 days.'
+            : ' Work your way through the hub: a section made just for you appears at the end.');
     }
     if (kitData.client) {
       $$('#client-grid .client-row').forEach(function (row) {
@@ -441,6 +506,43 @@
         }
       });
     }
+  }
+
+  /* The hire's own section, rendered from whatever kit we currently hold --
+     including none, which renders the "enter your access code" state. */
+  function mountMyOnboarding() {
+    var el = $('#view-' + MO.SECTION_ID);
+    if (!el) return;
+    el.innerHTML = MO.renderSection(kitData);
+    var reset = el.querySelector('#mo-reset');
+    if (reset) reset.addEventListener('click', function () { window.dispatchEvent(new Event('carrara:kit-reset')); });
+  }
+
+  /* The saved kit is a FALLBACK for an offline or failed refresh, never the
+     source of truth: the manager can still be editing the plan, the client's
+     lead can change, and the plan itself lives in POps. One refresh in flight
+     at a time -- a hire clicking between sections must not queue five. */
+  var kitRefreshing = false;
+  function refreshKit() {
+    var saved = store('carrara_welcome');
+    if (!saved || !saved.code || kitRefreshing) return;
+    kitRefreshing = true;
+    fetch('/api/welcome', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code: saved.code })
+    })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (!j) return;
+        store('carrara_welcome', { code: saved.code, data: j });
+        kitData = j;
+        applyKitToHub();
+        mountMyOnboarding();
+        window.dispatchEvent(new Event('carrara:kit-updated'));
+      })
+      .catch(function () { /* offline: the saved copy stands */ })
+      .then(function () { kitRefreshing = false; });
   }
 
   /* ---------- clients ---------- */
@@ -649,11 +751,11 @@
 
   /* ---------- tour ---------- */
   var tour = store('carrara_tour') || { active: false, step: 0 };
-  if (tour.step >= TOUR_TOTAL) tour.step = 0;
+  if (tour.step >= tourSteps().length) tour.step = 0;
   function syncHome() {
     var btn = $('#btn-tour'), so = $('#btn-startover');
     if (tour.step > 0 && !tour.done) {
-      btn.textContent = 'Resume onboarding, step ' + (tour.step + 1) + ' of ' + TOUR_TOTAL;
+      btn.textContent = 'Resume onboarding, step ' + (tour.step + 1) + ' of ' + tourSteps().length;
       so.hidden = false;
     } else {
       btn.textContent = 'See full onboarding';
@@ -664,14 +766,16 @@
     document.body.classList.toggle('tour-active', !!tour.active);
     if (!tour.active) { $('#meta-tour').hidden = true; return; }
     var n = tour.step + 1;
+    var total = tourSteps().length;
     $('#meta-tour').hidden = false;
-    $('#meta-tour').textContent = 'tour: step ' + n + ' of ' + TOUR_TOTAL;
+    $('#meta-tour').textContent = 'tour: step ' + n + ' of ' + total;
     $('#tour-back').style.visibility = tour.step === 0 ? 'hidden' : 'visible';
-    $('#tour-next').textContent = current === 'checklist' ? "I'll keep working on this" : (tour.step === TOUR_TOTAL - 1 ? 'Finish' : 'Next');
+    $('#tour-next').textContent = current === 'checklist' ? "I'll keep working on this" : (tour.step === total - 1 ? 'Finish' : 'Next');
   }
   function tourGo(step) {
+    var steps = tourSteps();
     tour.step = Math.max(0, step);
-    if (tour.step >= TOUR_TOTAL) {
+    if (tour.step >= steps.length) {
       tour.active = false; tour.done = true; tour.step = 0;
       store('carrara_tour', tour);
       location.hash = '#/complete';
@@ -679,8 +783,8 @@
     }
     tour.active = true; tour.done = false;
     store('carrara_tour', tour);
-    var target = '#/' + TOUR[tour.step].id;
-    if (location.hash === target) { show(TOUR[tour.step].id); } else { location.hash = target; }
+    var target = '#/' + steps[tour.step].id;
+    if (location.hash === target) { show(steps[tour.step].id); } else { location.hash = target; }
     syncTourChrome();
   }
   $('#btn-tour').addEventListener('click', function () { tourGo(tour.step && !tour.done ? tour.step : 0); });
@@ -702,7 +806,15 @@
 
     function open() { panel.hidden = false; pill.setAttribute('aria-expanded', 'true'); pill.style.display = 'none'; }
     function close() { panel.hidden = true; pill.setAttribute('aria-expanded', 'false'); pill.style.display = ''; store('carrara_welcome_seen', true); }
-    pill.addEventListener('click', open);
+    pill.addEventListener('click', function () {
+      // After the reveal the popup is a doorway, not a container (spec decision
+      // 1): everything it used to hold lives in the section now.
+      if (saved && saved.data && MO.navState(visited, OTHER_IDS, true) !== 'hidden') {
+        location.hash = '#/' + MO.SECTION_ID;
+        return;
+      }
+      open();
+    });
     closeBtn.addEventListener('click', close);
 
     function renderLocked(errMsg) {
@@ -723,7 +835,7 @@
             if (!res.ok) { renderLocked(res.j.error || 'That code does not look right.'); return; }
             saved = { code: code, data: res.j };
             store('carrara_welcome', saved);
-            renderKit(res.j);
+            renderUnlocked(res.j);
           })
           .catch(function () { renderLocked('Could not reach the hub. Check your connection and try again.'); });
       }
@@ -731,62 +843,43 @@
       $('#wk-code').addEventListener('keydown', function (e) { if (e.key === 'Enter') go(); });
     }
 
-    function renderKit(d) {
+    /* The popup unlocks the hub and then gets out of the way. It used to hold
+       the whole kit -- manager, syncs, client, team, country notes, Enneagram,
+       links -- in a 320px panel; all of that lives in the hire's own section
+       now, at full width, and the popup carries content again never (spec
+       decision 1). Before the reveal it says where the section will appear;
+       after it, it is a door to it. */
+    function renderUnlocked(d) {
       kitData = d;
       applyKitToHub();
-      var html = '<h3>Welcome, ' + esc(d.firstName) + '.</h3>'
-        + '<p>Here is your personal starting point. Everything below is specific to you.</p>';
-      if (d.manager && d.manager.name) {
-        html += '<div class="wk-sec"><div class="wk-lbl">[your hiring manager]</div>'
-          + '<p><b style="color:var(--ink);font-weight:500">' + esc(d.manager.name) + '</b>. Your day-one 1:1 is with them: your 90-day plan and week-one priorities.</p></div>';
-      }
-      if (d.syncWith && d.syncWith.length) {
-        html += '<div class="wk-sec"><div class="wk-lbl">[sync with them in week one]</div><ul>'
-          + d.syncWith.map(function (s) { return '<li><b>' + esc(s.name) + '</b>: ' + esc(s.why) + '</li>'; }).join('')
-          + '</ul></div>';
-      }
-      if (d.client) {
-        html += '<div class="wk-sec"><div class="wk-lbl">[your first client]</div>'
-          + '<p><b style="color:var(--ink);font-weight:500">' + esc(d.client.name) + '</b>'
-          + (d.client.lead ? ', led by ' + esc(d.client.lead.replace(/\.+$/, '')) : '') + '.</p>'
-          + (d.client.work && d.client.work.length ? '<div class="wk-tags">' + d.client.work.map(function (w) { return '<span>' + esc(w) + '</span>'; }).join('') + '</div>' : '')
-          + '</div>';
-      }
-      if (d.team && d.team.how && d.team.how.length) {
-        html += '<div class="wk-sec"><div class="wk-lbl">[how ' + esc(d.team.label.toLowerCase()) + ' works here]</div><ul>'
-          + d.team.how.map(function (h) { return '<li>' + esc(h) + '</li>'; }).join('') + '</ul></div>';
-      }
-      if (d.country && d.country.notes && d.country.notes.length) {
-        html += '<div class="wk-sec"><div class="wk-lbl">[joining from ' + esc(d.country.label.toLowerCase()) + ']</div><ul>'
-          + d.country.notes.map(function (n) { return '<li>' + esc(n) + '</li>'; }).join('') + '</ul></div>';
-      }
-      /* enneagram: the test is external and free; results are not sent anywhere
-         automatically, so the kit asks the joiner to share their type with their manager */
-      var mgrDm = d.manager && d.manager.id ? window.LINKS.slackWorkspace + '/team/' + d.manager.id : '';
-      html += '<div class="wk-sec"><div class="wk-lbl">[before your first 1:1]</div>'
-        + '<p>Take the free Enneagram test below (about 10 minutes, no signup). When you have your type, send it'
-        + (d.manager && d.manager.name ? ' to ' + esc(d.manager.name) : ' to your manager')
-        + ' so they can shape how you two work together.</p>'
-        + '<div class="wk-links">'
-        + '<a href="https://www.eclecticenergies.com/enneagram/test" target="_blank" rel="noopener">Take the Enneagram test ↗</a>'
-        + (mgrDm ? '<a href="' + esc(mgrDm) + '" target="_blank" rel="noopener">DM your result to ' + esc(d.manager.name) + ' ↗</a>' : '')
-        + '</div></div>';
-      if (d.links && d.links.length) {
-        html += '<div class="wk-sec"><div class="wk-lbl">[start with these]</div><div class="wk-links">'
-          + d.links.map(function (l) {
-              var ext = l.external || /^https?:/.test(l.href);
-              return '<a href="' + esc(l.href) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' + esc(l.label) + (ext ? ' ↗' : '') + '</a>';
-            }).join('') + '</div></div>';
-      }
-      html += '<button class="wk-reset" id="wk-reset">Not you? Enter a different code</button>';
-      body.innerHTML = html;
-      pillLabel.textContent = 'Your welcome kit, ' + d.firstName;
-      $('#wk-reset').addEventListener('click', function () {
-        saved = null; store('carrara_welcome', null);
-        pillLabel.textContent = 'New here? Open your welcome kit';
-        renderLocked();
-      });
-      body.querySelectorAll('.wk-links a[href^="#/"]').forEach(function (a) { a.addEventListener('click', close); });
+      mountMyOnboarding();
+      syncMyOnboardingNav();
+      // NOT named `open` — that is this IIFE's own panel-opening function, and
+      // shadowing it here would break resetKit below.
+      var hasSection = MO.navState(visited, OTHER_IDS, true) !== 'hidden';
+      body.innerHTML = '<h3>Welcome, ' + esc(d.firstName) + '.</h3>'
+        + (hasSection
+            ? '<p>Your section is ready. <a class="textlink" href="#/' + MO.SECTION_ID + '">Open My onboarding</a> '
+              + 'for your first client, who to sync with, and your first 90 days.</p>'
+            : '<p>You are all set. Work your way through the hub: a section made just for you appears '
+              + 'at the end, with a note from your manager, your first client, who to sync with in week '
+              + 'one, and your first 90 days.</p>')
+        + '<button class="wk-reset" id="wk-reset">Not you? Enter a different code</button>';
+      pillLabel.textContent = hasSection
+        ? 'Your onboarding, ' + d.firstName
+        : 'Your welcome kit, ' + d.firstName;
+      $('#wk-reset').addEventListener('click', resetKit);
+      body.querySelectorAll('a[href^="#/"]').forEach(function (a) { a.addEventListener('click', close); });
+    }
+
+    function resetKit() {
+      saved = null;
+      store('carrara_welcome', null);
+      kitData = null;
+      mountMyOnboarding();
+      pillLabel.textContent = 'New here? Open your welcome kit';
+      renderLocked();
+      open();
     }
 
     /* POps welcome emails link here with ?code=…; unlock with it automatically so
@@ -805,13 +898,27 @@
       open();
       $('#wk-unlock').click();
     } else if (saved && saved.data) {
-      renderKit(saved.data);
-      pillLabel.textContent = 'Your welcome kit, ' + saved.data.firstName;
+      /* renderUnlocked owns the pill's label: before the reveal it is the
+         welcome kit, after it the hire's own section. */
+      renderUnlocked(saved.data);
     } else {
       renderLocked();
       /* nudge first-time visitors once */
       if (!store('carrara_welcome_seen')) setTimeout(open, 1400);
     }
+
+    /* The two events the outer scope raises. A refetch that lands while the
+       panel is open re-renders it; otherwise only the pill's label moves, so a
+       background refresh never reopens something the hire just closed. */
+    window.addEventListener('carrara:kit-updated', function () {
+      saved = store('carrara_welcome');
+      if (saved && saved.data && !panel.hidden) renderUnlocked(saved.data);
+      else if (saved && saved.data) {
+        pillLabel.textContent = (MO.navState(visited, OTHER_IDS, true) !== 'hidden' ? 'Your onboarding, ' : 'Your welcome kit, ') + saved.data.firstName;
+      }
+    });
+    /* the section's own "Not you?" button, which lives outside this IIFE */
+    window.addEventListener('carrara:kit-reset', resetKit);
   })();
 
   /* ---------- search palette (Cmd/Ctrl+K) ---------- */
@@ -822,7 +929,11 @@
 
     function buildIndex() {
       var ix = [];
-      SECTIONS.forEach(function (s) { ix.push({ label: s.label, hint: 'section', go: function () { location.hash = '#/' + s.id; } }); });
+      /* the same reveal the sidebar honours: a hidden section is not findable */
+      SECTIONS.forEach(function (s) {
+        if (s.id === MO.SECTION_ID && !revealed()) return;
+        ix.push({ label: s.label, hint: 'section', go: function () { location.hash = '#/' + s.id; } });
+      });
       CHECKLIST.forEach(function (g) { g.items.forEach(function (it) {
         ix.push({ label: it.t, hint: 'checklist · ' + g.g, go: function () { location.hash = '#/checklist'; } });
       }); });
@@ -890,9 +1001,13 @@
     if (btn) btn.addEventListener('click', openPal);
   })();
 
-  if (tour.active && TOUR[tour.step]) {
-    location.hash = '#/' + TOUR[tour.step].id;
+  if (tour.active && tourSteps()[tour.step]) {
+    location.hash = '#/' + tourSteps()[tour.step].id;
   }
   syncHome();
   route();
+  /* Every load re-verifies the saved code with POps behind it (spec decision 6).
+     The section itself refetches on every visit; this is the boot copy, so a
+     hire who lands straight on the hub sees a current kit, not yesterday's. */
+  refreshKit();
 })();

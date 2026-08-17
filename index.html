@@ -254,6 +254,10 @@
     </div>
   </section>
 
+  <!-- 15 my onboarding (rendered by app.js from the welcome kit; hidden until
+       every other section has been visited) -->
+  <section class="view" id="view-my-onboarding"></section>
+
   <!-- completion -->
   <section class="view" id="view-complete">
     <div class="complete-wrap">
@@ -300,8 +304,13 @@
   <button class="wk-pill" id="wk-pill" aria-expanded="false"><span class="wk-dot"></span><span id="wk-pill-label">New here? Open your welcome kit</span></button>
 </div>
 
+<!-- ORDER MATTERS: my-onboarding.js reads CarraraMarkdown at parse time, and
+     app.js reads window.MyOnboarding at parse time. Either one loaded early
+     throws a TypeError before the hub renders a single section. -->
 <script src="/links.js"></script>
 <script src="/pages.js"></script>
+<script src="/markdown.js"></script>
+<script src="/my-onboarding.js"></script>
 <script src="/app.js"></script>
 </body>
 </html>

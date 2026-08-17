@@ -31,6 +31,14 @@ function planUrl() {
  * and the kit renders without the plan block. POps being down must degrade a
  * new hire's page, never break it.
  *
+ * "Down" includes the worst kind of down: answering the socket and then saying
+ * nothing. Without a deadline this await inherits the platform's, which is the
+ * whole function invocation -- the hire watches a spinner and then gets an
+ * error page, which is strictly worse than a kit with no plan block. 2500ms is
+ * the budget: POps' hub-plan read is a single indexed row, so a healthy answer
+ * lands in tens of milliseconds, and the abort lands as an AbortError in the
+ * catch below, which already maps everything to null.
+ *
  * The bearer is POPS_PLAN_TOKEN, a secret of its own -- not POPS_HUB_TOKEN --
  * so the two directions rotate independently. Without it this function does not
  * make a request at all, which is what keeps a deploy that lands before the
@@ -41,7 +49,8 @@ async function fetchPlan(planKey) {
   if (!planKey || !token) return null;
   try {
     const r = await fetch(planUrl().replace(/\/+$/, '') + '/' + encodeURIComponent(planKey), {
-      headers: { Authorization: 'Bearer ' + token }
+      headers: { Authorization: 'Bearer ' + token },
+      signal: AbortSignal.timeout(2500)
     });
     if (!r.ok) return null;
     const j = await r.json();

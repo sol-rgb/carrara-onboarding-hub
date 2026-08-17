@@ -655,3 +655,49 @@ body::after {
 /* headline emphasis underlines are dotted, like the site */
 .u { text-decoration-style: dotted; text-decoration-thickness: 2.5px; text-underline-offset: 8px; text-decoration-color: rgba(45, 42, 42, 0.75); }
 
+
+/* ---------- my onboarding: the hire's own section ---------- */
+/* the NEW badge, in the team page's newtag idiom */
+.sidebar nav a .nav-new { font-family: var(--rigid); font-size: 9px; letter-spacing: 0.08em; color: var(--orange); }
+.sidebar nav a[hidden] { display: none; }
+
+/* the manager's note: the same rock-clipped quote block as Who we are */
+.mo-note { max-width: 860px; margin-bottom: 46px; }
+.mo-note .pull p { margin: 0 0 10px; }
+.mo-note .pull p:last-child { margin-bottom: 0; }
+.mo-note .pull ul, .mo-note .pull ol { margin: 0 0 10px 20px; }
+.mo-note .pull li { margin-bottom: 4px; }
+
+/* first client + week-one syncs: hairline chamfer cards, the 30/60/90 idiom */
+.mo-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
+.mo-card { border: 1px solid var(--hairline); clip-path: var(--chamfer); padding: 24px 22px; }
+.mo-card-name { font-family: var(--serif); font-weight: 500; font-size: 22px; letter-spacing: -0.015em; line-height: 1.2; }
+.mo-card-line { font-size: 13.5px; color: rgba(45, 42, 42, 0.72); margin-top: 4px; }
+.mo-card .wk-links { margin-top: 12px; }
+.mo-syncs { list-style: none; margin-top: 2px; }
+.mo-syncs li { font-size: 13.5px; line-height: 1.65; color: rgba(45, 42, 42, 0.85); padding-left: 14px; position: relative; margin-bottom: 8px; }
+.mo-syncs li::before { content: ''; position: absolute; left: 0; top: 10px; width: 5px; height: 5px; background: var(--sage); }
+.mo-syncs li b { font-weight: 500; color: var(--ink); }
+
+/* the 30/60/90: a chamfer-marker timeline */
+.mo-timeline { display: grid; gap: 4px; margin-top: 26px; max-width: 860px; }
+.mo-step { display: grid; grid-template-columns: 78px 1fr; gap: 26px; align-items: start; border-top: 1px solid var(--hairline); padding: 26px 0 4px; }
+.mo-day { font-family: var(--rigid); font-weight: 700; font-size: 28px; line-height: 1; position: relative; padding-top: 14px; }
+.mo-day::before { content: ''; position: absolute; top: -27px; left: 0; width: 12px; height: 12px; background: var(--orange); clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 0 100%); }
+.mo-body p { font-size: 14.5px; line-height: 1.8; color: rgba(45, 42, 42, 0.82); margin-bottom: 10px; }
+.mo-body p:last-child { margin-bottom: 0; }
+.mo-body ul, .mo-body ol { margin-left: 20px; }
+.mo-body li { font-size: 14px; line-height: 1.7; color: rgba(45, 42, 42, 0.82); margin-bottom: 5px; }
+.mo-body a { color: var(--orange); text-decoration: none; border-bottom: 1px solid rgba(235, 78, 25, 0.35); }
+.mo-body a:hover { border-bottom-color: var(--orange); }
+
+.mo-extra { max-width: 720px; margin-top: 60px; }
+.mo-extra .wk-sec p, .mo-extra .wk-sec li { font-size: 14px; }
+.mo-note-line { margin-top: 34px; font-size: 13px; color: var(--taupe); max-width: 66ch; }
+.mo-reset { margin-top: 26px; }
+
+@media (max-width: 860px) {
+  .mo-cards { grid-template-columns: 1fr; }
+  .mo-step { grid-template-columns: 1fr; gap: 8px; }
+  .mo-day::before { top: -27px; }
+}
