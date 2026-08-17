@@ -15,7 +15,11 @@ function welcomeSecret() {
 
 // The packed field order IS the code format api/welcome.js decodes. Never
 // reorder or extend it without changing that decoder in the same commit.
-const FIELDS = ['name', 'country', 'project', 'client', 'manager', 'managerId'];
+// v7 (2026-08-17) appended planKey: the opaque token /api/welcome hands to
+// POps' /api/hub-plan to fetch this hire's manager plan. Appended, never
+// inserted -- a code minted by v6 decodes under v7 with an empty planKey,
+// which reads as "no plan" and renders a kit without the plan block.
+const FIELDS = ['name', 'country', 'project', 'client', 'manager', 'managerId', 'planKey'];
 
 function encode(f) {
   const packed = FIELDS.map((k) => f[k])

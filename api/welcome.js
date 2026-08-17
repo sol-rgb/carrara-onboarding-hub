@@ -11,6 +11,53 @@ function welcomeSecret() {
 
 const COUNTRY_LABELS = { US: 'United States', AR: 'Argentina', AU: 'Australia', OTHER: 'your country' };
 
+const { parseSyncWith } = require('../my-onboarding.js');
+
+// POps' plan-read endpoint. The default is the live POps host so Eric has ONE
+// secret to paste at the ceremony, not two; the override exists for staging.
+// Read at call time, not at module load, exactly like welcomeSecret() and like
+// POPS_PLAN_TOKEN below: a value captured at require() time is a value the
+// verifier cannot override and a stale value in any runtime that mutates env
+// after the first import.
+function planUrl() {
+  return process.env.POPS_PLAN_URL || 'https://carrara-pops.work/api/hub-plan';
+}
+
+/**
+ * This hire's manager plan from POps, or null.
+ *
+ * NEVER THROWS, and every non-answer is the same answer: no plan key, no
+ * secret, a 404, a 500, a timeout, a body that is not an object -- all null,
+ * and the kit renders without the plan block. POps being down must degrade a
+ * new hire's page, never break it.
+ *
+ * The bearer is POPS_PLAN_TOKEN, a secret of its own -- not POPS_HUB_TOKEN --
+ * so the two directions rotate independently. Without it this function does not
+ * make a request at all, which is what keeps a deploy that lands before the
+ * secret a no-op.
+ */
+async function fetchPlan(planKey) {
+  const token = process.env.POPS_PLAN_TOKEN;
+  if (!planKey || !token) return null;
+  try {
+    const r = await fetch(planUrl().replace(/\/+$/, '') + '/' + encodeURIComponent(planKey), {
+      headers: { Authorization: 'Bearer ' + token }
+    });
+    if (!r.ok) return null;
+    const j = await r.json();
+    return j && typeof j === 'object' && !Array.isArray(j) ? j : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+/** A plan field, or null. Anything that is not a non-empty string is nothing --
+ *  the section renders one block per non-null field. */
+function planText(plan, key) {
+  const v = plan && plan[key];
+  return typeof v === 'string' && v.trim() ? v : null;
+}
+
 function decode(code) {
   const parts = String(code || '').trim().split('.');
   if (parts.length !== 2) return null;
@@ -23,7 +70,10 @@ function decode(code) {
   try { packed = Buffer.from(b64, 'base64url').toString('utf8'); } catch (e) { return null; }
   const f = packed.split('|').map(decodeURIComponent);
   if (f.length < 5) return null;
-  return { name: f[0], country: f[1], project: f[2], client: f[3], manager: f[4], managerId: f[5] || '' };
+  // f[6] is v7's plan key. Absent on every code minted before 2026-08-17, which
+  // is why it defaults to '' rather than making the code invalid: an old code
+  // still unlocks a kit, just without the plan block.
+  return { name: f[0], country: f[1], project: f[2], client: f[3], manager: f[4], managerId: f[5] || '', planKey: f[6] || '' };
 }
 
 module.exports = async (req, res) => {
@@ -65,6 +115,13 @@ module.exports = async (req, res) => {
     if (!seen.some((n) => samePerson(n, s.name))) { sync.push(s); seen.push(s.name); }
   });
 
+  // The plan, and the one place the manager's answer outranks the derivation
+  // (spec decision 4): the Brain's client-lead + team-defaults list stays as
+  // the FALLBACK, so a blank answer and every pre-v7 code still render syncs.
+  const plan = await fetchPlan(who.planKey);
+  const stated = parseSyncWith(planText(plan, 'sync_with') || '');
+  const syncWith = stated.length ? stated : sync;
+
   const links = [];
   if (clientInfo && clientInfo.domain) {
     links.push({ label: clientInfo.name + ' website', href: 'https://' + clientInfo.domain, external: true });
@@ -84,8 +141,32 @@ module.exports = async (req, res) => {
       work: clientInfo.work || []
     } : null,
     team: { key: who.project, label: team.label, how: team.how || [] },
-    country: { key: who.country, label: country.label, notes: country.notes || [] },
-    syncWith: sync,
+    // Country-SPECIFIC content is gone (spec decision 5): day-one comms already
+    // carry the pay and invoicing instructions for each employment type, and
+    // two sources of truth on somebody's pay is one too many. The key and label
+    // stay -- the code still packs a country, and mint.js still warns on an
+    // unknown one.
+    country: { key: who.country, label: country.label },
+    // The one generic line that replaces the country notes. One string in
+    // welcome.json, editable without touching code.
+    payNote: config.payNote || '',
+    syncWith: syncWith,
+    // Echoed so the round-trip verifier can see the seventh field decode, and so
+    // an empty plan block can be diagnosed from the response alone ('' means the
+    // code predates v7; a key with a null plan means POps did not answer). Not a
+    // secret to the recipient: it arrived inside the code they just entered, and
+    // it opens nothing on its own -- POps' /api/hub-plan also demands the
+    // POPS_PLAN_TOKEN bearer, which never leaves this server.
+    planKey: who.planKey,
+    // The manager's own words, straight through: the same keys POps returns,
+    // which are the manager_hub question keys. sync_with is NOT echoed here --
+    // it has already become syncWith above, and two copies would drift.
+    plan: plan ? {
+      manager_intro: planText(plan, 'manager_intro'),
+      thirty_days: planText(plan, 'thirty_days'),
+      sixty_days: planText(plan, 'sixty_days'),
+      ninety_days: planText(plan, 'ninety_days')
+    } : null,
     links
   });
 };

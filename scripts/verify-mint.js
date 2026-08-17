@@ -4,7 +4,8 @@
 //   WELCOME_SECRET=test-secret node scripts/verify-mint.js
 //
 // It calls the two handlers as functions with fake req/res objects and checks:
-//   1. round-trip  — every field minted by api/mint.js survives api/welcome.js's decode
+//   1. round-trip  — every field minted by api/mint.js survives api/welcome.js's decode,
+//                    six-field and seven-field codes alike
 //   2. auth gate   — unset POPS_HUB_TOKEN refuses everything (dormant), wrong bearer 401,
 //                    right bearer 200 with a warnings array
 //   3. warnings    — unknown project / country / client each report themselves
@@ -75,7 +76,7 @@ async function main() {
   // ---------------------------------------------------------------- auth gate
   console.log('\n[auth] dormant: POPS_HUB_TOKEN unset refuses every request');
   delete process.env.POPS_HUB_TOKEN;
-  const valid = { name: 'Ada Lovelace', country: 'US', project: 'talent', client: 'Anthropic', manager: 'Sol Silbenberg', managerId: 'U0SOL' };
+  const valid = { name: 'Ada Lovelace', country: 'US', project: 'talent', client: 'Anthropic', manager: 'Sol Silbenberg', managerId: 'U0SOL', planKey: 'b7f1c0e5d4a39268' };
   const noEnvNoHeader = await callMint(valid, null);
   check('no bearer at all -> 401', noEnvNoHeader.statusCode === 401, noEnvNoHeader.body);
   const noEnvWithHeader = await callMint(valid, TOKEN);
@@ -129,7 +130,9 @@ async function main() {
         project: 'gtm',
         client: 'Modal Labs',
         manager: 'Kenna | Reyes',
-        managerId: 'U0KENNA|X'
+        managerId: 'U0KENNA|X',
+        // a pipe in the key must survive the packing exactly like a pipe in a name
+        planKey: 'a|béc'
       }
     }
   ];
@@ -145,6 +148,7 @@ async function main() {
     check(c.label + ': client', w.client && w.client.name === c.payload.client, { got: w.client, want: c.payload.client });
     check(c.label + ': manager', w.manager && w.manager.name === c.payload.manager, { got: w.manager, want: c.payload.manager });
     check(c.label + ': managerId', w.manager && w.manager.id === c.payload.managerId, { got: w.manager, want: c.payload.managerId });
+    check(c.label + ': planKey', w.planKey === (c.payload.planKey || ''), { got: w.planKey, want: c.payload.planKey });
   }
 
   console.log('\n[round-trip] a tampered code is rejected by welcome.js');
@@ -152,6 +156,42 @@ async function main() {
   const tampered = 'A' + mintedForTamper.body.code.slice(1);
   const tamperedBack = await callWelcome(tampered);
   check('tampered code -> 401', tamperedBack.statusCode === 401, tamperedBack.body);
+
+  // ------------------------------------------------- code format: six vs seven
+  // The packed field order IS the format. Six-field codes were minted for every
+  // hire before "My Onboarding" shipped and are still in inboxes: they must
+  // decode, and they must decode to an EMPTY plan key rather than to garbage,
+  // because /api/welcome reads an empty key as "no plan" and renders the kit
+  // without the plan block. If this pair of checks ever fails, every hire who
+  // was emailed before the deploy has a broken hub.
+  console.log('\n[format] six-field (pre-plan) and seven-field codes both decode');
+  const sevenField = await callMint(valid, TOKEN);
+  const sevenBack = await callWelcome(sevenField.body.code);
+  check('seven-field code decodes', sevenBack.statusCode === 200, sevenBack.body);
+  check('seven-field code carries the plan key', sevenBack.body.planKey === valid.planKey, sevenBack.body.planKey);
+
+  // A six-field code, packed the way the PREVIOUS deploy packed one: the same
+  // encoding, one field short. Built here rather than pasted, so it stays a
+  // real code (signature and all) as WELCOME_SECRET changes.
+  const crypto6 = require('crypto');
+  const secret6 = process.env.WELCOME_SECRET || process.env.SLACK_SIGNING_SECRET || 'carrara-onboarding-hub';
+  const packed6 = ['name', 'country', 'project', 'client', 'manager', 'managerId']
+    .map((k) => encodeURIComponent(valid[k] == null ? '' : String(valid[k]))).join('|');
+  const b64_6 = Buffer.from(packed6, 'utf8').toString('base64url');
+  const legacy = b64_6 + '.' + crypto6.createHmac('sha256', secret6).update(b64_6).digest('hex').slice(0, 10);
+  const legacyBack = await callWelcome(legacy);
+  check('six-field code still decodes', legacyBack.statusCode === 200, legacyBack.body);
+  check('six-field code names the same hire', legacyBack.body.name === valid.name, legacyBack.body.name);
+  check('six-field code has no plan key', legacyBack.body.planKey === '', legacyBack.body.planKey);
+  check('six-field code carries no plan', legacyBack.body.plan === null, legacyBack.body.plan);
+
+  // A null plan key packs as '' and round-trips as '' -- the state POps sends
+  // for a hire whose instance predates migration 0025.
+  const nullKey = await callMint(Object.assign({}, valid, { planKey: null }), TOKEN);
+  const nullKeyBack = await callWelcome(nullKey.body.code);
+  check('a null plan key mints', nullKey.statusCode === 200, nullKey.body);
+  check('a null plan key decodes to empty', nullKeyBack.body.planKey === '', nullKeyBack.body.planKey);
+  check('a null plan key carries no plan', nullKeyBack.body.plan === null, nullKeyBack.body.plan);
 
   // --------------------------------------------------------------- warnings
   console.log('\n[warnings] unknown values are reported, not swallowed');
@@ -190,7 +230,7 @@ async function main() {
   // throw used to reject the handler's promise and surface as a bare 500.
   console.log('\n[bad text] a lone surrogate is a clean 400, not a crash');
   const LONE = 'Ada\uD800';
-  for (const field of ['name', 'country', 'project', 'client', 'manager', 'managerId']) {
+  for (const field of ['name', 'country', 'project', 'client', 'manager', 'managerId', 'planKey']) {
     const r = await callMintSafe(Object.assign({}, valid, { [field]: LONE }), TOKEN);
     check(field + ': lone surrogate did not throw', !r.threw, r.threw && String(r.threw));
     if (r.threw) continue;
@@ -216,7 +256,7 @@ async function main() {
     ['boolean', true]
   ];
   for (const [kind, value] of badValues) {
-    for (const field of ['name', 'country', 'project', 'client', 'manager', 'managerId']) {
+    for (const field of ['name', 'country', 'project', 'client', 'manager', 'managerId', 'planKey']) {
       const r = await callMintSafe(Object.assign({}, valid, { [field]: value }), TOKEN);
       check(field + ' as ' + kind + ' -> 400', !r.threw && r.res.statusCode === 400, r.threw ? String(r.threw) : r.res.body);
       if (!r.threw) check(field + ' as ' + kind + ': no code minted', !bodyOf(r).code, r.res.body);

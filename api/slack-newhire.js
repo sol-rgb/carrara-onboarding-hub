@@ -36,6 +36,12 @@ function welcomeSecret() {
   return process.env.WELCOME_SECRET || process.env.SLACK_SIGNING_SECRET || 'carrara-onboarding-hub';
 }
 
+// Deliberately still SIX fields. api/mint.js packs a seventh (planKey, format
+// v7) for hires POps enables a hub for; a Slack /new-hire has no such key, so
+// this path keeps minting v6 codes and api/welcome.js decodes them with an
+// empty planKey — a full kit, without the 30/60/90 plan block. If you extend
+// this array, extend api/mint.js's FIELDS and welcome.js's decode in the SAME
+// commit, and re-run scripts/verify-mint.js (it covers both lengths).
 function makeCode(fields) {
   const packed = [fields.name, fields.country, fields.project, fields.client, fields.manager, fields.managerId]
     .map(encodeURIComponent).join('|');

@@ -28,9 +28,11 @@ With the key set (and the folder shared as "anyone with the link can view"), `/a
 
 The flow: the hiring manager types `/new-hire` in Slack. A modal asks for the new joiner's name, country (US / Argentina / Australia / other), project type (talent / finance / go-to-market / other), and first client (picked from clients.json). Submitting generates a signed access code, posts it with the details to #new-hires, and shows it to the manager in the modal. The manager sends the code to the new joiner.
 
-The new joiner opens the hub and pastes the code into the welcome kit popup (sticky, bottom right). The popup unlocks a kit personalized to them: their hiring manager, who to sync with in week one (the client lead from clients.json plus team defaults), their first client with links, how their team works, and country-specific onboarding notes. The kit persists in their browser via localStorage.
+The new joiner opens the hub and pastes the code into the welcome kit popup (sticky, bottom right). The popup unlocks a kit personalized to them: their hiring manager, who to sync with in week one (the manager's own list when POps has one, otherwise the client lead from clients.json plus team defaults), their first client with links, and how their team works. The kit persists in their browser via localStorage.
 
-Codes are stateless: the survey answers travel inside the code, signed with `WELCOME_SECRET`, so there is no database. `/api/welcome` verifies and unpacks them. All kit content is editable in `welcome.json` (teams, countries, links); client facts come from `clients.json`.
+Payroll, invoicing and tax specifics are deliberately **not** here — the day-one comms POps sends carry them per employment type, and two sources of truth on someone's pay is one too many. The kit shows a single generic pointer instead (`payNote` in `welcome.json`).
+
+Codes are stateless: the survey answers travel inside the code, signed with `WELCOME_SECRET`, so there is no database. `/api/welcome` verifies and unpacks them. All kit content is editable in `welcome.json` (teams, country labels, links); client facts come from `clients.json`.
 
 One-time Slack app setup:
 
@@ -49,7 +51,9 @@ One-time Slack app setup:
 
 - `POPS_HUB_TOKEN`: a shared secret (any long random string), set in Vercel env vars here and in POps. Requests authenticate with an `Authorization: Bearer <token>` header.
 
-Request body: `{ name, country, project, client, manager, managerId }` — the same survey answers the Slack modal collects, plus the manager's Slack user id. `country` is one of `US` / `AR` / `AU` / `OTHER`, `project` one of `talent` / `finance` / `gtm` / `other`, `client` an exact name from `clients.json`. `name` and `manager` are required; everything else is optional. Every value must be a string or null — a number or object is refused with a 400 rather than coerced into the code.
+Request body: `{ name, country, project, client, manager, managerId, planKey }` — the same survey answers the Slack modal collects, plus the manager's Slack user id. `country` is one of `US` / `AR` / `AU` / `OTHER`, `project` one of `talent` / `finance` / `gtm` / `other`, `client` an exact name from `clients.json`. `name` and `manager` are required; everything else is optional. Every value must be a string or null — a number or object is refused with a 400 rather than coerced into the code.
+
+`planKey` is the opaque token POps mints per hub enable. It is packed into the code as its seventh field and handed back to POps at view time to fetch the hire's 30/60/90 plan. Null or absent is legal: the kit renders without the plan block.
 
 Response: `{ url, code, warnings }`.
 
@@ -63,7 +67,30 @@ Response: `{ url, code, warnings }`.
 
 `warnings` reports an unrecognized `project`, `country` or `client` instead of failing, because those values fail soft downstream: an unknown project quietly yields the generic kit rather than an error. The client check reads the bundled `clients.json`, so a client that exists only in Notion (served live by `/api/clients`) warns even though it is real — acceptable for now; add it to `clients.json` or ignore that warning.
 
-After any change to the code format, on either side, run `WELCOME_SECRET=test-secret node scripts/verify-mint.js`. It mints a code, decodes it with `api/welcome.js`'s own logic, checks every field survives, and exercises the auth gate. It prints `round-trip OK` and exits non-zero on any mismatch.
+After any change to the code format, on either side, run `WELCOME_SECRET=test-secret node scripts/verify-mint.js` **and** `WELCOME_SECRET=test-secret node scripts/verify-my-onboarding.js`. The first mints a code and decodes it with `api/welcome.js`'s own logic, six-field and seven-field alike, and exercises the auth gate. The second covers everything the plan key unlocks: the POps call, the vendored Markdown renderer, the section's reveal state machine and its rendering. Both print `... OK` and exit non-zero on any mismatch.
+
+### The hire's plan from POps (`/api/hub-plan`)
+
+The welcome kit's "My Onboarding" section shows what the hiring manager wrote in
+POps: an intro note, the first client, who to sync with in week one, and a
+30/60/90 plan. That text is too long to travel inside an access code, so
+`/api/welcome` fetches it server-side, once per view, from POps.
+
+- `POPS_PLAN_TOKEN`: a shared secret, its own — **not** `POPS_HUB_TOKEN`, so the
+  two directions rotate independently. Set it here and in POps' Vercel project.
+- `POPS_PLAN_URL`: optional, defaults to `https://carrara-pops.work/api/hub-plan`.
+
+**Dormant by default.** With `POPS_PLAN_TOKEN` unset, `/api/welcome` makes no
+call at all, and every kit renders exactly as it does today.
+
+Nothing about this can break a kit. A missing plan key, an unset secret, a
+retired key (POps rotates it on every re-enable), a 404, an outage or a
+malformed body all end the same way: the kit renders without the plan block.
+
+The 30/60/90 bodies are Markdown in POps' comms subset. `markdown.js` is a
+**vendored copy of POps' `src/lib/comms/markdown.ts`** — escape-first, and the
+only HTML-producing path here fed by text typed in another app. Do not edit it;
+re-copy it and re-run the verifier.
 
 ## Updating snapshots
 

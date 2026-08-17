@@ -1,5 +1,5 @@
 {
-  "_readme": "Content for the personalized welcome kit popup. /api/welcome merges this with clients.json based on the access code. Edit freely: teams keys are finance/talent/gtm/other, countries keys are US/AR/AU/OTHER.",
+  "_readme": "Content for the personalized welcome kit popup. /api/welcome merges this with clients.json based on the access code. Edit freely: teams keys are finance/talent/gtm/other, countries keys are US/AR/AU/OTHER. Country entries are labels only — payroll, invoicing and tax specifics live in the day-one comms POps sends, not here, so there is one source of truth on someone's pay. payNote is the single generic pointer the kit shows instead.",
   "teams": {
     "talent": {
       "label": "Talent",
@@ -53,40 +53,12 @@
     }
   },
   "countries": {
-    "US": {
-      "label": "United States",
-      "notes": [
-        "Payroll: Deel if you are a full-time employee, Bill.com if you are a US contractor. The invite comes to your email; ping Eric if it does not.",
-        "Send any tax paperwork (W-9 or equivalent) back the same week so your first payment is not delayed.",
-        "Holidays and time off follow the policy in the Time off section of this hub; post planned time off in #g-ooo."
-      ]
-    },
-    "AR": {
-      "label": "Argentina",
-      "notes": [
-        "Payroll: international contractors run through Ramp. You will get an invite; invoice monthly in USD.",
-        "Ping Eric on Slack for the invoicing format and payment schedule before your first month closes.",
-        "Most client work runs on US hours: agree your overlap window with your manager in week one.",
-        "Post planned time off in #g-ooo, including local holidays you plan to take."
-      ]
-    },
-    "AU": {
-      "label": "Australia",
-      "notes": [
-        "Payroll: international contractors run through Ramp. You will get an invite; invoice monthly in USD.",
-        "The timezone gap with the US is real: agree a standing overlap window with your manager and lean on async (Loom, Slack) for the rest.",
-        "Post planned time off in #g-ooo, including local holidays you plan to take."
-      ]
-    },
-    "OTHER": {
-      "label": "Your country",
-      "notes": [
-        "Payroll: international contractors run through Ramp, full-time employees through Deel. Eric will confirm which applies to you.",
-        "Agree your overlap window with your manager in week one if your client runs on US hours.",
-        "Post planned time off in #g-ooo."
-      ]
-    }
+    "US": { "label": "United States" },
+    "AR": { "label": "Argentina" },
+    "AU": { "label": "Australia" },
+    "OTHER": { "label": "Your country" }
   },
+  "payNote": "Questions about pay or invoicing? Your day-one email covers it, or ping People Ops.",
   "commonLinks": [
     { "label": "Your first week, step by step", "href": "#/week" },
     { "label": "The onboarding checklist", "href": "#/checklist" },
