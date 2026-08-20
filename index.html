@@ -86,31 +86,6 @@
     </div>
   </section>
 
-  <!-- 03 first week -->
-  <section class="view" id="view-week">
-    <h1 class="display">Your first week, step by step.</h1>
-    <div class="timeline">
-      <div class="t-step" tabindex="0"><h3>Get set up</h3><p>Slack, Notion, Google, payroll, Ashby. Email signature and Slack profile.</p></div>
-      <div class="t-step" tabindex="0"><h3>Install the Quarry</h3><p>Our AI harness: shared tools and conventions so all Carrarians do AI the same way. <a class="textlink" href="#" data-page="quarry">Quarry setup guide</a></p></div>
-      <div class="t-step" tabindex="0"><h3>Soak up the onboarding hub</h3><p>Read every section of this hub, starting with <a class="textlink" href="#/who">Who we are</a>.</p></div>
-      <div class="t-step" tabindex="0"><h3>Finalize your 30-day plan</h3><p>Review it, then align live with your manager.</p></div>
-      <div class="t-step" tabindex="0"><h3>Soak up org context</h3><p>Shadow meetings, ask questions, build context on clients and direction.</p></div>
-    </div>
-    <div class="brief-card">
-      <img src="/assets/logo/carrara-iso-ember.svg" alt="">
-      <div>
-        <div class="t">Your week one brief</div>
-        <div class="d" id="brief-desc">What you'll be working on, your first client, and who to meet. Your manager sets this up before you arrive: enter your access code in the welcome kit at the bottom right to see yours.</div>
-      </div>
-    </div>
-    <h2 class="sub">Beyond week one</h2>
-    <div class="ninety">
-      <div class="n-card"><div class="d30">30</div><div class="f">Onboarding and learning</div><div class="feel">Feel: overwhelmed, enthusiastic, welcomed</div></div>
-      <div class="n-card"><div class="d30">60</div><div class="f">Increased responsibility</div><div class="feel">Feel: valued, supported, included</div></div>
-      <div class="n-card"><div class="d30">90</div><div class="f">Independently operating</div><div class="feel">Feel: integrated, autonomous, growing</div></div>
-    </div>
-    <p class="body-copy muted" style="font-size:13px">The specifics of your 30, 60 and 90 day plan come from your manager in your day one 1:1.</p>
-  </section>
 
   <!-- 05 team -->
   <section class="view" id="view-team">
@@ -196,6 +171,11 @@
   <section class="view" id="view-clients">
     <h1 class="display">Who we're working with right now. <span class="internal-tag">internal only</span></h1>
     <div class="client-grid" id="client-grid"></div>
+    <div id="archived-wrap" hidden>
+      <h2 class="sub">Companies we've worked with</h2>
+      <p class="body-copy muted" style="font-size:13px">Past and paused engagements, <span id="archived-count"></span>. Useful context when a name comes up in a call.</p>
+      <div class="client-grid" id="client-grid-archived"></div>
+    </div>
     <p class="team-note" id="client-note"></p>
   </section>
 

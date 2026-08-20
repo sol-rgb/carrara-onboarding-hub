@@ -5,7 +5,6 @@
   var SECTIONS = [
     { id: 'start',     label: 'Start here' },
     { id: 'who',       label: 'Who we are' },
-    { id: 'week',      label: 'Your first week' },
     { id: 'team',      label: 'The team' },
     { id: 'slack',     label: 'Slack' },
     { id: 'checklist', label: 'Checklist' },
@@ -62,7 +61,7 @@
       { t: 'Understand your benefits', d: 'What you are enrolled in, what you need to elect, and by when. Ask Eric on Slack if anything is unclear or if you are a contractor and not sure what applies to you.' }
     ]},
     { g: 'week two', cls: '', items: [
-      { t: 'Meet the people on your list', d: 'Your manager picks who you should meet in your first two weeks: your client lead, the people on your account, and a couple of others. Enter your access code in the welcome kit (bottom right) to see your names, then book the 1:1s.', links: [{ t: 'Your first week', k: '#/week' }, { t: 'The team wall', k: '#/team' }] },
+      { t: 'Meet the people on your list', d: 'Your manager picks who you should meet in your first two weeks: your client lead, the people on your account, and a couple of others. Enter your access code in the welcome kit (bottom right) to see your names, then book the 1:1s.', links: [{ t: 'The team wall', k: '#/team' }] },
       { t: 'Read the company operating principles', d: 'The Ways of Working page in Notion: what the four principles look like in practice.', links: [{ t: 'Ways of Working', k: 'waysOfWorking' }] },
       { t: 'Read the company context docs', d: 'Company history, direction, and how we engage clients.', links: [{ t: 'Company context', k: 'companyContext' }, { t: 'Home Base', k: 'notionHomeBase' }] },
       { t: 'Review the Carrara Brand Vault', d: 'Brand story, messaging and visual identity. Everything you make should feel like Carrara.', links: [{ t: 'Brand Vault', k: 'brandVault' }] },
@@ -538,8 +537,20 @@
       fetch('/codex.json').then(function (r) { return r.json(); }).then(function (d) { codexData = d; }).catch(function () {});
     }
     var grid = $('#client-grid');
+    var archGrid = $('#client-grid-archived');
     clientData = data.clients || [];
-    clientData.forEach(function (c) {
+    /* tags are the business lines from the Client Codex, not the per-project
+       workstream names. Kenna's call: a new joiner should see "Marketing/Growth",
+       not "Paid Media". Fall back to the workstreams only when Notion has nothing. */
+    function tagsFor(c) {
+      var cx = (codexData.clients || {})[c.name] || {};
+      return (cx.projectTypes && cx.projectTypes.length) ? cx.projectTypes : (c.work || []);
+    }
+    function isActive(c) {
+      var cx = (codexData.clients || {})[c.name] || {};
+      return cx.status !== 'Paused';
+    }
+    function row(c) {
       var d = document.createElement('div');
       d.className = 'client-row';
       d.setAttribute('role', 'button');
@@ -547,18 +558,29 @@
       var logo = c.domain
         ? '<img src="' + favicon(c.domain, 64) + '" alt="" loading="lazy" onerror="this.parentNode.textContent=\'' + esc(c.name.charAt(0)) + '\'">'
         : esc(c.name.charAt(0));
+      var tags = tagsFor(c);
       d.innerHTML = '<div class="clogo">' + logo + '</div><div><div class="cn">' + esc(c.name) + '</div>'
         + (c.lead ? '<div class="lead">lead: ' + esc(c.lead) + '</div>' : '')
         + (c.description ? '<div class="cdesc">' + esc(c.description) + '</div>' : '')
-        + (c.work && c.work.length ? '<div class="client-tags">' + c.work.map(function (w) { return '<span>' + esc(w) + '</span>'; }).join('') + '</div>' : '')
+        + (tags.length ? '<div class="client-tags">' + tags.map(function (w) { return '<span>' + esc(w) + '</span>'; }).join('') + '</div>' : '')
         + '</div>';
       d.addEventListener('click', function () { location.hash = '#/client/' + clientSlug(c.name); });
       d.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); location.hash = '#/client/' + clientSlug(c.name); } });
-      grid.appendChild(d);
-    });
+      return d;
+    }
+    var current = clientData.filter(isActive);
+    var archived = clientData.filter(function (c) { return !isActive(c); });
+    current.forEach(function (c) { grid.appendChild(row(c)); });
+    if (archGrid) {
+      archived.forEach(function (c) { archGrid.appendChild(row(c)); });
+      var wrap = $('#archived-wrap');
+      if (wrap) wrap.hidden = archived.length === 0;
+      var cnt = $('#archived-count');
+      if (cnt) cnt.textContent = archived.length + (archived.length === 1 ? ' company' : ' companies');
+    }
     $('#client-note').textContent = (data.source === 'notion'
       ? 'Live from the Client Codex in Notion, refreshed hourly. Last update: '
-      : 'Sourced from the Client Codex and the Quarry Brain. Last update: ')
+      : 'Sourced from the Client Codex. Last update: ')
       + (data.updated || '') + '. Click a client for its full page.';
     applyKitToHub();
     /* deep links to a client page arriving before data loaded */
@@ -770,7 +792,7 @@
         html += '<div class="wk-sec"><div class="wk-lbl">[your first client]</div>'
           + '<p><b style="color:var(--ink);font-weight:500">' + esc(d.client.name) + '</b>'
           + (d.client.lead ? ', led by ' + esc(d.client.lead.replace(/\.+$/, '')) : '') + '.</p>'
-          + (d.client.work && d.client.work.length ? '<div class="wk-tags">' + d.client.work.map(function (w) { return '<span>' + esc(w) + '</span>'; }).join('') + '</div>' : '')
+          + (d.client.tags && d.client.tags.length ? '<div class="wk-tags">' + d.client.tags.map(function (w) { return '<span>' + esc(w) + '</span>'; }).join('') + '</div>' : '')
           + (d.client.about ? '<p>' + esc(d.client.about) + '</p>' : '')
           + (d.client.engagement && d.client.engagement.length
               ? '<div class="wk-lbl" style="margin-top:12px">[what we do for them]</div><ul>'

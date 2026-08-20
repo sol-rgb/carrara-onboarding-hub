@@ -7,7 +7,7 @@
 //
 // Merge rules: Notion owns status, project types, staffing and the quick pitch;
 // codex.json keeps the narrative (about, engagement, overview, background, docs);
-// clients.json (Quarry Brain) keeps domain, lead and active workstreams.
+// clients.json keeps domain, lead and active workstreams.
 // New Active clients in Notion appear automatically; Paused Notion rows only
 // show if the brain also tracks them, so the grid doesn't fill with alumni.
 
@@ -22,6 +22,11 @@ const ALIASES = {
   'Fundamental': 'Fundamental Technologies',
   'Amazon/Bluush': 'Amazon'
 };
+
+// Deliberately hidden from the hub. Roger is a live consumer app whose landing
+// page reads as a dating product, which is not the first thing a new joiner
+// should meet. Excluded here rather than in the data so a refresh can't undo it.
+const EXCLUDE = new Set(['Roger']);
 
 function snapshots() {
   return {
@@ -70,8 +75,10 @@ module.exports = async (req, res) => {
   res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=86400');
 
   const snap = snapshots();
-  const brainClients = snap.clients.clients || [];
-  const enrich = snap.codex.clients || {};
+  const brainClients = (snap.clients.clients || []).filter((c) => !EXCLUDE.has(c.name));
+  const enrich = Object.fromEntries(
+    Object.entries(snap.codex.clients || {}).filter(([name]) => !EXCLUDE.has(name))
+  );
 
   if (!token) {
     return res.status(200).json({
@@ -124,7 +131,7 @@ module.exports = async (req, res) => {
 
     const clients = [];
     const codex = {};
-    Array.from(nameSet).sort((a, b) => a.localeCompare(b)).forEach((name) => {
+    Array.from(nameSet).filter((n) => !EXCLUDE.has(n)).sort((a, b) => a.localeCompare(b)).forEach((name) => {
       const nx = byName[name] || {};
       const br = brainByName[name] || {};
       const en = enrich[name] || {};

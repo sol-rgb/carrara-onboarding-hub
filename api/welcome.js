@@ -107,6 +107,9 @@ module.exports = async (req, res) => {
       domain: clientInfo.domain || '',
       lead: clientInfo.lead || '',
       work: clientInfo.work || [],
+      // business lines from the codex, so the kit shows the same tags as the clients page
+      tags: (clientCodex.projectTypes && clientCodex.projectTypes.length)
+        ? clientCodex.projectTypes : (clientInfo.work || []),
       // the narrative lives in codex.json, which is what the client page already renders
       about: clientCodex.about || clientInfo.description || '',
       engagement: clientCodex.engagement || []

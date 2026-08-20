@@ -333,7 +333,6 @@
   },
 
   "commonLinks": [
-    { "label": "Your first week, step by step", "href": "#/week" },
     { "label": "The onboarding checklist", "href": "#/checklist" },
     { "label": "Slack channels and how we use them", "href": "#/slack" }
   ]
