@@ -326,14 +326,30 @@
   }
   function openMemberModal(m) {
     var p = profileData[m.name];
-    var role = cleanTitle(m.title);
+    var pv = pavilion[m.name] || {};
+    var role = pv.role || cleanTitle(m.title);
     var av = m.avatar ? '<img src="' + m.avatar + '" alt="">' : initials(m.name);
     var html = '<div class="m-eyebrow">[the team]</div>'
       + '<div class="member-head"><div class="avatar big">' + av + '</div><div>'
       + '<h3>' + esc(m.name) + '</h3>'
       + (role ? '<div class="rl">' + esc(role) + (m.extra ? ' · ' + esc(m.extra) : '') + '</div>' : (m.extra ? '<div class="rl">' + esc(m.extra) + '</div>' : ''))
       + '</div></div><div class="pg">';
-    if (p && p.summary) html += '<p>' + esc(p.summary) + '</p>';
+    if (pv.location) html += '<div class="mm-loc">' + esc(pv.location) + (pv.teams && pv.teams.length ? ' · ' + esc(pv.teams.join(', ')) : '') + '</div>';
+    /* their own words first, then the researched summary as a fallback */
+    if (pv.about) html += '<p>' + esc(pv.about) + '</p>';
+    else if (p && p.summary) html += '<p>' + esc(p.summary) + '</p>';
+    if (pv.clients && pv.clients.length) {
+      html += '<div class="wk-sec"><div class="wk-lbl">[clients]</div><div class="wk-tags">'
+        + pv.clients.map(function (c) { return '<span>' + esc(c) + '</span>'; }).join('') + '</div></div>';
+    }
+    /* People Pavilion answers, question above each one so the card reads on its own */
+    if (pv.answers && pv.answers.length) {
+      html += '<div class="wk-sec"><div class="wk-lbl">[in their own words]</div>'
+        + pv.answers.map(function (a) {
+            return '<div class="qa"><div class="q">' + esc(a.q) + '</div>'
+              + '<ul>' + (a.a || []).map(function (line) { return '<li>' + esc(line) + '</li>'; }).join('') + '</ul></div>';
+          }).join('') + '</div>';
+    }
     if (p && p.prior && p.prior.length) {
       html += '<div class="wk-sec"><div class="wk-lbl">[before carrara]</div><ul>'
         + p.prior.map(function (x) {
@@ -342,10 +358,13 @@
     }
     var linksH = [];
     if (m.email) linksH.push('<a href="mailto:' + esc(m.email) + '">' + esc(m.email) + '</a>');
-    if (p && p.linkedin) linksH.push('<a href="' + esc(p.linkedin) + '" target="_blank" rel="noopener">LinkedIn ↗</a>');
+    var li = pv.linkedin || (p && p.linkedin);
+    if (li) linksH.push('<a href="' + esc(/^https?:/.test(li) ? li : 'https://' + li) + '" target="_blank" rel="noopener">LinkedIn ↗</a>');
     if (linksH.length) html += '<div class="wk-sec"><div class="wk-lbl">[reach them]</div><div class="wk-links">' + linksH.join('') + '</div></div>';
     html += '</div>';
-    if (!p) html += '<p class="pg-note">No enriched profile yet. Share a LinkedIn link to add one.</p>';
+    if (!pv.answers || !pv.answers.length) {
+      html += '<p class="pg-note">They have not filled in their People Pavilion answers yet.</p>';
+    }
     openModal(html);
   }
   function renderTeam(filter) {
@@ -357,7 +376,10 @@
       list.unshift({ name: myProfile.name, title: myProfile.work, email: '', avatar: '', isNew: true, extra: myProfile.location });
     }
     var shown = list.filter(function (m) {
-      return !q || m.name.toLowerCase().indexOf(q) >= 0 || (m.title || '').toLowerCase().indexOf(q) >= 0 || (m.email || '').toLowerCase().indexOf(q) >= 0;
+      var pv = pavilion[m.name] || {};
+      var hay = [m.name, m.title || '', m.email || '', pv.role || '', pv.location || '',
+        (pv.teams || []).join(' '), (pv.clients || []).join(' ')].join(' ').toLowerCase();
+      return !q || hay.indexOf(q) >= 0;
     });
     shown.forEach(function (m) {
       var d = document.createElement('div');
@@ -365,10 +387,19 @@
       d.setAttribute('role', 'button');
       d.setAttribute('tabindex', '0');
       var av = m.avatar ? '<img src="' + m.avatar + '" alt="" loading="lazy">' : initials(m.name);
-      var p = profileData[m.name];
+      var pv = pavilion[m.name] || {};
+      var role = pv.role || cleanTitle(m.title);
+      var logos = (pv.clients || []).slice(0, 5).map(function (cn) {
+        var c = clientData.filter(function (x) { return x.name === cn; })[0];
+        return c && c.domain
+          ? '<img class="cl-dot" src="' + favicon(c.domain, 32) + '" alt="' + esc(cn) + '" title="' + esc(cn) + '" loading="lazy">'
+          : '<span class="cl-dot txt" title="' + esc(cn) + '">' + esc(cn.charAt(0)) + '</span>';
+      }).join('');
       d.innerHTML = '<div class="avatar">' + av + '</div><div class="info">'
         + '<div class="nm">' + esc(m.name) + (m.isNew ? ' <span class="newtag">[new]</span>' : '') + '</div>'
-        + (p && p.linkedin ? '<div class="em"><a href="' + esc(p.linkedin) + '" target="_blank" rel="noopener">LinkedIn ↗</a></div>' : '')
+        + (role ? '<div class="rl-sm">' + esc(role) + '</div>' : '')
+        + (pv.location ? '<div class="loc-sm">' + esc(pv.location) + '</div>' : '')
+        + (logos ? '<div class="cl-row">' + logos + '</div>' : '')
         + '</div>';
       d.addEventListener('click', function (e) {
         if (e.target.closest('a')) return;
@@ -383,14 +414,19 @@
   }
   $('#team-search').addEventListener('input', function (e) { renderTeam(e.target.value); });
   var profileData = {};
+  var pavilion = {};   /* name -> Notion Team Directory entry (role, location, clients, answers) */
   Promise.all([
     (window.__TEAM__ ? Promise.resolve(window.__TEAM__) : fetch('/api/team').then(function (r) { if (!r.ok) throw 0; return r.json(); }))
       .catch(function () { return fetch('/team.json').then(function (r) { return r.json(); }); }),
-    fetch('/profiles.json').then(function (r) { return r.json(); }).catch(function () { return { profiles: {} }; })
+    fetch('/profiles.json').then(function (r) { return r.json(); }).catch(function () { return { profiles: {} }; }),
+    fetch('/people.json').then(function (r) { return r.json(); }).catch(function () { return { people: [] }; })
   ])
     .then(function (both) {
       var data = both[0];
       profileData = (both[1] && both[1].profiles) || {};
+      /* the Notion directory is the richer source: role, location, clients and the
+         People Pavilion answers. Slack still owns the photo and who is on the roster. */
+      ((both[2] && both[2].people) || []).forEach(function (x) { pavilion[x.name] = x; });
       teamData = data.members || [];
       renderTeam('');
       /* headcount is never hardcoded: the hero stat and the "who we are" fact
@@ -542,9 +578,23 @@
     /* tags are the business lines from the Client Codex, not the per-project
        workstream names. Kenna's call: a new joiner should see "Marketing/Growth",
        not "Paid Media". Fall back to the workstreams only when Notion has nothing. */
+    /* the eight lines the business actually sells. Anything else (per-project
+       workstream names like "Careers Page") is dropped rather than shown, and
+       casing is normalized so "Embedded recruiting" and "Embedded Recruiting"
+       don't render as two different tags. */
+    var LINES = ['Embedded Recruiting', 'Talent Platform', 'Executive Search', 'Managed Services',
+      'Strategic Finance', 'Marketing/Growth', 'BizOps', 'People', 'Finance'];
+    var LINE_BY_KEY = {};
+    LINES.forEach(function (l) { LINE_BY_KEY[l.toLowerCase()] = l; });
     function tagsFor(c) {
       var cx = (codexData.clients || {})[c.name] || {};
-      return (cx.projectTypes && cx.projectTypes.length) ? cx.projectTypes : (c.work || []);
+      var raw = (cx.projectTypes && cx.projectTypes.length) ? cx.projectTypes : (c.work || []);
+      var out = [];
+      raw.forEach(function (t) {
+        var canon = LINE_BY_KEY[String(t).toLowerCase()];
+        if (canon && out.indexOf(canon) === -1) out.push(canon);
+      });
+      return out;
     }
     function isActive(c) {
       var cx = (codexData.clients || {})[c.name] || {};

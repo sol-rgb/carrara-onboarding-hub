@@ -9,6 +9,19 @@ function welcomeSecret() {
   return process.env.WELCOME_SECRET || process.env.SLACK_SIGNING_SECRET || 'carrara-onboarding-hub';
 }
 
+// the eight business lines; anything else is a per-project workstream name and is dropped
+const LINES = ['Embedded Recruiting', 'Talent Platform', 'Executive Search', 'Managed Services',
+  'Strategic Finance', 'Marketing/Growth', 'BizOps', 'People', 'Finance'];
+const LINE_BY_KEY = Object.fromEntries(LINES.map((l) => [l.toLowerCase(), l]));
+const canonLines = (raw) => {
+  const out = [];
+  (raw || []).forEach((t) => {
+    const c = LINE_BY_KEY[String(t).toLowerCase()];
+    if (c && !out.includes(c)) out.push(c);
+  });
+  return out;
+};
+
 const COUNTRY_LABELS = { US: 'United States', AR: 'Argentina', AU: 'Australia', OTHER: 'your country' };
 
 function decode(code) {
@@ -108,8 +121,9 @@ module.exports = async (req, res) => {
       lead: clientInfo.lead || '',
       work: clientInfo.work || [],
       // business lines from the codex, so the kit shows the same tags as the clients page
-      tags: (clientCodex.projectTypes && clientCodex.projectTypes.length)
-        ? clientCodex.projectTypes : (clientInfo.work || []),
+      tags: canonLines(
+        (clientCodex.projectTypes && clientCodex.projectTypes.length)
+          ? clientCodex.projectTypes : (clientInfo.work || [])),
       // the narrative lives in codex.json, which is what the client page already renders
       about: clientCodex.about || clientInfo.description || '',
       engagement: clientCodex.engagement || []

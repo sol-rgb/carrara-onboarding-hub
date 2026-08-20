@@ -1,0 +1,773 @@
+{
+ "source": "notion-team-directory",
+ "updated": "2026-08-20",
+ "people": [
+  {
+   "name": "Alicia Donenfeld",
+   "email": "alicia@carrara.is",
+   "location": "New York",
+   "role": "Tech talent strategy & execution. Client facing & internal build out",
+   "about": "Cannot code. Loves talking to engineers.",
+   "linkedin": "https://www.linkedin.com/in/alicia-glick-donenfeld-8647b1a2/",
+   "teams": [
+    "Talent Acquisition",
+    "Internal Operations"
+   ],
+   "clients": [
+    "Manifest",
+    "Runlayer",
+    "Rilla",
+    "Profound",
+    "Forge"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Andrew Call",
+   "email": "andrew.call@carrara.is",
+   "location": "Belmont",
+   "role": "Talent Partner",
+   "about": "",
+   "linkedin": "https://www.linkedin.com/in/andrewcall/",
+   "teams": [
+    "Talent Acquisition"
+   ],
+   "clients": [
+    "a16z"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Ania Sielski",
+   "email": "ania@carrara.is",
+   "location": "Denver",
+   "role": "Embedded talent acquisition and strategy, primarily technical",
+   "about": "",
+   "linkedin": "https://www.linkedin.com/in/ania-sielski/",
+   "teams": [
+    "Talent Acquisition"
+   ],
+   "clients": [
+    "Owner",
+    "Grindr",
+    "Modal Labs",
+    "Luminai"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Anna Jones",
+   "email": "anna@carrara.is",
+   "location": "New York",
+   "role": "Talent Operations",
+   "about": "",
+   "linkedin": "https://www.linkedin.com/in/anna-jones-021b681a1",
+   "teams": [
+    "Talent Acquisition",
+    "Internal Operations"
+   ],
+   "clients": [
+    "Luminai"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Arthur Matuszewski",
+   "email": "arthur@carrara.is",
+   "location": "New York",
+   "role": "Making things go, all over",
+   "about": "",
+   "linkedin": "https://www.linkedin.com/in/arthurmatuszewski/",
+   "teams": [
+    "Internal Operations",
+    "Managed Services / BizOps",
+    "Talent Acquisition"
+   ],
+   "clients": [
+    "Upstart",
+    "Valor",
+    "Better",
+    "Grindr"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Austin Kane",
+   "email": "austin@carrara.is",
+   "location": "New York",
+   "role": "Operational support across managed services, talent management, and talent acquisition",
+   "about": "",
+   "linkedin": "https://www.linkedin.com/in/austin-p-kane/",
+   "teams": [
+    "Managed Services / BizOps",
+    "Talent Acquisition",
+    "Internal Operations"
+   ],
+   "clients": [],
+   "answers": []
+  },
+  {
+   "name": "Ben Munns",
+   "email": "ben@carrara.is",
+   "location": "Sydney",
+   "role": "Helping grow BizOps and BizDev!",
+   "about": "Before Carrara, I was a consultant at Bain, where I mostly worked on tech, growth, private equity, and performance improvement projects. I've been lucky to live and work in Sydney, San Francisco, and Dublin. Outside of work, you'll usually find me in the ocean, out for a run, reading, or playing with new tech.",
+   "linkedin": "https://www.linkedin.com/in/ben-munns/",
+   "teams": [
+    "Strategic Finance",
+    "Managed Services / BizOps",
+    "Internal Operations"
+   ],
+   "clients": [
+    "a16z",
+    "Alpha School"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Beth Werkstell",
+   "email": "beth@carrara.is",
+   "location": "New York",
+   "role": "Embedded talent acquisition and strategy",
+   "about": "",
+   "linkedin": "https://www.linkedin.com/in/beth-werkstell-0162a85/",
+   "teams": [
+    "Talent Acquisition"
+   ],
+   "clients": [
+    "Hinge"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Brandon Taleisnik",
+   "email": "brandon@carrara.is",
+   "location": "Salt Lake City",
+   "role": "Supporting on strategy and operational infrastructure for scaling the Talent org, plus internal culture and comms",
+   "about": "Most recently spent 4.5 years as employee #1 at On Deck as VP of Operations. Before that a bit of time at Delta and SpaceX, and school at U of Michigan. Originally a Californian, recently moved to Utah for the outdoors and bought a fixer-upper that consumes all my remaining time and money.",
+   "linkedin": "https://www.linkedin.com/in/brandon-taleisnik/",
+   "teams": [
+    "Internal Operations",
+    "Talent Acquisition",
+    "Managed Services / BizOps"
+   ],
+   "clients": [
+    "Atlan",
+    "January",
+    "Manifest",
+    "Owner",
+    "Netic",
+    "a16z",
+    "Runlayer",
+    "Forus",
+    "Anthropic"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Bryan Gunawan",
+   "email": "",
+   "location": "San Francisco",
+   "role": "Problem solver",
+   "about": "",
+   "linkedin": "",
+   "teams": [
+    "Managed Services / BizOps",
+    "Internal Operations"
+   ],
+   "clients": [
+    "a16z",
+    "Hertz",
+    "Basis"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Catherine Ardila",
+   "email": "",
+   "location": "New York",
+   "role": "Embedded services",
+   "about": "First talent hire at an early, growth stage startup in SF. Prior to that, worked at Endeavor. Fun fact: I'm one of the hires Alicia sneaked from a client.",
+   "linkedin": "",
+   "teams": [
+    "Managed Services / BizOps",
+    "Talent Acquisition"
+   ],
+   "clients": [],
+   "answers": []
+  },
+  {
+   "name": "Chiara Libertini",
+   "email": "",
+   "location": "Argentina",
+   "role": "",
+   "about": "",
+   "linkedin": "",
+   "teams": [
+    "Managed Services / BizOps"
+   ],
+   "clients": [],
+   "answers": []
+  },
+  {
+   "name": "Chris Hubli",
+   "email": "chris.h@carrara.is",
+   "location": "New York",
+   "role": "Former seller turned recruiter",
+   "about": "Aries Sun, Sagittarius Moon, Pisces Rising. IYKYK, and Queen of Yap City.",
+   "linkedin": "https://www.linkedin.com/in/chrishubli/",
+   "teams": [
+    "Talent Acquisition"
+   ],
+   "clients": [
+    "Modal Labs"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Dan Sia",
+   "email": "daniel@carrara.is",
+   "location": "",
+   "role": "",
+   "about": "",
+   "linkedin": "",
+   "teams": [],
+   "clients": [
+    "Console"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Dave Gascon",
+   "email": "dave@carrara.is",
+   "location": "Philippines",
+   "role": "Finance and Operations Support",
+   "about": "",
+   "linkedin": "https://www.linkedin.com/in/davegascon",
+   "teams": [
+    "Internal Operations"
+   ],
+   "clients": [],
+   "answers": []
+  },
+  {
+   "name": "Drew Koloski",
+   "email": "drew@carrara.is",
+   "location": "Florida",
+   "role": "Talent Partner",
+   "about": "",
+   "linkedin": "https://linkedin.com/in/drewk",
+   "teams": [
+    "Talent Acquisition"
+   ],
+   "clients": [
+    "January"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Emily Kasper",
+   "email": "emily@carrara.is",
+   "location": "Ojai",
+   "role": "Embedded talent acquisition and strategy",
+   "about": "",
+   "linkedin": "https://www.linkedin.com/in/emily-kasper-0916572a/",
+   "teams": [
+    "Talent Acquisition"
+   ],
+   "clients": [
+    "Perchwell"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Eric Fernandez",
+   "email": "eric@carrara.is",
+   "location": "Ft Lauderdale",
+   "role": "Finance and Business Operations",
+   "about": "",
+   "linkedin": "https://www.linkedin.com/in/ericfernandez1012/",
+   "teams": [
+    "Internal Operations",
+    "Strategic Finance",
+    "Talent Management"
+   ],
+   "clients": [],
+   "answers": []
+  },
+  {
+   "name": "Giovanna Borgiotti",
+   "email": "giovanna@carrara.is",
+   "location": "Florida",
+   "role": "Talent Partner",
+   "about": "",
+   "linkedin": "https://www.linkedin.com/in/giovanna-borgiotti/",
+   "teams": [
+    "Talent Acquisition"
+   ],
+   "clients": [
+    "Forus",
+    "Runlayer",
+    "Forge"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Gonz Sanchez",
+   "email": "gonz@carrara.is",
+   "location": "Argentina",
+   "role": "I grow stuff",
+   "about": "GTM leader who has scaled brands, teams and revenue at hyper-growth startups. Built Seedtable, a data platform on European tech read by 25,000 people, acquired in 2024. Before that VP of Marketing at On Deck. Born and raised in Argentina, lived in Paris, Milan and Barcelona.",
+   "linkedin": "https://www.linkedin.com/in/gonsanchezs/",
+   "teams": [
+    "Internal Operations",
+    "Managed Services / BizOps"
+   ],
+   "clients": [
+    "Workspace",
+    "Raindrop",
+    "Village Global",
+    "Sphere",
+    "Lipdub AI",
+    "Better"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Greg Troxell",
+   "email": "greg@carrara.is",
+   "location": "Houston",
+   "role": "Talent Acquisition and Strategy",
+   "about": "Dad of two boys (Andrew and Carter), always energetic, loves a sport, good food and geography.",
+   "linkedin": "https://www.linkedin.com/in/greg-troxell/",
+   "teams": [
+    "Talent Acquisition"
+   ],
+   "clients": [
+    "Forus"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Hallie Slamowitz",
+   "email": "hallie@carrara.is",
+   "location": "Denver",
+   "role": "Embedded talent acquisition and strategy",
+   "about": "",
+   "linkedin": "https://www.linkedin.com/in/hallie-slamowitz-09bb1349/",
+   "teams": [
+    "Talent Acquisition"
+   ],
+   "clients": [
+    "Monzo",
+    "Perchwell",
+    "Crux"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Hayley Samuels",
+   "email": "hayley.samuels@carrara.is",
+   "location": "Denver",
+   "role": "Coordinating for embedded talent acquisition, supporting internal operations",
+   "about": "Organizing the chaos.",
+   "linkedin": "https://www.linkedin.com/in/hayley-samuels-m-ed/",
+   "teams": [
+    "Internal Operations",
+    "Talent Acquisition"
+   ],
+   "clients": [
+    "Owner",
+    "Luminai",
+    "Profound",
+    "Avoca AI"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Heath Jamieson",
+   "email": "heath@carrara.is",
+   "location": "San Francisco",
+   "role": "Internal finance and operations, client-facing strategic finance and bizops",
+   "about": "Running, red wine and typing. High octane. Finance guy. Team focused.",
+   "linkedin": "https://www.linkedin.com/in/heathjamieson/",
+   "teams": [
+    "Strategic Finance",
+    "Internal Operations",
+    "Managed Services / BizOps"
+   ],
+   "clients": [
+    "Workspace",
+    "a16z",
+    "Deeptune",
+    "Hertz",
+    "Luminai",
+    "Amazon",
+    "Alpha School",
+    "Basis",
+    "Canopy Labs"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Jenna Caminiti",
+   "email": "jenna@carrara.is",
+   "location": "Boston",
+   "role": "Talent Operations",
+   "about": "",
+   "linkedin": "https://www.linkedin.com/in/jenna-caminiti/",
+   "teams": [
+    "Talent Acquisition"
+   ],
+   "clients": [],
+   "answers": []
+  },
+  {
+   "name": "Jennah Holycross",
+   "email": "jennah@carrara.is",
+   "location": "New York",
+   "role": "Embedded talent acquisition and strategy, executive search primarily for finance roles",
+   "about": "",
+   "linkedin": "https://www.linkedin.com/in/jennah-holycross-7b90142a/",
+   "teams": [
+    "Talent Acquisition"
+   ],
+   "clients": [
+    "Monzo",
+    "beatBread",
+    "Grindr",
+    "Coast"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Joe Penn",
+   "email": "joe@carrara.is",
+   "location": "San Francisco",
+   "role": "Internal operations, client-facing talent acquisition",
+   "about": "",
+   "linkedin": "https://www.linkedin.com/in/josephpenn/",
+   "teams": [
+    "Internal Operations",
+    "Talent Acquisition",
+    "Managed Services / BizOps"
+   ],
+   "clients": [
+    "Rilla",
+    "Profound",
+    "Luminai",
+    "Chariot",
+    "beatBread",
+    "Crux",
+    "Avoca AI",
+    "Deeptune",
+    "Nuvo",
+    "Untitled",
+    "Raindrop",
+    "Long Lake",
+    "Perchwell",
+    "Forge",
+    "Console",
+    "OpenAI Foundation"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Julia Tupy",
+   "email": "julia@carrara.is",
+   "location": "San Diego",
+   "role": "Embedded talent acquisition and strategy",
+   "about": "",
+   "linkedin": "https://www.linkedin.com/in/julia-tupy-a0b009b4/",
+   "teams": [
+    "Talent Acquisition"
+   ],
+   "clients": [
+    "Manifest",
+    "a16z",
+    "Brellium"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Justin Colsky",
+   "email": "justin@carrara.is",
+   "location": "Austin",
+   "role": "Executive search, primarily product and technical",
+   "about": "",
+   "linkedin": "https://www.linkedin.com/in/justin-colsky-64265b3/",
+   "teams": [
+    "Talent Acquisition"
+   ],
+   "clients": [
+    "Atlan",
+    "Owner",
+    "Modal Labs",
+    "Valor"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Katie Nguyen",
+   "email": "",
+   "location": "Los Angeles",
+   "role": "Talent Partner",
+   "about": "Originally from the PNW and had a life working in music before tech.",
+   "linkedin": "",
+   "teams": [
+    "Talent Acquisition"
+   ],
+   "clients": [],
+   "answers": []
+  },
+  {
+   "name": "Katie Roe",
+   "email": "katie@carrara.is",
+   "location": "New York",
+   "role": "Supporting client-facing business operations and managed services",
+   "about": "Running, cycling and doing all the things.",
+   "linkedin": "https://www.linkedin.com/in/kathleen-roe/",
+   "teams": [
+    "Managed Services / BizOps",
+    "Internal Operations"
+   ],
+   "clients": [],
+   "answers": []
+  },
+  {
+   "name": "Kenna Meyerhoff",
+   "email": "kenna@carrara.is",
+   "location": "New York",
+   "role": "Client-facing talent management, internal people things",
+   "about": "",
+   "linkedin": "https://www.linkedin.com/in/kenna-meyerhoff-77339565/",
+   "teams": [
+    "Internal Operations",
+    "Talent Acquisition"
+   ],
+   "clients": [
+    "Monzo",
+    "Modal Labs",
+    "Profound",
+    "Coast",
+    "Magic AI",
+    "Fundamental Technologies",
+    "Anthropic",
+    "Riviera Partners"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Kim Hackmann",
+   "email": "kim@carrara.is",
+   "location": "Toronto",
+   "role": "People Ops, FinOps and broader internal and client ops",
+   "about": "",
+   "linkedin": "https://www.linkedin.com/in/kimhackmann/",
+   "teams": [
+    "Managed Services / BizOps"
+   ],
+   "clients": [],
+   "answers": []
+  },
+  {
+   "name": "Maggie Stout",
+   "email": "maggie@carrara.is",
+   "location": "New York",
+   "role": "Talent Operations",
+   "about": "I love life! I am happiest exploring new experiences and being surrounded by good people.",
+   "linkedin": "https://www.linkedin.com/in/maggie-stout/",
+   "teams": [
+    "Talent Acquisition",
+    "Internal Operations"
+   ],
+   "clients": [
+    "Modal Labs",
+    "Runlayer"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Mary Petrino",
+   "email": "mary@carrara.is",
+   "location": "New York",
+   "role": "Managed Services and building out the Carrara brand and community",
+   "about": "I love all things design, art, fashion, music, and cooking. Outdoors enthusiast: skiing, surfing, and hiking.",
+   "linkedin": "https://www.linkedin.com/in/marypetrino/",
+   "teams": [
+    "Internal Operations",
+    "Talent Acquisition"
+   ],
+   "clients": [],
+   "answers": []
+  },
+  {
+   "name": "Matias Sanchez",
+   "email": "matias@carrara.is",
+   "location": "",
+   "role": "",
+   "about": "",
+   "linkedin": "",
+   "teams": [
+    "Managed Services / BizOps"
+   ],
+   "clients": [],
+   "answers": []
+  },
+  {
+   "name": "Nathan Peadon",
+   "email": "nathan@carrara.is",
+   "location": "San Francisco",
+   "role": "BizOps",
+   "about": "Originally from Sydney. Started my career at Bain, based across Australia, Mongolia, Guinea and the US before moving back to SF to join Carrara. I love to travel, preferably by backpack.",
+   "linkedin": "https://www.linkedin.com/in/nathan-peadon/",
+   "teams": [
+    "Managed Services / BizOps"
+   ],
+   "clients": [],
+   "answers": []
+  },
+  {
+   "name": "Nic Touron",
+   "email": "nic@carrara.is",
+   "location": "France",
+   "role": "AI, product and new ventures",
+   "about": "I am a full stack builder: product, design, engineering and a bit of growth too.",
+   "linkedin": "https://www.linkedin.com/in/nicolas-touron/",
+   "teams": [
+    "Managed Services / BizOps",
+    "Internal Operations"
+   ],
+   "clients": [],
+   "answers": []
+  },
+  {
+   "name": "Sam Blumenthal",
+   "email": "sam@carrara.is",
+   "location": "New York",
+   "role": "Internal operations and client-facing managed services",
+   "about": "",
+   "linkedin": "https://www.linkedin.com/in/sam-blumenthal-48108248/",
+   "teams": [
+    "Internal Operations",
+    "Managed Services / BizOps"
+   ],
+   "clients": [
+    "Paxos",
+    "Brave Health",
+    "Altana",
+    "Hinge",
+    "LangChain"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Shannon Toomey",
+   "email": "",
+   "location": "Seattle",
+   "role": "Talent Partner",
+   "about": "I'm an overall life enthusiast. I love weaving together seemingly unrelated ideas and experiences, especially in service of some ambiguous problem. I'm an artist and musician based in Seattle.",
+   "linkedin": "",
+   "teams": [
+    "Talent Acquisition",
+    "Talent Management"
+   ],
+   "clients": [],
+   "answers": []
+  },
+  {
+   "name": "Sol Silbenberg",
+   "email": "sol@carrara.is",
+   "location": "Argentina",
+   "role": "Operating Partner",
+   "about": "",
+   "linkedin": "https://www.linkedin.com/in/sol-silbenberg-2737841a1/",
+   "teams": [
+    "Internal Operations"
+   ],
+   "clients": [],
+   "answers": []
+  },
+  {
+   "name": "Tenzing Bhutia",
+   "email": "tenzing@carrara.is",
+   "location": "New York",
+   "role": "Talent Partner",
+   "about": "",
+   "linkedin": "https://www.linkedin.com/in/tenzingbhutia/",
+   "teams": [
+    "Talent Acquisition"
+   ],
+   "clients": [
+    "January"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Tess Wicks",
+   "email": "tess@carrara.is",
+   "location": "Upstate New York",
+   "role": "Coordinating for embedded talent acquisition, supporting internal operations",
+   "about": "I love meeting new people! Carb lover and novice ceramicist (yes, you can ask me to make you something, but it always ends up a bowl).",
+   "linkedin": "https://linkedin.com/in/tess-wicks",
+   "teams": [
+    "Internal Operations",
+    "Talent Acquisition"
+   ],
+   "clients": [
+    "Atlan",
+    "January",
+    "Rilla",
+    "Owner"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Tina Khoury",
+   "email": "tina@carrara.is",
+   "location": "New York",
+   "role": "Building our BD function and working on client-facing managed services",
+   "about": "",
+   "linkedin": "https://www.linkedin.com/in/tinakhoury/",
+   "teams": [
+    "Internal Operations",
+    "Managed Services / BizOps"
+   ],
+   "clients": [
+    "Modal Labs",
+    "Grindr",
+    "Fundamental Technologies",
+    "Better"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Tom Callahan",
+   "email": "tom@carrara.is",
+   "location": "San Francisco",
+   "role": "Talent Partner",
+   "about": "Originally from Chicago. Played football through college, and used to host and produce standup comedy shows in LA in a former life. Live in SF with my wife and dog.",
+   "linkedin": "https://www.linkedin.com/in/tom-callahan/",
+   "teams": [
+    "Talent Acquisition"
+   ],
+   "clients": [
+    "Modal Labs"
+   ],
+   "answers": []
+  },
+  {
+   "name": "Yanel Bottini",
+   "email": "",
+   "location": "Argentina",
+   "role": "Brand and product designer",
+   "about": "",
+   "linkedin": "",
+   "teams": [
+    "Managed Services / BizOps"
+   ],
+   "clients": [],
+   "answers": []
+  }
+ ]
+}
