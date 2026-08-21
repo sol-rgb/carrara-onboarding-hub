@@ -1,3 +1,7 @@
+// ⚠️ POPS CONTRACT (see AGENTS.md): Eric's app calls this endpoint. Field
+// names, required-field 400s, the auth check and the response shape are
+// promises POps depends on — ask Eric before changing ANY of them.
+//
 // Mint endpoint for POps. POps posts a new hire's details; this returns a
 // signed access code and hub URL. Same stateless code format api/welcome.js
 // decodes, so nothing else in the hub changes.
