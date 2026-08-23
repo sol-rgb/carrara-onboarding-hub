@@ -260,6 +260,19 @@ table.clean td:last-child { font-family: var(--rigid); font-size: 11px; letter-s
 .rock-card.c-ink { background: var(--ink); }
 .rock-card.c-ink h3 { color: var(--canvas); }
 .rock-card.c-ink p { color: rgba(237, 235, 234, 0.7); }
+/* Moss and Ember from the brand palette. The assignment is not arbitrary: the
+   Client Codex already colours People green and Finance orange, so the cards
+   match the tags a joiner sees on the clients page. Ember carries white text,
+   the same treatment the deck's high-contrast block uses. */
+.rock-card.c-moss { background: var(--sage); }
+.rock-card.c-moss p { color: rgba(45, 42, 42, 0.78); }
+.rock-card.c-ember { background: var(--orange); }
+.rock-card.c-ember h3 { color: var(--canvas); }
+.rock-card.c-ember p { color: rgba(255, 255, 255, 0.86); }
+.rock-card.c-lemon { background: #FFFF80; }
+.rock-card.c-lavender { background: #9F73AB; }
+.rock-card.c-lavender h3 { color: var(--canvas); }
+.rock-card.c-lavender p { color: rgba(255, 255, 255, 0.86); }
 .rock-card.s-w2 { grid-column: span 2; }
 .rock-card.s-h2 { grid-row: span 2; }
 .rock-card.s-h3 { grid-row: span 3; }
@@ -744,3 +757,57 @@ body::after {
 .mm-fact { min-width: 0; }
 .mm-k { font-family: var(--rigid); font-size: 9.5px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--taupe); margin-bottom: 4px; }
 .mm-v { font-size: 13.5px; color: var(--ink); line-height: 1.45; }
+
+/* team gallery: a horizontal reel with arrows. Snap so a photo always lands
+   square rather than half off the edge. */
+.gallery { position: relative; margin-top: 24px; }
+.gal-track {
+  /* proximity, not mandatory: mandatory snapping cancels a smooth scrollBy
+     outright, so the arrows silently did nothing. */
+  display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x proximity;
+  scrollbar-width: none; padding-bottom: 4px;
+}
+.gal-track::-webkit-scrollbar { display: none; }
+.gal-item { flex: none; width: clamp(240px, 27vw, 340px); margin: 0; scroll-snap-align: start; }
+.gal-item img {
+  width: 100%; height: 230px; object-fit: cover; display: block;
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+  background: var(--sage-soft);
+}
+.gal-nav {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+  width: 38px; height: 38px; border: 1px solid var(--hairline); background: var(--canvas);
+  color: var(--ink); cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.18s ease, border-color 0.18s ease;
+}
+.gal-nav svg { width: 17px; height: 17px; }
+.gal-nav:hover:not(:disabled) { border-color: var(--ink); }
+.gal-nav:disabled { opacity: 0.25; cursor: default; }
+.gal-nav.prev { left: -19px; }
+.gal-nav.next { right: -19px; }
+@media (max-width: 900px) { .gal-nav.prev { left: 0; } .gal-nav.next { right: 0; } }
+
+/* ---------- brand vault ---------- */
+.bv { margin-top: 44px; padding-top: 30px; border-top: 1px solid var(--hairline); }
+.bv-h { font-family: var(--serif); font-weight: 500; font-size: 24px; letter-spacing: -0.015em; margin-bottom: 14px; }
+.bv-sh { font-family: var(--rigid); font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--orange); margin: 30px 0 10px; }
+.bv-fig { margin: 22px 0; max-width: 720px; }
+.bv-fig img { width: 100%; display: block; border: 1px solid var(--hairline); background: var(--sage-soft); }
+.bv-fig figcaption { font-size: 13px; color: var(--taupe); margin-top: 9px; line-height: 1.55; }
+.bv-fig figcaption b { color: var(--ink); font-weight: 500; }
+.bv-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px; margin-top: 8px; }
+.bv-ul { margin: 0; padding-left: 19px; }
+.bv-ul li { font-size: 14px; color: var(--ardesia); margin-bottom: 7px; line-height: 1.6; }
+.bv-assets { margin-top: 20px; font-size: 13.5px; display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline; }
+.bv-assets b { font-family: var(--rigid); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--taupe); font-weight: 700; }
+.bv-assets a { color: var(--orange); text-decoration: none; border-bottom: 1px solid rgba(235,78,25,0.35); }
+.bv-table { border-collapse: collapse; width: 100%; font-size: 13.5px; min-width: 460px; }
+.bv-table th { text-align: left; font-family: var(--rigid); font-size: 9.5px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--taupe); padding: 9px 14px; border-bottom: 1px solid var(--hairline); }
+.bv-table td { padding: 10px 14px; border-bottom: 1px solid var(--hair-soft, rgba(45,42,42,0.07)); color: var(--ardesia); }
+.bv-table td:first-child { color: var(--ink); display: flex; align-items: center; gap: 10px; }
+.sw { width: 15px; height: 15px; flex: none; display: inline-block; }
+.bv-lbl { font-size: 13.5px; font-weight: 500; color: var(--ink); margin: 18px 0 7px; }
+.bv-code { font-family: ui-monospace, Menlo, monospace; font-size: 12px; line-height: 1.6; color: var(--ardesia);
+  background: var(--sage-soft); padding: 14px 16px; white-space: pre-wrap; word-break: break-word; margin-bottom: 4px; }

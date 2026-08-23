@@ -834,6 +834,35 @@
       .then(function () { kitRefreshing = false; });
   }
 
+  /* ---------- team gallery ---------- */
+  (function () {
+    var track = $('#gal-track');
+    if (!track) return;
+    /* Filenames are sequential so adding a photo is a drop-in: put NN.jpg in
+       assets/team-photos and bump COUNT. A missing file removes its own slide
+       rather than leaving a broken frame. */
+    var COUNT = 13;
+    var html = '';
+    for (var i = 1; i <= COUNT; i++) {
+      var n = (i < 10 ? '0' : '') + i;
+      html += '<figure class="gal-item"><img src="/assets/team-photos/' + n + '.jpg" alt="" loading="lazy"'
+        + ' onerror="this.closest(\'.gal-item\').remove()"></figure>';
+    }
+    track.innerHTML = html;
+
+    function page() { return Math.max(track.clientWidth * 0.8, 260); }
+    function sync() {
+      var max = track.scrollWidth - track.clientWidth - 2;
+      $('#gal-prev').disabled = track.scrollLeft <= 2;
+      $('#gal-next').disabled = track.scrollLeft >= max;
+    }
+    $('#gal-prev').addEventListener('click', function () { track.scrollBy({ left: -page(), behavior: reduced ? 'auto' : 'smooth' }); });
+    $('#gal-next').addEventListener('click', function () { track.scrollBy({ left: page(), behavior: reduced ? 'auto' : 'smooth' }); });
+    track.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    setTimeout(sync, 60);
+  })();
+
   /* ---------- clients ---------- */
   var codexData = { clients: {} };
   function clientSlug(name) { return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }
