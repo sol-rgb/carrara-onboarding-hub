@@ -137,8 +137,10 @@ module.exports = async (req, res) => {
       const nx = byName[name] || {};
       const br = brainByName[name] || {};
       const en = enrich[name] || {};
+      // Notion's Company Website wins when it is set: it is the field Dave
+      // maintains, so a logo that changes there should change here too.
       let domain = br.domain || '';
-      if (!domain && nx.website) {
+      if (nx.website) {
         try { domain = new URL(nx.website).hostname.replace(/^www\./, ''); } catch (e) { /* keep empty */ }
       }
       clients.push({

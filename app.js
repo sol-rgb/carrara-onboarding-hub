@@ -404,7 +404,15 @@
       + '<h3>' + esc(m.name) + '</h3>'
       + (role ? '<div class="rl">' + esc(role) + (m.extra ? ' · ' + esc(m.extra) : '') + '</div>' : (m.extra ? '<div class="rl">' + esc(m.extra) + '</div>' : ''))
       + '</div></div><div class="pg">';
-    if (pv.location) html += '<div class="mm-loc">' + esc(pv.location) + (pv.teams && pv.teams.length ? ' · ' + esc(pv.teams.join(', ')) : '') + '</div>';
+    /* location and business area get their own labelled rows. Cramming both onto
+       one line made it read as a single fact instead of two. The one-liner stays
+       up top next to the name. */
+    if (pv.location || (pv.teams && pv.teams.length)) {
+      html += '<div class="mm-facts">'
+        + (pv.location ? '<div class="mm-fact"><div class="mm-k">Based in</div><div class="mm-v">' + esc(pv.location) + '</div></div>' : '')
+        + (pv.teams && pv.teams.length ? '<div class="mm-fact"><div class="mm-k">Business area</div><div class="mm-v">' + esc(pv.teams.join(', ')) + '</div></div>' : '')
+        + '</div>';
+    }
     /* their own words first, then the researched summary as a fallback */
     if (pv.about) html += '<p>' + esc(pv.about) + '</p>';
     else if (p && p.summary) html += '<p>' + esc(p.summary) + '</p>';
@@ -956,6 +964,10 @@
       : 'Sourced from the Client Codex. Last update: ')
       + (data.updated || '') + '. Click a client for its full page.';
     refreshStats();
+    /* the team grid draws client logos out of clientData, and team.json usually
+       lands first. Re-render once the clients are in or every card falls back
+       to an initial. */
+    if (teamData.length) renderTeam($('#team-search') ? $('#team-search').value : '');
     applyKitToHub();
     /* deep links to a client page arriving before data loaded */
     if (location.hash.indexOf('#/client/') === 0 && window.renderClientPage) window.renderClientPage(location.hash.slice(9));

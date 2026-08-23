@@ -21,14 +21,14 @@
   },
   {
    "name": "AgentSync",
-   "domain": "",
+   "domain": "agentsync.io",
    "lead": "",
    "description": "",
    "work": []
   },
   {
    "name": "Alpha School",
-   "domain": "",
+   "domain": "alpha.school",
    "lead": "",
    "description": "",
    "work": []
@@ -71,7 +71,7 @@
   },
   {
    "name": "Atlan",
-   "domain": "",
+   "domain": "atlan.com",
    "lead": "",
    "description": "",
    "work": []
@@ -87,7 +87,7 @@
   },
   {
    "name": "Axion Ray",
-   "domain": "",
+   "domain": "axionray.com",
    "lead": "",
    "description": "",
    "work": []
@@ -101,7 +101,7 @@
   },
   {
    "name": "beatBread",
-   "domain": "",
+   "domain": "beatbread.com",
    "lead": "",
    "description": "",
    "work": []
@@ -317,7 +317,7 @@
   },
   {
    "name": "LangChain",
-   "domain": "",
+   "domain": "langchain.com",
    "lead": "",
    "description": "",
    "work": []
@@ -391,21 +391,21 @@
   },
   {
    "name": "Monzo",
-   "domain": "",
+   "domain": "monzo.com",
    "lead": "",
    "description": "",
    "work": []
   },
   {
    "name": "MrBeast",
-   "domain": "",
+   "domain": "mrbeast.com",
    "lead": "",
    "description": "",
    "work": []
   },
   {
    "name": "Netic",
-   "domain": "",
+   "domain": "netic.ai",
    "lead": "",
    "description": "",
    "work": []
@@ -419,14 +419,14 @@
   },
   {
    "name": "OpenAI Foundation",
-   "domain": "",
+   "domain": "openai.com",
    "lead": "",
    "description": "",
    "work": []
   },
   {
    "name": "Owner",
-   "domain": "",
+   "domain": "owner.com",
    "lead": "",
    "description": "",
    "work": []
@@ -460,7 +460,7 @@
   },
   {
    "name": "Qase",
-   "domain": "",
+   "domain": "qase.io",
    "lead": "",
    "description": "",
    "work": []
@@ -479,14 +479,14 @@
   },
   {
    "name": "Rilla",
-   "domain": "",
+   "domain": "rilla.com",
    "lead": "",
    "description": "",
    "work": []
   },
   {
    "name": "Riviera Partners",
-   "domain": "",
+   "domain": "rivierapartners.com",
    "lead": "",
    "description": "",
    "work": []
@@ -536,14 +536,14 @@
   },
   {
    "name": "Sydecar",
-   "domain": "",
+   "domain": "sydecar.io",
    "lead": "",
    "description": "",
    "work": []
   },
   {
    "name": "TryNow",
-   "domain": "",
+   "domain": "trynow.io",
    "lead": "",
    "description": "",
    "work": []
@@ -565,7 +565,7 @@
   },
   {
    "name": "Upstart",
-   "domain": "",
+   "domain": "upstart.com",
    "lead": "",
    "description": "",
    "work": []
@@ -579,7 +579,7 @@
   },
   {
    "name": "ViewStats",
-   "domain": "",
+   "domain": "viewstats.com",
    "lead": "",
    "description": "",
    "work": []
