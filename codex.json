@@ -1095,12 +1095,18 @@
   },
   "Forus": {
    "status": "Active",
-   "projectTypes": [],
+   "projectTypes": [
+    "Embedded recruiting",
+    "Talent Platform"
+   ],
    "accountManagers": [],
    "talentPartners": [],
    "coordination": [],
-   "about": "",
-   "engagement": [],
+   "about": "Healthtech platform using AI to handle prior authorizations, affordability and pharmacy coordination for every prescription. Formerly Tandem. Raised $160M+ with Accel leading the Series B alongside Thrive and General Catalyst.",
+   "engagement": [
+    "Embedded recruiting across provider growth, BDR and engineering roles.",
+    "Referral engine and offer tooling: the Friends of Forus push tripled referrals as a share of pipeline."
+   ],
    "overview": {},
    "background": null,
    "docs": []
