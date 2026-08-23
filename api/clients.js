@@ -107,7 +107,9 @@ module.exports = async (req, res) => {
       const name = ALIASES[raw] || raw;
       const entry = {
         name,
-        status: (p.Status && p.Status.select && p.Status.select.name) || null,
+        // mirrors the Codex's "Active Clients" view, which filters Status = Active.
+        // Blank counts as archived, exactly as that view treats it.
+        status: (p.Status && p.Status.select && p.Status.select.name) || 'Archived',
         projectTypes: ((p['Project Type '] && p['Project Type '].multi_select) || []).map((o) => o.name),
         accountManagers: names(relIds(p['Account Manager'])),
         talentPartners: names(relIds(p['Talent Partner(s)'])),
@@ -122,12 +124,12 @@ module.exports = async (req, res) => {
     const brainByName = {};
     brainClients.forEach((c) => { brainByName[c.name] = c; });
 
-    // union: every canonical Notion client (Active always; Paused only if the
-    // brain tracks it) plus brain-only clients (e.g. Roger) that Notion lacks
+    // Every client the Codex knows about, current or not. The hub shows the
+    // archived ones in their own list, which is the point: a joiner should be
+    // able to see who we have worked with. Junk rows ([OLD], [v1], templates)
+    // were already dropped above.
     const nameSet = new Set(Object.keys(brainByName));
-    Object.values(byName).forEach((e) => {
-      if (e.status === 'Active' || brainByName[e.name]) nameSet.add(e.name);
-    });
+    Object.values(byName).forEach((e) => nameSet.add(e.name));
 
     const clients = [];
     const codex = {};

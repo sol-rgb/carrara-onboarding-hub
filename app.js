@@ -411,8 +411,17 @@
       html += '<div class="wk-sec"><div class="wk-lbl">[core values]</div><p>' + esc(pv.values) + '</p></div>';
     }
     if (pv.clients && pv.clients.length) {
-      html += '<div class="wk-sec"><div class="wk-lbl">[clients]</div><div class="wk-tags">'
-        + pv.clients.map(function (c) { return '<span>' + esc(c) + '</span>'; }).join('') + '</div></div>';
+      /* logo above, company name below: a name alone makes you read, a logo
+         alone makes you guess. Falls back to the initial when we have no domain. */
+      html += '<div class="wk-sec"><div class="wk-lbl">[clients]</div><div class="cl-grid">'
+        + pv.clients.map(function (cn) {
+            var c = clientData.filter(function (x) { return x.name === cn; })[0];
+            var mark = c && c.domain
+              ? '<img src="' + favicon(c.domain, 64) + '" alt="" loading="lazy">'
+              : '<span class="cl-init">' + esc(cn.charAt(0)) + '</span>';
+            return '<div class="cl-cell"><div class="cl-mark">' + mark + '</div>'
+              + '<div class="cl-name">' + esc(cn) + '</div></div>';
+          }).join('') + '</div></div>';
     }
     /* People Pavilion answers, question above each one so the card reads on its own */
     if (pv.answers && pv.answers.length) {
@@ -907,9 +916,11 @@
         ? window.TAGS.forClient((codexData.clients || {})[c.name], c.work)
         : (c.work || []);
     }
+    /* current means the Codex's "Active Clients" view: Status is exactly Active.
+       Paused, Archived and blank all belong in the past-engagements list. */
     function isActive(c) {
       var cx = (codexData.clients || {})[c.name] || {};
-      return cx.status !== 'Paused';
+      return cx.status === 'Active';
     }
     function row(c) {
       var d = document.createElement('div');

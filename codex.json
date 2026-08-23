@@ -1,6 +1,6 @@
 {
  "source": "notion-client-codex",
- "updated": "2026-08-04",
+ "updated": "2026-08-23",
  "clients": {
   "Altana": {
    "status": "Active",
@@ -465,7 +465,7 @@
    ]
   },
   "Magic AI": {
-   "status": "Active",
+   "status": "Paused",
    "projectTypes": [
     "People"
    ],
@@ -517,7 +517,7 @@
    "docs": []
   },
   "Perchwell": {
-   "status": "Active",
+   "status": "Paused",
    "projectTypes": [
     "Embedded recruiting"
    ],
@@ -668,7 +668,7 @@
    "docs": []
   },
   "Untitled": {
-   "status": "Active",
+   "status": "Paused",
    "projectTypes": [
     "Talent Platform"
    ],
@@ -690,7 +690,7 @@
    "docs": []
   },
   "Village Global": {
-   "status": "Active",
+   "status": "Paused",
    "projectTypes": [
     "Marketing/Growth"
    ],
@@ -709,7 +709,7 @@
    "docs": []
   },
   "a16z": {
-   "status": "Active",
+   "status": "Paused",
    "projectTypes": [
     "Managed Services",
     "Embedded recruiting"
@@ -729,6 +729,462 @@
     "Embedded recruiting support.",
     "Relationship started on the finance side and expanded into people ops and recruiting."
    ],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "3i Members": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "AgentSync": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Montauk Climate": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Kiso": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Basis": {
+   "status": "Active",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Daylight": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Supergood": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Chariot": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "beatBread": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "TryNow": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "ViewStats": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Axion Ray": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "MrBeast": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Netic": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Monzo": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Owner": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Manifest": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Evidenza": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Sydecar": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Paxos": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Upstart": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Workspace": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Rilla": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Atlan": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Qase": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Crux": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Valor": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Brellium": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Grindr NewCo": {
+   "status": "Archived",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Nuvo": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Forus": {
+   "status": "Active",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Console": {
+   "status": "Active",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "LangChain": {
+   "status": "Active",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Canopy Labs": {
+   "status": "Active",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Applied Labs": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Alpha School": {
+   "status": "Active",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "OpenAI Foundation": {
+   "status": "Active",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Riviera Partners": {
+   "status": "Active",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "",
+   "engagement": [],
    "overview": {},
    "background": null,
    "docs": []

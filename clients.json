@@ -1,7 +1,14 @@
 {
  "source": "client-codex",
- "updated": "2026-07-24",
+ "updated": "2026-08-23",
  "clients": [
+  {
+   "name": "3i Members",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
   {
    "name": "a16z",
    "domain": "a16z.com",
@@ -11,6 +18,20 @@
     "BizOps",
     "Embedded Recruiting"
    ]
+  },
+  {
+   "name": "AgentSync",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
+   "name": "Alpha School",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
   },
   {
    "name": "Altana",
@@ -42,6 +63,20 @@
    ]
   },
   {
+   "name": "Applied Labs",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
+   "name": "Atlan",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
    "name": "Avoca AI",
    "domain": "avoca.ai",
    "lead": "Joe Penn",
@@ -49,6 +84,27 @@
    "work": [
     "Talent Platform"
    ]
+  },
+  {
+   "name": "Axion Ray",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
+   "name": "Basis",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
+   "name": "beatBread",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
   },
   {
    "name": "Bee AI",
@@ -81,6 +137,27 @@
    ]
   },
   {
+   "name": "Brellium",
+   "domain": "brellium.com",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
+   "name": "Canopy Labs",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
+   "name": "Chariot",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
    "name": "Coast",
    "domain": "coastpay.com",
    "lead": "Kenna Anderson",
@@ -90,6 +167,20 @@
    ]
   },
   {
+   "name": "Console",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
+   "name": "Crux",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
    "name": "Cybernetic Labs",
    "domain": "cyberneticlabs.io",
    "lead": "Brandon Taleisnik",
@@ -97,6 +188,13 @@
    "work": [
     "Embedded Recruiting"
    ]
+  },
+  {
+   "name": "Daylight",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
   },
   {
    "name": "Deeptune",
@@ -118,6 +216,13 @@
    ]
   },
   {
+   "name": "Evidenza",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
    "name": "Forge",
    "domain": "withforge.com",
    "lead": "Joe Penn",
@@ -135,6 +240,13 @@
     "Embedded Recruiting",
     "Talent Platform"
    ]
+  },
+  {
+   "name": "Forus",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
   },
   {
    "name": "Fundamental Technologies",
@@ -156,6 +268,13 @@
     "Build assets",
     "Build narrative"
    ]
+  },
+  {
+   "name": "Grindr NewCo",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
   },
   {
    "name": "Hertz",
@@ -188,6 +307,20 @@
     "Embedded Recruiting",
     "Talent Platform"
    ]
+  },
+  {
+   "name": "Kiso",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
+   "name": "LangChain",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
   },
   {
    "name": "Lipdub AI",
@@ -227,6 +360,13 @@
    ]
   },
   {
+   "name": "Manifest",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
    "name": "Modal Labs",
    "domain": "modal.com",
    "lead": "Sol Silbenberg",
@@ -241,6 +381,62 @@
     "Sol — engagement lead",
     "Talent Platform"
    ]
+  },
+  {
+   "name": "Montauk Climate",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
+   "name": "Monzo",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
+   "name": "MrBeast",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
+   "name": "Netic",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
+   "name": "Nuvo",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
+   "name": "OpenAI Foundation",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
+   "name": "Owner",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
+   "name": "Paxos",
+   "domain": "paxos.com",
+   "lead": "",
+   "description": "",
+   "work": []
   },
   {
    "name": "Perchwell",
@@ -263,6 +459,13 @@
    ]
   },
   {
+   "name": "Qase",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
    "name": "Raindrop",
    "domain": "raindrop.ai",
    "lead": "Joe Penn",
@@ -273,6 +476,20 @@
     "Comms",
     "Hiring Event with OpenAI"
    ]
+  },
+  {
+   "name": "Rilla",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
+   "name": "Riviera Partners",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
   },
   {
    "name": "Roger",
@@ -311,6 +528,27 @@
    ]
   },
   {
+   "name": "Supergood",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
+   "name": "Sydecar",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
+   "name": "TryNow",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
    "name": "Untitled",
    "domain": "untitled.stream",
    "lead": "Joe Penn",
@@ -326,6 +564,27 @@
    ]
   },
   {
+   "name": "Upstart",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
+   "name": "Valor",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
+   "name": "ViewStats",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
    "name": "Village Global",
    "domain": "villageglobal.com",
    "lead": "Gonz Sanchez",
@@ -334,6 +593,13 @@
     "Build website",
     "Marketing/Growth"
    ]
+  },
+  {
+   "name": "Workspace",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
   }
  ]
 }
