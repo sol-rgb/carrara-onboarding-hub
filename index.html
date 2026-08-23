@@ -47,9 +47,9 @@
       </div>
       <button class="startover" id="btn-startover" hidden>Start over</button>
       <div class="stat-strip">
-        <a class="stat" href="#/who"><div class="num" data-count="8">0</div><div class="lbl">partners</div></a>
+        <a class="stat" href="#/who"><div class="num" id="stat-partners" data-count="8">0</div><div class="lbl">partners</div></a>
         <a class="stat" href="#/team"><div class="num" id="stat-team" data-count="75" data-plus="1">0</div><div class="lbl">team members</div></a>
-        <a class="stat" href="#/clients"><div class="num" data-count="30" data-plus="1">0</div><div class="lbl">companies served</div></a>
+        <a class="stat" href="#/clients"><div class="num" id="stat-clients" data-count="30" data-plus="1">0</div><div class="lbl">companies served</div></a>
       </div>
     </div>
   </section>
@@ -61,7 +61,7 @@
       <div>
         <p class="body-copy">We help build exceptional companies by embedding ourselves across Talent, Finance, Go-to-Market and Ops. We also build, found, and lead new ventures.</p>
         <div class="fact-list">
-          <div class="fact"><img src="/assets/logo/carrara-iso-ember.svg" alt=""><span><b>Partner group of 8</b>, <b id="fact-team">75+</b> Carrarians, serving 30+ companies</span></div>
+          <div class="fact"><img src="/assets/logo/carrara-iso-ember.svg" alt=""><span>Partner group of <b id="fact-partners">8</b>, <b id="fact-team">75</b> Carrarians, serving 30+ companies</span></div>
           <div class="fact"><img src="/assets/logo/carrara-iso-ember.svg" alt=""><span>Backgrounds spanning <b>On Deck, Bain, Uber, Human Capital, Better</b></span></div>
           <div class="fact"><img src="/assets/logo/carrara-iso-ember.svg" alt=""><span>Recruiting engines, finance functions, <b>products from scratch</b></span></div>
           <div class="fact"><img src="/assets/logo/carrara-iso-ember.svg" alt=""><span>Every project differs. The through line: <b>we get in the room and do The Work</b></span></div>
@@ -101,8 +101,27 @@
       <input class="team-search" id="team-search" type="text" placeholder="Filter by name or role" aria-label="Filter team">
       <span class="team-count" id="team-count"></span>
     </div>
+    <div class="team-filters" id="team-filters">
+      <label class="tf"><span>Team</span><select id="f-team"><option value="">All teams</option></select></label>
+      <label class="tf"><span>Client</span><select id="f-client"><option value="">All clients</option></select></label>
+      <label class="tf"><span>Location</span><select id="f-loc"><option value="">Anywhere</option></select></label>
+      <button class="tf-clear" id="f-clear" hidden>Clear</button>
+    </div>
     <div class="team-grid" id="team-grid"></div>
     <p class="team-note" id="team-note">Pulled from Slack. Photos and titles come straight from Slack profiles, so set yours and it shows up here.</p>
+  </section>
+
+  <!-- 05b code of conduct: locked until Kenna's draft lands -->
+  <section class="view" id="view-conduct">
+    <h1 class="display">Code of conduct.</h1>
+    <div class="locked-panel">
+      <svg class="lock-lg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="4.5" y="10.5" width="15" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      <div class="lk-t">Coming soon</div>
+      <p class="body-copy muted">How we expect people to show up and work with each other and with clients. Kenna is writing it. You will be asked to read and acknowledge it here.</p>
+    </div>
   </section>
 
   <!-- 06 slack -->
@@ -299,6 +318,7 @@
      app.js reads window.MyOnboarding at parse time. Either one loaded early
      throws a TypeError before the hub renders a single section. -->
 <script src="/links.js"></script>
+<script src="/tags.js"></script>
 <script src="/pages.js"></script>
 <script src="/markdown.js"></script>
 <script src="/my-onboarding.js"></script>

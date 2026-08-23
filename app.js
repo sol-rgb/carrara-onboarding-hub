@@ -19,6 +19,8 @@
     { id: 'templates', label: 'Templates and brand' },
     { id: 'timeoff',   label: 'Time off' },
     { id: 'resources', label: 'Resources' },
+    /* locked: reachable, but marked so nobody expects content yet */
+    { id: 'conduct',   label: 'Code of conduct', locked: true },
     /* LAST, and hidden until every section above has been visited. */
     { id: MO.SECTION_ID, label: 'My onboarding' }
   ];
@@ -165,6 +167,14 @@
     a.href = '#/' + s.id;
     a.dataset.id = s.id;
     a.textContent = s.label;
+    if (s.locked) {
+      a.classList.add('nav-locked');
+      /* inline svg, not an emoji: it inherits colour and stays at text weight */
+      a.insertAdjacentHTML('beforeend',
+        '<svg class="nav-lock" viewBox="0 0 24 24" fill="none" aria-hidden="true">'
+        + '<rect x="5" y="11" width="14" height="9" rx="1.5" stroke="currentColor" stroke-width="1.8"/>'
+        + '<path d="M8.5 11V8a3.5 3.5 0 0 1 7 0v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>');
+    }
     nav.appendChild(a);
     var o = document.createElement('option');
     o.value = s.id; o.textContent = s.label;
@@ -409,6 +419,9 @@
     /* their own words first, then the researched summary as a fallback */
     if (pv.about) html += '<p>' + esc(pv.about) + '</p>';
     else if (p && p.summary) html += '<p>' + esc(p.summary) + '</p>';
+    if (pv.values) {
+      html += '<div class="wk-sec"><div class="wk-lbl">[core values]</div><p>' + esc(pv.values) + '</p></div>';
+    }
     if (pv.clients && pv.clients.length) {
       html += '<div class="wk-sec"><div class="wk-lbl">[clients]</div><div class="wk-tags">'
         + pv.clients.map(function (c) { return '<span>' + esc(c) + '</span>'; }).join('') + '</div></div>';
@@ -438,16 +451,101 @@
     }
     openModal(html);
   }
+  var teamFilter = { team: '', client: '', loc: '' };
+  /* options come from the data, not a hardcoded list, so a new team or location
+     in Notion shows up in the dropdown on the next refresh without a code change */
+  function populateFilters() {
+    var teams = {}, clients = {}, locs = {};
+    Object.keys(pavilion).forEach(function (n) {
+      var x = pavilion[n];
+      (x.teams || []).forEach(function (t) { teams[t] = 1; });
+      (x.clients || []).forEach(function (c) { clients[c] = 1; });
+      if (x.location) locs[x.location] = 1;
+    });
+    function fill(sel, values, keep) {
+      var el = $(sel);
+      if (!el) return;
+      var cur = el.value;
+      el.innerHTML = '<option value="">' + keep + '</option>'
+        + Object.keys(values).sort().map(function (v) {
+            return '<option value="' + esc(v) + '">' + esc(v) + '</option>';
+          }).join('');
+      el.value = cur;
+    }
+    fill('#f-team', teams, 'All teams');
+    fill('#f-client', clients, 'All clients');
+    fill('#f-loc', locs, 'Anywhere');
+  }
+  function wireFilters() {
+    [['#f-team', 'team'], ['#f-client', 'client'], ['#f-loc', 'loc']].forEach(function (pair) {
+      var el = $(pair[0]);
+      if (!el) return;
+      el.addEventListener('change', function () {
+        teamFilter[pair[1]] = el.value;
+        renderTeam($('#team-search').value);
+      });
+    });
+    var clear = $('#f-clear');
+    if (clear) clear.addEventListener('click', function () {
+      teamFilter = { team: '', client: '', loc: '' };
+      ['#f-team', '#f-client', '#f-loc'].forEach(function (x) { if ($(x)) $(x).value = ''; });
+      renderTeam($('#team-search').value);
+    });
+  }
+
+  /* Every hero number is derived, never typed. Partners come from the partner
+     flag in people.json, team members from the rendered roster, and companies
+     served counts current plus archived so the number only ever goes up. */
+  function setStat(sel, n, plus) {
+    var el = $(sel);
+    if (!el) return;
+    el.dataset.count = n;
+    if (el.textContent !== '0') el.textContent = n + (plus ? '+' : '');
+  }
+  function refreshStats() {
+    if (teamData.length) {
+      var partners = teamData.filter(function (m) {
+        var pv = pavilion[m.name];
+        return pv && pv.partner;
+      }).length;
+      if (partners) setStat('#stat-partners', partners, false);
+      setStat('#stat-team', teamData.length, false);
+      var factEl = $('#fact-team');
+      if (factEl) factEl.textContent = teamData.length + '';
+      var factP = $('#fact-partners');
+      if (factP && partners) factP.textContent = partners + '';
+    }
+    if (clientData.length) setStat('#stat-clients', clientData.length, false);
+  }
+
   function renderTeam(filter) {
     var grid = $('#team-grid');
     grid.innerHTML = '';
     var q = (filter || '').toLowerCase();
     var list = teamData.slice();
     if (myProfile && !list.some(function (m) { return m.email === myProfile.email; })) {
-      list.unshift({ name: myProfile.name, title: myProfile.work, email: '', avatar: '', isNew: true, extra: myProfile.location });
+      /* their own entry renders through the same path as everyone else's, so the
+         photo, clients and answers they just typed show immediately */
+      list.unshift({ name: myProfile.name, title: myProfile.team || '', email: myProfile.email || '',
+        avatar: myProfile.photo || '', isNew: true, extra: myProfile.location });
+      pavilion[myProfile.name] = {
+        role: myProfile.team || '', location: myProfile.location || '',
+        teams: myProfile.team ? [myProfile.team] : [],
+        clients: myProfile.client ? [myProfile.client] : [],
+        about: myProfile.background || '', values: myProfile.values || '',
+        linkedin: myProfile.linkedin || '',
+        answers: Object.keys(myProfile.answers || {}).map(function (k) {
+          var q = null;
+          PAVILION_Q.forEach(function (g) { g.qs.forEach(function (x) { if (x[0] === k) q = x[1]; }); });
+          return q ? { q: q, a: [myProfile.answers[k]] } : null;
+        }).filter(Boolean)
+      };
     }
     var shown = list.filter(function (m) {
       var pv = pavilion[m.name] || {};
+      if (teamFilter.team && (pv.teams || []).indexOf(teamFilter.team) === -1) return false;
+      if (teamFilter.client && (pv.clients || []).indexOf(teamFilter.client) === -1) return false;
+      if (teamFilter.loc && pv.location !== teamFilter.loc) return false;
       var hay = [m.name, m.title || '', m.email || '', pv.role || '', pv.location || '',
         (pv.teams || []).join(' '), (pv.clients || []).join(' ')].join(' ').toLowerCase();
       return !q || hay.indexOf(q) >= 0;
@@ -482,6 +580,8 @@
       grid.appendChild(d);
     });
     $('#team-count').textContent = shown.length + ' people';
+    var anyFilter = !!(teamFilter.team || teamFilter.client || teamFilter.loc);
+    if ($('#f-clear')) $('#f-clear').hidden = !anyFilter;
   }
   $('#team-search').addEventListener('input', function (e) { renderTeam(e.target.value); });
   var profileData = {};
@@ -497,19 +597,37 @@
       profileData = (both[1] && both[1].profiles) || {};
       /* the Notion directory is the richer source: role, location, clients and the
          People Pavilion answers. Slack still owns the photo and who is on the roster. */
-      ((both[2] && both[2].people) || []).forEach(function (x) { pavilion[x.name] = x; });
       teamData = data.members || [];
+      /* Slack and Notion spell people differently: Slack has "Heath" and "Ben",
+         Notion has "Heath Jamieson" and "Ben Munns". Match on email first, then
+         exact name, and only then on a first name -- and only when the Slack
+         entry is a single word, so "Chris Hubli" can never bind to "Chris
+         Gonzalez". Anything still ambiguous is left unmatched on purpose. */
+      var byEmail = {}, byName = {}, firstCount = {};
+      teamData.forEach(function (m) {
+        if (m.email) byEmail[m.email.trim().toLowerCase()] = m.name;
+        byName[m.name] = m.name;
+        var f = m.name.split(/\s+/)[0].toLowerCase();
+        firstCount[f] = (firstCount[f] || 0) + 1;
+      });
+      var singleWord = {};
+      teamData.forEach(function (m) {
+        if (m.name.trim().indexOf(' ') === -1) singleWord[m.name.trim().toLowerCase()] = m.name;
+      });
+      ((both[2] && both[2].people) || []).forEach(function (x) {
+        var key = byName[x.name]
+          || (x.email && byEmail[x.email.trim().toLowerCase()])
+          || null;
+        if (!key) {
+          var f = x.name.split(/\s+/)[0].toLowerCase();
+          if (singleWord[f] && firstCount[f] === 1) key = singleWord[f];
+        }
+        pavilion[key || x.name] = x;
+      });
       renderTeam('');
-      /* headcount is never hardcoded: the hero stat and the "who we are" fact
-         both round the live roster down to the nearest 5 so they stay true as we grow */
-      var head = Math.max(5, Math.floor(teamData.length / 5) * 5);
-      var statEl = $('#stat-team');
-      if (statEl) {
-        statEl.dataset.count = head;
-        if (statEl.textContent !== '0') statEl.textContent = head + '+';
-      }
-      var factEl = $('#fact-team');
-      if (factEl) factEl.textContent = head + '+';
+      populateFilters();
+      wireFilters();
+      refreshStats();
       if (data.source === 'slack') {
         $('#team-note').textContent = 'Live from the #f-company-ops-general Slack channel, refreshed every two weeks. Photos and roles come from Slack profiles: set yours and it shows here.';
       }
@@ -517,27 +635,110 @@
     .catch(function () { $('#team-note').textContent = 'Team list is unavailable right now.'; });
 
   /* profile form */
+  /* The People Pavilion question set, verbatim. Kept here as data so the form,
+     the team card and any future survey all read from one list. */
+  var PAVILION_Q = [
+    { group: 'about you', qs: [
+      ['honest', 'What are some honest, unfiltered things about you?'],
+      ['nuts', 'What drives you nuts?'],
+      ['quirks', 'What are your quirks?'],
+      ['goldstar', 'How can people earn an extra gold star with you?'],
+      ['qualities', 'What qualities do you particularly value in people who work with you?'],
+      ['misunderstand', 'What are some things that people might misunderstand about you that you should clarify?']
+    ]},
+    { group: 'how you work with others', qs: [
+      ['coach', 'How do you coach people to do their best work and develop their talents?'],
+      ['communicate', "What's the best way to communicate with you?"],
+      ['convince', "What's the best way to convince you to do something?"],
+      ['givefb', 'How do you like to give feedback?'],
+      ['getfb', 'How do you like to get feedback?']
+    ]}
+  ];
+  var TEAM_OPTIONS = ['Managed Services / BizOps', 'Talent Acquisition', 'Talent Management',
+    'Strategic Finance', 'Internal Operations'];
+
   $('#btn-profile').addEventListener('click', function () {
     var p = myProfile || {};
+    var a = p.answers || {};
+    function opts(list, sel) {
+      return '<option value="">Select one</option>' + list.map(function (v) {
+        return '<option value="' + esc(v) + '"' + (sel === v ? ' selected' : '') + '>' + esc(v) + '</option>';
+      }).join('');
+    }
+    var clientNames = clientData.map(function (c) { return c.name; }).sort();
+    var qHtml = PAVILION_Q.map(function (g) {
+      return '<div class="pf-group">' + esc(g.group) + '</div>'
+        + g.qs.map(function (q) {
+            return '<label>' + esc(q[1]) + '</label>'
+              + '<textarea id="pf-q-' + q[0] + '" rows="2">' + esc(a[q[0]] || '') + '</textarea>';
+          }).join('');
+    }).join('');
+
     openModal(
       '<div class="m-eyebrow">[your profile]</div><h3>Add yourself to the wall</h3>'
+      + '<p class="m-note" style="margin:0 0 18px">This replaces the People Pavilion. Everything here shows on your card, so other people can work out how to work with you.</p>'
+      + '<div class="pf-group">the basics</div>'
       + '<label>Name</label><input id="pf-name" value="' + esc(p.name || '') + '">'
-      + '<label>Location</label><input id="pf-loc" placeholder="City, country" value="' + esc(p.location || '') + '">'
-      + '<label>A fun fact about you</label><textarea id="pf-fact" rows="2">' + esc(p.fact || '') + '</textarea>'
-      + '<label>What you’ll be working on at Carrara</label><input id="pf-work" placeholder="e.g. Talent Partner, Modal + Hinge" value="' + esc(p.work || '') + '">'
+      + '<label>Team</label><select id="pf-team">' + opts(TEAM_OPTIONS, p.team) + '</select>'
+      + '<label>Email</label><input id="pf-email" type="email" placeholder="you@carrara.is" value="' + esc(p.email || '') + '">'
+      + '<label>LinkedIn</label><input id="pf-li" placeholder="https://linkedin.com/in/…" value="' + esc(p.linkedin || '') + '">'
+      + '<label>Where you are based</label><input id="pf-loc" placeholder="City, country" value="' + esc(p.location || '') + '">'
+      + '<label>Phone number <span class="pf-opt">optional</span></label><input id="pf-phone" value="' + esc(p.phone || '') + '">'
+      + '<label>Start date</label><input id="pf-start" type="date" value="' + esc(p.startDate || '') + '">'
+      + '<label>Photo</label><input id="pf-photo" type="file" accept="image/*">'
+      + '<div class="pf-hint" id="pf-photo-hint">' + (p.photo ? 'A photo is saved. Choose a new file to replace it.' : 'A real photo of your face. It stays in your browser until you save.') + '</div>'
+      + '<label>Client you are working on</label><select id="pf-client">' + opts(clientNames, p.client) + '</select>'
+      + '<div class="pf-group">in your own words</div>'
+      + '<label>My quick background</label><textarea id="pf-bg" rows="3">' + esc(p.background || '') + '</textarea>'
+      + '<label>These are my core values</label><textarea id="pf-values" rows="3">' + esc(p.values || '') + '</textarea>'
+      + qHtml
       + '<div class="m-actions"><button class="btn-primary" id="pf-save">Add me to the wall</button></div>'
       + '<p class="m-note">Your intro is shared with the team so they can give you a proper welcome.</p>'
     );
+
+    /* the photo is read to a data URL so the card can show it with no upload
+       endpoint. Capped so a 12MP phone photo cannot blow out localStorage. */
+    var photoData = p.photo || '';
+    $('#pf-photo').addEventListener('change', function (e) {
+      var f = e.target.files && e.target.files[0];
+      if (!f) return;
+      if (f.size > 3 * 1024 * 1024) {
+        $('#pf-photo-hint').textContent = 'That file is over 3MB. Pick a smaller one.';
+        return;
+      }
+      var fr = new FileReader();
+      fr.onload = function () { photoData = fr.result; $('#pf-photo-hint').textContent = 'Photo ready: ' + f.name; };
+      fr.readAsDataURL(f);
+    });
+
     $('#pf-save').addEventListener('click', function () {
+      var answers = {};
+      PAVILION_Q.forEach(function (g) {
+        g.qs.forEach(function (q) {
+          var v = $('#pf-q-' + q[0]).value.trim();
+          if (v) answers[q[0]] = v;
+        });
+      });
       var prof = {
         name: $('#pf-name').value.trim(),
+        team: $('#pf-team').value,
+        email: $('#pf-email').value.trim(),
+        linkedin: $('#pf-li').value.trim(),
         location: $('#pf-loc').value.trim(),
-        fact: $('#pf-fact').value.trim(),
-        work: $('#pf-work').value.trim()
+        phone: $('#pf-phone').value.trim(),
+        startDate: $('#pf-start').value,
+        client: $('#pf-client').value,
+        photo: photoData,
+        background: $('#pf-bg').value.trim(),
+        values: $('#pf-values').value.trim(),
+        answers: answers
       };
       if (!prof.name) { $('#pf-name').focus(); return; }
       myProfile = prof; store('carrara_profile', prof);
-      fetch('/api/profile', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(prof) }).catch(function () {});
+      /* the photo is big and only matters in this browser, so it never leaves */
+      var forSlack = {};
+      Object.keys(prof).forEach(function (k) { if (k !== 'photo') forSlack[k] = prof[k]; });
+      fetch('/api/profile', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(forSlack) }).catch(function () {});
       renderTeam($('#team-search').value);
       closeModal();
     });
@@ -711,23 +912,12 @@
     /* tags are the business lines from the Client Codex, not the per-project
        workstream names. Kenna's call: a new joiner should see "Marketing/Growth",
        not "Paid Media". Fall back to the workstreams only when Notion has nothing. */
-    /* the eight lines the business actually sells. Anything else (per-project
-       workstream names like "Careers Page") is dropped rather than shown, and
-       casing is normalized so "Embedded recruiting" and "Embedded Recruiting"
-       don't render as two different tags. */
-    var LINES = ['Embedded Recruiting', 'Talent Platform', 'Executive Search', 'Managed Services',
-      'Strategic Finance', 'Marketing/Growth', 'BizOps', 'People', 'Finance'];
-    var LINE_BY_KEY = {};
-    LINES.forEach(function (l) { LINE_BY_KEY[l.toLowerCase()] = l; });
+    /* the nine business lines live in tags.js so this page and the weekly
+       refresh job can never disagree about what a client is */
     function tagsFor(c) {
-      var cx = (codexData.clients || {})[c.name] || {};
-      var raw = (cx.projectTypes && cx.projectTypes.length) ? cx.projectTypes : (c.work || []);
-      var out = [];
-      raw.forEach(function (t) {
-        var canon = LINE_BY_KEY[String(t).toLowerCase()];
-        if (canon && out.indexOf(canon) === -1) out.push(canon);
-      });
-      return out;
+      return window.TAGS
+        ? window.TAGS.forClient((codexData.clients || {})[c.name], c.work)
+        : (c.work || []);
     }
     function isActive(c) {
       var cx = (codexData.clients || {})[c.name] || {};
@@ -765,6 +955,7 @@
       ? 'Live from the Client Codex in Notion, refreshed hourly. Last update: '
       : 'Sourced from the Client Codex. Last update: ')
       + (data.updated || '') + '. Click a client for its full page.';
+    refreshStats();
     applyKitToHub();
     /* deep links to a client page arriving before data loaded */
     if (location.hash.indexOf('#/client/') === 0 && window.renderClientPage) window.renderClientPage(location.hash.slice(9));

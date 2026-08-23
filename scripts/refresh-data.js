@@ -85,14 +85,15 @@ async function refreshClients() {
 }
 
 (async () => {
-  if (!process.env.SLACK_BOT_TOKEN && !process.env.NOTION_TOKEN) {
+  if (!process.env.NOTION_TOKEN) {
     // fail rather than pass: a scheduled job that quietly does nothing every week
     // is worse than one that goes red the first time it runs misconfigured
-    console.error('Neither SLACK_BOT_TOKEN nor NOTION_TOKEN is set, so there is nothing to refresh.');
+    console.error('NOTION_TOKEN is not set, so the Client Codex cannot be read.');
     console.error('Add them as repository secrets, or run locally with them exported.');
     process.exit(1);
   }
-  const results = [await refreshTeam(), await refreshClients()];
+  // team.json is refresh-team.js's job now: it also downloads the photos.
+  const results = [await refreshClients()];
   if (results.includes('fail')) {
     console.error('\nAt least one source failed. Snapshots left untouched for that source.');
     process.exit(1);

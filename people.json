@@ -20,7 +20,8 @@
     "Profound",
     "Forge"
    ],
-   "answers": []
+   "answers": [],
+   "partner": true
   },
   {
    "name": "Andrew Call",
@@ -35,7 +36,8 @@
    "clients": [
     "a16z"
    ],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Ania Sielski",
@@ -53,7 +55,8 @@
     "Modal Labs",
     "Luminai"
    ],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Anna Jones",
@@ -69,7 +72,8 @@
    "clients": [
     "Luminai"
    ],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Arthur Matuszewski",
@@ -89,7 +93,8 @@
     "Better",
     "Grindr"
    ],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Austin Kane",
@@ -104,7 +109,8 @@
     "Internal Operations"
    ],
    "clients": [],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Ben Munns",
@@ -122,7 +128,8 @@
     "a16z",
     "Alpha School"
    ],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Beth Werkstell",
@@ -137,7 +144,8 @@
    "clients": [
     "Hinge"
    ],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Brandon Taleisnik",
@@ -162,7 +170,8 @@
     "Forus",
     "Anthropic"
    ],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Bryan Gunawan",
@@ -180,7 +189,8 @@
     "Hertz",
     "Basis"
    ],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Catherine Ardila",
@@ -194,7 +204,8 @@
     "Talent Acquisition"
    ],
    "clients": [],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Chiara Libertini",
@@ -207,7 +218,8 @@
     "Managed Services / BizOps"
    ],
    "clients": [],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Chris Hubli",
@@ -222,7 +234,8 @@
    "clients": [
     "Modal Labs"
    ],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Dan Sia",
@@ -235,7 +248,8 @@
    "clients": [
     "Console"
    ],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Dave Gascon",
@@ -248,7 +262,8 @@
     "Internal Operations"
    ],
    "clients": [],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Drew Koloski",
@@ -263,7 +278,8 @@
    "clients": [
     "January"
    ],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Emily Kasper",
@@ -278,7 +294,8 @@
    "clients": [
     "Perchwell"
    ],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Eric Fernandez",
@@ -293,7 +310,8 @@
     "Talent Management"
    ],
    "clients": [],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Giovanna Borgiotti",
@@ -310,7 +328,8 @@
     "Runlayer",
     "Forge"
    ],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Gonz Sanchez",
@@ -331,7 +350,89 @@
     "Lipdub AI",
     "Better"
    ],
-   "answers": []
+   "answers": [
+    {
+     "q": "What drives you nuts?",
+     "a": [
+      "Bad comms.",
+      "Bad documentation. Scaling is a context-sharing problem.",
+      "Not making decisions.",
+      "Inconsistent branding.",
+      "When someone says “Let's A/B test it!”"
+     ]
+    },
+    {
+     "q": "What are your quirks?",
+     "a": [
+      "I (sometimes) use the third person. Someone even got t-shirts made.",
+      "I have infinite energy for work but I must work out and eat healthy, or my energy goes to zero in 24 to 48 hours."
+     ]
+    },
+    {
+     "q": "How can people earn an extra gold star with you?",
+     "a": [
+      "Be thoughtful about comms.",
+      "Invite me for a coffee run or a walk.",
+      "Let's go skiing."
+     ]
+    },
+    {
+     "q": "What qualities do you particularly value in people who work with you?",
+     "a": [
+      "Low ego.",
+      "High agency.",
+      "High output.",
+      "Great async comms.",
+      "Taste.",
+      "Honest feedback.",
+      "Decisiveness."
+     ]
+    },
+    {
+     "q": "What are some things that people might misunderstand about you?",
+     "a": [
+      "If I come in guns blazing it's because I want to get stuff done, sometimes at the expense of other things."
+     ]
+    },
+    {
+     "q": "How do you coach people to do their best work and develop their talents?",
+     "a": [
+      "I ask questions to understand where you're going and, if you don't know, help you figure that out.",
+      "I provide clear expectations and ambitious goals, and give you the tools to reach them.",
+      "I have your best interest in mind. If the best place for you is outside the org, I'm going to say so."
+     ]
+    },
+    {
+     "q": "What's the best way to communicate with you?",
+     "a": [
+      "A thoughtful async message: Slack, or a memo.",
+      "Give me a call. I'll usually walk my dogs."
+     ]
+    },
+    {
+     "q": "What's the best way to convince you to do something?",
+     "a": [
+      "I don't need convincing. If you asked me to do X, I'll assume you thought through the alternatives.",
+      "That said, providing reasoning helps. I don't need data, but it helps to understand where your conviction is coming from."
+     ]
+    },
+    {
+     "q": "How do you like to give feedback?",
+     "a": [
+      "I adjust to the other person's style if it's stated explicitly.",
+      "Otherwise a thoughtful message with examples, then a call to chat it through.",
+      "I tend to give more constructive criticism than positive feedback. Trying to update that."
+     ]
+    },
+    {
+     "q": "How do you like to get feedback?",
+     "a": [
+      "Slight preference for async first, then live. Can also do live. But please don't be vague."
+     ]
+    }
+   ],
+   "partner": false,
+   "values": "Optimism, at a micro level (life will be OK) and a macro level (technology will save the world). Honesty: radical honesty, not for others but for myself. Default to trust. Positive sum: build a bigger pie. Progressive progress: as long as I'm better today than yesterday, I'll take it."
   },
   {
    "name": "Greg Troxell",
@@ -346,7 +447,8 @@
    "clients": [
     "Forus"
    ],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Hallie Slamowitz",
@@ -363,7 +465,8 @@
     "Perchwell",
     "Crux"
    ],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Hayley Samuels",
@@ -382,7 +485,8 @@
     "Profound",
     "Avoca AI"
    ],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Heath Jamieson",
@@ -407,7 +511,8 @@
     "Basis",
     "Canopy Labs"
    ],
-   "answers": []
+   "answers": [],
+   "partner": true
   },
   {
    "name": "Jenna Caminiti",
@@ -420,7 +525,8 @@
     "Talent Acquisition"
    ],
    "clients": [],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Jennah Holycross",
@@ -438,7 +544,8 @@
     "Grindr",
     "Coast"
    ],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Joe Penn",
@@ -470,7 +577,8 @@
     "Console",
     "OpenAI Foundation"
    ],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Julia Tupy",
@@ -487,7 +595,8 @@
     "a16z",
     "Brellium"
    ],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Justin Colsky",
@@ -505,7 +614,8 @@
     "Modal Labs",
     "Valor"
    ],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Katie Nguyen",
@@ -518,7 +628,8 @@
     "Talent Acquisition"
    ],
    "clients": [],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Katie Roe",
@@ -532,7 +643,8 @@
     "Internal Operations"
    ],
    "clients": [],
-   "answers": []
+   "answers": [],
+   "partner": true
   },
   {
    "name": "Kenna Meyerhoff",
@@ -555,7 +667,78 @@
     "Anthropic",
     "Riviera Partners"
    ],
-   "answers": []
+   "answers": [
+    {
+     "q": "What are some honest, unfiltered things about you?",
+     "a": [
+      "Enneagram: tied for a 6 (The Loyalist) and an 8 (The Challenger).",
+      "Six: I create order out of chaos, I like being part of something greater than myself, and I give 110% when I commit.",
+      "Eight: highly independent, I see potential in people, and when I say I'm going to do something I do it."
+     ]
+    },
+    {
+     "q": "What drives you nuts?",
+     "a": [
+      "Little things: consistent small noises.",
+      "Big things: when people do not engage with others in a thoughtful and respectful way."
+     ]
+    },
+    {
+     "q": "How can people earn an extra gold star with you?",
+     "a": [
+      "Be super transparent and forthcoming. I want to help, and I operate better with full context.",
+      "Share the big unfiltered ideas. Push yourself and others to think outside the box."
+     ]
+    },
+    {
+     "q": "What qualities do you particularly value in people who work with you?",
+     "a": [
+      "Adjusting your approach to the person in front of you. Not everyone works or takes in information the same way.",
+      "Desire to improve: taking feedback in stride, going out of your way to get it, acknowledging your own missteps.",
+      "Being human."
+     ]
+    },
+    {
+     "q": "What are some things that people might misunderstand about you?",
+     "a": [
+      "I've heard I can come across as intimidating, likely because I'm very direct and not afraid of hard conversations. I do it from a place of care and wanting what's best for people."
+     ]
+    },
+    {
+     "q": "How do you coach people to do their best work and develop their talents?",
+     "a": [
+      "Meet people where they are. I try to understand where they're trying to go and what's actually in the way.",
+      "The GROW model has worked well for people I've managed and coached."
+     ]
+    },
+    {
+     "q": "What's the best way to communicate with you?",
+     "a": [
+      "Small things: Slack or text.",
+      "Big things: call me, Zoom, or in person."
+     ]
+    },
+    {
+     "q": "What's the best way to convince you to do something?",
+     "a": [
+      "Just ask. If there's a reason you think I won't want to do it, tee it up and then give me a call."
+     ]
+    },
+    {
+     "q": "How do you like to give feedback?",
+     "a": [
+      "Prefer a live conversation, but I'll give feedback in whatever format works best for the person receiving it."
+     ]
+    },
+    {
+     "q": "How do you like to get feedback?",
+     "a": [
+      "Live conversation."
+     ]
+    }
+   ],
+   "partner": false,
+   "values": "Understand the human in front of you: take the time to understand what makes them tick and the life experiences that shaped their worldview. Be transparent and direct, but never disrespectful. Be bold and adaptive: don't do things just because that's how they've been done. Get back up: have your down moments, then get back up."
   },
   {
    "name": "Kim Hackmann",
@@ -568,7 +751,8 @@
     "Managed Services / BizOps"
    ],
    "clients": [],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Maggie Stout",
@@ -585,7 +769,8 @@
     "Modal Labs",
     "Runlayer"
    ],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Mary Petrino",
@@ -599,7 +784,8 @@
     "Talent Acquisition"
    ],
    "clients": [],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Matias Sanchez",
@@ -612,7 +798,8 @@
     "Managed Services / BizOps"
    ],
    "clients": [],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Nathan Peadon",
@@ -625,7 +812,8 @@
     "Managed Services / BizOps"
    ],
    "clients": [],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Nic Touron",
@@ -639,7 +827,8 @@
     "Internal Operations"
    ],
    "clients": [],
-   "answers": []
+   "answers": [],
+   "partner": true
   },
   {
    "name": "Sam Blumenthal",
@@ -659,7 +848,8 @@
     "Hinge",
     "LangChain"
    ],
-   "answers": []
+   "answers": [],
+   "partner": true
   },
   {
    "name": "Shannon Toomey",
@@ -673,7 +863,8 @@
     "Talent Management"
    ],
    "clients": [],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Sol Silbenberg",
@@ -686,7 +877,8 @@
     "Internal Operations"
    ],
    "clients": [],
-   "answers": []
+   "answers": [],
+   "partner": true
   },
   {
    "name": "Tenzing Bhutia",
@@ -701,7 +893,8 @@
    "clients": [
     "January"
    ],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Tess Wicks",
@@ -720,7 +913,8 @@
     "Rilla",
     "Owner"
    ],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Tina Khoury",
@@ -739,7 +933,8 @@
     "Fundamental Technologies",
     "Better"
    ],
-   "answers": []
+   "answers": [],
+   "partner": true
   },
   {
    "name": "Tom Callahan",
@@ -754,7 +949,8 @@
    "clients": [
     "Modal Labs"
    ],
-   "answers": []
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Yanel Bottini",
@@ -767,7 +963,9 @@
     "Managed Services / BizOps"
    ],
    "clients": [],
-   "answers": []
+   "answers": [],
+   "partner": false
   }
- ]
+ ],
+ "_partnerNote": "partner:true marks the firm's partner group, not the Talent Partner role. Edit here; the hero stat counts this flag."
 }

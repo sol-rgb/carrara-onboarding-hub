@@ -24,23 +24,35 @@ jobs:
         with:
           node-version: 20
 
-      - name: Refresh snapshots from Slack and Notion
+      # Clients: new rows, tag changes and Active/Paused, straight from the Codex
+      - name: Refresh clients from the Client Codex
         env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-          SLACK_CHANNEL_ID: ${{ secrets.SLACK_CHANNEL_ID }}
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
         run: node scripts/refresh-data.js
 
+      # Team: joiners and leavers, plus each person's Slack photo saved into the repo
+      - name: Refresh the roster and photos from Slack
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_CHANNEL_ID: ${{ secrets.SLACK_CHANNEL_ID }}
+        run: node scripts/refresh-team.js
+
+      # People Pavilion: team, location and the question answers
+      - name: Refresh people from the Team Directory
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: node scripts/refresh-people.js
+
       - name: Commit if anything changed
         run: |
-          if git diff --quiet -- team.json clients.json codex.json; then
+          if git diff --quiet -- team.json clients.json codex.json people.json assets/people; then
             echo "No changes this week."
             exit 0
           fi
           git config user.name  "carrara-hub-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add team.json clients.json codex.json
-          git commit -m "Weekly data refresh: team and clients
+          git add team.json clients.json codex.json people.json assets/people
+          git commit -m "Weekly data refresh: team, clients and profiles
 
           Regenerated from Slack and the Notion Client Codex by
           .github/workflows/refresh-data.yml. Data only, no code changes."
