@@ -1,6 +1,6 @@
 {
  "source": "snapshot",
- "updated": "2026-07-24",
+ "updated": "2026-08-23",
  "channel": "#f-company-ops-general",
  "members": [
   {
@@ -21,7 +21,8 @@
   {
    "name": "Andrew Call",
    "email": "andrew.call@carrara.is",
-   "title": "Talent Partner"
+   "title": "Talent Partner",
+   "avatar": "/assets/people/andrew-call-f1440104.jpg"
   },
   {
    "name": "Andrew Unger",
@@ -56,7 +57,8 @@
   {
    "name": "Beth Werkstell",
    "email": "beth@carrara.is",
-   "title": "Talent Partner"
+   "title": "Talent Partner",
+   "avatar": "/assets/people/beth-werkstell-de6b4c47.jpg"
   },
   {
    "name": "Brandon Taleisnik",
@@ -66,12 +68,14 @@
   {
    "name": "Bryan Gunawan",
    "email": "bryan@carrara.is",
-   "title": "Problem Solver"
+   "title": "Problem Solver",
+   "avatar": "/assets/people/bryan-gunawan-41098d13.png"
   },
   {
    "name": "Calvin Li",
    "email": "calvin@carrara.is",
-   "title": ""
+   "title": "",
+   "avatar": "/assets/people/calvin-li-04f337c1.jpg"
   },
   {
    "name": "Catherine Ardila",
@@ -81,7 +85,8 @@
   {
    "name": "Catherine Ariola",
    "email": "catherine.ariola@carrara.is",
-   "title": ""
+   "title": "",
+   "avatar": "/assets/people/catherine-ariola-68a6a0df.jpg"
   },
   {
    "name": "Chiara Libertini",
@@ -121,12 +126,14 @@
   {
    "name": "Drew Koloski",
    "email": "drew@carrara.is",
-   "title": "Talent Partner"
+   "title": "Talent Partner",
+   "avatar": "/assets/people/drew-koloski-25aba8a0.png"
   },
   {
    "name": "Emily Kasper",
    "email": "emily@carrara.is",
-   "title": ""
+   "title": "",
+   "avatar": "/assets/people/emily-kasper-9fd7313a.jpg"
   },
   {
    "name": "Enzo Budasoff",
@@ -141,7 +148,8 @@
   {
    "name": "Federico De Langhe",
    "email": "federico@carrara.is",
-   "title": ""
+   "title": "",
+   "avatar": "/assets/people/federico-de-langhe-7bc0b696.png"
   },
   {
    "name": "Giovanna Borgiotti",
@@ -216,7 +224,8 @@
   {
    "name": "Justin Snyder",
    "email": "justin.snyder@carrara.is",
-   "title": ""
+   "title": "",
+   "avatar": "/assets/people/justin-snyder-21c903b1.png"
   },
   {
    "name": "Katie Nguyen",
@@ -281,7 +290,8 @@
   {
    "name": "Nathan Peadon",
    "email": "nathan@carrara.is",
-   "title": ""
+   "title": "",
+   "avatar": "/assets/people/nathan-peadon-3e0fb5ed.png"
   },
   {
    "name": "Nic Touron",
@@ -291,7 +301,8 @@
   {
    "name": "Nicolás Ruperez",
    "email": "nicolas.ruperez@carrara.is",
-   "title": ""
+   "title": "",
+   "avatar": "/assets/people/nicolas-ruperez-e7eb3c09.png"
   },
   {
    "name": "Pranav Mutatkar",
@@ -341,7 +352,8 @@
   {
    "name": "Sean Connors",
    "email": "sean@carrara.is",
-   "title": ""
+   "title": "",
+   "avatar": "/assets/people/sean-connors-3a64939c.png"
   },
   {
    "name": "Shayne Marie Leslie Dalimos",
@@ -376,12 +388,14 @@
   {
    "name": "Tenzing Bhutia",
    "email": "tenzing@carrara.is",
-   "title": ""
+   "title": "",
+   "avatar": "/assets/people/tenzing-bhutia-2688be31.png"
   },
   {
    "name": "Tess Wicks",
    "email": "tess@carrara.is",
-   "title": "Talent Operations"
+   "title": "Talent Operations",
+   "avatar": "/assets/people/tess-wicks-f4d5aba2.jpg"
   },
   {
    "name": "Tina Khoury",

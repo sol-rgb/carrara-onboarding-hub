@@ -811,3 +811,12 @@ body::after {
 .bv-lbl { font-size: 13.5px; font-weight: 500; color: var(--ink); margin: 18px 0 7px; }
 .bv-code { font-family: ui-monospace, Menlo, monospace; font-size: 12px; line-height: 1.6; color: var(--ardesia);
   background: var(--sage-soft); padding: 14px 16px; white-space: pre-wrap; word-break: break-word; margin-bottom: 4px; }
+
+/* the quarry the quote is about, sitting with the quote rather than decorating
+   the hero: the metaphor lands harder next to the words that explain it */
+.quote-photo { margin: 0 0 26px; }
+.quote-photo img { width: 100%; display: block; clip-path: var(--chamfer); }
+.quote-photo figcaption {
+  font-family: var(--rigid); font-size: 9.5px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--taupe); margin-top: 9px;
+}
