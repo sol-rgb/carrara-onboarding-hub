@@ -373,7 +373,8 @@
     var pct = Math.round(done / total * 100);
     $('#chk-fill').style.width = pct + '%';
     $('#chk-pct').textContent = pct + '%';
-    $('#meta-checklist').textContent = 'checklist: ' + done + '/' + total;
+    var meta = $('#meta-checklist');
+    if (meta) meta.textContent = 'checklist: ' + done + '/' + total;
     $('#done-moment').classList.toggle('show', pct === 100);
   }
   $('#chk-reset').addEventListener('click', function () {

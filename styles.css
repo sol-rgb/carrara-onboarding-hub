@@ -56,11 +56,6 @@ body {
 }
 .sidebar nav a:hover { color: var(--ink); }
 .sidebar nav a.active { color: var(--orange); }
-.sidebar .side-meta {
-  font-family: var(--rigid); font-size: 10.5px; letter-spacing: 0.05em;
-  color: var(--taupe); border-top: 1px solid var(--hairline);
-  padding-top: 14px; display: flex; flex-direction: column; gap: 5px;
-}
 
 .topbar { display: none; }
 
@@ -565,12 +560,6 @@ footer img { width: 26px; }
 }
 
 /* ---------- link & navigation dynamics ---------- */
-.side-search {
-  font-family: var(--rigid); font-size: 10.5px; letter-spacing: 0.05em;
-  color: var(--taupe); background: none; border: none; cursor: pointer;
-  text-align: left; padding: 0; margin-bottom: 2px;
-}
-.side-search:hover { color: var(--orange); }
 
 a.stat { text-decoration: none; color: inherit; }
 a.stat:hover .num { color: var(--orange); }
