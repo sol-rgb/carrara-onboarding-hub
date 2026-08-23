@@ -6,7 +6,7 @@ window.PAGES = {
   timeOffPolicy: {
     title: 'Time-Off & Holiday Policy',
     html: '<p>We operate at a high level, which means we also need time to reset. Time off is built on trust, responsibility and impact:</p>'
-      + '<ul><li>Take time off proactively, not just when you are burned out.</li>'
+      + '<ul><li>Take time off before you need it, not once you are already burned out.</li>'
       + '<li>Aim for at least two days off per quarter (with prior approval) to recharge.</li>'
       + '<li>Communicate early and clearly so the team can plan around it.</li></ul>'
       + '<h4>Taking time off</h4>'
@@ -98,7 +98,7 @@ window.PAGES = {
       + '<div class="pg-swatch"><span style="background:#FFFF80"></span><b>Lemon #FFFF80</b></div>'
       + '</div>'
       + '<h4>Typography</h4>'
-      + '<ul><li><b>Portrait Serif:</b> for moments that demand impact — headlines and large figures. Bold and Regular. Fallback when unavailable: PT Serif.</li>'
+      + '<ul><li><b>Portrait Serif:</b> headlines and large figures. Bold and Regular. Fallback when unavailable: PT Serif.</li>'
       + '<li><b>Manrope:</b> the workhorse for body copy and interface text, from paragraphs to UI. Bold and Medium. Default for all functional text.</li></ul>'
       + '<h4>Logo rules</h4>'
       + '<ul><li>Primary logo is the wordmark in <b>Ember</b> on light backgrounds; White on dark; Grafite as the light-background alternative.</li>'
@@ -191,9 +191,9 @@ window.PAGES = {
     eyebrow: '',
     note: '',
     html: '<ul>'
-      + '<li>Tackles important, ambiguous, cross-functional problems that do not sit neatly within one department — our “special projects” or embedded fixer-team offering.</li>'
-      + '<li>Diagnoses the business across product, customers, GTM, operations, finance, and organizational design; identifies the highest-leverage problems; and then executes against them.</li>'
-      + '<li>Can operate as a fractional Chief of Staff, Head of Ops, Head of Strategy or cross-functional delivery team, building processes, systems, automations, and operating cadences while driving the work forward.</li>'
+      + '<li>Takes the important, ambiguous problems that do not sit inside any one department. Internally this is the special projects team.</li>'
+      + '<li>Reads the business across product, customers, GTM, operations, finance and org design, works out which problems matter most, then goes and fixes them.</li>'
+      + '<li>Can operate as a fractional Chief of Staff, Head of Ops, Head of Strategy or cross-functional delivery team, building the processes, systems, automations and operating cadences, and keeping the work moving.</li>'
       + '</ul>'
       + '<div class="pg-clients" data-clients="a16z|Brave Health|Hertz|Basis"></div>'
   },
@@ -202,7 +202,7 @@ window.PAGES = {
     eyebrow: '',
     note: '',
     html: '<ul>'
-      + '<li>Helps companies diagnose and unlock growth across positioning, acquisition, activation, retention, monetization, and go-to-market execution.</li>'
+      + '<li>Finds what is holding growth back across positioning, acquisition, activation, retention, monetization and go-to-market, then fixes it.</li>'
       + '<li>Work can include product launches, growth strategy, funnel and channel audits, performance marketing, pricing, lifecycle campaigns, brand and narrative, creative, and GTM operations.</li>'
       + '<li>Carrara assembles the right mix of strategists, performance marketers, designers, writers, analysts, and product or engineering talent to launch experiments, measure results, and scale what works.</li>'
       + '</ul>'
