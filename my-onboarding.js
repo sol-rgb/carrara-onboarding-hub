@@ -115,9 +115,13 @@
     if (intro) {
       h += '<div class="quote-block mo-note">'
         + '<div class="pull">' + md.renderMarkdown(intro) + '</div>'
+        /* Without a name the attribution is the role on its own. Appending the
+           role to the fallback read "Your hiring manager, your hiring manager." */
         + '<p class="attr">'
-        + esc(kit.manager && kit.manager.name ? kit.manager.name : 'Your hiring manager')
-        + ', your hiring manager.</p></div>';
+        + (kit.manager && kit.manager.name
+            ? esc(kit.manager.name) + ', your hiring manager.'
+            : 'Your hiring manager.')
+        + '</p></div>';
     }
 
     var cards = '';
