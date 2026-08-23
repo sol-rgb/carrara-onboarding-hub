@@ -61,7 +61,6 @@ body {
   color: var(--taupe); border-top: 1px solid var(--hairline);
   padding-top: 14px; display: flex; flex-direction: column; gap: 5px;
 }
-.tour-active .sidebar nav a:not(.active) { opacity: 0.38; }
 
 .topbar { display: none; }
 
@@ -439,15 +438,6 @@ table.clean td:last-child { font-family: var(--rigid); font-size: 11px; letter-s
 .hovercard li { font-size: 12.5px; line-height: 1.55; padding: 5px 0; border-bottom: 1px solid rgba(237,235,234,0.12); }
 .hovercard li:last-child { border-bottom: none; }
 
-/* ---------- tour chrome: nav on top ---------- */
-.tour-bar { display: none; position: sticky; top: 0; z-index: 30; background: var(--canvas); border-bottom: 1px solid var(--hairline); padding: 12px clamp(28px, 4vw, 72px); }
-.tour-active .tour-bar { display: flex; align-items: center; justify-content: flex-end; gap: 18px; }
-.tour-bar .exit { font-family: var(--rigid); font-size: 10.5px; letter-spacing: 0.06em; color: var(--taupe); background: none; border: none; cursor: pointer; text-decoration: underline; }
-.btn-ghost {
-  font-family: var(--rigid); font-size: 11px; letter-spacing: 0.07em;
-  background: none; border: 1px solid var(--hairline); color: var(--ink);
-  padding: 10px 20px; cursor: pointer; clip-path: var(--chamfer);
-}
 .btn-ghost:hover { border-color: var(--ink); }
 .btn-next {
   font-family: var(--rigid); font-size: 11px; letter-spacing: 0.07em;
@@ -601,7 +591,6 @@ a.client-row:hover .cn { color: var(--orange); }
   color: var(--ink); text-decoration: none;
 }
 .next-nav a:hover { color: var(--orange); }
-.tour-active .next-nav { display: none; }
 
 /* ---------- search palette ---------- */
 .pal-back {

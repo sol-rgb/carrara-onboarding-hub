@@ -19,7 +19,6 @@
   <div class="side-meta">
     <button id="btn-search" class="side-search">search &#8984;K</button>
     <span id="meta-checklist">checklist: 0/20</span>
-    <span id="meta-tour" hidden></span>
   </div>
 </aside>
 
@@ -29,12 +28,6 @@
 </div>
 
 <main>
-  <div class="tour-bar">
-    <button class="btn-ghost" id="tour-back">Back</button>
-    <button class="btn-next" id="tour-next">Next</button>
-    <button class="exit" id="tour-exit">Exit tour</button>
-  </div>
-
   <!-- 01 start here -->
   <section class="view" id="view-start">
     <div class="hero-wrap">
@@ -42,10 +35,9 @@
       <h1 class="display">Welcome. You're part of <span class="u">the team<sup>1</sup></span> now.</h1>
       <p class="body-copy">From day one you'll be doing work that matters. Before you start, your manager confirms who you report to and pairs you with an onboarding buddy. Go to them with any question, no matter how small.</p>
       <div class="cta-row">
-        <button class="btn-primary" id="btn-tour">See full onboarding</button>
+        <a class="btn-primary" id="btn-tour" href="#/who">See full onboarding</a>
         <span class="cta-note">Or explore the sections from the menu.</span>
       </div>
-      <button class="startover" id="btn-startover" hidden>Start over</button>
       <div class="stat-strip">
         <a class="stat" href="#/who"><div class="num" id="stat-partners" data-count="8">0</div><div class="lbl">partners</div></a>
         <a class="stat" href="#/team"><div class="num" id="stat-team" data-count="75" data-plus="1">0</div><div class="lbl">team members</div></a>

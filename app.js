@@ -28,16 +28,6 @@
   var OTHER_IDS = SECTIONS.filter(function (s) { return s.id !== MO.SECTION_ID; })
     .map(function (s) { return s.id; });
 
-  /* the guided tour skips Start here so the first click takes you somewhere new.
-     Computed on demand, not once: My Onboarding joins the tour the moment it is
-     revealed, which by construction is while the hire is on the LAST step --
-     so the tour gains its finale exactly when the spec says it should
-     (decision 2). The step counter grows by one at that moment, honestly. */
-  function tourSteps() {
-    return SECTIONS.slice(1).filter(function (s) {
-      return s.id !== MO.SECTION_ID || revealed();
-    });
-  }
   var CHANNELS = [
     { n: '#g-announcements', d: 'team-wide announcements.', ex: ['Company-wide updates from the partners', 'Policy and process changes everyone should see'] },
     { n: '#g-no-dumb-questions', d: 'ask anything.', ex: ['"Anyone know a freelancer for podcast booking?"', '"Has anyone used Noon.ai?"', '"What do people use to track event attendees?"'] },
@@ -203,7 +193,7 @@
 
   /* The nav link and the mobile option exist from load and are hidden, rather
      than being created on reveal: one place builds them, and the reveal is a
-     single attribute flip that also survives a hashchange mid-tour. */
+     single attribute flip that also survives a hashchange. */
   function syncMyOnboardingNav() {
     var state = MO.navState(visited, OTHER_IDS, !!store(MO.SEEN_KEY));
     var link = document.querySelector('#nav a[data-id="' + MO.SECTION_ID + '"]');
@@ -247,7 +237,6 @@
     if (sec === 'start') countUp();
     if (sec === 'templates') mountTemplates();
     nextNav(el, sec);
-    syncTourChrome();
     setTimeout(function () { if (typeof updateRail === 'function') updateRail(); }, 60);
   }
   function showClientPage(slug) {
@@ -260,7 +249,6 @@
     mnav.value = 'clients';
     window.scrollTo(0, 0);
     reveal(el);
-    syncTourChrome();
     setTimeout(function () { if (typeof updateRail === 'function') updateRail(); }, 60);
   }
   function route() {
@@ -1059,53 +1047,10 @@
       });
   }
 
-  /* ---------- tour ---------- */
-  var tour = store('carrara_tour') || { active: false, step: 0 };
-  if (tour.step >= tourSteps().length) tour.step = 0;
-  function syncHome() {
-    var btn = $('#btn-tour'), so = $('#btn-startover');
-    if (tour.step > 0 && !tour.done) {
-      btn.textContent = 'Resume onboarding, step ' + (tour.step + 1) + ' of ' + tourSteps().length;
-      so.hidden = false;
-    } else {
-      btn.textContent = 'See full onboarding';
-      so.hidden = true;
-    }
-  }
-  function syncTourChrome() {
-    document.body.classList.toggle('tour-active', !!tour.active);
-    if (!tour.active) { $('#meta-tour').hidden = true; return; }
-    var n = tour.step + 1;
-    var total = tourSteps().length;
-    $('#meta-tour').hidden = false;
-    $('#meta-tour').textContent = 'tour: step ' + n + ' of ' + total;
-    $('#tour-back').style.visibility = tour.step === 0 ? 'hidden' : 'visible';
-    $('#tour-next').textContent = current === 'checklist' ? "I'll keep working on this" : (tour.step === total - 1 ? 'Finish' : 'Next');
-  }
-  function tourGo(step) {
-    var steps = tourSteps();
-    tour.step = Math.max(0, step);
-    if (tour.step >= steps.length) {
-      tour.active = false; tour.done = true; tour.step = 0;
-      store('carrara_tour', tour);
-      location.hash = '#/complete';
-      return;
-    }
-    tour.active = true; tour.done = false;
-    store('carrara_tour', tour);
-    var target = '#/' + steps[tour.step].id;
-    if (location.hash === target) { show(steps[tour.step].id); } else { location.hash = target; }
-    syncTourChrome();
-  }
-  $('#btn-tour').addEventListener('click', function () { tourGo(tour.step && !tour.done ? tour.step : 0); });
-  $('#btn-startover').addEventListener('click', function () { tour = { active: false, step: 0 }; store('carrara_tour', tour); tourGo(0); });
-  $('#tour-next').addEventListener('click', function () { tourGo(tour.step + 1); });
-  $('#tour-back').addEventListener('click', function () { tourGo(tour.step - 1); });
-  $('#tour-exit').addEventListener('click', function () {
-    tour.active = false; store('carrara_tour', tour);
-    location.hash = '#/start'; syncHome(); syncTourChrome();
-  });
-  $('#btn-home').addEventListener('click', function () { location.hash = '#/start'; syncHome(); });
+  /* The guided tour is gone. Sequential movement lives in the "Next: <section>"
+     link at the foot of every page, and visits are recorded by show() either
+     way, so My onboarding still reveals itself once the hub has been walked. */
+  $('#btn-home').addEventListener('click', function () { location.hash = '#/start'; });
 
   /* ---------- welcome kit popup ---------- */
   (function () {
@@ -1311,10 +1256,6 @@
     if (btn) btn.addEventListener('click', openPal);
   })();
 
-  if (tour.active && tourSteps()[tour.step]) {
-    location.hash = '#/' + tourSteps()[tour.step].id;
-  }
-  syncHome();
   route();
   /* Every load re-verifies the saved code with POps behind it (spec decision 6).
      The section itself refetches on every visit; this is the boot copy, so a
