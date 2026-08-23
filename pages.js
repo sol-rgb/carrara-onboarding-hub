@@ -140,7 +140,7 @@ window.PAGES = {
       + '<li>Runs the full recruiting workflow: sourcing, outreach, screening, candidate management, interview coordination, and closing support.</li>'
       + '<li>Adds dedicated recruiting capacity against a defined set of roles, functions, or hiring goals.</li>'
       + '</ul>'
-      + '<p class="pg-clients"><b>Recent clients:</b> a16z, Altana, Hinge, Modal Labs, Runlayer, Profound.</p>'
+      + '<div class="pg-clients" data-clients="a16z|Altana|Hinge|Modal Labs|Runlayer|Profound"></div>'
   },
   skuTalentPlatform: {
     title: 'Talent Platform',
@@ -151,7 +151,7 @@ window.PAGES = {
       + '<li>Builds hiring plans, role prioritization, assessment processes, interview architecture, recruiting analytics, tooling, and agency strategy.</li>'
       + '<li>Improves the broader talent proposition through candidate experience, talent brand, compensation inputs, onboarding design, and stronger talent-density decisions.</li>'
       + '</ul>'
-      + '<p class="pg-clients"><b>Recent clients:</b> Hinge, Modal Labs, Altana, Runlayer, Profound, Untitled.</p>'
+      + '<div class="pg-clients" data-clients="Hinge|Modal Labs|Altana|Runlayer|Profound|Untitled"></div>'
   },
   skuExecutiveSearch: {
     title: 'Executive Search',
@@ -173,7 +173,7 @@ window.PAGES = {
       + '<li>Supports higher-order people strategy, including headcount planning, compensation philosophy and pay bands, performance management, engagement, and people analytics.</li>'
       + '<li>Designs systems and automations that can scale with the company, then helps transition ownership to an internal team when appropriate.</li>'
       + '</ul>'
-      + '<p class="pg-clients"><b>Recent clients:</b> Modal Labs, Profound, Magic AI, Fundamental Technologies.</p>'
+      + '<div class="pg-clients" data-clients="Modal Labs|Profound|Magic AI|Fundamental Technologies"></div>'
   },
   skuFinance: {
     title: 'Finance',
@@ -184,7 +184,7 @@ window.PAGES = {
       + '<li>Acts as a strategic finance partner on unit economics, pricing, capital allocation, growth planning, board reporting, fundraising, and investor readiness.</li>'
       + '<li>Supports major transactions and inflection points, including M&amp;A diligence and execution, post-acquisition integration, scenario modeling, and building the eventual in-house finance team.</li>'
       + '</ul>'
-      + '<p class="pg-clients"><b>Recent clients:</b> Bee AI, Deeptune, Luminai.</p>'
+      + '<div class="pg-clients" data-clients="Bee AI|Deeptune|Luminai"></div>'
   },
   skuBizOps: {
     title: 'BizOps',
@@ -195,7 +195,7 @@ window.PAGES = {
       + '<li>Diagnoses the business across product, customers, GTM, operations, finance, and organizational design; identifies the highest-leverage problems; and then executes against them.</li>'
       + '<li>Can operate as a fractional Chief of Staff, Head of Ops, Head of Strategy or cross-functional delivery team, building processes, systems, automations, and operating cadences while driving the work forward.</li>'
       + '</ul>'
-      + '<p class="pg-clients"><b>Recent clients:</b> a16z, Brave Health, Hertz.</p>'
+      + '<div class="pg-clients" data-clients="a16z|Brave Health|Hertz|Basis"></div>'
   },
   skuMarketingGrowth: {
     title: 'Marketing and Growth',
@@ -206,7 +206,7 @@ window.PAGES = {
       + '<li>Work can include product launches, growth strategy, funnel and channel audits, performance marketing, pricing, lifecycle campaigns, brand and narrative, creative, and GTM operations.</li>'
       + '<li>Carrara assembles the right mix of strategists, performance marketers, designers, writers, analysts, and product or engineering talent to launch experiments, measure results, and scale what works.</li>'
       + '</ul>'
-      + '<p class="pg-clients"><b>Recent clients:</b> Modal Labs, Village Global, Grindr, Better, Roger.</p>'
+      + '<div class="pg-clients" data-clients="Modal Labs|Village Global|Grindr|Better|Sphere"></div>'
   },
   thisIsCarrara: {
     title: 'This is Carrara',

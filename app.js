@@ -39,7 +39,29 @@
     { n: '#g-brainstorm', d: 'ideas in the open.', ex: ['Carrara-centric ideas looking for a second brain'] },
     { n: '#g-share-the-goods', d: 'useful finds.', ex: ['The Carrara Current weekly newsletter drops', 'A shared NYC + SF venue list for client events', 'Playbooks people are hunting for'] },
     { n: '#w-ideas-library', d: 'articles the team shares.', ex: ['"Lessons from Palantir alums" reads', 'Essays on taste, priorities and how we work'] },
-    { n: '#f-talent-general', d: 'everything talent services.', ex: ['Weekly Talent Jam prep and open roles reminders', 'Client interview process questions', 'Hiring experiments worth copying'] }
+    { n: '#f-talent-general', d: 'everything talent services.', ex: ['Weekly Talent Jam prep and open roles reminders', 'Client interview process questions', 'Hiring experiments worth copying'] },
+    { n: '#f-gtm-general', d: 'the GTM team.', ex: ['Weekly GTM sync agenda and client priorities', 'Narrative, comms and paid media work'] },
+    { n: '#f-coordination-general', d: 'recruiting coordination.', ex: ['Ashby scheduling and reporting questions', 'Coord weekly and shared how-tos'] },
+    { n: '#f-company-ops-general', d: 'our own internal ops.', ex: ['Payroll, 1099s and holiday questions', 'Performance cycle announcements'] },
+    { n: '#g-ashby-support', d: 'help with Ashby.', ex: ['Config questions, reporting, and anything the ATS will not do'] },
+    { n: '#g-tech-rec-sourcing', d: 'technical sourcing.', ex: ['Boolean strings, tools and hard-to-find profiles'] }
+  ];
+
+  /* w- is the watercooler prefix. It is not in the day-one list because none of
+     it is required reading, but a new joiner should know these exist. */
+  var WATERCOOLER = [
+    { n: '#w-you-rock', d: 'shout out good work.' },
+    { n: '#w-small-wins', d: 'the little stuff worth celebrating.' },
+    { n: '#w-random', d: 'anything at all.' },
+    { n: '#w-investing', d: 'markets and investing talk.' },
+    { n: '#w-ai-tips', d: 'prompts, tools and things that worked.' },
+    { n: '#w-ai-projects', d: 'what people are building.' },
+    { n: '#w-productivity-toolz', d: 'apps and workflows the team swears by.' },
+    { n: '#w-ways-of-working', d: 'how we work, discussed in the open.' },
+    { n: '#w-ideas-library', d: 'articles worth reading.' },
+    { n: '#w-design-inspo', d: 'design people like.' },
+    { n: '#w-sports', d: 'sports.' },
+    { n: '#w-fam-and-pets', d: 'families and animals.' }
   ];
 
   /* item.links: [{t, k}] where k is a LINKS key, a '#/section' hash, a full URL,
@@ -88,6 +110,21 @@
 
   /* pages.js content opens as an in-hub popup instead of linking out */
   function pageFor(k) { return (window.PAGES && window.PAGES[k]) || null; }
+  /* Offering pages declare their clients by name; the logos are drawn at open
+     time from live client data, so a client that changes domain or drops off
+     the roster updates here without anyone editing pages.js. */
+  function fillClientLogos(root) {
+    (root || document).querySelectorAll('.pg-clients[data-clients]').forEach(function (el) {
+      var names = el.dataset.clients.split('|').filter(Boolean);
+      var known = names.filter(function (n) {
+        return clientData.some(function (c) { return c.name === n; });
+      });
+      if (!known.length) { el.remove(); return; }
+      el.innerHTML = '<div class="pg-cl-lbl">Recent clients</div><div class="cl-grid">'
+        + known.map(function (n) { return clientTile(n, 64); }).join('') + '</div>';
+    });
+  }
+
   function openPage(k) {
     var pg = pageFor(k);
     if (!pg) return;
@@ -96,6 +133,7 @@
       + '<h3>' + esc(pg.title) + '</h3><div class="pg">' + pg.html + '</div>'
       + (pg.note === undefined ? '<p class="pg-note">Snapshot from Notion, Jul 24, 2026.</p>'
         : (pg.note ? '<p class="pg-note">' + esc(pg.note) + '</p>' : '')));
+    fillClientLogos($('#modal-back'));
   }
   document.addEventListener('click', function (e) {
     var t = e.target.closest ? e.target.closest('[data-page]') : null;
@@ -423,14 +461,7 @@
       /* logo above, company name below: a name alone makes you read, a logo
          alone makes you guess. Falls back to the initial when we have no domain. */
       html += '<div class="wk-sec"><div class="wk-lbl">[clients]</div><div class="cl-grid">'
-        + pv.clients.map(function (cn) {
-            var c = clientData.filter(function (x) { return x.name === cn; })[0];
-            var mark = c && c.domain
-              ? '<img src="' + favicon(c.domain, 64) + '" alt="" loading="lazy">'
-              : '<span class="cl-init">' + esc(cn.charAt(0)) + '</span>';
-            return '<div class="cl-cell"><div class="cl-mark">' + mark + '</div>'
-              + '<div class="cl-name">' + esc(cn) + '</div></div>';
-          }).join('') + '</div></div>';
+        + pv.clients.map(function (cn) { return clientTile(cn, 64); }).join('') + '</div></div>';
     }
     /* People Pavilion answers, question above each one so the card reads on its own */
     if (pv.answers && pv.answers.length) {
@@ -567,7 +598,8 @@
       var logos = (pv.clients || []).slice(0, 5).map(function (cn) {
         var c = clientData.filter(function (x) { return x.name === cn; })[0];
         return c && c.domain
-          ? '<img class="cl-dot" src="' + favicon(c.domain, 32) + '" alt="' + esc(cn) + '" title="' + esc(cn) + '" loading="lazy">'
+          ? '<a class="cl-dot-link" href="https://' + esc(c.domain) + '" target="_blank" rel="noopener" title="' + esc(cn) + '">'
+            + '<img class="cl-dot" src="' + favicon(c.domain, 32) + '" alt="' + esc(cn) + '" loading="lazy"></a>'
           : '<span class="cl-dot txt" title="' + esc(cn) + '">' + esc(cn.charAt(0)) + '</span>';
       }).join('');
       d.innerHTML = '<div class="avatar">' + av + '</div><div class="info">'
@@ -834,6 +866,34 @@
       .then(function () { kitRefreshing = false; });
   }
 
+  /* One place that renders a client as a logo. Used by the team grid, a person's
+     card and the offering popups, so a logo means the same thing everywhere and
+     always opens the client's own site. Falls back to a letter when we have no
+     domain, and that fallback is not a link, because there is nowhere to go. */
+  function clientTile(name, size) {
+    var c = clientData.filter(function (x) { return x.name === name; })[0];
+    var mark = c && c.domain
+      ? '<img src="' + favicon(c.domain, size || 64) + '" alt="" loading="lazy">'
+      : '<span class="cl-init">' + esc(String(name).charAt(0)) + '</span>';
+    var inner = '<div class="cl-mark">' + mark + '</div><div class="cl-name">' + esc(name) + '</div>';
+    return (c && c.domain)
+      ? '<a class="cl-cell" href="https://' + esc(c.domain) + '" target="_blank" rel="noopener" title="' + esc(name) + '">' + inner + '</a>'
+      : '<div class="cl-cell" title="' + esc(name) + '">' + inner + '</div>';
+  }
+  window.clientTile = clientTile;
+
+  /* ---------- watercooler channels ---------- */
+  (function () {
+    var grid = document.getElementById('water-grid');
+    if (!grid) return;
+    grid.innerHTML = WATERCOOLER.map(function (c) {
+      var u = window.channelUrl && window.channelUrl(c.n);
+      var label = '<b>' + esc(c.n) + '</b><span class="d">: ' + esc(c.d) + '</span>';
+      return u ? '<a class="flat-row" href="' + esc(u) + '" target="_blank" rel="noopener">' + label + '</a>'
+               : '<div class="flat-row">' + label + '</div>';
+    }).join('');
+  })();
+
   /* ---------- team gallery ---------- */
   (function () {
     var track = $('#gal-track');
@@ -841,7 +901,7 @@
     /* Filenames are sequential so adding a photo is a drop-in: put NN.jpg in
        assets/team-photos and bump COUNT. A missing file removes its own slide
        rather than leaving a broken frame. */
-    var COUNT = 13;
+    var COUNT = 12;
     var html = '';
     for (var i = 1; i <= COUNT; i++) {
       var n = (i < 10 ? '0' : '') + i;
@@ -1091,11 +1151,13 @@
         list.appendChild(g2);
       })
       .catch(function () {
+        /* The embedded Drive folder view 403s unless the folder is public, so it
+           rendered a Google error page inside the hub. A plain link is honest:
+           it works, and it fails in Drive's own UI rather than ours. */
         var wrap = document.createElement('div');
         wrap.className = 'tpl';
         wrap.innerHTML = '<div class="tpl-head"><span class="tn">Branding folder</span><span class="tt">drive</span>'
-          + '<span class="acts"><a href="https://drive.google.com/drive/folders/' + BRAND_FOLDER + '" target="_blank" rel="noopener">Open in Drive</a></span></div>'
-          + '<div class="tpl-frame" style="height:500px"><iframe loading="lazy" src="https://drive.google.com/embeddedfolderview?id=' + BRAND_FOLDER + '#list" title="Branding folder"></iframe></div>';
+          + '<span class="acts"><a href="https://drive.google.com/drive/folders/' + BRAND_FOLDER + '" target="_blank" rel="noopener">Open in Drive ↗</a></span></div>';
         list.appendChild(wrap);
       });
   }

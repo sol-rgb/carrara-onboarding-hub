@@ -45,24 +45,23 @@
   <!-- 02 who we are -->
   <section class="view" id="view-who">
     <h1 class="display">An <span class="u">operating<sup>1</sup></span> <span class="u">firm<sup>2</sup></span> focused on <span class="u">The Work<sup>3</sup></span>.</h1>
-    <div class="who-split">
-      <div>
-        <p class="body-copy">We help build exceptional companies by embedding ourselves across Talent, Finance, Go-to-Market and Ops. We also build, found, and lead new ventures.</p>
-        <div class="fact-list">
-          <div class="fact"><img src="/assets/logo/carrara-iso-ember.svg" alt=""><span>Partner group of <b id="fact-partners">8</b>, <b id="fact-team">75</b> Carrarians, serving 30+ companies</span></div>
-          <div class="fact"><img src="/assets/logo/carrara-iso-ember.svg" alt=""><span>Backgrounds spanning <b>On Deck, Bain, Uber, Human Capital, Better</b></span></div>
-          <div class="fact"><img src="/assets/logo/carrara-iso-ember.svg" alt=""><span>Recruiting engines, finance functions, <b>products from scratch</b></span></div>
-          <div class="fact"><img src="/assets/logo/carrara-iso-ember.svg" alt=""><span>Every project differs. The through line: <b>we get in the room and do The Work</b></span></div>
-        </div>
-      </div>
-      <div class="quote-block">
-        <figure class="quote-photo">
-          <img src="/assets/img/quarry.jpg" alt="The Cava Michelangelo marble quarry in Carrara, Italy" loading="lazy">
-          <figcaption>Cava Michelangelo, Carrara</figcaption>
-        </figure>
+    <div class="who-lede">
+      <figure class="who-photo">
+        <img src="/assets/img/quarry.jpg" alt="The Cava Michelangelo marble quarry in Carrara, Italy" loading="lazy">
+        <figcaption>Cava Michelangelo, Carrara</figcaption>
+      </figure>
+      <div class="who-quote">
         <p class="pull">"The sculpture is already complete within the marble block. I just have to chisel away the superfluous material."</p>
         <p class="attr">Michelangelo. Carrara is the quarry where he found stone par excellence. Where others see blocks, we see opportunities.</p>
       </div>
+    </div>
+
+    <p class="body-copy who-intro">We help build exceptional companies by embedding ourselves across Talent, Finance, Go-to-Market and Ops. We also build, found, and lead new ventures.</p>
+    <div class="fact-list">
+      <div class="fact"><img src="/assets/logo/carrara-iso-ember.svg" alt=""><span>Partner group of <b id="fact-partners">8</b>, <b id="fact-team">75</b> Carrarians, serving 30+ companies</span></div>
+      <div class="fact"><img src="/assets/logo/carrara-iso-ember.svg" alt=""><span>Backgrounds spanning <b>On Deck, Bain, Uber, Human Capital, Better</b></span></div>
+      <div class="fact"><img src="/assets/logo/carrara-iso-ember.svg" alt=""><span>Recruiting engines, finance functions, <b>products from scratch</b></span></div>
+      <div class="fact"><img src="/assets/logo/carrara-iso-ember.svg" alt=""><span>Every project differs. The through line: <b>we get in the room and do The Work</b></span></div>
     </div>
     <div class="history">
       <div class="h-year"><div class="y">2022</div><div class="hl-line">Started in a salad freezer</div><p>Hustle and Co. is born at Salad and Go. First clients, first hires.</p></div>
@@ -89,6 +88,17 @@
       </div>
       <button class="btn-invert" id="btn-profile">Fill in your profile</button>
     </div>
+    <h2 class="sub">Us, off the clock</h2>
+    <div class="gallery" id="gallery">
+      <button class="gal-nav prev" id="gal-prev" aria-label="Previous photos">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="gal-track" id="gal-track"></div>
+      <button class="gal-nav next" id="gal-next" aria-label="More photos">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
     <div class="team-tools">
       <input class="team-search" id="team-search" type="text" placeholder="Filter by name or role" aria-label="Filter team">
       <span class="team-count" id="team-count"></span>
@@ -102,16 +112,6 @@
     <div class="team-grid" id="team-grid"></div>
     <p class="team-note" id="team-note">Pulled from Slack. Photos and titles come straight from Slack profiles, so set yours and it shows up here.</p>
 
-    <h2 class="sub">Us, off the clock</h2>
-    <div class="gallery" id="gallery">
-      <button class="gal-nav prev" id="gal-prev" aria-label="Previous photos">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <div class="gal-track" id="gal-track"></div>
-      <button class="gal-nav next" id="gal-next" aria-label="More photos">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-    </div>
   </section>
 
   <!-- 05b code of conduct: locked until Kenna's draft lands -->
@@ -138,6 +138,7 @@
       <div class="flat-row"><b>p-</b><span class="d">: projects within an account.</span></div>
       <div class="flat-row"><b>ext-</b><span class="d">: shared with the client. Watch what you write.</span></div>
       <div class="flat-row"><b>temp-</b><span class="d">: sprints, archived after.</span></div>
+      <div class="flat-row"><b>w-</b><span class="d">: watercooler. Optional, and where the team is human.</span></div>
     </div>
     <h2 class="sub">Set up your profile properly</h2>
     <p class="body-copy">Your Slack profile is how the rest of the company finds you, and the team page in this hub pulls straight from it. Fill in all of it on day one.</p>
@@ -153,6 +154,10 @@
     <h2 class="sub">Know these from day one</h2>
     <p class="body-copy muted" style="font-size:13px">Hover a channel to see the kind of thing that gets posted there.</p>
     <div class="flat-grid" id="channel-grid"></div>
+
+    <h2 class="sub">The watercooler</h2>
+    <p class="body-copy muted" style="font-size:13px">None of this is required reading. It is where the team is human, and it is the fastest way to stop being the new person.</p>
+    <div class="flat-grid three" id="water-grid"></div>
   </section>
 
   <!-- 08 checklist -->
@@ -224,8 +229,13 @@
     <h2 class="sub">The Brand Vault</h2>
     <p class="body-copy">Everything that defines how Carrara looks and sounds, brought into the hub so you do not have to go hunting through Notion. The source files still live on Drive; those links are marked.</p>
 
-    <div class="bv">
-      <h3 class="bv-h">Logo</h3>
+    <div class="bv-cards"><details class="bv-card">
+      <summary>
+        <span class="bv-ct">Logo</span>
+        <span class="bv-cs">Wordmark, icon, colour variations and the rules for using them</span>
+        <svg class="bv-chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </summary>
+      <div class="bv-body">
       <p class="body-copy">The Carrara logo is inspired by Carrara marble and the centuries-old craft of turning raw stone into art. The wordmark's geometric letterforms carry angular cuts and subtle interior curves that echo a sculptor's chisel against marble. The modular block system represents the raw material itself: solid forms waiting to be shaped. Like Michelangelo believed the statue already existed within the block, we see potential in foundations that need the right craft to be revealed.</p>
       <figure class="bv-fig"><img src="/assets/brand/logo-main.jpg" alt="Carrara logo, main application" loading="lazy"><figcaption>Main application. Ember on light, white on dark, black on light as an alternative.</figcaption></figure>
       <figure class="bv-fig"><img src="/assets/brand/logo-secondary.jpg" alt="Carrara logo in the secondary palette" loading="lazy"><figcaption>Secondary applications: Cielo, Moss, Lavender, Lemon and Nuvola. Use sparingly, for events, merch and campaigns.</figcaption></figure>
@@ -246,10 +256,16 @@
       <p class="body-copy">A simplified mark derived from the modular block in the logo architecture. It is reserved for places the full wordmark cannot go: social profile pictures, app icons, favicons, spaces under 100px, and animation or loading states. Everywhere else, including presentations, documents and marketing, default to the full wordmark.</p>
       <figure class="bv-fig"><img src="/assets/brand/logo-icon.jpg" alt="The Carrara block icon" loading="lazy"><figcaption>The block icon, in Ember and Grafite, on light and dark grounds.</figcaption></figure>
       <p class="bv-assets"><b>Source files</b> <a href="https://drive.google.com/drive/folders/1AJKXCRdQ0kZn4OQLbMCx1Z05-q40_HKr?usp=sharing" target="_blank" rel="noopener">Logo, PNG and SVG on Drive ↗</a></p>
-    </div>
+      </div>
+    </details>
 
-    <div class="bv">
-      <h3 class="bv-h">Typography</h3>
+    <details class="bv-card">
+      <summary>
+        <span class="bv-ct">Typography</span>
+        <span class="bv-cs">Portrait Serif, Manrope, and the PT Serif fallback</span>
+        <svg class="bv-chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </summary>
+      <div class="bv-body">
       <p class="body-copy">Two typefaces, each with a job. <b>Portrait Serif</b> is for moments that need impact: headlines, large figures, anywhere the brand should speak confidently. Bold and Regular. <b>Manrope</b> is the workhorse for body copy and interface text, clean and highly legible, and the default for all functional text. Bold and Medium. When Portrait is not available, for instance in a document without the font licence, fall back to <b>PT Serif</b>.</p>
       <figure class="bv-fig"><img src="/assets/brand/type-combination.jpg" alt="Portrait and Manrope in combination" loading="lazy"><figcaption>Portrait for the statement, Manrope for everything that has to be read.</figcaption></figure>
       <figure class="bv-fig"><img src="/assets/brand/type-fallback.jpg" alt="Fallback typography" loading="lazy"><figcaption>PT Serif as the Portrait fallback.</figcaption></figure>
@@ -257,10 +273,16 @@
         <a href="https://drive.google.com/drive/folders/1cJ_VECEbT53qVC7S660a7MvyvHc5fxp9?usp=sharing" target="_blank" rel="noopener">Portrait on Drive ↗</a>
         <a href="https://fonts.google.com/specimen/Manrope" target="_blank" rel="noopener">Manrope on Google Fonts ↗</a>
         <a href="https://fonts.google.com/specimen/PT+Serif" target="_blank" rel="noopener">PT Serif on Google Fonts ↗</a></p>
-    </div>
+      </div>
+    </details>
 
-    <div class="bv">
-      <h3 class="bv-h">Color</h3>
+    <details class="bv-card">
+      <summary>
+        <span class="bv-ct">Color</span>
+        <span class="bv-cs">Primary palette, secondary accents and every hex value</span>
+        <svg class="bv-chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </summary>
+      <div class="bv-body">
       <p class="body-copy">The palette draws on the marble quarries of northern Italy: quarry neutrals plus Ember as the signature. This is the default for everyday work, presentations, documents, web and marketing.</p>
       <figure class="bv-fig"><img src="/assets/brand/color-primary.jpg" alt="Primary palette" loading="lazy"><figcaption>Primary palette.</figcaption></figure>
       <div class="scroll"><table class="bv-table">
@@ -287,10 +309,16 @@
         </tbody>
       </table></div>
       <p class="body-copy muted" style="font-size:13px">Each family also carries shades from 50 to 950 following Tailwind conventions, for UI states, depth and hierarchy.</p>
-    </div>
+      </div>
+    </details>
 
-    <div class="bv">
-      <h3 class="bv-h">Expressions</h3>
+    <details class="bv-card">
+      <summary>
+        <span class="bv-ct">Expressions</span>
+        <span class="bv-cs">Halftone, texture, blocks, photography and the AI prompts</span>
+        <svg class="bv-chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </summary>
+      <div class="bv-body">
       <p class="body-copy">Beyond logo, type and color, the system includes graphic elements and treatments that give our communications flexibility and character.</p>
       <figure class="bv-fig"><img src="/assets/brand/expr-illustration.jpg" alt="Halftone illustration" loading="lazy"><figcaption><b>Halftone illustrations.</b> A stipple treatment that reads handcrafted and engraved. Used for editorial imagery, iconography and decorative elements.</figcaption></figure>
       <figure class="bv-fig"><img src="/assets/brand/expr-texture.jpg" alt="Noise texture" loading="lazy"><figcaption><b>Texture overlay.</b> A subtle noise applied to photography, backgrounds and large color fields. It softens digital precision without losing the brutalist edge.</figcaption></figure>
@@ -320,7 +348,8 @@
       <p class="bv-assets"><b>Source files</b>
         <a href="https://drive.google.com/drive/folders/1b5PzG1YinbMbLwIa8IOVPtJN-_SjSmqk?usp=drive_link" target="_blank" rel="noopener">Images on Drive ↗</a>
         <a href="https://drive.google.com/drive/folders/1b5PzG1YinbMbLwIa8IOVPtJN-_SjSmqk?usp=sharing" target="_blank" rel="noopener">Blocks and patterns on Drive ↗</a></p>
-    </div>
+      </div>
+    </details></div>
   </section>
 
   <!-- 13 time off -->

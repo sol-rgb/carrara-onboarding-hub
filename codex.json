@@ -1112,13 +1112,27 @@
    "docs": []
   },
   "Console": {
-   "status": "Active",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
+   "status": "Paused",
+   "projectTypes": [
+    "Embedded recruiting",
+    "Talent Platform"
+   ],
+   "accountManagers": [
+    "Dan Sia",
+    "Joe Penn"
+   ],
+   "talentPartners": [
+    "Sol Silbenberg",
+    "Hayley Samuels",
+    "Greg Troxell"
+   ],
    "coordination": [],
-   "about": "",
-   "engagement": [],
+   "about": "ITSM and internal-support platform. Console uses AI to automate IT and HR requests so companies scale support without scaling headcount.",
+   "engagement": [
+    "Embedded recruiting and talent platform across engineering, product and GTM.",
+    "Interview architecture, rubrics and hiring frameworks.",
+    "Ashby build-out plus a recruiting analytics dashboard covering pipeline health, feedback compliance and cycle time."
+   ],
    "overview": {},
    "background": null,
    "docs": []

@@ -19,7 +19,22 @@ window.LINKS = {
     'w-ideas-library': 'C084279TZ8S',
     'f-talent-general': 'C07EXB3TX5H',
     'g-ashby-support': 'C083UPPKC4W',
-    'f-company-ops-general': 'C08A7KYJTEE'
+    'f-company-ops-general': 'C08A7KYJTEE',
+    'f-gtm-general': 'C0A9YF1Q94Z',
+    'f-coordination-general': 'C09SDA6KPJL',
+    'g-tech-rec-sourcing': 'C09L83RK814',
+    'g-nyc-culture': 'C0B8Y5B8L8P',
+    'w-you-rock': 'C08AWE5RNAU',
+    'w-small-wins': 'C08AWE4ER08',
+    'w-random': 'C27MYMFC1',
+    'w-investing': 'C0BAWPETS5A',
+    'w-ai-tips': 'C095JPANYL8',
+    'w-ai-projects': 'C096X70B401',
+    'w-productivity-toolz': 'C08ET510864',
+    'w-ways-of-working': 'C09AAM7SLC8',
+    'w-design-inspo': 'C0A4F49V58E',
+    'w-sports': 'C0BAS018B6D',
+    'w-fam-and-pets': 'C08AA5M408L'
   },
 
   /* Notion */

@@ -130,7 +130,6 @@ a.textlink:hover { border-bottom-color: var(--orange); }
 .attr { font-style: italic; font-size: 13.5px; color: var(--taupe); }
 
 /* who we are split */
-.who-split { display: grid; grid-template-columns: 1.1fr 1fr; gap: 80px; align-items: start; margin-top: 14px; }
 .fact-list { margin-top: 24px; }
 .fact { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--hairline); font-size: 15px; align-items: baseline; }
 .fact img { width: 11px; flex: none; position: relative; top: 1px; }
@@ -485,8 +484,7 @@ footer img { width: 26px; }
 @media (max-width: 1080px) {
   .card-row { grid-template-columns: repeat(2, 1fr); }
   .timeline { grid-template-columns: repeat(2, 1fr); }
-  .who-split { grid-template-columns: 1fr; gap: 34px; }
-  .t-step p { opacity: 1; max-height: none; }
+    .t-step p { opacity: 1; max-height: none; }
   .h-year p { display: block; }
   .tpl-grid { grid-template-columns: 1fr; }
 }
@@ -788,7 +786,6 @@ body::after {
 @media (max-width: 900px) { .gal-nav.prev { left: 0; } .gal-nav.next { right: 0; } }
 
 /* ---------- brand vault ---------- */
-.bv { margin-top: 44px; padding-top: 30px; border-top: 1px solid var(--hairline); }
 .bv-h { font-family: var(--serif); font-weight: 500; font-size: 24px; letter-spacing: -0.015em; margin-bottom: 14px; }
 .bv-sh { font-family: var(--rigid); font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase;
   color: var(--orange); margin: 30px 0 10px; }
@@ -814,9 +811,52 @@ body::after {
 
 /* the quarry the quote is about, sitting with the quote rather than decorating
    the hero: the metaphor lands harder next to the words that explain it */
-.quote-photo { margin: 0 0 26px; }
-.quote-photo img { width: 100%; display: block; clip-path: var(--chamfer); }
-.quote-photo figcaption {
+
+/* client logo tiles are links now, so they need to look and behave like one */
+a.cl-cell { text-decoration: none; transition: transform 0.15s ease; }
+a.cl-cell:hover { transform: translateY(-2px); }
+a.cl-cell:hover .cl-name { color: var(--orange); }
+.cl-dot-link { display: inline-flex; line-height: 0; }
+.cl-dot-link:hover .cl-dot { outline: 1px solid var(--orange); outline-offset: 1px; }
+.pg-cl-lbl { font-family: var(--rigid); font-size: 9.5px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--taupe); margin-bottom: 12px; }
+.pg-clients .cl-grid { margin-top: 0; }
+
+/* brand vault: four cards that open, rather than one endless scroll */
+.bv-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin-top: 24px; }
+.bv-card { border: 1px solid var(--hairline); background: var(--canvas); clip-path: var(--chamfer); }
+.bv-card[open] { grid-column: 1 / -1; }
+.bv-card summary {
+  list-style: none; cursor: pointer; padding: 20px 22px;
+  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 6px 14px;
+}
+.bv-card summary::-webkit-details-marker { display: none; }
+.bv-ct { font-family: var(--serif); font-weight: 500; font-size: 20px; letter-spacing: -0.015em; }
+.bv-cs { grid-column: 1; font-size: 13px; color: var(--taupe); line-height: 1.45; }
+.bv-chev { grid-column: 2; grid-row: 1 / span 2; width: 18px; height: 18px; color: var(--taupe); transition: transform 0.2s ease; }
+.bv-card[open] .bv-chev { transform: rotate(180deg); }
+.bv-card summary:hover .bv-ct { color: var(--orange); }
+.bv-card summary:focus-visible { outline: 2px solid var(--orange); outline-offset: -2px; }
+.bv-body { padding: 4px 22px 26px; border-top: 1px solid var(--hairline); margin-top: 4px; padding-top: 22px; }
+@media (prefers-reduced-motion: reduce) { .bv-chev { transition: none; } }
+
+/* who we are: the quarry block leads, photo left and the quote right on one
+   line, then the copy and facts below it */
+.who-lede {
+  display: grid; grid-template-columns: 1.05fr 1fr; gap: 0;
+  background: var(--sage-soft); clip-path: var(--rock);
+  align-items: center; margin-top: 6px;
+}
+.who-photo { margin: 0; padding: 34px 0 34px 38px; }
+.who-photo img { width: 100%; display: block; clip-path: var(--chamfer); }
+.who-photo figcaption {
   font-family: var(--rigid); font-size: 9.5px; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--taupe); margin-top: 9px;
+  text-transform: uppercase; color: var(--taupe); margin-top: 10px;
+}
+.who-quote { padding: 34px 44px; }
+.who-intro { margin-top: 40px; }
+@media (max-width: 860px) {
+  .who-lede { grid-template-columns: 1fr; }
+  .who-photo { padding: 30px 30px 0; }
+  .who-quote { padding: 22px 30px 32px; }
 }
