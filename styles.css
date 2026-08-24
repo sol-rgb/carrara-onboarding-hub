@@ -787,18 +787,25 @@ body::after {
   clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
   background: var(--sage-soft);
 }
+/* The arrows used to float at mid-height, half off each edge, which put them
+   on top of the photos where they were invisible. They now sit on the heading
+   row, where the right arrow is the thing that says this reel scrolls. */
+.gal-head { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; }
+.gal-head .sub { margin-bottom: 0; }
+.gal-ctrl { display: flex; align-items: center; gap: 9px; flex: none; }
+.gal-hint { font-family: var(--rigid); font-size: 9.5px; letter-spacing: 0.13em;
+  text-transform: uppercase; color: var(--taupe); margin-right: 3px; }
 .gal-nav {
-  position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
-  width: 38px; height: 38px; border: 1px solid var(--hairline); background: var(--canvas);
+  width: 36px; height: 36px; border: 1px solid var(--hairline); background: var(--canvas);
   color: var(--ink); cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: opacity 0.18s ease, border-color 0.18s ease;
+  clip-path: var(--chamfer);
+  transition: opacity 0.18s ease, border-color 0.18s ease, color 0.18s ease;
 }
+.gal-nav:hover:not(:disabled) { color: var(--orange); }
 .gal-nav svg { width: 17px; height: 17px; }
 .gal-nav:hover:not(:disabled) { border-color: var(--ink); }
 .gal-nav:disabled { opacity: 0.25; cursor: default; }
-.gal-nav.prev { left: -19px; }
-.gal-nav.next { right: -19px; }
-@media (max-width: 900px) { .gal-nav.prev { left: 0; } .gal-nav.next { right: 0; } }
+@media (max-width: 620px) { .gal-hint { display: none; } }
 
 /* ---------- brand vault ---------- */
 .bv-h { font-family: var(--serif); font-weight: 500; font-size: 24px; letter-spacing: -0.015em; margin-bottom: 14px; }

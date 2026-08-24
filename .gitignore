@@ -1,0 +1,9 @@
+# Tokens live here and must never be committed. scripts/with-secrets.sh reads
+# this file into the environment for one command and nothing echoes the values.
+.env.local
+.env*.local
+
+node_modules/
+.DS_Store
+.vercel
+_preview.html
