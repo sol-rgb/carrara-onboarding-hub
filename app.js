@@ -896,21 +896,21 @@
 
   /* ---------- the brand skill handoff ---------- */
   (function () {
-    var btn = document.getElementById('bv-skill-copy');
-    if (!btn) return;
+    var timers = {};
+    document.querySelectorAll('.bv-skill-copy').forEach(function (btn, i) {
     var label = btn.textContent;
-    var timer;
     btn.addEventListener('click', function () {
-      clearTimeout(timer);
+      clearTimeout(timers[i]);
       btn.textContent = 'Copying\u2026';
       fetch(btn.dataset.skill)
         .then(function (r) { if (!r.ok) throw 0; return r.text(); })
         .then(function (md) { return navigator.clipboard.writeText(md); })
-        .then(function () { btn.textContent = 'Copied. Paste it into Claude.'; })
+        .then(function () { btn.textContent = 'Copied'; })
         /* Clipboard writes need a secure context and permission, and either can
            refuse. The download link beside this button is the way through. */
-        .catch(function () { btn.textContent = 'Could not copy. Use Download instead.'; })
-        .then(function () { timer = setTimeout(function () { btn.textContent = label; }, 4000); });
+        .catch(function () { btn.textContent = 'Use Download'; })
+        .then(function () { timers[i] = setTimeout(function () { btn.textContent = label; }, 4000); });
+    });
     });
   })();
 

@@ -275,13 +275,16 @@
    ],
    "talentPartners": [],
    "coordination": [],
-   "about": null,
+   "about": "Builds NEXUS, a large tabular model pre-trained on enterprise data so companies can forecast directly from their own tables.",
    "engagement": [
     "People ops engagement."
    ],
-   "overview": {},
+   "overview": {
+    "website": "fundamental.tech"
+   },
    "background": null,
-   "docs": []
+   "docs": [],
+   "domain": "fundamental.tech"
   },
   "Grindr": {
    "status": "Active",
@@ -419,13 +422,16 @@
    ],
    "talentPartners": [],
    "coordination": [],
-   "about": null,
+   "about": "Applies frontier technology alongside management teams and founders across the American services sector.",
    "engagement": [
     "Talent platform engagement."
    ],
-   "overview": {},
+   "overview": {
+    "website": "llmh.com"
+   },
    "background": null,
-   "docs": []
+   "docs": [],
+   "domain": "llmh.com"
   },
   "Luminai": {
    "status": "Active",
@@ -1143,11 +1149,14 @@
    "accountManagers": [],
    "talentPartners": [],
    "coordination": [],
-   "about": "",
+   "about": "Open-source frameworks and the LangSmith platform for building, testing and monitoring AI agents in production.",
    "engagement": [],
-   "overview": {},
+   "overview": {
+    "website": "langchain.com"
+   },
    "background": null,
-   "docs": []
+   "docs": [],
+   "domain": "langchain.com"
   },
   "Canopy Labs": {
    "status": "Active",
@@ -1157,9 +1166,12 @@
    "coordination": [],
    "about": "",
    "engagement": [],
-   "overview": {},
+   "overview": {
+    "website": "canopylabs.ai"
+   },
    "background": null,
-   "docs": []
+   "docs": [],
+   "domain": "canopylabs.ai"
   },
   "Applied Labs": {
    "status": "Paused",
@@ -1179,11 +1191,14 @@
    "accountManagers": [],
    "talentPartners": [],
    "coordination": [],
-   "about": "",
+   "about": "Private school running academics through adaptive AI in two hours a day, with afternoons given to life skills and student projects.",
    "engagement": [],
-   "overview": {},
+   "overview": {
+    "website": "alpha.school"
+   },
    "background": null,
-   "docs": []
+   "docs": [],
+   "domain": "alpha.school"
   },
   "OpenAI Foundation": {
    "status": "Active",
@@ -1191,11 +1206,14 @@
    "accountManagers": [],
    "talentPartners": [],
    "coordination": [],
-   "about": "",
+   "about": "Philanthropic arm of OpenAI, funding life sciences and disease research, AI resilience, and civil society programmes.",
    "engagement": [],
-   "overview": {},
+   "overview": {
+    "website": "openaifoundation.org"
+   },
    "background": null,
-   "docs": []
+   "docs": [],
+   "domain": "openaifoundation.org"
   },
   "Riviera Partners": {
    "status": "Active",
@@ -1203,11 +1221,14 @@
    "accountManagers": [],
    "talentPartners": [],
    "coordination": [],
-   "about": "",
+   "about": "Executive search firm placing technology leadership across product, engineering, AI and ML, security and design.",
    "engagement": [],
-   "overview": {},
+   "overview": {
+    "website": "rivierapartners.com"
+   },
    "background": null,
-   "docs": []
+   "docs": [],
+   "domain": "rivierapartners.com"
   }
  }
 }

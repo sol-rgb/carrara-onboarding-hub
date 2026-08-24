@@ -12,10 +12,10 @@ Write clear, structured consulting documents and presentations for Carrara, foll
 
 ## Workflow
 
-1. **Identify document type** from context — rolling doc, internal update, client report, strategy memo, or proposal
-2. **Determine brand level** — Full Brand (external proposals/pitches, copy-paste only) or Minimal Brand (everything else, .docx supported)
-3. **Gather inputs** — pull from conversation context, raw notes, Slack messages, or whatever you are given
-4. **Draft in markdown** — show the content using `#`, `##`, `###` so heading hierarchy is visible in chat. Never use labels like `[H1]` or `[H2]` in the output.
+1. **Identify document type** from context: rolling doc, internal update, client report, strategy memo, or proposal
+2. **Determine brand level**: Full Brand (external proposals/pitches, copy-paste only) or Minimal Brand (everything else, .docx supported)
+3. **Gather inputs**: pull from conversation context, raw notes, Slack messages, or whatever you are given
+4. **Draft in markdown**: show the content using `#`, `##`, `###` so heading hierarchy is visible in chat. Never use labels like `[H1]` or `[H2]` in the output.
 5. **Iterate until approved**
 6. **Deliver in the right format:**
    - **Copy-paste** → deliver draft + link to the correct Google Doc template
@@ -27,7 +27,7 @@ Write clear, structured consulting documents and presentations for Carrara, foll
 
 | Level | When to use | .docx support |
 |-------|-------------|---------------|
-| **Full Brand** | External: proposals, client pitches | No — copy-paste only |
+| **Full Brand** | External: proposals, client pitches | No: copy-paste only |
 | **Minimal Brand** | Internal + semi-external: reports, memos, strategy docs, rolling docs, updates | Yes |
 
 ---
@@ -63,7 +63,7 @@ After the draft is approved:
 
 ## .docx Generation (Minimal Brand only)
 
-Use the docx skill for the mechanics of file creation. The base script below defines Carrara's exact brand system — colors, fonts, spacing, tables, and footer. Adapt only the content section while preserving all style definitions exactly.
+Use the docx skill for the mechanics of file creation. The base script below defines Carrara's exact brand system: colors, fonts, spacing, tables, and footer. Adapt only the content section while preserving all style definitions exactly.
 
 ### Steps
 1. `npm install -g docx`
@@ -382,7 +382,7 @@ These heading levels match the Carrara templates exactly. Using the wrong level 
 - Sub-sub-sections (Why this plays to strengths, What we're saying no to): **H3**
 - Closing quote: quote()
 
-### Proposal (Full Brand — copy-paste only)
+### Proposal (Full Brand: copy-paste only)
 - Cover: Title + Subtitle + Date + Contact (coverBlock, spread with `...`)
 - Sections (What is Carrara, Proposed Scope, Next Steps): **H1**
 - Scope/pricing details: kvTable()
@@ -425,9 +425,9 @@ For copy-paste delivery, add a final page with "Thank you" centered and "carrara
 
 Carrara docs read like they were written by someone who thinks clearly and respects the reader's time. That means:
 
-- **Direct assertions** — no hedging with "we believe" or "it seems like". Say what's true.
-- **Active voice always** — "We recommend X" not "It is recommended that X"
-- **Short sentences for key points** — let important ideas breathe on their own line
+- **Direct assertions**: no hedging with "we believe" or "it seems like". Say what's true.
+- **Active voice always**: "We recommend X" not "It is recommended that X"
+- **Short sentences for key points**: let important ideas breathe on their own line
 - **Bold** key terms and names on first mention
 - *Italics* for caveats and side notes
 - Never use dashes between words (em dashes). Use periods or restructure the sentence.
