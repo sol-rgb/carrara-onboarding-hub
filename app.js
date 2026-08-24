@@ -602,12 +602,17 @@
             + '<img class="cl-dot" src="' + favicon(c.domain, 32) + '" alt="' + esc(cn) + '" loading="lazy"></a>'
           : '<span class="cl-dot txt" title="' + esc(cn) + '">' + esc(cn.charAt(0)) + '</span>';
       }).join('');
+      /* location and logos live in a footer pinned to the bottom of the card,
+         so they line up across a row whatever length the role runs to */
+      var foot = (pv.location ? '<div class="loc-sm">' + esc(pv.location) + '</div>' : '')
+        + (logos ? '<div class="cl-row">' + logos + '</div>' : '');
+      /* the footer is a sibling of .info, not a child: an auto margin only
+         reaches the card's own free space from one level up */
       d.innerHTML = '<div class="avatar">' + av + '</div><div class="info">'
         + '<div class="nm">' + esc(m.name) + (m.isNew ? ' <span class="newtag">[new]</span>' : '') + '</div>'
         + (role ? '<div class="rl-sm">' + esc(role) + '</div>' : '')
-        + (pv.location ? '<div class="loc-sm">' + esc(pv.location) + '</div>' : '')
-        + (logos ? '<div class="cl-row">' + logos + '</div>' : '')
-        + '</div>';
+        + '</div>'
+        + (foot ? '<div class="mb-foot">' + foot + '</div>' : '');
       d.addEventListener('click', function (e) {
         if (e.target.closest('a')) return;
         openMemberModal(m);
