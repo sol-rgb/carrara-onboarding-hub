@@ -1,7 +1,77 @@
 {
  "source": "notion-client-codex",
- "updated": "2026-08-23",
+ "updated": "2026-08-24",
  "clients": {
+  "3i Members": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "a16z": {
+   "status": "Paused",
+   "projectTypes": [
+    "Managed Services",
+    "Embedded recruiting"
+   ],
+   "accountManagers": [
+    "Brandon Taleisnik",
+    "Heath Jamieson"
+   ],
+   "talentPartners": [
+    "Julia Tupy",
+    "Bryan Gunawan"
+   ],
+   "coordination": [],
+   "about": "Andreessen Horowitz, one of the largest venture capital firms in the world.",
+   "engagement": [
+    "BD playbook build for the investment team, since replicated for other clients.",
+    "Embedded recruiting support.",
+    "Relationship started on the finance side and expanded into people ops and recruiting."
+   ],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "AgentSync": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Alpha School": {
+   "status": "Active",
+   "projectTypes": [
+    "BizOps",
+    "Marketing/Growth",
+    "Talent Platform"
+   ],
+   "accountManagers": [
+    "Heath Jamieson",
+    "Ben Munns"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "Private school running academics through adaptive AI in two hours a day, with afternoons given to life skills and student projects.",
+   "engagement": [],
+   "overview": {
+    "website": "alpha.school"
+   },
+   "background": null,
+   "docs": []
+  },
   "Altana": {
    "status": "Active",
    "projectTypes": [
@@ -46,13 +116,46 @@
    "background": null,
    "docs": []
   },
+  "Amazon/Fauna Robotics": {
+   "status": "Active",
+   "projectTypes": [
+    "Finance"
+   ],
+   "accountManagers": [
+    "Heath Jamieson"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Amazon/Paid Media Partnership": {
+   "status": "Active",
+   "projectTypes": [
+    "Marketing/Growth"
+   ],
+   "accountManagers": [
+    "Heath Jamieson"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
   "Anthropic": {
    "status": "Active",
    "projectTypes": [
     "Talent Platform"
    ],
    "accountManagers": [
-    "Brandon Taleisnik"
+    "Brandon Taleisnik",
+    "Kenna Meyerhoff"
    ],
    "talentPartners": [],
    "coordination": [],
@@ -63,6 +166,38 @@
     "Talent narrative: discovery interviews, Provocation Session, Platform mini-site.",
     "Hiring-manager calibrations, events strategy, recruiter enablement."
    ],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Applied Labs": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Atlan": {
+   "status": "Paused",
+   "projectTypes": [
+    "Talent Platform"
+   ],
+   "accountManagers": [
+    "Brandon Taleisnik"
+   ],
+   "talentPartners": [
+    "Justin Colsky"
+   ],
+   "coordination": [
+    "Tess Wicks"
+   ],
+   "about": "Atlan provides an active metadata platform",
+   "engagement": [],
    "overview": {},
    "background": null,
    "docs": []
@@ -92,6 +227,54 @@
    "background": null,
    "docs": []
   },
+  "Axion Ray": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Basis": {
+   "status": "Active",
+   "projectTypes": [
+    "Finance"
+   ],
+   "accountManagers": [
+    "Heath Jamieson"
+   ],
+   "talentPartners": [
+    "Bryan Gunawan"
+   ],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "beatBread": {
+   "status": "Paused",
+   "projectTypes": [
+    "Talent Platform"
+   ],
+   "accountManagers": [
+    "Joe Penn"
+   ],
+   "talentPartners": [
+    "Jennah Holycross"
+   ],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
   "Bee AI": {
    "status": null,
    "projectTypes": [],
@@ -109,11 +292,13 @@
   "Better": {
    "status": "Active",
    "projectTypes": [
-    "Embedded recruiting"
+    "Embedded recruiting",
+    "Marketing/Growth"
    ],
    "accountManagers": [
     "Arthur Matuszewski",
-    "Tina Khoury"
+    "Tina Khoury",
+    "Gonz Sanchez"
    ],
    "talentPartners": [],
    "coordination": [],
@@ -131,7 +316,7 @@
   "Brave Health": {
    "status": "Active",
    "projectTypes": [
-    "Managed Services"
+    "BizOps"
    ],
    "accountManagers": [
     "Sam Blumenthal"
@@ -142,6 +327,57 @@
    "engagement": [
     "BizOps managed services; earlier surge project building payroll and benefits."
    ],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Brellium": {
+   "status": "Paused",
+   "projectTypes": [
+    "Talent Platform"
+   ],
+   "accountManagers": [],
+   "talentPartners": [
+    "Julia Tupy",
+    "Nicole Henderson"
+   ],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Canopy Labs": {
+   "status": "Active",
+   "projectTypes": [
+    "People"
+   ],
+   "accountManagers": [
+    "Heath Jamieson"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {
+    "website": "canopylabs.ai"
+   },
+   "background": null,
+   "docs": []
+  },
+  "Chariot": {
+   "status": "Paused",
+   "projectTypes": [
+    "Talent Platform"
+   ],
+   "accountManagers": [
+    "Joe Penn"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
    "overview": {},
    "background": null,
    "docs": []
@@ -184,8 +420,64 @@
     }
    ]
   },
+  "Console": {
+   "status": "Active",
+   "projectTypes": [
+    "Talent Platform",
+    "Embedded recruiting"
+   ],
+   "accountManagers": [
+    "Dan Sia",
+    "Joe Penn"
+   ],
+   "talentPartners": [
+    "Sol Silbenberg",
+    "Hayley Samuels",
+    "Greg Troxell"
+   ],
+   "coordination": [],
+   "about": "ITSM and internal-support platform. Console uses AI to automate IT and HR requests so companies scale support without scaling headcount.",
+   "engagement": [
+    "Embedded recruiting and talent platform across engineering, product and GTM.",
+    "Interview architecture, rubrics and hiring frameworks.",
+    "Ashby build-out plus a recruiting analytics dashboard covering pipeline health, feedback compliance and cycle time."
+   ],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Crux": {
+   "status": "Paused",
+   "projectTypes": [
+    "Talent Platform"
+   ],
+   "accountManagers": [
+    "Joe Penn"
+   ],
+   "talentPartners": [
+    "Hallie Slamowitz"
+   ],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
   "Cybernetic Labs": {
    "status": null,
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Daylight": {
+   "status": "Paused",
    "projectTypes": [],
    "accountManagers": [],
    "talentPartners": [],
@@ -229,6 +521,18 @@
    "background": null,
    "docs": []
   },
+  "Evidenza": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
   "Forge": {
    "status": "Active",
    "projectTypes": [
@@ -264,6 +568,29 @@
    "background": null,
    "docs": []
   },
+  "Forus": {
+   "status": "Active",
+   "projectTypes": [
+    "Talent Platform",
+    "Embedded recruiting"
+   ],
+   "accountManagers": [
+    "Brandon Taleisnik"
+   ],
+   "talentPartners": [
+    "Giovanna Borgiotti",
+    "Greg Troxell"
+   ],
+   "coordination": [],
+   "about": "Healthtech platform using AI to handle prior authorizations, affordability and pharmacy coordination for every prescription. Formerly Tandem. Raised $160M+ with Accel leading the Series B alongside Thrive and General Catalyst.",
+   "engagement": [
+    "Embedded recruiting across provider growth, BDR and engineering roles.",
+    "Referral engine and offer tooling: the Friends of Forus push tripled referrals as a share of pipeline."
+   ],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
   "Fundamental Technologies": {
    "status": "Active",
    "projectTypes": [
@@ -283,13 +610,14 @@
     "website": "fundamental.tech"
    },
    "background": null,
-   "docs": [],
-   "domain": "fundamental.tech"
+   "docs": []
   },
   "Grindr": {
    "status": "Active",
    "projectTypes": [
-    "Talent Platform"
+    "Talent Platform",
+    "Embedded recruiting",
+    "BizOps"
    ],
    "accountManagers": [
     "Tina Khoury",
@@ -305,6 +633,18 @@
     "Ads platform rebuild: SMB self-serve advertising on top of Google Ad Manager, targeting a 20%+ uplift on roughly $60M/yr of ad revenue.",
     "Earlier: engineering employer brand and talent narrative work (careers page, 'Get to Know the Team')."
    ],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Grindr NewCo": {
+   "status": "Archived",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
    "overview": {},
    "background": null,
    "docs": []
@@ -394,6 +734,37 @@
    "background": null,
    "docs": []
   },
+  "Kiso": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "LangChain": {
+   "status": "Active",
+   "projectTypes": [
+    "Talent Platform",
+    "Embedded recruiting"
+   ],
+   "accountManagers": [
+    "Sam Blumenthal"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "Open-source frameworks and the LangSmith platform for building, testing and monitoring AI agents in production.",
+   "engagement": [],
+   "overview": {
+    "website": "langchain.com"
+   },
+   "background": null,
+   "docs": []
+  },
   "Lipdub AI": {
    "status": "Active",
    "projectTypes": [
@@ -430,8 +801,7 @@
     "website": "llmh.com"
    },
    "background": null,
-   "docs": [],
-   "domain": "llmh.com"
+   "docs": []
   },
   "Luminai": {
    "status": "Active",
@@ -488,6 +858,26 @@
    "background": null,
    "docs": []
   },
+  "Manifest": {
+   "status": "Paused",
+   "projectTypes": [
+    "Talent Platform"
+   ],
+   "accountManagers": [
+    "Brandon Taleisnik"
+   ],
+   "talentPartners": [
+    "Alicia Donenfeld",
+    "Ali Horowitz",
+    "Julia Tupy"
+   ],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
   "Modal Labs": {
    "status": "Active",
    "projectTypes": [
@@ -518,6 +908,140 @@
     "FDE hiring sprint (target 30 by August), events motion with a16z co-hosts, Series C hiring support.",
     "~10 Carrara people staffed at peak."
    ],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Montauk Climate": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Monzo": {
+   "status": "Paused",
+   "projectTypes": [
+    "Talent Platform",
+    "Managed Services"
+   ],
+   "accountManagers": [
+    "Kenna Meyerhoff"
+   ],
+   "talentPartners": [
+    "Hallie Slamowitz",
+    "Jennah Holycross"
+   ],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "MrBeast": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "MrBeast runs a large-scale YouTube content studio producing high-budget, viral challenge and philanthropy videos, and operates adjacent consumer brands.",
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Netic": {
+   "status": "Paused",
+   "projectTypes": [
+    "Talent Platform"
+   ],
+   "accountManagers": [
+    "Brandon Taleisnik"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Nuvo": {
+   "status": "Paused",
+   "projectTypes": [
+    "Embedded recruiting"
+   ],
+   "accountManagers": [
+    "Joe Penn"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "OpenAI Foundation": {
+   "status": "Active",
+   "projectTypes": [
+    "Embedded recruiting",
+    "Talent Platform"
+   ],
+   "accountManagers": [
+    "Joe Penn"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "about": "Philanthropic arm of OpenAI, funding life sciences and disease research, AI resilience, and civil society programmes.",
+   "engagement": [],
+   "overview": {
+    "website": "openaifoundation.org"
+   },
+   "background": null,
+   "docs": []
+  },
+  "Owner": {
+   "status": "Paused",
+   "projectTypes": [
+    "Talent Platform"
+   ],
+   "accountManagers": [
+    "Brandon Taleisnik"
+   ],
+   "talentPartners": [
+    "Justin Colsky",
+    "Ania Sielski"
+   ],
+   "coordination": [
+    "Hayley Samuels",
+    "Tess Wicks"
+   ],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Paxos": {
+   "status": "Paused",
+   "projectTypes": [
+    "Managed Services",
+    "Embedded recruiting"
+   ],
+   "accountManagers": [
+    "Sam Blumenthal"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
    "overview": {},
    "background": null,
    "docs": []
@@ -591,6 +1115,18 @@
    "background": null,
    "docs": []
   },
+  "Qase": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
   "Raindrop": {
    "status": "Active",
    "projectTypes": [
@@ -612,18 +1148,40 @@
    "background": null,
    "docs": []
   },
-  "Roger": {
-   "status": null,
-   "projectTypes": [],
-   "accountManagers": [],
+  "Rilla": {
+   "status": "Paused",
+   "projectTypes": [
+    "Talent Platform"
+   ],
+   "accountManagers": [
+    "Joe Penn",
+    "Alicia Donenfeld"
+   ],
+   "talentPartners": [],
+   "coordination": [
+    "Tess Wicks"
+   ],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Riviera Partners": {
+   "status": "Active",
+   "projectTypes": [
+    "People"
+   ],
+   "accountManagers": [
+    "Kenna Meyerhoff"
+   ],
    "talentPartners": [],
    "coordination": [],
-   "about": "AI companion consumer app (ChatRoger), created as a joint venture between Carrara, Grindr, and Lumbridge Labs.",
-   "engagement": [
-    "Carrara ran the seven-month legal and operational spinout out of Grindr: entity creation, investor docs, HoldCo structuring.",
-    "Operated the company end to end: growth and paid, payments, moderation, hiring, finance, board materials."
-   ],
-   "overview": {},
+   "about": "Executive search firm placing technology leadership across product, engineering, AI and ML, security and design.",
+   "engagement": [],
+   "overview": {
+    "website": "rivierapartners.com"
+   },
    "background": null,
    "docs": []
   },
@@ -673,6 +1231,42 @@
    "background": null,
    "docs": []
   },
+  "Supergood": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Sydecar": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "TryNow": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
   "Untitled": {
    "status": "Paused",
    "projectTypes": [
@@ -695,6 +1289,55 @@
    "background": null,
    "docs": []
   },
+  "Upstart": {
+   "status": "Paused",
+   "projectTypes": [
+    "Managed Services"
+   ],
+   "accountManagers": [
+    "Arthur Matuszewski"
+   ],
+   "talentPartners": [
+    "Disha Chadha"
+   ],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Valor": {
+   "status": "Paused",
+   "projectTypes": [
+    "Talent Platform"
+   ],
+   "accountManagers": [
+    "Arthur Matuszewski"
+   ],
+   "talentPartners": [
+    "Justin Colsky",
+    "Nicole Henderson"
+   ],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "ViewStats": {
+   "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
   "Village Global": {
    "status": "Paused",
    "projectTypes": [
@@ -714,521 +1357,22 @@
    "background": null,
    "docs": []
   },
-  "a16z": {
-   "status": "Paused",
-   "projectTypes": [
-    "Managed Services",
-    "Embedded recruiting"
-   ],
-   "accountManagers": [
-    "Brandon Taleisnik",
-    "Heath Jamieson"
-   ],
-   "talentPartners": [
-    "Julia Tupy",
-    "Bryan Gunawan"
-   ],
-   "coordination": [],
-   "about": "Andreessen Horowitz, one of the largest venture capital firms in the world.",
-   "engagement": [
-    "BD playbook build for the investment team, since replicated for other clients.",
-    "Embedded recruiting support.",
-    "Relationship started on the finance side and expanded into people ops and recruiting."
-   ],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "3i Members": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "AgentSync": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Montauk Climate": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Kiso": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Basis": {
-   "status": "Active",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Daylight": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Supergood": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Chariot": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "beatBread": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "TryNow": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "ViewStats": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Axion Ray": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "MrBeast": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Netic": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Monzo": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Owner": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Manifest": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Evidenza": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Sydecar": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Paxos": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Upstart": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
   "Workspace": {
    "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Rilla": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Atlan": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Qase": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Crux": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Valor": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Brellium": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Grindr NewCo": {
-   "status": "Archived",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Nuvo": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Forus": {
-   "status": "Active",
    "projectTypes": [
-    "Embedded recruiting",
-    "Talent Platform"
-   ],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "Healthtech platform using AI to handle prior authorizations, affordability and pharmacy coordination for every prescription. Formerly Tandem. Raised $160M+ with Accel leading the Series B alongside Thrive and General Catalyst.",
-   "engagement": [
-    "Embedded recruiting across provider growth, BDR and engineering roles.",
-    "Referral engine and offer tooling: the Friends of Forus push tripled referrals as a share of pipeline."
-   ],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "Console": {
-   "status": "Paused",
-   "projectTypes": [
-    "Embedded recruiting",
-    "Talent Platform"
+    "Managed Services"
    ],
    "accountManagers": [
-    "Dan Sia",
-    "Joe Penn"
+    "Heath Jamieson",
+    "Gonz Sanchez"
    ],
-   "talentPartners": [
-    "Sol Silbenberg",
-    "Hayley Samuels",
-    "Greg Troxell"
-   ],
-   "coordination": [],
-   "about": "ITSM and internal-support platform. Console uses AI to automate IT and HR requests so companies scale support without scaling headcount.",
-   "engagement": [
-    "Embedded recruiting and talent platform across engineering, product and GTM.",
-    "Interview architecture, rubrics and hiring frameworks.",
-    "Ashby build-out plus a recruiting analytics dashboard covering pipeline health, feedback compliance and cycle time."
-   ],
-   "overview": {},
-   "background": null,
-   "docs": []
-  },
-  "LangChain": {
-   "status": "Active",
-   "projectTypes": [],
-   "accountManagers": [],
    "talentPartners": [],
    "coordination": [],
-   "about": "Open-source frameworks and the LangSmith platform for building, testing and monitoring AI agents in production.",
-   "engagement": [],
-   "overview": {
-    "website": "langchain.com"
-   },
-   "background": null,
-   "docs": [],
-   "domain": "langchain.com"
-  },
-  "Canopy Labs": {
-   "status": "Active",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
-   "engagement": [],
-   "overview": {
-    "website": "canopylabs.ai"
-   },
-   "background": null,
-   "docs": [],
-   "domain": "canopylabs.ai"
-  },
-  "Applied Labs": {
-   "status": "Paused",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "",
+   "about": null,
    "engagement": [],
    "overview": {},
    "background": null,
    "docs": []
-  },
-  "Alpha School": {
-   "status": "Active",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "Private school running academics through adaptive AI in two hours a day, with afternoons given to life skills and student projects.",
-   "engagement": [],
-   "overview": {
-    "website": "alpha.school"
-   },
-   "background": null,
-   "docs": [],
-   "domain": "alpha.school"
-  },
-  "OpenAI Foundation": {
-   "status": "Active",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "Philanthropic arm of OpenAI, funding life sciences and disease research, AI resilience, and civil society programmes.",
-   "engagement": [],
-   "overview": {
-    "website": "openaifoundation.org"
-   },
-   "background": null,
-   "docs": [],
-   "domain": "openaifoundation.org"
-  },
-  "Riviera Partners": {
-   "status": "Active",
-   "projectTypes": [],
-   "accountManagers": [],
-   "talentPartners": [],
-   "coordination": [],
-   "about": "Executive search firm placing technology leadership across product, engineering, AI and ML, security and design.",
-   "engagement": [],
-   "overview": {
-    "website": "rivierapartners.com"
-   },
-   "background": null,
-   "docs": [],
-   "domain": "rivierapartners.com"
   }
  }
 }

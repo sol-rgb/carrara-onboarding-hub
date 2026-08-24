@@ -1,6 +1,6 @@
 {
  "source": "client-codex",
- "updated": "2026-08-23",
+ "updated": "2026-08-24",
  "clients": [
   {
    "name": "3i Members",
@@ -46,6 +46,20 @@
   {
    "name": "Amazon",
    "domain": "amazon.com",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
+   "name": "Amazon/Fauna Robotics",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
+   "name": "Amazon/Paid Media Partnership",
+   "domain": "",
    "lead": "",
    "description": "",
    "work": []
