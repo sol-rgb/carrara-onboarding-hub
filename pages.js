@@ -208,6 +208,116 @@ window.PAGES = {
       + '</ul>'
       + '<div class="pg-clients" data-clients="Modal Labs|Village Global|Grindr|Better|Sphere"></div>'
   },
+  bvLogo: {
+    title: 'Logo',
+    eyebrow: '[brand vault]',
+    note: 'Source files live on Drive. Those links are marked inside.',
+    html: '<div class="pg-brand">'
+      + '<p class="body-copy">The Carrara logo is inspired by Carrara marble and the centuries-old craft of turning raw stone into art. The wordmark\'s geometric letterforms carry angular cuts and subtle interior curves that echo a sculptor\'s chisel against marble. The modular block system represents the raw material itself: solid forms waiting to be shaped. Like Michelangelo believed the statue already existed within the block, we see potential in foundations that need the right craft to be revealed.</p>'
+      + '<figure class="bv-fig"><img src="/assets/brand/logo-main.jpg" alt="Carrara logo, main application" loading="lazy"><figcaption>Main application. Ember on light, white on dark, black on light as an alternative.</figcaption></figure>'
+      + '<figure class="bv-fig"><img src="/assets/brand/logo-secondary.jpg" alt="Carrara logo in the secondary palette" loading="lazy"><figcaption>Secondary applications: Cielo, Moss, Lavender, Lemon and Nuvola. Use sparingly, for events, merch and campaigns.</figcaption></figure>'
+      + '<div class="bv-cols">'
+      + '<div><h4 class="bv-sh">Using it</h4><ul class="bv-ul">'
+      + '<li>Always preserve the logo\'s integrity. Shape, proportions, color and typeface stay unaltered.</li>'
+      + '<li>Give it breathing room. It should never feel crowded.</li>'
+      + '<li>Minimum size: 20px high on digital, 0.25 inches in print.</li>'
+      + '</ul></div>'
+      + '<div><h4 class="bv-sh">Never</h4><ul class="bv-ul">'
+      + '<li>Alter the proportions</li>'
+      + '<li>Change the colors</li>'
+      + '<li>Add effects or modifications</li>'
+      + '<li>Rotate or distort it</li>'
+      + '</ul></div>'
+      + '</div>'
+      + '<h4 class="bv-sh">The icon</h4>'
+      + '<p class="body-copy">A simplified mark derived from the modular block in the logo architecture. It is reserved for places the full wordmark cannot go: social profile pictures, app icons, favicons, spaces under 100px, and animation or loading states. Everywhere else, including presentations, documents and marketing, default to the full wordmark.</p>'
+      + '<figure class="bv-fig"><img src="/assets/brand/logo-icon.jpg" alt="The Carrara block icon" loading="lazy"><figcaption>The block icon, in Ember and Grafite, on light and dark grounds.</figcaption></figure>'
+      + '<p class="bv-assets"><b>Source files</b> <a href="https://drive.google.com/drive/folders/1AJKXCRdQ0kZn4OQLbMCx1Z05-q40_HKr?usp=sharing" target="_blank" rel="noopener">Logo, PNG and SVG on Drive ↗</a></p>'
+      + '</div>'
+  },
+  bvTypography: {
+    title: 'Typography',
+    eyebrow: '[brand vault]',
+    note: 'Source files live on Drive. Those links are marked inside.',
+    html: '<div class="pg-brand">'
+      + '<p class="body-copy">Two typefaces, each with a job. <b>Portrait Serif</b> is for moments that need impact: headlines, large figures, anywhere the brand should speak confidently. Bold and Regular. <b>Manrope</b> is the workhorse for body copy and interface text, clean and highly legible, and the default for all functional text. Bold and Medium. When Portrait is not available, for instance in a document without the font licence, fall back to <b>PT Serif</b>.</p>'
+      + '<figure class="bv-fig"><img src="/assets/brand/type-combination.jpg" alt="Portrait and Manrope in combination" loading="lazy"><figcaption>Portrait for the statement, Manrope for everything that has to be read.</figcaption></figure>'
+      + '<figure class="bv-fig"><img src="/assets/brand/type-fallback.jpg" alt="Fallback typography" loading="lazy"><figcaption>PT Serif as the Portrait fallback.</figcaption></figure>'
+      + '<p class="bv-assets"><b>Source files</b>'
+      + '<a href="https://drive.google.com/drive/folders/1cJ_VECEbT53qVC7S660a7MvyvHc5fxp9?usp=sharing" target="_blank" rel="noopener">Portrait on Drive ↗</a>'
+      + '<a href="https://fonts.google.com/specimen/Manrope" target="_blank" rel="noopener">Manrope on Google Fonts ↗</a>'
+      + '<a href="https://fonts.google.com/specimen/PT+Serif" target="_blank" rel="noopener">PT Serif on Google Fonts ↗</a></p>'
+      + '</div>'
+  },
+  bvColor: {
+    title: 'Color',
+    eyebrow: '[brand vault]',
+    note: 'Source files live on Drive. Those links are marked inside.',
+    html: '<div class="pg-brand">'
+      + '<p class="body-copy">The palette draws on the marble quarries of northern Italy: quarry neutrals plus Ember as the signature. This is the default for everyday work, presentations, documents, web and marketing.</p>'
+      + '<figure class="bv-fig"><img src="/assets/brand/color-primary.jpg" alt="Primary palette" loading="lazy"><figcaption>Primary palette.</figcaption></figure>'
+      + '<div class="scroll"><table class="bv-table">'
+      + '<thead><tr><th>Color</th><th>Hex</th><th>Use</th></tr></thead>'
+      + '<tbody>'
+      + '<tr><td><span class="sw" style="background:#FFFFFF;border:1px solid var(--hairline)"></span>White</td><td>#FFFFFF</td><td>Backgrounds and contrast</td></tr>'
+      + '<tr><td><span class="sw" style="background:#EB4E19"></span>Ember</td><td>#EB4E19</td><td>Our signature brand color</td></tr>'
+      + '<tr><td><span class="sw" style="background:#2D2A2A"></span>Grafite</td><td>#2D2A2A</td><td>Primary dark, used instead of pure black</td></tr>'
+      + '<tr><td><span class="sw" style="background:#9A938E"></span>Nuvola</td><td>#9A938E</td><td>Mid-tone neutral</td></tr>'
+      + '<tr><td><span class="sw" style="background:#59534F"></span>Ardesia</td><td>#59534F</td><td>Warm neutral alternative</td></tr>'
+      + '<tr><td><span class="sw" style="background:#EDEBEA"></span>Marmol</td><td>#EDEBEA</td><td>Light neutral</td></tr>'
+      + '</tbody>'
+      + '</table></div>'
+      + '<h4 class="bv-sh">Secondary accents</h4>'
+      + '<p class="body-copy">For special occasions, merchandise, event branding and campaigns. Use them intentionally and sparingly.</p>'
+      + '<figure class="bv-fig"><img src="/assets/brand/color-accent.jpg" alt="Accent palette" loading="lazy"><figcaption>Accent palette.</figcaption></figure>'
+      + '<div class="scroll"><table class="bv-table">'
+      + '<thead><tr><th>Color</th><th>Hex</th><th>Use</th></tr></thead>'
+      + '<tbody>'
+      + '<tr><td><span class="sw" style="background:#B2CDED"></span>Cielo</td><td>#B2CDED</td><td></td></tr>'
+      + '<tr><td><span class="sw" style="background:#A2C59B"></span>Moss</td><td>#A2C59B</td><td>Off-the-grid event</td></tr>'
+      + '<tr><td><span class="sw" style="background:#9F73AB"></span>Lavender</td><td>#9F73AB</td><td></td></tr>'
+      + '<tr><td><span class="sw" style="background:#FFFF80"></span>Lemon</td><td>#FFFF80</td><td></td></tr>'
+      + '</tbody>'
+      + '</table></div>'
+      + '<p class="body-copy muted" style="font-size:13px">Each family also carries shades from 50 to 950 following Tailwind conventions, for UI states, depth and hierarchy.</p>'
+      + '</div>'
+  },
+  bvExpressions: {
+    title: 'Expressions',
+    eyebrow: '[brand vault]',
+    note: 'Source files live on Drive. Those links are marked inside.',
+    html: '<div class="pg-brand">'
+      + '<p class="body-copy">Beyond logo, type and color, the system includes graphic elements and treatments that give our communications flexibility and character.</p>'
+      + '<figure class="bv-fig"><img src="/assets/brand/expr-illustration.jpg" alt="Halftone illustration" loading="lazy"><figcaption><b>Halftone illustrations.</b> A stipple treatment that reads handcrafted and engraved. Used for editorial imagery, iconography and decorative elements.</figcaption></figure>'
+      + '<figure class="bv-fig"><img src="/assets/brand/expr-texture.jpg" alt="Noise texture" loading="lazy"><figcaption><b>Texture overlay.</b> A subtle noise applied to photography, backgrounds and large color fields. It softens digital precision without losing the brutalist edge.</figcaption></figure>'
+      + '<figure class="bv-fig"><img src="/assets/brand/expr-blocks.jpg" alt="Color blocks" loading="lazy"><figcaption><b>Color blocks.</b> Geometric blocks with angular cuts, derived from the logo architecture. Standalone graphics, image containers, or framing devices.</figcaption></figure>'
+      + '<figure class="bv-fig"><img src="/assets/brand/expr-block-pattern.jpg" alt="Block pattern" loading="lazy"><figcaption><b>Block pattern.</b> The blocks repeated for backgrounds and dividers, keeping the irregular quality of stacked marble.</figcaption></figure>'
+      + '<figure class="bv-fig"><img src="/assets/brand/expr-photography.jpg" alt="Quarry photography" loading="lazy"><figcaption><b>Photography library.</b> Curated Carrara quarry photography, anchoring the identity in the landscape that inspired it.</figcaption></figure>'
+      + '<h4 class="bv-sh">Block levels</h4>'
+      + '<p class="body-copy">A visual system for stages of work, from empty outline blocks to fully solid ones. It connects to the idea of revealing potential inside raw material, and is used for process visualisation, progress indicators and infographics.</p>'
+      + '<h4 class="bv-sh">AI prompts</h4>'
+      + '<p class="body-copy">We use AI imagery to extend the visual language while staying on brand. These prompts are tuned to our halftone aesthetic.</p>'
+      + '<p class="bv-lbl">Stipple illustrations</p>'
+      + '<pre class="bv-code">Create an image of [subject], brutalism style, stippled dots technique, high contrast, monochromatic black and white, dramatic lighting, detailed features, artistic illustration. Composition must be balanced and sculptural.</pre>'
+      + '<ul class="bv-ul">'
+      + '<li>Works well for: "a woman and a man working on a big block of Carrara marble", "a person using traditional carving tools", "hands sculpting stone"</li>'
+      + '<li>Tool: Midjourney. Style references: stippled dots, pointillism, brutalism.</li>'
+      + '<li>Always specify monochromatic, high contrast, dramatic lighting, and state the background (black or white) at the start of the prompt.</li>'
+      + '<li>Generated images should feel handcrafted, not digitally smooth. Use them for proposals and presentations when photography is not available.</li>'
+      + '</ul>'
+      + '<p class="bv-lbl">Team member portraits</p>'
+      + '<pre class="bv-code">Professional portrait illustration of the exact person from reference image, head and shoulders composition, artistic interpretation in pointillism stippled dots technique, high contrast black and white, dramatic side lighting, organic stippling with natural transitions to background, artistic freedom in hair and edge details while maintaining core facial features and expression from reference, handcrafted engraving aesthetic. Portrait crop from mid-chest up.</pre>'
+      + '<ul class="bv-ul">'
+      + '<li>These are hard to get right. AI tends to beautify or alter facial features.</li>'
+      + '<li>Push back in the prompt: "preserve original facial features", "no modifications", "raw authentic likeness". Expect several attempts.</li>'
+      + '<li>The Nano Banana model tends to hold likeness better.</li>'
+      + '<li>Use a close-up reference with good lighting, front-facing or slightly angled, no group shots or busy backgrounds. The clearer the reference, the more faithful the output.</li>'
+      + '</ul>'
+      + '<p class="bv-assets"><b>Source files</b>'
+      + '<a href="https://drive.google.com/drive/folders/1b5PzG1YinbMbLwIa8IOVPtJN-_SjSmqk?usp=drive_link" target="_blank" rel="noopener">Images on Drive ↗</a>'
+      + '<a href="https://drive.google.com/drive/folders/1b5PzG1YinbMbLwIa8IOVPtJN-_SjSmqk?usp=sharing" target="_blank" rel="noopener">Blocks and patterns on Drive ↗</a></p>'
+      + '</div>'
+  },
   thisIsCarrara: {
     title: 'This is Carrara',
     html: '<p>The brand guidelines home: logo, color palette, typography and the elements that define the visual identity. It holds the most up-to-date branding, logos and templates.</p>'

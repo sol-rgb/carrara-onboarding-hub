@@ -1,8 +1,28 @@
 {
   "headers": [
-    { "source": "/assets/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] }
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/assets/skills/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
   ],
   "crons": [
-    { "path": "/api/team", "schedule": "0 9 1,15 * *" }
+    {
+      "path": "/api/team",
+      "schedule": "0 9 1,15 * *"
+    }
   ]
 }

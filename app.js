@@ -16,7 +16,7 @@
     { id: 'business',  label: 'The business' },
     { id: 'clients',   label: 'Clients' },
     { id: 'tools',     label: 'Tools' },
-    { id: 'templates', label: 'Templates and brand' },
+    { id: 'templates', label: 'Branding' },
     { id: 'timeoff',   label: 'Time off' },
     { id: 'resources', label: 'Resources' },
     /* locked: reachable, but marked so nobody expects content yet */
@@ -892,6 +892,26 @@
       return u ? '<a class="flat-row" href="' + esc(u) + '" target="_blank" rel="noopener">' + label + '</a>'
                : '<div class="flat-row">' + label + '</div>';
     }).join('');
+  })();
+
+  /* ---------- the brand skill handoff ---------- */
+  (function () {
+    var btn = document.getElementById('bv-skill-copy');
+    if (!btn) return;
+    var label = btn.textContent;
+    var timer;
+    btn.addEventListener('click', function () {
+      clearTimeout(timer);
+      btn.textContent = 'Copying\u2026';
+      fetch(btn.dataset.skill)
+        .then(function (r) { if (!r.ok) throw 0; return r.text(); })
+        .then(function (md) { return navigator.clipboard.writeText(md); })
+        .then(function () { btn.textContent = 'Copied. Paste it into Claude.'; })
+        /* Clipboard writes need a secure context and permission, and either can
+           refuse. The download link beside this button is the way through. */
+        .catch(function () { btn.textContent = 'Could not copy. Use Download instead.'; })
+        .then(function () { timer = setTimeout(function () { btn.textContent = label; }, 4000); });
+    });
   })();
 
   /* ---------- team gallery ---------- */

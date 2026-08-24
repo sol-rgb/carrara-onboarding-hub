@@ -831,21 +831,41 @@ a.cl-cell:hover .cl-name { color: var(--orange); }
 .pg-clients .cl-grid { margin-top: 0; }
 
 /* brand vault: four cards that open, rather than one endless scroll */
-.bv-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin-top: 24px; }
-.bv-card { border: 1px solid var(--hairline); background: var(--canvas); clip-path: var(--chamfer); }
-.bv-card[open] { grid-column: 1 / -1; }
-.bv-card summary {
-  list-style: none; cursor: pointer; padding: 20px 22px;
-  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 6px 14px;
+.bv-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 26px; }
+/* A card is a button that opens the popup, not a dropdown: its whole job is a
+   picture of what is inside plus the name of it. */
+.bv-card {
+  display: block; width: 100%; text-align: left; cursor: pointer;
+  border: 1px solid var(--hairline); background: var(--canvas);
+  clip-path: var(--chamfer); padding: 12px 12px 16px;
+  transition: border-color 0.18s ease;
 }
-.bv-card summary::-webkit-details-marker { display: none; }
-.bv-ct { font-family: var(--serif); font-weight: 500; font-size: 20px; letter-spacing: -0.015em; }
-.bv-cs { grid-column: 1; font-size: 13px; color: var(--taupe); line-height: 1.45; }
-.bv-chev { grid-column: 2; grid-row: 1 / span 2; width: 18px; height: 18px; color: var(--taupe); transition: transform 0.2s ease; }
-.bv-card[open] .bv-chev { transform: rotate(180deg); }
-.bv-card summary:hover .bv-ct { color: var(--orange); }
-.bv-card summary:focus-visible { outline: 2px solid var(--orange); outline-offset: -2px; }
-.bv-body { padding: 4px 22px 26px; border-top: 1px solid var(--hairline); margin-top: 4px; padding-top: 22px; }
+.bv-thumb { display: block; aspect-ratio: 4 / 3; overflow: hidden; background: var(--sage-soft); }
+.bv-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.bv-ct { display: block; font-family: var(--serif); font-weight: 500; font-size: 18px;
+  letter-spacing: -0.015em; margin-top: 13px; }
+.bv-card:hover { border-color: var(--orange); }
+.bv-card:hover .bv-ct { color: var(--orange); }
+.bv-card:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+
+/* Brand pages carry full-width imagery, so their popup runs wider than the
+   library popups, which are mostly text. */
+.modal:has(.pg-brand) { width: 820px; }
+.pg-brand .bv-fig { max-width: none; }
+.pg-brand .bv-table { min-width: 0; }
+
+/* the skill handoff */
+.bv-skill {
+  display: flex; flex-wrap: wrap; gap: 20px 32px; align-items: center;
+  justify-content: space-between; margin-top: 26px;
+  border: 1px solid var(--hairline); clip-path: var(--chamfer); padding: 22px 26px;
+}
+.bv-skill-txt { max-width: 60ch; }
+.bv-skill-txt p { font-size: 13.5px; color: var(--ardesia); line-height: 1.6; margin-top: 7px; }
+.bv-skill-act { display: flex; align-items: center; gap: 18px; }
+.bv-skill-dl { font-size: 13px; color: var(--orange); text-decoration: none;
+  border-bottom: 1px solid rgba(235, 78, 25, 0.35); }
+@media (max-width: 620px) { .bv-skill-act { width: 100%; } }
 @media (prefers-reduced-motion: reduce) { .bv-chev { transition: none; } }
 
 /* who we are: the quarry block leads, photo left and the quote right on one
