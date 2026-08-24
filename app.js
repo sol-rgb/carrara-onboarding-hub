@@ -71,25 +71,25 @@
     { g: 'day one', cls: '', items: [
       { t: 'Set up your Slack workspace', d: 'Join carrarais.slack.com. Set your photo, title and timezone: the team page pulls from your Slack profile. Then read the Slack section of this hub so the channel prefixes make sense.', links: [{ t: 'Open Slack', k: 'slackWorkspace' }, { t: 'The Slack guide', k: '#/slack' }] },
       { t: 'Ensure tool and system access', d: 'Confirm you can open Google, Notion, Slack and the tools for your role. Anything blocked, ping Eric on Slack.', links: [{ t: 'Notion Home Base', k: 'notionHomeBase' }] },
-      { t: 'Payroll setup (Deel, Bill.com, or Ramp)', d: 'Deel for full-time employees, Bill.com for US contractors, Ramp for international contractors. You will get an invite for the one that applies to you.', links: [{ t: 'Deel', k: 'deel' }, { t: 'Bill.com', k: 'bill' }, { t: 'Ramp', k: 'ramp' }] },
+      { t: 'Payroll setup (Deel, Bill.com, or Ramp)', d: 'Deel for full-time employees, Bill.com for US contractors, Ramp for international contractors. You\'ll get an invite for the one that applies to you.', links: [{ t: 'Deel', k: 'deel' }, { t: 'Bill.com', k: 'bill' }, { t: 'Ramp', k: 'ramp' }] },
       { t: 'Set up email signature and Slack profile', d: 'Use the Carrara signature format from the brand templates, and fill out your Slack profile completely.', links: [{ t: 'Brand templates', k: '#/templates' }] },
-      { t: 'Day 1 manager 1:1', d: 'Your first 1:1: align on your 90-day plan, week one priorities, and how you will work together.' },
-      { t: 'Submit your Top 5', d: 'Name the five best people you have ever worked with, one submission per person. It seeds our network with people we already trust, and it is one of the most useful things you can do in your first week.', links: [{ t: 'Top 5 form', k: 'top5Form' }] },
-      { t: 'Look through open roles', d: 'Browse the roles we are currently hiring for across clients. It is the fastest way to understand what the talent side of the business actually does.', links: [{ t: 'Open roles', k: 'openRoles' }] },
+      { t: 'Day 1 manager 1:1', d: 'Your first 1:1: align on your 90-day plan, week one priorities, and how you\'ll work together.' },
+      { t: 'Submit your Top 5', d: 'Name the five best people you have ever worked with, one submission per person. It seeds our network with people we already trust, and it\'s one of the most useful things you can do in your first week.', links: [{ t: 'Top 5 form', k: 'top5Form' }] },
+      { t: 'Look through open roles', d: 'Browse the roles we are currently hiring for across clients. It\'s the fastest way to understand what the talent side of the business actually does.', links: [{ t: 'Open roles', k: 'openRoles' }] },
       { t: 'Attend your orientation session', d: 'Eric walks you through admin items, the plan for your first week, and anything you want to ask. It happens on day one; your manager books it.' },
-      { t: 'I-9 verification (full-time employees only)', d: 'US full-time employees complete I-9 employment eligibility verification. Eric sends this over; get it back the same week so payroll is not held up.' }
+      { t: 'I-9 verification (full-time employees only)', d: 'US full-time employees complete I-9 employment eligibility verification. Eric sends this over; get it back the same week so payroll isn\'t held up.' }
     ]},
     { g: 'week one', cls: 'blue', items: [
       { t: 'Set up the Quarry', d: 'Our AI harness. Download the Claude app and log in with your Carrara Google account, set up an Obsidian vault, point Cowork at it, then run /workspace-initialization, /workspace-migration and /sync. Do this in week one: most of how we work assumes it.', links: [{ t: 'Quarry setup guide', k: 'quarry' }, { t: 'The tools we use', k: '#/tools' }] },
-      { t: 'Learn the skills we share', d: 'Skills are the reusable prompts and playbooks the team builds together, pre-installed on Cowork. Learn which ones exist and which to reach for when you are writing a doc, building a deck or researching a candidate. Ask in Slack for a walkthrough if anything is unclear.', links: [{ t: 'Quarry setup guide', k: 'quarry' }] },
+      { t: 'Learn the skills we share', d: 'Skills are the reusable prompts and playbooks the team builds together, pre-installed on Cowork. Learn which ones exist and which to reach for when you\'re writing a doc, building a deck or researching a candidate. Ask in Slack for a walkthrough if anything is unclear.', links: [{ t: 'Quarry setup guide', k: 'quarry' }] },
       { t: 'Attend the tool tips session', d: 'A live walkthrough of the tools the team runs on, with tips from people who use them daily.', links: [{ t: 'The tools we use', k: '#/tools' }] },
       { t: 'Set up a recurring 1:1 with your manager', d: 'Get a weekly slot on the calendar before the week ends.' },
       { t: "Confirm you're added to all team calls", d: 'Standing team meetings, the monthly Team Roundup, and any client syncs relevant to your role.', links: [{ t: 'Team Roundup', k: 'teamRoundup' }] },
       { t: 'Get oriented on our Notion', d: 'Start at Home Base and click around.', links: [{ t: 'Home Base', k: 'notionHomeBase' }] },
       { t: 'Review the PTO policy', d: 'Read the Time off section of this hub, then the full policy on Notion. Two minutes now saves confusion later.', links: [{ t: 'Time off section', k: '#/timeoff' }, { t: 'Full policy on Notion', k: 'timeOffPolicy' }] },
-      { t: 'Set up time tracking', d: 'Set up time tracking following your team lead’s instructions for your role and client.', links: [{ t: 'Time tracking', k: 'timeTracking' }] },
+      { t: 'Set up time tracking', d: 'Set up time tracking following your team lead\'s instructions for your role and client.', links: [{ t: 'Time tracking', k: 'timeTracking' }] },
       { t: 'Explore and fill out the People Pavilion', d: 'The team directory in Notion. Fill in your entry so people can get to know you.', links: [{ t: 'People Pavilion', k: 'peoplePavilion' }] },
-      { t: 'Understand your benefits', d: 'What you are enrolled in, what you need to elect, and by when. Ask Eric on Slack if anything is unclear or if you are a contractor and not sure what applies to you.' }
+      { t: 'Understand your benefits', d: 'What you\'re enrolled in, what you need to elect, and by when. Ask Eric on Slack if anything is unclear or if you\'re a contractor and not sure what applies to you.' }
     ]},
     { g: 'week two', cls: '', items: [
       { t: 'Meet the people on your list', d: 'Your manager picks who you should meet in your first two weeks: your client lead, the people on your account, and a couple of others. Enter your access code in the welcome kit (bottom right) to see your names, then book the 1:1s.', links: [{ t: 'The team wall', k: '#/team' }] },
@@ -155,11 +155,11 @@
     { n: 'Ashby', dmn: 'ashbyhq.com', url: 'https://app.ashbyhq.com', d: 'Our ATS, and the system of record for every search. Talent team gets oriented in week one; ask anything in #g-ashby-support.', tag: 'talent team' },
     { n: 'Granola', dmn: 'granola.ai', url: 'https://granola.ai', d: 'AI meeting notes so you stay present. We run it on every client call.', tag: 'carrara provided' },
     { n: 'Loom', dmn: 'loom.com', url: 'https://loom.com', d: 'Async walkthroughs and client handoffs instead of another meeting.', tag: 'carrara provided' },
-    { n: 'Reclaim', dmn: 'reclaim.ai', url: 'https://reclaim.ai', d: 'Merges calendars across the multiple client accounts you will juggle.', tag: 'carrara provided' },
+    { n: 'Reclaim', dmn: 'reclaim.ai', url: 'https://reclaim.ai', d: 'Merges calendars across the multiple client accounts you\'ll juggle.', tag: 'carrara provided' },
     { n: 'ChatGPT', dmn: 'chatgpt.com', url: 'https://chat.openai.com', d: 'Everyday copilot for quick brainstorms and rewrites.', tag: '' },
     { n: 'Whisper Flow', dmn: 'whisperflow.com', url: 'https://whisperflow.com', d: 'Voice keyboard. Dictate Slack messages and notes while juggling threads.', tag: '' },
     { n: 'CleanShot', dmn: 'cleanshot.com', url: 'https://cleanshot.com', d: 'Screenshots, GIFs, scrolling capture. Our default for async documentation.', tag: '' },
-    { n: 'Paste', dmn: 'pasteapp.io', url: 'https://pasteapp.io', d: 'Infinite clipboard history. You will copy a lot between clients.', tag: '' },
+    { n: 'Paste', dmn: 'pasteapp.io', url: 'https://pasteapp.io', d: 'Infinite clipboard history. You\'ll copy a lot between clients.', tag: '' },
     { n: 'Zapier', dmn: 'zapier.com', url: 'https://zapier.com', d: 'Automations between tools. Kill the repetitive stuff.', tag: '' }
   ];
 
