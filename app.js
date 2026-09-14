@@ -69,26 +69,42 @@
      so filling a blank in links.js lights the link up everywhere at once. */
   var CHECKLIST = [
     { g: 'day one', cls: '', items: [
-      { t: 'Set up your Slack workspace', d: 'Join carrarais.slack.com. Set your photo, title and timezone: the team page pulls from your Slack profile. Then read the Slack section of this hub so the channel prefixes make sense.', links: [{ t: 'Open Slack', k: 'slackWorkspace' }, { t: 'The Slack guide', k: '#/slack' }] },
+      { t: 'Set up your Slack workspace', d: 'Join carrarais.slack.com. Set your full name, photo, title and timezone: the team page pulls from your Slack profile. Then read the Slack section of this hub so the channel prefixes make sense.', links: [{ t: 'Open Slack', k: 'slackWorkspace' }, { t: 'The Slack guide', k: '#/slack' }] },
       { t: 'Ensure tool and system access', d: 'Confirm you can open Google, Notion, Slack and the tools for your role. Anything blocked, ping Eric on Slack.', links: [{ t: 'Notion Home Base', k: 'notionHomeBase' }] },
       { t: 'Payroll setup (Deel, Bill.com, or Ramp)', d: 'Deel for full-time employees, Bill.com for US contractors, Ramp for international contractors. You\'ll get an invite for the one that applies to you.', links: [{ t: 'Deel', k: 'deel' }, { t: 'Bill.com', k: 'bill' }, { t: 'Ramp', k: 'ramp' }] },
-      { t: 'Set up email signature and Slack profile', d: 'Use the Carrara signature format from the brand templates, and fill out your Slack profile completely.', links: [{ t: 'Brand templates', k: '#/templates' }] },
+      { t: 'Set up email signature and Slack profile', d: 'Use the Carrara signature format from the brand templates, and fill out your Slack profile completely.',
+        html: '<div class="m-eyebrow">[day one]</div><h3>Set up email signature and Slack profile</h3>'
+          + '<h4 style="margin:18px 0 6px">Email</h4>'
+          + '<p>Use the following template and steps to add your custom Carrara-branded email signature.</p>'
+          + '<ol style="margin:8px 0 0 20px;padding:0">'
+          + '<li>Copy the signature from the email signature template (linked below).</li>'
+          + '<li>Go to your Carrara Gmail inbox.</li>'
+          + '<li>"Settings" icon (top right) → "See all Settings."</li>'
+          + '<li>Scroll down to "Signature."</li>'
+          + '<li>"Create New."</li>'
+          + '<li>Paste the signature from the template.</li>'
+          + '<li>Update the text for your name and your role.</li>'
+          + '<li>Update "Signature Defaults" → "For New Emails Use: Carrara" &amp; "On Reply/Forward Use: Carrara."</li>'
+          + '<li>Hit "Save Changes" at the bottom.</li>'
+          + '</ol>'
+          + '<h4 style="margin:18px 0 6px">Slack</h4>'
+          + '<p>For your Slack profile, be sure to add: full name, photo, title/focus area, and timezone. Also add your phone number, email and start date.</p>'
+          + '<p class="m-note" style="margin-top:6px">Optional: about you, birthday, name pronunciation, pronouns.</p>',
+        links: [{ t: 'Brand templates', k: '#/templates' }, { t: 'Email signature template', k: 'emailSigTemplate' }, { t: 'Full guide on Notion', k: 'emailSignatureGuide' }] },
       { t: 'Day 1 manager 1:1', d: 'Your first 1:1: align on your 90-day plan, week one priorities, and how you\'ll work together.' },
+      { t: 'Set up time with your onboarding buddy', d: 'Your onboarding buddy is there for any day-to-day question, no matter how small. Grab time with them early so you know who to go to.' },
       { t: 'Submit your Top 5', d: 'Name the five best people you have ever worked with, one submission per person. It seeds our network with people we already trust, and it\'s one of the most useful things you can do in your first week.', links: [{ t: 'Top 5 form', k: 'top5Form' }] },
-      { t: 'Look through open roles', d: 'Browse the roles we are currently hiring for across clients. It\'s the fastest way to understand what the talent side of the business actually does.', links: [{ t: 'Open roles', k: 'openRoles' }] },
-      { t: 'Attend your orientation session', d: 'Eric walks you through admin items, the plan for your first week, and anything you want to ask. It happens on day one; your manager books it.' },
       { t: 'I-9 verification (full-time employees only)', d: 'US full-time employees complete I-9 employment eligibility verification. Eric sends this over; get it back the same week so payroll isn\'t held up.' }
     ]},
     { g: 'week one', cls: 'blue', items: [
       { t: 'Set up the Quarry', d: 'Our AI harness. Download the Claude app and log in with your Carrara Google account, set up an Obsidian vault, point Cowork at it, then run /workspace-initialization, /workspace-migration and /sync. Do this in week one: most of how we work assumes it.', links: [{ t: 'Quarry setup guide', k: 'quarry' }, { t: 'The tools we use', k: '#/tools' }] },
       { t: 'Learn the skills we share', d: 'Skills are the reusable prompts and playbooks the team builds together, pre-installed on Cowork. Learn which ones exist and which to reach for when you\'re writing a doc, building a deck or researching a candidate. Ask in Slack for a walkthrough if anything is unclear.', links: [{ t: 'Quarry setup guide', k: 'quarry' }] },
-      { t: 'Attend the tool tips session', d: 'A live walkthrough of the tools the team runs on, with tips from people who use them daily.', links: [{ t: 'The tools we use', k: '#/tools' }] },
       { t: 'Set up a recurring 1:1 with your manager', d: 'Get a weekly slot on the calendar before the week ends.' },
       { t: "Confirm you're added to all team calls", d: 'Standing team meetings, the monthly Team Roundup, and any client syncs relevant to your role.', links: [{ t: 'Team Roundup', k: 'teamRoundup' }] },
       { t: 'Get oriented on our Notion', d: 'Start at Home Base and click around.', links: [{ t: 'Home Base', k: 'notionHomeBase' }] },
-      { t: 'Review the PTO policy', d: 'Read the Time off section of this hub, then the full policy on Notion. Two minutes now saves confusion later.', links: [{ t: 'Time off section', k: '#/timeoff' }, { t: 'Full policy on Notion', k: 'timeOffPolicy' }] },
+      { t: 'Review Time-Off Policy', d: 'Read the Time off section of this hub, then the full policy on Notion. Two minutes now saves confusion later.', links: [{ t: 'Time off section', k: '#/timeoff' }, { t: 'Full policy on Notion', k: 'timeOffPolicy' }] },
       { t: 'Set up time tracking', d: 'Set up time tracking following your team lead\'s instructions for your role and client.', links: [{ t: 'Time tracking', k: 'timeTracking' }] },
-      { t: 'Explore and fill out the People Pavilion', d: 'The team directory in Notion. Fill in your entry so people can get to know you.', links: [{ t: 'People Pavilion', k: 'peoplePavilion' }] },
+      { t: 'Fill out your profile in the team directory', d: 'Add yourself to the team wall so people can get to know you.', links: [{ t: 'The team directory', k: '#/team' }] },
       { t: 'Understand your benefits', d: 'What you\'re enrolled in, what you need to elect, and by when. Ask Eric on Slack if anything is unclear or if you\'re a contractor and not sure what applies to you.' }
     ]},
     { g: 'week two', cls: '', items: [
@@ -301,6 +317,9 @@
     if (!root) return;
     var old = root.querySelector('.next-nav');
     if (old) old.parentNode.removeChild(old);
+    /* Start already has its own "See full onboarding" button pointing at the
+       same next section (Who we are) -- a second link here would just repeat it. */
+    if (sec === 'start') return;
     var i = SECTIONS.findIndex(function (s) { return s.id === sec; });
     if (i < 0 || i >= SECTIONS.length - 1) return;
     var nxt = SECTIONS[i + 1];
@@ -394,8 +413,8 @@
             + (internal ? ' onclick="document.getElementById(\'modal-back\').classList.remove(\'show\')"' : ' target="_blank" rel="noopener"')
             + '>' + esc(l.t) + (internal ? '' : ' ↗') + '</a>';
         });
-        openModal('<div class="m-eyebrow">[' + grp.g + ']</div><h3>' + esc(item.t) + '</h3><p>' + esc(item.d) + '</p>'
-          + (linksHtml ? '<p style="margin-top:14px">' + linksHtml + '</p>' : ''));
+        var body = item.html || ('<div class="m-eyebrow">[' + grp.g + ']</div><h3>' + esc(item.t) + '</h3><p>' + esc(item.d) + '</p>');
+        openModal(body + (linksHtml ? '<p style="margin-top:14px">' + linksHtml + '</p>' : ''));
       }
       row.querySelector('.box').addEventListener('click', toggle);
       row.querySelector('.box').addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
@@ -454,9 +473,6 @@
     /* their own words first, then the researched summary as a fallback */
     if (pv.about) html += '<p>' + esc(pv.about) + '</p>';
     else if (p && p.summary) html += '<p>' + esc(p.summary) + '</p>';
-    if (pv.values) {
-      html += '<div class="wk-sec"><div class="wk-lbl">[core values]</div><p>' + esc(pv.values) + '</p></div>';
-    }
     if (pv.clients && pv.clients.length) {
       /* logo above, company name below: a name alone makes you read, a logo
          alone makes you guess. Falls back to the initial when we have no domain. */
@@ -530,9 +546,12 @@
     });
   }
 
-  /* Every hero number is derived, never typed. Partners come from the partner
-     flag in people.json, team members from the rendered roster, and companies
-     served counts current plus archived so the number only ever goes up. */
+  /* Every hero number is derived, never typed, except partners: the partner
+     flag in people.json is under-counted right now (7 flagged, 8 is the real
+     number) and nobody's assigned the 8th yet, so that one stat stays the
+     static "8" baked into index.html instead of being overwritten here. Team
+     members come from the rendered roster, and companies served counts
+     current plus archived so the number only ever goes up. */
   function setStat(sel, n, plus) {
     var el = $(sel);
     if (!el) return;
@@ -541,16 +560,9 @@
   }
   function refreshStats() {
     if (teamData.length) {
-      var partners = teamData.filter(function (m) {
-        var pv = pavilion[m.name];
-        return pv && pv.partner;
-      }).length;
-      if (partners) setStat('#stat-partners', partners, false);
       setStat('#stat-team', teamData.length, false);
       var factEl = $('#fact-team');
       if (factEl) factEl.textContent = teamData.length + '';
-      var factP = $('#fact-partners');
-      if (factP && partners) factP.textContent = partners + '';
     }
     if (clientData.length) setStat('#stat-clients', clientData.length, false);
   }
@@ -569,7 +581,7 @@
         role: myProfile.team || '', location: myProfile.location || '',
         teams: myProfile.team ? [myProfile.team] : [],
         clients: myProfile.client ? [myProfile.client] : [],
-        about: myProfile.background || '', values: myProfile.values || '',
+        about: myProfile.background || '',
         linkedin: myProfile.linkedin || '',
         answers: Object.keys(myProfile.answers || {}).map(function (k) {
           var q = null;
@@ -682,17 +694,10 @@
      the team card and any future survey all read from one list. */
   var PAVILION_Q = [
     { group: 'about you', qs: [
-      ['honest', 'What are some honest, unfiltered things about you?'],
-      ['nuts', 'What drives you nuts?'],
-      ['quirks', 'What are your quirks?'],
-      ['goldstar', 'How can people earn an extra gold star with you?'],
-      ['qualities', 'What qualities do you particularly value in people who work with you?'],
-      ['misunderstand', 'What are some things that people might misunderstand about you that you should clarify?']
+      ['qualities', 'What qualities do you value in people you work with?']
     ]},
     { group: 'how you work with others', qs: [
-      ['coach', 'How do you coach people to do their best work and develop their talents?'],
       ['communicate', "What's the best way to communicate with you?"],
-      ['convince', "What's the best way to convince you to do something?"],
       ['givefb', 'How do you like to give feedback?'],
       ['getfb', 'How do you like to get feedback?']
     ]}
@@ -732,8 +737,8 @@
       + '<div class="pf-hint" id="pf-photo-hint">' + (p.photo ? 'A photo is saved. Choose a new file to replace it.' : 'A real photo of your face. It stays in your browser until you save.') + '</div>'
       + '<label>Client you are working on</label><select id="pf-client">' + opts(clientNames, p.client) + '</select>'
       + '<div class="pf-group">in your own words</div>'
-      + '<label>My quick background</label><textarea id="pf-bg" rows="3">' + esc(p.background || '') + '</textarea>'
-      + '<label>These are my core values</label><textarea id="pf-values" rows="3">' + esc(p.values || '') + '</textarea>'
+      + '<label>Share a quick background on yourself! What you\'ve done, what you focus on today, what you spend time on outside of work, and a few things you value!</label>'
+      + '<textarea id="pf-bg" rows="4">' + esc(p.background || '') + '</textarea>'
       + qHtml
       + '<div class="m-actions"><button class="btn-primary" id="pf-save">Add me to the wall</button></div>'
       + '<p class="m-note">Your intro is shared with the team so they can give you a proper welcome.</p>'
@@ -773,7 +778,6 @@
         client: $('#pf-client').value,
         photo: photoData,
         background: $('#pf-bg').value.trim(),
-        values: $('#pf-values').value.trim(),
         answers: answers
       };
       if (!prof.name) { $('#pf-name').focus(); return; }
