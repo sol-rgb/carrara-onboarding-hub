@@ -98,7 +98,6 @@
     ]},
     { g: 'week one', cls: 'blue', items: [
       { t: 'Set up the Quarry', d: 'Our AI harness. Download the Claude app and log in with your Carrara Google account, set up an Obsidian vault, point Cowork at it, then run /workspace-initialization, /workspace-migration and /sync. Do this in week one: most of how we work assumes it.', links: [{ t: 'Quarry setup guide', k: 'quarry' }, { t: 'The tools we use', k: '#/tools' }] },
-      { t: 'Learn the skills we share', d: 'Skills are the reusable prompts and playbooks the team builds together, pre-installed on Cowork. Learn which ones exist and which to reach for when you\'re writing a doc, building a deck or researching a candidate. Ask in Slack for a walkthrough if anything is unclear.', links: [{ t: 'Quarry setup guide', k: 'quarry' }] },
       { t: 'Set up a recurring 1:1 with your manager', d: 'Get a weekly slot on the calendar before the week ends.' },
       { t: "Confirm you're added to all team calls", d: 'Standing team meetings, the monthly Team Roundup, and any client syncs relevant to your role.', links: [{ t: 'Team Roundup', k: 'teamRoundup' }] },
       { t: 'Get oriented on our Notion', d: 'Start at Home Base and click around.', links: [{ t: 'Home Base', k: 'notionHomeBase' }] },
