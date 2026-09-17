@@ -3,41 +3,6 @@
    re-snapshot. Keys match links.js; anything with an entry here opens as an
    in-hub popup instead of linking out. */
 window.PAGES = {
-  timeOffPolicy: {
-    title: 'Time-Off & Holiday Policy',
-    html: '<p>At Carrara, we operate at a high level — which means we also need time to reset. Great work comes from people who are energized, not running on fumes.</p>'
-      + '<p>Our Time-Off Policy is built on trust, responsibility, and impact. We expect everyone to be thoughtful about balancing personal time with client and team needs. That means:</p>'
-      + '<ul><li>Taking time off proactively — not just when you\'re burned out.</li>'
-      + '<li>Aiming for at least two days off per quarter (with prior approval) to recharge.</li>'
-      + '<li>Communicating early and clearly so we can plan around time off.</li></ul>'
-      + '<p>Taking time off is part of sustaining high performance. We do our best work when we take care of ourselves and each other. Applies to all Carrara team members, full-time and part-time.</p>'
-      + '<h4>Taking time off</h4>'
-      + '<p>Our approach to time off is flexible and built on trust — ensuring team members take care of themselves while continuing to meet client and team commitments.</p>'
-      + '<ul><li><b>Plan in advance:</b> for vacation, personal days, or other planned time off, give as much notice as possible — ideally at least two weeks. Team members are responsible for load balancing and ensuring outcomes during their time off.</li>'
-      + '<li><b>Be mindful of team and client commitments:</b> consider upcoming deadlines, projects, and client needs, and collaborate with the team so there is no significant impact to key deliverables.</li>'
-      + '<li><b>Balance personal and business needs:</b> pace time off in a way that aligns with both personal well-being and team goals.</li></ul>'
-      + '<h4>Requesting time off</h4>'
-      + '<p>All time off requests require manager approval. Once approved, coordinate with your manager and/or team to confirm timing, then post in #g-ooo using the format below:</p>'
-      + '<p><b>Your Name - OOO (Start Date - End Date)</b> — optionally with a short explanation. Example: <b>Eric - OOO (01/01/2026 - 01/05/2026)</b>, out of town visiting my grandparents.</p>'
-      + '<h4>Unplanned absences</h4>'
-      + '<p>If an unplanned event arises, such as a personal emergency or illness, inform your manager/team as soon as possible: send a quick message or email so the team is aware, and provide updates as needed if more days are required.</p>'
-      + '<h4>Holidays</h4>'
-      + '<p>We recognize that different holidays hold significance for different people, and encourage team members to take time off for what matters most to them.</p>'
-      + '<ul><li><b>Between Christmas and New Year\'s:</b> work is typically slower for Carrara. While some client check-ins may be necessary, we encourage the team to unplug and recharge as much as possible.</li>'
-      + '<li><b>Between Thanksgiving and Christmas:</b> tends to be an all-hands-on-deck time as we support clients in wrapping up the year. Be mindful and limit time off during this period.</li></ul>'
-      + '<p><b>Common client observed holidays:</b></p>'
-      + '<ul><li>New Year\'s Day — Thursday, January 1</li>'
-      + '<li>MLK Day — Monday, January 19</li>'
-      + '<li>Memorial Day — Monday, May 25</li>'
-      + '<li>Independence Day — Friday, July 3</li>'
-      + '<li>Labor Day — Monday, September 7</li>'
-      + '<li>Thanksgiving Day — Thursday, November 26</li>'
-      + '<li>Christmas Day — Friday, December 25</li></ul>'
-      + '<h4>FAQs</h4>'
-      + '<p><b>How does time off work for contractors?</b> Contracted team members should refer to their agreement for details on time off. In most instances, contractors should be able to take time off and deduct it from hours worked that week.</p>'
-      + '<p><b>Who should I contact with questions?</b> Speak with your manager, or reach out to Eric Fernandez or Kenna Meyerhoff with additional questions.</p>'
-      + '<p><b>What if I need time off unexpectedly for a personal emergency?</b> We expect life to happen, and want team members to be able to take the time they need. If you anticipate needing extended time off, discuss with your manager or reach out to Kenna Meyerhoff.</p>'
-  },
   coordinatorOOO: {
     title: 'Coordinator OOO template',
     html: '<p>A ready-made structure for going out of office as a coordinator. Duplicate it, rename it to "[Your Name] OOO", fill in the placeholders, and share with your coverage team and Carrara POCs at least one week before leaving.</p>'

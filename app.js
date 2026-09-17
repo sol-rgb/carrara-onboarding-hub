@@ -17,7 +17,7 @@
     { id: 'clients',   label: 'Clients' },
     { id: 'tools',     label: 'Tools' },
     { id: 'templates', label: 'Branding' },
-    { id: 'timeoff',   label: 'Time off' },
+    { id: 'timeoff',   label: 'Time off policy' },
     { id: 'resources', label: 'Resources' },
     /* locked: reachable, but marked so nobody expects content yet */
     { id: 'conduct',   label: 'Code of conduct', locked: true },
@@ -101,7 +101,7 @@
       { t: 'Set up a recurring 1:1 with your manager', d: 'Get a weekly slot on the calendar before the week ends.' },
       { t: "Confirm you're added to all team calls", d: 'Standing team meetings, the monthly Team Roundup, and any client syncs relevant to your role.', links: [{ t: 'Team Roundup', k: 'teamRoundup' }] },
       { t: 'Get oriented on our Notion', d: 'Start at Home Base and click around.', links: [{ t: 'Home Base', k: 'notionHomeBase' }] },
-      { t: 'Review Time-Off Policy', d: 'Read the Time off section of this hub, then the full policy on Notion. Two minutes now saves confusion later.', links: [{ t: 'Time off section', k: '#/timeoff' }, { t: 'Full policy on Notion', k: 'timeOffPolicy' }] },
+      { t: 'Review Time-Off Policy', d: 'Read the Time-Off & Holiday Policy page in this hub. Two minutes now saves confusion later.', links: [{ t: 'Time-Off & Holiday Policy', k: '#/timeoff' }] },
       { t: 'Set up time tracking', d: 'Set up time tracking following your team lead\'s instructions for your role and client.', links: [{ t: 'Time tracking', k: 'timeTracking' }] },
       { t: 'Fill out your profile in the team directory', d: 'Add yourself to the team wall so people can get to know you.', links: [{ t: 'The team directory', k: '#/team' }] },
       { t: 'Understand your benefits', d: 'What you\'re enrolled in, what you need to elect, and by when. Ask Eric on Slack if anything is unclear or if you\'re a contractor and not sure what applies to you.' }
@@ -1347,8 +1347,8 @@
         ix.push({ label: c.n, hint: 'slack channel', go: function () { if (u) window.open(u, '_blank'); else location.hash = '#/slack'; } });
       });
       TOOLS.forEach(function (t) { ix.push({ label: t.n, hint: 'tool', go: function () { window.open(t.url, '_blank'); } }); });
-      [['Home Base', 'notionHomeBase'], ['The Quarry', 'quarry'], ['Brand Vault', 'brandVault'], ['Team Roundup', 'teamRoundup'],
-       ['Time-off policy', 'timeOffPolicy'], ['Brand palette & typography', 'brandVaultArchive'], ['This is Carrara', 'thisIsCarrara'],
+      [['Home Base', 'notionHomeBase'], ['The Quarry', 'quarry'], ['Brand Vault', 'brandVault'],
+       ['Team Roundup', 'teamRoundup'], ['Brand palette & typography', 'brandVaultArchive'], ['This is Carrara', 'thisIsCarrara'],
        ['Coordinator OOO template', 'coordinatorOOO'], ['Weekly Talent Jam', 'talentTeamMeeting'], ['Ashby', 'ashby'],
        ['carrara.is', 'site']].forEach(function (r) {
         if (pageFor(r[1])) { ix.push({ label: r[0], hint: 'library', go: function () { openPage(r[1]); } }); return; }
