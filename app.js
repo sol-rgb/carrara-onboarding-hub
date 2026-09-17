@@ -109,8 +109,6 @@
     { g: 'week two', cls: '', items: [
       { t: 'Meet the people on your list', d: 'Your manager picks who you should meet in your first two weeks: your client lead, the people on your account, and a couple of others. Enter your access code in the welcome kit (bottom right) to see your names, then book the 1:1s.', links: [{ t: 'The team wall', k: '#/team' }] },
       { t: 'Read the company operating principles', d: 'The Ways of Working page in Notion: what the four principles look like in practice.', links: [{ t: 'Ways of Working', k: 'waysOfWorking' }] },
-      { t: 'Read the company context docs', d: 'Company history, direction, and how we engage clients.', links: [{ t: 'Company context', k: 'companyContext' }, { t: 'Home Base', k: 'notionHomeBase' }] },
-      { t: 'Review the Carrara Brand Vault', d: 'Brand story, messaging and visual identity. Everything you make should feel like Carrara.', links: [{ t: 'Brand Vault', k: 'brandVault' }] },
       { t: 'Talent team only: get oriented on Ashby', d: 'Our ATS. Ask in #g-ashby-support if you get stuck.', links: [{ t: 'Open Ashby', k: 'ashby' }, { t: '#g-ashby-support', k: 'ch:g-ashby-support' }] }
     ]}
   ];
