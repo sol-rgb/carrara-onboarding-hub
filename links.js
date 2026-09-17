@@ -38,7 +38,7 @@ window.LINKS = {
   },
 
   /* Notion */
-  notionHomeBase: 'https://app.notion.com/p/a0d65c510b1344b59b5fea56210ecd4b',
+  notionHomeBase: 'https://app.notion.com/p/carrara/Carrara-HQ-a0d65c510b1344b59b5fea56210ecd4b',
   quarry: 'https://app.notion.com/p/34b6b1a6e6e780f6b170e6a9124c7fd4',
   brandVault: 'https://app.notion.com/p/1516b1a6e6e78010be78fef3dd8e4b7b',
   brandVaultArchive: 'https://app.notion.com/p/3996b1a6e6e7802c85def97c8ba20631',
