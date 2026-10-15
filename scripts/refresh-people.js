@@ -42,7 +42,7 @@ async function notion(pathname, body) {
     method: body ? 'POST' : 'GET',
     headers: {
       Authorization: 'Bearer ' + TOKEN,
-      'Notion-Version': '2022-06-28',
+      'Notion-Version': '2025-09-03',
       'Content-Type': 'application/json'
     },
     body: body ? JSON.stringify(body) : undefined
@@ -55,7 +55,7 @@ async function queryAll(dsId) {
   const out = [];
   let cursor;
   do {
-    const j = await notion('/databases/' + dsId + '/query', cursor ? { start_cursor: cursor } : {});
+    const j = await notion('/data_sources/' + dsId + '/query', cursor ? { start_cursor: cursor } : {});
     out.push(...j.results);
     cursor = j.has_more ? j.next_cursor : null;
   } while (cursor);

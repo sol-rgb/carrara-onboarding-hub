@@ -79,6 +79,15 @@ async function refreshClients() {
 
   const prevC = JSON.parse(fs.readFileSync(path.join(ROOT, 'clients.json'), 'utf8'));
   const prevX = JSON.parse(fs.readFileSync(path.join(ROOT, 'codex.json'), 'utf8'));
+  // POps matches clients.json names EXACTLY (AGENTS.md): a name that drops out
+  // silently strips the client section from every hub minted for it. The API
+  // hides some clients from the hub (Roger) and Notion rows get renamed, so a
+  // name already in the file is carried over as it was, never dropped here.
+  const have = new Set(clients.map((c) => c.name));
+  const kept = (prevC.clients || []).filter((c) => !have.has(c.name));
+  kept.forEach((c) => clients.push(c));
+  clients.sort((a, b) => a.name.localeCompare(b.name));
+  if (kept.length) log('clients  kept', kept.length, 'name(s) POps may match on:', kept.map((c) => c.name).join(', '));
   log('clients ', write('clients.json', { source: prevC.source, updated: today(), clients }), '|', clients.length, 'clients');
   log('codex   ', write('codex.json', { source: prevX.source, updated: today(), clients: data.codex || {} }),
     '|', Object.keys(data.codex || {}).length, 'entries');
