@@ -430,6 +430,7 @@
     var meta = $('#meta-checklist');
     if (meta) meta.textContent = 'checklist: ' + done + '/' + total;
     $('#done-moment').classList.toggle('show', pct === 100);
+    if (current === MO.SECTION_ID) mountMyOnboarding();
   }
   $('#chk-reset').addEventListener('click', function () {
     chkState = {}; store('carrara_checklist', chkState);
@@ -680,6 +681,7 @@
       populateFilters();
       wireFilters();
       refreshStats();
+      mountMyOnboarding();
       if (data.source === 'slack') {
         $('#team-note').textContent = 'Live from the #f-company-ops-general Slack channel, refreshed every two weeks. Photos and roles come from Slack profiles: set yours and it shows here.';
       }
@@ -817,12 +819,69 @@
 
   /* The hire's own section, rendered from whatever kit we currently hold --
      including none, which renders the "enter your access code" state. */
+  /* What the section knows beyond the kit: the manager's photo and email from
+     the roster, the people on the hire's team, and checklist progress. Any of
+     it can be missing (roster still loading, offline); the section copes. */
+  function sameFirstAndInitial(a, b) {
+    var pa = String(a || '').trim().toLowerCase().split(/\s+/);
+    var pb = String(b || '').trim().toLowerCase().split(/\s+/);
+    if (!pa[0] || pa[0] !== pb[0]) return false;
+    var la = (pa[1] || '').replace(/\./g, ''), lb = (pb[1] || '').replace(/\./g, '');
+    return !!la && !!lb && la.charAt(0) === lb.charAt(0);
+  }
+  function myOnboardingCtx() {
+    var ctx = {};
+    if (!kitData) return ctx;
+    var mgr = kitData.manager || {};
+    if (mgr.name && teamData && teamData.length) {
+      var m = teamData.filter(function (x) { return x.name === mgr.name; })[0]
+        || teamData.filter(function (x) { return sameFirstAndInitial(x.name, mgr.name); })[0];
+      if (m) {
+        var pv = (pavilion || {})[m.name] || {};
+        ctx.manager = { avatar: m.avatar || '', email: m.email || '', role: pv.role || cleanTitle(m.title) };
+      }
+    }
+    var dirTeams = MO.TEAM_DIRECTORY[(kitData.team && kitData.team.key) || ''] || [];
+    if (dirTeams.length) {
+      ctx.teamFilter = dirTeams[0];
+      var avatars = {};
+      (teamData || []).forEach(function (x) { avatars[x.name] = x.avatar || ''; });
+      var dir = pavilion || {};
+      ctx.peers = Object.keys(dir).filter(function (n) {
+        if (n === mgr.name || n === kitData.name) return false;
+        return (dir[n].teams || []).some(function (t) { return dirTeams.indexOf(t) > -1; });
+      }).sort().map(function (n) { return { name: n, avatar: avatars[n] || '' }; });
+    }
+    if (typeof flat !== 'undefined' && flat.length) ctx.checklist = { done: chkCount(), total: flat.length };
+    return ctx;
+  }
+
   function mountMyOnboarding() {
     var el = $('#view-' + MO.SECTION_ID);
     if (!el) return;
-    el.innerHTML = MO.renderSection(kitData);
+    el.innerHTML = MO.renderSection(kitData, myOnboardingCtx());
     var reset = el.querySelector('#mo-reset');
     if (reset) reset.addEventListener('click', function () { window.dispatchEvent(new Event('carrara:kit-reset')); });
+    var flip = el.querySelector('.mo-flip');
+    if (flip) {
+      var turn = function (e) {
+        if (e.target.closest('a')) return;
+        if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
+        e.preventDefault();
+        flip.classList.toggle('flipped');
+      };
+      flip.addEventListener('click', turn);
+      flip.addEventListener('keydown', turn);
+    }
+    /* "Meet your team" opens the team page already filtered to their team */
+    el.querySelectorAll('a[data-team-filter]').forEach(function (a) {
+      a.addEventListener('click', function () {
+        var sel = $('#f-team');
+        teamFilter.team = a.dataset.teamFilter;
+        if (sel) sel.value = a.dataset.teamFilter;
+        renderTeam($('#team-search').value);
+      });
+    });
   }
 
   /* The saved kit is a FALLBACK for an offline or failed refresh, never the

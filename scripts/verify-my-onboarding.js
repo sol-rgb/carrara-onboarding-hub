@@ -316,7 +316,30 @@ async function main() {
   check('renders the 30 and 90 steps', full.indexOf('>30<') > -1 && full.indexOf('>90<') > -1);
   check('omits the blank 60 step rather than opening it empty', full.indexOf('>60<') === -1);
   check('renders plan bullets as a list', full.indexOf('<li>Shadow two engagements</li>') > -1);
-  check('carries the generic pay line', full.indexOf('day-one email covers it') > -1);
+  check('no longer carries the pay line', full.indexOf('day-one email covers it') === -1);
+  check('no longer carries the Enneagram', full.toLowerCase().indexOf('enneagram') === -1);
+  check('links the checklist from the section', full.indexOf('href="#/checklist"') > -1);
+  check('renders the your team / manager / questions cards',
+    full.indexOf('[your team]') > -1 && full.indexOf('[your manager]') > -1 && full.indexOf('[questions]') > -1);
+  check('the questions card names who to ping', full.indexOf('Eric Fernandez') > -1);
+
+  const withCtx = mo.renderSection(KIT, {
+    manager: { avatar: '/assets/people/sol.jpg', email: 'sol@carrara.is', role: 'Partner' },
+    peers: [{ name: 'River Slate', avatar: '' }, { name: 'Ana Lee', avatar: '/a.jpg' }],
+    teamFilter: 'Talent Acquisition',
+    checklist: { done: 3, total: 12 }
+  });
+  check("the manager card carries the roster photo and email",
+    withCtx.indexOf('/assets/people/sol.jpg') > -1 && withCtx.indexOf('mailto:sol@carrara.is') > -1);
+  check('the team card counts the peers', withCtx.indexOf('2 people do the same kind of work') > -1);
+  check('the team card links to the filtered team page', withCtx.indexOf('data-team-filter="Talent Acquisition"') > -1);
+  check('the checklist block shows progress', withCtx.indexOf('3 of 12') > -1 && withCtx.indexOf('width:25%') > -1);
+  const hostileCtx = mo.renderSection(KIT, {
+    manager: { avatar: '"><script>alert(6)</script>', email: '"><b>x', role: '<i>r</i>' },
+    peers: [{ name: '<script>alert(7)</script>', avatar: '' }],
+    teamFilter: '"><script>alert(8)</script>'
+  });
+  check('escapes hostile roster context', hostileCtx.indexOf('<script>alert(') === -1 && hostileCtx.indexOf('<i>r</i>') === -1);
   check('carries no country notes block', full.toLowerCase().indexOf('joining from') === -1);
 
   const hostile = mo.renderSection(Object.assign({}, KIT, {
@@ -357,7 +380,7 @@ async function main() {
   check('and still names the hire and renders the client and syncs',
     emptyPlan.indexOf('Your onboarding, Ada.') > -1 && emptyPlan.indexOf('Anthropic') > -1
       && emptyPlan.indexOf('River Slate') > -1);
-  check('and still carries the pay pointer', emptyPlan.indexOf('day-one email covers it') > -1);
+  check('and still renders the three top cards', emptyPlan.indexOf('[your team]') > -1);
 
   const planless = mo.renderSection(Object.assign({}, KIT, { plan: null }));
   check('a planless kit still renders the client and syncs', planless.indexOf('Anthropic') > -1 && planless.indexOf('River Slate') > -1);
@@ -375,7 +398,7 @@ async function main() {
   const liveHtml = mo.renderSection(live.body);
   check('the live /api/welcome payload renders a section',
     liveHtml.indexOf('Your onboarding, Ada.') > -1 && liveHtml.indexOf('mo-timeline') > -1, liveHtml.slice(0, 160));
-  check('with the payload\'s own pay pointer', liveHtml.indexOf(live.body.payNote) > -1);
+  check('without the payload\'s pay pointer', liveHtml.indexOf(live.body.payNote) === -1);
   check('and the manager\'s syncs, not the derivation', liveHtml.indexOf('River Slate') > -1);
 
   console.log('');
