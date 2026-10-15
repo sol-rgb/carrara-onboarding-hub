@@ -164,25 +164,6 @@
     <div class="flat-grid three" id="water-grid"></div>
   </section>
 
-  <!-- 08 checklist -->
-  <section class="view" id="view-checklist">
-    <h1 class="display">Everything to get done, in order.</h1>
-    <p class="body-copy muted" style="font-size:13.5px">Click the box to check off. Click the item or the i for details.</p>
-    <div class="progress-wrap">
-      <div class="progress-bar"><span id="chk-fill"></span></div>
-      <div class="progress-pct" id="chk-pct">0%</div>
-    </div>
-    <div class="chk-cols" id="chk-groups"></div>
-    <button class="startover reset-link" id="chk-reset">Reset checklist</button>
-    <div class="done-moment" id="done-moment">
-      <img src="/assets/logo/carrara-iso-ember.svg" alt="">
-      <div>
-        <div class="line">Done. Now go do the work.</div>
-        <p class="body-copy" style="margin-top:8px">Your checklist stays here. Come back anytime.</p>
-      </div>
-    </div>
-  </section>
-
   <!-- 09 the business -->
   <section class="view" id="view-business">
     <h1 class="display">Eight product lines. One focus: The Work.</h1>
@@ -408,12 +389,34 @@
       <img src="/assets/logo/carrara-iso-ember.svg" alt="">
       <div>
         <h1 class="display" style="margin-bottom:14px">Done. Now go do the work.</h1>
-        <p class="body-copy">Your checklist stays here for the rest of your first weeks. Come back anytime.</p>
+        <p class="body-copy">Your checklist stays in My onboarding for the rest of your first weeks. Come back anytime.</p>
         <div class="cta-row"><button class="btn-primary" id="btn-home">Back to the hub</button></div>
       </div>
     </div>
   </section>
 </main>
+
+<!-- the checklist: a popup opened from My onboarding (and any #/checklist link) -->
+<div class="chk-pop" id="chk-pop" hidden>
+  <div class="chk-pop-panel" role="dialog" aria-modal="true" aria-labelledby="chk-pop-title">
+    <button class="m-close" id="chk-pop-close">Close</button>
+    <h2 class="chk-pop-title" id="chk-pop-title">Everything to get done, in order.</h2>
+    <p class="body-copy muted" style="font-size:13.5px">Click the box to check off. Click the item or the i for details.</p>
+    <div class="progress-wrap">
+      <div class="progress-bar"><span id="chk-fill"></span></div>
+      <div class="progress-pct" id="chk-pct">0%</div>
+    </div>
+    <div class="chk-cols" id="chk-groups"></div>
+    <button class="startover reset-link" id="chk-reset">Reset checklist</button>
+    <div class="done-moment" id="done-moment">
+      <img src="/assets/logo/carrara-iso-ember.svg" alt="">
+      <div>
+        <div class="line">Done. Now go do the work.</div>
+        <p class="body-copy" style="margin-top:8px">Your checklist stays in My onboarding. Come back anytime.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- generic modal -->
 <div class="modal-back" id="modal-back">

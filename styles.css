@@ -986,3 +986,29 @@ h2.sub { margin: 76px 0 28px; }
   .mo-card { padding: 26px 22px; }
   h2.sub { margin: 60px 0 22px; }
 }
+
+/* the checklist block on My onboarding: one wide card under the three */
+.mo-checklist { border: 1px solid var(--hairline); clip-path: var(--chamfer); padding: 30px 28px; margin: -30px 0 64px; max-width: 100%; }
+.mo-checklist .progress-wrap { max-width: 640px; }
+.mo-checklist .wk-links { max-width: 640px; }
+.body-copy + .mo-checklist { margin-top: 40px; }
+@media (max-width: 860px) { .mo-checklist { padding: 26px 22px; margin-top: -10px; } }
+
+/* the checklist popup, opened from the My onboarding card. Sits under the
+   generic modal (z 90) so an item's details open on top of it. */
+.chk-pop { position: fixed; inset: 0; z-index: 80; background: rgba(45, 42, 42, 0.35); display: flex; align-items: center; justify-content: center; padding: 28px; }
+.chk-pop[hidden] { display: none; }
+.chk-pop-panel { position: relative; background: var(--canvas); clip-path: var(--chamfer); width: min(1180px, 100%); max-height: calc(100vh - 56px); overflow-y: auto; padding: 48px 52px 44px; }
+.chk-pop-panel .m-close { position: absolute; top: 18px; right: 22px; font-family: var(--rigid); font-size: 11px; background: none; border: none; color: var(--taupe); cursor: pointer; }
+.chk-pop-title { font-family: var(--serif); font-weight: 500; font-size: clamp(26px, 3vw, 38px); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 14px; }
+.chk-pop .startover { margin-top: 28px; }
+body.chk-open { overflow: hidden; }
+.mo-checklist { cursor: pointer; transition: border-color 0.18s ease; }
+.mo-checklist:hover { border-color: var(--taupe); }
+.mo-checklist:hover .wk-links a { color: var(--ink); }
+.mo-checklist:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+@media (max-width: 860px) {
+  .chk-pop { padding: 0; }
+  .chk-pop-panel { max-height: 100vh; height: 100%; clip-path: none; padding: 52px 20px 32px; }
+}
+body.chk-open #wk { display: none; }

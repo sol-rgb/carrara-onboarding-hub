@@ -5,9 +5,13 @@
 // to the Client Codex page in Notion (page menu -> Connections), then set
 // NOTION_TOKEN in Vercel env vars and redeploy.
 //
-// Merge rules: Notion owns status, project types, staffing and the quick pitch;
-// codex.json keeps the narrative (about, engagement, overview, background, docs);
-// clients.json keeps domain, lead and active workstreams.
+// Merge rules: the Notion Client Codex is the source of truth for which clients
+// exist, who works on each (account managers, talent partners, coordination)
+// and the type of work (Project Type). A client's lead is its first account
+// manager and its work is its Project Types, both straight from the Codex.
+// codex.json only keeps the narrative Notion does not hold (about, engagement,
+// overview, background, docs); clients.json keeps the names POps matches on
+// (see AGENTS.md: never rename or drop one) and a domain fallback for logos.
 // New Active clients in Notion appear automatically; Paused Notion rows only
 // show if the brain also tracks them, so the grid doesn't fill with alumni.
 
@@ -143,19 +147,24 @@ module.exports = async (req, res) => {
       if (nx.website) {
         try { domain = new URL(nx.website).hostname.replace(/^www\./, ''); } catch (e) { /* keep empty */ }
       }
+      // People and work come from the Codex and nowhere else: an empty field
+      // in Notion is empty here too, rather than quietly filled from an old
+      // snapshot. Fix it in the Codex and it is fixed in the hub.
+      const managers = nx.accountManagers || [];
+      const types = nx.projectTypes || [];
       clients.push({
         name,
         domain,
-        lead: br.lead || '',
+        lead: managers[0] || '',
         description: br.description || '',
-        work: br.work || []
+        work: types
       });
       codex[name] = {
-        status: nx.status !== undefined && nx.status !== null ? nx.status : (en.status || null),
-        projectTypes: (nx.projectTypes && nx.projectTypes.length ? nx.projectTypes : en.projectTypes) || [],
-        accountManagers: (nx.accountManagers && nx.accountManagers.length ? nx.accountManagers : en.accountManagers) || [],
-        talentPartners: (nx.talentPartners && nx.talentPartners.length ? nx.talentPartners : en.talentPartners) || [],
-        coordination: (nx.coordination && nx.coordination.length ? nx.coordination : en.coordination) || [],
+        status: nx.status || 'Archived',
+        projectTypes: types,
+        accountManagers: managers,
+        talentPartners: nx.talentPartners || [],
+        coordination: nx.coordination || [],
         about: en.about || nx.quickPitch || null,
         engagement: en.engagement || [],
         overview: en.overview || {},

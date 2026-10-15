@@ -15,8 +15,8 @@
    "lead": "Brandon Taleisnik",
    "description": "",
    "work": [
-    "BizOps",
-    "Embedded Recruiting"
+    "Managed Services",
+    "Embedded recruiting"
    ]
   },
   {
@@ -29,9 +29,13 @@
   {
    "name": "Alpha School",
    "domain": "alpha.school",
-   "lead": "",
+   "lead": "Heath Jamieson",
    "description": "",
-   "work": []
+   "work": [
+    "BizOps",
+    "Marketing/Growth",
+    "Talent Platform"
+   ]
   },
   {
    "name": "Altana",
@@ -39,41 +43,44 @@
    "lead": "Sam Blumenthal",
    "description": "",
    "work": [
-    "Embedded Recruiting",
-    "Talent Platform"
+    "Talent Platform",
+    "Embedded recruiting"
    ]
   },
   {
    "name": "Amazon",
    "domain": "amazon.com",
-   "lead": "",
+   "lead": "Heath Jamieson",
    "description": "",
-   "work": []
+   "work": [
+    "Finance"
+   ]
   },
   {
    "name": "Amazon/Fauna Robotics",
    "domain": "",
-   "lead": "",
+   "lead": "Heath Jamieson",
    "description": "",
-   "work": []
+   "work": [
+    "Finance"
+   ]
   },
   {
    "name": "Amazon/Paid Media Partnership",
    "domain": "",
-   "lead": "",
+   "lead": "Heath Jamieson",
    "description": "",
-   "work": []
+   "work": [
+    "Marketing/Growth"
+   ]
   },
   {
    "name": "Anthropic",
    "domain": "anthropic.com",
-   "lead": "",
+   "lead": "Brandon Taleisnik",
    "description": "",
    "work": [
-    "Activation quick wins",
-    "Platform Mining",
-    "Product / AI Sprint",
-    "Talent Narrative"
+    "Talent Platform"
    ]
   },
   {
@@ -86,9 +93,11 @@
   {
    "name": "Atlan",
    "domain": "atlan.com",
-   "lead": "",
+   "lead": "Brandon Taleisnik",
    "description": "",
-   "work": []
+   "work": [
+    "Talent Platform"
+   ]
   },
   {
    "name": "Avoca AI",
@@ -109,20 +118,6 @@
   {
    "name": "Basis",
    "domain": "",
-   "lead": "",
-   "description": "",
-   "work": []
-  },
-  {
-   "name": "beatBread",
-   "domain": "beatbread.com",
-   "lead": "",
-   "description": "",
-   "work": []
-  },
-  {
-   "name": "Bee AI",
-   "domain": "bee.computer",
    "lead": "Heath Jamieson",
    "description": "",
    "work": [
@@ -130,15 +125,29 @@
    ]
   },
   {
-   "name": "Better",
-   "domain": "better.com",
-   "lead": "Tina Khoury",
+   "name": "beatBread",
+   "domain": "beatbread.com",
+   "lead": "Joe Penn",
    "description": "",
    "work": [
-    "AIGC",
-    "Broker UGC (NEO)",
-    "Paid Media",
-    "Programmatic SEO"
+    "Talent Platform"
+   ]
+  },
+  {
+   "name": "Bee AI",
+   "domain": "bee.computer",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
+   "name": "Better",
+   "domain": "better.com",
+   "lead": "Arthur Matuszewski",
+   "description": "",
+   "work": [
+    "Embedded recruiting",
+    "Marketing/Growth"
    ]
   },
   {
@@ -155,53 +164,63 @@
    "domain": "brellium.com",
    "lead": "",
    "description": "",
-   "work": []
+   "work": [
+    "Talent Platform"
+   ]
   },
   {
    "name": "Canopy Labs",
    "domain": "",
-   "lead": "",
+   "lead": "Heath Jamieson",
    "description": "",
-   "work": []
+   "work": [
+    "People"
+   ]
   },
   {
    "name": "Chariot",
    "domain": "",
-   "lead": "",
+   "lead": "Joe Penn",
    "description": "",
-   "work": []
+   "work": [
+    "Talent Platform"
+   ]
   },
   {
    "name": "Coast",
    "domain": "coastpay.com",
-   "lead": "Kenna Anderson",
+   "lead": "Kenna Meyerhoff",
    "description": "",
    "work": [
-    "Embedded Recruiting"
+    "Embedded recruiting",
+    "Managed Services"
    ]
   },
   {
    "name": "Console",
    "domain": "",
-   "lead": "",
+   "lead": "Dan Sia",
    "description": "",
-   "work": []
+   "work": [
+    "Talent Platform",
+    "Embedded recruiting"
+   ]
   },
   {
    "name": "Crux",
    "domain": "",
-   "lead": "",
+   "lead": "Joe Penn",
    "description": "",
-   "work": []
+   "work": [
+    "Talent Platform"
+   ]
   },
   {
    "name": "Cybernetic Labs",
    "domain": "cyberneticlabs.io",
-   "lead": "Brandon Taleisnik",
+   "lead": "",
    "description": "",
-   "work": [
-    "Embedded Recruiting"
-   ]
+   "work": []
   },
   {
    "name": "Daylight",
@@ -216,8 +235,8 @@
    "lead": "Joe Penn",
    "description": "",
    "work": [
-    "Finance",
-    "Talent Platform"
+    "Talent Platform",
+    "Finance"
    ]
   },
   {
@@ -225,9 +244,7 @@
    "domain": "",
    "lead": "",
    "description": "",
-   "work": [
-    "Prototype ready to test"
-   ]
+   "work": []
   },
   {
    "name": "Evidenza",
@@ -239,33 +256,35 @@
   {
    "name": "Forge",
    "domain": "withforge.com",
-   "lead": "Joe Penn",
+   "lead": "Alicia Donenfeld",
    "description": "",
    "work": [
-    "Talent Platform"
+    "Embedded recruiting",
+    "Talent Platform",
+    "Marketing/Growth"
    ]
   },
   {
    "name": "Formulary",
    "domain": "formulary.co",
-   "lead": "Arthur Matuszewski",
-   "description": "",
-   "work": [
-    "Embedded Recruiting",
-    "Talent Platform"
-   ]
-  },
-  {
-   "name": "Forus",
-   "domain": "forus.com",
    "lead": "",
    "description": "",
    "work": []
   },
   {
+   "name": "Forus",
+   "domain": "forus.com",
+   "lead": "Brandon Taleisnik",
+   "description": "",
+   "work": [
+    "Talent Platform",
+    "Embedded recruiting"
+   ]
+  },
+  {
    "name": "Fundamental Technologies",
    "domain": "fundamental.tech",
-   "lead": "Kenna Anderson",
+   "lead": "Kenna Meyerhoff",
    "description": "",
    "work": [
     "People"
@@ -274,13 +293,12 @@
   {
    "name": "Grindr",
    "domain": "grindr.com",
-   "lead": "Arthur Matuszewski",
+   "lead": "Tina Khoury",
    "description": "",
    "work": [
-    "Activate the market",
-    "Ads platform",
-    "Build assets",
-    "Build narrative"
+    "Talent Platform",
+    "Embedded recruiting",
+    "BizOps"
    ]
   },
   {
@@ -305,11 +323,8 @@
    "lead": "Sam Blumenthal",
    "description": "",
    "work": [
-    "Careers Page / Web Build",
-    "Carrara Operations / RecOps",
-    "Embedded Recruiting",
-    "Engagement management",
-    "Talent Platform"
+    "Talent Platform",
+    "Embedded recruiting"
    ]
   },
   {
@@ -318,7 +333,7 @@
    "lead": "Brandon Taleisnik",
    "description": "",
    "work": [
-    "Embedded Recruiting",
+    "Embedded recruiting",
     "Talent Platform"
    ]
   },
@@ -332,9 +347,12 @@
   {
    "name": "LangChain",
    "domain": "langchain.com",
-   "lead": "",
+   "lead": "Sam Blumenthal",
    "description": "",
-   "work": []
+   "work": [
+    "Talent Platform",
+    "Embedded recruiting"
+   ]
   },
   {
    "name": "Lipdub AI",
@@ -357,17 +375,17 @@
   {
    "name": "Luminai",
    "domain": "luminai.com",
-   "lead": "Heath Jamieson",
+   "lead": "Joe Penn",
    "description": "",
    "work": [
-    "Finance",
-    "Talent Platform"
+    "Talent Platform",
+    "Finance"
    ]
   },
   {
    "name": "Magic AI",
    "domain": "magic.dev",
-   "lead": "Kenna Anderson",
+   "lead": "Kenna Meyerhoff",
    "description": "",
    "work": [
     "People"
@@ -376,24 +394,22 @@
   {
    "name": "Manifest",
    "domain": "",
-   "lead": "",
+   "lead": "Brandon Taleisnik",
    "description": "",
-   "work": []
+   "work": [
+    "Talent Platform"
+   ]
   },
   {
    "name": "Modal Labs",
    "domain": "modal.com",
-   "lead": "Sol Silbenberg",
+   "lead": "Kenna Meyerhoff",
    "description": "",
    "work": [
-    "Embedded Recruiting",
-    "FDE GTM & Mini-site",
-    "Marketing/Growth",
+    "Talent Platform",
+    "Embedded recruiting",
     "People",
-    "RecOps / Recruiter Enablement",
-    "Series C Hiring & Events",
-    "Sol — engagement lead",
-    "Talent Platform"
+    "Marketing/Growth"
    ]
   },
   {
@@ -406,9 +422,12 @@
   {
    "name": "Monzo",
    "domain": "monzo.com",
-   "lead": "",
+   "lead": "Kenna Meyerhoff",
    "description": "",
-   "work": []
+   "work": [
+    "Talent Platform",
+    "Managed Services"
+   ]
   },
   {
    "name": "MrBeast",
@@ -420,37 +439,49 @@
   {
    "name": "Netic",
    "domain": "netic.ai",
-   "lead": "",
+   "lead": "Brandon Taleisnik",
    "description": "",
-   "work": []
+   "work": [
+    "Talent Platform"
+   ]
   },
   {
    "name": "Nuvo",
    "domain": "",
-   "lead": "",
+   "lead": "Joe Penn",
    "description": "",
-   "work": []
+   "work": [
+    "Embedded recruiting"
+   ]
   },
   {
    "name": "OpenAI Foundation",
    "domain": "openai.com",
-   "lead": "",
+   "lead": "Joe Penn",
    "description": "",
-   "work": []
+   "work": [
+    "Embedded recruiting",
+    "Talent Platform"
+   ]
   },
   {
    "name": "Owner",
    "domain": "owner.com",
-   "lead": "",
+   "lead": "Brandon Taleisnik",
    "description": "",
-   "work": []
+   "work": [
+    "Talent Platform"
+   ]
   },
   {
    "name": "Paxos",
    "domain": "paxos.com",
-   "lead": "",
+   "lead": "Sam Blumenthal",
    "description": "",
-   "work": []
+   "work": [
+    "Managed Services",
+    "Embedded recruiting"
+   ]
   },
   {
    "name": "Perchwell",
@@ -458,7 +489,7 @@
    "lead": "Joe Penn",
    "description": "",
    "work": [
-    "Embedded Recruiting"
+    "Embedded recruiting"
    ]
   },
   {
@@ -467,9 +498,8 @@
    "lead": "Joe Penn",
    "description": "",
    "work": [
-    "Embedded Recruiting",
-    "People",
-    "Talent Platform"
+    "Talent Platform",
+    "Managed Services"
    ]
   },
   {
@@ -485,25 +515,26 @@
    "lead": "Joe Penn",
    "description": "",
    "work": [
-    "Build candidate top of funnel",
-    "Careers Page",
-    "Comms",
-    "Hiring Event with OpenAI"
+    "Talent Platform"
    ]
   },
   {
    "name": "Rilla",
    "domain": "rilla.com",
-   "lead": "",
+   "lead": "Joe Penn",
    "description": "",
-   "work": []
+   "work": [
+    "Talent Platform"
+   ]
   },
   {
    "name": "Riviera Partners",
    "domain": "rivierapartners.com",
-   "lead": "",
+   "lead": "Kenna Meyerhoff",
    "description": "",
-   "work": []
+   "work": [
+    "People"
+   ]
   },
   {
    "name": "Roger",
@@ -524,8 +555,8 @@
    "lead": "Brandon Taleisnik",
    "description": "",
    "work": [
-    "Embedded Recruiting",
-    "Talent Platform"
+    "Talent Platform",
+    "Embedded recruiting"
    ]
   },
   {
@@ -534,11 +565,7 @@
    "lead": "Gonz Sanchez",
    "description": "",
    "work": [
-    "Case studies",
-    "Comms",
-    "Ground Truth ft. a16z",
-    "Small event - early August",
-    "Weekly socials for Nick and Alex"
+    "Marketing/Growth"
    ]
   },
   {
@@ -568,28 +595,26 @@
    "lead": "Joe Penn",
    "description": "",
    "work": [
-    "Careers Page",
-    "Employer Brand / Amplification",
-    "Events",
-    "RecOps / Offer Ops",
-    "Sol — engagement lead",
-    "Sourcing / Recruiting",
     "Talent Platform"
    ]
   },
   {
    "name": "Upstart",
    "domain": "upstart.com",
-   "lead": "",
+   "lead": "Arthur Matuszewski",
    "description": "",
-   "work": []
+   "work": [
+    "Managed Services"
+   ]
   },
   {
    "name": "Valor",
    "domain": "",
-   "lead": "",
+   "lead": "Arthur Matuszewski",
    "description": "",
-   "work": []
+   "work": [
+    "Talent Platform"
+   ]
   },
   {
    "name": "ViewStats",
@@ -604,16 +629,17 @@
    "lead": "Gonz Sanchez",
    "description": "",
    "work": [
-    "Build website",
     "Marketing/Growth"
    ]
   },
   {
    "name": "Workspace",
    "domain": "",
-   "lead": "",
+   "lead": "Heath Jamieson",
    "description": "",
-   "work": []
+   "work": [
+    "Managed Services"
+   ]
   }
  ]
 }
