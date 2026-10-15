@@ -388,6 +388,10 @@ async function main() {
 
   const locked = mo.renderSection(null);
   check('no kit at all points at the welcome kit', locked.indexOf('access code') > -1, locked);
+  check('no kit still shows the checklist', locked.indexOf('href="#/checklist"') > -1);
+  const lockedCtx = mo.renderSection(null, { checklist: { done: 5, total: 19 } });
+  check('and its progress when app.js passes it', lockedCtx.indexOf('5 of 19') > -1);
+  check('the checklist sits above the plan', full.indexOf('[your checklist]') < full.indexOf('Your first 90 days'));
   check('and never claims to be somebody', locked.indexOf('undefined') === -1, locked);
 
   // The kit /api/welcome actually returns has to render: the two sides of this

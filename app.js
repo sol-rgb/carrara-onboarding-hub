@@ -866,6 +866,7 @@
   }
   function myOnboardingCtx() {
     var ctx = {};
+    if (typeof flat !== 'undefined' && flat.length) ctx.checklist = { done: chkCount(), total: flat.length };
     if (!kitData) return ctx;
     var mgr = kitData.manager || {};
     if (mgr.name && teamData && teamData.length) {
@@ -887,7 +888,6 @@
         return (dir[n].teams || []).some(function (t) { return dirTeams.indexOf(t) > -1; });
       }).sort().map(function (n) { return { name: n, avatar: avatars[n] || '' }; });
     }
-    if (typeof flat !== 'undefined' && flat.length) ctx.checklist = { done: chkCount(), total: flat.length };
     return ctx;
   }
 

@@ -986,3 +986,10 @@ h2.sub { margin: 76px 0 28px; }
   .mo-card { padding: 26px 22px; }
   h2.sub { margin: 60px 0 22px; }
 }
+
+/* the checklist block on My onboarding: one wide card under the three */
+.mo-checklist { border: 1px solid var(--hairline); clip-path: var(--chamfer); padding: 30px 28px; margin: -30px 0 64px; max-width: 100%; }
+.mo-checklist .progress-wrap { max-width: 640px; }
+.mo-checklist .wk-links { max-width: 640px; }
+.body-copy + .mo-checklist { margin-top: 40px; }
+@media (max-width: 860px) { .mo-checklist { padding: 26px 22px; margin-top: -10px; } }

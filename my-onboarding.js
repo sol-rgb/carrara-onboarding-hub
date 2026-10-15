@@ -119,6 +119,20 @@
     return typeof window !== 'undefined' && window.channelUrl ? window.channelUrl(name) : '';
   }
 
+  /* The checklist, with progress when app.js passes it. Shown with or without
+     an access code: the checklist is everyone's, the plan is the manager's. */
+  function checklistBlock(chk) {
+    var has = chk && chk.total;
+    var pct = has ? Math.round(chk.done / chk.total * 100) : 0;
+    return '<div class="mo-checklist"><div class="wk-lbl">[your checklist]</div>'
+      + '<div class="mo-card-name">Everything to get done, in order.</div>'
+      + '<p class="mo-card-line">Day one, week one and week two: Slack, access, payroll, your 1:1s.'
+      + (has ? ' You are at <b>' + chk.done + ' of ' + chk.total + '</b>.' : '') + '</p>'
+      + (has ? '<div class="progress-wrap mo-progress"><div class="progress-bar"><span style="width:' + pct + '%"></span></div>'
+          + '<div class="progress-pct">' + pct + '%</div></div>' : '')
+      + '<div class="wk-links"><a href="#/checklist">' + (has && chk.done ? 'Pick up your checklist' : 'Open your checklist') + '</a></div></div>';
+  }
+
   /* The whole section, as one HTML string.
      Every value from POps or from clients.json goes through esc() or through
      md.renderMarkdown(), which escapes first -- there is no third path.
@@ -137,7 +151,8 @@
       return '<h1 class="display">Your onboarding.</h1>'
         + '<p class="body-copy">Your hiring manager writes this part: your first client, who to '
         + 'meet, and your first 90 days. Open the welcome kit at the bottom right and enter your '
-        + 'access code to see yours.</p>';
+        + 'access code to see yours.</p>'
+        + checklistBlock((ctx || {}).checklist);
     }
     ctx = ctx || {};
 
@@ -208,6 +223,7 @@
       + (noDumb ? '<div class="wk-links"><a href="' + esc(noDumb) + '" target="_blank" rel="noopener">#g-no-dumb-questions ↗</a></div>' : '')
       + '</div>';
     h += '<div class="mo-cards mo-cards-3">' + top + '</div>';
+    h += checklistBlock(ctx.checklist);
 
     /* ---- the plan ---- */
     var steps = STEPS.filter(function (s) { return text(plan[s[1]]); });
@@ -249,16 +265,7 @@
     }
     if (cards) h += '<h2 class="sub">Who you will work with</h2><div class="mo-cards">' + cards + '</div>';
 
-    /* ---- the checklist lives here now, with its progress ---- */
     var extra = '';
-    var chk = ctx.checklist;
-    var pct = chk && chk.total ? Math.round(chk.done / chk.total * 100) : 0;
-    extra += '<div class="wk-sec"><div class="wk-lbl">[your checklist]</div>'
-      + '<p>Day one, week one and week two, in order: Slack, access, payroll, your 1:1s.'
-      + (chk && chk.total ? ' You are at <b>' + chk.done + ' of ' + chk.total + '</b>.' : '') + '</p>'
-      + (chk && chk.total ? '<div class="progress-wrap mo-progress"><div class="progress-bar"><span style="width:' + pct + '%"></span></div>'
-          + '<div class="progress-pct">' + pct + '%</div></div>' : '')
-      + '<div class="wk-links"><a href="#/checklist">' + (chk && chk.done ? 'Pick up your checklist' : 'Open your checklist') + '</a></div></div>';
     if (kit.team && kit.team.how && kit.team.how.length) {
       extra += '<div class="wk-sec"><div class="wk-lbl">[how ' + esc(String(kit.team.label || 'your team').toLowerCase()) + ' works here]</div><ul>'
         + kit.team.how.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>';
