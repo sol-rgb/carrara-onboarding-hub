@@ -119,12 +119,14 @@
     return typeof window !== 'undefined' && window.channelUrl ? window.channelUrl(name) : '';
   }
 
-  /* The checklist, with progress when app.js passes it. Shown with or without
-     an access code: the checklist is everyone's, the plan is the manager's. */
+  /* The checklist card, with progress when app.js passes it. Shown with or
+     without an access code: the checklist is everyone's, the plan is the
+     manager's. app.js makes the whole card open the checklist popup; the
+     #/checklist link is the same door for anything that only has a link. */
   function checklistBlock(chk) {
     var has = chk && chk.total;
     var pct = has ? Math.round(chk.done / chk.total * 100) : 0;
-    return '<div class="mo-checklist"><div class="wk-lbl">[your checklist]</div>'
+    return '<div class="mo-checklist" role="button" tabindex="0" aria-haspopup="dialog"><div class="wk-lbl">[your checklist]</div>'
       + '<div class="mo-card-name">Everything to get done, in order.</div>'
       + '<p class="mo-card-line">Day one, week one and week two: Slack, access, payroll, your 1:1s.'
       + (has ? ' You are at <b>' + chk.done + ' of ' + chk.total + '</b>.' : '') + '</p>'

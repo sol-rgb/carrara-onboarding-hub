@@ -12,7 +12,6 @@
     { id: 'who',       label: 'Who we are' },
     { id: 'team',      label: 'The team' },
     { id: 'slack',     label: 'Slack' },
-    { id: 'checklist', label: 'Checklist' },
     { id: 'business',  label: 'The business' },
     { id: 'clients',   label: 'Clients' },
     { id: 'tools',     label: 'Tools' },
@@ -199,7 +198,31 @@
   function closeModal() { mBack.classList.remove('show'); }
   $('#modal-close').addEventListener('click', closeModal);
   mBack.addEventListener('click', function (e) { if (e.target === mBack) closeModal(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+  /* Escape closes the top layer only: an item's details sit above the checklist */
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    if (mBack.classList.contains('show')) closeModal();
+    else closeChecklist();
+  });
+
+  /* ---------- checklist popup ----------
+     The checklist is no longer a section: it lives in a popup the hire opens
+     from their own section. Item details still open in the generic modal,
+     which stacks above it. */
+  var chkPop = $('#chk-pop');
+  function openChecklist() {
+    chkPop.hidden = false;
+    document.body.classList.add('chk-open');
+    var close = $('#chk-pop-close');
+    if (close) close.focus();
+  }
+  function closeChecklist() {
+    if (chkPop.hidden) return;
+    chkPop.hidden = true;
+    document.body.classList.remove('chk-open');
+  }
+  $('#chk-pop-close').addEventListener('click', closeChecklist);
+  chkPop.addEventListener('click', function (e) { if (e.target === chkPop) closeChecklist(); });
 
   /* ---------- nav ---------- */
   var nav = $('#nav'), mnav = $('#mobile-nav');
@@ -304,6 +327,16 @@
   }
   function route() {
     var h = (location.hash || '#/start').replace('#/', '');
+    /* Old #/checklist links (emails, welcome.json, bookmarks) still land: they
+       open the hire's section with the checklist popped over it. replaceState
+       swaps the address without firing another hashchange. */
+    if (h === 'checklist') {
+      history.replaceState(null, '', location.pathname + location.search + '#/' + MO.SECTION_ID);
+      show(MO.SECTION_ID);
+      openChecklist();
+      return;
+    }
+    closeChecklist();
     if (h.indexOf('client/') === 0) { showClientPage(h.slice(7)); return; }
     show(h);
   }
@@ -897,6 +930,16 @@
     el.innerHTML = MO.renderSection(kitData, myOnboardingCtx());
     var reset = el.querySelector('#mo-reset');
     if (reset) reset.addEventListener('click', function () { window.dispatchEvent(new Event('carrara:kit-reset')); });
+    var chk = el.querySelector('.mo-checklist');
+    if (chk) {
+      var openChk = function (e) {
+        if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
+        e.preventDefault();
+        openChecklist();
+      };
+      chk.addEventListener('click', openChk);
+      chk.addEventListener('keydown', openChk);
+    }
     var flip = el.querySelector('.mo-flip');
     if (flip) {
       var turn = function (e) {
@@ -1423,7 +1466,7 @@
         ix.push({ label: s.label, hint: 'section', go: function () { location.hash = '#/' + s.id; } });
       });
       CHECKLIST.forEach(function (g) { g.items.forEach(function (it) {
-        ix.push({ label: it.t, hint: 'checklist · ' + g.g, go: function () { location.hash = '#/checklist'; } });
+        ix.push({ label: it.t, hint: 'checklist · ' + g.g, go: openChecklist });
       }); });
       teamData.forEach(function (m) {
         ix.push({ label: m.name, hint: (m.title ? cleanTitle(m.title) + ' · ' : '') + 'team', go: function () {
