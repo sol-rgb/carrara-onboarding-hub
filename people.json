@@ -1,13 +1,32 @@
 {
  "source": "notion-team-directory",
- "updated": "2026-08-20",
+ "updated": "2026-10-15",
+ "_partnerNote": "partner:true marks the firm's partner group, not the Talent Partner role. Edit here; the hero stat counts this flag.",
  "people": [
+  {
+   "name": "Ali Horowitz",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [
+    "Talent Acquisition"
+   ],
+   "clients": [
+    "Manifest"
+   ],
+   "answers": [],
+   "partner": false
+  },
   {
    "name": "Alicia Donenfeld",
    "email": "alicia@carrara.is",
    "location": "New York",
    "role": "Tech talent strategy & execution. Client facing & internal build out",
    "about": "Cannot code. Loves talking to engineers.",
+   "values": "",
    "linkedin": "https://www.linkedin.com/in/alicia-glick-donenfeld-8647b1a2/",
    "teams": [
     "Talent Acquisition",
@@ -27,15 +46,14 @@
    "name": "Andrew Call",
    "email": "andrew.call@carrara.is",
    "location": "Belmont",
-   "role": "Talent Partner",
+   "role": "",
    "about": "",
+   "values": "",
    "linkedin": "https://www.linkedin.com/in/andrewcall/",
    "teams": [
     "Talent Acquisition"
    ],
-   "clients": [
-    "a16z"
-   ],
+   "clients": [],
    "answers": [],
    "partner": false
   },
@@ -45,6 +63,7 @@
    "location": "Denver",
    "role": "Embedded talent acquisition and strategy, primarily technical",
    "about": "",
+   "values": "",
    "linkedin": "https://www.linkedin.com/in/ania-sielski/",
    "teams": [
     "Talent Acquisition"
@@ -52,7 +71,7 @@
    "clients": [
     "Owner",
     "Grindr",
-    "Modal Labs",
+    "Modal",
     "Luminai"
    ],
    "answers": [],
@@ -62,9 +81,10 @@
    "name": "Anna Jones",
    "email": "anna@carrara.is",
    "location": "New York",
-   "role": "Talent Operations",
+   "role": "",
    "about": "",
-   "linkedin": "https://www.linkedin.com/in/anna-jones-021b681a1",
+   "values": "",
+   "linkedin": "https://www.linkedin.com/in/anna-jones-021b681a1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
    "teams": [
     "Talent Acquisition",
     "Internal Operations"
@@ -81,6 +101,7 @@
    "location": "New York",
    "role": "Making things go, all over",
    "about": "",
+   "values": "",
    "linkedin": "https://www.linkedin.com/in/arthurmatuszewski/",
    "teams": [
     "Internal Operations",
@@ -102,6 +123,7 @@
    "location": "New York",
    "role": "Operational support across managed services, talent management, and talent acquisition",
    "about": "",
+   "values": "",
    "linkedin": "https://www.linkedin.com/in/austin-p-kane/",
    "teams": [
     "Managed Services / BizOps",
@@ -113,11 +135,29 @@
    "partner": false
   },
   {
+   "name": "Bec Bliss",
+   "email": "bec@carrara.is",
+   "location": "Portland",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "https://www.linkedin.com/in/becbliss/",
+   "teams": [
+    "Talent Acquisition"
+   ],
+   "clients": [
+    "Polymarket"
+   ],
+   "answers": [],
+   "partner": false
+  },
+  {
    "name": "Ben Munns",
    "email": "ben@carrara.is",
    "location": "Sydney",
    "role": "Helping grow BizOps and BizDev!",
-   "about": "Before Carrara, I was a consultant at Bain, where I mostly worked on tech, growth, private equity, and performance improvement projects. I've been lucky to live and work in Sydney, San Francisco, and Dublin. Outside of work, you'll usually find me in the ocean, out for a run, reading, or playing with new tech.",
+   "about": "Before Carrara, I was a consultant at Bain, where I mostly worked on tech, growth, private equity, and performance improvement projects. Before that, I bounced around a bit in the world of tech — spending time in VC/startups (at Antler with Heath!), software, IT strategy, and even some public policy.\n\nI’ve been lucky to live and work in a few great cities — Sydney, San Francisco, and Dublin — so I’m pretty excited to be heading back to SF!\n\nOutside of work, you’ll usually find me in the ocean, out for a run, reading, playing with new tech, or spending time with people I care about.",
+   "values": "🎯 Learn, teach, build, play: Doing this each day creates energy for myself and others! 🤝 Win, and help win: Be ambitious, positive-sum, and collective 📈 Focus on compounding: Consistency over time is what matters most … it’s a great prompt - I might reflect on this a little longer…",
    "linkedin": "https://www.linkedin.com/in/ben-munns/",
    "teams": [
     "Strategic Finance",
@@ -125,7 +165,6 @@
     "Internal Operations"
    ],
    "clients": [
-    "a16z",
     "Alpha School"
    ],
    "answers": [],
@@ -137,12 +176,14 @@
    "location": "New York",
    "role": "Embedded talent acquisition and strategy",
    "about": "",
+   "values": "",
    "linkedin": "https://www.linkedin.com/in/beth-werkstell-0162a85/",
    "teams": [
     "Talent Acquisition"
    ],
    "clients": [
-    "Hinge"
+    "Hinge",
+    "Polymarket"
    ],
    "answers": [],
    "partner": false
@@ -151,8 +192,9 @@
    "name": "Brandon Taleisnik",
    "email": "brandon@carrara.is",
    "location": "Salt Lake City",
-   "role": "Supporting on strategy and operational infrastructure for scaling the Talent org, plus internal culture and comms",
-   "about": "Most recently spent 4.5 years as employee #1 at On Deck as VP of Operations. Before that a bit of time at Delta and SpaceX, and school at U of Michigan. Originally a Californian, recently moved to Utah for the outdoors and bought a fixer-upper that consumes all my remaining time and money.",
+   "role": "Supporting on strategy and operational infrastructure for scaling the Talent org + misc internal culture/comms support",
+   "about": "Most recently spent 4.5yrs as employee #1 at On Deck as VP of Operations 🎢 Before that spent a bit of time at Delta ✈️ and SpaceX 🚀, & went to school at U Michigan 〽️ Originally a California resident but recently moved to Utah for the outdoors+quality of life and bought a fixer-upper house which consumes all my remaining time+money messing up on DIY construction projects 🚧",
+   "values": "",
    "linkedin": "https://www.linkedin.com/in/brandon-taleisnik/",
    "teams": [
     "Internal Operations",
@@ -179,6 +221,7 @@
    "location": "San Francisco",
    "role": "Problem solver",
    "about": "",
+   "values": "",
    "linkedin": "",
    "teams": [
     "Managed Services / BizOps",
@@ -197,7 +240,8 @@
    "email": "",
    "location": "New York",
    "role": "Embedded services",
-   "about": "First talent hire at an early, growth stage startup in SF. Prior to that, worked at Endeavor. Fun fact: I'm one of the hires Alicia sneaked from a client.",
+   "about": "First talent hire at a early, growth stage startup in SF. Prior to that, worked at Endeavor or, how Heath likes to put it, the YC of emerging markets. Fun fact: I’m one of the hires that Alicia sneaked from a client.",
+   "values": "",
    "linkedin": "",
    "teams": [
     "Managed Services / BizOps",
@@ -208,11 +252,25 @@
    "partner": false
   },
   {
+   "name": "Catherine Kaye Ariola",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [],
+   "clients": [],
+   "answers": [],
+   "partner": false
+  },
+  {
    "name": "Chiara Libertini",
    "email": "",
    "location": "Argentina",
    "role": "",
    "about": "",
+   "values": "",
    "linkedin": "",
    "teams": [
     "Managed Services / BizOps"
@@ -222,27 +280,38 @@
    "partner": false
   },
   {
-   "name": "Chris Hubli",
-   "email": "chris.h@carrara.is",
-   "location": "New York",
-   "role": "Former seller turned recruiter",
-   "about": "Aries Sun, Sagittarius Moon, Pisces Rising. IYKYK, and Queen of Yap City.",
-   "linkedin": "https://www.linkedin.com/in/chrishubli/",
-   "teams": [
-    "Talent Acquisition"
-   ],
-   "clients": [
-    "Modal Labs"
-   ],
+   "name": "Chris Gonzalez",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [],
+   "clients": [],
+   "answers": [],
+   "partner": false
+  },
+  {
+   "name": "Christina Hendrickson",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [],
+   "clients": [],
    "answers": [],
    "partner": false
   },
   {
    "name": "Dan Sia",
-   "email": "daniel@carrara.is",
+   "email": "",
    "location": "",
    "role": "",
    "about": "",
+   "values": "",
    "linkedin": "",
    "teams": [],
    "clients": [
@@ -256,8 +325,9 @@
    "email": "dave@carrara.is",
    "location": "Philippines",
    "role": "Finance and Operations Support",
-   "about": "",
-   "linkedin": "https://www.linkedin.com/in/davegascon",
+   "about": "Professionally, my background is in Business Process Outsourcing, primarily in operations and project management. Over the past year, I’ve transitioned to supporting startups and founders by managing their back-office operations. Outside of work, I’m a sunset chaser and a beach bum.",
+   "values": "",
+   "linkedin": "www.linkedin.com/in/davegascon",
    "teams": [
     "Internal Operations"
    ],
@@ -269,14 +339,16 @@
    "name": "Drew Koloski",
    "email": "drew@carrara.is",
    "location": "Florida",
-   "role": "Talent Partner",
+   "role": "",
    "about": "",
-   "linkedin": "https://linkedin.com/in/drewk",
+   "values": "Kindness is foundational → 💛 Hustle often → 🔥 Keep your Balance → ⚖️ Win with grace → 🤝 Always Grow → 🌱 Fun is not optional → 🕺🏼",
+   "linkedin": "linkedin.com/in/drewk",
    "teams": [
     "Talent Acquisition"
    ],
    "clients": [
-    "January"
+    "January",
+    "Polymarket"
    ],
    "answers": [],
    "partner": false
@@ -287,6 +359,7 @@
    "location": "Ojai",
    "role": "Embedded talent acquisition and strategy",
    "about": "",
+   "values": "",
    "linkedin": "https://www.linkedin.com/in/emily-kasper-0916572a/",
    "teams": [
     "Talent Acquisition"
@@ -298,11 +371,25 @@
    "partner": false
   },
   {
+   "name": "Enzo Budasoff",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [],
+   "clients": [],
+   "answers": [],
+   "partner": false
+  },
+  {
    "name": "Eric Fernandez",
    "email": "eric@carrara.is",
    "location": "Ft Lauderdale",
    "role": "Finance and Business Operations",
-   "about": "",
+   "about": "Operations guru by day, tech nerd by night. Always optimizing processes and finding smarter ways to get things done at work and in life. Sneakers enthusiast and dad to Ava Sophia.",
+   "values": "Kindness ❤️ Honesty 🗣️ Fun 🕹️ Empathy 🫂",
    "linkedin": "https://www.linkedin.com/in/ericfernandez1012/",
    "teams": [
     "Internal Operations",
@@ -317,8 +404,9 @@
    "name": "Giovanna Borgiotti",
    "email": "giovanna@carrara.is",
    "location": "Florida",
-   "role": "Talent Partner",
+   "role": "",
    "about": "",
+   "values": "",
    "linkedin": "https://www.linkedin.com/in/giovanna-borgiotti/",
    "teams": [
     "Talent Acquisition"
@@ -336,7 +424,8 @@
    "email": "gonz@carrara.is",
    "location": "Argentina",
    "role": "I grow stuff",
-   "about": "GTM leader who has scaled brands, teams and revenue at hyper-growth startups. Built Seedtable, a data platform on European tech read by 25,000 people, acquired in 2024. Before that VP of Marketing at On Deck. Born and raised in Argentina, lived in Paris, Milan and Barcelona.",
+   "about": "Born and raised in Argentina (but half Spanish), lived in Europe (Paris, Milan, Barcelona) and spent significant time in the US (Cincinnati, NYC, SF). I love skiing, reading, coffee, ramen, burgers, boxing, soccer football, architecture, hanging out with my partner and friends, drinking wine and cold weather. I'm a GTM leader with experience scaling brands, teams, and revenue at hyper-growth startups. My last job was VP of Marketing + Growth at On Deck, where I led all things Marketing, Growth and Partnerships through our seed, Series A and Series B, scaling the brand and team from 10 people to over 300 (with 40 under my org). Before that, I was the Head of Growth at Jobbatical where I helped the company pivot from a talent marketplace to an immigration software platform, and led go-to-market/launched in 3 countries simultaneously, going from $100k to $1M ARR in 9 months - in the middle of COVID. After leaving On Deck in mid 2023, I turned Seedtable - a newsletter on EU tech read by 25k founders/investors I've been writing for a while as a side project - into a data platform selling to companies and VCs. Seedtable was acquired in June. I can build the 0 to 1 - I love it, and I think I have good enough taste taste to craft a fantastic consumer experience and a pharma brand/media people and experts love. I can also manage the 1 to 10 and have experience building strong, independent teams that works at a high but sustainable pace to produce quality outcomes. For instance, at On Deck, I've built and led a 40-person org (~10 direct reports, too many if you ask me). I consider myself a GTM-oriented generalist – I spike on Marketing/content but I've built and led Sales, Partnerships and Outbound teams, managed funnels and P&Ls, launched in multiple countries, successfully built motions for different personas in multiple industries, etc. I love being a partner to founders/CEOs. I can context-switch between the tactical day to day - e.g. do IC work to get something through the finish line - and the strategic 12/18-month view.",
+   "values": "Optimism. I aim to be an optimist at a micro (life will be OK) and a macro level (technology will save the world) Honesty. I commit to radical honesty, not for others, but for myself. Honest about who I am, my defects, and how I behave. Default to trust. I chose to trust people (to a reasonable extent) by default, assuming that every now and then I will get burned (but it’ll be a net positive in the long run, even taking into account the times I get burned). Positive sum. Aim to build a bigger pie so everyone can take a bigger piece. The world is, rarely, zero sum. Progressive progress. I aspire to be the best version of myself. I recognize that progress takes time - endurance is the moat - so as long as I’m better today than I was yesterday, I’ll take it.",
    "linkedin": "https://www.linkedin.com/in/gonsanchezs/",
    "teams": [
     "Internal Operations",
@@ -348,98 +437,19 @@
     "Village Global",
     "Sphere",
     "Lipdub AI",
-    "Better"
+    "Better",
+    "CFO.ai"
    ],
-   "answers": [
-    {
-     "q": "What drives you nuts?",
-     "a": [
-      "Bad comms.",
-      "Bad documentation. Scaling is a context-sharing problem.",
-      "Not making decisions.",
-      "Inconsistent branding.",
-      "When someone says “Let's A/B test it!”"
-     ]
-    },
-    {
-     "q": "What are your quirks?",
-     "a": [
-      "I (sometimes) use the third person. Someone even got t-shirts made.",
-      "I have infinite energy for work but I must work out and eat healthy, or my energy goes to zero in 24 to 48 hours."
-     ]
-    },
-    {
-     "q": "How can people earn an extra gold star with you?",
-     "a": [
-      "Be thoughtful about comms.",
-      "Invite me for a coffee run or a walk.",
-      "Let's go skiing."
-     ]
-    },
-    {
-     "q": "What qualities do you particularly value in people who work with you?",
-     "a": [
-      "Low ego.",
-      "High agency.",
-      "High output.",
-      "Great async comms.",
-      "Taste.",
-      "Honest feedback.",
-      "Decisiveness."
-     ]
-    },
-    {
-     "q": "What are some things that people might misunderstand about you?",
-     "a": [
-      "If I come in guns blazing it's because I want to get stuff done, sometimes at the expense of other things."
-     ]
-    },
-    {
-     "q": "How do you coach people to do their best work and develop their talents?",
-     "a": [
-      "I ask questions to understand where you're going and, if you don't know, help you figure that out.",
-      "I provide clear expectations and ambitious goals, and give you the tools to reach them.",
-      "I have your best interest in mind. If the best place for you is outside the org, I'm going to say so."
-     ]
-    },
-    {
-     "q": "What's the best way to communicate with you?",
-     "a": [
-      "A thoughtful async message: Slack, or a memo.",
-      "Give me a call. I'll usually walk my dogs."
-     ]
-    },
-    {
-     "q": "What's the best way to convince you to do something?",
-     "a": [
-      "I don't need convincing. If you asked me to do X, I'll assume you thought through the alternatives.",
-      "That said, providing reasoning helps. I don't need data, but it helps to understand where your conviction is coming from."
-     ]
-    },
-    {
-     "q": "How do you like to give feedback?",
-     "a": [
-      "I adjust to the other person's style if it's stated explicitly.",
-      "Otherwise a thoughtful message with examples, then a call to chat it through.",
-      "I tend to give more constructive criticism than positive feedback. Trying to update that."
-     ]
-    },
-    {
-     "q": "How do you like to get feedback?",
-     "a": [
-      "Slight preference for async first, then live. Can also do live. But please don't be vague."
-     ]
-    }
-   ],
-   "partner": false,
-   "values": "Optimism, at a micro level (life will be OK) and a macro level (technology will save the world). Honesty: radical honesty, not for others but for myself. Default to trust. Positive sum: build a bigger pie. Progressive progress: as long as I'm better today than yesterday, I'll take it."
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Greg Troxell",
    "email": "greg@carrara.is",
    "location": "Houston",
-   "role": "Talent Acquisition and Strategy",
-   "about": "Dad of two boys (Andrew and Carter), always energetic, loves a sport, good food and geography.",
+   "role": "Talent Acquisition + Strategy",
+   "about": "I’ve been in recruiting since 2014 - A lot of my experience has been around jumping into messy or fast-moving environments, figuring out what’s working and what’s not, and building the structure needed to make hiring better and more cost effective. I’ve worked across recruiter management, executive hiring, interview process design, workforce planning, recruiting analytics, and hiring manager partnership. In general, I’d describe myself as someone who likes to operate close to the business, build practical systems, and help teams hire well without overcomplicating things.",
+   "values": "Achievement oriented: need to work towards something. Wants to be committed to it 100% Growth / Learning: mindset around wanting to be a better person in any topic. Energizing. Innovative: doing things different. Trying a unique way of thinking about things. Authenticity: I want to be true to myself. Connection: need relationships and rapport with people. Open, transparent, collaborative Trust: we’ll learn from mistakes. Impact: leaving a legacy",
    "linkedin": "https://www.linkedin.com/in/greg-troxell/",
    "teams": [
     "Talent Acquisition"
@@ -456,6 +466,7 @@
    "location": "Denver",
    "role": "Embedded talent acquisition and strategy",
    "about": "",
+   "values": "",
    "linkedin": "https://www.linkedin.com/in/hallie-slamowitz-09bb1349/",
    "teams": [
     "Talent Acquisition"
@@ -469,11 +480,30 @@
    "partner": false
   },
   {
+   "name": "Hannah Say",
+   "email": "hannah@carrara.is",
+   "location": "New York",
+   "role": "Client-facing business operations and managed services",
+   "about": "Running, yoga, surfing, muay thai, reading, collecting passport stamps",
+   "values": "",
+   "linkedin": "https://www.linkedin.com/in/hannahsay/",
+   "teams": [
+    "Managed Services / BizOps"
+   ],
+   "clients": [
+    "Riviera Partners",
+    "Grindr"
+   ],
+   "answers": [],
+   "partner": false
+  },
+  {
    "name": "Hayley Samuels",
    "email": "hayley.samuels@carrara.is",
    "location": "Denver",
    "role": "Coordinating for embedded talent acquisition, supporting internal operations",
-   "about": "Organizing the chaos.",
+   "about": "Early career - I taught kindergarten and 2nd grade right out of college and even got my master’s in teaching reading. I love this part of who I am but left to find something more sustainable for me and my family! Career transition - I found a coordinator job through a friend of a friend and worked my way up (read: faked it til I made it) to running a team of 14 embedded coordinators at Cruise and Plaid Searching for something new - I learned enough about the corporate world to know what kids of places and people I want to work with and left the large scale firm to find somewhere better. Enter: Carrara :carrara: Outside of work - My husband and I got married in 2018 and had our baby Jonah in September of 2023. We love reality tv and food 🍣",
+   "values": "",
    "linkedin": "https://www.linkedin.com/in/hayley-samuels-m-ed/",
    "teams": [
     "Internal Operations",
@@ -483,7 +513,7 @@
     "Owner",
     "Luminai",
     "Profound",
-    "Avoca AI"
+    "Avoca"
    ],
    "answers": [],
    "partner": false
@@ -492,8 +522,9 @@
    "name": "Heath Jamieson",
    "email": "heath@carrara.is",
    "location": "San Francisco",
-   "role": "Internal finance and operations, client-facing strategic finance and bizops",
-   "about": "Running, red wine and typing. High octane. Finance guy. Team focused.",
+   "role": "Internal finance and operations, client-facing strategic finance + bizops",
+   "about": "I have a professional background in strategy consulting (Bain), VC (Antler) and operating a scaling startup (VP, Finance & Ops at On Deck) When I'm not on typing, I'm a runner 🏃‍♂️ (longer distance road), a reader 📚, a guitar player 🎸 and a farming assistant 🚜 for my lovely parents (in Australia)! My user manual below... but if you're here, you deserve a gifts! Here’s a great focus playlists / podcast Flow State.",
+   "values": "🔥 Vitality and energy: Be full of raw energy, a 1 in 1,000 trait. The raw ingredient for great things. 🔭 Ambition: 10x objectives. Produce amazing output with such high quality that makes everything the world has seen in the past look like a footnote! 💪 Responsibility: Taking proactive ownership and be a level 3 player. 🤝 Co-create with people doing their life's work (with vibe): Trusting that collaboration will yield better results. Recognise strengths not lack of weaknesses. Working with others with founder's mentality. Form lifelong, meaningful work relationships. Have fun! 📚 Grow and learn: Learn furiously and compound it. I like the feeling of progressing! ✌ Do the right thing: Be responsible and good to make the world better. Don't have. 🤗 Team orientation: Optimize for the team not for self.",
    "linkedin": "https://www.linkedin.com/in/heathjamieson/",
    "teams": [
     "Strategic Finance",
@@ -506,20 +537,44 @@
     "Deeptune",
     "Hertz",
     "Luminai",
-    "Amazon",
+    "Amazon/Bluush",
     "Alpha School",
     "Basis",
+    "Amazon/Fauna Robotics",
+    "Amazon/Paid Media Partnership",
     "Canopy Labs"
    ],
-   "answers": [],
+   "answers": [
+    {
+     "q": "How do you like to get feedback?",
+     "a": [
+      "Let’s go 🚀 🔥",
+      "Thank you for the great set of questions!!"
+     ]
+    }
+   ],
    "partner": true
+  },
+  {
+   "name": "Jang Hun Choi",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [],
+   "clients": [],
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Jenna Caminiti",
    "email": "jenna@carrara.is",
    "location": "Boston",
-   "role": "Talent Operations",
+   "role": "",
    "about": "",
+   "values": "",
    "linkedin": "https://www.linkedin.com/in/jenna-caminiti/",
    "teams": [
     "Talent Acquisition"
@@ -529,21 +584,17 @@
    "partner": false
   },
   {
-   "name": "Jennah Holycross",
-   "email": "jennah@carrara.is",
-   "location": "New York",
-   "role": "Embedded talent acquisition and strategy, executive search primarily for finance roles",
-   "about": "",
-   "linkedin": "https://www.linkedin.com/in/jennah-holycross-7b90142a/",
+   "name": "Jim Ji",
+   "email": "jim@carrara.is",
+   "location": "San Francisco",
+   "role": "AI/Product and Bizops",
+   "about": "Born bred in Sydney. Recently moved to SF to join Carrara. 4 years in mgmt consulting. 3 at Kearney in supply chain/ops and 1 year at BCG focused on AI deployment and DDs. Outside of work I love to run, swim, gym and big on yoga!",
+   "values": "",
+   "linkedin": "https://www.linkedin.com/in/jijim/",
    "teams": [
-    "Talent Acquisition"
+    "Managed Services / BizOps"
    ],
-   "clients": [
-    "Monzo",
-    "beatBread",
-    "Grindr",
-    "Coast"
-   ],
+   "clients": [],
    "answers": [],
    "partner": false
   },
@@ -553,6 +604,7 @@
    "location": "San Francisco",
    "role": "Internal operations, client-facing talent acquisition",
    "about": "",
+   "values": "",
    "linkedin": "https://www.linkedin.com/in/josephpenn/",
    "teams": [
     "Internal Operations",
@@ -566,16 +618,18 @@
     "Chariot",
     "beatBread",
     "Crux",
-    "Avoca AI",
+    "Avoca",
     "Deeptune",
     "Nuvo",
-    "Untitled",
+    "[Untitled]",
     "Raindrop",
     "Long Lake",
     "Perchwell",
     "Forge",
     "Console",
-    "OpenAI Foundation"
+    "OpenAI Foundation",
+    "Exponential Energy",
+    "Source Foundry"
    ],
    "answers": [],
    "partner": false
@@ -586,6 +640,7 @@
    "location": "San Diego",
    "role": "Embedded talent acquisition and strategy",
    "about": "",
+   "values": "",
    "linkedin": "https://www.linkedin.com/in/julia-tupy-a0b009b4/",
    "teams": [
     "Talent Acquisition"
@@ -604,6 +659,7 @@
    "location": "Austin",
    "role": "Executive search, primarily product and technical",
    "about": "",
+   "values": "",
    "linkedin": "https://www.linkedin.com/in/justin-colsky-64265b3/",
    "teams": [
     "Talent Acquisition"
@@ -611,7 +667,7 @@
    "clients": [
     "Atlan",
     "Owner",
-    "Modal Labs",
+    "Modal",
     "Valor"
    ],
    "answers": [],
@@ -622,7 +678,8 @@
    "email": "",
    "location": "Los Angeles",
    "role": "Talent Partner",
-   "about": "Originally from the PNW and had a life working in music before tech.",
+   "about": "Originally from the PNW and had a life working in music before tech!",
+   "values": "",
    "linkedin": "",
    "teams": [
     "Talent Acquisition"
@@ -636,7 +693,8 @@
    "email": "katie@carrara.is",
    "location": "New York",
    "role": "Supporting client-facing business operations and managed services",
-   "about": "Running, cycling and doing all the things.",
+   "about": "Professionally, have a background in analytics and strategy, with experience at Wayfair, Gorillas, Localyze, and Valon, helping build and scale companies across the U.S. and Europe across a variety of functions. Outside of work, I’m passionate about running and cycling, and spend my time building community through sports, my substack, brand collaborations, and working on a water bottle startup. *hopefully writing this down holds me accountable to the bottle",
+   "values": "",
    "linkedin": "https://www.linkedin.com/in/kathleen-roe/",
    "teams": [
     "Managed Services / BizOps",
@@ -647,11 +705,27 @@
    "partner": true
   },
   {
+   "name": "Kelley Lantigua",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [],
+   "clients": [
+    "Polymarket"
+   ],
+   "answers": [],
+   "partner": false
+  },
+  {
    "name": "Kenna Meyerhoff",
    "email": "kenna@carrara.is",
    "location": "New York",
    "role": "Client-facing talent management, internal people things",
-   "about": "",
+   "about": "Started my career building teams - part of the founding team at Better, where I focused on scaling the company from 30 ppl to 10K+ (crazy ride, ask me about it 😂) Focus on building foundational people strategies that align business goals with what truly motivates individuals Outside of work → Collecting beanies, dogs and family members (ask me about my nieces and nephews 😊)",
+   "values": "Understand the human in front of you - Take the time to understand the person you’re working with, what makes them tick, what are they motivated by, and life experiences that may have impacted their world view. You’ll be 10x more effective. Be transparent and direct, but never disrespectful - Speak with openness, transparency, and say the hard things. People respond better when the message is clear. Be bold and adaptive - Don’t do things just because that’s how they’ve been done before, ask the questions, try to get to the best outcome. And when it doesn’t work, try something else. Get back up - Life has many, many ups and downs. Have your down moments, but get back up. The world needs your magic (cc Dressed in lala  💃).",
    "linkedin": "https://www.linkedin.com/in/kenna-meyerhoff-77339565/",
    "teams": [
     "Internal Operations",
@@ -659,93 +733,24 @@
    ],
    "clients": [
     "Monzo",
-    "Modal Labs",
+    "Modal",
     "Profound",
     "Coast",
     "Magic AI",
-    "Fundamental Technologies",
+    "Fundamental",
     "Anthropic",
     "Riviera Partners"
    ],
-   "answers": [
-    {
-     "q": "What are some honest, unfiltered things about you?",
-     "a": [
-      "Enneagram: tied for a 6 (The Loyalist) and an 8 (The Challenger).",
-      "Six: I create order out of chaos, I like being part of something greater than myself, and I give 110% when I commit.",
-      "Eight: highly independent, I see potential in people, and when I say I'm going to do something I do it."
-     ]
-    },
-    {
-     "q": "What drives you nuts?",
-     "a": [
-      "Little things: consistent small noises.",
-      "Big things: when people do not engage with others in a thoughtful and respectful way."
-     ]
-    },
-    {
-     "q": "How can people earn an extra gold star with you?",
-     "a": [
-      "Be super transparent and forthcoming. I want to help, and I operate better with full context.",
-      "Share the big unfiltered ideas. Push yourself and others to think outside the box."
-     ]
-    },
-    {
-     "q": "What qualities do you particularly value in people who work with you?",
-     "a": [
-      "Adjusting your approach to the person in front of you. Not everyone works or takes in information the same way.",
-      "Desire to improve: taking feedback in stride, going out of your way to get it, acknowledging your own missteps.",
-      "Being human."
-     ]
-    },
-    {
-     "q": "What are some things that people might misunderstand about you?",
-     "a": [
-      "I've heard I can come across as intimidating, likely because I'm very direct and not afraid of hard conversations. I do it from a place of care and wanting what's best for people."
-     ]
-    },
-    {
-     "q": "How do you coach people to do their best work and develop their talents?",
-     "a": [
-      "Meet people where they are. I try to understand where they're trying to go and what's actually in the way.",
-      "The GROW model has worked well for people I've managed and coached."
-     ]
-    },
-    {
-     "q": "What's the best way to communicate with you?",
-     "a": [
-      "Small things: Slack or text.",
-      "Big things: call me, Zoom, or in person."
-     ]
-    },
-    {
-     "q": "What's the best way to convince you to do something?",
-     "a": [
-      "Just ask. If there's a reason you think I won't want to do it, tee it up and then give me a call."
-     ]
-    },
-    {
-     "q": "How do you like to give feedback?",
-     "a": [
-      "Prefer a live conversation, but I'll give feedback in whatever format works best for the person receiving it."
-     ]
-    },
-    {
-     "q": "How do you like to get feedback?",
-     "a": [
-      "Live conversation."
-     ]
-    }
-   ],
-   "partner": false,
-   "values": "Understand the human in front of you: take the time to understand what makes them tick and the life experiences that shaped their worldview. Be transparent and direct, but never disrespectful. Be bold and adaptive: don't do things just because that's how they've been done. Get back up: have your down moments, then get back up."
+   "answers": [],
+   "partner": false
   },
   {
    "name": "Kim Hackmann",
    "email": "kim@carrara.is",
    "location": "Toronto",
-   "role": "People Ops, FinOps and broader internal and client ops",
+   "role": "",
    "about": "",
+   "values": "",
    "linkedin": "https://www.linkedin.com/in/kimhackmann/",
    "teams": [
     "Managed Services / BizOps"
@@ -755,20 +760,99 @@
    "partner": false
   },
   {
+   "name": "Macarena Gonzalez Cazon",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [],
+   "clients": [],
+   "answers": [],
+   "partner": false
+  },
+  {
+   "name": "Mackenzie Robinson",
+   "email": "mackenzie@carrrara.is",
+   "location": "San Francisco",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "http://linkedin.com/in/mmrobinson24",
+   "teams": [
+    "Talent Acquisition"
+   ],
+   "clients": [],
+   "answers": [],
+   "partner": false
+  },
+  {
+   "name": "Maddy West",
+   "email": "maddy@carrara.is",
+   "location": "San Francisco",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "https://www.linkedin.com/in/madeleine-j-west/",
+   "teams": [
+    "Talent Acquisition"
+   ],
+   "clients": [],
+   "answers": [],
+   "partner": false
+  },
+  {
+   "name": "Madeleine Nakada",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [],
+   "clients": [],
+   "answers": [],
+   "partner": false
+  },
+  {
    "name": "Maggie Stout",
-   "email": "maggie@carrara.is",
+   "email": "Maggie@carrara.is",
    "location": "New York",
-   "role": "Talent Operations",
-   "about": "I love life! I am happiest exploring new experiences and being surrounded by good people.",
+   "role": "",
+   "about": "I grew up in Texas and went to school in San Diego. I love nature and the outdoors, but I’m equally drawn to the fast pace of New York. I come from a fashion background and helped execute three NYFW runway shows and one in Paris—but I realized I enjoy fashion more as a passion than my career.",
+   "values": "Honesty: I value transparency and direct communication. Kindness: so important to be a good human- As a cancer I have lots of empathy for others! Curiosity: Always asking why- love getting to see the way different people think, work, and solve problems.",
    "linkedin": "https://www.linkedin.com/in/maggie-stout/",
    "teams": [
     "Talent Acquisition",
     "Internal Operations"
    ],
    "clients": [
-    "Modal Labs",
+    "Modal",
     "Runlayer"
    ],
+   "answers": [
+    {
+     "q": "What’s the best way to convince you to do something?I",
+     "a": [
+      "I’m pretty persuadable: one good argument and I’m convinced. I love saying yes to new experiences because it only adds to my knowledge."
+     ]
+    }
+   ],
+   "partner": false
+  },
+  {
+   "name": "Margaux Le Bras-Brown",
+   "email": "margaux.carrara.is",
+   "location": "New York",
+   "role": "Operations intern",
+   "about": "I grew up across NYC, SF, and the south of France, and I’m currently studying in Madrid after finishing an exchange program in China, so I thrive in new environments! Extroverted and curious by nature, I’m excited to get started!",
+   "values": "Drive, perseverance, empathy, communication, curiosity",
+   "linkedin": "https://www.linkedin.com/in/margaux-le-bras-brown-970347246?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
+   "teams": [
+    "Talent Management"
+   ],
+   "clients": [],
    "answers": [],
    "partner": false
   },
@@ -776,8 +860,9 @@
    "name": "Mary Petrino",
    "email": "mary@carrara.is",
    "location": "New York",
-   "role": "Managed Services and building out the Carrara brand and community",
-   "about": "I love all things design, art, fashion, music, and cooking. Outdoors enthusiast: skiing, surfing, and hiking.",
+   "role": "Managed Services and building out the Carrara brand/community!",
+   "about": "I moved to NYC two years ago from Washington state! I started my career in fashion as a Wholesale Assistant in a showroom. I then switched to the tech startup world to work at Whop. I was originally hired as a Recruiting Coordinator and the role quickly evolved to PM Internal Operations/BizOps.",
+   "values": "Curiosity - I am a student of life and I hope to never feel complacent in any situation, personal or work related.",
    "linkedin": "https://www.linkedin.com/in/marypetrino/",
    "teams": [
     "Internal Operations",
@@ -789,10 +874,11 @@
   },
   {
    "name": "Matias Sanchez",
-   "email": "matias@carrara.is",
+   "email": "",
    "location": "",
    "role": "",
    "about": "",
+   "values": "",
    "linkedin": "",
    "teams": [
     "Managed Services / BizOps"
@@ -805,8 +891,9 @@
    "name": "Nathan Peadon",
    "email": "nathan@carrara.is",
    "location": "San Francisco",
-   "role": "BizOps",
-   "about": "Originally from Sydney. Started my career at Bain, based across Australia, Mongolia, Guinea and the US before moving back to SF to join Carrara. I love to travel, preferably by backpack.",
+   "role": "BizOps!",
+   "about": "Originally from Sydney. I started my career at Bain, spending the past few years based across Australia (Sydney, Melbourne, Perth), Mongolia, Guinea, US (SF) before deciding to move back to SF to join Carrara. If not already clear from where I’ve lived over the past few years, I love to travel, preferably by backpack, and also dabble in running / swimming.",
+   "values": "",
    "linkedin": "https://www.linkedin.com/in/nathan-peadon/",
    "teams": [
     "Managed Services / BizOps"
@@ -820,7 +907,8 @@
    "email": "nic@carrara.is",
    "location": "France",
    "role": "AI, product and new ventures",
-   "about": "I am a full stack builder: product, design, engineering and a bit of growth too.",
+   "about": "I am a full stack builder: product, design, engineering and a bit of growth too!",
+   "values": "",
    "linkedin": "https://www.linkedin.com/in/nicolas-touron/",
    "teams": [
     "Managed Services / BizOps",
@@ -831,11 +919,106 @@
    "partner": true
   },
   {
+   "name": "Pranav Mutatkar",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [],
+   "clients": [],
+   "answers": [],
+   "partner": false
+  },
+  {
+   "name": "Pranavi Kethanaboyina",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [],
+   "clients": [],
+   "answers": [],
+   "partner": false
+  },
+  {
+   "name": "Reza Saeedi",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [],
+   "clients": [],
+   "answers": [],
+   "partner": false
+  },
+  {
+   "name": "Ria Hipolito",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [],
+   "clients": [],
+   "answers": [],
+   "partner": false
+  },
+  {
+   "name": "Roohi Ahuja",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [],
+   "clients": [],
+   "answers": [],
+   "partner": false
+  },
+  {
+   "name": "Ruchi Goyanka",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [
+    "Strategic Finance",
+    "Internal Operations"
+   ],
+   "clients": [],
+   "answers": [],
+   "partner": false
+  },
+  {
+   "name": "Sadiqeh Agah",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [],
+   "clients": [],
+   "answers": [],
+   "partner": false
+  },
+  {
    "name": "Sam Blumenthal",
    "email": "sam@carrara.is",
    "location": "New York",
    "role": "Internal operations and client-facing managed services",
-   "about": "",
+   "about": "Started my career in Management Consulting at Bain & Company (one of a few professions I was exposed to in my undergraduate business education) Since then I’ve gone from big tech (LinkedIn) to small tech (turned big tech) at Better.com and then finally to a smaller Series A / Series B Commercial Real Estate Tech Co. called Lev As someone who equally found passion operating and consulting, building Carrara is truly the best of both worlds and a dream come true.",
+   "values": "Work is more fun when you make it fun There’s no such thing as grunt work - grunt work is strategic if you take pride in finding the most efficient and effective way of doing it. Most people are good if you get to know them",
    "linkedin": "https://www.linkedin.com/in/sam-blumenthal-48108248/",
    "teams": [
     "Internal Operations",
@@ -852,16 +1035,76 @@
    "partner": true
   },
   {
+   "name": "Sara Hennings",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [],
+   "clients": [],
+   "answers": [],
+   "partner": false
+  },
+  {
+   "name": "Savannah Gleeson",
+   "email": "savannah@carrara.is",
+   "location": "San Francisco",
+   "role": "All things talent but especially eng (:",
+   "about": "All things recruiting but a focus on technical recruiting! I have spent time Opendoor (Series E → IPO), Tecton (Series B → Series D), Human Capital (VC), and Hightouch (Series B → Series D). I really enjoy building recruiting engines that have repeatable processes and can scale even when I step away.",
+   "values": "Assume good intent - people (especially the people we are working with) generally have good intentions or are trying to have a positive outcome. If we understand, believe that, and remind ourselves of the positive intentions, we can generally reason and get to a solution quicker because we can inherently trust we are working towards the same goals. No question is a dumb question but everyone should use their resources to try and answer questions. Nothing is more annoying than being asked a question that Google can answer. Be mindful of everyones time and ask all the questions that require more insight than the tools at our fingertips. We should all celebrate each others wins. Recruiting is fun and is way more fun when you can celebrate together.",
+   "linkedin": "https://www.linkedin.com/in/savannahkeener/",
+   "teams": [
+    "Talent Management",
+    "Talent Acquisition"
+   ],
+   "clients": [
+    "Raindrop"
+   ],
+   "answers": [],
+   "partner": false
+  },
+  {
+   "name": "Sean Connors",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [],
+   "clients": [],
+   "answers": [],
+   "partner": false
+  },
+  {
    "name": "Shannon Toomey",
    "email": "",
    "location": "Seattle",
    "role": "Talent Partner",
-   "about": "I'm an overall life enthusiast. I love weaving together seemingly unrelated ideas and experiences, especially in service of some ambiguous problem. I'm an artist and musician based in Seattle.",
-   "linkedin": "",
+   "about": "I started my career in social work, and ended up working with teens at Boys & Girls Clubs for a few years - I loved the work, but got to a point where the stress was high and the pay was low and it just didn’t feel sustainable anymore, unfortunately. I somehow stumbled into tech and got a contract position at Microsoft doing University Recruiting. I loved how much there was to learn, and the pace, and eventually moved over to SWE Recruiting at Google. From there, I helped grow the Dropbox Seattle office, moved to the Bay, and had a sneaking suspicion I might like startups - and I was right! I knew I didn’t want to specialize in something, I wanted to understand how the pieces fit together. If it’s vague, abstract, maybe a little confusing and people-related, I’m interested. Before Carrara I was at Descript for 5 years, joining as the first Recruiter then growing out a team and eventually overseeing Recruiting and HRBP work. It was a wild ride with some wild characters, and I’m excited to bring my variety of learnings and experiences here - and learn even more! 😊",
+   "values": "",
+   "linkedin": "https://www.linkedin.com/in/shannontoomey/",
    "teams": [
     "Talent Acquisition",
     "Talent Management"
    ],
+   "clients": [
+    "Anthropic"
+   ],
+   "answers": [],
+   "partner": false
+  },
+  {
+   "name": "Shayne Dalimos",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [],
    "clients": [],
    "answers": [],
    "partner": false
@@ -870,8 +1113,9 @@
    "name": "Sol Silbenberg",
    "email": "sol@carrara.is",
    "location": "Argentina",
-   "role": "Operating Partner",
+   "role": "",
    "about": "",
+   "values": "",
    "linkedin": "https://www.linkedin.com/in/sol-silbenberg-2737841a1/",
    "teams": [
     "Internal Operations"
@@ -881,11 +1125,67 @@
    "partner": true
   },
   {
+   "name": "Sonam Khatri",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [
+    "Strategic Finance",
+    "Internal Operations"
+   ],
+   "clients": [],
+   "answers": [],
+   "partner": false
+  },
+  {
+   "name": "Sophie Dicker",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [],
+   "clients": [],
+   "answers": [],
+   "partner": false
+  },
+  {
+   "name": "Susan Pradhan",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [],
+   "clients": [],
+   "answers": [],
+   "partner": false
+  },
+  {
+   "name": "Tara O’Reilly",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [],
+   "clients": [],
+   "answers": [],
+   "partner": false
+  },
+  {
    "name": "Tenzing Bhutia",
-   "email": "tenzing@carrara.is",
+   "email": "Tenzing@carrara.is",
    "location": "New York",
    "role": "Talent Partner",
-   "about": "",
+   "about": "Tenzing is an experienced Technical Recruiter based in Ithaca, New York. His experience entails from building teams at  Plaid, Coinbase, and most recently TRM Labs.Some fun facts: Born in India. Can speak conversational Hindi Love running and bicycling. Completed several half marathons and 1 century bike ride Favorite destination of all time: Bhutan. Knicks fan!",
+   "values": "Transparency Kindness Hard work ethic",
    "linkedin": "https://www.linkedin.com/in/tenzingbhutia/",
    "teams": [
     "Talent Acquisition"
@@ -900,9 +1200,10 @@
    "name": "Tess Wicks",
    "email": "tess@carrara.is",
    "location": "Upstate New York",
-   "role": "Coordinating for embedded talent acquisition, supporting internal operations",
-   "about": "I love meeting new people! Carb lover and novice ceramicist (yes, you can ask me to make you something, but it always ends up a bowl).",
-   "linkedin": "https://linkedin.com/in/tess-wicks",
+   "role": "Coordinating for embedded talent acquisition + supporting internal operations",
+   "about": "Career wise Life wise Fun Fact:",
+   "values": "Communication Honesty Kindness",
+   "linkedin": "linkedin.com/in/tess-wicks",
    "teams": [
     "Internal Operations",
     "Talent Acquisition"
@@ -922,16 +1223,18 @@
    "location": "New York",
    "role": "Building our BD function and working on client-facing managed services",
    "about": "",
+   "values": "",
    "linkedin": "https://www.linkedin.com/in/tinakhoury/",
    "teams": [
     "Internal Operations",
     "Managed Services / BizOps"
    ],
    "clients": [
-    "Modal Labs",
+    "Modal",
     "Grindr",
-    "Fundamental Technologies",
-    "Better"
+    "Fundamental",
+    "Better",
+    "Polymarket"
    ],
    "answers": [],
    "partner": true
@@ -941,23 +1244,51 @@
    "email": "tom@carrara.is",
    "location": "San Francisco",
    "role": "Talent Partner",
-   "about": "Originally from Chicago. Played football through college, and used to host and produce standup comedy shows in LA in a former life. Live in SF with my wife and dog.",
+   "about": "Originally from Chicago! I played Football through college (Offensive Line), and used to host/produce standup comedy shows in LA in a former life! Live in SF with my Wife and dog - catch us near Ocean Beach 🏝️",
+   "values": "",
    "linkedin": "https://www.linkedin.com/in/tom-callahan/",
    "teams": [
     "Talent Acquisition"
    ],
    "clients": [
-    "Modal Labs"
+    "Modal"
    ],
+   "answers": [],
+   "partner": false
+  },
+  {
+   "name": "Urja Jain",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [],
+   "clients": [],
+   "answers": [],
+   "partner": false
+  },
+  {
+   "name": "Vicky Gu",
+   "email": "",
+   "location": "",
+   "role": "",
+   "about": "",
+   "values": "",
+   "linkedin": "",
+   "teams": [],
+   "clients": [],
    "answers": [],
    "partner": false
   },
   {
    "name": "Yanel Bottini",
    "email": "",
-   "location": "Argentina",
-   "role": "Brand and product designer",
+   "location": "",
+   "role": "",
    "about": "",
+   "values": "",
    "linkedin": "",
    "teams": [
     "Managed Services / BizOps"
@@ -966,6 +1297,5 @@
    "answers": [],
    "partner": false
   }
- ],
- "_partnerNote": "partner:true marks the firm's partner group, not the Talent Partner role. Edit here; the hero stat counts this flag."
+ ]
 }
