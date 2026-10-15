@@ -1,6 +1,6 @@
 {
  "source": "notion-client-codex",
- "updated": "2026-08-24",
+ "updated": "2026-10-15",
  "clients": {
   "3i Members": {
    "status": "Paused",
@@ -73,7 +73,7 @@
    "docs": []
   },
   "Altana": {
-   "status": "Active",
+   "status": "Paused",
    "projectTypes": [
     "Talent Platform",
     "Embedded recruiting"
@@ -157,7 +157,9 @@
     "Brandon Taleisnik",
     "Kenna Meyerhoff"
    ],
-   "talentPartners": [],
+   "talentPartners": [
+    "Shannon Toomey"
+   ],
    "coordination": [],
    "about": "AI safety and research company, maker of Claude.",
    "engagement": [
@@ -265,9 +267,7 @@
    "accountManagers": [
     "Joe Penn"
    ],
-   "talentPartners": [
-    "Jennah Holycross"
-   ],
+   "talentPartners": [],
    "coordination": [],
    "about": null,
    "engagement": [],
@@ -276,7 +276,7 @@
    "docs": []
   },
   "Bee AI": {
-   "status": null,
+   "status": "Archived",
    "projectTypes": [],
    "accountManagers": [],
    "talentPartners": [],
@@ -290,7 +290,7 @@
    "docs": []
   },
   "Better": {
-   "status": "Active",
+   "status": "Paused",
    "projectTypes": [
     "Embedded recruiting",
     "Marketing/Growth"
@@ -338,8 +338,7 @@
    ],
    "accountManagers": [],
    "talentPartners": [
-    "Julia Tupy",
-    "Nicole Henderson"
+    "Julia Tupy"
    ],
    "coordination": [],
    "about": null,
@@ -363,6 +362,22 @@
    "overview": {
     "website": "canopylabs.ai"
    },
+   "background": null,
+   "docs": []
+  },
+  "CFO.ai": {
+   "status": "Active",
+   "projectTypes": [
+    "Marketing/Growth"
+   ],
+   "accountManagers": [
+    "Gonz Sanchez"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
    "background": null,
    "docs": []
   },
@@ -391,10 +406,7 @@
    "accountManagers": [
     "Kenna Meyerhoff"
    ],
-   "talentPartners": [
-    "Jennah Holycross",
-    "Nicole Henderson"
-   ],
+   "talentPartners": [],
    "coordination": [],
    "about": "The financial platform for the future of transportation: fleet and fuel payments, 'Ramp for companies with vehicles.'",
    "engagement": [
@@ -421,7 +433,7 @@
    ]
   },
   "Console": {
-   "status": "Active",
+   "status": "Paused",
    "projectTypes": [
     "Talent Platform",
     "Embedded recruiting"
@@ -430,11 +442,7 @@
     "Dan Sia",
     "Joe Penn"
    ],
-   "talentPartners": [
-    "Sol Silbenberg",
-    "Hayley Samuels",
-    "Greg Troxell"
-   ],
+   "talentPartners": [],
    "coordination": [],
    "about": "ITSM and internal-support platform. Console uses AI to automate IT and HR requests so companies scale support without scaling headcount.",
    "engagement": [
@@ -465,7 +473,7 @@
    "docs": []
   },
   "Cybernetic Labs": {
-   "status": null,
+   "status": "Archived",
    "projectTypes": [],
    "accountManagers": [],
    "talentPartners": [],
@@ -510,7 +518,7 @@
    "docs": []
   },
   "Delta Sandbox": {
-   "status": null,
+   "status": "Archived",
    "projectTypes": [],
    "accountManagers": [],
    "talentPartners": [],
@@ -525,6 +533,23 @@
    "status": "Paused",
    "projectTypes": [],
    "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Exponential Energy": {
+   "status": "Active",
+   "projectTypes": [
+    "Embedded recruiting",
+    "Talent Platform"
+   ],
+   "accountManagers": [
+    "Joe Penn"
+   ],
    "talentPartners": [],
    "coordination": [],
    "about": null,
@@ -557,7 +582,7 @@
    "docs": []
   },
   "Formulary": {
-   "status": null,
+   "status": "Archived",
    "projectTypes": [],
    "accountManagers": [],
    "talentPartners": [],
@@ -624,8 +649,8 @@
     "Arthur Matuszewski"
    ],
    "talentPartners": [
-    "Jennah Holycross",
-    "Ania Sielski"
+    "Ania Sielski",
+    "Hannah Say"
    ],
    "coordination": [],
    "about": "The world's largest social app for gay, bi, trans and queer people; publicly listed.",
@@ -673,7 +698,7 @@
    "docs": []
   },
   "Hinge": {
-   "status": "Active",
+   "status": "Paused",
    "projectTypes": [
     "Talent Platform",
     "Embedded recruiting"
@@ -784,7 +809,7 @@
    "docs": []
   },
   "Long Lake": {
-   "status": "Active",
+   "status": "Paused",
    "projectTypes": [
     "Talent Platform"
    ],
@@ -893,7 +918,6 @@
    "talentPartners": [
     "Justin Colsky",
     "Ania Sielski",
-    "Chris Hubli",
     "Maggie Stout",
     "Tom Callahan"
    ],
@@ -934,8 +958,7 @@
     "Kenna Meyerhoff"
    ],
    "talentPartners": [
-    "Hallie Slamowitz",
-    "Jennah Holycross"
+    "Hallie Slamowitz"
    ],
    "coordination": [],
    "about": null,
@@ -1086,6 +1109,29 @@
     }
    ]
   },
+  "Polymarket": {
+   "status": "Active",
+   "projectTypes": [
+    "Talent Platform",
+    "Embedded recruiting"
+   ],
+   "accountManagers": [
+    "Tina Khoury",
+    "Bec Bliss"
+   ],
+   "talentPartners": [
+    "Drew Koloski",
+    "Beth Werkstell"
+   ],
+   "coordination": [
+    "Kelley Lantigua"
+   ],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
   "Profound": {
    "status": "Active",
    "projectTypes": [
@@ -1136,7 +1182,9 @@
     "Joe Penn",
     "Gonz Sanchez"
    ],
-   "talentPartners": [],
+   "talentPartners": [
+    "Savannah Gleeson"
+   ],
    "coordination": [],
    "about": "AI-native monitoring and observability for AI products (raindrop.ai).",
    "engagement": [
@@ -1175,7 +1223,9 @@
    "accountManagers": [
     "Kenna Meyerhoff"
    ],
-   "talentPartners": [],
+   "talentPartners": [
+    "Hannah Say"
+   ],
    "coordination": [],
    "about": "Executive search firm placing technology leadership across product, engineering, AI and ML, security and design.",
    "engagement": [],
@@ -1206,6 +1256,23 @@
    "engagement": [
     "Talent platform and embedded recruiting."
    ],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Source Foundry": {
+   "status": "Active",
+   "projectTypes": [
+    "Embedded recruiting",
+    "Talent Platform"
+   ],
+   "accountManagers": [
+    "Joe Penn"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
    "overview": {},
    "background": null,
    "docs": []
@@ -1297,9 +1364,7 @@
    "accountManagers": [
     "Arthur Matuszewski"
    ],
-   "talentPartners": [
-    "Disha Chadha"
-   ],
+   "talentPartners": [],
    "coordination": [],
    "about": null,
    "engagement": [],
@@ -1316,8 +1381,7 @@
     "Arthur Matuszewski"
    ],
    "talentPartners": [
-    "Justin Colsky",
-    "Nicole Henderson"
+    "Justin Colsky"
    ],
    "coordination": [],
    "about": null,

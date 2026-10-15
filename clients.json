@@ -1,6 +1,6 @@
 {
  "source": "client-codex",
- "updated": "2026-08-24",
+ "updated": "2026-10-15",
  "clients": [
   {
    "name": "3i Members",
@@ -178,6 +178,15 @@
    ]
   },
   {
+   "name": "CFO.ai",
+   "domain": "",
+   "lead": "Gonz Sanchez",
+   "description": "",
+   "work": [
+    "Marketing/Growth"
+   ]
+  },
+  {
    "name": "Chariot",
    "domain": "",
    "lead": "Joe Penn",
@@ -252,6 +261,16 @@
    "lead": "",
    "description": "",
    "work": []
+  },
+  {
+   "name": "Exponential Energy",
+   "domain": "exponentialenergy.com",
+   "lead": "Joe Penn",
+   "description": "",
+   "work": [
+    "Embedded recruiting",
+    "Talent Platform"
+   ]
   },
   {
    "name": "Forge",
@@ -493,6 +512,16 @@
    ]
   },
   {
+   "name": "Polymarket",
+   "domain": "polymarket.us",
+   "lead": "Tina Khoury",
+   "description": "",
+   "work": [
+    "Talent Platform",
+    "Embedded recruiting"
+   ]
+  },
+  {
    "name": "Profound",
    "domain": "tryprofound.com",
    "lead": "Joe Penn",
@@ -537,19 +566,6 @@
    ]
   },
   {
-   "name": "Roger",
-   "domain": "chatroger.com",
-   "lead": "Heath Jamieson",
-   "description": "Gindr special project, JV Carrara <> Grindr <> Lumbridge",
-   "work": [
-    "Geo-unblock",
-    "Growth Marketing",
-    "Moderation & Support",
-    "Payment",
-    "Product"
-   ]
-  },
-  {
    "name": "Runlayer",
    "domain": "runlayer.com",
    "lead": "Brandon Taleisnik",
@@ -557,6 +573,16 @@
    "work": [
     "Talent Platform",
     "Embedded recruiting"
+   ]
+  },
+  {
+   "name": "Source Foundry",
+   "domain": "sourcefoundry.com",
+   "lead": "Joe Penn",
+   "description": "",
+   "work": [
+    "Embedded recruiting",
+    "Talent Platform"
    ]
   },
   {
