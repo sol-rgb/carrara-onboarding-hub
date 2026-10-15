@@ -471,11 +471,12 @@
     /* their own words first, then the researched summary as a fallback */
     if (pv.about) html += '<p>' + esc(pv.about) + '</p>';
     else if (p && p.summary) html += '<p>' + esc(p.summary) + '</p>';
-    if (pv.clients && pv.clients.length) {
+    var pvClients = clientsOf(m.name);
+    if (pvClients.length) {
       /* logo above, company name below: a name alone makes you read, a logo
          alone makes you guess. Falls back to the initial when we have no domain. */
       html += '<div class="wk-sec"><div class="wk-lbl">[clients]</div><div class="cl-grid">'
-        + pv.clients.map(function (cn) { return clientTile(cn, 64); }).join('') + '</div></div>';
+        + pvClients.map(function (cn) { return clientTile(cn, 64); }).join('') + '</div></div>';
     }
     /* People Pavilion answers, question above each one so the card reads on its own */
     if (pv.answers && pv.answers.length) {
@@ -510,7 +511,7 @@
     Object.keys(pavilion).forEach(function (n) {
       var x = pavilion[n];
       (x.teams || []).forEach(function (t) { teams[t] = 1; });
-      (x.clients || []).forEach(function (c) { clients[c] = 1; });
+      clientsOf(n).forEach(function (c) { clients[c] = 1; });
       if (x.location) locs[x.location] = 1;
     });
     function fill(sel, values, keep) {
@@ -578,6 +579,8 @@
       pavilion[myProfile.name] = {
         role: myProfile.team || '', location: myProfile.location || '',
         teams: myProfile.team ? [myProfile.team] : [],
+        /* a hire who just joined is not in the Codex yet: their own pick shows */
+        isMine: true,
         clients: myProfile.client ? [myProfile.client] : [],
         about: myProfile.background || '',
         linkedin: myProfile.linkedin || '',
@@ -591,10 +594,11 @@
     var shown = list.filter(function (m) {
       var pv = pavilion[m.name] || {};
       if (teamFilter.team && (pv.teams || []).indexOf(teamFilter.team) === -1) return false;
-      if (teamFilter.client && (pv.clients || []).indexOf(teamFilter.client) === -1) return false;
+      var mine = clientsOf(m.name);
+      if (teamFilter.client && mine.indexOf(teamFilter.client) === -1) return false;
       if (teamFilter.loc && pv.location !== teamFilter.loc) return false;
       var hay = [m.name, m.title || '', m.email || '', pv.role || '', pv.location || '',
-        (pv.teams || []).join(' '), (pv.clients || []).join(' ')].join(' ').toLowerCase();
+        (pv.teams || []).join(' '), mine.join(' ')].join(' ').toLowerCase();
       return !q || hay.indexOf(q) >= 0;
     });
     shown.forEach(function (m) {
@@ -605,7 +609,7 @@
       var av = m.avatar ? '<img src="' + m.avatar + '" alt="" loading="lazy">' : initials(m.name);
       var pv = pavilion[m.name] || {};
       var role = pv.role || cleanTitle(m.title);
-      var logos = (pv.clients || []).slice(0, 5).map(function (cn) {
+      var logos = clientsOf(m.name).slice(0, 5).map(function (cn) {
         var c = clientData.filter(function (x) { return x.name === cn; })[0];
         return c && c.domain
           ? '<a class="cl-dot-link" href="https://' + esc(c.domain) + '" target="_blank" rel="noopener" title="' + esc(cn) + '">'
@@ -637,6 +641,37 @@
     if ($('#f-clear')) $('#f-clear').hidden = !anyFilter;
   }
   $('#team-search').addEventListener('input', function (e) { renderTeam(e.target.value); });
+  /* Who works on which client comes from the Client Codex staffing (account
+     managers, talent partners, coordination) on Active clients, not from what
+     people typed into the Team Directory. Keyed by the Codex's (Notion) name;
+     clientsOf() bridges from a roster name through the Pavilion match. Null
+     until the Codex has loaded. */
+  var codexByPerson = null;
+  /* the roster and the Codex load separately; whichever lands second redraws */
+  function codexLoaded() {
+    buildCodexPeople();
+    if (!teamData.length) return;
+    populateFilters();
+    renderTeam($('#team-search').value);
+  }
+  function buildCodexPeople() {
+    codexByPerson = {};
+    var cx = codexData.clients || {};
+    Object.keys(cx).sort().forEach(function (name) {
+      var row = cx[name] || {};
+      if (row.status !== 'Active') return;
+      [].concat(row.accountManagers || [], row.talentPartners || [], row.coordination || []).forEach(function (p) {
+        var list = codexByPerson[p] || (codexByPerson[p] = []);
+        if (list.indexOf(name) === -1) list.push(name);
+      });
+    });
+  }
+  function clientsOf(name) {
+    var pv = pavilion[name] || {};
+    if (pv.isMine) return pv.clients || [];
+    if (!codexByPerson) return [];
+    return codexByPerson[pv.name || name] || codexByPerson[name] || [];
+  }
   var profileData = {};
   var pavilion = {};   /* name -> Notion Team Directory entry (role, location, clients, answers) */
   Promise.all([
@@ -1021,7 +1056,8 @@
       return;
     }
     var cx = (codexData.clients || {})[c.name] || {};
-    var types = (cx.projectTypes && cx.projectTypes.length) ? cx.projectTypes : (c.work || []);
+    /* type of work and the people on it are the Client Codex's, nothing else */
+    var types = cx.projectTypes || [];
     var logo = c.domain
       ? '<img src="' + favicon(c.domain, 128) + '" alt="" onerror="this.parentNode.textContent=\'' + esc(c.name.charAt(0)) + '\'">'
       : esc(c.name.charAt(0));
@@ -1045,16 +1081,12 @@
       if (cx.background) html += '<p class="cp-bg">' + esc(cx.background) + '</p>';
       html += '</div>';
     }
-    var lowerTypes = types.map(function (t) { return t.toLowerCase(); });
-    var streams = (c.work || []).filter(function (w) { return lowerTypes.indexOf(w.toLowerCase()) === -1; });
-    if ((cx.engagement && cx.engagement.length) || streams.length) {
+    if (cx.engagement && cx.engagement.length) {
       html += '<div class="wk-sec"><div class="wk-lbl">[what we do for them]</div><ul>'
-        + (cx.engagement || []).map(function (b) { return '<li>' + esc(b) + '</li>'; }).join('')
-        + (streams.length ? '<li><b>Active workstreams</b>: ' + streams.map(esc).join(', ') + '</li>' : '')
+        + cx.engagement.map(function (b) { return '<li>' + esc(b) + '</li>'; }).join('')
         + '</ul></div>';
     }
     var team = [];
-    if (c.lead) team.push(['Engagement lead', [c.lead]]);
     if (cx.accountManagers && cx.accountManagers.length) team.push(['Account manager' + (cx.accountManagers.length > 1 ? 's' : ''), cx.accountManagers]);
     if (cx.talentPartners && cx.talentPartners.length) team.push(['Talent partner' + (cx.talentPartners.length > 1 ? 's' : ''), cx.talentPartners]);
     if (cx.coordination && cx.coordination.length) team.push(['Coordination support', cx.coordination]);
@@ -1083,8 +1115,9 @@
         })
   ).then(function (data) {
     codexData = data.codex || { clients: {} };
+    codexLoaded();
     if (!data.codex) {
-      fetch('/codex.json').then(function (r) { return r.json(); }).then(function (d) { codexData = d; }).catch(function () {});
+      fetch('/codex.json').then(function (r) { return r.json(); }).then(function (d) { codexData = d; codexLoaded(); }).catch(function () {});
     }
     var grid = $('#client-grid');
     var archGrid = $('#client-grid-archived');
