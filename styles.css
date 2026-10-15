@@ -941,3 +941,48 @@ a.cl-cell:hover .cl-name { color: var(--orange); }
   .who-photo { padding: 30px 30px 0; }
   .who-quote { padding: 22px 30px 32px; }
 }
+
+/* ---------- spacing pass ----------
+   A little more air everywhere: cards get roomier padding, lines a touch more
+   leading, and sections more distance from each other. Kept in one block so
+   the whole pass reads (and reverts) as one change. Rock cards are left alone:
+   their rows are a fixed height. */
+.mo-card { padding: 30px 28px; }
+.mo-cards { gap: 30px; }
+.mo-cards-3 { margin-bottom: 64px; }
+.mo-card-line { margin-top: 8px; line-height: 1.7; }
+.mo-syncs li { line-height: 1.75; margin-bottom: 10px; }
+.mo-faces { margin-top: 18px; gap: 8px; }
+.mo-extra { margin-top: 72px; }
+.mo-step { padding: 30px 0 8px; }
+.mo-body p, .mo-body li { line-height: 1.85; }
+.mo-note { margin-bottom: 56px; }
+.member { padding: 24px 24px 22px; }
+.team-grid { gap: 20px; }
+.p-card { padding: 30px 28px; }
+.p-card p { line-height: 1.65; }
+.to-card { padding: 32px 30px; }
+.to-card p { line-height: 1.7; }
+.mm-fact { padding: 18px 20px; }
+.modal { padding: 36px 36px 32px; }
+.quote-block { padding: 50px 46px; }
+.locked-panel { padding: 50px 46px; }
+.bv-skill { padding: 26px 30px 28px; }
+h2.sub { margin: 76px 0 28px; }
+.body-copy + .body-copy { margin-top: 26px; }
+.wk-sec { margin-top: 26px; padding-top: 20px; }
+.wk-sec li { line-height: 1.75; margin-bottom: 9px; }
+.wk-lbl { margin-bottom: 10px; }
+.wk-links a { padding: 9px 0; }
+.chk-item { padding: 13px 0; }
+.client-row { padding: 26px 0; }
+.tool-row { padding: 24px 0; }
+.fact { padding: 18px 0; }
+.cp-bg, .tool-row .td, .cdesc, .rl-sm { line-height: 1.65; }
+.qa .q { margin-bottom: 9px; }
+.qa li { line-height: 1.7; margin-bottom: 8px; }
+.pg li, .bv-ul li { line-height: 1.75; margin-bottom: 8px; }
+@media (max-width: 860px) {
+  .mo-card { padding: 26px 22px; }
+  h2.sub { margin: 60px 0 22px; }
+}
