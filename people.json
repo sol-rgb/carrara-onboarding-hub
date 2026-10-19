@@ -1,6 +1,6 @@
 {
  "source": "notion-team-directory",
- "updated": "2026-10-15",
+ "updated": "2026-10-19",
  "_partnerNote": "partner:true marks the firm's partner group, not the Talent Partner role. Edit here; the hero stat counts this flag.",
  "people": [
   {
@@ -336,7 +336,7 @@
    "partner": false
   },
   {
-   "name": "Drew Koloski",
+   "name": "Drew Koloski`",
    "email": "drew@carrara.is",
    "location": "Florida",
    "role": "",

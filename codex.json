@@ -1,6 +1,6 @@
 {
  "source": "notion-client-codex",
- "updated": "2026-10-15",
+ "updated": "2026-10-19",
  "clients": {
   "3i Members": {
    "status": "Paused",
@@ -738,7 +738,7 @@
    ],
    "talentPartners": [
     "Tenzing Bhutia",
-    "Drew Koloski"
+    "Drew Koloski`"
    ],
    "coordination": [
     "Tess Wicks"
@@ -1120,7 +1120,7 @@
     "Bec Bliss"
    ],
    "talentPartners": [
-    "Drew Koloski",
+    "Drew Koloski`",
     "Beth Werkstell"
    ],
    "coordination": [
