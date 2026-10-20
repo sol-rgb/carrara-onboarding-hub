@@ -61,7 +61,6 @@ window.LINKS = {
   letter: 'https://www.carrara.is/ideas/focus-on-the-work-by-carrara',
 
   /* Sourced from the Notion master onboarding checklist and HQ, Aug 2026 */
-  top5Form: 'https://app.notion.com/p/30d6b1a6e6e780e69d70dc7d82d175ce',
   peoplePavilion: 'https://app.notion.com/p/c611c15591624864be36996f0eaa0064',
   emailSignatureGuide: 'https://app.notion.com/p/25c6b1a6e6e7809b9693f1b33855bedd',
   emailSigTemplate: 'https://docs.google.com/document/d/1r0xeOJd9idZlNwNQE8eZmPCPgGHB20FPQAx7vqhCQAk/edit',

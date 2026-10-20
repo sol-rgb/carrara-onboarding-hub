@@ -92,7 +92,7 @@
         links: [{ t: 'Brand templates', k: '#/templates' }, { t: 'Email signature template', k: 'emailSigTemplate' }, { t: 'Full guide on Notion', k: 'emailSignatureGuide' }] },
       { t: 'Day 1 manager 1:1', d: 'Your first 1:1: align on your 90-day plan, week one priorities, and how you\'ll work together.' },
       { t: 'Set up time with your onboarding buddy', d: 'Your onboarding buddy is there for any day-to-day question, no matter how small. Grab time with them early so you know who to go to.' },
-      { t: 'Submit your Top 5', d: 'Name the five best people you have ever worked with, one submission per person. It seeds our network with people we already trust, and it\'s one of the most useful things you can do in your first week.', links: [{ t: 'Top 5 form', k: 'top5Form' }] },
+      { t: 'Submit your Top 5', d: 'Name the five best people you have ever worked with, one submission per person. It seeds our network with people we already trust, and it\'s one of the most useful things you can do in your first week.', survey: 'top5' },
       { t: 'I-9 verification (full-time employees only)', d: 'US full-time employees complete I-9 employment eligibility verification. Eric sends this over; get it back the same week so payroll isn\'t held up.' }
     ]},
     { g: 'week one', cls: 'blue', items: [
@@ -409,6 +409,50 @@
     counted = true;
   }
 
+  /* ---------- top 5 survey: one submission per person, rows land in a Google Sheet via /api/top5 ---------- */
+  function renderTop5(yourName) {
+    var box = $('#t5-box');
+    if (!box) return;
+    box.innerHTML = '<div class="pf-group">5 best people you\'ve worked with</div>'
+      + '<p class="m-note" style="margin:0">Please be sure to submit each person individually, five in total.</p>'
+      + '<label>Your name</label><input id="t5-you" value="' + esc(yourName) + '">'
+      + '<label>Name</label><input id="t5-name">'
+      + '<label>LinkedIn</label><input id="t5-li">'
+      + '<div class="pf-group">where you worked together</div>'
+      + '<label>What company?</label><input id="t5-company">'
+      + '<label>Relationship type</label><input id="t5-rel" placeholder="Manager, Direct Report, Peer, etc.">'
+      + '<label>When did you work together?</label><input id="t5-year" inputmode="numeric" maxlength="4" placeholder="What year. Ex: 2021">'
+      + '<div class="pf-group">about them</div>'
+      + '<label>Relationship strength: what were they amazing at?</label><textarea id="t5-strength" rows="3"></textarea>'
+      + '<label>Notes</label><textarea id="t5-notes" rows="3"></textarea>'
+      + '<input id="t5-website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">'
+      + '<div class="m-actions"><button class="btn-primary" id="t5-send">Submit this person</button></div>'
+      + '<p class="m-note" id="t5-msg" role="status"></p>';
+
+    $('#t5-send').addEventListener('click', function () {
+      var v = function (id) { return $('#t5-' + id).value.trim(); };
+      var data = { yourName: v('you'), name: v('name'), linkedin: v('li'), company: v('company'),
+        relationship: v('rel'), year: v('year'), strength: v('strength'), notes: v('notes'), website: $('#t5-website').value };
+      var msg = $('#t5-msg'), btn = $('#t5-send');
+      if (!data.yourName) { msg.textContent = 'Add your name.'; $('#t5-you').focus(); return; }
+      if (!data.name) { msg.textContent = 'Add the name of the person you are submitting.'; $('#t5-name').focus(); return; }
+      if (data.year && !/^(19|20)\d{2}$/.test(data.year)) { msg.textContent = 'Use a four-digit year, like 2021.'; $('#t5-year').focus(); return; }
+      btn.disabled = true;
+      msg.textContent = 'Sending...';
+      fetch('/api/top5', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+        .then(function (r) { if (!r.ok) throw 0; })
+        .then(function () {
+          var n = (store('carrara_top5_count') || 0) + 1;
+          store('carrara_top5_count', n);
+          box.innerHTML = '<div class="pf-group">submitted</div>'
+            + '<p>Thanks. ' + esc(data.name) + ' is in. ' + (n >= 5 ? 'That is your five.' : n + ' of 5 so far.') + '</p>'
+            + '<div class="m-actions"><button class="btn-primary" id="t5-another">Submit another person</button></div>';
+          $('#t5-another').addEventListener('click', function () { renderTop5(data.yourName); });
+        })
+        .catch(function () { btn.disabled = false; msg.textContent = 'That did not send. Try again in a moment.'; });
+    });
+  }
+
   /* ---------- checklist ---------- */
   var chkState = store('carrara_checklist') || {};
   var groupsEl = $('#chk-groups');
@@ -444,7 +488,9 @@
             + '>' + esc(l.t) + (internal ? '' : ' ↗') + '</a>';
         });
         var body = item.html || ('<div class="m-eyebrow">[' + grp.g + ']</div><h3>' + esc(item.t) + '</h3><p>' + esc(item.d) + '</p>');
-        openModal(body + (linksHtml ? '<p style="margin-top:14px">' + linksHtml + '</p>' : ''));
+        openModal(body + (item.survey === 'top5' ? '<div id="t5-box"></div>' : '')
+          + (linksHtml ? '<p style="margin-top:14px">' + linksHtml + '</p>' : ''));
+        if (item.survey === 'top5') renderTop5((myProfile && myProfile.name) || '');
       }
       row.querySelector('.box').addEventListener('click', toggle);
       row.querySelector('.box').addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });

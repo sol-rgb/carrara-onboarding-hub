@@ -45,6 +45,41 @@ One-time Slack app setup:
 
 `/api/profile` uses the same token to post new joiner self-intros from the team page.
 
+### Top 5 survey (Google Sheet)
+
+The "Submit your Top 5" checklist item opens a survey inside the hub. Each submission is one person, and `/api/top5` forwards it to a Google Sheet through a small Apps Script web app. Without `TOP5_SHEET_WEBHOOK` set, the endpoint answers 503 and the form shows an error.
+
+One-time setup:
+
+1. Create a Google Sheet (any name, e.g. "Top 5 responses"). Leave it empty; the script writes the header row on the first submission.
+2. In the sheet: Extensions, Apps Script. Replace the contents with:
+
+```js
+function doPost(e) {
+  var lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+  try {
+    var d = JSON.parse(e.postData.contents);
+    var sheet = SpreadsheetApp.getActiveSheet();
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow(['Submitted', 'Submitted by', 'Name', 'LinkedIn', 'Company', 'Relationship type', 'Year', 'What were they amazing at?', 'Notes']);
+    }
+    var row = [new Date().toISOString(), d.yourName, d.name, d.linkedin, d.company, d.relationship, d.year, d.strength, d.notes]
+      .map(function (v) { return v || ''; });
+    // plain-text format so a value starting with = or + is stored as text, never run as a formula
+    sheet.getRange(sheet.getLastRow() + 1, 1, 1, row.length).setNumberFormat('@').setValues([row]);
+    return ContentService.createTextOutput(JSON.stringify({ ok: true })).setMimeType(ContentService.MimeType.JSON);
+  } finally {
+    lock.releaseLock();
+  }
+}
+```
+
+3. Deploy, New deployment, type Web app. Execute as: Me. Who has access: Anyone. Authorize when asked, then copy the Web app URL (ends in `/exec`).
+4. Vercel env var `TOP5_SHEET_WEBHOOK` = that URL. Redeploy.
+
+Editing the script later needs Deploy, Manage deployments, Edit, New version; the URL stays the same.
+
 ### Access codes from POps (`/api/mint`)
 
 `POST /api/mint` lets Carrara's People Ops app (POps) generate a welcome-kit access code without a hiring manager running `/new-hire` in Slack — POps already knows the new joiner's details, so it mints the code and sends it with the welcome email. The code is the same signed, stateless format the Slack flow produces; `/api/welcome` decodes both identically, so nothing else in the hub changes.
