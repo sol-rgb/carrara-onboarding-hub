@@ -45,6 +45,20 @@ One-time Slack app setup:
 
 `/api/profile` uses the same token to post new joiner self-intros from the team page.
 
+### Clients and offerings from the Carrara Hub (`knowledge.json`)
+
+The Carrara Knowledge Hub (hub.carrara.is, repo `sol-rgb/carrara-knowledge-hub`) is the source of truth for which clients we have, what we are doing for them, who is on each team and what each offering runs. Its `hub-onboarding.yml` workflow exports all of that to `knowledge.json` and commits the file into this repo on every change (Mondays too, as a safety net), so this hub redeploys with it. Nothing here calls the other hub at runtime.
+
+What the file changes on the site:
+
+- Clients: a client the Knowledge Hub knows takes its status (active, paused, past), one liner, practice tags, current workstreams, team and a link to its full page from `knowledge.json`. The Client Codex snapshot still supplies the company facts, docs and the entries the Knowledge Hub does not track. Clients that only exist on the Knowledge Hub get a card too; their names are also in `clients.json` so POps can match them.
+- Offerings (the Carrara section): each offering page lists the Knowledge Hub's active clients for that practice, the services it runs, who to ask, and links to the practice on the hub.
+- Team: a person's client logos include the active client teams the Knowledge Hub keeps.
+
+Without the file the site renders exactly as before, from the Codex alone. Edit clients, practices and teams on the Knowledge Hub (`src/data/*.ts` there), never here: the next export overwrites `knowledge.json`.
+
+One-time setup on the Knowledge Hub repo: an `ONBOARDING_HUB_TOKEN` secret, a fine grained GitHub token with Contents read and write on this repo only.
+
 ### Top 5 survey (Google Sheet)
 
 The "Submit your Top 5" checklist item opens a survey inside the hub. Each submission is one person, and `/api/top5` forwards it to a Google Sheet through a small Apps Script web app. Without `TOP5_SHEET_WEBHOOK` set, the endpoint answers 503 and the form shows an error.

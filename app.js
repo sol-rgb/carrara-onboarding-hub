@@ -124,17 +124,40 @@
   function pageFor(k) { return (window.PAGES && window.PAGES[k]) || null; }
   /* Offering pages declare their clients by name; the logos are drawn at open
      time from live client data, so a client that changes domain or drops off
-     the roster updates here without anyone editing pages.js. */
-  function fillClientLogos(root) {
+     the roster updates here without anyone editing pages.js. When the Knowledge
+     Hub export (knowledge.json) knows the offering, its list of active clients
+     replaces the one written in pages.js, so both hubs show the same clients. */
+  function fillClientLogos(root, pageKey) {
+    var kp = pageKey ? knowledgePractice(pageKey) : null;
     (root || document).querySelectorAll('.pg-clients[data-clients]').forEach(function (el) {
-      var names = el.dataset.clients.split('|').filter(Boolean);
+      var names = (kp && kp.clients && kp.clients.length) ? kp.clients : el.dataset.clients.split('|').filter(Boolean);
       var known = names.filter(function (n) {
         return clientData.some(function (c) { return c.name === n; });
       });
       if (!known.length) { el.remove(); return; }
-      el.innerHTML = '<div class="pg-cl-lbl">Recent clients</div><div class="cl-grid">'
+      el.innerHTML = '<div class="pg-cl-lbl">' + (kp ? 'Current clients' : 'Recent clients') + '</div><div class="cl-grid">'
         + known.map(function (n) { return clientTile(n, 64); }).join('') + '</div>';
     });
+  }
+
+  /* What the Knowledge Hub adds under an offering page: the services it runs,
+     who leads it, and a link to the full practice page on the hub. */
+  function knowledgePracticeHtml(pageKey) {
+    var kp = knowledgePractice(pageKey);
+    if (!kp) return '';
+    var html = '';
+    if (kp.services && kp.services.length) {
+      html += '<div class="wk-sec"><div class="wk-lbl">[how we run it]</div><ul>'
+        + kp.services.map(function (s) {
+          return '<li><a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.name) + '</a>' + (s.summary ? ': ' + esc(s.summary) : '') + '</li>';
+        }).join('') + '</ul></div>';
+    }
+    if (kp.leads && kp.leads.length) {
+      html += '<div class="wk-sec"><div class="wk-lbl">[who to ask]</div><ul>'
+        + kp.leads.map(function (p) { return '<li>' + esc(p.name) + (p.role ? ', ' + esc(p.role) : '') + '</li>'; }).join('') + '</ul></div>';
+    }
+    html += '<div class="wk-sec"><div class="wk-links"><a href="' + esc(kp.url) + '" target="_blank" rel="noopener">' + esc(kp.name) + ' on the Carrara Hub ↗</a></div></div>';
+    return html;
   }
 
   function openPage(k) {
@@ -142,10 +165,10 @@
     if (!pg) return;
     openModal((pg.eyebrow === undefined ? '<div class="m-eyebrow">[from the carrara library]</div>'
         : (pg.eyebrow ? '<div class="m-eyebrow">' + esc(pg.eyebrow) + '</div>' : ''))
-      + '<h3>' + esc(pg.title) + '</h3><div class="pg">' + pg.html + '</div>'
+      + '<h3>' + esc(pg.title) + '</h3><div class="pg">' + pg.html + knowledgePracticeHtml(k) + '</div>'
       + (pg.note === undefined ? '<p class="pg-note">Snapshot from Notion, Jul 24, 2026.</p>'
         : (pg.note ? '<p class="pg-note">' + esc(pg.note) + '</p>' : '')));
-    fillClientLogos($('#modal-back'));
+    fillClientLogos($('#modal-back'), k);
   }
   document.addEventListener('click', function (e) {
     var t = e.target.closest ? e.target.closest('[data-page]') : null;
@@ -749,7 +772,12 @@
     var pv = pavilion[name] || {};
     if (pv.isMine) return pv.clients || [];
     if (!codexByPerson) return [];
-    return codexByPerson[pv.name || name] || codexByPerson[name] || [];
+    var out = (codexByPerson[pv.name || name] || codexByPerson[name] || []).slice();
+    /* plus the active client teams the Knowledge Hub keeps from Slack and the owner survey */
+    ((knowledgeByPerson || {})[pv.name || name] || (knowledgeByPerson || {})[name] || []).forEach(function (c) {
+      if (out.indexOf(c) === -1) out.push(c);
+    });
+    return out;
   }
   var profileData = {};
   var pavilion = {};   /* name -> Notion Team Directory entry (role, location, clients, answers) */
@@ -1135,6 +1163,53 @@
   /* ---------- clients ---------- */
   var codexData = { clients: {} };
   function clientSlug(name) { return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }
+
+  /* ---------- knowledge hub ----------
+     knowledge.json is written into this repo by the Carrara Knowledge Hub
+     (hub.carrara.is, carrara-knowledge-hub's hub-onboarding.yml) whenever its
+     clients or practices change. It carries each client's status, one liner,
+     practices, team and current workstreams, and each offering's services,
+     leads and active clients. Where the Knowledge Hub and the Client Codex both
+     know a client, the Knowledge Hub wins: it is kept current daily from the
+     client channels and the owner survey, so the two hubs never disagree. The
+     Codex still supplies what the hub doesn't hold (company facts, docs). */
+  var knowledge = { clients: [], practices: [] };
+  var knowledgeByName = {};     /* onboarding client name -> knowledge client */
+  var knowledgeByPage = {};     /* pages.js key (skuFinance) -> knowledge practice */
+  var knowledgeByPerson = {};   /* person name -> active client names they're on */
+  function knowledgeClient(name) { return knowledgeByName[name] || null; }
+  function knowledgePractice(pageKey) { return knowledgeByPage[pageKey] || null; }
+  function knowledgeLoaded(k) {
+    knowledge = k && k.clients ? k : { clients: [], practices: [] };
+    knowledgeByName = {}; knowledgeByPage = {}; knowledgeByPerson = {};
+    knowledge.clients.forEach(function (c) {
+      knowledgeByName[c.name] = c;
+      if (c.status !== 'active') return;
+      (c.team || []).forEach(function (m) {
+        var list = knowledgeByPerson[m.name] || (knowledgeByPerson[m.name] = []);
+        if (list.indexOf(c.name) === -1) list.push(c.name);
+      });
+    });
+    (knowledge.practices || []).forEach(function (p) { knowledgeByPage[p.page] = p; });
+  }
+  /* Clients the Knowledge Hub has and the Codex snapshot doesn't get a card too,
+     built from the export. clients.json carries the same names so POps can
+     match them (AGENTS.md). */
+  function mergeKnowledgeClients(list) {
+    knowledge.clients.forEach(function (k) {
+      var c = list.filter(function (x) { return x.name === k.name; })[0];
+      if (!c) {
+        c = { name: k.name, domain: '', lead: '', description: '', work: [] };
+        list.push(c);
+      }
+      if (!c.domain && k.website) c.domain = k.website;
+      if (!c.lead && k.owner) c.lead = k.owner;
+      if (!c.description && k.oneLiner) c.description = k.oneLiner;
+      if (!(c.work && c.work.length) && k.practices) c.work = k.practices.map(function (p) { return p.name; });
+    });
+    list.sort(function (a, b) { return a.name.localeCompare(b.name); });
+    return list;
+  }
   window.renderClientPage = function (slug) {
     var el = $('#view-clientpage');
     if (!el) return;
@@ -1145,20 +1220,37 @@
       return;
     }
     var cx = (codexData.clients || {})[c.name] || {};
-    /* type of work and the people on it are the Client Codex's, nothing else */
-    var types = cx.projectTypes || [];
-    var logo = c.domain
-      ? '<img src="' + favicon(c.domain, 128) + '" alt="" onerror="this.parentNode.textContent=\'' + esc(c.name.charAt(0)) + '\'">'
-      : esc(c.name.charAt(0));
+    var kc = knowledgeClient(c.name);
+    /* type of work: the Knowledge Hub's practices when it has the client, else the Codex's */
+    var types = kc ? kc.practices.map(function (p) { return p.name; }) : (cx.projectTypes || []);
+    var status = kc ? kc.status : (cx.status ? cx.status.toLowerCase() : '');
+    var logo = kc && kc.logo
+      ? '<img src="' + esc(kc.logo) + '" alt="" onerror="this.parentNode.textContent=\'' + esc(c.name.charAt(0)) + '\'">'
+      : c.domain
+        ? '<img src="' + favicon(c.domain, 128) + '" alt="" onerror="this.parentNode.textContent=\'' + esc(c.name.charAt(0)) + '\'">'
+        : esc(c.name.charAt(0));
     var html = '<div class="client-page"><a class="textlink" href="#/clients">← All clients</a>'
       + '<div class="cp-head"><div class="clogo cp-logo">' + logo + '</div><div>'
       + '<h1 class="cp-name">' + esc(c.name)
-      + (cx.status ? ' <span class="cstatus' + (cx.status === 'Active' ? ' on' : '') + '">' + esc(cx.status.toLowerCase()) + '</span>' : '')
+      + (status ? ' <span class="cstatus' + (status === 'active' ? ' on' : '') + '">' + esc(status) + '</span>' : '')
       + '</h1>'
       + (types.length ? '<div class="wk-tags">' + types.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>' : '')
       + '</div></div>';
-    var about = cx.about || c.description || '';
+    var about = (kc && kc.oneLiner) || cx.about || c.description || '';
     if (about) html += '<p class="body-copy cp-about">' + esc(about) + '</p>';
+    if (kc && kc.about && kc.about !== about) html += '<p class="body-copy cp-about">' + esc(kc.about) + '</p>';
+    /* what we're doing now and who's on it come from the Knowledge Hub, which
+       the daily sync and the owner survey keep current */
+    if (kc && kc.workstreams && kc.workstreams.length) {
+      html += '<div class="wk-sec"><div class="wk-lbl">[what we\'re doing now]</div><ul>'
+        + kc.workstreams.map(function (w) { return '<li><b>' + esc(w.title) + '</b>' + (w.detail ? ': ' + esc(w.detail) : '') + '</li>'; }).join('')
+        + '</ul></div>';
+    }
+    if (kc && kc.team && kc.team.length) {
+      html += '<div class="wk-sec"><div class="wk-lbl">[who\'s on it]</div><ul>'
+        + kc.team.map(function (m) { return '<li><b>' + esc(m.name) + '</b>' + (m.role ? ': ' + esc(m.role) : '') + '</li>'; }).join('')
+        + '</ul></div>';
+    }
     var ov = cx.overview || {};
     var facts = [
       ['Location', ov.location], ['Founded', ov.founded], ['Stage', ov.stage],
@@ -1170,7 +1262,7 @@
       if (cx.background) html += '<p class="cp-bg">' + esc(cx.background) + '</p>';
       html += '</div>';
     }
-    if (cx.engagement && cx.engagement.length) {
+    if (cx.engagement && cx.engagement.length && !(kc && kc.workstreams && kc.workstreams.length)) {
       html += '<div class="wk-sec"><div class="wk-lbl">[what we do for them]</div><ul>'
         + cx.engagement.map(function (b) { return '<li>' + esc(b) + '</li>'; }).join('')
         + '</ul></div>';
@@ -1179,11 +1271,12 @@
     if (cx.accountManagers && cx.accountManagers.length) team.push(['Account manager' + (cx.accountManagers.length > 1 ? 's' : ''), cx.accountManagers]);
     if (cx.talentPartners && cx.talentPartners.length) team.push(['Talent partner' + (cx.talentPartners.length > 1 ? 's' : ''), cx.talentPartners]);
     if (cx.coordination && cx.coordination.length) team.push(['Coordination support', cx.coordination]);
-    if (team.length) {
+    if (team.length && !(kc && kc.team && kc.team.length)) {
       html += '<div class="wk-sec"><div class="wk-lbl">[who runs it at carrara]</div><ul>'
         + team.map(function (t) { return '<li><b>' + esc(t[0]) + '</b>: ' + esc(t[1].join(', ')) + '</li>'; }).join('') + '</ul></div>';
     }
     var linksH = [];
+    if (kc && kc.url) linksH.push('<a href="' + esc(kc.url) + '" target="_blank" rel="noopener">Full page on the Carrara Hub ↗</a>');
     if (c.domain) linksH.push('<a href="https://' + esc(c.domain) + '" target="_blank" rel="noopener">' + esc(c.domain) + ' ↗</a>');
     (cx.docs || []).forEach(function (d2) {
       linksH.push('<a href="' + esc(d2.url) + '" target="_blank" rel="noopener">' + esc(d2.label) + ' ↗</a>');
@@ -1193,16 +1286,21 @@
     el.innerHTML = html;
   };
   /* live from Notion via /api/clients when NOTION_TOKEN is set; bundled snapshots otherwise */
-  (window.__CLIENTS__ ? Promise.resolve({ clients: window.__CLIENTS__.clients, codex: null, updated: window.__CLIENTS__.updated })
-    : fetch('/api/clients').then(function (r) { if (!r.ok) throw 0; return r.json(); })
-        .then(function (d) { return { clients: d.clients, codex: { clients: d.codex }, updated: d.updated, source: d.source }; })
-        .catch(function () {
-          return Promise.all([
-            fetch('/clients.json').then(function (r) { return r.json(); }),
-            fetch('/codex.json').then(function (r) { return r.json(); }).catch(function () { return { clients: {} }; })
-          ]).then(function (both) { return { clients: both[0].clients, codex: both[1], updated: both[0].updated, source: 'snapshot' }; });
-        })
-  ).then(function (data) {
+  Promise.all([
+    (window.__CLIENTS__ ? Promise.resolve({ clients: window.__CLIENTS__.clients, codex: null, updated: window.__CLIENTS__.updated })
+      : fetch('/api/clients').then(function (r) { if (!r.ok) throw 0; return r.json(); })
+          .then(function (d) { return { clients: d.clients, codex: { clients: d.codex }, updated: d.updated, source: d.source }; })
+          .catch(function () {
+            return Promise.all([
+              fetch('/clients.json').then(function (r) { return r.json(); }),
+              fetch('/codex.json').then(function (r) { return r.json(); }).catch(function () { return { clients: {} }; })
+            ]).then(function (both) { return { clients: both[0].clients, codex: both[1], updated: both[0].updated, source: 'snapshot' }; });
+          })),
+    /* the Knowledge Hub export; the page works without it */
+    fetch('/knowledge.json').then(function (r) { if (!r.ok) throw 0; return r.json(); }).catch(function () { return null; })
+  ]).then(function (both) {
+    var data = both[0];
+    knowledgeLoaded(both[1]);
     codexData = data.codex || { clients: {} };
     codexLoaded();
     if (!data.codex) {
@@ -1210,20 +1308,25 @@
     }
     var grid = $('#client-grid');
     var archGrid = $('#client-grid-archived');
-    clientData = data.clients || [];
+    clientData = mergeKnowledgeClients(data.clients || []);
     /* tags are the business lines from the Client Codex, not the per-project
        workstream names. Kenna's call: a new joiner should see "Marketing/Growth",
        not "Paid Media". Fall back to the workstreams only when Notion has nothing. */
     /* the nine business lines live in tags.js so this page and the weekly
        refresh job can never disagree about what a client is */
     function tagsFor(c) {
+      var kc = knowledgeClient(c.name);
+      if (kc && kc.practices && kc.practices.length) return kc.practices.map(function (p) { return p.name; });
       return window.TAGS
         ? window.TAGS.forClient((codexData.clients || {})[c.name], c.work)
         : (c.work || []);
     }
-    /* current means the Codex's "Active Clients" view: Status is exactly Active.
-       Paused, Archived and blank all belong in the past-engagements list. */
+    /* current means active on the Knowledge Hub when it has the client, else
+       the Codex's "Active Clients" view: Status is exactly Active. Paused,
+       Archived and blank all belong in the past-engagements list. */
     function isActive(c) {
+      var kc = knowledgeClient(c.name);
+      if (kc) return kc.status === 'active';
       var cx = (codexData.clients || {})[c.name] || {};
       return cx.status === 'Active';
     }
@@ -1255,10 +1358,12 @@
       var cnt = $('#archived-count');
       if (cnt) cnt.textContent = archived.length + (archived.length === 1 ? ' company' : ' companies');
     }
-    $('#client-note').textContent = (data.source === 'notion'
-      ? 'Live from the Client Codex in Notion, refreshed hourly. Last update: '
-      : 'Sourced from the Client Codex. Last update: ')
-      + (data.updated || '') + '. Click a client for its full page.';
+    $('#client-note').textContent = (knowledge.clients.length
+      ? 'Current work and teams from the Carrara Hub (updated ' + (knowledge.exported || '') + '), company facts from the Client Codex. '
+      : (data.source === 'notion'
+        ? 'Live from the Client Codex in Notion, refreshed hourly. Last update: ' + (data.updated || '') + '. '
+        : 'Sourced from the Client Codex. Last update: ' + (data.updated || '') + '. '))
+      + 'Click a client for its full page.';
     refreshStats();
     /* the team grid draws client logos out of clientData, and team.json usually
        lands first. Re-render once the clients are in or every card falls back
