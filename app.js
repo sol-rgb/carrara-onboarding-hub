@@ -1296,8 +1296,11 @@
               fetch('/codex.json').then(function (r) { return r.json(); }).catch(function () { return { clients: {} }; })
             ]).then(function (both) { return { clients: both[0].clients, codex: both[1], updated: both[0].updated, source: 'snapshot' }; });
           })),
-    /* the Knowledge Hub export; the page works without it */
-    fetch('/knowledge.json').then(function (r) { if (!r.ok) throw 0; return r.json(); }).catch(function () { return null; })
+    /* the Knowledge Hub export: live through /api/knowledge, else the bundled
+       snapshot; the page works without either */
+    fetch('/api/knowledge').then(function (r) { if (!r.ok) throw 0; return r.json(); })
+      .catch(function () { return fetch('/knowledge.json').then(function (r) { if (!r.ok) throw 0; return r.json(); }); })
+      .catch(function () { return null; })
   ]).then(function (both) {
     var data = both[0];
     knowledgeLoaded(both[1]);

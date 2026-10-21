@@ -45,19 +45,20 @@ One-time Slack app setup:
 
 `/api/profile` uses the same token to post new joiner self-intros from the team page.
 
-### Clients and offerings from the Carrara Hub (`knowledge.json`)
+### Clients and offerings from the Carrara Hub (`/api/knowledge`)
 
-The Carrara Knowledge Hub (hub.carrara.is, repo `sol-rgb/carrara-knowledge-hub`) is the source of truth for which clients we have, what we are doing for them, who is on each team and what each offering runs. Its `hub-onboarding.yml` workflow exports all of that to `knowledge.json` and commits the file into this repo on every change (Mondays too, as a safety net), so this hub redeploys with it. Nothing here calls the other hub at runtime.
+The Carrara Knowledge Hub (hub.carrara.is, repo `sol-rgb/carrara-knowledge-hub`) is the source of truth for which clients we have, what we are doing for them, who is on each team and what each offering runs. `/api/knowledge` fetches all of that from the hub's `/api/onboarding-export` (built fresh on every hub deploy), caches it at the edge for an hour, and falls back to the bundled `knowledge.json` snapshot when the key is missing or the hub doesn't answer.
 
-What the file changes on the site:
+- `KNOWLEDGE_HUB_KEY`: the shared key, the same value as `ONBOARDING_EXPORT_KEY` on the hub's Vercel project. Without it, the snapshot is served.
+- `KNOWLEDGE_HUB_URL`: optional, defaults to `https://hub.carrara.is`.
 
-- Clients: a client the Knowledge Hub knows takes its status (active, paused, past), one liner, practice tags, current workstreams, team and a link to its full page from `knowledge.json`. The Client Codex snapshot still supplies the company facts, docs and the entries the Knowledge Hub does not track. Clients that only exist on the Knowledge Hub get a card too; their names are also in `clients.json` so POps can match them.
+What it changes on the site:
+
+- Clients: a client the Knowledge Hub knows takes its status (active, paused, past), one liner, practice tags, current workstreams, team and a link to its full page. The Client Codex snapshot still supplies the company facts, docs and the entries the Knowledge Hub does not track. Clients that only exist on the Knowledge Hub get a card too; their names are also in `clients.json` so POps can match them.
 - Offerings (the Carrara section): each offering page lists the Knowledge Hub's active clients for that practice, the services it runs, who to ask, and links to the practice on the hub.
 - Team: a person's client logos include the active client teams the Knowledge Hub keeps.
 
-Without the file the site renders exactly as before, from the Codex alone. Edit clients, practices and teams on the Knowledge Hub (`src/data/*.ts` there), never here: the next export overwrites `knowledge.json`.
-
-One-time setup on the Knowledge Hub repo: an `ONBOARDING_HUB_TOKEN` secret, a fine grained GitHub token with Contents read and write on this repo only.
+Without the file the site renders exactly as before, from the Codex alone. Edit clients, practices and teams on the Knowledge Hub (`src/data/*.ts` there), never here. To refresh the bundled snapshot: in the hub repo, `node scripts/export-onboarding.mjs ../carrara-onboarding-hub/knowledge.json`.
 
 ### Top 5 survey (Google Sheet)
 
