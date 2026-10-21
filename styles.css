@@ -432,6 +432,12 @@ table.clean td:last-child { font-family: var(--rigid); font-size: 11px; letter-s
 .to-list .flat-row { display: flex; gap: 16px; align-items: baseline; }
 .to-list .flat-row img { width: 10px; flex: none; position: relative; top: 1px; }
 .section-lbl { font-family: var(--rigid); font-size: 11px; letter-spacing: 0.12em; color: var(--taupe); margin-bottom: 8px; }
+/* the Carrara Hub gets its own card above the lists: it is the one link on this page people come back to */
+.res-feature { display: flex; margin-top: 40px; min-height: 0; text-decoration: none; color: inherit; }
+.res-feature h3 { max-width: 560px; }
+.res-feature p { max-width: 640px; }
+.res-feature-lbl { font-family: var(--rigid); font-size: 11px; letter-spacing: 0.12em; color: rgba(255, 255, 255, 0.7); margin-bottom: 18px; }
+.res-feature-cta { font-family: var(--rigid); font-weight: 700; font-size: 12.5px; letter-spacing: 0.08em; color: var(--canvas); margin-top: 28px; }
 .res-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; margin-top: 40px; }
 .res-item { padding: 16px 0; border-bottom: 1px solid var(--hairline); font-size: 14.5px; }
 .res-item .d { color: var(--taupe); font-size: 13px; }
