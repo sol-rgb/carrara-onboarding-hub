@@ -433,12 +433,22 @@
   }
 
   /* ---------- top 5 survey: one submission per person, rows land in a Google Sheet via /api/top5 ---------- */
-  function renderTop5(yourName) {
+  /* A hire who has entered their access code is already identified: the kit holds
+     their full name, so the form fills it in and locks it. Otherwise fall back to
+     the team-page profile name, editable. */
+  function top5Identity() {
+    var kit = store('carrara_welcome');
+    var fromKit = kit && kit.data && kit.data.name;
+    return fromKit ? { name: fromKit, locked: true } : { name: (myProfile && myProfile.name) || '', locked: false };
+  }
+  function renderTop5(who) {
     var box = $('#t5-box');
     if (!box) return;
+    var yourName = who.name;
     box.innerHTML = '<div class="pf-group">5 best people you\'ve worked with</div>'
       + '<p class="m-note" style="margin:0">Please be sure to submit each person individually, five in total.</p>'
-      + '<label>Your name</label><input id="t5-you" value="' + esc(yourName) + '">'
+      + '<label>Your name</label><input id="t5-you" value="' + esc(yourName) + '"' + (who.locked ? ' readonly' : '') + '>'
+      + (who.locked ? '<div class="pf-hint">From your welcome kit.</div>' : '')
       + '<label>Name</label><input id="t5-name">'
       + '<label>LinkedIn</label><input id="t5-li">'
       + '<div class="pf-group">where you worked together</div>'
@@ -470,7 +480,7 @@
           box.innerHTML = '<div class="pf-group">submitted</div>'
             + '<p>Thanks. ' + esc(data.name) + ' is in. ' + (n >= 5 ? 'That is your five.' : n + ' of 5 so far.') + '</p>'
             + '<div class="m-actions"><button class="btn-primary" id="t5-another">Submit another person</button></div>';
-          $('#t5-another').addEventListener('click', function () { renderTop5(data.yourName); });
+          $('#t5-another').addEventListener('click', function () { renderTop5(who); });
         })
         .catch(function () { btn.disabled = false; msg.textContent = 'That did not send. Try again in a moment.'; });
     });
@@ -513,7 +523,7 @@
         var body = item.html || ('<div class="m-eyebrow">[' + grp.g + ']</div><h3>' + esc(item.t) + '</h3><p>' + esc(item.d) + '</p>');
         openModal(body + (item.survey === 'top5' ? '<div id="t5-box"></div>' : '')
           + (linksHtml ? '<p style="margin-top:14px">' + linksHtml + '</p>' : ''));
-        if (item.survey === 'top5') renderTop5((myProfile && myProfile.name) || '');
+        if (item.survey === 'top5') renderTop5(top5Identity());
       }
       row.querySelector('.box').addEventListener('click', toggle);
       row.querySelector('.box').addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
