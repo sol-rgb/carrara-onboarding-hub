@@ -42,6 +42,9 @@ window.LINKS = {
   quarry: 'https://app.notion.com/p/34b6b1a6e6e780f6b170e6a9124c7fd4',
   brandVault: 'https://app.notion.com/p/1516b1a6e6e78010be78fef3dd8e4b7b',
   brandVaultArchive: 'https://app.notion.com/p/3996b1a6e6e7802c85def97c8ba20631',
+  /* Carrara content: offsite talks live in the Carrara Hub Library */
+  offsite2026: 'https://hub.carrara.is/library?item=offsite-2026-cdmx',
+  offsite2025: 'https://hub.carrara.is/library?item=offsite-2025-upstate',
   teamRoundup: 'https://app.notion.com/p/13d6b1a6e6e780a6bc3ff12e110e42b0',
   talentTeamMeeting: 'https://app.notion.com/p/1ab6b1a6e6e78087a25fe67b3ccb2f5c',
   timeOffPolicy: 'https://app.notion.com/p/1146b1a6e6e780f29e3aeda26a9f91f8',
