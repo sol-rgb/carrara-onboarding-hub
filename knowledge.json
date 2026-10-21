@@ -107,7 +107,7 @@
     },
     {
      "title": "Platform podcast",
-     "detail": "A video series where each episode presents a Platform team; the first episodes are recorded and in edit, and Anthropic's marketing team runs the release.",
+     "detail": "A video series where each episode presents a Platform team; episodes are finishing edit and review, and the release schedule is being set with Anthropic's social team.",
      "points": [
       "Set the format with the production studio: one set, each episode presents a team",
       "Ran prep calls and wrote question sets with every guest before recording",
@@ -143,7 +143,7 @@
     }
    ],
    "channel": "c-anthropic",
-   "updated": "2026-10-16",
+   "updated": "2026-10-21",
    "url": "https://hub.carrara.is/clients/anthropic"
   },
   {
@@ -1978,7 +1978,7 @@
      "role": "Account lead and coordination",
      "email": "kelley@carrara.is",
      "slack": "U0AT6B3QE9X",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Tess Wicks",
@@ -2100,7 +2100,7 @@
    "hubName": "Polymarket",
    "status": "active",
    "oneLiner": "People tools and embedded recruiting for Polymarket's People and talent teams.",
-   "about": "We build internal people tools for Polymarket, covering performance reviews, org health and offboarding, and are moving them onto the client's intranet. Carrara recruiters also work inside the talent team on open roles, with sourcing and scheduling support.",
+   "about": "We build internal people tools for Polymarket, covering performance reviews, org health and offboarding, now running on the client's intranet. Carrara recruiters also work inside the talent team on open roles, with sourcing and scheduling support.",
    "practices": [
     {
      "id": "people",
@@ -2169,24 +2169,24 @@
      "role": "Recruiting coordination",
      "email": "kelley@carrara.is",
      "slack": "U0AT6B3QE9X",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     }
    ],
    "workstreams": [
     {
      "title": "Performance reviews",
-     "detail": "A review tool and process for Polymarket's end of year cycle; the prototype is done and a Slack version is in build.",
+     "detail": "A review tool for Polymarket's end of year cycle; it's live on the client's intranet for admins, with testing across user types next.",
      "points": [
-      "Manager review flow prototype for the end of year cycle",
+      "Manager review flow live on the client's intranet, admin only for now",
       "Review questions drafted with a rating scale and evidence prompts",
       "Process framing doc with owners, steps and criteria for the cycle"
      ]
     },
     {
      "title": "Org health tool",
-     "detail": "A view of org structure and team health; the V1 prototype is done, with internal mobility and live people data next.",
+     "detail": "Org design and team health views; the reporting line planning view is live on the client's intranet for admins.",
      "points": [
-      "V1 prototype of org structure and team health views",
+      "Org design view for planning titles and reporting lines, live for admins",
       "Roster, reporting lines, spans and layers mapped from the intranet",
       "Org chart reworked so it works across teams"
      ]
@@ -2211,16 +2211,16 @@
     },
     {
      "title": "Intranet tooling",
-     "detail": "The tools are moving onto Polymarket's internal platform now that repo and people data access are in place.",
+     "detail": "The tools run on Polymarket's internal platform, and a security review with the client's security team is being set up.",
      "points": [
       "Repo and people data access set up with the client's engineering team",
-      "Tools built on the client's people data source and internal URL setup",
+      "Security review write-up on the tools' setup and access controls for the client",
       "Weekly sync doc with a pulse and asks for each stream"
      ]
     }
    ],
    "channel": null,
-   "updated": "2026-10-17",
+   "updated": "2026-10-21",
    "url": "https://hub.carrara.is/clients/polymarket"
   },
   {
@@ -2270,7 +2270,7 @@
      "role": "Static ad design",
      "email": "natasha.bhuta@carrara.is",
      "slack": "U0AQMLZ7M7S",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Katie Roe",
