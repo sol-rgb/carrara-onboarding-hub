@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-10-21",
+ "exported": "2026-10-22",
  "clients": [
   {
    "slug": "anthropic",
@@ -547,16 +547,16 @@
     },
     {
      "title": "Founder content",
-     "detail": "LinkedIn and X posts for Nick Rudder and Alex Bowcut, scheduled in Ordinal, plus a live streamed e-invoicing webinar planned for mid November.",
+     "detail": "LinkedIn and X posts for Nick Rudder and Alex Bowcut, scheduled in Ordinal, plus an e-invoicing webinar being booked for Nov 18 to 20.",
      "points": [
       "Launch and recap posts for Ground Truth, plus clips from the panels",
       "Weekly question prompts to the founders that turn into posts",
-      "Webinar plan with studio shortlists in London and Brussels"
+      "Webinar plan with studio options in London and Belgium, recorded and edited before posting"
      ]
     }
    ],
    "channel": "c-sphere",
-   "updated": "2026-10-17",
+   "updated": "2026-10-22",
    "url": "https://hub.carrara.is/clients/sphere"
   },
   {
@@ -662,25 +662,25 @@
     },
     {
      "title": "Agency management",
-     "detail": "We run Raindrop's recruiting agencies, now a smaller lineup matched to role groups with a weekly sync each, so the founders don't have to.",
+     "detail": "We run Raindrop's recruiting agencies, a smaller lineup matched to role groups with a weekly sync each, now recalibrated role by role.",
      "points": [
       "Agency brief with target companies, a sourcing brief per role and how Raindrop is different",
       "One Slack channel per agency, submissions approved there before Ashby",
-      "Tracker of every candidate agencies share, plus an Ashby screening SOP"
+      "Recalibration call with each GTM agency, plus a candidate one pager for every agency"
      ]
     },
     {
      "title": "Raindrop OS",
-     "detail": "A recruiting OS on Ashby, live, showing pacing against the hiring plan and who's waiting on feedback.",
+     "detail": "A recruiting OS on Ashby, live, showing pacing against the hiring plan and who's waiting on feedback; the team is testing it now.",
      "points": [
       "Separate GTM and Eng views with pacing, volume by stage and a calendar of calls",
-      "Digest, feedback chase and sell brief alerts built from Ashby data",
-      "Ashby feedback reminders in Slack turned on for the whole team"
+      "Reads Ashby every hour and the GTM tracker every four hours, never writing back",
+      "Freshness check and a weekday reconciliation that flag stale or mismatched data"
      ]
     },
     {
      "title": "Growth outbound",
-     "detail": "Outbound campaigns for Raindrop's sales pipeline, live on LinkedIn and email and tracked in a GTM dashboard.",
+     "detail": "Outbound campaigns for Raindrop's sales pipeline on LinkedIn and email, moving to Salesforge, tracked in a GTM dashboard.",
      "points": [
       "LinkedIn and cold email campaigns from the founders, built on signals like new agent launches",
       "Sending domains set up, plus a do not contact list so existing contacts are left out",
@@ -689,7 +689,7 @@
     }
    ],
    "channel": "c-raindrop",
-   "updated": "2026-10-17",
+   "updated": "2026-10-22",
    "url": "https://hub.carrara.is/clients/raindrop"
   },
   {
@@ -989,11 +989,11 @@
     },
     {
      "title": "Landing pages",
-     "detail": "Founder, chief of staff and fractional CFO pages are live on cfo.ai, homepage option B is in preview, a finance teams page is in design and a pricing update is in review.",
+     "detail": "Founder, chief of staff and fractional CFO pages are live on cfo.ai; a signup question flow, a finance teams page and a pricing update are in review.",
      "points": [
       "Founder CEO and chief of staff pages, sent as pull requests to cfo.ai's site repo",
       "Fractional CFO page live, plus a template for competitor comparison pages",
-      "Homepage option B preview with a short question flow that leads into the trial"
+      "Signup flow prototype that asks a few questions first, so Ari starts with context"
      ]
     },
     {
@@ -1025,7 +1025,7 @@
     }
    ],
    "channel": "c-cfo-ai",
-   "updated": "2026-10-21",
+   "updated": "2026-10-22",
    "url": "https://hub.carrara.is/clients/runway"
   },
   {
@@ -1145,16 +1145,16 @@
     },
     {
      "title": "Source OS",
-     "detail": "Our internal recruiting OS and the team's source of truth for every role, now with a first analysis of the client's Ashby data.",
+     "detail": "Our internal recruiting OS and the team's source of truth for every role, now with editable screening questions and scoring skills.",
      "points": [
       "Sourcing playbook per role: search strings, company map, screening questions, outreach",
-      "Candidate tracker synced from the sourcing sheet every hour",
-      "Metrics pages and a first read of the client's Ashby data on sources and screens"
+      "Claude skills per role that score call transcripts and LinkedIn profiles on competency tables",
+      "Candidate tracker synced hourly, plus a first read of the client's Ashby data"
      ]
     }
    ],
    "channel": "c-source-foundry",
-   "updated": "2026-10-21",
+   "updated": "2026-10-22",
    "url": "https://hub.carrara.is/clients/source-foundry"
   },
   {
