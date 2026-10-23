@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-10-22",
+ "exported": "2026-10-23",
  "clients": [
   {
    "slug": "anthropic",
@@ -50,7 +50,7 @@
      "role": "Narrative and talent brand",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/New_York"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Ben Munns",
@@ -353,7 +353,7 @@
      "role": "Hiring enablement",
      "email": "mary@carrara.is",
      "slack": "U09E9QHNFDH",
-     "timezone": "America/Denver"
+     "timezone": "Pacific/Honolulu"
     },
     {
      "name": "Hallie Slamowitz",
@@ -458,7 +458,7 @@
      "role": "Strategy and GTM",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/New_York"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Sol Silbenberg",
@@ -479,7 +479,7 @@
      "role": "Outbound and events",
      "email": "mary@carrara.is",
      "slack": "U09E9QHNFDH",
-     "timezone": "America/Denver"
+     "timezone": "Pacific/Honolulu"
     },
     {
      "name": "Tara O'Reilly",
@@ -530,10 +530,11 @@
     },
     {
      "title": "ICP dinners",
-     "detail": "Invite only dinners for finance leaders: Amsterdam on Nov 5, SF with a16z on Nov 12 and London on Nov 26.",
+     "detail": "Invite only dinners for finance leaders: Amsterdam on Nov 5, SF with a16z on Nov 12, and London with venue and date being picked.",
      "points": [
       "Positioning on scaling an AI native finance function, with a tax angle",
-      "Venue shortlist sites, invite copy and LinkedIn outreach from Nick to the ICP list"
+      "Venue shortlist sites, invite copy and LinkedIn outreach from Nick to the ICP list",
+      "Guest tracker for each dinner, filled from Sphere's and its partners' networks"
      ]
     },
     {
@@ -551,12 +552,12 @@
      "points": [
       "Launch and recap posts for Ground Truth, plus clips from the panels",
       "Weekly question prompts to the founders that turn into posts",
-      "Webinar plan with studio options in London and Belgium, recorded and edited before posting"
+      "Webinar plan with studio options in London and Brussels, recorded and edited before posting"
      ]
     }
    ],
    "channel": "c-sphere",
-   "updated": "2026-10-22",
+   "updated": "2026-10-23",
    "url": "https://hub.carrara.is/clients/sphere"
   },
   {
@@ -596,7 +597,7 @@
      "role": "Engagement lead and growth",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/New_York"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Savannah Gleeson",
@@ -617,7 +618,7 @@
      "role": "GTM sourcing, JDs, market maps and agencies",
      "email": "mary@carrara.is",
      "slack": "U09E9QHNFDH",
-     "timezone": "America/Denver"
+     "timezone": "Pacific/Honolulu"
     },
     {
      "name": "Pranav Mutatkar",
@@ -653,11 +654,11 @@
     },
     {
      "title": "GTM hiring",
-     "detail": "AE, head of sales and SDR searches are live and pushed with the market maps, with CSM and BizOps intake next.",
+     "detail": "AE, head of sales and SDR searches are live, with each market map prospect matched to a direct, warm intro or outbound path.",
      "points": [
       "JD, interview plan and sourcing brief per GTM role, kept in one Raindrop Recruiting Hub",
-      "Market maps for the AE and sales leadership searches",
-      "Warm intro shortlist built from the team's LinkedIn connections"
+      "Market maps for the AE and sales leadership searches, with mutuals found for each prospect",
+      "Sweep of the team's LinkedIn connections, plus draft intro asks to Raindrop's investors"
      ]
     },
     {
@@ -671,10 +672,10 @@
     },
     {
      "title": "Raindrop OS",
-     "detail": "A recruiting OS on Ashby, live, showing pacing against the hiring plan and who's waiting on feedback; the team is testing it now.",
+     "detail": "A recruiting OS on Ashby, live and in team testing, with a Slack bot next for feedback nudges, weekly digests and candidate briefs.",
      "points": [
-      "Separate GTM and Eng views with pacing, volume by stage and a calendar of calls",
-      "Reads Ashby every hour and the GTM tracker every four hours, never writing back",
+      "Separate GTM and Eng views with week by week pacing, volume by stage and a calendar of calls",
+      "Reads every Ashby source, req owner and department each hour, and the GTM tracker every four hours",
       "Freshness check and a weekday reconciliation that flag stale or mismatched data"
      ]
     },
@@ -689,7 +690,7 @@
     }
    ],
    "channel": "c-raindrop",
-   "updated": "2026-10-22",
+   "updated": "2026-10-23",
    "url": "https://hub.carrara.is/clients/raindrop"
   },
   {
@@ -729,7 +730,7 @@
      "role": "Narrative",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/New_York"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Sol Silbenberg",
@@ -810,7 +811,7 @@
      "role": "Lead",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/New_York"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Soph Dicker",
@@ -851,7 +852,7 @@
    "workstreams": [
     {
      "title": "Careers page",
-     "detail": "We designed and coded the new page, and Grindr's latest copy and tile changes are in our build before Crew updates Webflow.",
+     "detail": "We designed and coded the new page; Grindr approved the latest design and the changes are with Crew for the Webflow build.",
      "points": [
       "Coded prototype through v5 with a full mobile pass, built from Grindr's 2026 brand guide",
       "Employee quotes, a visa sponsorship section and open roles linked to Ashby",
@@ -885,7 +886,7 @@
     }
    ],
    "channel": "p-grindr-talent-narrative",
-   "updated": "2026-10-20",
+   "updated": "2026-10-23",
    "url": "https://hub.carrara.is/clients/grindr"
   },
   {
@@ -953,7 +954,7 @@
      "role": "Lead, strategy and client updates",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/New_York"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Reza Saeedi",
@@ -989,10 +990,10 @@
     },
     {
      "title": "Landing pages",
-     "detail": "Founder, chief of staff and fractional CFO pages are live on cfo.ai; a signup question flow, a finance teams page and a pricing update are in review.",
+     "detail": "Founder, chief of staff, fractional CFO and finance teams pages and the pricing update are live on cfo.ai; a signup question flow is in review.",
      "points": [
-      "Founder CEO and chief of staff pages, sent as pull requests to cfo.ai's site repo",
-      "Fractional CFO page live, plus a template for competitor comparison pages",
+      "Persona pages and a pricing update, sent as pull requests to cfo.ai's site repo",
+      "Fractional CFO partner section on pricing, plus a template for competitor comparison pages",
       "Signup flow prototype that asks a few questions first, so Ari starts with context"
      ]
     },
@@ -1025,7 +1026,7 @@
     }
    ],
    "channel": "c-cfo-ai",
-   "updated": "2026-10-22",
+   "updated": "2026-10-23",
    "url": "https://hub.carrara.is/clients/runway"
   },
   {
@@ -1204,7 +1205,7 @@
      "role": "GTM",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/New_York"
+     "timezone": "America/Bogota"
     }
    ],
    "workstreams": [
@@ -1286,7 +1287,7 @@
      "role": "Launch",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/New_York"
+     "timezone": "America/Bogota"
     }
    ],
    "workstreams": [
@@ -1559,7 +1560,7 @@
      "role": "Chief of staff search",
      "email": "jim@carrara.is",
      "slack": "U0C1FM4U273",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     }
    ],
    "workstreams": [
@@ -1626,7 +1627,7 @@
      "role": "Lead",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/New_York"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Matias Sanchez",
@@ -2141,7 +2142,7 @@
      "role": "Org tooling",
      "email": "jim@carrara.is",
      "slack": "U0C1FM4U273",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Leo Lopes",
@@ -2452,16 +2453,16 @@
     },
     {
      "title": "Talent ops",
-     "detail": "Outreach SOP, status tracking and follow-ups set up so every candidate touch is logged and actioned.",
+     "detail": "Outreach SOP, tracking and follow-ups, with outreach moving into sequenced LGM campaigns per role type.",
      "points": [
       "Candidate outreach SOP: how people move from map to outreach to follow-up",
-      "Outbound and status tabs that log every touch and feed a read-only status view",
-      "P0 warm intro list sorted by next action, plus daily and weekly non-responder lists"
+      "LGM campaign per role type: LinkedIn connect, follow up and email from one founder, then another",
+      "Status tabs that log every touch, plus a P0 warm intro list sorted by next action"
      ]
     }
    ],
    "channel": null,
-   "updated": "2026-10-21",
+   "updated": "2026-10-23",
    "url": "https://hub.carrara.is/clients/exponential-energy"
   },
   {
@@ -3473,7 +3474,7 @@
      "role": "GTM and growth",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/New_York"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Heath",
