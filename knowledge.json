@@ -1726,31 +1726,31 @@
    "team": [
     {
      "name": "Joe Penn",
-     "role": "Recruiting",
+     "role": "Lead",
      "email": "joe@carrara.is",
      "slack": "U065ASSS339",
      "timezone": "America/Los_Angeles"
     },
     {
+     "name": "Mary Petrino",
+     "role": "Events, outreach and pipeline reporting",
+     "email": "mary@carrara.is",
+     "slack": "U09E9QHNFDH",
+     "timezone": "Pacific/Honolulu"
+    },
+    {
      "name": "Jenna Caminiti",
-     "role": "Recruiting",
+     "role": "Recruiting coordination and handoff",
      "email": "jenna@carrara.is",
      "slack": "U0AU83VPUTA",
      "timezone": "America/New_York"
     },
     {
-     "name": "Alicia Donenfeld",
-     "role": "Recruiting",
-     "email": "Alicia@carrara.is",
-     "slack": "U07NL16P363",
-     "timezone": "America/Los_Angeles"
-    },
-    {
-     "name": "Hayley Samuels",
-     "role": "Recruiting ops",
-     "email": "hayley.samuels@carrara.is",
-     "slack": "U077S1EQKDW",
-     "timezone": "America/Denver"
+     "name": "Sol Silbenberg",
+     "role": "Talent narrative and LinkedIn campaign",
+     "email": "sol@carrara.is",
+     "slack": "U08M5TFAF52",
+     "timezone": "America/Buenos_Aires"
     }
    ],
    "workstreams": [
