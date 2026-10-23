@@ -900,6 +900,10 @@
     {
      "id": "marketing",
      "name": "Marketing and growth"
+    },
+    {
+     "id": "ai-product-eng",
+     "name": "AI, product and engineering"
     }
    ],
    "website": "www.grindr.com",
@@ -1351,6 +1355,10 @@
     {
      "id": "bizops",
      "name": "BizOps"
+    },
+    {
+     "id": "ai-product-eng",
+     "name": "AI, product and engineering"
     }
    ],
    "website": null,
@@ -2480,6 +2488,10 @@
     {
      "id": "bizops",
      "name": "BizOps"
+    },
+    {
+     "id": "ai-product-eng",
+     "name": "AI, product and engineering"
     }
    ],
    "website": "rivierapartners.com",
