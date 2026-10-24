@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-10-23",
+ "exported": "2026-10-24",
  "clients": [
   {
    "slug": "anthropic",
@@ -50,14 +50,14 @@
      "role": "Narrative and talent brand",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Bogota"
+     "timezone": "America/Buenos_Aires"
     },
     {
      "name": "Ben Munns",
      "role": "Account, network mining and recap site",
      "email": "ben@carrara.is",
      "slack": "U099BBEJVA4",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Alicia Donenfeld",
@@ -458,7 +458,7 @@
      "role": "Strategy and GTM",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Bogota"
+     "timezone": "America/Buenos_Aires"
     },
     {
      "name": "Sol Silbenberg",
@@ -597,7 +597,7 @@
      "role": "Engagement lead and growth",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Bogota"
+     "timezone": "America/Buenos_Aires"
     },
     {
      "name": "Savannah Gleeson",
@@ -625,7 +625,7 @@
      "role": "Growth outbound and enriched lists",
      "email": "pranav@carrara.is",
      "slack": "U0B0R326N4C",
-     "timezone": "Europe/Amsterdam"
+     "timezone": "Europe/Brussels"
     },
     {
      "name": "Sol Silbenberg",
@@ -730,7 +730,7 @@
      "role": "Narrative",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Bogota"
+     "timezone": "America/Buenos_Aires"
     },
     {
      "name": "Sol Silbenberg",
@@ -811,7 +811,7 @@
      "role": "Lead",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Bogota"
+     "timezone": "America/Buenos_Aires"
     },
     {
      "name": "Soph Dicker",
@@ -915,7 +915,7 @@
      "role": "Lead",
      "email": null,
      "slack": "U066H6LQC8M",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Nic Touron",
@@ -958,7 +958,7 @@
      "role": "Lead, strategy and client updates",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Bogota"
+     "timezone": "America/Buenos_Aires"
     },
     {
      "name": "Reza Saeedi",
@@ -1195,7 +1195,7 @@
      "role": "Leadership",
      "email": null,
      "slack": "U066H6LQC8M",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Eric Fernandez",
@@ -1209,7 +1209,7 @@
      "role": "GTM",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Bogota"
+     "timezone": "America/Buenos_Aires"
     }
    ],
    "workstreams": [
@@ -1291,7 +1291,7 @@
      "role": "Launch",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Bogota"
+     "timezone": "America/Buenos_Aires"
     }
    ],
    "workstreams": [
@@ -1405,14 +1405,14 @@
      "role": "Builds Hertzcules, Jarvis and the collections tracker",
      "email": "bryan@carrara.is",
      "slack": "U0AM63JBAK1",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Heath",
      "role": "Transporters setup",
      "email": null,
      "slack": "U066H6LQC8M",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Kim",
@@ -1512,14 +1512,14 @@
      "role": "Account lead",
      "email": null,
      "slack": "U066H6LQC8M",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Ben Munns",
      "role": "Account lead",
      "email": "ben@carrara.is",
      "slack": "U099BBEJVA4",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Nathan Peadon",
@@ -1540,7 +1540,7 @@
      "role": "Product lead, community app and Founders Weekend",
      "email": "bryan@carrara.is",
      "slack": "U0AM63JBAK1",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Ky Tomita",
@@ -1635,7 +1635,7 @@
      "role": "Lead",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Bogota"
+     "timezone": "America/Buenos_Aires"
     },
     {
      "name": "Matias Sanchez",
@@ -2272,7 +2272,7 @@
      "role": "Account lead",
      "email": null,
      "slack": "U066H6LQC8M",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Natasha",
@@ -2478,8 +2478,8 @@
    "name": "Riviera Partners",
    "hubName": "Riviera Partners",
    "status": "active",
-   "oneLiner": "Role, incentive and operating model design for one of Riviera's search teams.",
-   "about": "Since September 2026 we've worked with Riviera leadership on role, incentive and operating model design for one of their search teams. Role design is done; incentive design and the operating model analysis are under way.",
+   "oneLiner": "Pay plan design, plan documents and rollout for Riviera's search teams.",
+   "about": "Since September 2026 we've worked with Riviera leadership on how their search teams are set up and paid. The US plan design is closed, the regional plans are in final review, and plan documents, rollout and productivity work are under way.",
    "practices": [
     {
      "id": "people",
@@ -2506,66 +2506,65 @@
      "timezone": "America/New_York"
     },
     {
-     "name": "Kenna Meyerhoff",
-     "role": "Senior oversight",
-     "email": "kenna@carrara.is",
-     "slack": "U04QJ7KMC5N",
-     "timezone": "America/New_York"
-    },
-    {
      "name": "Hannah Say",
-     "role": "Analysis, models and decks",
+     "role": "Plan design, modeling and plan documents",
      "email": "hannah@carrara.is",
      "slack": "U0BTYGAL0DC",
      "timezone": "America/New_York"
     },
     {
-     "name": "Arthur Matuszewski",
-     "role": "Advisor",
-     "email": null,
-     "slack": "U04ARESMB1T",
+     "name": "Kenna Meyerhoff",
+     "role": "Comms and rollout",
+     "email": "kenna@carrara.is",
+     "slack": "U04QJ7KMC5N",
      "timezone": "America/New_York"
     }
    ],
    "workstreams": [
     {
-     "title": "Role design",
-     "detail": "Done. Role specs by level were delivered in September.",
+     "title": "Pay plan design",
+     "detail": "The US plan design is closed with leadership, and the EMEA and APAC plans are in final review.",
      "points": [
-      "Jobs to be done and core competencies for each level",
-      "Discussion deck on how work should split across levels",
-      "V1 role specs per level"
+      "Unit economics calculator with pay scenarios per search",
+      "Per-level detail review that closed the open design choices",
+      "2027 capacity model that tests team capacity by region"
      ]
     },
     {
-     "title": "Incentive design",
-     "detail": "Incentive plans by level for the US team are in review with Riviera leadership, and a first EMEA and APAC draft went out in October.",
+     "title": "Plan documents",
+     "detail": "New. A plan document and fine print for each level are drafted and go to review next week.",
      "points": [
-      "Scenario calculator to compare incentive designs per search",
-      "Deck tying each level's incentives to its core activity",
-      "First draft for the EMEA and APAC teams"
+      "Plan document for each level",
+      "Fine print drafted for every plan"
      ]
     },
     {
-     "title": "Operating model",
-     "detail": "Analysis of the search funnel, search load and staffing, with a data deep dive in October.",
+     "title": "Comms and rollout",
+     "detail": "New. The rollout approach and timing are agreed, and the comms plan and per-level packs are under way.",
      "points": [
-      "Funnel from search assignment to placement",
-      "Saved queries on the client's data portal for funnel analysis"
+      "Comms plan for the rollout",
+      "A pack for each level"
      ]
     },
     {
-     "title": "Models and decks",
-     "detail": "One model is the source of truth, and an agent checks every deck number against it after each change.",
+     "title": "Plan implementation",
+     "detail": "New. Payout system requirements and the payroll setup are scoped.",
      "points": [
-      "Tick and tie agent checks every deck number against the model",
-      "Decks built in HTML, then converted to native Google Slides",
-      "Claude skill that drafts the end of week client update"
+      "Requirements for the payout system",
+      "Payroll setup scoped with the client"
+     ]
+    },
+    {
+     "title": "Productivity initiatives",
+     "detail": "New. Work started on recruiter coordination support and reusing candidates in their search tool.",
+     "points": [
+      "Options deck for the client to prioritize",
+      "Recruiter coordination support and candidate reuse"
      ]
     }
    ],
    "channel": null,
-   "updated": "2026-10-16",
+   "updated": "2026-10-24",
    "url": "https://hub.carrara.is/clients/riviera-partners"
   },
   {
@@ -3435,7 +3434,7 @@
      "role": "Leadership",
      "email": null,
      "slack": "U066H6LQC8M",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     }
    ],
    "services": [],
@@ -3486,14 +3485,14 @@
      "role": "GTM and growth",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Bogota"
+     "timezone": "America/Buenos_Aires"
     },
     {
      "name": "Heath",
      "role": "Leadership",
      "email": null,
      "slack": "U066H6LQC8M",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     }
    ],
    "services": [
@@ -3556,7 +3555,7 @@
      "role": "Leadership",
      "email": null,
      "slack": "U066H6LQC8M",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Dan Sia",
