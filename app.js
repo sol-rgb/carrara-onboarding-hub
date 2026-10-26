@@ -103,7 +103,7 @@
       { t: 'Get oriented on our Notion', d: 'Start at Home Base and click around.', links: [{ t: 'Home Base', k: 'notionHomeBase' }] },
       { t: 'Review Time-Off Policy', d: 'Read the Time-Off & Holiday Policy page in this hub. Two minutes now saves confusion later.', links: [{ t: 'Time-Off & Holiday Policy', k: '#/timeoff' }] },
       { t: 'Set up time tracking', d: 'Your hours help us accurately track client work, allocate expenses, and support client billing and internal reporting, so please make sure they\'re complete and submitted on time.', links: [{ t: 'Time tracking', k: 'timeTracking' }] },
-      { t: 'Fill out your profile in the team directory', d: 'Add yourself to the team wall so people can get to know you.', links: [{ t: 'The team directory', k: '#/team' }] },
+      { t: 'Fill out your profile', d: 'Add yourself to the team wall so people can get to know you.', links: [{ t: 'The team directory', k: '#/team' }], survey: 'profile' },
       { t: 'Understand your benefits', d: 'What you\'re enrolled in, what you need to elect, and by when. Ask Eric on Slack if anything is unclear or if you\'re a contractor and not sure what applies to you.' }
     ]},
     { g: 'week two', cls: '', items: [
@@ -487,6 +487,112 @@
     });
   }
 
+  /* ---------- profile survey: a hire's answers go to their POps profile via /api/profile-answers ----------
+     Question wording and order match the People Pavilion spec. Off until the server
+     says it is on; until then the checklist step keeps its link to the team directory. */
+  var PV_SECTIONS = [
+    { title: 'In your own words', qs: [
+      { key: 'own_words', rows: 6, label: 'Tell us about your path to Carrara, what you’re focused on right now, what fills your time outside work, and a few things you care most about.' }
+    ]},
+    { title: 'How I work', qs: [
+      { key: 'quirks', label: 'What are your quirks?' },
+      { key: 'high_bar', label: 'What part of your work do you care more about than most people would notice? Where do you hold yourself to a high bar?' },
+      { key: 'misunderstand', label: 'What do people sometimes misunderstand about you?' },
+      { key: 'feedback', label: 'What makes feedback land for you?' }
+    ]},
+    { title: 'How I work with the team', qs: [
+      { key: 'help_others', label: 'How do you help the people around you get better?' },
+      { key: 'reach_me', label: 'What\'s the best way to reach you for a quick question, for a decision, or when something is going sideways? What context helps you get up to speed fast?' },
+      { key: 'value_in_others', label: 'What qualities do you value most in the people you work with? What makes you think "I want to work with them again"?' }
+    ]}
+  ];
+
+  function mountProfileSurvey(onDone) {
+    var kit = store('carrara_welcome');
+    fetch('/api/profile-answers')
+      .then(function (r) { return r.ok ? r.json() : { enabled: false }; })
+      .catch(function () { return { enabled: false }; })
+      .then(function (s) {
+        var box = $('#pv-box');
+        if (!box || !s.enabled) return;
+        if (!kit || !kit.code) {
+          box.innerHTML = '<p class="m-note">To fill this out, enter your access code in the welcome kit (bottom right).</p>';
+          return;
+        }
+        if (!kit.data || !kit.data.planKey) {
+          box.innerHTML = '<p class="m-note">Your access code is not linked to a profile yet, so use the team directory for now.</p>';
+          return;
+        }
+        var links = $('#chk-links');
+        if (links) links.remove();
+        renderProfileForm(kit, onDone);
+      });
+  }
+
+  function renderProfileForm(kit, onDone) {
+    var box = $('#pv-box');
+    if (!box) return;
+    var d = store('carrara_profile_draft') || {};
+    var a = d.answers || {};
+    var sent = !!store('carrara_profile_survey_done');
+    var html = (sent ? '<p class="m-note" style="margin:0">You have already sent this. Change anything below and send it again.</p>' : '')
+      + '<div class="pf-group">the basics</div>'
+      + '<label>Name</label><input id="pv-name" value="' + esc(kit.data.name) + '" readonly><div class="pf-hint">From your welcome kit.</div>'
+      + '<label>Email</label><input id="pv-email" type="email" value="' + esc(d.email || '') + '">'
+      + '<label>Where are you based</label><input id="pv-loc" value="' + esc(d.location || '') + '">'
+      + '<label>Phone <span class="pf-opt">optional</span></label><input id="pv-phone" type="tel" value="' + esc(d.phone || '') + '">'
+      + '<label>LinkedIn</label><input id="pv-li" placeholder="https://linkedin.com/in/…" value="' + esc(d.linkedin || '') + '">';
+    PV_SECTIONS.forEach(function (sec) {
+      html += '<div class="pf-group">' + esc(sec.title) + '</div>';
+      sec.qs.forEach(function (q) {
+        html += '<label>' + esc(q.label) + '</label><textarea id="pv-q-' + q.key + '" rows="' + (q.rows || 3) + '">' + esc(a[q.key] || '') + '</textarea>';
+      });
+    });
+    html += '<div class="m-actions"><button class="btn-primary" id="pv-send">Save my profile</button></div>'
+      + '<p class="m-note" id="pv-msg" role="status"></p>';
+    box.innerHTML = html;
+
+    function read() {
+      var out = { email: $('#pv-email').value.trim(), location: $('#pv-loc').value.trim(),
+        phone: $('#pv-phone').value.trim(), linkedin: $('#pv-li').value.trim(), answers: {} };
+      PV_SECTIONS.forEach(function (sec) { sec.qs.forEach(function (q) { out.answers[q.key] = $('#pv-q-' + q.key).value.trim(); }); });
+      return out;
+    }
+    /* what they have typed survives a closed popup or a failed send */
+    box.oninput = function () { store('carrara_profile_draft', read()); };
+
+    $('#pv-send').addEventListener('click', function () {
+      var cur = read(), msg = $('#pv-msg'), btn = $('#pv-send');
+      var blank = ['pv-email', 'pv-loc', 'pv-li'].filter(function (id) { return !$('#' + id).value.trim(); })
+        .concat(Object.keys(cur.answers).filter(function (k) { return !cur.answers[k]; }).map(function (k) { return 'pv-q-' + k; }));
+      if (blank.length) { msg.textContent = 'Everything except phone is needed.'; $('#' + blank[0]).focus(); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cur.email)) { msg.textContent = 'Check your email address.'; $('#pv-email').focus(); return; }
+      btn.disabled = true;
+      msg.textContent = 'Saving...';
+      fetch('/api/profile-answers', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: kit.code, email: cur.email, location: cur.location, phone: cur.phone, linkedin: cur.linkedin, answers: cur.answers }) })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function () { return r.status; }); })
+        .then(function (status) {
+          if (status === 200) {
+            store('carrara_profile_survey_done', true);
+            box.innerHTML = '<div class="pf-group">saved</div><p>Thanks. Your answers are saved to your profile.</p>'
+              + '<div class="m-actions"><button class="btn-primary" id="pv-edit">Edit my answers</button></div>';
+            $('#pv-edit').addEventListener('click', function () { renderProfileForm(kit, onDone); });
+            onDone();
+            return;
+          }
+          btn.disabled = false;
+          msg.textContent = {
+            400: 'Check your email address and that every answer is filled in.',
+            401: 'Your access code did not check out. Enter it again in the welcome kit.',
+            409: 'Your access code is not linked to a profile yet.',
+            410: 'Your access code has been replaced. Enter your newest one in the welcome kit.'
+          }[status] || 'That did not send. What you typed is kept here. Try again in a moment.';
+        })
+        .catch(function () { btn.disabled = false; msg.textContent = 'That did not send. What you typed is kept here. Try again in a moment.'; });
+    });
+  }
+
   /* ---------- checklist ---------- */
   var chkState = store('carrara_checklist') || {};
   var groupsEl = $('#chk-groups');
@@ -523,8 +629,10 @@
         });
         var body = item.html || ('<div class="m-eyebrow">[' + grp.g + ']</div><h3>' + esc(item.t) + '</h3><p>' + esc(item.d) + '</p>');
         openModal(body + (item.survey === 'top5' ? '<div id="t5-box"></div>' : '')
-          + (linksHtml ? '<p style="margin-top:14px">' + linksHtml + '</p>' : ''));
+          + (item.survey === 'profile' ? '<div id="pv-box"></div>' : '')
+          + (linksHtml ? '<p id="chk-links" style="margin-top:14px">' + linksHtml + '</p>' : ''));
         if (item.survey === 'top5') renderTop5((myProfile && myProfile.name) || '');
+        if (item.survey === 'profile') mountProfileSurvey(function () { if (!chkState[key]) toggle(); });
       }
       row.querySelector('.box').addEventListener('click', toggle);
       row.querySelector('.box').addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
