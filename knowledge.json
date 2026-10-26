@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-10-24",
+ "exported": "2026-10-26",
  "clients": [
   {
    "slug": "anthropic",
@@ -590,7 +590,7 @@
      "role": "Recruiting lead, GTM",
      "email": "catherine@carrara.is",
      "slack": "U0A09PCP63V",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/Sao_Paulo"
     },
     {
      "name": "Gonz Sanchez",
@@ -915,7 +915,7 @@
      "role": "Lead",
      "email": null,
      "slack": "U066H6LQC8M",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Nic Touron",
@@ -1094,7 +1094,7 @@
      "role": "Sourcing, SWE",
      "email": "mackenzie@carrara.is",
      "slack": "U0BSF9FUY6R",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Nic Touron",
@@ -1195,7 +1195,7 @@
      "role": "Leadership",
      "email": null,
      "slack": "U066H6LQC8M",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Eric Fernandez",
@@ -1249,7 +1249,7 @@
      "role": "Client lead",
      "email": "catherine@carrara.is",
      "slack": "U0A09PCP63V",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/Sao_Paulo"
     },
     {
      "name": "Emily Kasper",
@@ -1377,7 +1377,7 @@
      "role": "Transporters ops and bizops",
      "email": "calvin@carrara.is",
      "slack": "U0B7CSVRALW",
-     "timezone": "Asia/Chongqing"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Nic Touron",
@@ -1412,7 +1412,7 @@
      "role": "Transporters setup",
      "email": null,
      "slack": "U066H6LQC8M",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Kim",
@@ -1512,7 +1512,7 @@
      "role": "Account lead",
      "email": null,
      "slack": "U066H6LQC8M",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Ben Munns",
@@ -1866,7 +1866,7 @@
      "role": "Recruiter, BDR",
      "email": "mackenzie@carrara.is",
      "slack": "U0BSF9FUY6R",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Ali Horowitz",
@@ -1888,13 +1888,6 @@
      "email": "anna@carrara.is",
      "slack": "U0ACW2EQ0MT",
      "timezone": "America/New_York"
-    },
-    {
-     "name": "Christina",
-     "role": "Role scoping and calibration",
-     "email": "christina@carrara.is",
-     "slack": "U0B49J6EQ4C",
-     "timezone": "America/Los_Angeles"
     }
    ],
    "workstreams": [
@@ -2272,14 +2265,14 @@
      "role": "Account lead",
      "email": null,
      "slack": "U066H6LQC8M",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Natasha",
      "role": "Static ad design",
      "email": "natasha.bhuta@carrara.is",
      "slack": "U0AQMLZ7M7S",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Katie Roe",
@@ -3435,7 +3428,7 @@
      "role": "Leadership",
      "email": null,
      "slack": "U066H6LQC8M",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     }
    ],
    "services": [],
@@ -3493,7 +3486,7 @@
      "role": "Leadership",
      "email": null,
      "slack": "U066H6LQC8M",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     }
    ],
    "services": [
@@ -3556,7 +3549,7 @@
      "role": "Leadership",
      "email": null,
      "slack": "U066H6LQC8M",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Dan Sia",
