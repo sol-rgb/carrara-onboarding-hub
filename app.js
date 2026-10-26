@@ -161,12 +161,22 @@
     return html;
   }
 
+  /* A popup whose source page is in Notion gets a button to the full page. The URL
+     comes from links.js under the same key; a popup with no Notion URL there has no button. */
+  function notionButtonHtml(k) {
+    var u = linkFor(k);
+    return /^https:\/\/app\.notion\.com\//.test(u)
+      ? '<div class="m-actions"><a class="btn-primary" href="' + esc(u) + '" target="_blank" rel="noopener">Read the full page in Notion</a></div>'
+      : '';
+  }
+
   function openPage(k) {
     var pg = pageFor(k);
     if (!pg) return;
     openModal((pg.eyebrow === undefined ? '<div class="m-eyebrow">[from the carrara library]</div>'
         : (pg.eyebrow ? '<div class="m-eyebrow">' + esc(pg.eyebrow) + '</div>' : ''))
       + '<h3>' + esc(pg.title) + '</h3><div class="pg">' + pg.html + knowledgePracticeHtml(k) + '</div>'
+      + notionButtonHtml(k)
       + (pg.note === undefined ? '<p class="pg-note">Snapshot from Notion, Jul 24, 2026.</p>'
         : (pg.note ? '<p class="pg-note">' + esc(pg.note) + '</p>' : '')));
     fillClientLogos($('#modal-back'), k);

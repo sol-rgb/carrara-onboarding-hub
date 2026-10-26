@@ -50,6 +50,11 @@ window.LINKS = {
   timeOffPolicy: 'https://app.notion.com/p/1146b1a6e6e780f29e3aeda26a9f91f8',
   coordinatorOOO: 'https://app.notion.com/p/35f6b1a6e6e7817084d7df4fa8c79e4b',
   thisIsCarrara: 'https://app.notion.com/p/2bc6b1a6e6e78024bc4ac3dd7cfb3833',
+  /* Brand Vault elements: the Logo, Typography, Color and Expressions pages under This is Carrara */
+  bvLogo: 'https://app.notion.com/p/2bc6b1a6e6e7807f8d3ccfcc9652417b',
+  bvTypography: 'https://app.notion.com/p/2bc6b1a6e6e780e28a6adff33c9ab9fa',
+  bvColor: 'https://app.notion.com/p/2bc6b1a6e6e7809ebb71caabbacaa00d',
+  bvExpressions: 'https://app.notion.com/p/2bc6b1a6e6e780ac8a35f475a20c5ae5',
 
   /* Tools and systems */
   ashby: 'https://app.ashbyhq.com',
@@ -61,7 +66,7 @@ window.LINKS = {
   /* Carrara web */
   site: 'https://www.carrara.is',
   ideas: 'https://www.carrara.is/ideas',
-  letter: 'https://www.carrara.is/ideas/focus-on-the-work-by-carrara',
+  letter: 'https://carrara.is/ideas/letter',
 
   /* Sourced from the Notion master onboarding checklist and HQ, Aug 2026 */
   peoplePavilion: 'https://app.notion.com/p/c611c15591624864be36996f0eaa0064',
