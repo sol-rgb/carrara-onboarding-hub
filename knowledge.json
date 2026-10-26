@@ -2566,8 +2566,8 @@
    "name": "Fundamental Technologies",
    "hubName": "Fundamental",
    "status": "active",
-   "oneLiner": "",
-   "about": null,
+   "oneLiner": "Fully integrated HR.",
+   "about": "Carrara runs HR for Fundamental as a fully integrated people function, working alongside its leaders rather than as an outside project.",
    "practices": [
     {
      "id": "people",
@@ -2577,7 +2577,15 @@
    "website": "fundamental.tech",
    "logo": "https://hub.carrara.is/logos/fundamental.png",
    "owner": "Kim",
-   "team": [],
+   "team": [
+    {
+     "name": "Roohi Ahuja",
+     "role": "People ops, fully integrated HR",
+     "email": "roohi@carrara.is",
+     "slack": "U0B4EK620Q3",
+     "timezone": "America/Chicago"
+    }
+   ],
    "workstreams": [],
    "channel": null,
    "updated": null,
@@ -2698,8 +2706,8 @@
    "name": "Basis",
    "hubName": "Basis",
    "status": "active",
-   "oneLiner": "",
-   "about": null,
+   "oneLiner": "FinOps.",
+   "about": "Carrara runs finance operations for Basis.",
    "practices": [
     {
      "id": "finance",
@@ -2709,7 +2717,15 @@
    "website": null,
    "logo": null,
    "owner": "Kim",
-   "team": [],
+   "team": [
+    {
+     "name": "Roohi Ahuja",
+     "role": "FinOps",
+     "email": "roohi@carrara.is",
+     "slack": "U0B4EK620Q3",
+     "timezone": "America/Chicago"
+    }
+   ],
    "workstreams": [],
    "channel": null,
    "updated": null,
