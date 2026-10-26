@@ -1,6 +1,6 @@
 {
  "source": "notion-client-codex",
- "updated": "2026-10-19",
+ "updated": "2026-10-26",
  "clients": {
   "3i Members": {
    "status": "Paused",
@@ -662,6 +662,18 @@
    "background": null,
    "docs": []
   },
+  "Grindr Ads": {
+   "status": "Archived",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
   "Grindr NewCo": {
    "status": "Archived",
    "projectTypes": [],
@@ -738,7 +750,7 @@
    ],
    "talentPartners": [
     "Tenzing Bhutia",
-    "Drew Koloski`"
+    "Drew Koloski"
    ],
    "coordination": [
     "Tess Wicks"
@@ -1052,6 +1064,20 @@
    "background": null,
    "docs": []
   },
+  "Pace": {
+   "status": "Active",
+   "projectTypes": [],
+   "accountManagers": [
+    "Brandon Taleisnik"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
   "Paxos": {
    "status": "Paused",
    "projectTypes": [
@@ -1109,6 +1135,18 @@
     }
    ]
   },
+  "Poetic": {
+   "status": "Archived",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
   "Polymarket": {
    "status": "Active",
    "projectTypes": [
@@ -1120,7 +1158,7 @@
     "Bec Bliss"
    ],
    "talentPartners": [
-    "Drew Koloski`",
+    "Drew Koloski",
     "Beth Werkstell"
    ],
    "coordination": [
@@ -1312,6 +1350,18 @@
   },
   "Sydecar": {
    "status": "Paused",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "Trace": {
+   "status": "Archived",
    "projectTypes": [],
    "accountManagers": [],
    "talentPartners": [],

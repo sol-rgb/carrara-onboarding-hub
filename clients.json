@@ -1,6 +1,6 @@
 {
  "source": "client-codex",
- "updated": "2026-10-19",
+ "updated": "2026-10-26",
  "clients": [
   {
    "name": "3i Members",
@@ -498,6 +498,13 @@
    "work": [
     "Talent Platform"
    ]
+  },
+  {
+   "name": "Pace",
+   "domain": "",
+   "lead": "Brandon Taleisnik",
+   "description": "",
+   "work": []
   },
   {
    "name": "Paxos",

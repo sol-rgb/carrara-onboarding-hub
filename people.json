@@ -1,11 +1,11 @@
 {
  "source": "notion-team-directory",
- "updated": "2026-10-19",
+ "updated": "2026-10-26",
  "_partnerNote": "partner:true marks the firm's partner group, not the Talent Partner role. Edit here; the hero stat counts this flag.",
  "people": [
   {
    "name": "Ali Horowitz",
-   "email": "",
+   "email": "ali@carrara.is",
    "location": "",
    "role": "",
    "about": "",
@@ -210,7 +210,8 @@
     "a16z",
     "Runlayer",
     "Forus",
-    "Anthropic"
+    "Anthropic",
+    "Pace"
    ],
    "answers": [],
    "partner": false
@@ -237,7 +238,7 @@
   },
   {
    "name": "Catherine Ardila",
-   "email": "",
+   "email": "catherine@carrara.is",
    "location": "New York",
    "role": "Embedded services",
    "about": "First talent hire at a early, growth stage startup in SF. Prior to that, worked at Endeavor or, how Heath likes to put it, the YC of emerging markets. Fun fact: I’m one of the hires that Alicia sneaked from a client.",
@@ -336,7 +337,7 @@
    "partner": false
   },
   {
-   "name": "Drew Koloski`",
+   "name": "Drew Koloski",
    "email": "drew@carrara.is",
    "location": "Florida",
    "role": "",
@@ -675,7 +676,7 @@
   },
   {
    "name": "Katie Nguyen",
-   "email": "",
+   "email": "katie.nguyen@carrara.is",
    "location": "Los Angeles",
    "role": "Talent Partner",
    "about": "Originally from the PNW and had a life working in music before tech!",
@@ -774,7 +775,7 @@
   },
   {
    "name": "Mackenzie Robinson",
-   "email": "mackenzie@carrrara.is",
+   "email": "mackenzie@carrara.is",
    "location": "San Francisco",
    "role": "",
    "about": "",
@@ -1080,7 +1081,7 @@
   },
   {
    "name": "Shannon Toomey",
-   "email": "",
+   "email": "shannon@carrara.is",
    "location": "Seattle",
    "role": "Talent Partner",
    "about": "I started my career in social work, and ended up working with teens at Boys & Girls Clubs for a few years - I loved the work, but got to a point where the stress was high and the pay was low and it just didn’t feel sustainable anymore, unfortunately. I somehow stumbled into tech and got a contract position at Microsoft doing University Recruiting. I loved how much there was to learn, and the pace, and eventually moved over to SWE Recruiting at Google. From there, I helped grow the Dropbox Seattle office, moved to the Bay, and had a sneaking suspicion I might like startups - and I was right! I knew I didn’t want to specialize in something, I wanted to understand how the pieces fit together. If it’s vague, abstract, maybe a little confusing and people-related, I’m interested. Before Carrara I was at Descript for 5 years, joining as the first Recruiter then growing out a team and eventually overseeing Recruiting and HRBP work. It was a wild ride with some wild characters, and I’m excited to bring my variety of learnings and experiences here - and learn even more! 😊",
