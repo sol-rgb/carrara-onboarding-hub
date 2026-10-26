@@ -39,17 +39,22 @@ window.LINKS = {
 
   /* Notion */
   notionHomeBase: 'https://app.notion.com/p/carrara/Carrara-HQ-a0d65c510b1344b59b5fea56210ecd4b',
-  quarry: 'https://app.notion.com/p/34b6b1a6e6e780f6b170e6a9124c7fd4',
-  brandVault: 'https://app.notion.com/p/1516b1a6e6e78010be78fef3dd8e4b7b',
+  quarry: 'https://app.notion.com/p/carrara/Quarry-setup-34b6b1a6e6e780f6b170e6a9124c7fd4',
+  brandVault: 'https://app.notion.com/p/carrara/Brand-Vault-1516b1a6e6e78010be78fef3dd8e4b7b',
   brandVaultArchive: 'https://app.notion.com/p/3996b1a6e6e7802c85def97c8ba20631',
   /* Carrara content: offsite talks live in the Carrara Hub Library */
   offsite2026: 'https://hub.carrara.is/library?item=offsite-2026-cdmx',
   offsite2025: 'https://hub.carrara.is/library?item=offsite-2025-upstate',
   teamRoundup: 'https://app.notion.com/p/13d6b1a6e6e780a6bc3ff12e110e42b0',
-  talentTeamMeeting: 'https://app.notion.com/p/1ab6b1a6e6e78087a25fe67b3ccb2f5c',
+  talentTeamMeeting: 'https://app.notion.com/p/carrara/1ab6b1a6e6e78087a25fe67b3ccb2f5c?v=1ab6b1a6e6e780489865000cbb811e47',
   timeOffPolicy: 'https://app.notion.com/p/1146b1a6e6e780f29e3aeda26a9f91f8',
   coordinatorOOO: 'https://app.notion.com/p/35f6b1a6e6e7817084d7df4fa8c79e4b',
   thisIsCarrara: 'https://app.notion.com/p/2bc6b1a6e6e78024bc4ac3dd7cfb3833',
+  /* Brand Vault elements: the Logo, Typography, Color and Expressions pages under This is Carrara */
+  bvLogo: 'https://app.notion.com/p/2bc6b1a6e6e7807f8d3ccfcc9652417b',
+  bvTypography: 'https://app.notion.com/p/2bc6b1a6e6e780e28a6adff33c9ab9fa',
+  bvColor: 'https://app.notion.com/p/2bc6b1a6e6e7809ebb71caabbacaa00d',
+  bvExpressions: 'https://app.notion.com/p/2bc6b1a6e6e780ac8a35f475a20c5ae5',
 
   /* Tools and systems */
   ashby: 'https://app.ashbyhq.com',
@@ -61,7 +66,7 @@ window.LINKS = {
   /* Carrara web */
   site: 'https://www.carrara.is',
   ideas: 'https://www.carrara.is/ideas',
-  letter: 'https://www.carrara.is/ideas/focus-on-the-work-by-carrara',
+  letter: 'https://carrara.is/ideas/letter',
 
   /* Sourced from the Notion master onboarding checklist and HQ, Aug 2026 */
   peoplePavilion: 'https://app.notion.com/p/c611c15591624864be36996f0eaa0064',
