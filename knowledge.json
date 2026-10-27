@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-10-26",
+ "exported": "2026-10-27",
  "clients": [
   {
    "slug": "anthropic",
@@ -57,7 +57,7 @@
      "role": "Account, network mining and recap site",
      "email": "ben@carrara.is",
      "slack": "U099BBEJVA4",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Alicia Donenfeld",
@@ -346,7 +346,7 @@
      "role": "Hiring playbooks, enablement and agencies",
      "email": "mary@carrara.is",
      "slack": "U09E9QHNFDH",
-     "timezone": "Pacific/Honolulu"
+     "timezone": "America/New_York"
     },
     {
      "name": "Justin Colsky",
@@ -430,8 +430,8 @@
    "name": "Sphere",
    "hubName": "Sphere",
    "status": "active",
-   "oneLiner": "Events, case studies, campaigns and founder content for Sphere.",
-   "about": "Marketing and brand for Sphere. We ran Ground Truth, an engineering event in SF hosted with a16z, and now run customer video case studies, finance leader dinners in Europe, conference campaigns and founder content for Nick Rudder and Alex Bowcut.",
+   "oneLiner": "Case studies, exec dinners, a webinar, out of home and founder content for Sphere.",
+   "about": "Marketing and brand for Sphere. We ran Ground Truth, an engineering event in SF hosted with a16z, and now run customer case studies, finance leader dinners, a partner webinar, out of home campaigns and founder content for Nick Rudder and Alex Bowcut.",
    "practices": [
     {
      "id": "talent",
@@ -448,116 +448,82 @@
    "team": [
     {
      "name": "Soph Dicker",
-     "role": "Lead",
+     "role": "Account lead",
      "email": "sophie@carrara.is",
      "slack": "U0B17CD5VKN",
      "timezone": "America/New_York"
     },
     {
      "name": "Gonz Sanchez",
-     "role": "Strategy and GTM",
+     "role": "Account oversight",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
      "timezone": "America/Buenos_Aires"
     },
     {
-     "name": "Sol Silbenberg",
-     "role": "Founder content",
-     "email": "sol@carrara.is",
-     "slack": "U08M5TFAF52",
-     "timezone": "America/Buenos_Aires"
-    },
-    {
-     "name": "Sara Hennings",
-     "role": "Events and venues",
-     "email": "sara@carrara.is",
-     "slack": "U0B7AP5R4EL",
-     "timezone": "Europe/Amsterdam"
-    },
-    {
-     "name": "Mary Petrino",
-     "role": "Outbound and events",
-     "email": "mary@carrara.is",
-     "slack": "U09E9QHNFDH",
-     "timezone": "Pacific/Honolulu"
-    },
-    {
      "name": "Tara O'Reilly",
-     "role": "Outbound, survey and webinar",
+     "role": "Events and guerrilla ideas",
      "email": "tara@carrara.is",
      "slack": "U0BTCTTS78V",
      "timezone": "America/New_York"
     },
     {
-     "name": "Macarena Gonzalez Cazon",
-     "role": "Web and event design",
-     "email": "Macarena@carrara.is",
-     "slack": "U0AALMNC8RK",
-     "timezone": "America/Buenos_Aires"
-    },
-    {
-     "name": "Yanel Bottini",
-     "role": "Design",
-     "email": "yanel@carrara.is",
-     "slack": "U09Q4PDR9BK",
-     "timezone": "America/Buenos_Aires"
-    },
-    {
-     "name": "Chiara Libertini",
-     "role": "Event listings",
-     "email": "chiara@carrara.is",
-     "slack": "U0AKDG488U8",
-     "timezone": "America/Buenos_Aires"
+     "name": "Sara Hennings",
+     "role": "Events",
+     "email": "sara@carrara.is",
+     "slack": "U0B7AP5R4EL",
+     "timezone": "Europe/Amsterdam"
     }
    ],
    "workstreams": [
     {
-     "title": "Ground Truth",
-     "detail": "Half day engineering conference in SF on Sept 17, hosted with a16z. Done, with candidate follow up and clips still going out.",
-     "points": [
-      "Event site, Luma pages, stage backdrop, badges and a check in page",
-      "Email and LinkedIn outbound from Nick and Alex's accounts, plus a look book of top guests",
-      "Thank you emails, an attendee survey and a retro site"
-     ]
-    },
-    {
      "title": "Case studies",
-     "detail": "Customer video case studies. Fyxer, Ambient and Framer are live, and more are filmed and in post production.",
+     "detail": "Written and video customer case studies, now going out every two weeks. Framer went live on Oct 20 and three more are in production.",
      "points": [
       "Scripts, film crews and edits for each video, plus a written version for the site",
-      "Social rollout with each customer's team reposting from their own accounts"
+      "Framer case study live through the founder's LinkedIn, and an updated Fyxer video on the site",
+      "GEO notes on structure and headings so the written case studies show up in AI search"
      ]
     },
     {
-     "title": "ICP dinners",
-     "detail": "Invite only dinners for finance leaders: Amsterdam on Nov 5, SF with a16z on Nov 12, and London with venue and date being picked.",
+     "title": "Exec dinners",
+     "detail": "Invite only dinners for finance leaders. The Amsterdam venue is booked for Nov 5, and London and SF are in planning.",
      "points": [
       "Positioning on scaling an AI native finance function, with a tax angle",
       "Venue shortlist sites, invite copy and LinkedIn outreach from Nick to the ICP list",
-      "Guest tracker for each dinner, filled from Sphere's and its partners' networks"
+      "Menus, name cards and a branded tile gift being designed for the Amsterdam dinner"
      ]
     },
     {
-     "title": "Campaigns and ads",
-     "detail": "Conference activations and ad creative. The Florida tax conference ran in September, and guerrilla concepts and SF billboard options are in review.",
+     "title": "E-invoicing webinar",
+     "detail": "A partner webinar on choosing an e-invoicing vendor, set for Nov 19 in London and planned as a livestream.",
      "points": [
-      "Digital truck screens with a live timer, coffee cup stickers, merch and a lead form landing page",
-      "LinkedIn and G2 ad creative in Sphere's new brand",
-      "Review sites for three guerrilla campaign concepts and SF billboard options"
+      "Format agreed: Sphere hosts, an outside expert gives the view, with a co-branded checklist",
+      "Studios checked in London and Brussels, including livestreaming with polls and Q&A",
+      "Run sheet with questions for both hosts, an audience poll and pre-event ideas"
+     ]
+    },
+    {
+     "title": "Campaigns and billboards",
+     "detail": "Guerrilla concepts and SF billboard options are with Sphere, with a roadmap session set for Oct 27.",
+     "points": [
+      "Review site with three guerrilla campaign concepts",
+      "SF billboard options site for planning out of home placements",
+      "Florida tax conference: truck screens, coffee cup stickers, merch and a lead form page"
      ]
     },
     {
      "title": "Founder content",
-     "detail": "LinkedIn and X posts for Nick Rudder and Alex Bowcut, scheduled in Ordinal, plus an e-invoicing webinar being booked for Nov 18 to 20.",
+     "detail": "LinkedIn and X posts for Nick Rudder and Alex Bowcut, scheduled in Ordinal, with the weekly posting cadence reset in October.",
      "points": [
-      "Launch and recap posts for Ground Truth, plus clips from the panels",
       "Weekly question prompts to the founders that turn into posts",
-      "Webinar plan with studio options in London and Brussels, recorded and edited before posting"
+      "Launch and recap posts for Ground Truth, plus clips from the panels",
+      "Image assets in Sphere's brand that go out with posts"
      ]
     }
    ],
    "channel": "c-sphere",
-   "updated": "2026-10-23",
+   "updated": "2026-10-27",
    "url": "https://hub.carrara.is/clients/sphere"
   },
   {
@@ -618,7 +584,7 @@
      "role": "GTM sourcing, JDs, market maps and agencies",
      "email": "mary@carrara.is",
      "slack": "U09E9QHNFDH",
-     "timezone": "Pacific/Honolulu"
+     "timezone": "America/New_York"
     },
     {
      "name": "Pranav Mutatkar",
@@ -1377,7 +1343,7 @@
      "role": "Transporters ops and bizops",
      "email": "calvin@carrara.is",
      "slack": "U0B7CSVRALW",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Nic Touron",
@@ -1519,14 +1485,14 @@
      "role": "Account lead",
      "email": "ben@carrara.is",
      "slack": "U099BBEJVA4",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Nathan Peadon",
      "role": "Growth lead",
      "email": "nathan@carrara.is",
      "slack": "U0BHHPR030E",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Sara Hennings",
@@ -1574,7 +1540,7 @@
    "workstreams": [
     {
      "title": "Founders Weekend growth",
-     "detail": "We run growth, ops and the student app for the weekend series, with Build Weekend on Oct 24 and 25 in seven cities and Miami on Nov 7 and 8 in setup.",
+     "detail": "We run growth, ops and the student app for the weekend series. Build Weekend ran Oct 24 and 25 in seven cities, and Miami on Nov 7 and 8 is in setup.",
      "points": [
       "Run of show site with a guide playbook, a staff tech FAQ and six session decks",
       "Parent one-pagers, event emails and a daily Slack digest of sign ups by city",
@@ -1610,7 +1576,7 @@
     }
    ],
    "channel": null,
-   "updated": "2026-10-24",
+   "updated": "2026-10-27",
    "url": "https://hub.carrara.is/clients/alpha-school"
   },
   {
@@ -1736,7 +1702,7 @@
      "role": "Events, outreach and pipeline reporting",
      "email": "mary@carrara.is",
      "slack": "U09E9QHNFDH",
-     "timezone": "Pacific/Honolulu"
+     "timezone": "America/New_York"
     },
     {
      "name": "Jenna Caminiti",
@@ -1946,7 +1912,7 @@
    "hubName": "January",
    "status": "active",
    "oneLiner": "Embedded recruiting for eng, security, product and business roles, plus recruiting ops.",
-   "about": "We run January's hiring across engineering, security, product and business roles. Around it we built the recruiting ops: Ashby automations, role guides, applicant scoring and pipeline analytics.",
+   "about": "We run January's hiring across engineering, security, product, business and recruiting roles. Around it we built the recruiting ops, from Ashby automations and applicant scoring to pipeline dashboards, and we're onboarding January's new in-house recruiters.",
    "practices": [
     {
      "id": "recruiting",
@@ -1963,31 +1929,17 @@
    "team": [
     {
      "name": "Bec Bliss",
-     "role": "Client lead",
+     "role": "Engagement lead",
      "email": "bec@carrara.is",
      "slack": "U0BTYH2PH8E",
      "timezone": "America/New_York"
     },
     {
      "name": "Brandon Taleisnik",
-     "role": "Account and ops",
+     "role": "Account lead",
      "email": "brandon@carrara.is",
      "slack": "U07JH8MAM7G",
      "timezone": "America/Los_Angeles"
-    },
-    {
-     "name": "Kelley Lantigua",
-     "role": "Account lead and coordination",
-     "email": "kelley@carrara.is",
-     "slack": "U0AT6B3QE9X",
-     "timezone": "America/New_York"
-    },
-    {
-     "name": "Tess Wicks",
-     "role": "Recruiting coordinator",
-     "email": "tess@carrara.is",
-     "slack": "U09BRJMBRD5",
-     "timezone": "America/New_York"
     },
     {
      "name": "Ali Horowitz",
@@ -2025,75 +1977,74 @@
      "timezone": "America/New_York"
     },
     {
+     "name": "Tess Wicks",
+     "role": "Recruiting coordination",
+     "email": "tess@carrara.is",
+     "slack": "U09BRJMBRD5",
+     "timezone": "America/New_York"
+    },
+    {
+     "name": "Kelley Lantigua",
+     "role": "Recruiting coordination",
+     "email": "kelley@carrara.is",
+     "slack": "U0AT6B3QE9X",
+     "timezone": "America/New_York"
+    },
+    {
      "name": "Leo Lopes",
-     "role": "Applicant scoring tool",
+     "role": "Recruiting ops and applicant scoring",
      "email": "leonardo@carrara.is",
      "slack": "U0BMBE2091P",
      "timezone": "America/Sao_Paulo"
-    },
-    {
-     "name": "Austin Kane",
-     "role": "Pipeline analytics",
-     "email": "austin@carrara.is",
-     "slack": "U05FMQS5547",
-     "timezone": "America/New_York"
-    },
-    {
-     "name": "Katie Roe",
-     "role": "Applicant review ops",
-     "email": "katie@carrara.is",
-     "slack": "U093W3WSNMN",
-     "timezone": "America/New_York"
     }
    ],
    "workstreams": [
     {
-     "title": "Engineering hiring",
-     "detail": "Full cycle hiring for SWE, senior analytics and senior data systems engineers, ongoing.",
+     "title": "Embedded recruiting",
+     "detail": "Full cycle hiring for engineering, product, S&O, chief of staff, security and recruiting roles, ongoing.",
      "points": [
-      "Data engineer roles retitled into the two new data roles",
+      "Data engineer roles retitled into senior analytics and data systems engineer roles",
       "Candidate team preferences pinned in Ashby for SWE hiring managers",
-      "Applicant scoring decks for the SWE, analytics and data systems roles"
-     ]
-    },
-    {
-     "title": "Security hiring",
-     "detail": "Senior security engineer and head of security engineering searches, ongoing.",
-     "points": [
-      "Role specs updated and sourcing widened",
       "Re-engagement emails to past candidates, sent for the hiring manager"
      ]
     },
     {
-     "title": "Product and business roles",
-     "detail": "PM search in late stage interviews, plus S&O and chief of staff searches with sourcing now focused on chief of staff.",
+     "title": "Security sourcing reset",
+     "detail": "Senior security engineer and head of security engineering searches, with the profile and channels reset.",
      "points": [
-      "PM screens and late stage interviews",
-      "Application review backlog cleared on PM and S&O with scored decks",
-      "Chief of staff applicants scored into a swipe deck"
+      "Profile widened to software engineers from identity products",
+      "Off-platform sourcing in Discords, Slack groups and specialty boards"
      ]
     },
     {
-     "title": "Recruiting ops",
-     "detail": "Role guides are live, applicant scoring reruns across open roles and an agency coverage review has started.",
+     "title": "Inbound application review",
+     "detail": "Applicant scoring ranks inbound and moves top applicants into review in Ashby, with a weekly To Review cleanup.",
      "points": [
-      "Role guide PDFs that update from one deck and go out in interview emails",
       "Applicant scoring that ranks each role's applicants into a swipe deck",
-      "Pipeline 360 view of pass through by stage, split by advance, reject and withdraw"
+      "Score floor raised so fewer, better matched applicants land in review",
+      "Friday To Review deadline, with Claude in Slack tallying who's done"
      ]
     },
     {
-     "title": "Ashby automations",
-     "detail": "Ashby set up to run itself, with reports that flag what needs someone.",
+     "title": "In-house team handoff",
+     "detail": "Onboarding and pipeline handoff for January's new in-house recruiters, just started.",
      "points": [
-      "Booking links, candidate emails and NDAs sent on stage change",
-      "Follow-up report that flags missing scorecards, unbooked interviews and quiet candidates",
-      "Weekly hiring manager sync docs filled in from Ashby"
+      "Onboarding plan for January's new in-house recruiters",
+      "Pipeline handoff plan from Carrara recruiters to the in-house team"
+     ]
+    },
+    {
+     "title": "Recruiting ops and analytics",
+     "detail": "Ashby automations, role guides and pipeline dashboards, with an in-flight view being added to pass through.",
+     "points": [
+      "Booking links, candidate emails and NDAs sent on stage change in Ashby",
+      "Role guide PDFs that update from one deck and go out in interview emails",
+      "Sourcing and recruiter management dashboards, with weekly sourcing targets reset"
      ]
     }
    ],
    "channel": null,
-   "updated": "2026-10-16",
+   "updated": "2026-10-27",
    "url": "https://hub.carrara.is/clients/january"
   },
   {
