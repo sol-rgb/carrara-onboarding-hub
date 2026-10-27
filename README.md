@@ -142,6 +142,40 @@ The 30/60/90 bodies are Markdown in POps' comms subset. `markdown.js` is a
 only HTML-producing path here fed by text typed in another app. Do not edit it;
 re-copy it and re-run the verifier.
 
+### The hire's profile survey (`/api/profile-answers`)
+
+The "Fill out your profile" checklist step can open a survey inside the hub, and send the answers to POps so they are filed on the hire's own profile. Completion is then visible in POps: a profile with answers is a finished one. The hub also ticks the checklist box.
+
+**Dormant by default.** With `POPS_PROFILE_TOKEN` unset, `GET /api/profile-answers` answers `{ enabled: false }`, the checklist step keeps its link to the team directory, and `POST` refuses with 503 and makes no call. Nothing changes for a hire until POps is ready and the token is set.
+
+- `POPS_PROFILE_TOKEN`: a shared secret of its own, separate from `POPS_HUB_TOKEN` and `POPS_PLAN_TOKEN` so the three rotate independently. Set it here and in POps.
+- `POPS_PROFILE_URL`: optional, defaults to `https://carrara-pops.work/api/hub-profile`.
+
+**Who is submitting** comes from the hire's signed access code, never from the form. The endpoint runs `api/welcome.js` on the code (the same way `scripts/verify-my-onboarding.js` does), so the code format is not re-implemented and neither protected file is touched. The `planKey` and name it returns are the verified ones.
+
+**What POps needs to provide** (proposed, for Eric to adjust):
+
+```
+POST {POPS_PROFILE_URL}/{planKey}
+Authorization: Bearer {POPS_PROFILE_TOKEN}
+Content-Type: application/json
+
+{
+  "name": "Ada Lovelace",            // from the verified code
+  "email": "...", "location": "...", "phone": "",   // phone may be empty
+  "linkedin": "...",
+  "answers": { "own_words": "...", "quirks": "...", "high_bar": "...", "misunderstand": "...",
+               "feedback": "...", "help_others": "...", "reach_me": "...", "value_in_others": "..." }
+}
+```
+
+- `200` stores the answers on the profile. A repeat `POST` for the same key replaces them (the hire can edit and resend).
+- `404` or `410` means the key is retired (POps rotates it on every re-enable); the hub tells the hire to enter their newest code.
+- Any other failure shows the hire a retry message, and what they typed stays in their browser.
+- Codes without a `planKey` (Slack `/new-hire`, or minted before 2026-08-17) cannot be matched to a profile. The hub shows those hires a note and keeps the team directory link.
+
+The questions and their order are in `PV_SECTIONS` in `app.js`; the photo is deliberately not part of this survey.
+
 ## Updating snapshots
 
 - `team.json`: team roster fallback (live data comes from Slack when `SLACK_BOT_TOKEN` is set).
