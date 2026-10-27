@@ -487,110 +487,15 @@
     });
   }
 
-  /* ---------- profile survey: a hire's answers go to their POps profile via /api/profile-answers ----------
-     Question wording and order match the People Pavilion spec. Off until the server
-     says it is on; until then the checklist step keeps its link to the team directory. */
-  var PV_SECTIONS = [
-    { title: 'In your own words', qs: [
-      { key: 'own_words', rows: 6, label: 'Tell us about your path to Carrara, what you’re focused on right now, what fills your time outside work, and a few things you care most about.' }
-    ]},
-    { title: 'How I work', qs: [
-      { key: 'quirks', label: 'What are your quirks?' },
-      { key: 'high_bar', label: 'What part of your work do you care more about than most people would notice? Where do you hold yourself to a high bar?' },
-      { key: 'misunderstand', label: 'What do people sometimes misunderstand about you?' },
-      { key: 'feedback', label: 'What makes feedback land for you?' }
-    ]},
-    { title: 'How I work with the team', qs: [
-      { key: 'help_others', label: 'How do you help the people around you get better?' },
-      { key: 'reach_me', label: 'What\'s the best way to reach you for a quick question, for a decision, or when something is going sideways? What context helps you get up to speed fast?' },
-      { key: 'value_in_others', label: 'What qualities do you value most in the people you work with? What makes you think "I want to work with them again"?' }
-    ]}
-  ];
-
-  function mountProfileSurvey(onDone) {
-    var kit = store('carrara_welcome');
-    fetch('/api/profile-answers')
-      .then(function (r) { return r.ok ? r.json() : { enabled: false }; })
-      .catch(function () { return { enabled: false }; })
-      .then(function (s) {
-        var box = $('#pv-box');
-        if (!box || !s.enabled) return;
-        if (!kit || !kit.code) {
-          box.innerHTML = '<p class="m-note">To fill this out, enter your access code in the welcome kit (bottom right).</p>';
-          return;
-        }
-        if (!kit.data || !kit.data.planKey) {
-          box.innerHTML = '<p class="m-note">Your access code is not linked to a profile yet, so use the team directory for now.</p>';
-          return;
-        }
-        var links = $('#chk-links');
-        if (links) links.remove();
-        renderProfileForm(kit, onDone);
-      });
-  }
-
-  function renderProfileForm(kit, onDone) {
+  /* One profile editor and one database, in the signed-in Knowledge Hub. */
+  function mountProfileSurvey() {
     var box = $('#pv-box');
     if (!box) return;
-    var d = store('carrara_profile_draft') || {};
-    var a = d.answers || {};
-    var sent = !!store('carrara_profile_survey_done');
-    var html = (sent ? '<p class="m-note" style="margin:0">You have already sent this. Change anything below and send it again.</p>' : '')
-      + '<div class="pf-group">the basics</div>'
-      + '<label>Name</label><input id="pv-name" value="' + esc(kit.data.name) + '" readonly><div class="pf-hint">From your welcome kit.</div>'
-      + '<label>Email</label><input id="pv-email" type="email" value="' + esc(d.email || '') + '">'
-      + '<label>Where are you based</label><input id="pv-loc" value="' + esc(d.location || '') + '">'
-      + '<label>Phone <span class="pf-opt">optional</span></label><input id="pv-phone" type="tel" value="' + esc(d.phone || '') + '">'
-      + '<label>LinkedIn</label><input id="pv-li" placeholder="https://linkedin.com/in/…" value="' + esc(d.linkedin || '') + '">';
-    PV_SECTIONS.forEach(function (sec) {
-      html += '<div class="pf-group">' + esc(sec.title) + '</div>';
-      sec.qs.forEach(function (q) {
-        html += '<label>' + esc(q.label) + '</label><textarea id="pv-q-' + q.key + '" rows="' + (q.rows || 3) + '">' + esc(a[q.key] || '') + '</textarea>';
-      });
-    });
-    html += '<div class="m-actions"><button class="btn-primary" id="pv-send">Save my profile</button></div>'
-      + '<p class="m-note" id="pv-msg" role="status"></p>';
-    box.innerHTML = html;
-
-    function read() {
-      var out = { email: $('#pv-email').value.trim(), location: $('#pv-loc').value.trim(),
-        phone: $('#pv-phone').value.trim(), linkedin: $('#pv-li').value.trim(), answers: {} };
-      PV_SECTIONS.forEach(function (sec) { sec.qs.forEach(function (q) { out.answers[q.key] = $('#pv-q-' + q.key).value.trim(); }); });
-      return out;
-    }
-    /* what they have typed survives a closed popup or a failed send */
-    box.oninput = function () { store('carrara_profile_draft', read()); };
-
-    $('#pv-send').addEventListener('click', function () {
-      var cur = read(), msg = $('#pv-msg'), btn = $('#pv-send');
-      var blank = ['pv-email', 'pv-loc', 'pv-li'].filter(function (id) { return !$('#' + id).value.trim(); })
-        .concat(Object.keys(cur.answers).filter(function (k) { return !cur.answers[k]; }).map(function (k) { return 'pv-q-' + k; }));
-      if (blank.length) { msg.textContent = 'Everything except phone is needed.'; $('#' + blank[0]).focus(); return; }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cur.email)) { msg.textContent = 'Check your email address.'; $('#pv-email').focus(); return; }
-      btn.disabled = true;
-      msg.textContent = 'Saving...';
-      fetch('/api/profile-answers', { method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code: kit.code, email: cur.email, location: cur.location, phone: cur.phone, linkedin: cur.linkedin, answers: cur.answers }) })
-        .then(function (r) { return r.json().catch(function () { return {}; }).then(function () { return r.status; }); })
-        .then(function (status) {
-          if (status === 200) {
-            store('carrara_profile_survey_done', true);
-            box.innerHTML = '<div class="pf-group">saved</div><p>Thanks. Your answers are saved to your profile.</p>'
-              + '<div class="m-actions"><button class="btn-primary" id="pv-edit">Edit my answers</button></div>';
-            $('#pv-edit').addEventListener('click', function () { renderProfileForm(kit, onDone); });
-            onDone();
-            return;
-          }
-          btn.disabled = false;
-          msg.textContent = {
-            400: 'Check your email address and that every answer is filled in.',
-            401: 'Your access code did not check out. Enter it again in the welcome kit.',
-            409: 'Your access code is not linked to a profile yet.',
-            410: 'Your access code has been replaced. Enter your newest one in the welcome kit.'
-          }[status] || 'That did not send. What you typed is kept here. Try again in a moment.';
-        })
-        .catch(function () { btn.disabled = false; msg.textContent = 'That did not send. What you typed is kept here. Try again in a moment.'; });
-    });
+    var links = $('#chk-links');
+    if (links) links.remove();
+    box.innerHTML = '<p>Your profile lives in the Carrara Hub. Fill it out there so your answers stay in one place.</p>'
+      + '<div class="m-actions"><a class="btn-primary" href="https://hub.carrara.is/people?profile=edit" target="_blank" rel="noopener">Create or edit my profile ↗</a></div>'
+      + '<p class="m-note">Sign in with your Carrara account. Return here and mark this step complete after saving.</p>';
   }
 
   /* ---------- checklist ---------- */
@@ -662,7 +567,7 @@
 
   /* ---------- team ---------- */
   var teamData = [];
-  var myProfile = store('carrara_profile');
+  var myProfile = null; // Shared profiles are edited in the Knowledge Hub.
   function initials(name) {
     return name.split(/\s+/).slice(0, 2).map(function (w) { return w.charAt(0); }).join('').toUpperCase();
   }
@@ -671,6 +576,7 @@
     return t.replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{200D}]/gu, '').trim();
   }
   function openMemberModal(m) {
+    applyKnowledgePeople();
     var p = profileData[m.name];
     var pv = pavilion[m.name] || {};
     var role = pv.role || cleanTitle(m.title);
@@ -713,7 +619,7 @@
             return '<li>' + (x.role ? '<b>' + esc(x.role) + '</b>, ' + esc(x.company) : '<b>' + esc(x.company) + '</b>') + '</li>';
           }).join('') + '</ul></div>';
     }
-    var linksH = [];
+    var linksH = ['<a href="https://hub.carrara.is/people?person=' + encodeURIComponent(m.email || m.name) + '" target="_blank" rel="noopener">Full profile on the Carrara Hub ↗</a>'];
     if (m.email) linksH.push('<a href="mailto:' + esc(m.email) + '">' + esc(m.email) + '</a>');
     var li = pv.linkedin || (p && p.linkedin);
     if (li) linksH.push('<a href="' + esc(/^https?:/.test(li) ? li : 'https://' + li) + '" target="_blank" rel="noopener">LinkedIn ↗</a>');
@@ -912,6 +818,7 @@
       /* the Notion directory is the richer source: role, location, clients and the
          People Pavilion answers. Slack still owns the photo and who is on the roster. */
       teamData = data.members || [];
+      applyKnowledgePeople();
       /* Slack and Notion spell people differently: Slack has "Heath" and "Ben",
          Notion has "Heath Jamieson" and "Ben Munns". Match on email first, then
          exact name, and only then on a first name -- and only when the Slack
@@ -949,106 +856,9 @@
     })
     .catch(function () { $('#team-note').textContent = 'Team list is unavailable right now.'; });
 
-  /* profile form */
-  /* The People Pavilion question set, verbatim. Kept here as data so the form,
-     the team card and any future survey all read from one list. */
-  var PAVILION_Q = [
-    { group: 'about you', qs: [
-      ['qualities', 'What qualities do you value in people you work with?']
-    ]},
-    { group: 'how you work with others', qs: [
-      ['communicate', "What's the best way to communicate with you?"],
-      ['givefb', 'How do you like to give feedback?'],
-      ['getfb', 'How do you like to get feedback?']
-    ]}
-  ];
-  var TEAM_OPTIONS = ['Managed Services / BizOps', 'Talent Acquisition', 'Talent Management',
-    'Strategic Finance', 'Internal Operations'];
-
+  /* The old browser-only form never reached the shared directory. */
   $('#btn-profile').addEventListener('click', function () {
-    var p = myProfile || {};
-    var a = p.answers || {};
-    function opts(list, sel) {
-      return '<option value="">Select one</option>' + list.map(function (v) {
-        return '<option value="' + esc(v) + '"' + (sel === v ? ' selected' : '') + '>' + esc(v) + '</option>';
-      }).join('');
-    }
-    var clientNames = clientData.map(function (c) { return c.name; }).sort();
-    var qHtml = PAVILION_Q.map(function (g) {
-      return '<div class="pf-group">' + esc(g.group) + '</div>'
-        + g.qs.map(function (q) {
-            return '<label>' + esc(q[1]) + '</label>'
-              + '<textarea id="pf-q-' + q[0] + '" rows="2">' + esc(a[q[0]] || '') + '</textarea>';
-          }).join('');
-    }).join('');
-
-    openModal(
-      '<div class="m-eyebrow">[your profile]</div><h3>Add yourself to the wall</h3>'
-      + '<p class="m-note" style="margin:0 0 18px">This replaces the People Pavilion. Everything here shows on your card, so other people can work out how to work with you.</p>'
-      + '<div class="pf-group">the basics</div>'
-      + '<label>Name</label><input id="pf-name" value="' + esc(p.name || '') + '">'
-      + '<label>Team</label><select id="pf-team">' + opts(TEAM_OPTIONS, p.team) + '</select>'
-      + '<label>Email</label><input id="pf-email" type="email" placeholder="you@carrara.is" value="' + esc(p.email || '') + '">'
-      + '<label>LinkedIn</label><input id="pf-li" placeholder="https://linkedin.com/in/…" value="' + esc(p.linkedin || '') + '">'
-      + '<label>Where you are based</label><input id="pf-loc" placeholder="City, country" value="' + esc(p.location || '') + '">'
-      + '<label>Phone number <span class="pf-opt">optional</span></label><input id="pf-phone" value="' + esc(p.phone || '') + '">'
-      + '<label>Start date</label><input id="pf-start" type="date" value="' + esc(p.startDate || '') + '">'
-      + '<label>Photo</label><input id="pf-photo" type="file" accept="image/*">'
-      + '<div class="pf-hint" id="pf-photo-hint">' + (p.photo ? 'A photo is saved. Choose a new file to replace it.' : 'A real photo of your face. It stays in your browser until you save.') + '</div>'
-      + '<label>Client you are working on</label><select id="pf-client">' + opts(clientNames, p.client) + '</select>'
-      + '<div class="pf-group">in your own words</div>'
-      + '<label>Share a quick background on yourself! What you\'ve done, what you focus on today, what you spend time on outside of work, and a few things you value!</label>'
-      + '<textarea id="pf-bg" rows="4">' + esc(p.background || '') + '</textarea>'
-      + qHtml
-      + '<div class="m-actions"><button class="btn-primary" id="pf-save">Add me to the wall</button></div>'
-      + '<p class="m-note">Your intro is shared with the team so they can give you a proper welcome.</p>'
-    );
-
-    /* the photo is read to a data URL so the card can show it with no upload
-       endpoint. Capped so a 12MP phone photo cannot blow out localStorage. */
-    var photoData = p.photo || '';
-    $('#pf-photo').addEventListener('change', function (e) {
-      var f = e.target.files && e.target.files[0];
-      if (!f) return;
-      if (f.size > 3 * 1024 * 1024) {
-        $('#pf-photo-hint').textContent = 'That file is over 3MB. Pick a smaller one.';
-        return;
-      }
-      var fr = new FileReader();
-      fr.onload = function () { photoData = fr.result; $('#pf-photo-hint').textContent = 'Photo ready: ' + f.name; };
-      fr.readAsDataURL(f);
-    });
-
-    $('#pf-save').addEventListener('click', function () {
-      var answers = {};
-      PAVILION_Q.forEach(function (g) {
-        g.qs.forEach(function (q) {
-          var v = $('#pf-q-' + q[0]).value.trim();
-          if (v) answers[q[0]] = v;
-        });
-      });
-      var prof = {
-        name: $('#pf-name').value.trim(),
-        team: $('#pf-team').value,
-        email: $('#pf-email').value.trim(),
-        linkedin: $('#pf-li').value.trim(),
-        location: $('#pf-loc').value.trim(),
-        phone: $('#pf-phone').value.trim(),
-        startDate: $('#pf-start').value,
-        client: $('#pf-client').value,
-        photo: photoData,
-        background: $('#pf-bg').value.trim(),
-        answers: answers
-      };
-      if (!prof.name) { $('#pf-name').focus(); return; }
-      myProfile = prof; store('carrara_profile', prof);
-      /* the photo is big and only matters in this browser, so it never leaves */
-      var forSlack = {};
-      Object.keys(prof).forEach(function (k) { if (k !== 'photo') forSlack[k] = prof[k]; });
-      fetch('/api/profile', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(forSlack) }).catch(function () {});
-      renderTeam($('#team-search').value);
-      closeModal();
-    });
+    window.open('https://hub.carrara.is/people?profile=edit', '_blank', 'noopener');
   });
 
   /* ---------- welcome kit -> hub personalization ---------- */
@@ -1296,6 +1106,20 @@
   var knowledgeByName = {};     /* onboarding client name -> knowledge client */
   var knowledgeByPage = {};     /* pages.js key (skuFinance) -> knowledge practice */
   var knowledgeByPerson = {};   /* person name -> active client names they're on */
+  function applyKnowledgePeople() {
+    if (!knowledge || !knowledge.people) return;
+    var byEmail = {};
+    knowledge.people.forEach(function (p) { if (p.email) byEmail[p.email.toLowerCase()] = p; });
+    teamData.forEach(function (m) {
+      var p = m.email && byEmail[m.email.toLowerCase()];
+      if (!p) return;
+      // The roster still decides who is active. Shared workplace metadata only;
+      // personal survey answers stay behind Carrara Hub sign in.
+      m.title = p.title || m.title;
+      if (p.photo) m.avatar = p.photo;
+      profileData[m.name] = Object.assign({}, profileData[m.name], { linkedin: p.linkedin || '' });
+    });
+  }
   function knowledgeClient(name) { return knowledgeByName[name] || null; }
   function knowledgePractice(pageKey) { return knowledgeByPage[pageKey] || null; }
   function knowledgeLoaded(k) {
@@ -1310,6 +1134,7 @@
       });
     });
     (knowledge.practices || []).forEach(function (p) { knowledgeByPage[p.page] = p; });
+    applyKnowledgePeople();
   }
   /* Clients the Knowledge Hub has and the Codex snapshot doesn't get a card too,
      built from the export. clients.json carries the same names so POps can
