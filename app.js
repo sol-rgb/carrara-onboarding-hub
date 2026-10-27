@@ -103,7 +103,7 @@
       { t: 'Get oriented on our Notion', d: 'Start at Home Base and click around.', links: [{ t: 'Home Base', k: 'notionHomeBase' }] },
       { t: 'Review Time-Off Policy', d: 'Read the Time-Off & Holiday Policy page in this hub. Two minutes now saves confusion later.', links: [{ t: 'Time-Off & Holiday Policy', k: '#/timeoff' }] },
       { t: 'Set up time tracking', d: 'Your hours help us accurately track client work, allocate expenses, and support client billing and internal reporting, so please make sure they\'re complete and submitted on time.', links: [{ t: 'Time tracking', k: 'timeTracking' }] },
-      { t: 'Fill out your profile', d: 'Add yourself to the team wall so people can get to know you.', links: [{ t: 'The team directory', k: '#/team' }], survey: 'profile' },
+      { t: 'Fill out your profile', d: 'Create your profile in the Carrara Hub so the team can get to know you. Your answers stay in one place.', links: [{ t: 'The team directory', k: '#/team' }], survey: 'profile' },
       { t: 'Understand your benefits', d: 'What you\'re enrolled in, what you need to elect, and by when. Ask Eric on Slack if anything is unclear or if you\'re a contractor and not sure what applies to you.' }
     ]},
     { g: 'week two', cls: '', items: [
