@@ -626,7 +626,7 @@
     if (linksH.length) html += '<div class="wk-sec"><div class="wk-lbl">[reach them]</div><div class="wk-links">' + linksH.join('') + '</div></div>';
     html += '</div>';
     if (!pv.answers || !pv.answers.length) {
-      html += '<p class="pg-note">They have not filled in their People Pavilion answers yet.</p>';
+      html += '<p class="pg-note">Background and working preferences live on the Carrara Hub.</p>';
     }
     openModal(html);
   }
