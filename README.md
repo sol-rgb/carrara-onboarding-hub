@@ -95,95 +95,20 @@ function doPost(e) {
 
 Editing the script later needs Deploy, Manage deployments, Edit, New version; the URL stays the same.
 
-### Access codes from POps (`/api/mint`)
+### Access
 
-`POST /api/mint` lets Carrara's People Ops app (POps) generate a welcome-kit access code without a hiring manager running `/new-hire` in Slack — POps already knows the new joiner's details, so it mints the code and sends it with the welcome email. The code is the same signed, stateless format the Slack flow produces; `/api/welcome` decodes both identically, so nothing else in the hub changes.
+Sign in with Google, Carrara accounts only (`middleware.js`, `api/auth/login.js`, `api/auth/google.js`). It is the same Google client as the Carrara Hub at hub.carrara.is, so the three values are copied from that Vercel project:
 
-- `POPS_HUB_TOKEN`: a shared secret (any long random string), set in Vercel env vars here and in POps. Requests authenticate with an `Authorization: Bearer <token>` header.
+- `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`: the shared client. In the Google Cloud console, that client needs this site's address plus `/api/auth/google` as one more authorized redirect URI.
+- `AUTH_SECRET`: signs the session cookie. Any long random string; the same value as the hub keeps the two sites alike.
+- `ALLOWED_EMAILS`: optional, comma separated, for people without a carrara.is Google Workspace account.
 
-Request body: `{ name, country, project, client, manager, managerId, planKey }` — the same survey answers the Slack modal collects, plus the manager's Slack user id. `country` is one of `US` / `AR` / `AU` / `OTHER`, `project` one of `talent` / `finance` / `gtm` / `other`, `client` an exact name from `clients.json`. `name` and `manager` are required; everything else is optional. Every value must be a string or null — a number or object is refused with a 400 rather than coerced into the code.
+Only verified @carrara.is Google Workspace accounts get in (the `hd` claim is carrara.is), plus `ALLOWED_EMAILS`. Sessions last 30 days.
 
-`planKey` is the opaque token POps mints per hub enable. It is packed into the code as its seventh field and handed back to POps at view time to fetch the hire's 30/60/90 plan. Null or absent is legal: the kit renders without the plan block.
+Three ways in without Google, all deliberate:
 
-Response: `{ url, code, warnings }`.
+- A hire's own link. POps mails `?code=<access code>` on day one, sometimes before the hire's carrara.is Google account exists. A valid code (the same signed format `/api/mint` and `/api/welcome` use) sets a `hub_kit` cookie and the hire browses as usual, for 30 days.
+- POps and Slack: `/api/mint` (bearer token) and `/api/slack-newhire` (Slack signature) check their callers themselves and are not behind the login. The POps contract in AGENTS.md is unchanged.
+- The Vercel cron that warms `/api/team`: set `CRON_SECRET` in Vercel and Vercel sends it as a bearer token; without it the cron gets a 401 and the first visitor warms the cache instead.
 
-- `code` is the payload that matters: the new joiner pastes it into the welcome kit popup, and POps shows it in the welcome email. Nothing else unlocks the kit.
-- `url` opens the hub with the code in the query string, and the front-end consumes it: following the link unlocks the welcome kit automatically (the popup opens already personalized, and the code is scrubbed from the address bar). A bad or expired code falls back to the normal locked popup with the usual error, where pasting still works — so the email should carry both the link and the code, link as the main path, code as the fallback.
-- `warnings` is an array of strings.
-
-**Dormant by default.** With `POPS_HUB_TOKEN` unset, every request is refused with a 401, so deploying this endpoint before the secret exists is a no-op. That is what makes shipping it to `main`, which deploys automatically, safe: the endpoint only wakes up when someone sets the env var.
-
-`extra`, `location` and `employmentType` are accepted and ignored — POps sends them on every request so this side can start consuming them later without a contract change.
-
-`warnings` reports an unrecognized `project`, `country` or `client` instead of failing, because those values fail soft downstream: an unknown project quietly yields the generic kit rather than an error. The client check reads the bundled `clients.json`, so a client that exists only in Notion (served live by `/api/clients`) warns even though it is real — acceptable for now; add it to `clients.json` or ignore that warning.
-
-After any change to the code format, on either side, run `WELCOME_SECRET=test-secret node scripts/verify-mint.js` **and** `WELCOME_SECRET=test-secret node scripts/verify-my-onboarding.js`. The first mints a code and decodes it with `api/welcome.js`'s own logic, six-field and seven-field alike, and exercises the auth gate. The second covers everything the plan key unlocks: the POps call, the vendored Markdown renderer, the section's reveal state machine and its rendering. Both print `... OK` and exit non-zero on any mismatch.
-
-### The hire's plan from POps (`/api/hub-plan`)
-
-The welcome kit's "My Onboarding" section shows what the hiring manager wrote in
-POps: an intro note, the first client, who to sync with in week one, and a
-30/60/90 plan. That text is too long to travel inside an access code, so
-`/api/welcome` fetches it server-side, once per view, from POps.
-
-- `POPS_PLAN_TOKEN`: a shared secret, its own — **not** `POPS_HUB_TOKEN`, so the
-  two directions rotate independently. Set it here and in POps' Vercel project.
-- `POPS_PLAN_URL`: optional, defaults to `https://carrara-pops.work/api/hub-plan`.
-
-**Dormant by default.** With `POPS_PLAN_TOKEN` unset, `/api/welcome` makes no
-call at all, and every kit renders exactly as it does today.
-
-Nothing about this can break a kit. A missing plan key, an unset secret, a
-retired key (POps rotates it on every re-enable), a 404, an outage or a
-malformed body all end the same way: the kit renders without the plan block.
-
-The 30/60/90 bodies are Markdown in POps' comms subset. `markdown.js` is a
-**vendored copy of POps' `src/lib/comms/markdown.ts`** — escape-first, and the
-only HTML-producing path here fed by text typed in another app. Do not edit it;
-re-copy it and re-run the verifier.
-
-### The hire's profile survey (`/api/profile-answers`)
-
-The "Fill out your profile" checklist step can open a survey inside the hub, and send the answers to POps so they are filed on the hire's own profile. Completion is then visible in POps: a profile with answers is a finished one. The hub also ticks the checklist box.
-
-**Dormant by default.** With `POPS_PROFILE_TOKEN` unset, `GET /api/profile-answers` answers `{ enabled: false }`, the checklist step keeps its link to the team directory, and `POST` refuses with 503 and makes no call. Nothing changes for a hire until POps is ready and the token is set.
-
-- `POPS_PROFILE_TOKEN`: a shared secret of its own, separate from `POPS_HUB_TOKEN` and `POPS_PLAN_TOKEN` so the three rotate independently. Set it here and in POps.
-- `POPS_PROFILE_URL`: optional, defaults to `https://carrara-pops.work/api/hub-profile`.
-
-**Who is submitting** comes from the hire's signed access code, never from the form. The endpoint runs `api/welcome.js` on the code (the same way `scripts/verify-my-onboarding.js` does), so the code format is not re-implemented and neither protected file is touched. The `planKey` and name it returns are the verified ones.
-
-**What POps needs to provide** (proposed, for Eric to adjust):
-
-```
-POST {POPS_PROFILE_URL}/{planKey}
-Authorization: Bearer {POPS_PROFILE_TOKEN}
-Content-Type: application/json
-
-{
-  "name": "Ada Lovelace",            // from the verified code
-  "email": "...", "location": "...", "phone": "",   // phone may be empty
-  "linkedin": "...",
-  "answers": { "own_words": "...", "quirks": "...", "high_bar": "...", "misunderstand": "...",
-               "feedback": "...", "help_others": "...", "reach_me": "...", "value_in_others": "..." }
-}
-```
-
-- `200` stores the answers on the profile. A repeat `POST` for the same key replaces them (the hire can edit and resend).
-- `404` or `410` means the key is retired (POps rotates it on every re-enable); the hub tells the hire to enter their newest code.
-- Any other failure shows the hire a retry message, and what they typed stays in their browser.
-- Codes without a `planKey` (Slack `/new-hire`, or minted before 2026-08-17) cannot be matched to a profile. The hub shows those hires a note and keeps the team directory link.
-
-The questions and their order are in `PV_SECTIONS` in `app.js`; the photo is deliberately not part of this survey.
-
-## Updating snapshots
-
-- `team.json`: team roster fallback (live data comes from Slack when `SLACK_BOT_TOKEN` is set).
-- `clients.json`: client roster, leads, workstreams and descriptions, exported from the Quarry Brain. A scheduled Claude Code task on Sol's machine ("refresh-hub-clients", Mondays 8:46am) re-exports it weekly and pushes; Vercel redeploys automatically. Client descriptions come from the brain's entity description field ("Legal name" notes are filtered out) — write a real description in the brain and it appears here on the next refresh.
-- `codex.json`: the narrative dataset behind the per-client pages (`#/client/<slug>`): about, engagement bullets, company facts, background notes, and doc links. Keyed by canonical client name. Structured fields (status, project types, staffing) are overridden by live Notion data when the API below is enabled.
-- `/api/clients`: live clients endpoint. With `NOTION_TOKEN` set it queries the Client Codex database in Notion directly (clients + people, edge-cached for an hour), so new Active clients and staffing/status changes appear on the hub automatically; narrative content still comes from `codex.json`, and domain/lead/workstreams from `clients.json`. Without the token it serves the bundled snapshots. Setup: create an internal integration at notion.so/my-integrations, open the Client Codex page in Notion and add the integration under Connections (this covers the child databases), then set `NOTION_TOKEN` in Vercel env vars and redeploy. Notion clients whose names differ from the brain's are mapped in `ALIASES` inside `api/clients.js` — extend it if a new client shows up twice under two names.
-- `profiles.json`: LinkedIn links and prior-two-companies enrichment for the Team page, researched from public web search (no LinkedIn scraping). Keyed by the exact name in `team.json`. Entries carry a `confidence` field: `high` = Carrara affiliation publicly confirmed, `medium` = strong name/context match. People with no confident public match are simply absent — add them by hand as they share their links.
-
-## Access
-
-The hub contains internal information (team emails, client roster). Recommended: enable Vercel Deployment Protection (Standard Protection with Vercel Authentication, or a password) in Project Settings, Deployment Protection.
+Until `GOOGLE_CLIENT_ID` is set the site stays open, so deploying this before the env vars changes nothing.
