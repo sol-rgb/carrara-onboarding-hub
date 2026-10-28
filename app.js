@@ -17,7 +17,7 @@
     { id: 'tools',     label: 'Our tools' },
     { id: 'hub',       label: 'Carrara hub' },
     { id: 'timeoff',   label: 'Time off policy' },
-    { id: 'resources', label: 'Resources' },
+    { id: 'resources', label: 'What to read and watch' },
     /* locked: reachable, but marked so nobody expects content yet */
     { id: 'conduct',   label: 'Code of conduct', locked: true },
     /* LAST, and hidden until every section above has been visited. */
