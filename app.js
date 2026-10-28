@@ -11,10 +11,10 @@
     { id: 'start',     label: 'Start here' },
     { id: 'who',       label: 'Who we are' },
     { id: 'team',      label: 'The team' },
-    { id: 'slack',     label: 'Slack' },
+    { id: 'slack',     label: 'How we Communicate' },
     { id: 'business',  label: 'The business' },
-    { id: 'clients',   label: 'Clients' },
-    { id: 'tools',     label: 'Tools' },
+    { id: 'clients',   label: 'Our Clients' },
+    { id: 'tools',     label: 'Our Tools' },
     { id: 'hub',       label: 'Carrara Hub' },
     { id: 'timeoff',   label: 'Time off policy' },
     { id: 'resources', label: 'Resources' },
@@ -67,49 +67,49 @@
      or 'ch:<channel>' for a Slack channel. Unresolvable keys simply do not render,
      so filling a blank in links.js lights the link up everywhere at once. */
   var CHECKLIST = [
-    { g: 'day one', cls: '', items: [
-      { t: 'Set up your Slack workspace', d: 'Join carrarais.slack.com. Set your full name, photo, title and timezone: the team page pulls from your Slack profile. Then read the Slack section of this hub so the channel prefixes make sense.', links: [{ t: 'Open Slack', k: 'slackWorkspace' }, { t: 'The Slack guide', k: '#/slack' }] },
-      { t: 'Ensure tool and system access', d: 'Confirm you can open Google, Notion, Slack and the tools for your role. Anything blocked, ping Eric on Slack.', links: [{ t: 'Notion Home Base', k: 'notionHomeBase' }] },
-      { t: 'Payroll setup (Deel, Bill.com, or Ramp)', d: 'Deel for full-time employees, Bill.com for US contractors, Ramp for international contractors. You\'ll get an invite for the one that applies to you.', links: [{ t: 'Deel', k: 'deel' }, { t: 'Bill.com', k: 'bill' }, { t: 'Ramp', k: 'ramp' }] },
-      { t: 'Set up email signature and Slack profile', d: 'Use the Carrara signature format from the brand templates, and fill out your Slack profile completely.',
-        html: '<div class="m-eyebrow">[day one]</div><h3>Set up email signature and Slack profile</h3>'
-          + '<h4 style="margin:18px 0 6px">Email</h4>'
-          + '<p>Use the following template and steps to add your custom Carrara-branded email signature.</p>'
-          + '<ol style="margin:8px 0 0 20px;padding:0">'
-          + '<li>Copy the signature from the email signature template (linked below).</li>'
+    { g: 'start here', cls: 'blue', items: [
+      { id: 'slack', when: 'day one', t: 'Set up your Slack workspace', d: 'Join carrarais.slack.com. Set your full name, photo, title and timezone: the team page pulls from your Slack profile. Then read the Slack section of this hub so the channel prefixes make sense.', links: [{ t: 'Open Slack', k: 'slackWorkspace' }, { t: 'The Slack guide', k: '#/slack' }] },
+      { id: 'tool-access', when: 'day one', t: 'Ensure tool and system access', d: 'Confirm you can open Google, Notion, Slack and the tools for your role. Anything blocked, ping Eric on Slack.', links: [{ t: 'Notion Home Base', k: 'notionHomeBase' }] },
+      { id: 'payroll', when: 'day one', t: 'Payroll setup (Deel, Bill.com, or Ramp)', d: 'Deel for full-time employees, Bill.com for US contractors, Ramp for international contractors. You\'ll get an invite for the one that applies to you.', links: [{ t: 'Deel', k: 'deel' }, { t: 'Bill.com', k: 'bill' }, { t: 'Ramp', k: 'ramp' }] },
+      { id: 'i9', when: 'day one', t: 'I-9 verification (full-time employees only)', d: 'US full-time employees complete I-9 employment eligibility verification. Eric sends this over; get it back the same week so payroll isn\'t held up.' },
+      { id: 'email-signature', when: 'day one', t: 'Set up email signature and Slack profile', d: 'Use the Carrara signature format from the brand templates, and fill out your Slack profile completely.',
+        html: '<div class="m-eyebrow">[start here · day one]</div><h3>Set up email signature and Slack profile</h3>'
+          + '<h4 style="margin:18px 0 6px">Part 1: Your email signature</h4>'
+          + '<p>You do this in your Carrara Gmail.</p>'
+          + '<ol style="margin:8px 0 0 20px;padding:0;line-height:1.7">'
+          + '<li><a class="textlink" href="' + window.LINKS.emailSigTemplate + '" target="_blank" rel="noopener">Open the email signature template ↗</a> (a Google Doc) and copy the signature.</li>'
           + '<li>Go to your Carrara Gmail inbox.</li>'
-          + '<li>"Settings" icon (top right) → "See all Settings."</li>'
-          + '<li>Scroll down to "Signature."</li>'
-          + '<li>"Create New."</li>'
-          + '<li>Paste the signature from the template.</li>'
-          + '<li>Update the text for your name and your role.</li>'
-          + '<li>Update "Signature Defaults" → "For New Emails Use: Carrara" &amp; "On Reply/Forward Use: Carrara."</li>'
-          + '<li>Hit "Save Changes" at the bottom.</li>'
+          + '<li>Click the <b>Settings</b> icon (top right), then <b>See all Settings</b>.</li>'
+          + '<li>Scroll down to <b>Signature</b> and click <b>Create New</b>. Name it <b>Carrara</b>.</li>'
+          + '<li>Paste the signature you copied from the template.</li>'
+          + '<li>Change the text to your own name and role.</li>'
+          + '<li>Under <b>Signature Defaults</b>, set <b>For New Emails Use</b> to <b>Carrara</b>, and <b>On Reply/Forward Use</b> to <b>Carrara</b>.</li>'
+          + '<li>Scroll to the bottom and click <b>Save Changes</b>.</li>'
           + '</ol>'
-          + '<h4 style="margin:18px 0 6px">Slack</h4>'
-          + '<p>For your Slack profile, be sure to add: full name, photo, title/focus area, and timezone. Also add your phone number, email and start date.</p>'
+          + '<h4 style="margin:24px 0 6px">Part 2: Your Slack profile</h4>'
+          + '<p>Fill in your Slack profile. Be sure to add:</p>'
+          + '<div class="pg"><ul><li>Full name</li><li>Photo</li><li>Title / focus area</li><li>Timezone</li><li>Phone number</li><li>Email</li><li>Start date</li></ul></div>'
           + '<p class="m-note" style="margin-top:6px">Optional: about you, birthday, name pronunciation, pronouns.</p>',
-        links: [{ t: 'Brand templates', k: '#/templates' }, { t: 'Email signature template', k: 'emailSigTemplate' }, { t: 'Full guide on Notion', k: 'emailSignatureGuide' }] },
-      { t: 'Day 1 manager 1:1', d: 'Your first 1:1: align on your 90-day plan, week one priorities, and how you\'ll work together.' },
-      { t: 'Set up time with your onboarding buddy', d: 'Your onboarding buddy is there for any day-to-day question, no matter how small. Grab time with them early so you know who to go to.' },
-      { t: 'Submit your Top 5', d: 'Name the five best people you have ever worked with, one submission per person. It seeds our network with people we already trust, and it\'s one of the most useful things you can do in your first week.', survey: 'top5' },
-      { t: 'I-9 verification (full-time employees only)', d: 'US full-time employees complete I-9 employment eligibility verification. Eric sends this over; get it back the same week so payroll isn\'t held up.' }
+        links: [{ t: 'Full guide on Notion', k: 'emailSignatureGuide' }] },
+      { id: 'time-tracking', when: 'week one', t: 'Set up time tracking', d: 'Your hours help us accurately track client work, allocate expenses, and support client billing and internal reporting, so please make sure they\'re complete and submitted on time.', links: [{ t: 'Time tracking', k: 'timeTracking' }] },
+      { id: 'benefits', when: 'week one', t: 'Understand your benefits', d: 'What you\'re enrolled in, what you need to elect, and by when. Ask Eric on Slack if anything is unclear or if you\'re a contractor and not sure what applies to you.' }
     ]},
-    { g: 'week one', cls: 'blue', items: [
-      { t: 'Set up the Quarry', d: 'Our AI harness. Download the Claude app and log in with your Carrara Google account, set up an Obsidian vault, point Cowork at it, then run /workspace-initialization, /workspace-migration and /sync. Do this in week one: most of how we work assumes it.', links: [{ t: 'Quarry setup guide', k: 'quarry' }, { t: 'The tools we use', k: '#/tools' }] },
-      { t: 'Set up a recurring 1:1 with your manager', d: 'Get a weekly slot on the calendar before the week ends.' },
-      { t: "Confirm you're added to all team calls", d: 'Standing team meetings, the monthly Team Roundup, and any client syncs relevant to your role.', links: [{ t: 'Team Roundup', k: 'teamRoundup' }] },
-      { t: 'Watch the offsite talks', d: 'The sessions from this year\'s Mexico City offsite, each with its deck and recording, plus the opening deck from last year\'s. They\'re the quickest way to get where Carrara is going and why.', links: [{ t: 'Offsite 2026: Mexico City', k: 'offsite2026' }, { t: 'Offsite 2025: Upstate', k: 'offsite2025' }] },
-      { t: 'Get oriented on our Notion', d: 'Start at Home Base and click around.', links: [{ t: 'Home Base', k: 'notionHomeBase' }] },
-      { t: 'Review Time-Off Policy', d: 'Read the Time-Off & Holiday Policy page in this hub. Two minutes now saves confusion later.', links: [{ t: 'Time-Off & Holiday Policy', k: '#/timeoff' }] },
-      { t: 'Set up time tracking', d: 'Your hours help us accurately track client work, allocate expenses, and support client billing and internal reporting, so please make sure they\'re complete and submitted on time.', links: [{ t: 'Time tracking', k: 'timeTracking' }] },
-      { t: 'Fill out your profile', d: 'Create your profile in the Carrara Hub so the team can get to know you. Your answers stay in one place.', links: [{ t: 'The team directory', k: '#/team' }], survey: 'profile' },
-      { t: 'Understand your benefits', d: 'What you\'re enrolled in, what you need to elect, and by when. Ask Eric on Slack if anything is unclear or if you\'re a contractor and not sure what applies to you.' }
+    { g: 'get to know carrara', cls: '', items: [
+      { id: 'quarry', when: 'week one', t: 'Set up the Quarry', d: 'Our AI harness. Download the Claude app and log in with your Carrara Google account, set up an Obsidian vault, point Cowork at it, then run /workspace-initialization, /workspace-migration and /sync. Do this in week one: most of how we work assumes it.', links: [{ t: 'Quarry setup guide', k: 'quarry' }, { t: 'The tools we use', k: '#/tools' }] },
+      { id: 'notion', when: 'week one', t: 'Get oriented on our Notion', d: 'Start at Home Base and click around.', links: [{ t: 'Home Base', k: 'notionHomeBase' }] },
+      { id: 'time-off', when: 'week one', t: 'Review Time-Off Policy', d: 'Read the Time-Off & Holiday Policy page in this hub. Two minutes now saves confusion later.', links: [{ t: 'Time-Off & Holiday Policy', k: '#/timeoff' }] },
+      { id: 'offsite-talks', when: 'week one', t: 'Watch the offsite talks', d: 'The sessions from this year\'s Mexico City offsite, each with its deck and recording, plus the opening deck from last year\'s. They\'re the quickest way to get where Carrara is going and why.', links: [{ t: 'Offsite 2026: Mexico City', k: 'offsite2026' }, { t: 'Offsite 2025: Upstate', k: 'offsite2025' }] },
+      { id: 'principles', when: 'week two', t: 'Read the company operating principles', d: 'The Ways of Working page in Notion: what the four principles look like in practice.', links: [{ t: 'Ways of Working', k: 'waysOfWorking' }] },
+      { id: 'ashby', when: 'week two', t: 'Talent team only: get oriented on Ashby', d: 'Our ATS. Ask in #g-ashby-support if you get stuck.', links: [{ t: 'Open Ashby', k: 'ashby' }, { t: '#g-ashby-support', k: 'ch:g-ashby-support' }] }
     ]},
-    { g: 'week two', cls: '', items: [
-      { t: 'Meet the people on your list', d: 'Your manager picks who you should meet in your first two weeks: your client lead, the people on your account, and a couple of others. Enter your access code in the welcome kit (bottom right) to see your names, then book the 1:1s.', links: [{ t: 'The team wall', k: '#/team' }] },
-      { t: 'Read the company operating principles', d: 'The Ways of Working page in Notion: what the four principles look like in practice.', links: [{ t: 'Ways of Working', k: 'waysOfWorking' }] },
-      { t: 'Talent team only: get oriented on Ashby', d: 'Our ATS. Ask in #g-ashby-support if you get stuck.', links: [{ t: 'Open Ashby', k: 'ashby' }, { t: '#g-ashby-support', k: 'ch:g-ashby-support' }] }
+    { g: 'connect with people', cls: '', items: [
+      { id: 'manager-1on1', when: 'day one', t: 'Day 1 manager 1:1', d: 'Your first 1:1: align on your 90-day plan, week one priorities, and how you\'ll work together.' },
+      { id: 'buddy', when: 'day one', t: 'Set up time with your onboarding buddy', d: 'Your onboarding buddy is there for any day-to-day question, no matter how small. Grab time with them early so you know who to go to.' },
+      { id: 'top5', when: 'day one', t: 'Submit your Top 5', d: 'Name the five best people you have ever worked with, one submission per person. It seeds our network with people we already trust, and it\'s one of the most useful things you can do in your first week.', survey: 'top5' },
+      { id: 'recurring-1on1', when: 'week one', t: 'Set up a recurring 1:1 with your manager', d: 'Get a weekly slot on the calendar before the week ends.' },
+      { id: 'team-calls', when: 'week one', t: "Confirm you're added to all team calls", d: 'Standing team meetings, the monthly Team Roundup, and any client syncs relevant to your role.', links: [{ t: 'Team Roundup', k: 'teamRoundup' }] },
+      { id: 'profile', when: 'week one', t: 'Fill out your profile', d: 'Create your profile in the Carrara Hub so the team can get to know you.', links: [{ t: 'The team directory', k: '#/team' }], survey: 'profile' },
+      { id: 'meet-people', when: 'week two', t: 'Meet the people on your list', d: 'Your manager picks who you should meet in your first two weeks: your client lead, the people on your account, and a couple of others. Enter your access code in the welcome kit (bottom right) to see your names, then book the 1:1s.', links: [{ t: 'The team wall', k: '#/team' }] }
     ]}
   ];
 
@@ -493,13 +493,29 @@
     if (!box) return;
     var links = $('#chk-links');
     if (links) links.remove();
-    box.innerHTML = '<p>Your profile lives in the Carrara Hub. Fill it out there so your answers stay in one place.</p>'
+    box.innerHTML = '<p>Your profile lives in the Carrara Hub.</p>'
       + '<div class="m-actions"><a class="btn-primary" href="https://hub.carrara.is/people?profile=edit" target="_blank" rel="noopener">Create or edit my profile ↗</a></div>'
       + '<p class="m-note">Sign in with your Carrara account. Return here and mark this step complete after saving.</p>';
   }
 
   /* ---------- checklist ---------- */
   var chkState = store('carrara_checklist') || {};
+  /* Ticks used to be saved by position (g0i3). Positions moved when the groups did, so
+     carry any old tick over to the item it belonged to, once. */
+  (function () {
+    var legacy = { g0i0: 'slack', g0i1: 'tool-access', g0i2: 'payroll', g0i3: 'email-signature', g0i4: 'manager-1on1',
+      g0i5: 'buddy', g0i6: 'top5', g0i7: 'i9', g1i0: 'quarry', g1i1: 'recurring-1on1', g1i2: 'team-calls',
+      g1i3: 'offsite-talks', g1i4: 'notion', g1i5: 'time-off', g1i6: 'time-tracking', g1i7: 'profile',
+      g1i8: 'benefits', g2i0: 'meet-people', g2i1: 'principles', g2i2: 'ashby' };
+    var moved = false;
+    Object.keys(legacy).forEach(function (k) {
+      if (!(k in chkState)) return;
+      if (chkState[k]) chkState['k:' + legacy[k]] = true;
+      delete chkState[k];
+      moved = true;
+    });
+    if (moved) store('carrara_checklist', chkState);
+  })();
   var groupsEl = $('#chk-groups');
   var flat = [];
   CHECKLIST.forEach(function (grp, gi) {
@@ -507,7 +523,7 @@
     g.className = 'chk-group';
     g.innerHTML = '<div class="glabel ' + grp.cls + '">[' + grp.g + ']</div>';
     grp.items.forEach(function (item, ii) {
-      var key = 'g' + gi + 'i' + ii;
+      var key = 'k:' + item.id;
       flat.push(key);
       var row = document.createElement('div');
       row.className = 'chk-item' + (chkState[key] ? ' done' : '');
@@ -532,7 +548,7 @@
             + (internal ? ' onclick="document.getElementById(\'modal-back\').classList.remove(\'show\')"' : ' target="_blank" rel="noopener"')
             + '>' + esc(l.t) + (internal ? '' : ' ↗') + '</a>';
         });
-        var body = item.html || ('<div class="m-eyebrow">[' + grp.g + ']</div><h3>' + esc(item.t) + '</h3><p>' + esc(item.d) + '</p>');
+        var body = item.html || ('<div class="m-eyebrow">[' + grp.g + (item.when ? ' · ' + item.when : '') + ']</div><h3>' + esc(item.t) + '</h3><p>' + esc(item.d) + '</p>');
         openModal(body + (item.survey === 'top5' ? '<div id="t5-box"></div>' : '')
           + (item.survey === 'profile' ? '<div id="pv-box"></div>' : '')
           + (linksHtml ? '<p id="chk-links" style="margin-top:14px">' + linksHtml + '</p>' : ''));
