@@ -1,31 +1,51 @@
-// Only Carrara can open the hub. Everyone signs in with Google (same client as
-// the Carrara Hub at hub.carrara.is: GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET and
-// AUTH_SECRET are the same values, with this site's /api/auth/google added as
-// a redirect URI on that client). The session cookie set by /api/auth/google is
-// checked here on every request.
+// Only Carrara can open the hub. Everyone signs in with Google. GOOGLE_CLIENT_ID
+// and GOOGLE_CLIENT_SECRET are the "Carrara Onboarding Hub" client in Carrara's
+// own Google Cloud project (pops), whose audience is Internal, so Google itself
+// turns away anyone outside carrara.is; this site's /api/auth/google is one of
+// its redirect URIs. AUTH_SECRET (optional) signs the session cookie, which
+// /api/auth/google sets and this file checks on every request.
 //
-// Two ways in without Google:
-// - A hire's own link. POps mails ?code=<access code> on day one, sometimes
-//   before the hire's carrara.is Google account exists. A valid code (the same
-//   signed format api/welcome.js and api/mint.js use) sets a hub_kit cookie and
-//   the hire browses as usual. The code already proves who they are.
-// - POps and Slack. /api/mint (POps, bearer token) and /api/slack-newhire
-//   (Slack, signed requests) check their callers themselves and are left out.
+// What gets in: a signed Carrara Google session. What does not: an access code
+// on its own. A hire's link (?code=<access code>) goes to Google like any other
+// page, with the code kept in the login's next= parameter. After sign in the
+// hire lands back on /?code=..., where app.js reads the code and unlocks their
+// kit. So a hire needs their carrara.is Google account first (ALLOWED_EMAILS
+// is the list for anyone without one).
+//
+// A session ends after 60 minutes without use, and after 24 hours in any case.
+// Then Google is asked again, which is also what shuts out a leaver: a
+// suspended Workspace account is refused at the next sign in. Any GET after
+// five quiet minutes gets one redirect to the same address with a fresh cookie,
+// which is how "use" is counted. The page moves between its sections with hash
+// links and fetches /api/... for their data, so those fetches count too; a
+// fetch follows the redirect on its own. Posts are only checked.
+//
+// Left outside the login: /api/mint (POps, bearer token) and /api/slack-newhire
+// (Slack, signed requests) check their callers themselves, and Vercel's cron
+// warms /api/team with the CRON_SECRET bearer.
 //
 // Until GOOGLE_CLIENT_ID is set the site stays open as it is today, so a deploy
 // that lands before the env vars changes nothing.
+
+// A session ends after this long without a request.
+const IDLE_SECONDS = 60 * 60
+// A session ends this long after sign in, however busy. api/_lib/signin.js writes it into exp.
+const MAX_SECONDS = 24 * 60 * 60
+// A GET refreshes "last use" once it is this old, so most requests set no cookie.
+const REFRESH_SECONDS = 5 * 60
 
 export const config = {
   matcher: ['/((?!api/auth/|api/mint|api/slack-newhire|assets/).*)'],
 }
 
 const enc = new TextEncoder()
-const DAYS = 30
 
 const fromB64url = (s) => {
   const b = atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4))
   return Uint8Array.from(b, (c) => c.charCodeAt(0))
 }
+const toB64url = (buf) =>
+  btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
 const hex = (buf) => [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('')
 
 async function hmac(secret, text) {
@@ -40,31 +60,26 @@ const same = (a, b) => {
   return diff === 0
 }
 
-// The signed hub_session cookie from /api/auth/google. Same format as the Carrara Hub.
-export async function readSession(token, secret) {
+// The signed hub_session cookie from /api/auth/google: { email, name, iat, seen, exp }
+// in unix seconds. Good until exp, and only while seen is within the last hour.
+export async function readSession(token, secret, now = Date.now() / 1000) {
   const [body, sig] = (token || '').split('.')
   if (!body || !sig) return null
   try {
     const want = await hmac(secret, body)
     if (!same(hex(want), hex(fromB64url(sig)))) return null
     const session = JSON.parse(new TextDecoder().decode(fromB64url(body)))
-    return session.exp > Date.now() / 1000 ? session : null
+    return now < session.exp && now - session.seen <= IDLE_SECONDS ? session : null
   } catch {
     return null
   }
 }
 
-// A hire's access code: "<base64url payload>.<first 10 hex chars of HMAC>",
-// exactly as api/mint.js signs it and api/welcome.js decodes it.
-export async function validCode(code, secret) {
-  const parts = String(code || '').trim().split('.')
-  if (parts.length !== 2 || !parts[0] || parts[1].length !== 10) return false
-  try {
-    const want = hex(await hmac(secret, parts[0])).slice(0, 10)
-    return same(want, parts[1])
-  } catch {
-    return false
-  }
+// The same session with seen moved to now, signed the way api/_lib/signin.js signs it.
+async function refreshed({ email, name, iat, exp }, secret, now) {
+  const body = toB64url(enc.encode(JSON.stringify({ email, name, iat, seen: Math.floor(now), exp })))
+  const sig = toB64url(await hmac(secret, body))
+  return `hub_session=${body}.${sig}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${Math.floor(exp - now)}`
 }
 
 const cookie = (request, name) =>
@@ -77,29 +92,21 @@ export default async function middleware(request) {
   const secret = process.env.AUTH_SECRET || process.env.GOOGLE_CLIENT_SECRET
   if (!process.env.GOOGLE_CLIENT_ID || !secret) return
 
-  if (await readSession(cookie(request, 'hub_session'), secret)) return
-
   const url = new URL(request.url)
-  const welcomeSecret = process.env.WELCOME_SECRET || process.env.SLACK_SIGNING_SECRET || 'carrara-onboarding-hub'
-
-  // Already in on an access code.
-  const kit = cookie(request, 'hub_kit')
-  if (kit && (await validCode(decodeURIComponent(kit), welcomeSecret))) return
-
-  // Arriving on the hire's link: remember the code, then load the page as asked.
-  // One redirect, marked with hub_kit=1, so a browser that drops the cookie
-  // still gets the page instead of a loop.
-  const code = url.searchParams.get('code')
-  if (code && (await validCode(code, welcomeSecret))) {
-    if (url.searchParams.get('hub_kit') === '1') return
-    url.searchParams.set('hub_kit', '1')
-    return new Response(null, {
-      status: 302,
-      headers: {
-        Location: url.toString(),
-        'Set-Cookie': `hub_kit=${encodeURIComponent(code.trim())}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${DAYS * 86400}`,
-      },
-    })
+  const now = Date.now() / 1000
+  const session = await readSession(cookie(request, 'hub_session'), secret, now)
+  if (session) {
+    // Any GET after five quiet minutes: one redirect to the same address with a
+    // fresh cookie. A page's data fetches count as use too (the page itself
+    // navigates by hash, so they may be the only requests for an hour). Never
+    // on a post: a 302 would turn it into a GET.
+    if (request.method === 'GET' && now - session.seen >= REFRESH_SECONDS) {
+      return new Response(null, {
+        status: 302,
+        headers: { Location: request.url, 'Set-Cookie': await refreshed(session, secret, now), 'Cache-Control': 'no-store' },
+      })
+    }
+    return
   }
 
   // Vercel's cron warms /api/team with the CRON_SECRET bearer, when one is set.

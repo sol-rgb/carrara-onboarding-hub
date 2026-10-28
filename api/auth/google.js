@@ -44,7 +44,7 @@ module.exports = async (req, res) => {
   // registered with a carrara.is address doesn't count.
   const carrara = user.hd === 'carrara.is' && email.endsWith('@carrara.is');
   if (!fresh || user.email_verified !== true) return page(res, 403, 'Google didn\'t confirm your email. Try again.');
-  if (!(carrara || allowedEmails().includes(email))) return page(res, 403, 'You signed in as ' + email.replace(/[<>&"]/g, '') + '. The hub is only for the Carrara team: pick your carrara.is Google account. New joiner without one yet? Use the link in your welcome email.');
+  if (!(carrara || allowedEmails().includes(email))) return page(res, 403, 'You signed in as ' + email.replace(/[<>&"]/g, '') + '. The hub is only for the Carrara team: pick your carrara.is Google account. New joiner? Use the carrara.is account you were given, not a personal Gmail.');
 
   return startSession(res, { email, name: user.name || email }, saved.next);
 };

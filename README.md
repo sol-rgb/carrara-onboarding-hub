@@ -97,17 +97,18 @@ Editing the script later needs Deploy, Manage deployments, Edit, New version; th
 
 ### Access
 
-Sign in with Google, Carrara accounts only (`middleware.js`, `api/auth/login.js`, `api/auth/google.js`). It is the same Google client as the Carrara Hub at hub.carrara.is, so the three values are copied from that Vercel project:
+Sign in with Google, Carrara accounts only (`middleware.js`, `api/auth/login.js`, `api/auth/google.js`). The Google client is "Carrara Onboarding Hub" in Carrara's own Google Cloud project (`pops`, audience Internal), not the Knowledge Hub's.
 
-- `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`: the shared client. In the Google Cloud console, that client needs this site's address plus `/api/auth/google` as one more authorized redirect URI.
-- `AUTH_SECRET`: signs the session cookie. Any long random string; the same value as the hub keeps the two sites alike.
+- `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`: that client. In the Google Cloud console it lists this site's address plus `/api/auth/google` as an authorized redirect URI (the vercel.app address too).
+- `AUTH_SECRET`: optional, signs the session cookie. Without it the client secret signs it.
 - `ALLOWED_EMAILS`: optional, comma separated, for people without a carrara.is Google Workspace account.
 
-Only verified @carrara.is Google Workspace accounts get in (the `hd` claim is carrara.is), plus `ALLOWED_EMAILS`. Sessions last 30 days.
+Only verified @carrara.is Google Workspace accounts get in (the `hd` claim is carrara.is), plus `ALLOWED_EMAILS`. A session ends after 60 minutes without use, and after 24 hours at most. Then Google asks again, one click on the account chooser. That is also what stops a leaver: once their Workspace account is suspended, Google refuses them at the next sign in.
 
-Three ways in without Google, all deliberate:
+A hire's own link does not get in on its own. POps mails `?code=<access code>`, and the code rides through sign in in the `next` parameter. After Google, the hire lands back on their link and the code unlocks their kit. So a hire needs their carrara.is Google account first. `ALLOWED_EMAILS` is the list for anyone without one.
 
-- A hire's own link. POps mails `?code=<access code>` on day one, sometimes before the hire's carrara.is Google account exists. A valid code (the same signed format `/api/mint` and `/api/welcome` use) sets a `hub_kit` cookie and the hire browses as usual, for 30 days.
+Two ways in without Google, both deliberate:
+
 - POps and Slack: `/api/mint` (bearer token) and `/api/slack-newhire` (Slack signature) check their callers themselves and are not behind the login. The POps contract in AGENTS.md is unchanged.
 - The Vercel cron that warms `/api/team`: set `CRON_SECRET` in Vercel and Vercel sends it as a bearer token; without it the cron gets a 401 and the first visitor warms the cache instead.
 

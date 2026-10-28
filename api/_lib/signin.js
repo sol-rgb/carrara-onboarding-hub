@@ -2,7 +2,14 @@
 // session cookie that middleware.js checks. Same cookie format as the Carrara Hub.
 const crypto = require('crypto');
 
-const DAYS = 30;
+// How long a session lasts. middleware.js is the reader and holds the same
+// three numbers: they must match, so change them together.
+// A session ends after this long without a request (middleware.js checks seen).
+const IDLE_SECONDS = 60 * 60;
+// A session ends this long after sign in, however busy. Written into exp below.
+const MAX_SECONDS = 24 * 60 * 60;
+// A GET refreshes seen once it is this old (middleware.js).
+const REFRESH_SECONDS = 5 * 60;
 
 // Signs the session cookie. Same order in middleware.js.
 const secret = () => process.env.AUTH_SECRET || process.env.GOOGLE_CLIENT_SECRET;
@@ -32,10 +39,11 @@ function savedState(req) {
 const safePath = (p) => (typeof p === 'string' && /^\/(?![/\\])[^\\\s]*$/.test(p) ? p : '/');
 
 function startSession(res, { email, name }, nextPath) {
-  const body = Buffer.from(JSON.stringify({ email, name, exp: Math.floor(Date.now() / 1000) + DAYS * 86400 })).toString('base64url');
+  const now = Math.floor(Date.now() / 1000);
+  const body = Buffer.from(JSON.stringify({ email, name, iat: now, seen: now, exp: now + MAX_SECONDS })).toString('base64url');
   const sig = crypto.createHmac('sha256', secret()).update(body).digest('base64url');
   res.setHeader('Set-Cookie', [
-    'hub_session=' + body + '.' + sig + '; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=' + DAYS * 86400,
+    'hub_session=' + body + '.' + sig + '; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=' + MAX_SECONDS,
     'hub_state=; Path=/api/auth; Max-Age=0'
   ]);
   res.redirect(302, safePath(nextPath));
