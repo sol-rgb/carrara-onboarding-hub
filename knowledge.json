@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-10-27",
+ "exported": "2026-10-28",
  "clients": [
   {
    "slug": "anthropic",
@@ -26,7 +26,7 @@
    "team": [
     {
      "name": "Sol Silbenberg",
-     "role": "Lead on narrative, podcast and events",
+     "role": "Lead on narrative, podcast, events and network mining",
      "email": "sol@carrara.is",
      "slack": "U08M5TFAF52",
      "timezone": "America/Buenos_Aires"
@@ -134,16 +134,16 @@
     },
     {
      "title": "Embedded recruiting",
-     "detail": "Sourcing and recruiting for Platform Eng and Product, plus Enterprise & Verticals roles since September.",
+     "detail": "Sourcing and recruiting for Platform Eng and Product, plus Enterprise & Verticals roles since September; the first batch from X network mining is out for rating.",
      "points": [
-      "Mined Platform leaders' networks to find and activate senior engineers",
+      "Mined LinkedIn and X networks for Platform, with a scored review site to rate fit",
       "Tagged every candidate we source in Greenhouse so our work is tracked",
       "Monthly state of play and a work recap site for Anthropic's recruiting leads"
      ]
     }
    ],
    "channel": "c-anthropic",
-   "updated": "2026-10-24",
+   "updated": "2026-10-28",
    "url": "https://hub.carrara.is/clients/anthropic"
   },
   {
@@ -491,15 +491,15 @@
      "points": [
       "Positioning on scaling an AI native finance function, with a tax angle",
       "Venue shortlist sites, invite copy and LinkedIn outreach from Nick to the ICP list",
-      "Menus, name cards and a branded tile gift being designed for the Amsterdam dinner"
+      "Branded tile gift designs, menus and name cards for the Amsterdam dinner"
      ]
     },
     {
      "title": "E-invoicing webinar",
-     "detail": "A partner webinar on choosing an e-invoicing vendor, set for Nov 19 in London and planned as a livestream.",
+     "detail": "A partner webinar on choosing an e-invoicing vendor, set for Nov 19 in London and livestreamed on Sphere's LinkedIn.",
      "points": [
       "Format agreed: Sphere hosts, an outside expert gives the view, with a co-branded checklist",
-      "Studios checked in London and Brussels, including livestreaming with polls and Q&A",
+      "London studio picked for the livestream, with live polls and Q&A",
       "Run sheet with questions for both hosts, an audience poll and pre-event ideas"
      ]
     },
@@ -523,7 +523,7 @@
     }
    ],
    "channel": "c-sphere",
-   "updated": "2026-10-27",
+   "updated": "2026-10-28",
    "url": "https://hub.carrara.is/clients/sphere"
   },
   {
@@ -620,10 +620,10 @@
     },
     {
      "title": "GTM hiring",
-     "detail": "AE, head of sales and SDR searches are live, with each market map prospect matched to a direct, warm intro or outbound path.",
+     "detail": "AE, head of sales and SDR searches are live, with each market map prospect run through an activation tree from fit to who reaches out.",
      "points": [
-      "JD, interview plan and sourcing brief per GTM role, kept in one Raindrop Recruiting Hub",
-      "Market maps for the AE and sales leadership searches, with mutuals found for each prospect",
+      "JD, interview plan and candidate guide per GTM role, kept in one Raindrop Recruiting Hub",
+      "Market maps for AE and sales leadership, with mutuals and an activation tree per prospect",
       "Sweep of the team's LinkedIn connections, plus draft intro asks to Raindrop's investors"
      ]
     },
@@ -656,7 +656,7 @@
     }
    ],
    "channel": "c-raindrop",
-   "updated": "2026-10-23",
+   "updated": "2026-10-28",
    "url": "https://hub.carrara.is/clients/raindrop"
   },
   {
@@ -1405,7 +1405,7 @@
    "workstreams": [
     {
      "title": "Hertzcules billing app",
-     "detail": "A Databricks app for no-show and cancellation fee billing, live with Hertz's receivables team, with the 2025 backlog billing files delivered and checked against Hertz's billing records.",
+     "detail": "A Databricks app for no-show and cancellation fee billing, live with Hertz's receivables team, with a billing and recovery dashboard in review.",
      "points": [
       "Billing logic tab with a SQL editor, scheduled versions and a change log",
       "Defensibility logic in the app, plus master billing files for unpaid and partly paid invoices",
@@ -1423,10 +1423,10 @@
     },
     {
      "title": "Driver dispatch",
-     "detail": "Driver availability, manual assignment and a utilization report, being built by day 90 of the sprint.",
+     "detail": "Driver availability, scheduling and a utilization report, specced as a basic MVP to be built by day 90 of the sprint.",
      "points": [
       "Driver task map built with Hertz ops on how moves are received and recorded today",
-      "Driver profiles entered in the carrier portal, by bulk upload or by drivers in the app",
+      "Availability calendar in the driver app, open shifts drivers can pick up and hours reports",
       "Utilization report per driver: time driving, dwelling and on other work"
      ]
     },
@@ -1436,12 +1436,12 @@
      "points": [
       "Jarvis: dealer lists, pricing from saved MarketCheck snapshots and a hitlist, with a rules doc",
       "SendGrid dealer emails after a sale, a purchase email pilot and Twilio texts in registration",
-      "Advent SFTP feed nearly ready, with the database schema updated to take it in"
+      "Staging copy of Jarvis with its own data, and production changes only through a checked promote"
      ]
     }
    ],
    "channel": "c-hertz-external",
-   "updated": "2026-10-24",
+   "updated": "2026-10-28",
    "url": "https://hub.carrara.is/clients/hertz"
   },
   {
