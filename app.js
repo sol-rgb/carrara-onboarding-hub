@@ -98,18 +98,16 @@
       { id: 'quarry', when: 'week one', t: 'Set up the Quarry', d: 'Our AI harness. Download the Claude app and log in with your Carrara Google account, set up an Obsidian vault, point Cowork at it, then run /workspace-initialization, /workspace-migration and /sync. Do this in week one: most of how we work assumes it.', links: [{ t: 'Quarry setup guide', k: 'quarry' }, { t: 'The tools we use', k: '#/tools' }] },
       { id: 'notion', when: 'week one', t: 'Get oriented on our Notion', d: 'Start at Home Base and click around.', links: [{ t: 'Home Base', k: 'notionHomeBase' }] },
       { id: 'time-off', when: 'week one', t: 'Review Time-Off Policy', d: 'Read the Time-Off & Holiday Policy page in this hub. Two minutes now saves confusion later.', links: [{ t: 'Time-Off & Holiday Policy', k: '#/timeoff' }] },
-      { id: 'offsite-talks', when: 'week one', t: 'Watch the offsite talks', d: 'The sessions from this year\'s Mexico City offsite, each with its deck and recording, plus the opening deck from last year\'s. They\'re the quickest way to get where Carrara is going and why.', links: [{ t: 'Offsite 2026: Mexico City', k: 'offsite2026' }, { t: 'Offsite 2025: Upstate', k: 'offsite2025' }] },
-      { id: 'principles', when: 'week two', t: 'Read the company operating principles', d: 'The Ways of Working page in Notion: what the four principles look like in practice.', links: [{ t: 'Ways of Working', k: 'waysOfWorking' }] },
       { id: 'ashby', when: 'week two', t: 'Talent team only: get oriented on Ashby', d: 'Our ATS. Ask in #g-ashby-support if you get stuck.', links: [{ t: 'Open Ashby', k: 'ashby' }, { t: '#g-ashby-support', k: 'ch:g-ashby-support' }] }
     ]},
     { g: 'connect with people', cls: '', items: [
       { id: 'manager-1on1', when: 'day one', t: 'Day 1 manager 1:1', d: 'Your first 1:1: align on your 90-day plan, week one priorities, and how you\'ll work together.' },
       { id: 'buddy', when: 'day one', t: 'Set up time with your onboarding buddy', d: 'Your onboarding buddy is there for any day-to-day question, no matter how small. Grab time with them early so you know who to go to.' },
-      { id: 'top5', when: 'day one', t: 'Submit your Top 5', d: 'Name the five best people you have ever worked with, one submission per person. It seeds our network with people we already trust, and it\'s one of the most useful things you can do in your first week.', survey: 'top5' },
       { id: 'recurring-1on1', when: 'week one', t: 'Set up a recurring 1:1 with your manager', d: 'Get a weekly slot on the calendar before the week ends.' },
       { id: 'team-calls', when: 'week one', t: "Confirm you're added to all team calls", d: 'Standing team meetings, the monthly Team Roundup, and any client syncs relevant to your role.', links: [{ t: 'Team Roundup', k: 'teamRoundup' }] },
       { id: 'profile', when: 'week one', t: 'Fill out your profile', d: 'Create your profile in the Carrara Hub so the team can get to know you.', links: [{ t: 'The team directory', k: '#/team' }], survey: 'profile' },
-      { id: 'meet-people', when: 'week two', t: 'Meet the people on your list', d: 'Your manager picks who you should meet in your first two weeks: your client lead, the people on your account, and a couple of others. Enter your access code in the welcome kit (bottom right) to see your names, then book the 1:1s.', links: [{ t: 'The team wall', k: '#/team' }] }
+      { id: 'meet-people', when: 'week two', t: 'Meet the people on your list', d: 'Your manager picks who you should meet in your first two weeks: your client lead, the people on your account, and a couple of others. Enter your access code in the welcome kit (bottom right) to see your names, then book the 1:1s.', links: [{ t: 'The team wall', k: '#/team' }] },
+      { id: 'top5', when: 'day one', t: 'Submit your Top 5', d: 'Name the five best people you have ever worked with, one submission per person. It seeds our network with people we already trust, and it\'s one of the most useful things you can do in your first week.', survey: 'top5' }
     ]}
   ];
 
