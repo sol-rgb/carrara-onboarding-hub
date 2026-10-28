@@ -1040,3 +1040,30 @@ body.chk-open { overflow: hidden; }
   .chk-pop-panel { max-height: 100vh; height: 100%; clip-path: none; padding: 52px 20px 32px; }
 }
 body.chk-open #wk { display: none; }
+
+/* ---------- time off policy: collapsible sections ---------- */
+.to-acc-list { max-width: 760px; margin-top: 8px; }
+details.to-acc { border-bottom: 1px solid var(--hairline); }
+details.to-acc:first-child { border-top: 1px solid var(--hairline); }
+details.to-acc > summary, details.to-faq > summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+details.to-acc > summary::-webkit-details-marker, details.to-faq > summary::-webkit-details-marker { display: none; }
+details.to-acc > summary { padding: 20px 0; font-family: var(--serif); font-weight: 500; font-size: clamp(19px, 2vw, 24px); letter-spacing: -0.01em; }
+details.to-acc > summary::after, details.to-faq > summary::after { content: '+'; font-family: var(--rigid); font-size: 20px; line-height: 1; color: var(--taupe); flex: none; }
+details.to-acc[open] > summary::after, details.to-faq[open] > summary::after { content: '\2212'; color: var(--orange); }
+details.to-acc > summary:hover, details.to-faq > summary:hover { color: var(--orange); }
+details.to-acc > summary:focus-visible, details.to-faq > summary:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+details.to-acc > .pg { padding: 0 0 24px; }
+details.to-faq { border-top: 1px solid var(--hairline); }
+details.to-faq:first-child { border-top: none; }
+details.to-faq > summary { padding: 14px 0; font-weight: 500; font-size: 14.5px; line-height: 1.5; }
+details.to-faq > p { padding-bottom: 14px; }
+.to-format { background: var(--sage-soft); clip-path: var(--chamfer); padding: 16px 20px; margin: 12px 0; }
+.to-format-lbl { font-family: var(--rigid); font-size: 9.5px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--taupe); margin-bottom: 6px; }
+.to-format b { font-weight: 500; color: var(--ink); font-size: 14px; }
+.to-format ul { margin: 6px 0 0; }
+.to-format li { margin-bottom: 0; }
+.hol-table { width: 100%; border-collapse: collapse; margin: 6px 0 4px; }
+.hol-table th { font-family: var(--rigid); font-size: 10.5px; letter-spacing: 0.12em; color: var(--taupe); text-align: left; font-weight: 600; padding: 0 14px 10px 0; border-bottom: 1px solid var(--ink); }
+.hol-table td { padding: 12px 14px 12px 0; border-bottom: 1px solid var(--hairline); font-size: 14px; }
+.hol-table td:first-child { font-weight: 500; }
+.hol-table td + td { font-family: var(--rigid); font-size: 11px; letter-spacing: 0.05em; color: var(--taupe); white-space: nowrap; }

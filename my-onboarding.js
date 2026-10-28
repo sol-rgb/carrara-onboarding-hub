@@ -127,8 +127,8 @@
     var has = chk && chk.total;
     var pct = has ? Math.round(chk.done / chk.total * 100) : 0;
     return '<div class="mo-checklist" role="button" tabindex="0" aria-haspopup="dialog"><div class="wk-lbl">[your checklist]</div>'
-      + '<div class="mo-card-name">Everything to get done, in order.</div>'
-      + '<p class="mo-card-line">Day one, week one and week two: Slack, access, payroll, your 1:1s.'
+      + '<div class="mo-card-name">Everything to get done.</div>'
+      + '<p class="mo-card-line">Start here, get to know Carrara, and connect with people: Slack, access, payroll, your 1:1s.'
       + (has ? ' You are at <b>' + chk.done + ' of ' + chk.total + '</b>.' : '') + '</p>'
       + (has ? '<div class="progress-wrap mo-progress"><div class="progress-bar"><span style="width:' + pct + '%"></span></div>'
           + '<div class="progress-pct">' + pct + '%</div></div>' : '')
