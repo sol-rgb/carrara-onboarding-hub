@@ -105,9 +105,9 @@
       { id: 'buddy', when: 'day one', t: 'Set up time with your onboarding buddy', d: 'Your onboarding buddy is there for any day-to-day question, no matter how small. Grab time with them early so you know who to go to.' },
       { id: 'recurring-1on1', when: 'week one', t: 'Set up a recurring 1:1 with your manager', d: 'Get a weekly slot on the calendar before the week ends.' },
       { id: 'team-calls', when: 'week one', t: "Confirm you're added to all team calls", d: 'Standing team meetings, the monthly Team Roundup, and any client syncs relevant to your role.', links: [{ t: 'Team Roundup', k: 'teamRoundup' }] },
-      { id: 'profile', when: 'week one', t: 'Fill out your profile', d: 'Create your profile in the Carrara Hub so the team can get to know you.', links: [{ t: 'The team directory', k: '#/team' }], survey: 'profile' },
+      { id: 'profile', when: 'week one', t: 'Fill out your people profile', d: 'Create your profile in the Carrara Hub so the team can get to know you.', links: [{ t: 'The team directory', k: '#/team' }], survey: 'profile' },
       { id: 'meet-people', when: 'week two', t: 'Meet the people on your list', d: 'Your manager picks who you should meet in your first two weeks: your client lead, the people on your account, and a couple of others. Enter your access code in the welcome kit (bottom right) to see your names, then book the 1:1s.', links: [{ t: 'The team wall', k: '#/team' }] },
-      { id: 'top5', when: 'day one', t: 'Submit your Top 5', d: 'Name the five best people you have ever worked with, one submission per person. It seeds our network with people we already trust, and it\'s one of the most useful things you can do in your first week.', survey: 'top5' }
+      { id: 'top5', t: 'Submit your Top 5', d: 'Name the five best people you have ever worked with, one submission per person. It seeds our network with people we already trust, and it\'s one of the most useful things you can do in your first week.', survey: 'top5' }
     ]}
   ];
 
