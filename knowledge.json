@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-10-28",
+ "exported": "2026-10-29",
  "clients": [
   {
    "slug": "anthropic",
@@ -491,7 +491,7 @@
      "points": [
       "Positioning on scaling an AI native finance function, with a tax angle",
       "Venue shortlist sites, invite copy and LinkedIn outreach from Nick to the ICP list",
-      "Branded tile gift designs, menus and name cards for the Amsterdam dinner"
+      "Menus, name cards and a numbered edition art print gift for the Amsterdam dinner"
      ]
     },
     {
@@ -500,7 +500,7 @@
      "points": [
       "Format agreed: Sphere hosts, an outside expert gives the view, with a co-branded checklist",
       "London studio picked for the livestream, with live polls and Q&A",
-      "Run sheet with questions for both hosts, an audience poll and pre-event ideas"
+      "Webinar doc with logistics, a distribution plan, open actions and the run of show"
      ]
     },
     {
@@ -523,7 +523,7 @@
     }
    ],
    "channel": "c-sphere",
-   "updated": "2026-10-28",
+   "updated": "2026-10-29",
    "url": "https://hub.carrara.is/clients/sphere"
   },
   {
@@ -960,11 +960,11 @@
     },
     {
      "title": "Landing pages",
-     "detail": "Founder, chief of staff, fractional CFO and finance teams pages and the pricing update are live on cfo.ai; a new homepage flow is headed for an A/B test.",
+     "detail": "Persona pages and the pricing update are live on cfo.ai; a homepage flow A/B test and three fractional CFO listicles with their own landing pages are next.",
      "points": [
       "Persona pages and a pricing update, sent as pull requests to cfo.ai's site repo",
       "Fractional CFO partner section on pricing, plus short and long comparison page templates",
-      "Signup flow prototype that asks a few questions first, so Ari starts with context"
+      "Fractional CFO listicles for paid traffic, each with its own landing page"
      ]
     },
     {
@@ -996,7 +996,7 @@
     }
    ],
    "channel": "c-cfo-ai",
-   "updated": "2026-10-24",
+   "updated": "2026-10-29",
    "url": "https://hub.carrara.is/clients/runway"
   },
   {
@@ -1357,7 +1357,7 @@
      "role": "Dealer Direct lead",
      "email": "tan@carrara.is",
      "slack": "U0BG4SC977H",
-     "timezone": "Europe/Amsterdam"
+     "timezone": "Europe/Helsinki"
     },
     {
      "name": "Enzo Budasoff",
@@ -1405,7 +1405,7 @@
    "workstreams": [
     {
      "title": "Hertzcules billing app",
-     "detail": "A Databricks app for no-show and cancellation fee billing, live with Hertz's receivables team, with a billing and recovery dashboard in review.",
+     "detail": "A Databricks app for no-show and cancellation fee billing, live with Hertz's receivables team; a billing and recovery dashboard is in review and billing queries are moving to versioned file uploads.",
      "points": [
       "Billing logic tab with a SQL editor, scheduled versions and a change log",
       "Defensibility logic in the app, plus master billing files for unpaid and partly paid invoices",
@@ -1423,25 +1423,25 @@
     },
     {
      "title": "Driver dispatch",
-     "detail": "Driver availability, scheduling and a utilization report, specced as a basic MVP to be built by day 90 of the sprint.",
+     "detail": "Driver availability, manual assignment and a utilization report, scoped as a basic MVP for day 90 on Nov 6.",
      "points": [
       "Driver task map built with Hertz ops on how moves are received and recorded today",
-      "Availability calendar in the driver app, open shifts drivers can pick up and hours reports",
-      "Utilization report per driver: time driving, dwelling and on other work"
+      "Availability calendar in the driver app, with a manager view of who's on shift today",
+      "Driver profiles, manual job assignment and a utilization report on the admin side"
      ]
     },
     {
      "title": "Dealer Direct",
-     "detail": "The Jarvis rep tool, dealer emails and texts, and a partner collections tracker, with a new dealer data feed from Advent being connected to Jarvis.",
+     "detail": "The Jarvis rep tool, dealer emails and texts, and a partner collections tracker; the Advent dealer feed is going live in Jarvis and an Outlook integration is next.",
      "points": [
       "Jarvis: dealer lists, pricing from saved MarketCheck snapshots and a hitlist, with a rules doc",
       "SendGrid dealer emails after a sale, a purchase email pilot and Twilio texts in registration",
-      "Staging copy of Jarvis with its own data, and production changes only through a checked promote"
+      "Staging copy of Jarvis, checked promotes to production and a daily report of open rep bugs"
      ]
     }
    ],
    "channel": "c-hertz-external",
-   "updated": "2026-10-28",
+   "updated": "2026-10-29",
    "url": "https://hub.carrara.is/clients/hertz"
   },
   {
@@ -1540,11 +1540,11 @@
    "workstreams": [
     {
      "title": "Founders Weekend growth",
-     "detail": "We run growth, ops and the student app for the weekend series. Build Weekend ran Oct 24 and 25 in seven cities, and Miami on Nov 7 and 8 is in setup.",
+     "detail": "We run growth, ops and the student app for the weekend series. Build Weekend ran Oct 24 and 25 in seven cities, and a one day Miami Founders Day on Nov 7 is in setup.",
      "points": [
       "Run of show site with a guide playbook, a staff tech FAQ and six session decks",
       "Parent one-pagers, event emails and a daily Slack digest of sign ups by city",
-      "Co-founder Jr student app updates and a Middle School Founders Program"
+      "Co-founder Jr student app, with a one day version for Founders Day, and a Middle School program"
      ]
     },
     {
@@ -1576,7 +1576,7 @@
     }
    ],
    "channel": null,
-   "updated": "2026-10-27",
+   "updated": "2026-10-29",
    "url": "https://hub.carrara.is/clients/alpha-school"
   },
   {
@@ -4353,7 +4353,7 @@
    "title": "",
    "email": "tan@carrara.is",
    "slack": "U0BG4SC977H",
-   "timezone": "Europe/Amsterdam",
+   "timezone": "Europe/Helsinki",
    "photo": null,
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=tan%40carrara.is"
@@ -4452,7 +4452,7 @@
    "title": "",
    "email": "nick@carrara.is",
    "slack": "U0C4NUX9T60",
-   "timezone": "America/Phoenix",
+   "timezone": "America/New_York",
    "photo": "https://hub.carrara.is/people/nick.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=nick%40carrara.is"
