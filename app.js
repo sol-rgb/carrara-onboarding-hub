@@ -870,11 +870,6 @@
     })
     .catch(function () { $('#team-note').textContent = 'Team list is unavailable right now.'; });
 
-  /* The old browser-only form never reached the shared directory. */
-  $('#btn-profile').addEventListener('click', function () {
-    window.open('https://hub.carrara.is/people?profile=edit', '_blank', 'noopener');
-  });
-
   /* ---------- welcome kit -> hub personalization ---------- */
   var kitData = null;
   function applyKitToHub() {
