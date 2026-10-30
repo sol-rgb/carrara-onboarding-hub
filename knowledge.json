@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-10-29",
+ "exported": "2026-10-30",
  "clients": [
   {
    "slug": "anthropic",
@@ -339,7 +339,7 @@
      "role": "Core talent partner, US",
      "email": "julia@carrara.is",
      "slack": "U06DF9YP6EM",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Mary Petrino",
@@ -960,11 +960,11 @@
     },
     {
      "title": "Landing pages",
-     "detail": "Persona pages and the pricing update are live on cfo.ai; a homepage flow A/B test and three fractional CFO listicles with their own landing pages are next.",
+     "detail": "Persona pages and the pricing update are live on cfo.ai; four fractional CFO listicle pages are built for review and a homepage flow A/B test is next.",
      "points": [
       "Persona pages and a pricing update, sent as pull requests to cfo.ai's site repo",
       "Fractional CFO partner section on pricing, plus short and long comparison page templates",
-      "Fractional CFO listicles for paid traffic, each with its own landing page"
+      "Fractional CFO listicles for paid traffic, each with its own landing page and a booking CTA"
      ]
     },
     {
@@ -996,7 +996,7 @@
     }
    ],
    "channel": "c-cfo-ai",
-   "updated": "2026-10-29",
+   "updated": "2026-10-30",
    "url": "https://hub.carrara.is/clients/runway"
   },
   {
@@ -1080,7 +1080,7 @@
    "workstreams": [
     {
      "title": "SWE and EE outreach",
-     "detail": "LinkedIn and email outreach to software and electrical engineers with client approved copy, now sent from the client's Ashby.",
+     "detail": "LinkedIn and email outreach to software and electrical engineers with client approved copy, sent from the client's Ashby, now with an EE follow up in the hiring manager's voice.",
      "points": [
       "Stealth safe outreach copy, signed off by the client before it goes out",
       "A/B test process: two versions split evenly, the winner becomes the next control",
@@ -1098,7 +1098,7 @@
     },
     {
      "title": "Interview plans and Ashby",
-     "detail": "A shared interview plan with a Carrara initial screen and separate SWE and EE jobs are set up in the client's Ashby, with references run case by case.",
+     "detail": "A shared interview plan with a Carrara initial screen and separate SWE and EE jobs are set up in the client's Ashby; the rest of the Ashby setup is paused while outreach comes first.",
      "points": [
       "Shared interview plan with a Carrara initial screen stage, existing plans left as they are",
       "Onsites built interview by interview, so interviewers are booked automatically",
@@ -1125,7 +1125,7 @@
     }
    ],
    "channel": "c-source-foundry",
-   "updated": "2026-10-24",
+   "updated": "2026-10-30",
    "url": "https://hub.carrara.is/clients/source-foundry"
   },
   {
@@ -1357,7 +1357,7 @@
      "role": "Dealer Direct lead",
      "email": "tan@carrara.is",
      "slack": "U0BG4SC977H",
-     "timezone": "Europe/Helsinki"
+     "timezone": "America/New_York"
     },
     {
      "name": "Enzo Budasoff",
@@ -1405,7 +1405,7 @@
    "workstreams": [
     {
      "title": "Hertzcules billing app",
-     "detail": "A Databricks app for no-show and cancellation fee billing, live with Hertz's receivables team; a billing and recovery dashboard is in review and billing queries are moving to versioned file uploads.",
+     "detail": "A Databricks app for no-show and cancellation fee billing, live with Hertz's receivables team, with a billing and recovery dashboard in review.",
      "points": [
       "Billing logic tab with a SQL editor, scheduled versions and a change log",
       "Defensibility logic in the app, plus master billing files for unpaid and partly paid invoices",
@@ -1414,16 +1414,16 @@
     },
     {
      "title": "Vehicle transport platform",
-     "detail": "Shipper, carrier and driver tools for moving Hertz vehicles, with the weeks 10 and 11 release live.",
+     "detail": "Shipper, carrier and driver tools for moving Hertz vehicles; API access is on staging and a MyCarrierPortal integration for carrier checks is in testing.",
      "points": [
       "Customer portal for booking and tracking loads, with bulk order upload",
-      "Load tendering and alerts for carriers",
+      "Load tendering, carrier alerts and customer invoicing through Stripe",
       "Driver app with photo inspections, run side by side on a live carrier load"
      ]
     },
     {
      "title": "Driver dispatch",
-     "detail": "Driver availability, manual assignment and a utilization report, scoped as a basic MVP for day 90 on Nov 6.",
+     "detail": "Driver availability, manual assignment and a utilization report for day 90 on Nov 6; the utilization report is live and the driver schedule design is approved to build.",
      "points": [
       "Driver task map built with Hertz ops on how moves are received and recorded today",
       "Availability calendar in the driver app, with a manager view of who's on shift today",
@@ -1432,16 +1432,16 @@
     },
     {
      "title": "Dealer Direct",
-     "detail": "The Jarvis rep tool, dealer emails and texts, and a partner collections tracker; the Advent dealer feed is going live in Jarvis and an Outlook integration is next.",
+     "detail": "The Jarvis rep tool, dealer emails and texts, and a partner collections tracker; the Advent dealer feed is live in Jarvis and an Outlook integration is next.",
      "points": [
-      "Jarvis: dealer lists, pricing from saved MarketCheck snapshots and a hitlist, with a rules doc",
+      "Jarvis: dealer and prospect lists from the Advent feed, with pricing, inventory and a hitlist",
       "SendGrid dealer emails after a sale, a purchase email pilot and Twilio texts in registration",
       "Staging copy of Jarvis, checked promotes to production and a daily report of open rep bugs"
      ]
     }
    ],
    "channel": "c-hertz-external",
-   "updated": "2026-10-29",
+   "updated": "2026-10-30",
    "url": "https://hub.carrara.is/clients/hertz"
   },
   {
@@ -1877,7 +1877,7 @@
     },
     {
      "title": "Closing tools",
-     "detail": "Tools on top of Ashby and Slack that recruiters use to close candidates and route leads.",
+     "detail": "Tools on top of Ashby and Slack that recruiters use to close candidates and route leads; the offer visualizer is cleared for live offers.",
      "points": [
       "Sell briefs recruiters edit and validate, which write motivators to Ashby",
       "Offer visualizer: a branded page showing an offer across growth scenarios",
@@ -1903,7 +1903,7 @@
     }
    ],
    "channel": null,
-   "updated": "2026-10-24",
+   "updated": "2026-10-30",
    "url": "https://hub.carrara.is/clients/forus"
   },
   {
@@ -2336,7 +2336,7 @@
    "name": "Exponential Energy",
    "hubName": "Exponential Energy",
    "status": "active",
-   "oneLiner": "Embedded recruiting for supply chain, power systems and Head of Talent searches.",
+   "oneLiner": "Embedded recruiting for supply chain, power systems, lab ops and Head of Talent searches.",
    "about": "We started in October 2026 as an embedded recruiting team on Exponential Energy's priority hires. We map each talent market in tiers, calibrate with the founder and run outreach and follow-ups on the founder's behalf.",
    "practices": [
     {
@@ -2405,8 +2405,17 @@
      ]
     },
     {
+     "title": "Lab ops search",
+     "detail": "A new lab technician search, with its own outbound list and outreach copy set up as an LGM campaign.",
+     "points": [
+      "Scan of similar technician job posts to calibrate the role",
+      "Lab ops outbound list and lab specific outreach copy, reviewed by the account leads",
+      "Its own LGM campaign and tracker tab, with a booking link for people who reply"
+     ]
+    },
+    {
      "title": "Talent ops",
-     "detail": "Outreach SOP, tracking and follow-ups, with the first sequenced LGM campaign live and more per role type to follow.",
+     "detail": "Outreach SOP, tracking and follow-ups, with sequenced LGM campaigns live per role type and new batches added as they are mapped.",
      "points": [
       "Candidate outreach SOP: how people move from map to outreach to follow-up",
       "LGM campaign per role type: LinkedIn connect, follow up and email from one founder, then another",
@@ -2415,7 +2424,7 @@
     }
    ],
    "channel": null,
-   "updated": "2026-10-24",
+   "updated": "2026-10-30",
    "url": "https://hub.carrara.is/clients/exponential-energy"
   },
   {
@@ -2546,9 +2555,9 @@
    "slug": "profound",
    "name": "Profound",
    "hubName": "Profound",
-   "status": "active",
+   "status": "past",
    "oneLiner": "People ops for Profound: onboarding, new hire paperwork and the automations behind them.",
-   "about": "We run people operations work for Profound, mostly new hire onboarding and the sheets and email flows behind it. We've started writing how-tos their team can run, beginning with the onboarding SOP.",
+   "about": "We ran people operations for Profound through October 2026, owning new hire onboarding end to end plus the sheets and email flows behind it. We also wrote how-tos their team can run, starting with the onboarding SOP.",
    "practices": [
     {
      "id": "people",
@@ -2598,7 +2607,7 @@
    "workstreams": [
     {
      "title": "People ops automation",
-     "detail": "Sheet driven onboarding emails are live and an improved email flow is being built to replace the old sheet.",
+     "detail": "Sheet driven onboarding emails went live, and we started an improved email flow to replace the old sheet.",
      "points": [
       "Built the sheets and email sends behind offers and pre-boarding",
       "Wrote the People Automation workplan",
@@ -2615,7 +2624,7 @@
     },
     {
      "title": "Onboarding coverage",
-     "detail": "We covered pre-boarding and day one onboarding for the late September new hire cohort.",
+     "detail": "We ran pre-boarding and day one onboarding for Profound's new hires end to end until the engagement wrapped on Oct 30.",
      "points": [
       "Added new joiners to Rippling and sent pre-boarding emails",
       "Ran day one: class channel, onboarding buddies, new hire post and I-9 sessions"
@@ -2623,7 +2632,7 @@
     }
    ],
    "channel": null,
-   "updated": "2026-10-16",
+   "updated": "2026-10-30",
    "url": "https://hub.carrara.is/clients/profound"
   },
   {
@@ -3355,7 +3364,6 @@
     "Polymarket",
     "Riviera Partners",
     "Fundamental Technologies",
-    "Profound",
     "Canopy Labs"
    ],
    "url": "https://hub.carrara.is/practices/people"
@@ -3957,7 +3965,7 @@
    "title": "Recruiting",
    "email": "julia@carrara.is",
    "slack": "U06DF9YP6EM",
-   "timezone": "America/New_York",
+   "timezone": "America/Los_Angeles",
    "photo": "https://hub.carrara.is/people/julia.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=julia%40carrara.is"
@@ -4353,7 +4361,7 @@
    "title": "",
    "email": "tan@carrara.is",
    "slack": "U0BG4SC977H",
-   "timezone": "Europe/Helsinki",
+   "timezone": "America/New_York",
    "photo": null,
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=tan%40carrara.is"
