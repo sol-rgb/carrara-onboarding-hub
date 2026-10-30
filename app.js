@@ -68,13 +68,17 @@
      so filling a blank in links.js lights the link up everywhere at once. */
   var CHECKLIST = [
     { g: 'start here', cls: 'blue', items: [
-      { id: 'slack', when: 'day one', t: 'Set up your Slack workspace', d: 'Join carrarais.slack.com. Set your full name, photo, title and timezone: the team page pulls from your Slack profile. Then read the Slack section of this hub so the channel prefixes make sense.', links: [{ t: 'Open Slack', k: 'slackWorkspace' }, { t: 'The Slack guide', k: '#/slack' }] },
+      { id: 'slack', when: 'day one', t: 'Set up your Slack workspace', d: 'Join carrarais.slack.com. Fill in your Slack profile: full name, photo, title / focus area, timezone, phone number and email.',
+        html: '<div class="m-eyebrow">[start here · day one]</div><h3>Set up your Slack workspace</h3>'
+          + '<p>Join carrarais.slack.com.</p>'
+          + '<p>Fill in your Slack profile. Be sure to add:</p>'
+          + '<div class="pg"><ul><li>Full name</li><li>Photo</li><li>Title / focus area</li><li>Timezone</li><li>Phone number</li><li>Email</li></ul></div>'
+          + '<p class="m-note" style="margin-top:6px">Optional: about you, birthday, name pronunciation, pronouns.</p>',
+        links: [{ t: 'Open Slack', k: 'slackWorkspace' }, { t: 'The Slack guide', k: '#/slack' }] },
       { id: 'tool-access', when: 'day one', t: 'Ensure tool and system access', d: 'Confirm you can open Google, Notion, Slack and the tools for your role. Anything blocked, ping Eric on Slack.', links: [{ t: 'Notion Home Base', k: 'notionHomeBase' }] },
       { id: 'payroll', when: 'day one', t: 'Payroll setup (Deel, Bill.com, or Ramp)', d: 'Deel for full-time employees, Bill.com for US contractors, Ramp for international contractors. You\'ll get an invite for the one that applies to you.', links: [{ t: 'Deel', k: 'deel' }, { t: 'Bill.com', k: 'bill' }, { t: 'Ramp', k: 'ramp' }] },
-      { id: 'i9', when: 'day one', t: 'I-9 verification (full-time employees only)', d: 'US full-time employees complete I-9 employment eligibility verification. Eric sends this over; get it back the same week so payroll isn\'t held up.' },
-      { id: 'email-signature', when: 'day one', t: 'Set up email signature and Slack profile', d: 'Use the Carrara signature format from the brand templates, and fill out your Slack profile completely.',
-        html: '<div class="m-eyebrow">[start here · day one]</div><h3>Set up email signature and Slack profile</h3>'
-          + '<h4 style="margin:18px 0 6px">Part 1: Your email signature</h4>'
+      { id: 'email-signature', when: 'day one', t: 'Set up email signature', d: 'Use the Carrara signature format from the brand templates.',
+        html: '<div class="m-eyebrow">[start here · day one]</div><h3>Set up email signature</h3>'
           + '<p>You do this in your Carrara Gmail.</p>'
           + '<ol style="margin:8px 0 0 20px;padding:0;line-height:1.7">'
           + '<li><a class="textlink" href="' + window.LINKS.emailSigTemplate + '" target="_blank" rel="noopener">Open the email signature template ↗</a> (a Google Doc) and copy the signature.</li>'
@@ -85,18 +89,15 @@
           + '<li>Change the text to your own name and role.</li>'
           + '<li>Under <b>Signature Defaults</b>, set <b>For New Emails Use</b> to <b>Carrara</b>, and <b>On Reply/Forward Use</b> to <b>Carrara</b>.</li>'
           + '<li>Scroll to the bottom and click <b>Save Changes</b>.</li>'
-          + '</ol>'
-          + '<h4 style="margin:24px 0 6px">Part 2: Your Slack profile</h4>'
-          + '<p>Fill in your Slack profile. Be sure to add:</p>'
-          + '<div class="pg"><ul><li>Full name</li><li>Photo</li><li>Title / focus area</li><li>Timezone</li><li>Phone number</li><li>Email</li><li>Start date</li></ul></div>'
-          + '<p class="m-note" style="margin-top:6px">Optional: about you, birthday, name pronunciation, pronouns.</p>',
+          + '</ol>',
         links: [{ t: 'Full guide on Notion', k: 'emailSignatureGuide' }] },
-      { id: 'time-tracking', when: 'week one', t: 'Set up time tracking', d: 'Your hours help us accurately track client work, allocate expenses, and support client billing and internal reporting, so please make sure they\'re complete and submitted on time.', links: [{ t: 'Time tracking', k: 'timeTracking' }] },
-      { id: 'benefits', when: 'week one', t: 'Understand your benefits', d: 'What you\'re enrolled in, what you need to elect, and by when. Ask Eric on Slack if anything is unclear or if you\'re a contractor and not sure what applies to you.' }
+      { id: 'time-tracking', when: 'week one', t: 'Set up time tracking', d: 'Your hours help us accurately track client work, allocate expenses, and support client billing and internal reporting, so please make sure they\'re complete and submitted on time.' },
+      { id: 'i9', when: 'day one', t: 'I-9 verification (full-time employees only)', d: 'US full-time employees complete I-9 employment eligibility verification. Eric sends this over; get it back the same week so payroll isn\'t held up.' },
+      { id: 'benefits', when: 'week one', t: 'Understand your benefits (full-time employees only)', d: 'What you\'re enrolled in, what you need to elect, and by when. Ask Eric on Slack if anything is unclear or if you\'re a contractor and not sure what applies to you.' }
     ]},
     { g: 'get to know carrara', cls: '', items: [
       { id: 'quarry', when: 'week one', t: 'Set up the Quarry', d: 'Our AI harness. Download the Claude app and log in with your Carrara Google account, set up an Obsidian vault, point Cowork at it, then run /workspace-initialization, /workspace-migration and /sync. Do this in week one: most of how we work assumes it.', links: [{ t: 'Quarry setup guide', k: 'quarry' }, { t: 'The tools we use', k: '#/tools' }] },
-      { id: 'notion', when: 'week one', t: 'Get oriented on our Notion', d: 'Start at Home Base and click around.', links: [{ t: 'Home Base', k: 'notionHomeBase' }] },
+      { id: 'carrara-hub', when: 'week one', t: 'Get oriented on the Carrara Hub', d: 'Start at hub.carrara.is and click around.', links: [{ t: 'Open the Carrara Hub', k: 'https://hub.carrara.is' }] },
       { id: 'time-off', when: 'week one', t: 'Review Time-Off Policy', d: 'Read the Time-Off & Holiday Policy page in this hub. Two minutes now saves confusion later.', links: [{ t: 'Time-Off & Holiday Policy', k: '#/timeoff' }] },
       { id: 'ashby', when: 'week two', t: 'Talent team only: get oriented on Ashby', d: 'Our ATS. Ask in #g-ashby-support if you get stuck.', links: [{ t: 'Open Ashby', k: 'ashby' }, { t: '#g-ashby-support', k: 'ch:g-ashby-support' }] }
     ]},
