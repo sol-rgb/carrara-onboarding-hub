@@ -1,6 +1,6 @@
 {
  "source": "client-codex",
- "updated": "2026-10-26",
+ "updated": "2026-11-02",
  "clients": [
   {
    "name": "3i Members",
@@ -390,6 +390,15 @@
    ]
   },
   {
+   "name": "LiteLLM",
+   "domain": "",
+   "lead": "Joe Penn",
+   "description": "",
+   "work": [
+    "Talent Platform"
+   ]
+  },
+  {
    "name": "Long Lake",
    "domain": "llmh.com",
    "lead": "Joe Penn",
@@ -504,7 +513,10 @@
    "domain": "",
    "lead": "Brandon Taleisnik",
    "description": "",
-   "work": []
+   "work": [
+    "Embedded recruiting",
+    "Talent Platform"
+   ]
   },
   {
    "name": "Paxos",

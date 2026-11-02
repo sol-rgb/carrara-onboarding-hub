@@ -1,6 +1,6 @@
 {
  "source": "notion-client-codex",
- "updated": "2026-10-26",
+ "updated": "2026-11-02",
  "clients": {
   "3i Members": {
    "status": "Paused",
@@ -81,7 +81,9 @@
    "accountManagers": [
     "Sam Blumenthal"
    ],
-   "talentPartners": [],
+   "talentPartners": [
+    "Ali Horowitz"
+   ],
    "coordination": [],
    "about": "AI platform for global supply chain intelligence, used by governments and enterprises to map and manage value chains.",
    "engagement": [
@@ -604,7 +606,8 @@
    ],
    "talentPartners": [
     "Giovanna Borgiotti",
-    "Greg Troxell"
+    "Greg Troxell",
+    "Ali Horowitz"
    ],
    "coordination": [],
    "about": "Healthtech platform using AI to handle prior authorizations, affordability and pharmacy coordination for every prescription. Formerly Tandem. Raised $160M+ with Accel leading the Series B alongside Thrive and General Catalyst.",
@@ -750,7 +753,8 @@
    ],
    "talentPartners": [
     "Tenzing Bhutia",
-    "Drew Koloski"
+    "Drew Koloski",
+    "Ali Horowitz"
    ],
    "coordination": [
     "Tess Wicks"
@@ -816,6 +820,22 @@
    "engagement": [
     "Marketing/growth engagement run on two-week sprints."
    ],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
+  "LiteLLM": {
+   "status": "Active",
+   "projectTypes": [
+    "Talent Platform"
+   ],
+   "accountManagers": [
+    "Joe Penn"
+   ],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
    "overview": {},
    "background": null,
    "docs": []
@@ -1066,7 +1086,10 @@
   },
   "Pace": {
    "status": "Active",
-   "projectTypes": [],
+   "projectTypes": [
+    "Embedded recruiting",
+    "Talent Platform"
+   ],
    "accountManagers": [
     "Brandon Taleisnik"
    ],
@@ -1181,7 +1204,9 @@
     "Alicia Donenfeld",
     "Kenna Meyerhoff"
    ],
-   "talentPartners": [],
+   "talentPartners": [
+    "Ali Horowitz"
+   ],
    "coordination": [
     "Hayley Samuels"
    ],
