@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-10-31",
+ "exported": "2026-11-02",
  "clients": [
   {
    "slug": "anthropic",
@@ -2525,7 +2525,7 @@
      "role": "People ops, fully integrated HR",
      "email": "roohi@carrara.is",
      "slack": "U0B4EK620Q3",
-     "timezone": "America/Chicago"
+     "timezone": "America/Indiana/Indianapolis"
     }
    ],
    "workstreams": [],
@@ -2569,7 +2569,7 @@
      "role": "Onboarding and I-9s",
      "email": "roohi@carrara.is",
      "slack": "U0B4EK620Q3",
-     "timezone": "America/Chicago"
+     "timezone": "America/Indiana/Indianapolis"
     },
     {
      "name": "Maggie Stout",
@@ -2665,7 +2665,7 @@
      "role": "FinOps",
      "email": "roohi@carrara.is",
      "slack": "U0B4EK620Q3",
-     "timezone": "America/Chicago"
+     "timezone": "America/Indiana/Indianapolis"
     }
    ],
    "workstreams": [],
@@ -4211,7 +4211,7 @@
    "title": "",
    "email": "roohi@carrara.is",
    "slack": "U0B4EK620Q3",
-   "timezone": "America/Chicago",
+   "timezone": "America/Indiana/Indianapolis",
    "photo": "https://hub.carrara.is/people/roohi.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=roohi%40carrara.is"
@@ -4288,7 +4288,7 @@
    "title": "",
    "email": "shayne@carrara.is",
    "slack": "U0ATMC40UJZ",
-   "timezone": "Asia/Chongqing",
+   "timezone": "America/Los_Angeles",
    "photo": "https://hub.carrara.is/people/shayne.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=shayne%40carrara.is"
