@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-11-02",
+ "exported": "2026-11-03",
  "clients": [
   {
    "slug": "anthropic",
@@ -92,7 +92,7 @@
      "role": "Account support",
      "email": "ben@carrara.is",
      "slack": "U099BBEJVA4",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     }
    ],
    "workstreams": [
@@ -368,13 +368,6 @@
      "email": "maggie@carrara.is",
      "slack": "U0A88MMCL4T",
      "timezone": "America/New_York"
-    },
-    {
-     "name": "Tom Callahan",
-     "role": "Recruiting, FDE and bizops",
-     "email": "tom@carrara.is",
-     "slack": "U0AA92Q9CDP",
-     "timezone": "America/Los_Angeles"
     }
    ],
    "workstreams": [
@@ -488,20 +481,20 @@
     },
     {
      "title": "Dinners and webinar",
-     "detail": "The Amsterdam finance leader dinner on Nov 5 has its run of show and gift options, and a London webinar and dinner are in planning.",
+     "detail": "The Amsterdam finance leader dinner on Nov 5 has its run of show and final print files, and a London webinar and dinner are in planning.",
      "points": [
       "Amsterdam run of show in two hosting formats, including a Jeffersonian dinner",
-      "Menus, name cards and print gift options for the Amsterdam dinner",
+      "Menus, name cards and gift prints for the Amsterdam dinner, in Sphere's typefaces",
       "E-invoicing webinar: Sphere hosts and an outside expert gives the view, from a London studio"
      ]
     },
     {
      "title": "Guerrilla and mail",
-     "detail": "The SF billboard plans are folded into one guerrilla brief, and a mail plan for Sphere's priority accounts is drafted.",
+     "detail": "The SF billboard plans are folded into one guerrilla brief, and gift sends to CFOs in SF and Amsterdam are under way, with a card in design for each city.",
      "points": [
       "Review sites with three guerrilla concepts and SF billboard options",
       "Send plan for a physical mail campaign to Sphere's priority accounts",
-      "Florida tax conference: truck screens, coffee cup stickers, merch and a lead form page"
+      "Postcard size gift cards for the SF and Amsterdam CFO sends, one design per city"
      ]
     },
     {
@@ -515,7 +508,7 @@
     }
    ],
    "channel": "c-sphere",
-   "updated": "2026-10-31",
+   "updated": "2026-11-03",
    "url": "https://hub.carrara.is/clients/sphere"
   },
   {
@@ -583,7 +576,7 @@
      "role": "Growth outbound and enriched lists",
      "email": "pranav@carrara.is",
      "slack": "U0B0R326N4C",
-     "timezone": "Europe/Brussels"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Sol Silbenberg",
@@ -805,7 +798,7 @@
     },
     {
      "title": "Launch posts",
-     "detail": "Exec and employee LinkedIn posts and a launch GIF announcing the new site are in review, going out next week.",
+     "detail": "Exec and employee LinkedIn posts and a launch GIF announcing the new site are scheduled to go out Nov 3.",
      "points": [
       "Distribution doc with post copy for each person and a posting schedule",
       "Launch GIF with an all white logo, plus a 4:5 version",
@@ -831,7 +824,7 @@
     }
    ],
    "channel": "p-grindr-talent-narrative",
-   "updated": "2026-10-31",
+   "updated": "2026-11-03",
    "url": "https://hub.carrara.is/clients/grindr"
   },
   {
@@ -921,7 +914,7 @@
     },
     {
      "name": "Chiara Libertini",
-     "role": "X ads, video, AI creative and listicle pages",
+     "role": "X ads, video, AI creative, listicle pages and dashboard v1",
      "email": "chiara@carrara.is",
      "slack": "U0AKDG488U8",
      "timezone": "America/Buenos_Aires"
@@ -937,7 +930,7 @@
    "workstreams": [
     {
      "title": "Paid media",
-     "detail": "We work on Meta with cfo.ai's team, reading results each week and calling which ads to scale; the X test and a Meta pLTV test are paused while tracking is fixed.",
+     "detail": "We work on Meta with cfo.ai's team, reading results each week and calling which ads to scale; the fractional CFO campaign is running and the X and pLTV tests are paused while tracking is fixed.",
      "points": [
       "Meta account restructured into scale, testing and retargeting campaigns",
       "Weekly call on which ads to keep, promote, remix or pause",
@@ -946,16 +939,16 @@
     },
     {
      "title": "Landing pages",
-     "detail": "Persona pages, pricing and an inspiration gallery are live on cfo.ai; four fractional CFO listicles are share-ready and the first compare pages move to design next.",
+     "detail": "Persona pages, pricing and an inspiration gallery are live on cfo.ai; four fractional CFO listicles are in a pull request for the client, and four compare pages are set to publish this week.",
      "points": [
       "Persona pages, a pricing update and an inspiration gallery, shipped into cfo.ai's site",
       "Onboarding call booking on the homepage, fractional CFO page and pricing",
-      "Four fractional CFO listicles and the first four competitor compare pages as templates"
+      "Four fractional CFO listicles and four compare pages, with eight more compare pages next"
      ]
     },
     {
      "title": "Ad creative",
-     "detail": "Weekly creative batches from briefs, each aimed at one persona, with new videos in from an outside studio.",
+     "detail": "Weekly creative batches from briefs, each aimed at one persona; this week's statics and videos are for fractional CFOs, including ads for the listicles.",
      "points": [
       "Weekly creative review site where the client signs off each batch",
       "Testimonial video ads cut from customer interviews, each with its own hook",
@@ -973,16 +966,16 @@
     },
     {
      "title": "Performance reporting",
-     "detail": "A live dashboard for Meta and Google plus a persona testing report, with a business level view of signups, trials and persona tests outlined next.",
+     "detail": "A live dashboard for Meta and Google plus a persona testing report; a fractional CFO dashboard is in build as a v1 to agree with the client.",
      "points": [
       "Real time performance dashboard for Meta and Google",
       "Persona testing report on how each persona's ads and pages perform",
-      "Meta reporting database of every campaign, ad set and ad since launch"
+      "Fractional CFO dashboard v1: outbound, Meta and LinkedIn ads, and target account reach"
      ]
     }
    ],
    "channel": "c-cfo-ai",
-   "updated": "2026-10-31",
+   "updated": "2026-11-03",
    "url": "https://hub.carrara.is/clients/runway"
   },
   {
@@ -1329,7 +1322,7 @@
      "role": "Dealer Direct lead",
      "email": "tan@carrara.is",
      "slack": "U0BG4SC977H",
-     "timezone": "America/New_York"
+     "timezone": "Europe/Amsterdam"
     },
     {
      "name": "Enzo Budasoff",
@@ -1377,11 +1370,11 @@
    "workstreams": [
     {
      "title": "Hertzcules billing app",
-     "detail": "A Databricks app for no-show and cancellation fee billing, live with Hertz's receivables team; we're setting up versioned monthly inputs.",
+     "detail": "A Databricks app for no-show and cancellation fee billing, live with Hertz's receivables team; changes from their latest feedback session are in a pull request.",
      "points": [
       "Billing logic tab with a SQL editor, scheduled versions and a change log",
       "Defensibility logic in the app, plus master billing files for unpaid and partly paid invoices",
-      "Billing runs reconciled with the RPA team's files, with each difference sorted by cause"
+      "Payment tracker export, month grouping on the dashboard and self serve report upload"
      ]
     },
     {
@@ -1395,7 +1388,7 @@
     },
     {
      "title": "Driver dispatch",
-     "detail": "Driver availability, manual assignment and a utilization report for day 90 on Nov 6; the utilization report is live and the driver schedule designs are handed to engineering.",
+     "detail": "Driver availability, manual assignment and a utilization report for day 90 on Nov 6; the utilization report is live and the driver schedule is being set up next.",
      "points": [
       "Driver task map built with Hertz ops on how moves are received and recorded today",
       "Availability calendar in the driver app, with a manager view of who's on shift today",
@@ -1404,7 +1397,7 @@
     },
     {
      "title": "Dealer Direct",
-     "detail": "The Jarvis rep tool, dealer emails and texts, and a partner collections tracker; the Advent feed is live and the Outlook integration is merged and on staging.",
+     "detail": "The Jarvis rep tool, dealer emails and texts, and a partner collections tracker; the Advent feed is live and Jarvis is moving to active dealers only.",
      "points": [
       "Jarvis: dealer and prospect lists from the Advent feed, with pricing, inventory and a hitlist",
       "SendGrid dealer emails after a sale, a purchase email pilot and Twilio texts in registration",
@@ -1413,7 +1406,7 @@
     }
    ],
    "channel": "c-hertz-external",
-   "updated": "2026-10-31",
+   "updated": "2026-11-03",
    "url": "https://hub.carrara.is/clients/hertz"
   },
   {
@@ -1457,14 +1450,14 @@
      "role": "Account lead",
      "email": "ben@carrara.is",
      "slack": "U099BBEJVA4",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Nathan Peadon",
      "role": "Growth lead",
      "email": "nathan@carrara.is",
      "slack": "U0BHHPR030E",
-     "timezone": "America/Los_Angeles"
+     "timezone": "Australia/Canberra"
     },
     {
      "name": "Sara Hennings",
@@ -1539,7 +1532,7 @@
     },
     {
      "title": "Chief of staff search",
-     "detail": "Role scoped with Alpha HR as an executive business partner and chief of staff; finalists are meeting the client, with an AI take-home being built.",
+     "detail": "Role scoped with Alpha HR as an executive business partner and chief of staff; finalists are getting an AI take-home, with a final round at the end of the week.",
      "points": [
       "Role archetypes site used to calibrate the search with the client",
       "Rewritten JD, an anonymized version and a LinkedIn post for Alpha HR to share",
@@ -1548,7 +1541,7 @@
     }
    ],
    "channel": null,
-   "updated": "2026-10-29",
+   "updated": "2026-11-03",
    "url": "https://hub.carrara.is/clients/alpha-school"
   },
   {
@@ -2230,9 +2223,9 @@
    "workstreams": [
     {
      "title": "Paid media",
-     "detail": "We run ads for Bee Frontier, the device that launched on Amazon in October, on Meta, Google and TikTok, with changes made from each weekly report.",
+     "detail": "We run ads for Bee Frontier on Meta, Google and TikTok, with Meta now on a new ad account and changes made from each weekly report.",
      "points": [
-      "Google ads adjusted from what the weekly report showed",
+      "Meta placement review, with low click placements like Audience Network being cut",
       "TikTok paused for a week to see how much it adds to sales",
       "Google search split into brand, non-brand and competitor campaigns, with keyword cleanups"
      ]
@@ -2248,7 +2241,7 @@
     },
     {
      "title": "Creative refresh",
-     "detail": "We reviewed every live ad, decided which to keep, rework or pause, and wrote briefs for new ones.",
+     "detail": "Each week we call which live ads to keep, hold or pause, and write briefs for new ones, with new video briefs in progress.",
      "points": [
       "Keep, rework or pause call on every live ad, with briefs for new ones",
       "New Google search ad copy, shared with the client",
@@ -2274,7 +2267,7 @@
     }
    ],
    "channel": null,
-   "updated": "2026-10-31",
+   "updated": "2026-11-03",
    "url": "https://hub.carrara.is/clients/amazon"
   },
   {
@@ -3650,7 +3643,7 @@
    "title": "GTM",
    "email": "ben@carrara.is",
    "slack": "U099BBEJVA4",
-   "timezone": "America/New_York",
+   "timezone": "America/Los_Angeles",
    "photo": "https://hub.carrara.is/people/ben.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=ben%40carrara.is"
@@ -4145,7 +4138,7 @@
    "title": "",
    "email": "nathan@carrara.is",
    "slack": "U0BHHPR030E",
-   "timezone": "America/Los_Angeles",
+   "timezone": "Australia/Canberra",
    "photo": "https://hub.carrara.is/people/nathan.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=nathan%40carrara.is"
@@ -4167,7 +4160,7 @@
    "title": "Growth",
    "email": "pranav@carrara.is",
    "slack": "U0B0R326N4C",
-   "timezone": "Europe/Brussels",
+   "timezone": "America/Los_Angeles",
    "photo": "https://hub.carrara.is/people/pranav.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=pranav%40carrara.is"
@@ -4288,7 +4281,7 @@
    "title": "",
    "email": "shayne@carrara.is",
    "slack": "U0ATMC40UJZ",
-   "timezone": "America/Los_Angeles",
+   "timezone": "Asia/Chongqing",
    "photo": "https://hub.carrara.is/people/shayne.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=shayne%40carrara.is"
@@ -4343,7 +4336,7 @@
    "title": "",
    "email": "tan@carrara.is",
    "slack": "U0BG4SC977H",
-   "timezone": "America/New_York",
+   "timezone": "Europe/Amsterdam",
    "photo": null,
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=tan%40carrara.is"
@@ -4393,17 +4386,6 @@
    "url": "https://hub.carrara.is/people?person=tina%40carrara.is"
   },
   {
-   "id": "tom",
-   "name": "Tom Callahan",
-   "title": "Recruiting",
-   "email": "tom@carrara.is",
-   "slack": "U0AA92Q9CDP",
-   "timezone": "America/Los_Angeles",
-   "photo": "https://hub.carrara.is/people/tom.jpg",
-   "linkedin": null,
-   "url": "https://hub.carrara.is/people?person=tom%40carrara.is"
-  },
-  {
    "id": "yanel",
    "name": "Yanel Bottini",
    "title": "Design",
@@ -4442,7 +4424,7 @@
    "title": "",
    "email": "nick@carrara.is",
    "slack": "U0C4NUX9T60",
-   "timezone": "America/New_York",
+   "timezone": "America/Los_Angeles",
    "photo": "https://hub.carrara.is/people/nick.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=nick%40carrara.is"
