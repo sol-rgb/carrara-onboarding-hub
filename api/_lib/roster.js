@@ -9,6 +9,18 @@ function str(v) {
   return typeof v === 'string' ? v.trim() : '';
 }
 
+// A list of names from POps (practice_tags, clients): strings only, trimmed,
+// empty strings dropped, POps' order kept. Anything that is not an array is [].
+function strList(v) {
+  return Array.isArray(v) ? v.filter((x) => typeof x === 'string').map((x) => x.trim()).filter(Boolean) : [];
+}
+
+// The roster's top-level grouping key. "practices" only when POps says exactly
+// that; missing or anything else reads as "department".
+function groupingOf(roster) {
+  return roster && roster.grouping === 'practices' ? 'practices' : 'department';
+}
+
 // roster: the POps JSON. snapshotMembers: team.json's members (the Slack
 // snapshot), used only to carry a photo over until POps sends photo_url.
 function fromRoster(roster, snapshotMembers) {
@@ -37,6 +49,8 @@ function fromRoster(roster, snapshotMembers) {
       email,
       title: r.title || '',
       department: r.department || '',
+      practices: strList(r.practice_tags),
+      clients: strList(r.clients),
       location: r.location || '',
       avatar,
       isNew: r.status === 'onboarding',
@@ -60,4 +74,4 @@ async function fetchRoster(fetchImpl, { url, token }) {
   return r.json();
 }
 
-module.exports = { fromRoster, fetchRoster };
+module.exports = { fromRoster, fetchRoster, groupingOf };

@@ -585,6 +585,9 @@
   /* true when /api/team answered from POps: then every field POps has wins, and
      Notion, the Knowledge Hub and the Slack snapshot only fill the gaps */
   var fromPops = false;
+  /* what the filter, cards and modal group people by: "practices" (POps, several
+     per person) or "department". Set from data.grouping; absent reads department. */
+  var grouping = 'department';
   var myProfile = null; // Shared profiles are edited in the Knowledge Hub.
   function initials(name) {
     return name.split(/\s+/).slice(0, 2).map(function (w) { return w.charAt(0); }).join('').toUpperCase();
@@ -593,12 +596,20 @@
     if (!t) return '';
     return t.replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{200D}]/gu, '').trim();
   }
-  /* On the POps path, department comes from POps only, no Notion fallback, and
-     anything that shows it (filter, card, modal) stays hidden until someone has
-     one. On the Slack and snapshot paths, the Notion business areas, as today. */
+  /* On the POps path the groups come from POps only, no Notion fallback: the
+     member's practices when POps groups by practices, else their department.
+     Anything that shows them (filter, card, modal) stays hidden until someone
+     has one. On the Slack and snapshot paths, the Notion business areas, as today. */
   function deptsOf(m) {
+    if (fromPops && grouping === 'practices') return Array.isArray(m.practices) ? m.practices : [];
     if (fromPops) return m.department ? [m.department] : [];
     return ((pavilion[m.name] || {}).teams) || [];
+  }
+  /* A member's clients: POps' list wins when it names any, else today's
+     Codex and Knowledge Hub answer. Names resolve against clientData for the
+     domain and logo either way. */
+  function clientsFor(m) {
+    return MO.pickClients(fromPops, m, function () { return clientsOf(m.name); });
   }
   /* POps title and location win when the roster came from POps; otherwise
      today's precedence, Notion first. */
@@ -624,18 +635,26 @@
     /* location and department get their own labelled rows. Cramming both onto
        one line made it read as a single fact instead of two. The one-liner stays
        up top next to the name. */
-    var dept = deptsOf(m).join(', ');
+    var groups = deptsOf(m);
+    var dept = groups.join(', ');
     var loc = locOf(m);
+    var groupFact = '';
+    if (dept && fromPops && grouping === 'practices') {
+      groupFact = '<div class="mm-fact"><div class="mm-k">Practices</div><div class="mm-v mm-chips">'
+        + groups.map(function (g) { return '<span class="mm-chip">' + esc(g) + '</span>'; }).join('') + '</div></div>';
+    } else if (dept) {
+      groupFact = '<div class="mm-fact"><div class="mm-k">Department</div><div class="mm-v">' + esc(dept) + '</div></div>';
+    }
     if (loc || dept) {
       html += '<div class="mm-facts">'
         + (loc ? '<div class="mm-fact"><div class="mm-k">Based in</div><div class="mm-v">' + esc(loc) + '</div></div>' : '')
-        + (dept ? '<div class="mm-fact"><div class="mm-k">Department</div><div class="mm-v">' + esc(dept) + '</div></div>' : '')
+        + groupFact
         + '</div>';
     }
     /* their own words first, then the researched summary as a fallback */
     if (pv.about) html += '<p>' + esc(pv.about) + '</p>';
     else if (p && p.summary) html += '<p>' + esc(p.summary) + '</p>';
-    var pvClients = clientsOf(m.name);
+    var pvClients = clientsFor(m);
     if (pvClients.length) {
       /* logo above, company name below: a name alone makes you read, a logo
          alone makes you guess. Falls back to the initial when we have no domain. */
@@ -675,6 +694,9 @@
     teamData.forEach(function (m) {
       deptsOf(m).forEach(function (t) { teams[t] = 1; });
       if (fromPops && locOf(m)) locs[locOf(m)] = 1;
+      /* POps' client lists are options too, so filtering by one finds the
+         people whose card shows it */
+      if (fromPops) clientsFor(m).forEach(function (c) { clients[c] = 1; });
     });
     Object.keys(pavilion).forEach(function (n) {
       var x = pavilion[n];
@@ -691,9 +713,12 @@
           }).join('');
       el.value = cur;
     }
-    fill('#f-team', teams, 'All departments');
+    var labels = MO.groupLabels(fromPops ? grouping : 'department');
+    fill('#f-team', teams, labels.all);
     var teamLabel = $('#f-team') && $('#f-team').closest('label');
     if (teamLabel) {
+      var lt = teamLabel.querySelector('span');
+      if (lt) lt.textContent = labels.label;
       /* .tf sets display: flex, which beats the hidden attribute, so set both */
       teamLabel.hidden = !Object.keys(teams).length;
       teamLabel.style.display = teamLabel.hidden ? 'none' : '';
@@ -767,7 +792,7 @@
     var shown = list.filter(function (m) {
       var pv = pavilion[m.name] || {};
       if (teamFilter.team && deptsOf(m).indexOf(teamFilter.team) === -1) return false;
-      var mine = clientsOf(m.name);
+      var mine = clientsFor(m);
       if (teamFilter.client && mine.indexOf(teamFilter.client) === -1) return false;
       if (teamFilter.loc && locOf(m) !== teamFilter.loc) return false;
       var hay = [m.name, m.nickname || '', m.title || '', m.email || '', pv.role || '', locOf(m),
@@ -782,7 +807,7 @@
       var av = m.avatar ? '<img src="' + m.avatar + '" alt="" loading="lazy">' : initials(m.name);
       var pv = pavilion[m.name] || {};
       var role = roleOf(m);
-      var logos = clientsOf(m.name).slice(0, 5).map(function (cn) {
+      var logos = clientsFor(m).slice(0, 5).map(function (cn) {
         var c = clientData.filter(function (x) { return x.name === cn; })[0];
         return c && c.domain
           ? '<a class="cl-dot-link" href="https://' + esc(c.domain) + '" target="_blank" rel="noopener" title="' + esc(cn) + '">'
@@ -791,7 +816,7 @@
       }).join('');
       /* location and logos live in a footer pinned to the bottom of the card,
          so they line up across a row whatever length the role runs to */
-      var where = [deptsOf(m).join(', '), locOf(m)].filter(Boolean).join(' · ');
+      var where = [MO.groupsText(deptsOf(m), fromPops ? grouping : 'department'), locOf(m)].filter(Boolean).join(' · ');
       var foot = (where ? '<div class="loc-sm">' + esc(where) + '</div>' : '')
         + (logos ? '<div class="cl-row">' + logos + '</div>' : '');
       /* the footer is a sibling of .info, not a child: an auto margin only
@@ -865,6 +890,7 @@
       /* the Notion directory is the richer source: role, location, clients and the
          People Pavilion answers. Slack still owns the photo and who is on the roster. */
       fromPops = data.source === 'pops';
+      grouping = MO.groupingOf(data);
       teamData = data.members || [];
       applyKnowledgePeople();
       /* Slack and Notion spell people differently: Slack has "Heath" and "Ben",
@@ -899,7 +925,8 @@
       refreshStats();
       mountMyOnboarding();
       if (data.source === 'pops') {
-        $('#team-note').textContent = 'Live from POps, Carrara\'s people directory. Titles, locations and departments come from POps; photos still come from Slack profiles.';
+        $('#team-note').textContent = 'Live from POps, Carrara\'s people directory. Titles, locations and '
+          + (grouping === 'practices' ? 'practice areas' : 'departments') + ' come from POps; photos still come from Slack profiles.';
       } else if (data.source === 'slack') {
         $('#team-note').textContent = 'Live from the #f-company-ops-general Slack channel, refreshed every two weeks. Photos and roles come from Slack profiles: set yours and it shows here.';
       }
@@ -962,6 +989,14 @@
         ctx.manager = { avatar: m.avatar || '', email: m.email || '', role: roleOf(m) };
       }
     }
+    /* Under POps practices, "your team" is everyone who shares a practice with
+       the hire, and the team link filters to their first practice. */
+    var pt = MO.practiceTeam(kitData, fromPops, grouping, teamData, mgr.name);
+    if (pt) {
+      ctx.teamFilter = pt.teamFilter;
+      ctx.peers = pt.peers;
+      return ctx;
+    }
     var dirTeams = MO.TEAM_DIRECTORY[(kitData.team && kitData.team.key) || ''] || [];
     if (dirTeams.length) {
       ctx.teamFilter = dirTeams[0];
@@ -1023,13 +1058,10 @@
      lead can change, and the plan itself lives in POps. One refresh in flight
      at a time -- a hire clicking between sections must not queue five. */
   var kitRefreshing = false;
-  // A plan is either not there at all (null) or there with every field blank
-  // (POps answers the shape but the manager hasn't written anything yet) --
-  // both read as "nothing to show" and both are the SAME "empty" a refetch
-  // must never let overwrite real content.
-  function planIsEmpty(plan) {
-    return !plan || !Object.keys(plan).some(function (k) { return plan[k]; });
-  }
+  // A plan is either not there at all (null) or there with every field blank;
+  // both are the SAME "empty" a refetch must never let overwrite real content.
+  // practices never counts as content: it is not the manager's words. The rule
+  // lives in my-onboarding.js (MO.planIsEmpty) so the verifier can drive it.
   function refreshKit() {
     var saved = store('carrara_welcome');
     if (!saved || !saved.code || kitRefreshing) return;
@@ -1051,8 +1083,11 @@
         // from the fresh response. A real update still replaces stored: this
         // is not a one-way freeze, only a floor under real content.
         var stored = saved.data || {};
-        if (planIsEmpty(j.plan) && !planIsEmpty(stored.plan)) {
-          j.plan = stored.plan;
+        if (MO.planIsEmpty(j.plan) && !MO.planIsEmpty(stored.plan)) {
+          /* a fresh answer's practices still win: they come from POps' roster,
+             not the manager, so a blank manager plan does not make them stale */
+          var freshPractices = j.plan && Array.isArray(j.plan.practices) ? j.plan.practices : null;
+          j.plan = Object.assign({}, stored.plan, freshPractices ? { practices: freshPractices } : {});
           j.syncWith = stored.syncWith;
         }
         store('carrara_welcome', { code: saved.code, data: j });

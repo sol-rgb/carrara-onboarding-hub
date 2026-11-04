@@ -71,6 +71,14 @@ function planText(plan, key) {
   return typeof v === 'string' && v.trim() ? v : null;
 }
 
+/** The hire's practice areas from the plan: strings only, trimmed, blanks
+ *  dropped, POps' order kept. Missing or not an array is []. Not the manager's
+ *  words, so app.js's planIsEmpty does not count it as plan content. */
+function planList(plan, key) {
+  const v = plan && plan[key];
+  return Array.isArray(v) ? v.filter((x) => typeof x === 'string').map((x) => x.trim()).filter(Boolean) : [];
+}
+
 function decode(code) {
   const parts = String(code || '').trim().split('.');
   if (parts.length !== 2) return null;
@@ -178,7 +186,8 @@ module.exports = async (req, res) => {
       manager_intro: planText(plan, 'manager_intro'),
       thirty_days: planText(plan, 'thirty_days'),
       sixty_days: planText(plan, 'sixty_days'),
-      ninety_days: planText(plan, 'ninety_days')
+      ninety_days: planText(plan, 'ninety_days'),
+      practices: planList(plan, 'practices')
     } : null,
     links
   });

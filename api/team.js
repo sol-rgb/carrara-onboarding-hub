@@ -4,11 +4,12 @@
 //      Edge-cached for an hour. Any failure falls through to 2 or 3 with popsError,
 //      cached for five minutes only, so one POps blip is not pinned at the edge
 //      for the two weeks the Slack and snapshot answers otherwise get.
+//      The answer carries grouping ("practices" or "department", from the roster).
 //   2. Slack when SLACK_BOT_TOKEN is set (SLACK_CHANNEL_ID optional).
 //   3. The bundled team.json snapshot.
 // Slack and the snapshot are edge-cached for two weeks.
 // Required Slack bot scopes: channels:read, users:read, users:read.email
-const { fromRoster, fetchRoster } = require('./_lib/roster.js');
+const { fromRoster, fetchRoster, groupingOf } = require('./_lib/roster.js');
 
 function snapshot() {
   // require so the bundler traces and includes the file
@@ -32,7 +33,10 @@ module.exports = async (req, res) => {
     const json = await fetchRoster(globalThis.fetch, { url: process.env.POPS_URL || 'https://carrara-pops.work', token: popsToken });
     const members = fromRoster(json, snapshot().members);
     res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=86400');
-    return res.status(200).json({ source: 'pops', updated: json.generated_at, members });
+    // grouping tells the team page what the filter groups by: "practices" (a
+    // person can have several) or "department". Only the POps answer carries it;
+    // the Slack and snapshot answers leave it out and the page reads department.
+    return res.status(200).json({ source: 'pops', updated: json.generated_at, grouping: groupingOf(json), members });
   } catch (e) {
     const popsError = String((e && e.message) || e);
     // wrap res.json so whatever the Slack or snapshot path answers carries

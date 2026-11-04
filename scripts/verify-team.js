@@ -18,6 +18,10 @@
 //   5. dormant   -- with no tokens at all the response is today's snapshot
 //   6. wire      -- one call, the right URL, the bearer header, default URL,
 //                   no doubled slash
+//   7. grouping   -- practices and clients carried per member (strings only,
+//                   trimmed, blanks dropped), and the top-level grouping key:
+//                   "practices" passes through, missing or unknown reads
+//                   "department", and the fallback answers carry none
 // Every fixture name is invented. This script never reaches the network.
 // Exits non-zero when any check fails.
 
@@ -35,7 +39,7 @@ const TOKEN = 'verify-team-roster-token-5e1';
 const TWO_WEEKS = 's-maxage=1209600, stale-while-revalidate=604800';
 const ONE_HOUR = 's-maxage=3600, stale-while-revalidate=86400';
 const SHORT = 's-maxage=300, stale-while-revalidate=3600';
-const KEYS = ['avatar', 'department', 'email', 'isNew', 'location', 'manager', 'name', 'nickname', 'startDate', 'status', 'title'];
+const KEYS = ['avatar', 'clients', 'department', 'email', 'isNew', 'location', 'manager', 'name', 'nickname', 'practices', 'startDate', 'status', 'title'];
 
 let failures = 0;
 function check(label, cond, detail) {
@@ -129,9 +133,9 @@ async function main() {
     generated_at: '2026-11-03T21:35:00.000Z',
     count: 4,
     members: [
-      row({ full_name: '  Zora Quill ', preferred_name: ' Zee ', work_email: ' Zora.Quill@Example.test ', title: 'Talent Partner', department: 'Talent', location: 'New York', start_date: '2026-01-12', status: 'onboarding', manager: { id: 'm1', full_name: 'Milo Brandt', work_email: 'Milo.Brandt@Example.test' } }),
+      row({ full_name: '  Zora Quill ', preferred_name: ' Zee ', practice_tags: [' Talent Platform ', 'Finance', '', '   ', 7, null, { x: 1 }, 'BizOps'], clients: ['Acme Rocketry', ' Hollow Pine ', 42, ''], work_email: ' Zora.Quill@Example.test ', title: 'Talent Partner', department: 'Talent', location: 'New York', start_date: '2026-01-12', status: 'onboarding', manager: { id: 'm1', full_name: 'Milo Brandt', work_email: 'Milo.Brandt@Example.test' } }),
       row({ full_name: 'Ansel Fairweather', work_email: null, title: 'Analyst', manager: { id: 'm2', full_name: 'Petra Lowe', work_email: null } }),
-      row({ full_name: 'Calla Nightingale', work_email: 'calla@example.test', photo_url: 'https://img.example.test/calla.png' }),
+      row({ full_name: 'Calla Nightingale', work_email: 'calla@example.test', photo_url: 'https://img.example.test/calla.png', practice_tags: 'Talent Platform', clients: { name: 'Acme Rocketry' } }),
       row({ full_name: 'Bram Okonkwo-Hale', work_email: 'bram@example.test' }),
       row({ full_name: '   ', work_email: 'blank@example.test' }),
       row({ full_name: null })
@@ -155,6 +159,8 @@ async function main() {
   check('nickname is preferred_name trimmed', zora.nickname === 'Zee', zora.nickname);
   check('email is trimmed and lowercased', zora.email === 'zora.quill@example.test', zora.email);
   check('title, department, location, startDate carried', zora.title === 'Talent Partner' && zora.department === 'Talent' && zora.location === 'New York' && zora.startDate === '2026-01-12', zora);
+  check('practices carried from practice_tags in POps order, trimmed', JSON.stringify(zora.practices) === JSON.stringify(['Talent Platform', 'Finance', 'BizOps']), zora.practices);
+  check('clients carried in POps order, trimmed', JSON.stringify(zora.clients) === JSON.stringify(['Acme Rocketry', 'Hollow Pine']), zora.clients);
   check('avatar carried from the snapshot by email, regardless of case', zora.avatar === 'assets/team-photos/zora.jpg', zora.avatar);
   check('isNew true for onboarding', zora.isNew === true, zora.isNew);
   check('status passed through', zora.status === 'onboarding', zora.status);
@@ -165,8 +171,10 @@ async function main() {
   check('manager with null email maps to empty email', ansel.manager && ansel.manager.name === 'Petra Lowe' && ansel.manager.email === '', ansel.manager);
   check('nickname, department, location, startDate default to empty', ansel.nickname === '' && ansel.department === '' && ansel.location === '' && ansel.startDate === '', ansel);
   check('isNew false for active', ansel.isNew === false, ansel.isNew);
+  check('practices and clients default to empty arrays', Array.isArray(ansel.practices) && ansel.practices.length === 0 && Array.isArray(ansel.clients) && ansel.clients.length === 0, { p: ansel.practices, c: ansel.clients });
   const calla = by('Calla Nightingale');
   check('photo_url wins over the snapshot avatar', calla.avatar === 'https://img.example.test/calla.png', calla.avatar);
+  check('non-array practice_tags and clients read as empty', JSON.stringify(calla.practices) === '[]' && JSON.stringify(calla.clients) === '[]', { p: calla.practices, c: calla.clients });
   const bram = by('Bram Okonkwo-Hale');
   check('avatar empty when neither email nor name matches', bram.avatar === '', bram.avatar);
   check('manager null when unknown', bram.manager === null, bram.manager);
@@ -201,6 +209,7 @@ async function main() {
   check('one hour cache header', r3.headers['cache-control'] === ONE_HOUR, r3.headers);
   check('no channel key', !('channel' in b3), Object.keys(b3));
   check('no popsError key', !('popsError' in b3), Object.keys(b3));
+  check('grouping defaults to department when the roster has none', b3.grouping === 'department', b3.grouping);
   check('12 members served', Array.isArray(b3.members) && b3.members.length === 12, b3.members && b3.members.length);
   check('the token is not in the response', JSON.stringify(b3).indexOf(TOKEN) === -1);
 
@@ -212,6 +221,7 @@ async function main() {
   check('source is snapshot', b4.source === 'snapshot', b4.source);
   check('popsError present', typeof b4.popsError === 'string' && b4.popsError.length > 0, b4.popsError);
   check('popsError names the status', /401/.test(b4.popsError || ''), b4.popsError);
+  check('the fallback answer carries no grouping', !('grouping' in b4), Object.keys(b4));
   check('the token is not in the response', JSON.stringify(b4).indexOf(TOKEN) === -1);
   check('short cache header on the fallback', r4.headers['cache-control'] === SHORT, r4.headers);
 
@@ -244,6 +254,7 @@ async function main() {
   check('two-week cache header unchanged', r7.headers['cache-control'] === TWO_WEEKS, r7.headers);
   check('body is the snapshot, byte for byte', JSON.stringify(b7) === JSON.stringify(snapFile));
   check('no network call', deadStub.calls.length === 0, deadStub.calls.length);
+  check('the snapshot answer carries no grouping', !('grouping' in b7), Object.keys(b7));
 
   // --------------------------------------------------------------------- wire
   console.log('\n[wire] what the POps call looks like');
@@ -259,6 +270,30 @@ async function main() {
   await withEnv({ POPS_ROSTER_TOKEN: TOKEN, POPS_URL: 'https://pops.example.test//' }, slashStub, callTeam);
   const sUrl = (slashStub.calls[0] || {}).url;
   check('trailing slash on POPS_URL does not double', sUrl === 'https://pops.example.test/api/hub-roster', sUrl);
+
+  // ----------------------------------------------------------------- grouping
+  console.log('\n[grouping] the roster says how the team page groups people');
+  const grouped = Object.assign(bigRoster(), { grouping: 'practices' });
+  grouped.members[0].practice_tags = ['Talent Platform', 'Finance'];
+  grouped.members[0].clients = ['Acme Rocketry'];
+  const g1 = (await withEnv({ POPS_ROSTER_TOKEN: TOKEN }, stub(okJson(grouped)), callTeam)).body || {};
+  check('grouping "practices" passes through', g1.grouping === 'practices', g1.grouping);
+  const arlo = (g1.members || []).find((m) => m.name === 'Arlo Testwood') || {};
+  check('and a member carries their practices', JSON.stringify(arlo.practices) === JSON.stringify(['Talent Platform', 'Finance']), arlo.practices);
+  check('and their clients', JSON.stringify(arlo.clients) === JSON.stringify(['Acme Rocketry']), arlo.clients);
+  for (const odd of ['department', 'Practices', 'teams', '', null, 7, ['practices']]) {
+    const g = (await withEnv({ POPS_ROSTER_TOKEN: TOKEN }, stub(okJson(Object.assign(bigRoster(), { grouping: odd }))), callTeam)).body || {};
+    check('grouping ' + JSON.stringify(odd) + ' reads as department', g.grouping === 'department', g.grouping);
+  }
+  check('groupingOf with no roster is department', roster.groupingOf(undefined) === 'department' && roster.groupingOf(null) === 'department');
+  const thinGrouped = Object.assign({}, grouped, { members: grouped.members.slice(0, 3) });
+  const g2 = (await withEnv({ POPS_ROSTER_TOKEN: TOKEN }, stub(okJson(thinGrouped)), callTeam)).body || {};
+  check('a failed practices roster falls back with no grouping key', g2.source === 'snapshot' && !('grouping' in g2), { source: g2.source, keys: Object.keys(g2) });
+
+  const slackStub = stub(() => ({ ok: true, status: 200, json: async () => ({ ok: true, members: [{ id: 'U1', name: 'arlo', profile: { real_name: 'Arlo Testwood', title: 'x', email: 'arlo@example.test' } }], response_metadata: {} }) }));
+  const g3r = await withEnv({ SLACK_BOT_TOKEN: 'xoxb-verify-team' }, slackStub, callTeam);
+  const g3 = g3r.body || {};
+  check('the Slack answer is unchanged and carries no grouping', g3.source === 'slack' && !('grouping' in g3) && g3r.headers['cache-control'] === TWO_WEEKS, { source: g3.source, keys: Object.keys(g3) });
 
   console.log('');
   finished = true;
