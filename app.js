@@ -590,6 +590,9 @@
     if (!t) return '';
     return t.replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{200D}]/gu, '').trim();
   }
+  /* POps department wins; the Notion business areas are the fallback until
+     every person has a department in POps. */
+  function deptsOf(m) { return m.department ? [m.department] : (((pavilion[m.name] || {}).teams) || []); }
   function openMemberModal(m) {
     applyKnowledgePeople();
     var p = profileData[m.name];
@@ -601,13 +604,14 @@
       + '<h3>' + esc(m.name) + '</h3>'
       + (role ? '<div class="rl">' + esc(role) + (m.extra ? ' · ' + esc(m.extra) : '') + '</div>' : (m.extra ? '<div class="rl">' + esc(m.extra) + '</div>' : ''))
       + '</div></div><div class="pg">';
-    /* location and business area get their own labelled rows. Cramming both onto
+    /* location and department get their own labelled rows. Cramming both onto
        one line made it read as a single fact instead of two. The one-liner stays
        up top next to the name. */
-    if (pv.location || (pv.teams && pv.teams.length)) {
+    var dept = deptsOf(m).join(', ');
+    if (pv.location || dept) {
       html += '<div class="mm-facts">'
         + (pv.location ? '<div class="mm-fact"><div class="mm-k">Based in</div><div class="mm-v">' + esc(pv.location) + '</div></div>' : '')
-        + (pv.teams && pv.teams.length ? '<div class="mm-fact"><div class="mm-k">Business area</div><div class="mm-v">' + esc(pv.teams.join(', ')) + '</div></div>' : '')
+        + (dept ? '<div class="mm-fact"><div class="mm-k">Department</div><div class="mm-v">' + esc(dept) + '</div></div>' : '')
         + '</div>';
     }
     /* their own words first, then the researched summary as a fallback */
@@ -650,9 +654,11 @@
      in Notion shows up in the dropdown on the next refresh without a code change */
   function populateFilters() {
     var teams = {}, clients = {}, locs = {};
+    teamData.forEach(function (m) {
+      deptsOf(m).forEach(function (t) { teams[t] = 1; });
+    });
     Object.keys(pavilion).forEach(function (n) {
       var x = pavilion[n];
-      (x.teams || []).forEach(function (t) { teams[t] = 1; });
       clientsOf(n).forEach(function (c) { clients[c] = 1; });
       if (x.location) locs[x.location] = 1;
     });
@@ -666,7 +672,7 @@
           }).join('');
       el.value = cur;
     }
-    fill('#f-team', teams, 'All teams');
+    fill('#f-team', teams, 'All departments');
     fill('#f-client', clients, 'All clients');
     fill('#f-loc', locs, 'Anywhere');
   }
@@ -735,12 +741,12 @@
     }
     var shown = list.filter(function (m) {
       var pv = pavilion[m.name] || {};
-      if (teamFilter.team && (pv.teams || []).indexOf(teamFilter.team) === -1) return false;
+      if (teamFilter.team && deptsOf(m).indexOf(teamFilter.team) === -1) return false;
       var mine = clientsOf(m.name);
       if (teamFilter.client && mine.indexOf(teamFilter.client) === -1) return false;
       if (teamFilter.loc && pv.location !== teamFilter.loc) return false;
-      var hay = [m.name, m.title || '', m.email || '', pv.role || '', pv.location || '',
-        (pv.teams || []).join(' '), mine.join(' ')].join(' ').toLowerCase();
+      var hay = [m.name, m.nickname || '', m.title || '', m.email || '', pv.role || '', pv.location || '',
+        deptsOf(m).join(' '), mine.join(' ')].join(' ').toLowerCase();
       return !q || hay.indexOf(q) >= 0;
     });
     shown.forEach(function (m) {
@@ -760,7 +766,8 @@
       }).join('');
       /* location and logos live in a footer pinned to the bottom of the card,
          so they line up across a row whatever length the role runs to */
-      var foot = (pv.location ? '<div class="loc-sm">' + esc(pv.location) + '</div>' : '')
+      var where = [deptsOf(m).join(', '), pv.location].filter(Boolean).join(' · ');
+      var foot = (where ? '<div class="loc-sm">' + esc(where) + '</div>' : '')
         + (logos ? '<div class="cl-row">' + logos + '</div>' : '');
       /* the footer is a sibling of .info, not a child: an auto margin only
          reaches the card's own free space from one level up */
@@ -865,7 +872,9 @@
       wireFilters();
       refreshStats();
       mountMyOnboarding();
-      if (data.source === 'slack') {
+      if (data.source === 'pops') {
+        $('#team-note').textContent = 'Live from POps, Carrara\'s people directory. Titles and departments come from POps; photos still come from Slack profiles.';
+      } else if (data.source === 'slack') {
         $('#team-note').textContent = 'Live from the #f-company-ops-general Slack channel, refreshed every two weeks. Photos and roles come from Slack profiles: set yours and it shows here.';
       }
     })

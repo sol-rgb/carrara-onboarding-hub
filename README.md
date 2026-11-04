@@ -4,9 +4,17 @@ Multi-section onboarding hub for new joiners. Static app + two serverless functi
 
 ## Live data
 
-The site works with zero configuration using bundled snapshots. Two optional env vars turn on live refresh (set them in Vercel, Project Settings, Environment Variables, then redeploy):
+The site works with zero configuration using bundled snapshots. Optional env vars turn on live refresh (set them in Vercel, Project Settings, Environment Variables, then redeploy):
 
-### Team index (Slack)
+### Team index (POps, then Slack)
+
+`/api/team` serves the team page from the first source that answers, in this order:
+
+1. **POps**, Carrara's people directory, when `POPS_ROSTER_TOKEN` is set. The hub calls `GET {POPS_URL}/api/hub-roster` with that token as a bearer; `POPS_URL` is optional and defaults to `https://carrara-pops.work`. Names, titles, departments, managers and start dates come from POps; photos still come from the Slack snapshot until POps sends them. This answer is edge-cached for one hour. If POps fails in any way (wrong token, timeout, a bad or half-empty answer), the hub falls through to Slack or the snapshot and adds a `popsError` field to the response, so the team page never goes blank. That fallback answer is cached for five minutes only, so the edge asks POps again soon.
+2. **Slack**, when `SLACK_BOT_TOKEN` is set (setup below).
+3. **The bundled `team.json` snapshot.**
+
+The team page's Department filter uses the POps department, and falls back to the Notion business areas for anyone POps has no department for yet. The Vercel cron still warms `/api/team` on the 1st and 15th, whichever source is live. `node scripts/verify-team.js` checks all three paths against invented fixtures, without a network call.
 
 - `SLACK_BOT_TOKEN`: a bot token from a Slack app installed in the carrarais workspace, with scopes `channels:read`, `users:read`, `users:read.email`.
 - `SLACK_CHANNEL_ID`: optional, defaults to `C08A7KYJTEE` (#f-company-ops-general).
