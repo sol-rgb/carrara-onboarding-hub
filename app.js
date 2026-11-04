@@ -582,6 +582,9 @@
 
   /* ---------- team ---------- */
   var teamData = [];
+  /* true when /api/team answered from POps: then every field POps has wins, and
+     Notion, the Knowledge Hub and the Slack snapshot only fill the gaps */
+  var fromPops = false;
   var myProfile = null; // Shared profiles are edited in the Knowledge Hub.
   function initials(name) {
     return name.split(/\s+/).slice(0, 2).map(function (w) { return w.charAt(0); }).join('').toUpperCase();
@@ -590,14 +593,28 @@
     if (!t) return '';
     return t.replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{200D}]/gu, '').trim();
   }
-  /* POps department wins; the Notion business areas are the fallback until
-     every person has a department in POps. */
-  function deptsOf(m) { return m.department ? [m.department] : (((pavilion[m.name] || {}).teams) || []); }
+  /* On the POps path, department comes from POps only, no Notion fallback, and
+     anything that shows it (filter, card, modal) stays hidden until someone has
+     one. On the Slack and snapshot paths, the Notion business areas, as today. */
+  function deptsOf(m) {
+    if (fromPops) return m.department ? [m.department] : [];
+    return ((pavilion[m.name] || {}).teams) || [];
+  }
+  /* POps title and location win when the roster came from POps; otherwise
+     today's precedence, Notion first. */
+  function roleOf(m) {
+    var pv = pavilion[m.name] || {};
+    return fromPops ? (cleanTitle(m.title) || pv.role || '') : (pv.role || cleanTitle(m.title));
+  }
+  function locOf(m) {
+    var pv = pavilion[m.name] || {};
+    return fromPops ? (m.location || pv.location || '') : (pv.location || '');
+  }
   function openMemberModal(m) {
     applyKnowledgePeople();
     var p = profileData[m.name];
     var pv = pavilion[m.name] || {};
-    var role = pv.role || cleanTitle(m.title);
+    var role = roleOf(m);
     var av = m.avatar ? '<img src="' + m.avatar + '" alt="">' : initials(m.name);
     var html = '<div class="m-eyebrow">[the team]</div>'
       + '<div class="member-head"><div class="avatar big">' + av + '</div><div>'
@@ -608,9 +625,10 @@
        one line made it read as a single fact instead of two. The one-liner stays
        up top next to the name. */
     var dept = deptsOf(m).join(', ');
-    if (pv.location || dept) {
+    var loc = locOf(m);
+    if (loc || dept) {
       html += '<div class="mm-facts">'
-        + (pv.location ? '<div class="mm-fact"><div class="mm-k">Based in</div><div class="mm-v">' + esc(pv.location) + '</div></div>' : '')
+        + (loc ? '<div class="mm-fact"><div class="mm-k">Based in</div><div class="mm-v">' + esc(loc) + '</div></div>' : '')
         + (dept ? '<div class="mm-fact"><div class="mm-k">Department</div><div class="mm-v">' + esc(dept) + '</div></div>' : '')
         + '</div>';
     }
@@ -656,11 +674,12 @@
     var teams = {}, clients = {}, locs = {};
     teamData.forEach(function (m) {
       deptsOf(m).forEach(function (t) { teams[t] = 1; });
+      if (fromPops && locOf(m)) locs[locOf(m)] = 1;
     });
     Object.keys(pavilion).forEach(function (n) {
       var x = pavilion[n];
       clientsOf(n).forEach(function (c) { clients[c] = 1; });
-      if (x.location) locs[x.location] = 1;
+      if (!fromPops && x.location) locs[x.location] = 1;
     });
     function fill(sel, values, keep) {
       var el = $(sel);
@@ -673,6 +692,12 @@
       el.value = cur;
     }
     fill('#f-team', teams, 'All departments');
+    var teamLabel = $('#f-team') && $('#f-team').closest('label');
+    if (teamLabel) {
+      /* .tf sets display: flex, which beats the hidden attribute, so set both */
+      teamLabel.hidden = !Object.keys(teams).length;
+      teamLabel.style.display = teamLabel.hidden ? 'none' : '';
+    }
     fill('#f-client', clients, 'All clients');
     fill('#f-loc', locs, 'Anywhere');
   }
@@ -744,8 +769,8 @@
       if (teamFilter.team && deptsOf(m).indexOf(teamFilter.team) === -1) return false;
       var mine = clientsOf(m.name);
       if (teamFilter.client && mine.indexOf(teamFilter.client) === -1) return false;
-      if (teamFilter.loc && pv.location !== teamFilter.loc) return false;
-      var hay = [m.name, m.nickname || '', m.title || '', m.email || '', pv.role || '', pv.location || '',
+      if (teamFilter.loc && locOf(m) !== teamFilter.loc) return false;
+      var hay = [m.name, m.nickname || '', m.title || '', m.email || '', pv.role || '', locOf(m),
         deptsOf(m).join(' '), mine.join(' ')].join(' ').toLowerCase();
       return !q || hay.indexOf(q) >= 0;
     });
@@ -756,7 +781,7 @@
       d.setAttribute('tabindex', '0');
       var av = m.avatar ? '<img src="' + m.avatar + '" alt="" loading="lazy">' : initials(m.name);
       var pv = pavilion[m.name] || {};
-      var role = pv.role || cleanTitle(m.title);
+      var role = roleOf(m);
       var logos = clientsOf(m.name).slice(0, 5).map(function (cn) {
         var c = clientData.filter(function (x) { return x.name === cn; })[0];
         return c && c.domain
@@ -766,7 +791,7 @@
       }).join('');
       /* location and logos live in a footer pinned to the bottom of the card,
          so they line up across a row whatever length the role runs to */
-      var where = [deptsOf(m).join(', '), pv.location].filter(Boolean).join(' · ');
+      var where = [deptsOf(m).join(', '), locOf(m)].filter(Boolean).join(' · ');
       var foot = (where ? '<div class="loc-sm">' + esc(where) + '</div>' : '')
         + (logos ? '<div class="cl-row">' + logos + '</div>' : '');
       /* the footer is a sibling of .info, not a child: an auto margin only
@@ -839,6 +864,7 @@
       profileData = (both[1] && both[1].profiles) || {};
       /* the Notion directory is the richer source: role, location, clients and the
          People Pavilion answers. Slack still owns the photo and who is on the roster. */
+      fromPops = data.source === 'pops';
       teamData = data.members || [];
       applyKnowledgePeople();
       /* Slack and Notion spell people differently: Slack has "Heath" and "Ben",
@@ -873,7 +899,7 @@
       refreshStats();
       mountMyOnboarding();
       if (data.source === 'pops') {
-        $('#team-note').textContent = 'Live from POps, Carrara\'s people directory. Titles and departments come from POps; photos still come from Slack profiles.';
+        $('#team-note').textContent = 'Live from POps, Carrara\'s people directory. Titles, locations and departments come from POps; photos still come from Slack profiles.';
       } else if (data.source === 'slack') {
         $('#team-note').textContent = 'Live from the #f-company-ops-general Slack channel, refreshed every two weeks. Photos and roles come from Slack profiles: set yours and it shows here.';
       }
@@ -933,8 +959,7 @@
       var m = teamData.filter(function (x) { return x.name === mgr.name; })[0]
         || teamData.filter(function (x) { return sameFirstAndInitial(x.name, mgr.name); })[0];
       if (m) {
-        var pv = (pavilion || {})[m.name] || {};
-        ctx.manager = { avatar: m.avatar || '', email: m.email || '', role: pv.role || cleanTitle(m.title) };
+        ctx.manager = { avatar: m.avatar || '', email: m.email || '', role: roleOf(m) };
       }
     }
     var dirTeams = MO.TEAM_DIRECTORY[(kitData.team && kitData.team.key) || ''] || [];
@@ -982,8 +1007,12 @@
     el.querySelectorAll('a[data-team-filter]').forEach(function (a) {
       a.addEventListener('click', function () {
         var sel = $('#f-team');
-        teamFilter.team = a.dataset.teamFilter;
-        if (sel) sel.value = a.dataset.teamFilter;
+        /* TEAM_DIRECTORY still carries Notion names; until it is switched to POps
+           department names the link must never strand a hire on an empty grid. */
+        var v = a.dataset.teamFilter;
+        var ok = sel && Array.prototype.some.call(sel.options, function (o) { return o.value === v; });
+        teamFilter.team = ok ? v : '';
+        if (sel) sel.value = ok ? v : '';
         renderTeam($('#team-search').value);
       });
     });
@@ -1139,8 +1168,14 @@
       if (!p) return;
       // The roster still decides who is active. Shared workplace metadata only;
       // personal survey answers stay behind Carrara Hub sign in.
-      m.title = p.title || m.title;
-      if (p.photo) m.avatar = p.photo;
+      if (fromPops) {
+        // POps wins: the Knowledge Hub only fills what POps left empty
+        if (!m.title) m.title = p.title || '';
+        if (!m.avatar && p.photo) m.avatar = p.photo;
+      } else {
+        m.title = p.title || m.title;
+        if (p.photo) m.avatar = p.photo;
+      }
       profileData[m.name] = Object.assign({}, profileData[m.name], { linkedin: p.linkedin || '' });
     });
   }

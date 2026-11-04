@@ -14,7 +14,7 @@ The site works with zero configuration using bundled snapshots. Optional env var
 2. **Slack**, when `SLACK_BOT_TOKEN` is set (setup below).
 3. **The bundled `team.json` snapshot.**
 
-The team page's Department filter uses the POps department, and falls back to the Notion business areas for anyone POps has no department for yet. The Vercel cron still warms `/api/team` on the 1st and 15th, whichever source is live. `node scripts/verify-team.js` checks all three paths against invented fixtures, without a network call.
+Where POps has a value it wins: title, location and photo fall back to today's sources (the Notion directory, the Knowledge Hub, the Slack snapshot) only when POps has none. Department comes from POps only; the Department filter appears once someone has one. The Vercel cron still warms `/api/team` on the 1st and 15th, whichever source is live. `node scripts/verify-team.js` checks all three paths against invented fixtures, without a network call.
 
 - `SLACK_BOT_TOKEN`: a bot token from a Slack app installed in the carrarais workspace, with scopes `channels:read`, `users:read`, `users:read.email`.
 - `SLACK_CHANNEL_ID`: optional, defaults to `C08A7KYJTEE` (#f-company-ops-general).
