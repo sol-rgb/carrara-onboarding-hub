@@ -427,15 +427,18 @@
   function countUp() {
     if (counted && !reduced) return;
     $$('[data-count]').forEach(function (el) {
-      var target = parseInt(el.dataset.count, 10);
-      var plus = el.dataset.plus === '1';
-      if (reduced) { el.textContent = target + (plus ? '+' : ''); return; }
+      /* read live on every frame: setStat may replace the static target with
+         the roster count while the count-up is running */
+      function read() { return { target: parseInt(el.dataset.count, 10), plus: el.dataset.plus === '1' }; }
+      if (reduced) { var r0 = read(); el.textContent = r0.target + (r0.plus ? '+' : ''); return; }
+      el.dataset.animating = '1';
       var t0 = null;
       function tick(ts) {
         if (!t0) t0 = ts;
         var p = Math.min((ts - t0) / 800, 1);
-        el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))) + (plus && p === 1 ? '+' : '');
-        if (p < 1) requestAnimationFrame(tick);
+        var r = read();
+        el.textContent = Math.round(r.target * (1 - Math.pow(1 - p, 3))) + (r.plus && p === 1 ? '+' : '');
+        if (p < 1) requestAnimationFrame(tick); else el.removeAttribute('data-animating');
       }
       requestAnimationFrame(tick);
     });
@@ -749,11 +752,18 @@
      static "8" baked into index.html instead of being overwritten here. Team
      members come from the rendered roster, and companies served counts
      current plus archived so the number only ever goes up. */
+  /* The live value wins whenever it arrives (2026-11-05, the welcome page
+     showed 75+, 84+ or 84 depending on how the roster's fetch raced the
+     count-up): the dataset is the one source the animation reads on every
+     frame, and the text is only written directly when no animation is
+     running, so a count-up in flight lands on the live number instead of
+     overwriting it with the static one it started from. */
   function setStat(sel, n, plus) {
     var el = $(sel);
     if (!el) return;
     el.dataset.count = n;
-    if (el.textContent !== '0') el.textContent = n + (plus ? '+' : '');
+    el.dataset.plus = plus ? '1' : '0';
+    if (el.textContent !== '0' && el.dataset.animating !== '1') el.textContent = n + (plus ? '+' : '');
   }
   function refreshStats() {
     if (teamData.length) {
