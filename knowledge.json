@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-11-04",
+ "exported": "2026-11-05",
  "clients": [
   {
    "slug": "anthropic",
@@ -311,7 +311,7 @@
      "role": "Leveling and comp",
      "email": "hannah@carrara.is",
      "slack": "U0BTYGAL0DC",
-     "timezone": "America/New_York"
+     "timezone": "Europe/London"
     },
     {
      "name": "Pranavi",
@@ -339,7 +339,7 @@
      "role": "Core talent partner, US",
      "email": "julia@carrara.is",
      "slack": "U06DF9YP6EM",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Mary Petrino",
@@ -623,11 +623,11 @@
     },
     {
      "title": "Raindrop OS",
-     "detail": "A recruiting OS on Ashby, live and in team testing, with a Slack bot next for feedback nudges, weekly digests and candidate briefs.",
+     "detail": "A recruiting OS on Ashby, live and in team testing; the Slack bot is approved, with its install doc being finished for Raindrop's team.",
      "points": [
       "Separate GTM and Eng views with week by week pacing, volume by stage and a calendar of calls",
       "Reads every Ashby source, req owner and department each hour, and the GTM tracker every four hours",
-      "Freshness check and a weekday reconciliation that flag stale or mismatched data"
+      "Slack bot that reads the hiring and agency channels for missing feedback and sends alerts"
      ]
     },
     {
@@ -641,7 +641,7 @@
     }
    ],
    "channel": "c-raindrop",
-   "updated": "2026-10-28",
+   "updated": "2026-11-05",
    "url": "https://hub.carrara.is/clients/raindrop"
   },
   {
@@ -907,14 +907,14 @@
     },
     {
      "name": "Yanel Bottini",
-     "role": "Design, landing pages and ads",
+     "role": "Design, landing pages, compare page build and ads",
      "email": "yanel@carrara.is",
      "slack": "U09Q4PDR9BK",
      "timezone": "America/Buenos_Aires"
     },
     {
      "name": "Chiara Libertini",
-     "role": "X ads, video, AI creative, listicle pages and dashboard v1",
+     "role": "X ads, video, AI creative, listicle pages, dashboard and attribution",
      "email": "chiara@carrara.is",
      "slack": "U0AKDG488U8",
      "timezone": "America/Buenos_Aires"
@@ -925,6 +925,13 @@
      "email": "tara@carrara.is",
      "slack": "U0BTCTTS78V",
      "timezone": "America/New_York"
+    },
+    {
+     "name": "Pranav Mutatkar",
+     "role": "Creative briefs and content docs",
+     "email": "pranav@carrara.is",
+     "slack": "U0B0R326N4C",
+     "timezone": "America/Los_Angeles"
     }
    ],
    "workstreams": [
@@ -939,16 +946,16 @@
     },
     {
      "title": "Landing pages",
-     "detail": "Persona pages, pricing and an inspiration gallery are live on cfo.ai; four fractional CFO listicles are in a pull request for the client, and all twelve compare pages are built in Figma.",
+     "detail": "Persona pages, pricing and an inspiration gallery are live on cfo.ai; the listicles and a founding partners page with a HubSpot form are in pull requests, and four of twelve compare pages are built for review.",
      "points": [
       "Persona pages, a pricing update and an inspiration gallery, shipped into cfo.ai's site",
       "Onboarding call booking on the homepage, fractional CFO page and pricing",
-      "Four fractional CFO listicles and twelve compare pages with fact checked copy"
+      "Four fractional CFO listicles, and twelve compare pages designed with four built"
      ]
     },
     {
      "title": "Ad creative",
-     "detail": "Weekly creative batches from briefs, each aimed at one persona; this week's statics and videos are for fractional CFOs, including ads for the listicles.",
+     "detail": "Weekly creative batches from briefs, each aimed at one persona; the week 46 briefs are mostly for fractional CFOs on LinkedIn and Meta.",
      "points": [
       "Weekly creative review site where the client signs off each batch",
       "Testimonial video ads cut from customer interviews, each with its own hook",
@@ -966,16 +973,16 @@
     },
     {
      "title": "Performance reporting",
-     "detail": "A live dashboard for Meta and Google plus a persona testing report; a fractional CFO dashboard v0 is built inside cfo.ai's own product, with target account reach next.",
+     "detail": "A live dashboard for Meta and Google plus a persona testing report; the fractional CFO dashboard is with cfo.ai's team for a first look, and a PostHog attribution fix is proposed.",
      "points": [
       "Real time performance dashboard for Meta and Google",
       "Persona testing report on how each persona's ads and pages perform",
-      "Fractional CFO dashboard v0 in cfo.ai's product, with the data it can't pull yet labeled"
+      "Fractional CFO dashboard in cfo.ai's product, with the data it can't pull yet labeled"
      ]
     }
    ],
    "channel": "c-cfo-ai",
-   "updated": "2026-11-04",
+   "updated": "2026-11-05",
    "url": "https://hub.carrara.is/clients/runway"
   },
   {
@@ -1045,10 +1052,10 @@
    "workstreams": [
     {
      "title": "Engineering sourcing",
-     "detail": "We source software and electrical engineers off a tiered market map, send client approved batches and run initial screens.",
+     "detail": "We source software and electrical engineers off a tiered market map, send client approved batches and run initial screens; a research hub for a new engineering profile feeds the next round.",
      "points": [
       "EE market map of companies to hire from, tiered with the client",
-      "Calibration profiles and a do not contact list checked before outreach",
+      "Research hub mapping companies, labs, papers and connections, searchable by company or school",
       "Initial screens, with a recap of each call for the hiring team"
      ]
     },
@@ -1085,12 +1092,12 @@
      "points": [
       "Sourcing playbook per role: search strings, company map, screening questions, outreach",
       "Claude skills per role that score call transcripts and LinkedIn profiles on competency tables",
-      "Referral analysis, agency follow ups and a reference check guide"
+      "Referral analysis, agency follow up tools and a reference check guide"
      ]
     }
    ],
    "channel": "c-source-foundry",
-   "updated": "2026-10-31",
+   "updated": "2026-11-05",
    "url": "https://hub.carrara.is/clients/source-foundry"
   },
   {
@@ -1322,7 +1329,7 @@
      "role": "Dealer Direct lead",
      "email": "tan@carrara.is",
      "slack": "U0BG4SC977H",
-     "timezone": "Europe/Amsterdam"
+     "timezone": "America/Mexico_City"
     },
     {
      "name": "Enzo Budasoff",
@@ -1414,8 +1421,8 @@
    "name": "Alpha School",
    "hubName": "Alpha School",
    "status": "active",
-   "oneLiner": "Weekend series growth, Founders School recruiting, the community app and a CoS search.",
-   "about": "We run growth, ops and the student app for Alpha School's Founders Weekend and Build Weekend events, recruit for Founders School and build Alpha's community app with outside dev partners. We're also running a chief of staff search.",
+   "oneLiner": "Weekend and Founders School growth, recruiting, the community app and a CoS search.",
+   "about": "We run growth, ops and the student app for Alpha School's Founders Weekend and Build Weekend events, and growth and recruiting for Founders School. We also build Alpha's community app with outside dev partners and run a chief of staff search.",
    "practices": [
     {
      "id": "recruiting",
@@ -1464,7 +1471,7 @@
      "role": "Event ops",
      "email": "sara@carrara.is",
      "slack": "U0B7AP5R4EL",
-     "timezone": "Europe/Amsterdam"
+     "timezone": "Africa/Harare"
     },
     {
      "name": "Bryan Gunawan",
@@ -1505,11 +1512,20 @@
    "workstreams": [
     {
      "title": "Founders Weekend growth",
-     "detail": "We run growth, ops and the student app for the weekend series. Build Weekend ran Oct 24 and 25 in seven cities, and a one day Miami Founders Day on Nov 7 is in setup.",
+     "detail": "We run growth, ops and the student app for the weekend series. Build Weekend ran Oct 24 and 25 in seven cities, and Ky and Bryan cover tech for the one day Miami Founders Day on Nov 7.",
      "points": [
       "Run of show site with a guide playbook, a staff tech FAQ and six session decks",
       "Parent one-pagers, event emails and a daily Slack digest of sign ups by city",
       "Co-founder Jr student app, with a one day version for Founders Day, and a Middle School program"
+     ]
+    },
+    {
+     "title": "Founders School growth",
+     "detail": "New. A growth plan for Founders School is set, with funnel content, referral comms and outreach lists being drafted next.",
+     "points": [
+      "Growth plan covering funnel content, referrals, outreach, events and partnerships",
+      "Founders Booklet, being updated with curriculum and 'why now' content",
+      "Shortlist of top referrers in the Alpha network and a first outreach lead list"
      ]
     },
     {
@@ -1532,16 +1548,16 @@
     },
     {
      "title": "Chief of staff search",
-     "detail": "Role scoped with Alpha HR as an executive business partner and chief of staff; finalists are getting an AI take-home, with a final round at the end of the week.",
+     "detail": "Role scoped with Alpha HR as an executive business partner and chief of staff; the client approved the JD, and final rounds are being booked after the AI take-home.",
      "points": [
       "Role archetypes site used to calibrate the search with the client",
-      "Rewritten JD, an anonymized version and a LinkedIn post for Alpha HR to share",
-      "Outreach through aviation, family office and senior assistant networks"
+      "Rewritten JD, approved by the client, plus an anonymized version going to candidates",
+      "Outreach through chief of staff, aviation, family office and senior assistant networks"
      ]
     }
    ],
    "channel": null,
-   "updated": "2026-11-03",
+   "updated": "2026-11-05",
    "url": "https://hub.carrara.is/clients/alpha-school"
   },
   {
@@ -2371,7 +2387,7 @@
     },
     {
      "title": "Lab ops search",
-     "detail": "Role profile and screen messaging approved, outreach launched and first screens set up.",
+     "detail": "Role profile and screen messaging approved and outreach running, with a new batch of candidates added to LGM.",
      "points": [
       "Scan of similar technician job posts to calibrate the role",
       "Role profile and screen messaging approved by the client",
@@ -2389,16 +2405,16 @@
     },
     {
      "title": "Talent ops support",
-     "detail": "Outreach SOP and weekly tracking, with a take-home exercise drafted and help offered on take-home reviews.",
+     "detail": "Outreach SOP and weekly tracking, plus a two page talent guide for the client, with a section on setting up Ashby being added.",
      "points": [
       "Candidate outreach SOP: how people move from map to outreach to follow-up",
       "Weekly candidate tracker for pipeline and next actions, plus a P0 warm intro list",
-      "Internal weekly Exponential sync for the Carrara team"
+      "Two page guide to building the client's recruiting function, plus a checklist version"
      ]
     }
    ],
    "channel": null,
-   "updated": "2026-10-31",
+   "updated": "2026-11-05",
    "url": "https://hub.carrara.is/clients/exponential-energy"
   },
   {
@@ -2438,7 +2454,7 @@
      "role": "Plan design, modeling and plan documents",
      "email": "hannah@carrara.is",
      "slack": "U0BTYGAL0DC",
-     "timezone": "America/New_York"
+     "timezone": "Europe/London"
     },
     {
      "name": "Kenna Meyerhoff",
@@ -2468,9 +2484,10 @@
     },
     {
      "title": "Comms and rollout",
-     "detail": "The Sr Principal rollout pack is reviewed as the model for every level, and personalized views are under way.",
+     "detail": "The rollout sequence is agreed with Riviera's leadership, with per-level storylines and comms support for their leaders running in parallel.",
      "points": [
       "Rollout pack per level with a talk track, role, career path and FAQ",
+      "Rollout sequence: leader one to ones, a town hall, plans sent to each person, level office hours",
       "Personalized views of the plan for each person, under way"
      ]
     },
@@ -2493,7 +2510,7 @@
     }
    ],
    "channel": null,
-   "updated": "2026-10-31",
+   "updated": "2026-11-05",
    "url": "https://hub.carrara.is/clients/riviera-partners"
   },
   {
@@ -3852,7 +3869,7 @@
    "title": "",
    "email": "hannah@carrara.is",
    "slack": "U0BTYGAL0DC",
-   "timezone": "America/New_York",
+   "timezone": "Europe/London",
    "photo": "https://hub.carrara.is/people/hannah.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=hannah%40carrara.is"
@@ -3940,7 +3957,7 @@
    "title": "Recruiting",
    "email": "julia@carrara.is",
    "slack": "U06DF9YP6EM",
-   "timezone": "America/Los_Angeles",
+   "timezone": "America/New_York",
    "photo": "https://hub.carrara.is/people/julia.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=julia%40carrara.is"
@@ -4248,7 +4265,7 @@
    "title": "Events",
    "email": "sara@carrara.is",
    "slack": "U0B7AP5R4EL",
-   "timezone": "Europe/Amsterdam",
+   "timezone": "Africa/Harare",
    "photo": "https://hub.carrara.is/people/sara.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=sara%40carrara.is"
@@ -4336,7 +4353,7 @@
    "title": "",
    "email": "tan@carrara.is",
    "slack": "U0BG4SC977H",
-   "timezone": "Europe/Amsterdam",
+   "timezone": "America/Mexico_City",
    "photo": null,
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=tan%40carrara.is"
