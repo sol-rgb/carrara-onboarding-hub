@@ -1,21 +1,25 @@
 {
  "source": "notion-team-directory",
- "updated": "2026-10-26",
+ "updated": "2026-11-02",
  "_partnerNote": "partner:true marks the firm's partner group, not the Talent Partner role. Edit here; the hero stat counts this flag.",
  "people": [
   {
    "name": "Ali Horowitz",
    "email": "ali@carrara.is",
-   "location": "",
-   "role": "",
-   "about": "",
+   "location": "New York",
+   "role": "Making matches",
+   "about": "I’ve manifested my daughter, partner, house, dog, & job. You should have seen my face when I found out my first client here was Manifest…",
    "values": "",
-   "linkedin": "",
+   "linkedin": "https://www.linkedin.com/in/ali-horowitz-08a61515/?isSelfProfile=true",
    "teams": [
     "Talent Acquisition"
    ],
    "clients": [
-    "Manifest"
+    "Manifest",
+    "January",
+    "Altana",
+    "Forus",
+    "Profound"
    ],
    "answers": [],
    "partner": false
@@ -630,7 +634,8 @@
     "Console",
     "OpenAI Foundation",
     "Exponential Energy",
-    "Source Foundry"
+    "Source Foundry",
+    "LiteLLM"
    ],
    "answers": [],
    "partner": false

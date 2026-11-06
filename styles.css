@@ -835,6 +835,13 @@ body::after {
 .mm-fact { min-width: 0; border: 1px solid var(--hairline); clip-path: var(--chamfer); padding: 14px 16px; }
 .mm-k { font-family: var(--rigid); font-size: 9.5px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--taupe); margin-bottom: 7px; }
 .mm-v { font-size: 14px; color: var(--ink); line-height: 1.45; }
+/* practices, one small chip each, in the .chip look */
+.mm-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.mm-chip {
+  font-family: var(--rigid); font-size: 10.5px; letter-spacing: 0.06em; line-height: 1.3;
+  display: inline-flex; align-items: center;
+  background: var(--sage-soft); padding: 5px 10px; clip-path: var(--chamfer);
+}
 /* the bio sits under the cards, not jammed against them */
 .mm-facts + p { margin-bottom: 26px; }
 

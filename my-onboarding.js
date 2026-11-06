@@ -93,11 +93,84 @@
 
   /* Which Notion directory teams count as "your team" for each offering key
      the code carries (welcome.json's teams keys). gtm and other have no
-     directory team yet, so their card shows the label and the team page. */
+     directory team yet, so their card shows the label and the team page.
+     Applies when the roster did NOT come from POps grouped by practices, or
+     when the hire's plan carries no practices: the snapshot and Slack paths,
+     the POps department path, and older plans. With POps practices, "your
+     team" is everyone who shares a practice with the hire (practicePeers). */
   var TEAM_DIRECTORY = {
     talent: ['Talent Acquisition', 'Talent Management'],
     finance: ['Strategic Finance', 'Managed Services / BizOps']
   };
+
+  /* ---- grouping: practices or department ----
+     Pure helpers app.js uses on the team page and in this section, kept here
+     so scripts/verify-my-onboarding.js can drive them in Node. */
+
+  /* What the team page groups by. "practices" only when the roster came from
+     POps and POps says exactly that; anything else is "department". */
+  function groupingOf(data) {
+    return data && data.source === 'pops' && data.grouping === 'practices' ? 'practices' : 'department';
+  }
+
+  /* The filter's label and its empty option. */
+  function groupLabels(grouping) {
+    return grouping === 'practices'
+      ? { label: 'Practices', all: 'All practices' }
+      : { label: 'Department', all: 'All departments' };
+  }
+
+  /* The groups as card text. Practices: up to three, then "+N" for the rest.
+     Department: joined as today. */
+  function groupsText(groups, grouping) {
+    var g = Array.isArray(groups) ? groups : [];
+    if (grouping !== 'practices' || g.length <= 3) return g.join(', ');
+    return g.slice(0, 3).join(', ') + ' +' + (g.length - 3);
+  }
+
+  /* A member's clients. POps wins when the roster came from POps and it names
+     at least one; otherwise fallback() gives today's sources. */
+  function pickClients(fromPops, member, fallback) {
+    var c = member && member.clients;
+    if (fromPops && Array.isArray(c)) {
+      var list = c.filter(function (x) { return typeof x === 'string' && x.trim(); });
+      if (list.length) return list.slice();
+    }
+    return typeof fallback === 'function' ? fallback() : [];
+  }
+
+  /* "Your team" under practices: roster members (not the manager, not the hire,
+     both by name) who share at least one practice with the hire, sorted by
+     name, as { name, avatar }. */
+  function practicePeers(hirePractices, members, managerName, hireName) {
+    var mine = Array.isArray(hirePractices) ? hirePractices : [];
+    if (!mine.length) return [];
+    return (Array.isArray(members) ? members : []).filter(function (m) {
+      if (!m || !m.name || m.name === managerName || m.name === hireName) return false;
+      return (Array.isArray(m.practices) ? m.practices : []).some(function (p) { return mine.indexOf(p) > -1; });
+    }).map(function (m) { return { name: m.name, avatar: m.avatar || '' }; })
+      .sort(function (a, b) { return a.name.localeCompare(b.name); });
+  }
+
+  /* My onboarding's "your team" card under POps practices: the hire's first
+     practice as the team page filter, and practicePeers as the faces. null when
+     it does not apply (no practices on the plan, a roster not from POps, or a
+     POps roster grouped by department), and app.js then keeps TEAM_DIRECTORY. */
+  function practiceTeam(kit, fromPops, grouping, members, managerName) {
+    var plan = kit && kit.plan;
+    var practices = plan && Array.isArray(plan.practices) ? plan.practices : [];
+    if (!practices.length || !fromPops || grouping !== 'practices') return null;
+    return { teamFilter: practices[0], peers: practicePeers(practices, members, managerName, kit.name) };
+  }
+
+  /* A plan is either not there at all (null) or there with every field blank
+     (POps answers the shape but the manager has not written anything yet).
+     Both read as "nothing to show", the SAME "empty" a refetch must never let
+     overwrite real content. practices is not the manager's words, so it never
+     counts as content. */
+  function planIsEmpty(plan) {
+    return !plan || !Object.keys(plan).some(function (k) { return k !== 'practices' && plan[k]; });
+  }
 
   /* Who a hire asks when the answer is not their manager's to give. Content,
      not plumbing: edit freely. */
@@ -288,6 +361,13 @@
     parseSyncWith: parseSyncWith,
     renderSection: renderSection,
     TEAM_DIRECTORY: TEAM_DIRECTORY,
+    groupingOf: groupingOf,
+    groupLabels: groupLabels,
+    groupsText: groupsText,
+    pickClients: pickClients,
+    practicePeers: practicePeers,
+    practiceTeam: practiceTeam,
+    planIsEmpty: planIsEmpty,
     esc: esc
   };
 });

@@ -68,13 +68,17 @@
      so filling a blank in links.js lights the link up everywhere at once. */
   var CHECKLIST = [
     { g: 'start here', cls: 'blue', items: [
-      { id: 'slack', when: 'day one', t: 'Set up your Slack workspace', d: 'Join carrarais.slack.com. Set your full name, photo, title and timezone: the team page pulls from your Slack profile. Then read the Slack section of this hub so the channel prefixes make sense.', links: [{ t: 'Open Slack', k: 'slackWorkspace' }, { t: 'The Slack guide', k: '#/slack' }] },
+      { id: 'slack', when: 'day one', t: 'Set up your Slack workspace', d: 'Join carrarais.slack.com. Fill in your Slack profile: full name, photo, title / focus area, timezone, phone number and email.',
+        html: '<div class="m-eyebrow">[start here · day one]</div><h3>Set up your Slack workspace</h3>'
+          + '<p>Join carrarais.slack.com.</p>'
+          + '<p>Fill in your Slack profile. Be sure to add:</p>'
+          + '<div class="pg"><ul><li>Full name</li><li>Photo</li><li>Title / focus area</li><li>Timezone</li><li>Phone number</li><li>Email</li></ul></div>'
+          + '<p class="m-note" style="margin-top:6px">Optional: about you, birthday, name pronunciation, pronouns.</p>',
+        links: [{ t: 'Open Slack', k: 'slackWorkspace' }, { t: 'The Slack guide', k: '#/slack' }] },
       { id: 'tool-access', when: 'day one', t: 'Ensure tool and system access', d: 'Confirm you can open Google, Notion, Slack and the tools for your role. Anything blocked, ping Eric on Slack.', links: [{ t: 'Notion Home Base', k: 'notionHomeBase' }] },
       { id: 'payroll', when: 'day one', t: 'Payroll setup (Deel, Bill.com, or Ramp)', d: 'Deel for full-time employees, Bill.com for US contractors, Ramp for international contractors. You\'ll get an invite for the one that applies to you.', links: [{ t: 'Deel', k: 'deel' }, { t: 'Bill.com', k: 'bill' }, { t: 'Ramp', k: 'ramp' }] },
-      { id: 'i9', when: 'day one', t: 'I-9 verification (full-time employees only)', d: 'US full-time employees complete I-9 employment eligibility verification. Eric sends this over; get it back the same week so payroll isn\'t held up.' },
-      { id: 'email-signature', when: 'day one', t: 'Set up email signature and Slack profile', d: 'Use the Carrara signature format from the brand templates, and fill out your Slack profile completely.',
-        html: '<div class="m-eyebrow">[start here · day one]</div><h3>Set up email signature and Slack profile</h3>'
-          + '<h4 style="margin:18px 0 6px">Part 1: Your email signature</h4>'
+      { id: 'email-signature', when: 'day one', t: 'Set up email signature', d: 'Use the Carrara signature format from the brand templates.',
+        html: '<div class="m-eyebrow">[start here · day one]</div><h3>Set up email signature</h3>'
           + '<p>You do this in your Carrara Gmail.</p>'
           + '<ol style="margin:8px 0 0 20px;padding:0;line-height:1.7">'
           + '<li><a class="textlink" href="' + window.LINKS.emailSigTemplate + '" target="_blank" rel="noopener">Open the email signature template ↗</a> (a Google Doc) and copy the signature.</li>'
@@ -85,18 +89,15 @@
           + '<li>Change the text to your own name and role.</li>'
           + '<li>Under <b>Signature Defaults</b>, set <b>For New Emails Use</b> to <b>Carrara</b>, and <b>On Reply/Forward Use</b> to <b>Carrara</b>.</li>'
           + '<li>Scroll to the bottom and click <b>Save Changes</b>.</li>'
-          + '</ol>'
-          + '<h4 style="margin:24px 0 6px">Part 2: Your Slack profile</h4>'
-          + '<p>Fill in your Slack profile. Be sure to add:</p>'
-          + '<div class="pg"><ul><li>Full name</li><li>Photo</li><li>Title / focus area</li><li>Timezone</li><li>Phone number</li><li>Email</li><li>Start date</li></ul></div>'
-          + '<p class="m-note" style="margin-top:6px">Optional: about you, birthday, name pronunciation, pronouns.</p>',
+          + '</ol>',
         links: [{ t: 'Full guide on Notion', k: 'emailSignatureGuide' }] },
-      { id: 'time-tracking', when: 'week one', t: 'Set up time tracking', d: 'Your hours help us accurately track client work, allocate expenses, and support client billing and internal reporting, so please make sure they\'re complete and submitted on time.', links: [{ t: 'Time tracking', k: 'timeTracking' }] },
-      { id: 'benefits', when: 'week one', t: 'Understand your benefits', d: 'What you\'re enrolled in, what you need to elect, and by when. Ask Eric on Slack if anything is unclear or if you\'re a contractor and not sure what applies to you.' }
+      { id: 'time-tracking', when: 'week one', t: 'Set up time tracking', d: 'Your hours help us accurately track client work, allocate expenses, and support client billing and internal reporting, so please make sure they\'re complete and submitted on time.' },
+      { id: 'i9', when: 'day one', t: 'I-9 verification (full-time employees only)', d: 'US full-time employees complete I-9 employment eligibility verification. Eric sends this over; get it back the same week so payroll isn\'t held up.' },
+      { id: 'benefits', when: 'week one', t: 'Understand your benefits (full-time employees only)', d: 'What you\'re enrolled in, what you need to elect, and by when. Ask Eric on Slack if anything is unclear or if you\'re a contractor and not sure what applies to you.' }
     ]},
     { g: 'get to know carrara', cls: '', items: [
       { id: 'quarry', when: 'week one', t: 'Set up the Quarry', d: 'Our AI harness. Download the Claude app and log in with your Carrara Google account, set up an Obsidian vault, point Cowork at it, then run /workspace-initialization, /workspace-migration and /sync. Do this in week one: most of how we work assumes it.', links: [{ t: 'Quarry setup guide', k: 'quarry' }, { t: 'The tools we use', k: '#/tools' }] },
-      { id: 'notion', when: 'week one', t: 'Get oriented on our Notion', d: 'Start at Home Base and click around.', links: [{ t: 'Home Base', k: 'notionHomeBase' }] },
+      { id: 'carrara-hub', when: 'week one', t: 'Get oriented on the Carrara Hub', d: 'Start at hub.carrara.is and click around.', links: [{ t: 'Open the Carrara Hub', k: 'https://hub.carrara.is' }] },
       { id: 'time-off', when: 'week one', t: 'Review Time-Off Policy', d: 'Read the Time-Off & Holiday Policy page in this hub. Two minutes now saves confusion later.', links: [{ t: 'Time-Off & Holiday Policy', k: '#/timeoff' }] },
       { id: 'ashby', when: 'week two', t: 'Talent team only: get oriented on Ashby', d: 'Our ATS. Ask in #g-ashby-support if you get stuck.', links: [{ t: 'Open Ashby', k: 'ashby' }, { t: '#g-ashby-support', k: 'ch:g-ashby-support' }] }
     ]},
@@ -426,15 +427,18 @@
   function countUp() {
     if (counted && !reduced) return;
     $$('[data-count]').forEach(function (el) {
-      var target = parseInt(el.dataset.count, 10);
-      var plus = el.dataset.plus === '1';
-      if (reduced) { el.textContent = target + (plus ? '+' : ''); return; }
+      /* read live on every frame: setStat may replace the static target with
+         the roster count while the count-up is running */
+      function read() { return { target: parseInt(el.dataset.count, 10), plus: el.dataset.plus === '1' }; }
+      if (reduced) { var r0 = read(); el.textContent = r0.target + (r0.plus ? '+' : ''); return; }
+      el.dataset.animating = '1';
       var t0 = null;
       function tick(ts) {
         if (!t0) t0 = ts;
         var p = Math.min((ts - t0) / 800, 1);
-        el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))) + (plus && p === 1 ? '+' : '');
-        if (p < 1) requestAnimationFrame(tick);
+        var r = read();
+        el.textContent = Math.round(r.target * (1 - Math.pow(1 - p, 3))) + (r.plus && p === 1 ? '+' : '');
+        if (p < 1) requestAnimationFrame(tick); else el.removeAttribute('data-animating');
       }
       requestAnimationFrame(tick);
     });
@@ -581,6 +585,12 @@
 
   /* ---------- team ---------- */
   var teamData = [];
+  /* true when /api/team answered from POps: then every field POps has wins, and
+     Notion, the Knowledge Hub and the Slack snapshot only fill the gaps */
+  var fromPops = false;
+  /* what the filter, cards and modal group people by: "practices" (POps, several
+     per person) or "department". Set from data.grouping; absent reads department. */
+  var grouping = 'department';
   var myProfile = null; // Shared profiles are edited in the Knowledge Hub.
   function initials(name) {
     return name.split(/\s+/).slice(0, 2).map(function (w) { return w.charAt(0); }).join('').toUpperCase();
@@ -589,30 +599,65 @@
     if (!t) return '';
     return t.replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{200D}]/gu, '').trim();
   }
+  /* On the POps path the groups come from POps only, no Notion fallback: the
+     member's practices when POps groups by practices, else their department.
+     Anything that shows them (filter, card, modal) stays hidden until someone
+     has one. On the Slack and snapshot paths, the Notion business areas, as today. */
+  function deptsOf(m) {
+    if (fromPops && grouping === 'practices') return Array.isArray(m.practices) ? m.practices : [];
+    if (fromPops) return m.department ? [m.department] : [];
+    return ((pavilion[m.name] || {}).teams) || [];
+  }
+  /* A member's clients: POps' list wins when it names any, else today's
+     Codex and Knowledge Hub answer. Names resolve against clientData for the
+     domain and logo either way. */
+  function clientsFor(m) {
+    return MO.pickClients(fromPops, m, function () { return clientsOf(m.name); });
+  }
+  /* POps title and location win when the roster came from POps; otherwise
+     today's precedence, Notion first. */
+  function roleOf(m) {
+    var pv = pavilion[m.name] || {};
+    return fromPops ? (cleanTitle(m.title) || pv.role || '') : (pv.role || cleanTitle(m.title));
+  }
+  function locOf(m) {
+    var pv = pavilion[m.name] || {};
+    return fromPops ? (m.location || pv.location || '') : (pv.location || '');
+  }
   function openMemberModal(m) {
     applyKnowledgePeople();
     var p = profileData[m.name];
     var pv = pavilion[m.name] || {};
-    var role = pv.role || cleanTitle(m.title);
+    var role = roleOf(m);
     var av = m.avatar ? '<img src="' + m.avatar + '" alt="">' : initials(m.name);
     var html = '<div class="m-eyebrow">[the team]</div>'
       + '<div class="member-head"><div class="avatar big">' + av + '</div><div>'
       + '<h3>' + esc(m.name) + '</h3>'
       + (role ? '<div class="rl">' + esc(role) + (m.extra ? ' · ' + esc(m.extra) : '') + '</div>' : (m.extra ? '<div class="rl">' + esc(m.extra) + '</div>' : ''))
       + '</div></div><div class="pg">';
-    /* location and business area get their own labelled rows. Cramming both onto
+    /* location and department get their own labelled rows. Cramming both onto
        one line made it read as a single fact instead of two. The one-liner stays
        up top next to the name. */
-    if (pv.location || (pv.teams && pv.teams.length)) {
+    var groups = deptsOf(m);
+    var dept = groups.join(', ');
+    var loc = locOf(m);
+    var groupFact = '';
+    if (dept && fromPops && grouping === 'practices') {
+      groupFact = '<div class="mm-fact"><div class="mm-k">Practices</div><div class="mm-v mm-chips">'
+        + groups.map(function (g) { return '<span class="mm-chip">' + esc(g) + '</span>'; }).join('') + '</div></div>';
+    } else if (dept) {
+      groupFact = '<div class="mm-fact"><div class="mm-k">Department</div><div class="mm-v">' + esc(dept) + '</div></div>';
+    }
+    if (loc || dept) {
       html += '<div class="mm-facts">'
-        + (pv.location ? '<div class="mm-fact"><div class="mm-k">Based in</div><div class="mm-v">' + esc(pv.location) + '</div></div>' : '')
-        + (pv.teams && pv.teams.length ? '<div class="mm-fact"><div class="mm-k">Business area</div><div class="mm-v">' + esc(pv.teams.join(', ')) + '</div></div>' : '')
+        + (loc ? '<div class="mm-fact"><div class="mm-k">Based in</div><div class="mm-v">' + esc(loc) + '</div></div>' : '')
+        + groupFact
         + '</div>';
     }
     /* their own words first, then the researched summary as a fallback */
     if (pv.about) html += '<p>' + esc(pv.about) + '</p>';
     else if (p && p.summary) html += '<p>' + esc(p.summary) + '</p>';
-    var pvClients = clientsOf(m.name);
+    var pvClients = clientsFor(m);
     if (pvClients.length) {
       /* logo above, company name below: a name alone makes you read, a logo
          alone makes you guess. Falls back to the initial when we have no domain. */
@@ -649,11 +694,17 @@
      in Notion shows up in the dropdown on the next refresh without a code change */
   function populateFilters() {
     var teams = {}, clients = {}, locs = {};
+    teamData.forEach(function (m) {
+      deptsOf(m).forEach(function (t) { teams[t] = 1; });
+      if (fromPops && locOf(m)) locs[locOf(m)] = 1;
+      /* POps' client lists are options too, so filtering by one finds the
+         people whose card shows it */
+      if (fromPops) clientsFor(m).forEach(function (c) { clients[c] = 1; });
+    });
     Object.keys(pavilion).forEach(function (n) {
       var x = pavilion[n];
-      (x.teams || []).forEach(function (t) { teams[t] = 1; });
       clientsOf(n).forEach(function (c) { clients[c] = 1; });
-      if (x.location) locs[x.location] = 1;
+      if (!fromPops && x.location) locs[x.location] = 1;
     });
     function fill(sel, values, keep) {
       var el = $(sel);
@@ -665,7 +716,16 @@
           }).join('');
       el.value = cur;
     }
-    fill('#f-team', teams, 'All teams');
+    var labels = MO.groupLabels(fromPops ? grouping : 'department');
+    fill('#f-team', teams, labels.all);
+    var teamLabel = $('#f-team') && $('#f-team').closest('label');
+    if (teamLabel) {
+      var lt = teamLabel.querySelector('span');
+      if (lt) lt.textContent = labels.label;
+      /* .tf sets display: flex, which beats the hidden attribute, so set both */
+      teamLabel.hidden = !Object.keys(teams).length;
+      teamLabel.style.display = teamLabel.hidden ? 'none' : '';
+    }
     fill('#f-client', clients, 'All clients');
     fill('#f-loc', locs, 'Anywhere');
   }
@@ -692,11 +752,18 @@
      static "8" baked into index.html instead of being overwritten here. Team
      members come from the rendered roster, and companies served counts
      current plus archived so the number only ever goes up. */
+  /* The live value wins whenever it arrives (2026-11-05, the welcome page
+     showed 75+, 84+ or 84 depending on how the roster's fetch raced the
+     count-up): the dataset is the one source the animation reads on every
+     frame, and the text is only written directly when no animation is
+     running, so a count-up in flight lands on the live number instead of
+     overwriting it with the static one it started from. */
   function setStat(sel, n, plus) {
     var el = $(sel);
     if (!el) return;
     el.dataset.count = n;
-    if (el.textContent !== '0') el.textContent = n + (plus ? '+' : '');
+    el.dataset.plus = plus ? '1' : '0';
+    if (el.textContent !== '0' && el.dataset.animating !== '1') el.textContent = n + (plus ? '+' : '');
   }
   function refreshStats() {
     if (teamData.length) {
@@ -734,12 +801,12 @@
     }
     var shown = list.filter(function (m) {
       var pv = pavilion[m.name] || {};
-      if (teamFilter.team && (pv.teams || []).indexOf(teamFilter.team) === -1) return false;
-      var mine = clientsOf(m.name);
+      if (teamFilter.team && deptsOf(m).indexOf(teamFilter.team) === -1) return false;
+      var mine = clientsFor(m);
       if (teamFilter.client && mine.indexOf(teamFilter.client) === -1) return false;
-      if (teamFilter.loc && pv.location !== teamFilter.loc) return false;
-      var hay = [m.name, m.title || '', m.email || '', pv.role || '', pv.location || '',
-        (pv.teams || []).join(' '), mine.join(' ')].join(' ').toLowerCase();
+      if (teamFilter.loc && locOf(m) !== teamFilter.loc) return false;
+      var hay = [m.name, m.nickname || '', m.title || '', m.email || '', pv.role || '', locOf(m),
+        deptsOf(m).join(' '), mine.join(' ')].join(' ').toLowerCase();
       return !q || hay.indexOf(q) >= 0;
     });
     shown.forEach(function (m) {
@@ -749,8 +816,8 @@
       d.setAttribute('tabindex', '0');
       var av = m.avatar ? '<img src="' + m.avatar + '" alt="" loading="lazy">' : initials(m.name);
       var pv = pavilion[m.name] || {};
-      var role = pv.role || cleanTitle(m.title);
-      var logos = clientsOf(m.name).slice(0, 5).map(function (cn) {
+      var role = roleOf(m);
+      var logos = clientsFor(m).slice(0, 5).map(function (cn) {
         var c = clientData.filter(function (x) { return x.name === cn; })[0];
         return c && c.domain
           ? '<a class="cl-dot-link" href="https://' + esc(c.domain) + '" target="_blank" rel="noopener" title="' + esc(cn) + '">'
@@ -759,7 +826,8 @@
       }).join('');
       /* location and logos live in a footer pinned to the bottom of the card,
          so they line up across a row whatever length the role runs to */
-      var foot = (pv.location ? '<div class="loc-sm">' + esc(pv.location) + '</div>' : '')
+      var where = [MO.groupsText(deptsOf(m), fromPops ? grouping : 'department'), locOf(m)].filter(Boolean).join(' · ');
+      var foot = (where ? '<div class="loc-sm">' + esc(where) + '</div>' : '')
         + (logos ? '<div class="cl-row">' + logos + '</div>' : '');
       /* the footer is a sibling of .info, not a child: an auto margin only
          reaches the card's own free space from one level up */
@@ -831,6 +899,8 @@
       profileData = (both[1] && both[1].profiles) || {};
       /* the Notion directory is the richer source: role, location, clients and the
          People Pavilion answers. Slack still owns the photo and who is on the roster. */
+      fromPops = data.source === 'pops';
+      grouping = MO.groupingOf(data);
       teamData = data.members || [];
       applyKnowledgePeople();
       /* Slack and Notion spell people differently: Slack has "Heath" and "Ben",
@@ -864,7 +934,10 @@
       wireFilters();
       refreshStats();
       mountMyOnboarding();
-      if (data.source === 'slack') {
+      if (data.source === 'pops') {
+        $('#team-note').textContent = 'Live from POps, Carrara\'s people directory. Titles, locations and '
+          + (grouping === 'practices' ? 'practice areas' : 'departments') + ' come from POps; photos still come from Slack profiles.';
+      } else if (data.source === 'slack') {
         $('#team-note').textContent = 'Live from the #f-company-ops-general Slack channel, refreshed every two weeks. Photos and roles come from Slack profiles: set yours and it shows here.';
       }
     })
@@ -918,9 +991,16 @@
       var m = teamData.filter(function (x) { return x.name === mgr.name; })[0]
         || teamData.filter(function (x) { return sameFirstAndInitial(x.name, mgr.name); })[0];
       if (m) {
-        var pv = (pavilion || {})[m.name] || {};
-        ctx.manager = { avatar: m.avatar || '', email: m.email || '', role: pv.role || cleanTitle(m.title) };
+        ctx.manager = { avatar: m.avatar || '', email: m.email || '', role: roleOf(m) };
       }
+    }
+    /* Under POps practices, "your team" is everyone who shares a practice with
+       the hire, and the team link filters to their first practice. */
+    var pt = MO.practiceTeam(kitData, fromPops, grouping, teamData, mgr.name);
+    if (pt) {
+      ctx.teamFilter = pt.teamFilter;
+      ctx.peers = pt.peers;
+      return ctx;
     }
     var dirTeams = MO.TEAM_DIRECTORY[(kitData.team && kitData.team.key) || ''] || [];
     if (dirTeams.length) {
@@ -967,8 +1047,12 @@
     el.querySelectorAll('a[data-team-filter]').forEach(function (a) {
       a.addEventListener('click', function () {
         var sel = $('#f-team');
-        teamFilter.team = a.dataset.teamFilter;
-        if (sel) sel.value = a.dataset.teamFilter;
+        /* TEAM_DIRECTORY still carries Notion names; until it is switched to POps
+           department names the link must never strand a hire on an empty grid. */
+        var v = a.dataset.teamFilter;
+        var ok = sel && Array.prototype.some.call(sel.options, function (o) { return o.value === v; });
+        teamFilter.team = ok ? v : '';
+        if (sel) sel.value = ok ? v : '';
         renderTeam($('#team-search').value);
       });
     });
@@ -979,13 +1063,10 @@
      lead can change, and the plan itself lives in POps. One refresh in flight
      at a time -- a hire clicking between sections must not queue five. */
   var kitRefreshing = false;
-  // A plan is either not there at all (null) or there with every field blank
-  // (POps answers the shape but the manager hasn't written anything yet) --
-  // both read as "nothing to show" and both are the SAME "empty" a refetch
-  // must never let overwrite real content.
-  function planIsEmpty(plan) {
-    return !plan || !Object.keys(plan).some(function (k) { return plan[k]; });
-  }
+  // A plan is either not there at all (null) or there with every field blank;
+  // both are the SAME "empty" a refetch must never let overwrite real content.
+  // practices never counts as content: it is not the manager's words. The rule
+  // lives in my-onboarding.js (MO.planIsEmpty) so the verifier can drive it.
   function refreshKit() {
     var saved = store('carrara_welcome');
     if (!saved || !saved.code || kitRefreshing) return;
@@ -1007,8 +1088,11 @@
         // from the fresh response. A real update still replaces stored: this
         // is not a one-way freeze, only a floor under real content.
         var stored = saved.data || {};
-        if (planIsEmpty(j.plan) && !planIsEmpty(stored.plan)) {
-          j.plan = stored.plan;
+        if (MO.planIsEmpty(j.plan) && !MO.planIsEmpty(stored.plan)) {
+          /* a fresh answer's practices still win: they come from POps' roster,
+             not the manager, so a blank manager plan does not make them stale */
+          var freshPractices = j.plan && Array.isArray(j.plan.practices) ? j.plan.practices : null;
+          j.plan = Object.assign({}, stored.plan, freshPractices ? { practices: freshPractices } : {});
           j.syncWith = stored.syncWith;
         }
         store('carrara_welcome', { code: saved.code, data: j });
@@ -1124,8 +1208,14 @@
       if (!p) return;
       // The roster still decides who is active. Shared workplace metadata only;
       // personal survey answers stay behind Carrara Hub sign in.
-      m.title = p.title || m.title;
-      if (p.photo) m.avatar = p.photo;
+      if (fromPops) {
+        // POps wins: the Knowledge Hub only fills what POps left empty
+        if (!m.title) m.title = p.title || '';
+        if (!m.avatar && p.photo) m.avatar = p.photo;
+      } else {
+        m.title = p.title || m.title;
+        if (p.photo) m.avatar = p.photo;
+      }
       profileData[m.name] = Object.assign({}, profileData[m.name], { linkedin: p.linkedin || '' });
     });
   }

@@ -15,6 +15,11 @@
 //                    visited, then NEW, then plain
 //   5. section    -- renderSection escapes hostile content and omits blank
 //                    blocks
+//   6. practices  -- the plan's sixth field reaches the kit as a string array,
+//                    planIsEmpty never counts it, and the grouping helpers
+//                    app.js uses (labels, card text, POps clients, peers from
+//                    shared practices) pick practices only on the POps
+//                    practices path and keep today's answer everywhere else
 // Exits non-zero on the first failure count > 0.
 //
 // scripts/verify-mint.js owns the ACCESS CODE FORMAT (six and seven fields).
@@ -194,6 +199,20 @@ async function main() {
   check('with the bearer', calls[0] && calls[0].init.headers.Authorization === 'Bearer plan-token-for-tests', calls[0] && calls[0].init.headers);
   check('the kit carries the plan', withPlan.body.plan && withPlan.body.plan.thirty_days === PLAN.thirty_days, withPlan.body.plan);
   check('sync_with is NOT echoed on the plan', withPlan.body.plan && withPlan.body.plan.sync_with === undefined, withPlan.body.plan);
+  check('a plan without practices carries practices: []', withPlan.body.plan && Array.isArray(withPlan.body.plan.practices) && withPlan.body.plan.practices.length === 0, withPlan.body.plan && withPlan.body.plan.practices);
+
+  stubPops(() => ({ ok: true, json: async () => Object.assign({}, PLAN, { practices: [' Talent Platform ', 'Finance', '', 3, null, 'BizOps'] }) }));
+  const withPractices = await callWelcome(codeFor('KEY-123'));
+  check('practices reach the kit as strings, trimmed, blanks and non-strings dropped, in order',
+    JSON.stringify(withPractices.body.plan && withPractices.body.plan.practices) === JSON.stringify(['Talent Platform', 'Finance', 'BizOps']),
+    withPractices.body.plan && withPractices.body.plan.practices);
+  stubPops(() => ({ ok: true, json: async () => Object.assign({}, PLAN, { practices: 'Talent Platform' }) }));
+  const oddPractices = await callWelcome(codeFor('KEY-123'));
+  check('non-array practices read as []', JSON.stringify(oddPractices.body.plan && oddPractices.body.plan.practices) === '[]',
+    oddPractices.body.plan && oddPractices.body.plan.practices);
+  check('the plan carries exactly the five content fields plus practices',
+    JSON.stringify(Object.keys(withPractices.body.plan || {}).sort()) === JSON.stringify(['manager_intro', 'ninety_days', 'practices', 'sixty_days', 'thirty_days']),
+    Object.keys(withPractices.body.plan || {}));
   check("the manager's syncs replace the derivation",
     withPlan.body.syncWith.length === 2 && withPlan.body.syncWith[0].name === 'River Slate', withPlan.body.syncWith);
 
@@ -404,6 +423,73 @@ async function main() {
     liveHtml.indexOf('Your onboarding, Ada.') > -1 && liveHtml.indexOf('mo-timeline') > -1, liveHtml.slice(0, 160));
   check('without the payload\'s pay pointer', liveHtml.indexOf(live.body.payNote) === -1);
   check('and the manager\'s syncs, not the derivation', liveHtml.indexOf('River Slate') > -1);
+
+  // ------------------------------------------------------------- practices
+  console.log('\n[practices] planIsEmpty and the grouping helpers');
+  check('planIsEmpty: null is empty', mo.planIsEmpty(null) === true);
+  check('planIsEmpty: all blank is empty', mo.planIsEmpty({ manager_intro: null, thirty_days: null, sixty_days: null, ninety_days: null }) === true);
+  check('planIsEmpty: practices alone is still empty',
+    mo.planIsEmpty({ manager_intro: null, thirty_days: null, sixty_days: null, ninety_days: null, practices: ['Talent Platform'] }) === true);
+  check('planIsEmpty: an empty practices array is still empty',
+    mo.planIsEmpty({ manager_intro: null, thirty_days: null, sixty_days: null, ninety_days: null, practices: [] }) === true);
+  check('planIsEmpty: a manager field is content', mo.planIsEmpty({ thirty_days: 'Shadow two engagements', practices: [] }) === false);
+  check('planIsEmpty: the live kit payload with practices: [] is not empty', mo.planIsEmpty(withPlan.body.plan) === false);
+
+  check('groupingOf: POps with practices', mo.groupingOf({ source: 'pops', grouping: 'practices' }) === 'practices');
+  check('groupingOf: POps without grouping is department', mo.groupingOf({ source: 'pops' }) === 'department');
+  check('groupingOf: POps with an unknown grouping is department', mo.groupingOf({ source: 'pops', grouping: 'Practices' }) === 'department');
+  check('groupingOf: Slack is department even if a grouping appeared', mo.groupingOf({ source: 'slack', grouping: 'practices' }) === 'department');
+  check('groupingOf: the snapshot is department', mo.groupingOf(require('../team.json')) === 'department');
+  check('groupingOf: nothing is department', mo.groupingOf(null) === 'department');
+
+  check('labels under practices', JSON.stringify(mo.groupLabels('practices')) === JSON.stringify({ label: 'Practices', all: 'All practices' }));
+  check('labels under department', JSON.stringify(mo.groupLabels('department')) === JSON.stringify({ label: 'Department', all: 'All departments' }));
+
+  check('card text: three practices joined', mo.groupsText(['A', 'B', 'C'], 'practices') === 'A, B, C');
+  check('card text: five practices show three and +2', mo.groupsText(['A', 'B', 'C', 'D', 'E'], 'practices') === 'A, B, C +2', mo.groupsText(['A', 'B', 'C', 'D', 'E'], 'practices'));
+  check('card text: four practices show three and +1', mo.groupsText(['A', 'B', 'C', 'D'], 'practices') === 'A, B, C +1');
+  check('card text: none is blank', mo.groupsText([], 'practices') === '');
+  check('card text: the department and Notion paths join everything, as today',
+    mo.groupsText(['Talent Acquisition', 'Talent Management', 'Strategic Finance', 'Managed Services / BizOps'], 'department')
+      === 'Talent Acquisition, Talent Management, Strategic Finance, Managed Services / BizOps');
+
+  const fallback = () => ['Codex Client'];
+  check('clients: POps wins when it names any', JSON.stringify(mo.pickClients(true, { clients: ['Acme Rocketry'] }, fallback)) === JSON.stringify(['Acme Rocketry']));
+  check('clients: POps empty falls back to today\'s sources', JSON.stringify(mo.pickClients(true, { clients: [] }, fallback)) === JSON.stringify(['Codex Client']));
+  check('clients: POps missing falls back', JSON.stringify(mo.pickClients(true, {}, fallback)) === JSON.stringify(['Codex Client']));
+  check('clients: not from POps ignores a clients field', JSON.stringify(mo.pickClients(false, { clients: ['Acme Rocketry'] }, fallback)) === JSON.stringify(['Codex Client']));
+  check('clients: non-strings in POps\' list are ignored', JSON.stringify(mo.pickClients(true, { clients: [7, ''] }, fallback)) === JSON.stringify(['Codex Client']));
+
+  const ROSTER = [
+    { name: 'Zed Marlowe', avatar: 'z.png', practices: ['Finance', 'Talent Platform'] },
+    { name: 'Sol Silbenberg', avatar: 's.png', practices: ['Talent Platform'] },
+    { name: 'Ada Lovelace', avatar: 'a.png', practices: ['Talent Platform'] },
+    { name: 'Bea Corvid', avatar: '', practices: ['Embedded Recruiting'] },
+    { name: 'Cy Ardent', practices: ['Embedded Recruiting', 'Finance'] },
+    { name: 'Dot Ember', avatar: 'd.png', practices: [] },
+    { name: 'Eli Fathom', avatar: 'e.png' }
+  ];
+  const peers = mo.practicePeers(['Talent Platform', 'Embedded Recruiting'], ROSTER, 'Sol Silbenberg', 'Ada Lovelace');
+  check('peers: everyone sharing a practice, minus the manager and the hire, sorted by name',
+    JSON.stringify(peers) === JSON.stringify([
+      { name: 'Bea Corvid', avatar: '' }, { name: 'Cy Ardent', avatar: '' }, { name: 'Zed Marlowe', avatar: 'z.png' }
+    ]), peers);
+  check('peers: a hire with no practices has none', mo.practicePeers([], ROSTER, 'Sol Silbenberg', 'Ada Lovelace').length === 0);
+
+  const KITP = Object.assign({}, KIT, { name: 'Ada Lovelace', plan: Object.assign({}, KIT.plan, { practices: ['Embedded Recruiting', 'Talent Platform'] }) });
+  const pt = mo.practiceTeam(KITP, true, 'practices', ROSTER, 'Sol Silbenberg');
+  check('practiceTeam: the filter is the hire\'s first practice', pt && pt.teamFilter === 'Embedded Recruiting', pt);
+  check('practiceTeam: the faces are the shared-practice peers', pt && pt.peers.map((p) => p.name).join('|') === 'Bea Corvid|Cy Ardent|Zed Marlowe', pt && pt.peers);
+  check('practiceTeam: the POps department path keeps TEAM_DIRECTORY', mo.practiceTeam(KITP, true, 'department', ROSTER, 'Sol Silbenberg') === null);
+  check('practiceTeam: the snapshot and Slack paths keep TEAM_DIRECTORY', mo.practiceTeam(KITP, false, 'department', ROSTER, 'Sol Silbenberg') === null);
+  check('practiceTeam: no practices on the plan keeps TEAM_DIRECTORY',
+    mo.practiceTeam(Object.assign({}, KITP, { plan: Object.assign({}, KIT.plan, { practices: [] }) }), true, 'practices', ROSTER, 'Sol Silbenberg') === null);
+  check('practiceTeam: a planless kit keeps TEAM_DIRECTORY', mo.practiceTeam(Object.assign({}, KITP, { plan: null }), true, 'practices', ROSTER, 'Sol Silbenberg') === null);
+  check('TEAM_DIRECTORY still holds talent and finance for the snapshot path',
+    JSON.stringify(Object.keys(mo.TEAM_DIRECTORY).sort()) === JSON.stringify(['finance', 'talent']));
+  const ptHtml = mo.renderSection(KITP, { teamFilter: pt.teamFilter, peers: pt.peers });
+  check('the section renders the practice peers and links to the first practice',
+    ptHtml.indexOf('3 people do') > -1 && ptHtml.indexOf('data-team-filter="Embedded Recruiting"') > -1, ptHtml.slice(0, 200));
 
   console.log('');
   finished = true;
