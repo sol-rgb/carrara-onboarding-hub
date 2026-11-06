@@ -80,7 +80,7 @@
       { id: 'email-signature', when: 'day one', t: 'Set up email signature', d: 'Use the Carrara signature format from the brand templates.',
         html: '<div class="m-eyebrow">[start here · day one]</div><h3>Set up email signature</h3>'
           + '<p>You do this in your Carrara Gmail.</p>'
-          + '<ol style="margin:8px 0 0 20px;padding:0;line-height:1.7">'
+          + '<div class="pg"><ol>'
           + '<li><a class="textlink" href="' + window.LINKS.emailSigTemplate + '" target="_blank" rel="noopener">Open the email signature template ↗</a> (a Google Doc) and copy the signature.</li>'
           + '<li>Go to your Carrara Gmail inbox.</li>'
           + '<li>Click the <b>Settings</b> icon (top right), then <b>See all Settings</b>.</li>'
@@ -89,9 +89,9 @@
           + '<li>Change the text to your own name and role.</li>'
           + '<li>Under <b>Signature Defaults</b>, set <b>For New Emails Use</b> to <b>Carrara</b>, and <b>On Reply/Forward Use</b> to <b>Carrara</b>.</li>'
           + '<li>Scroll to the bottom and click <b>Save Changes</b>.</li>'
-          + '</ol>',
+          + '</ol></div>',
         links: [{ t: 'Full guide on Notion', k: 'emailSignatureGuide' }] },
-      { id: 'time-tracking', when: 'week one', t: 'Set up time tracking', d: 'Your hours help us accurately track client work, allocate expenses, and support client billing and internal reporting, so please make sure they\'re complete and submitted on time.' },
+      { id: 'time-tracking', when: 'week one', t: 'Set up time tracking', d: 'Your hours help us accurately track client work, allocate expenses, and support client billing and internal reporting, so please make sure they\'re complete and submitted on time.', links: [{ t: 'Strata: Logging Client Hours', k: 'strataLogging' }] },
       { id: 'i9', when: 'day one', t: 'I-9 verification (full-time employees only)', d: 'US full-time employees complete I-9 employment eligibility verification. Eric sends this over; get it back the same week so payroll isn\'t held up.' },
       { id: 'benefits', when: 'week one', t: 'Understand your benefits (full-time employees only)', d: 'What you\'re enrolled in, what you need to elect, and by when. Ask Eric on Slack if anything is unclear or if you\'re a contractor and not sure what applies to you.' }
     ]},
@@ -103,11 +103,10 @@
     ]},
     { g: 'connect with people', cls: '', items: [
       { id: 'manager-1on1', when: 'day one', t: 'Day 1 manager 1:1', d: 'Your first 1:1: align on your 90-day plan, week one priorities, and how you\'ll work together.' },
-      { id: 'buddy', when: 'day one', t: 'Set up time with your onboarding buddy', d: 'Your onboarding buddy is there for any day-to-day question, no matter how small. Grab time with them early so you know who to go to.' },
       { id: 'recurring-1on1', when: 'week one', t: 'Set up a recurring 1:1 with your manager', d: 'Get a weekly slot on the calendar before the week ends.' },
       { id: 'team-calls', when: 'week one', t: "Confirm you're added to all team calls", d: 'Standing team meetings, the monthly Team Roundup, and any client syncs relevant to your role.', links: [{ t: 'Team Roundup', k: 'teamRoundup' }] },
       { id: 'profile', when: 'week one', t: 'Fill out your people profile', d: 'Create your profile in the Carrara Hub so the team can get to know you.', links: [{ t: 'The team directory', k: '#/team' }], survey: 'profile' },
-      { id: 'meet-people', when: 'week two', t: 'Meet the people on your list', d: 'Your manager picks who you should meet in your first two weeks: your client lead, the people on your account, and a couple of others. Enter your access code in the welcome kit (bottom right) to see your names, then book the 1:1s.', links: [{ t: 'The team wall', k: '#/team' }] },
+      { id: 'meet-people', when: 'week two', t: 'Meet the people on your list', d: 'Your manager picks who you should meet in your first two weeks: your client lead, the people on your account, and a couple of others.', links: [{ t: 'The team wall', k: '#/team' }] },
       { id: 'top5', t: 'Submit your Top 5', d: 'Name the five best people you have ever worked with, one submission per person. It seeds our network with people we already trust, and it\'s one of the most useful things you can do in your first week.', survey: 'top5' }
     ]}
   ];

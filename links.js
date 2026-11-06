@@ -76,6 +76,7 @@ window.LINKS = {
   companyContext: 'https://app.notion.com/p/1936b1a6e6e781948e1fe13da159dd3c',
   openRoles: 'https://app.notion.com/p/28c6b1a6e6e780a987bff0430f8bf140',
   timeTracking: 'https://app.notion.com/p/25b6b1a6e6e780b78173c35bee5612db',
+  strataLogging: 'https://app.notion.com/p/carrara/Strata-Logging-Client-Hours-40f6b1a6e6e781228488dc8d9fa5c02e',
   clientCodex: 'https://app.notion.com/p/6b9b531c33b34434a80c91000e376f2e',
   onboardingChecklistDb: 'https://app.notion.com/p/1936b1a6e6e781538075c58f5a6a1ea5'
 };
