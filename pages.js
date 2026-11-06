@@ -100,7 +100,8 @@ window.PAGES = {
       + '<p>Agendas and recaps are archived after each session. Your manager will make sure the invite is on your calendar; if it\'s not there by week one, ask.</p>'
       + '<div class="wk-links">'
       + '<a href="https://app.notion.com/p/carrara/Roundup-Archive-13d6b1a6e6e780a6bc3ff12e110e42b0" target="_blank" rel="noopener">Roundup Archive on Notion ↗</a>'
-      + '</div>'
+      + '</div>',
+    note: ''
   },
   talentTeamMeeting: {
     title: 'Weekly Talent Jam',
