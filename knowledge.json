@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-11-05",
+ "exported": "2026-11-06",
  "clients": [
   {
    "slug": "anthropic",
@@ -318,7 +318,7 @@
      "role": "People ops and HRIS",
      "email": "pranavi@carrara.is",
      "slack": "U0B7TSES90E",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Eric Fernandez",
@@ -590,7 +590,7 @@
      "role": "Recruiting advice",
      "email": "joe@carrara.is",
      "slack": "U065ASSS339",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     }
    ],
    "workstreams": [
@@ -937,7 +937,7 @@
    "workstreams": [
     {
      "title": "Paid media",
-     "detail": "We work on Meta with cfo.ai's team, reading results each week and calling which ads to scale; the fractional CFO campaign is running and the X and pLTV tests are paused while tracking is fixed.",
+     "detail": "We work on Meta with cfo.ai's team, reading results each week and calling which ads to scale; a fractional CFO lead form campaign runs on Meta, LinkedIn ads start next week, and the X and pLTV tests are paused.",
      "points": [
       "Meta account restructured into scale, testing and retargeting campaigns",
       "Weekly call on which ads to keep, promote, remix or pause",
@@ -946,7 +946,7 @@
     },
     {
      "title": "Landing pages",
-     "detail": "Persona pages, pricing and an inspiration gallery are live on cfo.ai; the listicles and a founding partners page with a HubSpot form are in pull requests, and four of twelve compare pages are built for review.",
+     "detail": "Persona pages, pricing and an inspiration gallery are live on cfo.ai; the listicles and a founding partners page are in pull requests, and the first four compare pages are on staging for cfo.ai's review.",
      "points": [
       "Persona pages, a pricing update and an inspiration gallery, shipped into cfo.ai's site",
       "Onboarding call booking on the homepage, fractional CFO page and pricing",
@@ -982,7 +982,7 @@
     }
    ],
    "channel": "c-cfo-ai",
-   "updated": "2026-11-05",
+   "updated": "2026-11-06",
    "url": "https://hub.carrara.is/clients/runway"
   },
   {
@@ -1011,7 +1011,7 @@
      "role": "Account lead",
      "email": "joe@carrara.is",
      "slack": "U065ASSS339",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Sol Silbenberg",
@@ -1201,7 +1201,7 @@
      "role": "Recruiting lead",
      "email": "joe@carrara.is",
      "slack": "U065ASSS339",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Sadiqeh Agah",
@@ -1329,7 +1329,7 @@
      "role": "Dealer Direct lead",
      "email": "tan@carrara.is",
      "slack": "U0BG4SC977H",
-     "timezone": "America/Mexico_City"
+     "timezone": "Europe/Amsterdam"
     },
     {
      "name": "Enzo Budasoff",
@@ -1676,7 +1676,7 @@
      "role": "Lead",
      "email": "joe@carrara.is",
      "slack": "U065ASSS339",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Mary Petrino",
@@ -2312,7 +2312,7 @@
      "role": "Lead",
      "email": "joe@carrara.is",
      "slack": "U065ASSS339",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     }
    ],
    "workstreams": [],
@@ -2349,7 +2349,7 @@
      "role": "Account lead",
      "email": "joe@carrara.is",
      "slack": "U065ASSS339",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Savannah Gleeson",
@@ -2726,7 +2726,7 @@
      "role": "Offer framework",
      "email": "pranavi@carrara.is",
      "slack": "U0B7TSES90E",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     }
    ],
    "workstreams": [
@@ -3026,7 +3026,7 @@
      "role": "Recruiting lead",
      "email": "joe@carrara.is",
      "slack": "U065ASSS339",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Alicia Donenfeld",
@@ -3946,7 +3946,7 @@
    "title": "Recruiting lead",
    "email": "joe@carrara.is",
    "slack": "U065ASSS339",
-   "timezone": "America/Los_Angeles",
+   "timezone": "America/New_York",
    "photo": "https://hub.carrara.is/people/joe.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=joe%40carrara.is"
@@ -4188,7 +4188,7 @@
    "title": "",
    "email": "pranavi@carrara.is",
    "slack": "U0B7TSES90E",
-   "timezone": "America/New_York",
+   "timezone": "America/Los_Angeles",
    "photo": "https://hub.carrara.is/people/pranavi.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=pranavi%40carrara.is"
@@ -4353,7 +4353,7 @@
    "title": "",
    "email": "tan@carrara.is",
    "slack": "U0BG4SC977H",
-   "timezone": "America/Mexico_City",
+   "timezone": "Europe/Amsterdam",
    "photo": null,
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=tan%40carrara.is"
@@ -4467,6 +4467,17 @@
    "photo": "https://hub.carrara.is/people/sam-wesley.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=sam.wesley%40carrara.is"
+  },
+  {
+   "id": "karishma",
+   "name": "Karishma Kumar",
+   "title": "",
+   "email": null,
+   "slack": "U0CEHKZMNCX",
+   "timezone": "Asia/Kolkata",
+   "photo": "https://hub.carrara.is/people/karishma.jpg",
+   "linkedin": null,
+   "url": "https://hub.carrara.is/people?person=karishma"
   }
  ]
 }
