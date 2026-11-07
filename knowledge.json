@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-11-06",
+ "exported": "2026-11-07",
  "clients": [
   {
    "slug": "anthropic",
@@ -481,10 +481,10 @@
     },
     {
      "title": "Dinners and webinar",
-     "detail": "The Amsterdam finance leader dinner on Nov 5 has its run of show and final print files, and a London webinar and dinner are in planning.",
+     "detail": "The Amsterdam finance leader dinner ran on Nov 5, and a London webinar and dinner are in planning.",
      "points": [
       "Amsterdam run of show in two hosting formats, including a Jeffersonian dinner",
-      "Menus, name cards and gift prints for the Amsterdam dinner, in Sphere's typefaces",
+      "Menu, name cards, gift prints and a guest lookbook for the Amsterdam dinner",
       "E-invoicing webinar: Sphere hosts and an outside expert gives the view, from a London studio"
      ]
     },
@@ -508,7 +508,7 @@
     }
    ],
    "channel": "c-sphere",
-   "updated": "2026-11-03",
+   "updated": "2026-11-07",
    "url": "https://hub.carrara.is/clients/sphere"
   },
   {
@@ -534,10 +534,10 @@
    ],
    "website": "raindrop.ai",
    "logo": "https://hub.carrara.is/logos/raindrop.png",
-   "owner": "Catherine Ardilla",
+   "owner": "Catherine Ardila",
    "team": [
     {
-     "name": "Catherine Ardilla",
+     "name": "Catherine Ardila",
      "role": "Recruiting lead, GTM",
      "email": "catherine@carrara.is",
      "slack": "U0A09PCP63V",
@@ -623,7 +623,7 @@
     },
     {
      "title": "Raindrop OS",
-     "detail": "A recruiting OS on Ashby, live and in team testing; the Slack bot is approved, with its install doc being finished for Raindrop's team.",
+     "detail": "A recruiting OS on Ashby, live and in team testing; the Slack bot install doc is with Raindrop's team, along with answers on how the bot handles data.",
      "points": [
       "Separate GTM and Eng views with week by week pacing, volume by stage and a calendar of calls",
       "Reads every Ashby source, req owner and department each hour, and the GTM tracker every four hours",
@@ -641,7 +641,7 @@
     }
    ],
    "channel": "c-raindrop",
-   "updated": "2026-11-05",
+   "updated": "2026-11-07",
    "url": "https://hub.carrara.is/clients/raindrop"
   },
   {
@@ -946,11 +946,11 @@
     },
     {
      "title": "Landing pages",
-     "detail": "Persona pages, pricing and an inspiration gallery are live on cfo.ai; the listicles and a founding partners page are in pull requests, and the first four compare pages are on staging for cfo.ai's review.",
+     "detail": "Persona pages, pricing and an inspiration gallery are live on cfo.ai; the listicles, a founding partners page and the first four compare pages are in pull requests for cfo.ai's team.",
      "points": [
       "Persona pages, a pricing update and an inspiration gallery, shipped into cfo.ai's site",
       "Onboarding call booking on the homepage, fractional CFO page and pricing",
-      "Four fractional CFO listicles, and twelve compare pages designed with four built"
+      "Four fractional CFO listicles, and twelve compare pages written with four in a pull request"
      ]
     },
     {
@@ -973,7 +973,7 @@
     },
     {
      "title": "Performance reporting",
-     "detail": "A live dashboard for Meta and Google plus a persona testing report; the fractional CFO dashboard is with cfo.ai's team for a first look, and a PostHog attribution fix is proposed.",
+     "detail": "A live dashboard for Meta and Google, now counting lead form results, plus a persona testing report; the fractional CFO dashboard is with cfo.ai's team for a first look.",
      "points": [
       "Real time performance dashboard for Meta and Google",
       "Persona testing report on how each persona's ads and pages perform",
@@ -982,7 +982,7 @@
     }
    ],
    "channel": "c-cfo-ai",
-   "updated": "2026-11-06",
+   "updated": "2026-11-07",
    "url": "https://hub.carrara.is/clients/runway"
   },
   {
@@ -1180,10 +1180,10 @@
    ],
    "website": null,
    "logo": "https://hub.carrara.is/logos/oaif.png",
-   "owner": "Catherine Ardilla",
+   "owner": "Catherine Ardila",
    "team": [
     {
-     "name": "Catherine Ardilla",
+     "name": "Catherine Ardila",
      "role": "Client lead",
      "email": "catherine@carrara.is",
      "slack": "U0A09PCP63V",
@@ -1380,17 +1380,17 @@
      "detail": "A Databricks app for no-show and cancellation fee billing, live with Hertz's receivables team; Hertz's billing query logic is now built in, and a view for Hertz to maintain it is next.",
      "points": [
       "Billing logic tab with a SQL editor, scheduled versions and a change log",
-      "A check that flags likely rebookings before a billing run, so they aren't billed",
+      "Checks that set aside rebookings and rentals still out, so billing can run on the 1st",
       "Payment tracker export, month grouping, report upload and a 2025 billing and recovery dashboard"
      ]
     },
     {
      "title": "Vehicle transport platform",
-     "detail": "Shipper, carrier and driver tools for moving Hertz vehicles; API access is on staging, MyCarrierPortal designs are handed off and gatepass updates ran on a live load.",
+     "detail": "Shipper, carrier and driver tools for moving Hertz vehicles; API access is on staging, and the technical handover pack for Hertz's team is ready.",
      "points": [
       "Customer portal for booking and tracking loads, with bulk order upload",
       "Load tendering, carrier alerts and customer invoicing through Stripe",
-      "Gatepass updates flowing into the order automatically, tested on a live load with Hertz"
+      "Technical handover pack: an overview deck and a full technical document"
      ]
     },
     {
@@ -1413,7 +1413,7 @@
     }
    ],
    "channel": "c-hertz-external",
-   "updated": "2026-11-04",
+   "updated": "2026-11-07",
    "url": "https://hub.carrara.is/clients/hertz"
   },
   {
@@ -1885,8 +1885,8 @@
    "name": "January",
    "hubName": "January",
    "status": "active",
-   "oneLiner": "Embedded recruiting for eng, security, product and business roles, plus recruiting ops.",
-   "about": "We run January's hiring across engineering, security, product, business and recruiting roles. Around it we built the recruiting ops, from Ashby automations and applicant scoring to pipeline dashboards, and we're onboarding January's new in-house recruiters.",
+   "oneLiner": "Embedded recruiting for eng, security, product and G&A roles, plus recruiting ops.",
+   "about": "We run January's hiring across engineering, security, product and G&A roles, and redesigned the senior security engineer interview loop. Around it we built the recruiting ops, from Ashby automations and applicant scoring to a recruiting dashboard for January's talent leads.",
    "practices": [
     {
      "id": "recruiting",
@@ -1903,28 +1903,21 @@
    "team": [
     {
      "name": "Bec Bliss",
-     "role": "Engagement lead",
+     "role": "Client owner",
      "email": "bec@carrara.is",
      "slack": "U0BTYH2PH8E",
      "timezone": "America/New_York"
     },
     {
      "name": "Brandon Taleisnik",
-     "role": "Account manager",
+     "role": "Account lead",
      "email": "brandon@carrara.is",
      "slack": "U07JH8MAM7G",
      "timezone": "America/Los_Angeles"
     },
     {
-     "name": "Ali Horowitz",
-     "role": "Recruiter, S&O and chief of staff",
-     "email": "ali@carrara.is",
-     "slack": "U095Q8GNAJ1",
-     "timezone": "America/New_York"
-    },
-    {
      "name": "Drew Koloski",
-     "role": "Recruiter, Product",
+     "role": "Recruiter, Product and Sr. SWE",
      "email": "drew@carrara.is",
      "slack": "U0BEA903P1P",
      "timezone": "America/New_York"
@@ -1963,63 +1956,38 @@
      "email": "kelley@carrara.is",
      "slack": "U0AT6B3QE9X",
      "timezone": "America/New_York"
-    },
-    {
-     "name": "Leonardo Lopes",
-     "role": "Ashby automations and applicant scoring",
-     "email": "leonardo@carrara.is",
-     "slack": "U0BMBE2091P",
-     "timezone": "America/Sao_Paulo"
     }
    ],
    "workstreams": [
     {
-     "title": "Engineering and product recruiting",
-     "detail": "SWE, PM, analytics engineer and data systems engineer searches, with PM focused on late-stage candidates.",
+     "title": "Engineering and G&A recruiting",
+     "detail": "Senior security engineer, head of security engineering, senior SWE, PM and chief of staff searches, plus a new senior analytics engineer search.",
      "points": [
-      "Data engineer roles retitled into senior analytics and data systems engineer roles",
-      "Candidate team preferences pinned in Ashby for SWE hiring managers",
+      "Security profile widened to software engineers with identity and IAM work",
+      "Lookalike sourcing lists built from top candidate profiles for the security roles",
       "Re-engagement emails to past candidates, sent for the hiring manager"
      ]
     },
     {
-     "title": "Security recruiting",
-     "detail": "Head of security and senior security engineer searches, with the senior profile widened to identity and IAM engineers.",
+     "title": "Security interview redesign",
+     "detail": "A new interview loop for the senior security engineer role is locked in, every candidate is on it and the old loop is retired.",
      "points": [
-      "Profile widened to software engineers with identity and IAM work",
-      "Identity lookalike sourcing list modeled on profiles the hiring manager confirmed",
-      "Off-platform sourcing in Discords, Slack groups and specialty boards"
+      "New loop that brings in the hiring manager's signal earlier",
+      "All candidates moved to the new loop, now the standard for the role"
      ]
     },
     {
-     "title": "Business recruiting",
-     "detail": "Chief of staff and strategy and operations searches, with chief of staff the top priority.",
+     "title": "Recruiting ops and dashboard",
+     "detail": "Ashby automations, applicant scoring and a new recruiting dashboard for January's talent leads.",
      "points": [
-      "Sourcing refocused on the chief of staff search",
-      "General first outreach for hard to calibrate profiles, with the JD shared later"
-     ]
-    },
-    {
-     "title": "In-house team handoff",
-     "detail": "Onboarding and handoff for January's new in-house recruiters, with the plan and a coordination guide in progress.",
-     "points": [
-      "Onboarding plan for January's new in-house recruiters",
-      "Coordination handoff guide for the in-house team",
-      "Pipeline handoff from Carrara recruiters to the in-house team"
-     ]
-    },
-    {
-     "title": "Applicant review and ops",
-     "detail": "Applicant scoring, Ashby automations and dashboards; we're comparing Ashby's AI scoring with our own scoring automation.",
-     "points": [
-      "Applicant scoring that ranks each role's applicants, now compared with Ashby's AI scoring",
-      "Booking links, candidate emails and NDAs sent on stage change in Ashby",
-      "Recruiting metrics, sourcing and recruiter management dashboards"
+      "Recruiting dashboard with funnel, recruiter, goals and period comparison views",
+      "Applicant scoring that ranks each role's applicants, compared with Ashby's AI scoring",
+      "Booking links, candidate emails and NDAs sent on stage change in Ashby"
      ]
     }
    ],
    "channel": null,
-   "updated": "2026-10-31",
+   "updated": "2026-11-07",
    "url": "https://hub.carrara.is/clients/january"
   },
   {
@@ -2045,35 +2013,35 @@
    "team": [
     {
      "name": "Tina Khoury",
-     "role": "Account lead",
+     "role": "Account lead, people ops",
      "email": "tina@carrara.is",
      "slack": "U07ERRXB2LA",
      "timezone": "America/New_York"
     },
     {
      "name": "Bec Bliss",
-     "role": "Recruiting lead",
+     "role": "Recruiting lead and co-owner",
      "email": "bec@carrara.is",
      "slack": "U0BTYH2PH8E",
      "timezone": "America/New_York"
     },
     {
      "name": "Katie Roe",
-     "role": "Performance and people product",
+     "role": "People ops lead, performance and people product",
      "email": "katie@carrara.is",
      "slack": "U093W3WSNMN",
      "timezone": "America/New_York"
     },
     {
      "name": "Jim Ji",
-     "role": "Org tooling",
+     "role": "Ops and AI build, org tooling",
      "email": "jim@carrara.is",
      "slack": "U0C1FM4U273",
      "timezone": "America/Los_Angeles"
     },
     {
      "name": "Leonardo Lopes",
-     "role": "Offboarding tool, reporting and automations",
+     "role": "Ops and AI build, offboarding, reporting and automations",
      "email": "leonardo@carrara.is",
      "slack": "U0BMBE2091P",
      "timezone": "America/Sao_Paulo"
@@ -2093,13 +2061,6 @@
      "timezone": "America/New_York"
     },
     {
-     "name": "Kelley Lantigua",
-     "role": "Recruiting coordination",
-     "email": "kelley@carrara.is",
-     "slack": "U0AT6B3QE9X",
-     "timezone": "America/New_York"
-    },
-    {
      "name": "Hayley Samuels",
      "role": "Recruiting coordination",
      "email": "hayley.samuels@carrara.is",
@@ -2110,7 +2071,7 @@
    "workstreams": [
     {
      "title": "Performance reviews",
-     "detail": "A review tool for Polymarket's end of year cycle; it's live on the client's intranet for admins, with testing across user types next.",
+     "detail": "A review tool for Polymarket's end of year cycle, live for admins on the intranet; code cleanup and a security review come before it opens wider.",
      "points": [
       "Manager review flow live on the client's intranet, admin only for now",
       "Review questions drafted with a rating scale and evidence prompts",
@@ -2128,7 +2089,7 @@
     },
     {
      "title": "Intranet tooling",
-     "detail": "The tools run on Polymarket's internal platform, and a security review with the client's security team is being set up.",
+     "detail": "The tools run on Polymarket's internal platform, and we're helping the People team connect two tools it built to a backend.",
      "points": [
       "Repo and people data access set up with the client's engineering team",
       "Security review write-up on the tools' setup and access controls for the client",
@@ -2137,25 +2098,25 @@
     },
     {
      "title": "Embedded recruiting",
-     "detail": "Carrara recruiters run marketing, people and recruiting, and Head of Retention searches, plus interview scheduling across teams.",
+     "detail": "Carrara recruiters run marketing, people and growth searches, with outreach started for a senior creative strategist.",
      "points": [
       "Marketing searches: Head of PMM, senior media planner and senior creative strategist",
-      "People programs manager, recruiting coordinator and Head of Retention searches",
-      "Interview scheduling across engineering, finance and marketing roles"
+      "People programs, recruiting coordinator and Head of Retention searches",
+      "Narrowed sourcing target lists for the creative and coordinator roles"
      ]
     },
     {
-     "title": "Talent reporting",
-     "detail": "A recruiting dashboard is in first draft, and our outbound candidates now sync into the client's Ashby.",
+     "title": "Coordination and reporting",
+     "detail": "Interview scheduling and a weekly role by role update to the hiring team, plus a talent report and an Ashby sync.",
      "points": [
-      "Talent report with pipeline, pass-through and week over week views",
-      "Outbound candidates pushed into the client's Ashby through its API",
-      "Outbound sourcing with Pebble, our sourcing engine"
+      "Role by role recruiting update sent to the hiring team every Friday",
+      "Interview scheduling across engineering, finance and marketing roles",
+      "Talent report, and our outbound candidates synced into the client's Ashby"
      ]
     }
    ],
    "channel": null,
-   "updated": "2026-10-31",
+   "updated": "2026-11-07",
    "url": "https://hub.carrara.is/clients/polymarket"
   },
   {
@@ -3679,7 +3640,7 @@
   },
   {
    "id": "catherine",
-   "name": "Catherine Ardilla",
+   "name": "Catherine Ardila",
    "title": "Operating Partner",
    "email": "catherine@carrara.is",
    "slack": "U0A09PCP63V",
