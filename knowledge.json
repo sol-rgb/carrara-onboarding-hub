@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-11-07",
+ "exported": "2026-11-09",
  "clients": [
   {
    "slug": "anthropic",
@@ -50,7 +50,7 @@
      "role": "Narrative and talent brand",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Buenos_Aires"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Alicia Donenfeld",
@@ -92,7 +92,7 @@
      "role": "Account support",
      "email": "ben@carrara.is",
      "slack": "U099BBEJVA4",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/Denver"
     }
    ],
    "workstreams": [
@@ -451,7 +451,7 @@
      "role": "Partner oversight and paid ads",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Buenos_Aires"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Tara O'Reilly",
@@ -548,7 +548,7 @@
      "role": "Engagement lead and growth",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Buenos_Aires"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Savannah Keener",
@@ -674,14 +674,14 @@
      "role": "Lead",
      "email": "sam@carrara.is",
      "slack": "U060ECDCW4C",
-     "timezone": "America/New_York"
+     "timezone": "Pacific/Honolulu"
     },
     {
      "name": "Gonz Sanchez",
      "role": "Narrative",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Buenos_Aires"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Sol Silbenberg",
@@ -769,7 +769,7 @@
      "role": "Partner oversight",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Buenos_Aires"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Tara O'Reilly",
@@ -896,7 +896,7 @@
      "role": "Lead, strategy and client updates",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Buenos_Aires"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Reza Saeedi",
@@ -1147,7 +1147,7 @@
      "role": "GTM",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Buenos_Aires"
+     "timezone": "America/Bogota"
     }
    ],
    "workstreams": [
@@ -1229,7 +1229,7 @@
      "role": "Launch",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Buenos_Aires"
+     "timezone": "America/Bogota"
     }
    ],
    "workstreams": [
@@ -1457,7 +1457,7 @@
      "role": "Account lead",
      "email": "ben@carrara.is",
      "slack": "U099BBEJVA4",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/Denver"
     },
     {
      "name": "Nathan Peadon",
@@ -1582,7 +1582,7 @@
      "role": "Lead",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Buenos_Aires"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Matias Sanchez",
@@ -2387,7 +2387,7 @@
      "role": "Engagement lead",
      "email": "sam@carrara.is",
      "slack": "U060ECDCW4C",
-     "timezone": "America/New_York"
+     "timezone": "Pacific/Honolulu"
     },
     {
      "name": "Hannah Say",
@@ -2475,7 +2475,7 @@
      "role": "People ops, fully integrated HR",
      "email": "roohi@carrara.is",
      "slack": "U0B4EK620Q3",
-     "timezone": "America/Chicago"
+     "timezone": "America/Indiana/Indianapolis"
     }
    ],
    "workstreams": [],
@@ -2519,7 +2519,7 @@
      "role": "Onboarding and I-9s",
      "email": "roohi@carrara.is",
      "slack": "U0B4EK620Q3",
-     "timezone": "America/Chicago"
+     "timezone": "America/Indiana/Indianapolis"
     },
     {
      "name": "Maggie Stout",
@@ -2615,7 +2615,7 @@
      "role": "FinOps",
      "email": "roohi@carrara.is",
      "slack": "U0B4EK620Q3",
-     "timezone": "America/Chicago"
+     "timezone": "America/Indiana/Indianapolis"
     }
    ],
    "workstreams": [],
@@ -2645,7 +2645,7 @@
      "role": "Lead",
      "email": "sam@carrara.is",
      "slack": "U060ECDCW4C",
-     "timezone": "America/New_York"
+     "timezone": "Pacific/Honolulu"
     },
     {
      "name": "Andrew Call",
@@ -2818,7 +2818,7 @@
      "role": "Lead and analyst",
      "email": "sam@carrara.is",
      "slack": "U060ECDCW4C",
-     "timezone": "America/New_York"
+     "timezone": "Pacific/Honolulu"
     }
    ],
    "workstreams": [
@@ -3223,7 +3223,7 @@
      "role": "Operating Partner",
      "email": "sam@carrara.is",
      "slack": "U060ECDCW4C",
-     "timezone": "America/New_York"
+     "timezone": "Pacific/Honolulu"
     }
    ],
    "services": [],
@@ -3386,7 +3386,7 @@
      "role": "Partner",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Buenos_Aires"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Heath Jamieson",
@@ -3470,7 +3470,7 @@
      "role": "Operating Partner",
      "email": "sam@carrara.is",
      "slack": "U060ECDCW4C",
-     "timezone": "America/New_York"
+     "timezone": "Pacific/Honolulu"
     }
    ],
    "services": [],
@@ -3589,7 +3589,7 @@
    "title": "Operating Partner",
    "email": "ben@carrara.is",
    "slack": "U099BBEJVA4",
-   "timezone": "America/Los_Angeles",
+   "timezone": "America/Denver",
    "photo": "https://hub.carrara.is/people/ben.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=ben%40carrara.is"
@@ -3754,7 +3754,7 @@
    "title": "Partner",
    "email": "gonz@carrara.is",
    "slack": "U07NSVAFUC9",
-   "timezone": "America/Buenos_Aires",
+   "timezone": "America/Bogota",
    "photo": "https://hub.carrara.is/people/gonz.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=gonz%40carrara.is"
@@ -3996,7 +3996,7 @@
    "title": "Operations",
    "email": "margaux@carrara.is",
    "slack": "U0B6EK3H7GW",
-   "timezone": "Europe/Amsterdam",
+   "timezone": "Europe/Brussels",
    "photo": "https://hub.carrara.is/people/margaux.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=margaux%40carrara.is"
@@ -4095,7 +4095,7 @@
    "title": "People Operations",
    "email": "roohi@carrara.is",
    "slack": "U0B4EK620Q3",
-   "timezone": "America/Chicago",
+   "timezone": "America/Indiana/Indianapolis",
    "photo": "https://hub.carrara.is/people/roohi.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=roohi%40carrara.is"
@@ -4128,7 +4128,7 @@
    "title": "Operating Partner",
    "email": "sam@carrara.is",
    "slack": "U060ECDCW4C",
-   "timezone": "America/New_York",
+   "timezone": "Pacific/Honolulu",
    "photo": "https://hub.carrara.is/people/sam.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=sam%40carrara.is"
@@ -4407,6 +4407,17 @@
    "photo": null,
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=vasudha"
+  },
+  {
+   "id": "argentina",
+   "name": "Argentina Venture Buyout LLC",
+   "title": "Agency Partner",
+   "email": null,
+   "slack": null,
+   "timezone": null,
+   "photo": null,
+   "linkedin": null,
+   "url": "https://hub.carrara.is/people?person=argentina"
   }
  ]
 }
