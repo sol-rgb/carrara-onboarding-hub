@@ -1,6 +1,6 @@
 {
  "source": "notion-client-codex",
- "updated": "2026-11-02",
+ "updated": "2026-11-09",
  "clients": {
   "3i Members": {
    "status": "Paused",
@@ -749,7 +749,8 @@
     "Talent Platform"
    ],
    "accountManagers": [
-    "Brandon Taleisnik"
+    "Brandon Taleisnik",
+    "Bec Bliss"
    ],
    "talentPartners": [
     "Tenzing Bhutia",

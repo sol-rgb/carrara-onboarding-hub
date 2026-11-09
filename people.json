@@ -1,6 +1,6 @@
 {
  "source": "notion-team-directory",
- "updated": "2026-11-02",
+ "updated": "2026-11-09",
  "_partnerNote": "partner:true marks the firm's partner group, not the Talent Partner role. Edit here; the hero stat counts this flag.",
  "people": [
   {
@@ -150,7 +150,8 @@
     "Talent Acquisition"
    ],
    "clients": [
-    "Polymarket"
+    "Polymarket",
+    "January"
    ],
    "answers": [],
    "partner": false
