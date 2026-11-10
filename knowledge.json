@@ -92,7 +92,7 @@
      "role": "Account support",
      "email": "ben@carrara.is",
      "slack": "U099BBEJVA4",
-     "timezone": "America/Phoenix"
+     "timezone": "America/Los_Angeles"
     }
    ],
    "workstreams": [
@@ -1457,7 +1457,7 @@
      "role": "Account lead",
      "email": "ben@carrara.is",
      "slack": "U099BBEJVA4",
-     "timezone": "America/Phoenix"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Nathan Peadon",
@@ -1506,7 +1506,7 @@
      "role": "Chief of staff search",
      "email": "jim@carrara.is",
      "slack": "U0C1FM4U273",
-     "timezone": "America/Los_Angeles"
+     "timezone": "Pacific/Honolulu"
     }
    ],
    "workstreams": [
@@ -2037,7 +2037,7 @@
      "role": "Ops and AI build, org tooling",
      "email": "jim@carrara.is",
      "slack": "U0C1FM4U273",
-     "timezone": "America/Los_Angeles"
+     "timezone": "Pacific/Honolulu"
     },
     {
      "name": "Leonardo Lopes",
@@ -3589,7 +3589,7 @@
    "title": "Operating Partner",
    "email": "ben@carrara.is",
    "slack": "U099BBEJVA4",
-   "timezone": "America/Phoenix",
+   "timezone": "America/Los_Angeles",
    "photo": "https://hub.carrara.is/people/ben.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=ben%40carrara.is"
@@ -3831,7 +3831,7 @@
    "title": "Operating Partner",
    "email": "jim@carrara.is",
    "slack": "U0C1FM4U273",
-   "timezone": "America/Los_Angeles",
+   "timezone": "Pacific/Honolulu",
    "photo": "https://hub.carrara.is/people/jim.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=jim%40carrara.is"
@@ -4326,7 +4326,7 @@
    "title": "People Ops Associate",
    "email": "karishma@carrara.is",
    "slack": "U0CEHKZMNCX",
-   "timezone": "Asia/Kolkata",
+   "timezone": "America/New_York",
    "photo": "https://hub.carrara.is/people/karishma.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=karishma%40carrara.is"
