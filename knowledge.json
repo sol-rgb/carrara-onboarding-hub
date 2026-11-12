@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-11-11",
+ "exported": "2026-11-12",
  "clients": [
   {
    "slug": "anthropic",
@@ -953,7 +953,7 @@
     },
     {
      "title": "Landing pages",
-     "detail": "Persona pages, pricing and an inspiration gallery are live on cfo.ai; the listicles, a Founding Fractionals page and all twelve compare pages are in pull requests, with cfo.ai's comments on the compare pages being made.",
+     "detail": "Persona pages, pricing and an inspiration gallery are live on cfo.ai; the listicles, Founding Fractionals and twelve compare pages are in pull requests, and an accounting firms page is on a preview.",
      "points": [
       "Persona pages, a pricing update and an inspiration gallery, shipped into cfo.ai's site",
       "Onboarding call booking on the homepage, fractional CFO page and pricing",
@@ -962,11 +962,11 @@
     },
     {
      "title": "Ad creative",
-     "detail": "Weekly creative batches from briefs, each aimed at one persona, plus the copy and creative for cfo.ai's first live event, now on Luma.",
+     "detail": "Weekly creative batches from briefs, each aimed at one persona, plus the copy, creative and a day by day promotion plan for cfo.ai's first live event.",
      "points": [
       "Weekly creative review site where the client signs off each batch",
       "Testimonial video ads cut from customer interviews, each with its own hook",
-      "Live event creative, a LinkedIn event banner, and Luma, email and LinkedIn post copy"
+      "Live event creative, Luma, email and LinkedIn copy, and a promotion plan with owners"
      ]
     },
     {
@@ -980,7 +980,7 @@
     },
     {
      "title": "Performance reporting",
-     "detail": "A live dashboard for Meta and Google, now counting lead form results, plus a persona testing report; the fractional CFO dashboard is with cfo.ai's team, who are meeting us on what a v2 needs.",
+     "detail": "A live dashboard for Meta and Google, now counting lead form results, plus a persona testing report; a new version of the fractional CFO dashboard lists the data it still needs.",
      "points": [
       "Real time performance dashboard for Meta and Google",
       "Persona testing report on how each persona's ads and pages perform",
@@ -989,7 +989,7 @@
     }
    ],
    "channel": "c-cfo-ai",
-   "updated": "2026-11-11",
+   "updated": "2026-11-12",
    "url": "https://hub.carrara.is/clients/runway"
   },
   {
@@ -4003,7 +4003,7 @@
    "title": "Operations",
    "email": "margaux@carrara.is",
    "slack": "U0B6EK3H7GW",
-   "timezone": "Europe/Brussels",
+   "timezone": "Europe/Amsterdam",
    "photo": "https://hub.carrara.is/people/margaux.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=margaux%40carrara.is"
@@ -4333,7 +4333,7 @@
    "title": "People Ops Associate",
    "email": "karishma@carrara.is",
    "slack": "U0CEHKZMNCX",
-   "timezone": "America/New_York",
+   "timezone": "Asia/Kolkata",
    "photo": "https://hub.carrara.is/people/karishma.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=karishma%40carrara.is"
