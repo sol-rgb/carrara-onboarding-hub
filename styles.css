@@ -4,10 +4,10 @@
 @font-face { font-family: 'Manrope'; src: url('/assets/fonts/Manrope-Variable.woff2') format('woff2'); font-weight: 200 800; font-display: swap; }
 
 :root {
-  /* The hub's names, pointed at the design system's tier 2. Same values. */
+  /* The hub's names, pointed at the design system's tier 2. */
   --canvas: var(--color-background-sheet);
   --ink: var(--color-content-default);
-  --taupe: #9A938E;                               /* quarry-400: no job in tier 2 */
+  --taupe: var(--color-content-subtle);           /* was quarry-400, too light to read */
   --ardesia: var(--color-content-subtle);
   --sage: var(--color-background-paper-moss);
   --sage-soft: var(--color-background-default);   /* marmol, not a sage */
