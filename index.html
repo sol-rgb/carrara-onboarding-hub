@@ -13,6 +13,9 @@
 </head>
 <body>
 
+<div class="mat" aria-hidden="true"></div>
+<div class="grain grain--over" aria-hidden="true"></div>
+
 <aside class="sidebar">
   <img class="wordmark" src="/assets/logo/carrara-wordmark-ember.svg" alt="Carrara">
   <div class="nav-wrap">
@@ -30,7 +33,6 @@
   <!-- 01 start here -->
   <section class="view" id="view-start">
     <div class="hero-wrap">
-      <img class="hero-block" src="/assets/logo/carrara-iso-ember.svg" alt="">
       <h1 class="display">Welcome. You're part of <span class="u">the team<sup>1</sup></span> now.</h1>
       <p class="body-copy">We're glad you're here and excited to build together. This hub has the resources, context, and steps you need to get started.</p>
       <div class="cta-row">
@@ -494,17 +496,8 @@
   </div>
 </div>
 
-<!-- welcome kit popup -->
-<div class="wk" id="wk">
-  <div class="wk-panel" id="wk-panel" hidden>
-    <div class="wk-head">
-      
-      <button class="wk-close" id="wk-close" aria-label="Close">Close</button>
-    </div>
-    <div class="wk-body" id="wk-body"></div>
-  </div>
-  <button class="wk-pill" id="wk-pill" aria-expanded="false"><span class="wk-dot"></span><span id="wk-pill-label">New here? Open your welcome kit</span></button>
-</div>
+<!-- The welcome kit popup is gone: the arrival replaces it. api/welcome.js
+     and the access-code format are untouched. -->
 
 <!-- ORDER MATTERS: my-onboarding.js reads CarraraMarkdown at parse time, and
      app.js reads window.MyOnboarding at parse time. Either one loaded early
