@@ -1,0 +1,266 @@
+/* ===========================================================================
+   TIER 1 — DEFINITIONS
+
+   Raw material. Every literal value in the system lives here and only here.
+   Nothing in this file references anything else.
+
+   Nothing consumes this file directly either. Components and products read
+   `tier-2-usage.css`, which gives these ingredients jobs. Reaching past tier 2
+   into tier 1 is a smell; a product doing it is a finding.
+
+   This file is the source. A new colour, measure, size or curve is decided
+   here, and everything downstream follows — including, when the time comes,
+   whatever design tool mirrors it.
+   =========================================================================== */
+
+:root {
+  /* ======================================================= colour ========= */
+  /* Six ramps, eleven steps each, 50 (lightest) through 950 (darkest).
+     Carrara's own vocabulary, not Tailwind's hues. */
+
+  /* Quarry — The neutral. Does most of the work: paper, ink, secondary and tertiary text. */
+  --quarry-50: #f7f6f5;
+  --quarry-100: #edebea;
+  --quarry-200: #d7d5d2;
+  --quarry-300: #b9b5b0;
+  --quarry-400: #9a938e;
+  --quarry-500: #807874;
+  --quarry-600: #6a625f;
+  --quarry-700: #59534f;
+  --quarry-800: #4c4745;
+  --quarry-900: #413d3c;
+  --quarry-950: #2d2a2a;
+
+  /* Lavender — Lavender/600 is lavender. The decks skill uses it; neither piece does. */
+  --lavender-50: #fbf8fc;
+  --lavender-100: #f4eff6;
+  --lavender-200: #ede5f0;
+  --lavender-300: #decee3;
+  --lavender-400: #c8aed0;
+  --lavender-500: #b38fbd;
+  --lavender-600: #9f73ab;
+  --lavender-700: #885d92;
+  --lavender-800: #6f5077;
+  --lavender-900: #5c4162;
+  --lavender-950: #3f2744;
+
+  /* Cielo — The cool accent. Cielo/300 is the letter’s card paper. */
+  --cielo-50: #f3f5fc;
+  --cielo-100: #e2eaf8;
+  --cielo-200: #cad9f2;
+  --cielo-300: #b2cded;
+  --cielo-400: #7da8d9;
+  --cielo-500: #5f8fce;
+  --cielo-600: #4a79bf;
+  --cielo-700: #446cab;
+  --cielo-800: #3d5c8a;
+  --cielo-900: #344f6f;
+  --cielo-950: #243142;
+
+  /* Ember — From the trazos system. Ember/500 is the grain’s ink. */
+  --ember-50: #fef3ec;
+  --ember-100: #fce8d9;
+  --ember-200: #f8cbb0;
+  --ember-300: #f3a67c;
+  --ember-400: #ed784a;
+  --ember-500: #eb4e19;
+  --ember-600: #dc411e;
+  --ember-700: #b72f1a;
+  --ember-800: #94281e;
+  --ember-900: #78251c;
+  --ember-950: #450f0d;
+
+  /* Moss — Moss/300 is moss. The letter uses it exactly. The home carries #a4c69b
+     under the name sage: two points off, and one word away. The word is moss. */
+  --moss-50: #f6faf5;
+  --moss-100: #eaf3e7;
+  --moss-200: #d2e4ce;
+  --moss-300: #a2c59b;
+  --moss-400: #82a87a;
+  --moss-500: #5f8a56;
+  --moss-600: #4b7043;
+  --moss-700: #3c5837;
+  --moss-800: #32472e;
+  --moss-900: #2a3a27;
+  --moss-950: #131d11;
+
+  /* Lemon — Lemon/200 is lemon. The home carries #ffff7d, three points of blue off. */
+  --lemon-50: #fdfee7;
+  --lemon-100: #feffc2;
+  --lemon-200: #ffff80;
+  --lemon-300: #faf147;
+  --lemon-400: #f5e214;
+  --lemon-500: #dfc60c;
+  --lemon-600: #c09b07;
+  --lemon-700: #99710a;
+  --lemon-800: #7e5810;
+  --lemon-900: #6c4914;
+  --lemon-950: #3c2406;
+  /* Absolutes. Not ramp steps: pure values that no theme shifts. */
+  --white: #ffffff;
+  --black: #000000;
+
+  /* ======================================================= type =========== */
+  /* Two families, two cuts each: Portrait at 400 and 700, Manrope at 500 and
+     700. Both Portrait cuts are licensed, Carrara's own domain included. */
+  --family-serif: Portrait, Georgia, serif;
+  --family-sans: Manrope, system-ui, sans-serif;
+
+  /* Weights, as numbers. They are numbers on purpose: "regular" means 400 in
+     Portrait and 500 in Manrope, so a token called --weight-regular has to lie
+     about one of them. The composite picks the number its family needs. */
+  --weight-400: 400;   /* Portrait Regular */
+  --weight-500: 500;   /* Manrope regular */
+  --weight-700: 700;   /* Portrait Bold, and Manrope bold */
+
+  /* The size scale. Every step is a size one of the two pieces actually sets —
+     the home and the focus-on-the-work letter, or the annual letter and its
+     trazos. None of them is a round number chosen here, and that is the whole
+     rule: a real piece informs the ramp, not the other way round.
+
+     It is not a ratio and does not try to be. The spacing between steps is
+     whatever the pieces needed, which is why 18 to 20 is a nudge and 28 to 32
+     is a jump. A designed scale would fill the gaps with sizes nobody has set
+     yet; this one waits to be told. */
+  --size-11: 11px;   /* the letter's tape arrow */
+  --size-12: 12px;
+  --size-14: 14px;
+  --size-16: 16px;
+  --size-18: 18px;
+  --size-20: 20px;   /* the letter's step caps, narrow */
+  --size-24: 24px;   /* the letter's title in a narrow column */
+  --size-28: 28px;
+  --size-34: 34px;   /* the card headline and the statement, narrow */
+  --size-40: 40px;   /* the card headline, wide */
+  --size-48: 48px;   /* the statement wide, and trazos' large figure */
+
+  /* Two fluid sizes, between the same two window widths: 375 and 1440. They share
+     their narrow end — a phone sets both titles at 34 — and separate from there to
+     48 and 40. They never cross at any width.
+
+     The statement started at 41 instead, derived rather than measured, so that it
+     stayed above the card everywhere. The home showed what that cost: seven lines
+     of its opening on a phone where five fit. The cards are modal overlays, so the
+     two never share a screen and the order between them was a tidiness in the table.
+
+     The ends are steps of the scale rather than numbers written in here: a clamp
+     that hides its own endpoints is a size the ramp does not know it has. */
+  --size-fluid-card: clamp(var(--size-34), 31.89px + 0.5634vw, var(--size-40));
+  --size-fluid-statement: clamp(var(--size-34), 29.07px + 1.3146vw, var(--size-48));
+
+  /* Leading. Two, and the split is reading against titling: running text is
+     1.5 everywhere in both pieces, and anything set as a title is 1.15.
+
+     1.15 is the one value in this file that was chosen rather than measured.
+     There used to be two title leadings — the home set 1.12 on its statement
+     and its card text, the two letters set 1.2 on their headings — so the rule
+     was really "the bigger the type, the tighter the leading", with the cut
+     between 28 and 32. That cut is gone on purpose: one leading for titles at
+     any size, landing between the two values it replaces. Both pieces drift
+     from it until they import from here, which is the price of the decision
+     and is written down in Gaps. */
+  --leading-default: 1.5;
+  --leading-snug: 1.15;
+
+  --tracking-none: normal;
+  --tracking-tight: -0.02em;   /* display only */
+
+  /* ======================================================= space ========== */
+  /* An 8px grid. Every spacing value in the system is on it, with one
+     exception kept honest below. */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-56: 56px;
+  --space-80: 80px;
+  --space-120: 120px;
+  --space-160: 160px;
+  --space-200: 200px;
+
+  /* One fluid space, between the same two window widths the type runs between,
+     375 and 1440. The break between major sections was the one step big enough
+     for a fixed value to read differently at each end: 160 is a fifth of a phone
+     screen and a sixth of a laptop's, and the short letter spent it four times.
+     The other ten steps stay fixed — at their size the difference is not worth a
+     curve. Its ends are steps of the scale, as the type's are. */
+  --space-fluid-section: clamp(var(--space-80), 51.83px + 7.5117vw, var(--space-160));
+
+  /* ======================================================= measure ======== */
+  /* Line lengths, as sizes rather than as the name of whoever asked first. */
+  --measure-650: 650px;
+  --measure-768: 768px;
+  --measure-1440: 1440px;
+
+  /* ======================================================= the band ======= */
+  /* The iso's unit, measured from the logotype's own seven paths rather than
+     from anyone's notes. Parsing the `d` of each glyph in the site's
+     `<g id="logotype">` gives these extents:
+
+       C 0..162   a 171..369   r 378..474   r 483..579
+       a 588..786  r 795..891   a 900..1098
+
+     so the letters are 162, 198, 96, 96, 198, 96, 198, every gap is 9, and the
+     wordmark is 1098 wide. The r is 96, not 102, and the gap is 9, not 8.
+
+     This file carried 1110 / 5.6060606 / 8 between 2026-11-05 and today. With
+     the r three units too wide, a lit block stood proud of its letter on both
+     sides — visible in the site's footer whenever one letter lit next to a
+     resting one. Anything built from the system in that window reproduces it. */
+  --band-block-max: 198px;
+  --band-ratio: 5.5454545;        /* 1098 / 198 */
+  --band-block-gap-ratio: 0.04545455;   /* 9 / 198 */
+
+  /* ======================================================= shape ========== */
+  /* There is no radius ramp, and that is the finding rather than the gap:
+     Carrara's corners are square. Across the whole letter and the whole site
+     the only radii are a circle, a pill used three times, and one 2px nick.
+     Minting 4 / 8 / 12 / 16 would be inventing a brand nobody drew. */
+  --radius-0: 0;
+  --radius-2: 2px;
+  --radius-999: 999px;
+  --radius-50pct: 50%;   /* the one radius that is not px, hence the suffix */
+
+  /* ======================================================= motion ========= */
+  /* Measured from the site, and the shape of it is roles, not values. Things
+     arrive on one curve and leave on another — an exit on a plain `ease` is
+     down to a tenth of its opacity a third of the way through and reads as
+     nothing happening at all. */
+  --ease-enter: cubic-bezier(0.2, 0.7, 0.3, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --ease-tint: ease;
+
+  --duration-90: 90ms;     /* one beat behind, for staggering */
+  --duration-120: 120ms;   /* a underline changing style */
+  --duration-180: 180ms;   /* a fill changing colour */
+  --duration-280: 280ms;   /* a card leaving, a tray leaving */
+  --duration-320: 320ms;   /* a card arriving */
+  --duration-420: 420ms;   /* a face arriving */
+  --duration-560: 560ms;   /* copy arriving, and the band's cell holding its colour */
+  --duration-700: 700ms;   /* the band's cell fading back out */
+
+  /* ======================================================= grain ========== */
+  /* A mask one pixel wide and two tall, cut in half by a steep transfer. The ink
+     sits under it as flat colour, so the tint is a single variable.
+
+     --grain-bite is what reaches the eye: one sheet at this value is the grain,
+     with nothing else to know. The site reaches 0.0956 with two sheets of 0.049,
+     an arrangement that also leaves its cards a shade cleaner. */
+  --grain-bite: 0.12;
+  --grain-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9 0.45' numOctaves='1' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='200' intercept='-127'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");   /* letter: --grano · home: --grano-mascara */
+}
+
+/* ---------------------------------------------------------------------------
+   NOT ESTABLISHED YET, on purpose.
+
+   border radius · border width · shadow · duration · easing · breakpoints ·
+   z-index
+
+   All six are used in the pieces and none has a token anywhere: the letter
+   alone carries 17 z-indexes, 46 transitions, 5 border-radii and 11 media
+   queries; the home carries 5, 5, 1 and 6. Minting scales for them would mean
+   choosing values nobody has chosen yet, and that is a design decision, not a
+   refactor. They stay absent and counted rather than invented.
+   --------------------------------------------------------------------------- */

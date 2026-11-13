@@ -4,19 +4,19 @@
 @font-face { font-family: 'Manrope'; src: url('/assets/fonts/Manrope-Variable.woff2') format('woff2'); font-weight: 200 800; font-display: swap; }
 
 :root {
-  /* Carrara palette: Marmol canvas, Grafite ink, Nuvola neutral, Ember signature */
-  --canvas: #FFFFFF; /* grainy white */
-  --ink: #2D2A2A;
-  --taupe: #9A938E;   /* Nuvola */
-  --ardesia: #59534F;
-  --sage: #A2C59B;    /* Moss accent */
-  --sage-soft: #EDEBEA; /* cards read as Marmol blocks on grainy white */
-  --orange: #EB4E19;  /* Ember */
-  --blue: #B2CDED;    /* Cielo */
-  --hairline: rgba(45, 42, 42, 0.14);
-  --serif: 'Portrait', 'PT Serif', Georgia, serif;
-  --sans: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
-  --rigid: 'Manrope', sans-serif;
+  /* The hub's names, pointed at the design system's tier 2. Same values. */
+  --canvas: var(--color-background-sheet);
+  --ink: var(--color-content-default);
+  --taupe: #9A938E;                               /* quarry-400: no job in tier 2 */
+  --ardesia: var(--color-content-subtle);
+  --sage: var(--color-background-paper-moss);
+  --sage-soft: var(--color-background-default);   /* marmol, not a sage */
+  --orange: var(--color-background-accent);
+  --blue: var(--color-background-paper-cielo);
+  --hairline: rgba(45, 42, 42, 0.14);             /* the system has no translucent border */
+  --serif: var(--family-serif);
+  --sans: var(--family-sans);
+  --rigid: var(--family-sans);
   --chamfer: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
   --rock: polygon(0 14%, 10% 0, 86% 0, 100% 12%, 100% 84%, 88% 100%, 6% 100%, 0 90%);
 }

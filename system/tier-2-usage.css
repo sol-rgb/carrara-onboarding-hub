@@ -1,0 +1,186 @@
+/* ===========================================================================
+   TIER 2 — USAGE
+
+   Jobs for tier 1's ingredients. This is the API: components and products
+   read this file and nothing below it.
+
+   Every value here is a reference. A raw hex, px or number in this file is a
+   bug — it means a tier 1 ingredient is missing.
+
+   Naming: [category] - [property] - [intention] - [variant]. The tier is keyed
+   by the file, not by a prefix someone has to remember.
+   =========================================================================== */
+
+:root {
+  /* ======================================================= colour ========= */
+
+  /* Surfaces. `default` is the page; `sheet` is the paper laid on it. Every
+     page sets marble on the outside and white within — one arrangement, which
+     is why there is one theme below rather than two. */
+  --color-background-default: var(--quarry-100);
+  --color-background-sheet: var(--white);
+  --color-background-subtle: var(--quarry-50);
+  --color-background-strong: var(--quarry-950);
+  --color-background-accent: var(--ember-500);
+
+  /* The card papers. Three colours whose whole job is to tint a card. */
+  --color-background-paper-cielo: var(--cielo-300);
+  --color-background-paper-moss: var(--moss-300);
+  --color-background-paper-lemon: var(--lemon-200);
+
+  /* Content: text and icons together. Split into text/icon only if needed. */
+  --color-content-default: var(--quarry-950);
+  --color-content-subtle: var(--quarry-700);
+  --color-content-muted: var(--quarry-500);
+  --color-content-accent: var(--ember-600);
+
+  /* Knockout: what reads on top of a filled surface. Every filled surface
+     needs its pair, and the pair has to pass contrast — `Foundations/Color`
+     computes all of them live. */
+  --color-content-knockout: var(--quarry-100);
+
+  --color-border-default: var(--quarry-400);
+  --color-border-subtle: var(--quarry-200);
+
+  /* Two inks. The grain can carry the accent or stay neutral; the neutral one
+     follows the theme, the accent does not. */
+  --color-grain-ink-accent: var(--ember-500);
+  --color-grain-ink-neutral: var(--quarry-950);
+
+  /* ======================================================= type =========== */
+  /* Composites. Each carries every property it needs, so a component sets one
+     thing. `src/system/typography.css` turns each into a class.
+
+     There is no display composite: the home retired its 56px Portrait
+     headline in November, and a composite nothing consumes is dead weight. */
+
+  --type-title-sm-family: var(--family-serif);
+  --type-title-sm-size: var(--size-28);
+  --type-title-sm-leading: var(--leading-snug);
+  --type-title-sm-weight: var(--weight-400);
+  --type-title-sm-tracking: var(--tracking-tight);
+
+  /* Display: Portrait Bold, set large and fluid. The home's statement is the
+     first thing to use it, but the job is not the home's. */
+  --type-title-lg-bold-family: var(--family-serif);
+  --type-title-lg-bold-size: var(--size-fluid-statement);
+  --type-title-lg-bold-leading: var(--leading-snug);
+  --type-title-lg-bold-weight: var(--weight-700);
+  --type-title-lg-bold-tracking: var(--tracking-tight);
+
+  /* Headline: the same register in Portrait Regular. The home's cards use it.
+     Kept at tier 2 rather than minted per component — tier 3 typography is
+     rare on purpose. */
+  --type-title-md-family: var(--family-serif);
+  --type-title-md-size: var(--size-fluid-card);
+  --type-title-md-leading: var(--leading-snug);
+  --type-title-md-weight: var(--weight-400);
+  --type-title-md-tracking: var(--tracking-tight);
+
+  --type-body-lg-family: var(--family-sans);
+  --type-body-lg-size: var(--size-18);
+  --type-body-lg-leading: var(--leading-default);
+  --type-body-lg-weight: var(--weight-500);
+  --type-body-lg-tracking: var(--tracking-none);
+
+  --type-body-md-family: var(--family-sans);
+  --type-body-md-size: var(--size-16);
+  --type-body-md-leading: var(--leading-default);
+  --type-body-md-weight: var(--weight-500);
+  --type-body-md-tracking: var(--tracking-none);
+
+  --type-body-sm-family: var(--family-sans);
+  --type-body-sm-size: var(--size-14);
+  --type-body-sm-leading: var(--leading-default);
+  --type-body-sm-weight: var(--weight-500);
+  --type-body-sm-tracking: var(--tracking-none);
+
+  --type-body-xs-family: var(--family-sans);
+  --type-body-xs-size: var(--size-12);
+  --type-body-xs-leading: var(--leading-default);
+  --type-body-xs-weight: var(--weight-500);
+  --type-body-xs-tracking: var(--tracking-none);
+
+  --type-body-2xs-family: var(--family-sans);
+  --type-body-2xs-size: var(--size-11);
+  --type-body-2xs-leading: var(--leading-default);
+  --type-body-2xs-weight: var(--weight-500);
+  --type-body-2xs-tracking: var(--tracking-none);
+
+  /* ======================================================= space ========== */
+  /* Named by intention. Stack is vertical rhythm, inset is padding inside a
+     box, mat is the frame both pieces share. */
+  --space-stack-sm: var(--space-8);      /* between index rows */
+  --space-stack-md: var(--space-16);     /* between paragraphs */
+  --space-stack-lg: var(--space-24);     /* between blocks in a column */
+  --space-stack-xl: var(--space-56);     /* around a card */
+  --space-stack-2xl: var(--space-fluid-section);   /* between major sections, 80 to 160 */
+
+  --space-inset-sm: var(--space-32);     /* a card's padding, narrow window */
+  --space-inset-md: var(--space-40);     /* a card's padding, and the frame's */
+  --space-section-y: var(--space-120);   /* the frame's vertical padding */
+
+  --space-mat: var(--space-16);          /* the frame both pieces share */
+
+  /* ======================================================= shape ========== */
+  --shape-default: var(--radius-0);
+  --shape-soft: var(--radius-2);
+  --shape-pill: var(--radius-999);
+  --shape-circle: var(--radius-50pct);
+
+  /* ======================================================= motion ========= */
+  /* Named effects, each one a duration and a curve together. A component sets
+     an effect, never a raw duration. */
+  --motion-enter-duration: var(--duration-320);
+  --motion-enter-easing: var(--ease-enter);
+  --motion-enter-slow-duration: var(--duration-560);   /* copy, which is read */
+  --motion-enter-slow-easing: var(--ease-enter);
+  --motion-exit-duration: var(--duration-280);
+  --motion-exit-easing: var(--ease-exit);
+  --motion-tint-duration: var(--duration-180);         /* a colour changing */
+  --motion-tint-easing: var(--ease-tint);
+  --motion-stagger: var(--duration-90);                /* between siblings */
+
+  /* ======================================================= layout ======== */
+  /* Line lengths by size, not by the name of whoever asked first. Which one a
+     surface picks is the surface's business. */
+  --layout-measure-sm: var(--measure-650);
+  --layout-measure-md: var(--measure-768);
+  --layout-measure-lg: var(--measure-1440);
+}
+
+/* ---------------------------------------------------------------------------
+   Dark.
+
+   Every name below already exists above. Not one of them changes, and no rule
+   anywhere else is touched: what changes is which step of which ramp each name
+   points at. That is the whole claim the three tiers make, written out.
+
+   It is not an inversion. Surfaces keep their order — the sheet still comes
+   forward of the page, the subtle surface still sits between them — so the
+   reading stays the same while the light does not. The accent's text is ember
+   400 here and ember 700 in light: it moves to whichever end of the ramp the
+   page is not at. Foundations → Colour → Contrast checks every pair, live, in
+   whichever theme is switched on.
+   --------------------------------------------------------------------------- */
+[data-theme="dark"] {
+  --color-background-default: var(--quarry-950);
+  --color-background-sheet: var(--quarry-800);
+  --color-background-subtle: var(--quarry-900);
+  --color-background-strong: var(--quarry-100);
+
+  --color-background-paper-cielo: var(--cielo-900);
+  --color-background-paper-moss: var(--moss-900);
+  --color-background-paper-lemon: var(--lemon-900);
+
+  --color-content-default: var(--quarry-100);
+  --color-content-subtle: var(--quarry-300);
+  --color-content-muted: var(--quarry-400);
+  --color-content-accent: var(--ember-400);
+  --color-content-knockout: var(--quarry-950);
+
+  --color-border-default: var(--quarry-600);
+  --color-border-subtle: var(--quarry-800);
+
+  --color-grain-ink-neutral: var(--quarry-400);
+}
