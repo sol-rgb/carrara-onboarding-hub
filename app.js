@@ -379,19 +379,26 @@
     if (!root) return;
     var old = root.querySelector('.next-nav');
     if (old) old.parentNode.removeChild(old);
-    /* Start already has its own "See full onboarding" button pointing at the
-       same next section (Who we are) -- a second link here would just repeat it. */
+    /* The cover carries its own "Let's start", pointing at this same next
+       section -- a second button here would just repeat it. */
     if (sec === 'start') return;
     var i = SECTIONS.findIndex(function (s) { return s.id === sec; });
     if (i < 0 || i >= SECTIONS.length - 1) return;
     var nxt = SECTIONS[i + 1];
-    /* Resources' "next" is the hire's own section, which must not be announced
-       here before the reveal announces it -- a footer link would give away a
-       section the sidebar is still hiding. */
-    if (nxt.id === MO.SECTION_ID && !revealed()) return;
+    /* The hire's own section must not be announced before the reveal announces
+       it. There is no sidebar to fall back on now, so rather than leaving the
+       step with no way on, the button points at the first section still
+       unseen -- which is why the reveal has not happened yet. */
+    if (nxt.id === MO.SECTION_ID && !revealed()) {
+      nxt = SECTIONS.filter(function (s) {
+        return s.id !== MO.SECTION_ID && visited.indexOf(s.id) < 0;
+      })[0];
+      if (!nxt) return;
+    }
     var d = document.createElement('div');
     d.className = 'next-nav';
-    d.innerHTML = '<a href="#/' + nxt.id + '">Next: ' + esc(nxt.label) + ' →</a>';
+    d.innerHTML = '<a href="#/' + nxt.id + '">Next: ' + esc(nxt.label)
+      + ' <span class="btn-cover__arrow" aria-hidden="true">→</span></a>';
     root.appendChild(d);
   }
 

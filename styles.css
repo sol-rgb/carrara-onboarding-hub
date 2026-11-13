@@ -149,7 +149,8 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
 
 .cover__text { display: flex; flex-direction: column; gap: var(--space-stack-lg); width: 100%; }
 
-.cover__title {
+.cover__title,
+.page-title {
   margin: 0;
   font-family: var(--type-title-sm-family);
   font-size: var(--type-title-sm-size);
@@ -184,12 +185,14 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
    the theme, so there is no ember here to hover to (see onboarding-hub-gaps.md). */
 .btn-cover__arrow { transition: transform var(--motion-tint-duration) var(--motion-tint-easing); }
 .btn-cover:hover .btn-cover__arrow,
-.btn-cover:focus-visible .btn-cover__arrow { transform: translateX(3px); }
+.btn-cover:focus-visible .btn-cover__arrow,
+.next-nav a:hover .btn-cover__arrow,
+.next-nav a:focus-visible .btn-cover__arrow { transform: translateX(3px); }
 .btn-cover:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
 
-/* the cover stands alone: the nav waits on the other side of the button */
-body:has(#view-start.visible) .sidebar,
-body:has(#view-start.visible) .topbar { display: none; }
+/* The hub is walked, not browsed: no nav anywhere, and every step carries the
+   button to the next one (app.js, nextNav). */
+.sidebar, .topbar { display: none; }
 
 .eyebrow {
   font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.14em;
@@ -208,7 +211,8 @@ h1.display {
 h1.display sup { font-size: 0.32em; vertical-align: super; letter-spacing: 0; margin-left: 2px; }
 h2.sub {
   font-family: var(--serif); font-weight: var(--weight-400); font-size: var(--type-title-sm-size);
-  letter-spacing: -0.015em; line-height: 1.15; margin: 64px 0 24px;
+  letter-spacing: -0.015em; line-height: 1.15;
+  margin: var(--space-stack-xl) 0 var(--space-stack-lg);
 }
 .body-copy { line-height: 1.9; color: var(--color-content-subtle); }
 .body-copy + .body-copy { margin-top: 22px; }
@@ -269,17 +273,17 @@ a.textlink:hover { border-bottom-color: var(--color-content-accent); }
 .h-year { border-top: 2px solid var(--ink); padding-top: 12px; cursor: default; }
 .h-year .y {
   font-family: var(--rigid); font-weight: var(--weight-700); font-size: var(--type-title-lg-bold-size);
-  letter-spacing: -0.01em; color: rgba(45, 42, 42, 0.22); transition: color 0.25s ease;
+  /* the ghost year was a literal ink at 0.22, which does not follow the theme:
+     on the dark page it was grafite on grafite, 1:1 and gone. The opacity does
+     the ghosting now and the colour follows. */
+  letter-spacing: -0.01em; color: var(--color-content-default); opacity: 0.22;
+  transition: color 0.25s ease, opacity 0.25s ease;
 }
-.h-year:hover .y { color: var(--color-content-accent); }
+.h-year:hover .y { color: var(--color-content-accent); opacity: 1; }
 .h-year .hl-line { font-weight: var(--weight-500); font-size: var(--type-body-md-size); margin-top: 6px; }
 .h-year p { font-size: var(--type-body-sm-size); color: var(--color-content-subtle); margin-top: 6px; line-height: 1.5; }
 
 /* ---------- principle cards ---------- */
-.card-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin: 44px 0 26px; }
-.p-card { background: var(--sage-soft); clip-path: var(--chamfer); padding: 24px 22px; }
-.p-card h3 { font-family: var(--sans); font-weight: var(--weight-500); font-size: var(--type-body-md-size); margin: 12px 0 8px; line-height: 1.3; }
-.p-card p { font-style: italic; font-size: var(--type-body-sm-size); color: var(--color-content-subtle); line-height: 1.5; }
 
 /* ---------- timeline ---------- */
 .timeline { display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px; margin: 46px 0 10px; }
@@ -648,28 +652,23 @@ a.flat-row:hover b { color: var(--color-content-accent); border-bottom-color: va
   .chk-cols { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 1080px) {
-  .card-row { grid-template-columns: repeat(2, 1fr); }
   .timeline { grid-template-columns: repeat(2, 1fr); }
     .t-step p { opacity: 1; max-height: none; }
   .h-year p { display: block; }
   .tpl-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 860px) {
-  .sidebar { display: none; }
-  main { margin-left: 0; }
-  .topbar {
-    display: flex; position: sticky; top: 0; z-index: 50; background: var(--canvas);
-    border-bottom: 1px solid var(--hairline); padding: 14px 20px; align-items: center; gap: 14px;
-  }
-  .topbar select {
-    margin-left: auto; font-family: var(--rigid); font-size: var(--type-body-xs-size);
-    background: transparent; border: 1px solid var(--hairline); padding: 8px 10px; color: var(--ink);
-  }
-  .view.visible { padding: var(--space-stack-xl) 0; }
+  /* The nav is gone on every screen now, the mobile select with it, so the iso
+     in the corner is no longer covered: a view starts below it, as on a wide
+     screen. Here the column runs the page's full width, so a fixed iso would
+     sit on whatever scrolls under it -- it stays in the frame's corner and
+     scrolls away with the page. */
+  .view.visible { padding: var(--space-section-y) 0 var(--space-stack-xl); }
+  .mark--corner { position: absolute; }
   .hero-block { display: none; }
   .flat-grid, .flat-grid.three, .client-grid, .res-cols, .tool-grid, .chk-cols, .to-seasons { grid-template-columns: 1fr; }
   .hub-tiles { grid-template-columns: 1fr 1fr; }
-  .card-row, .timeline, .history, .ninety, .to-essentials { grid-template-columns: 1fr; }
+  .timeline, .history, .ninety, .to-essentials { grid-template-columns: 1fr; }
   .rock-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
   .rock-card.s-w2, .rock-card.s-h2, .rock-card.s-h3 { grid-column: auto; grid-row: auto; min-height: 180px; }
   .stat-strip { flex-direction: column; }
@@ -754,12 +753,23 @@ a.client-row:hover .cn { color: var(--color-content-accent); }
   padding: 2px 7px; margin-left: 10px; vertical-align: 2px; white-space: nowrap;
 }
 
-.next-nav { margin-top: 72px; padding-top: 22px; border-top: 1px solid var(--hairline); }
+/* the step's own button, the cover's, 56 under the last thing on the page */
+.next-nav { margin-top: var(--space-stack-xl); }
 .next-nav a {
-  font-family: var(--rigid); font-size: var(--type-body-xs-size); letter-spacing: 0.06em;
-  color: var(--ink); text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-8) var(--space-16);
+  border-radius: var(--shape-soft);
+  background: var(--color-background-strong);
+  color: var(--color-content-knockout);
+  font-family: var(--type-body-sm-family);
+  font-size: var(--type-body-sm-size);
+  font-weight: var(--weight-700);
+  line-height: var(--type-body-sm-leading);
+  text-decoration: none;
 }
-.next-nav a:hover { color: var(--color-content-accent); }
+.next-nav a:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
 
 /* ---------- search palette ---------- */
 .pal-back {
@@ -1080,46 +1090,148 @@ a.cl-cell:hover .cl-name { color: var(--color-content-accent); }
 @media (max-width: 620px) { .bv-skill-act { width: 100%; } }
 @media (prefers-reduced-motion: reduce) { .bv-chev { transition: none; } }
 
-/* who we are: the quarry block leads, photo left and the quote right on one
-   line, then the copy and facts below it */
-.who-lede {
-  display: grid; grid-template-columns: 1.05fr 1fr; gap: 0;
-  background: var(--sage-soft); clip-path: var(--rock);
-  align-items: center; margin-top: 6px;
-}
-.who-photo { margin: 0; padding: 34px 0 34px 38px; }
-.who-photo img { width: 100%; display: block; clip-path: var(--chamfer); }
-.who-photo figcaption {
-  font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--taupe); margin-top: 10px;
-}
-.who-quote { padding: 34px 44px; }
-.who-intro { margin-top: 40px; }
-@media (max-width: 860px) {
-  .who-lede { grid-template-columns: 1fr; }
-  .who-photo { padding: 30px 30px 0; }
-  .who-quote { padding: 22px 30px 32px; }
+/* ---------- who we are, after the letter ----------
+   One column all the way down: the plate as wide as the text, the line set
+   apart between its two rules, and the ways of working as the letter's cards
+   (graphics.js, fichas). */
+
+/* the eyebrow over the title, Figma Hub / Home 345:1754 */
+.label {
+  margin: 0 0 var(--space-stack-lg);
+  font-family: var(--type-body-sm-family);
+  font-size: var(--type-body-sm-size);
+  font-weight: var(--type-body-sm-weight);
+  line-height: var(--type-body-sm-leading);
+  color: var(--color-content-subtle);
 }
 
-/* ---------- spacing pass ----------
-   A little more air everywhere: cards get roomier padding, lines a touch more
-   leading, and sections more distance from each other. Kept in one block so
-   the whole pass reads (and reverts) as one change. Rock cards are left alone:
-   their rows are a fixed height. */
-.mo-card { padding: 30px 28px; }
-.mo-cards { gap: 30px; }
-.mo-cards-3 { margin-bottom: 64px; }
-.mo-card-line { margin-top: 8px; line-height: 1.7; }
-.mo-syncs li { line-height: 1.75; margin-bottom: 10px; }
-.mo-faces { margin-top: 18px; gap: 8px; }
-.mo-extra { margin-top: 72px; }
-.mo-step { padding: 30px 0 8px; }
-.mo-body p, .mo-body li { line-height: 1.85; }
-.mo-note { margin-bottom: 56px; }
-.member { padding: 24px 24px 22px; }
-.team-grid { gap: 20px; }
-.p-card { padding: 30px 28px; }
-.p-card p { line-height: 1.65; }
+/* an image is the column's width, as in the letter */
+.plate { margin: var(--space-stack-xl) 0 0; }
+.plate img { display: block; width: 100%; height: auto; }
+.plate figcaption {
+  margin-top: var(--space-stack-md);
+  font-family: var(--type-body-2xs-family);
+  font-size: var(--type-body-2xs-size);
+  font-weight: var(--type-body-2xs-weight);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-content-subtle);
+}
+
+/* The line set apart: the letter's destacado, held between two of its own
+   drawn rules, 56 from each. Its measure is the letter's 476 -- narrower than
+   the text, which is what sets it apart -- and tier 1 has no token for it
+   (see onboarding-hub-gaps.md). */
+.aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-stack-xl);
+  margin: var(--space-stack-xl) 0 var(--space-stack-lg);
+}
+.aside__rule { display: block; width: 40px; height: auto; }
+.aside__text {
+  max-width: 476px;
+  margin: 0;
+  font-family: var(--type-title-sm-family);
+  font-size: var(--type-title-sm-size);
+  font-weight: var(--type-title-sm-weight);
+  line-height: var(--type-title-sm-leading);
+  letter-spacing: var(--type-title-sm-tracking);
+  text-align: center;
+  color: var(--color-content-default);
+}
+.aside__who {
+  max-width: 476px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: var(--type-body-sm-size);
+  line-height: var(--type-body-sm-leading);
+  color: var(--color-content-subtle);
+}
+
+.who-intro { margin-top: var(--space-stack-xl); }
+
+/* ---------- the letter's cards (graphics.js, fichas) ----------
+   Each an ember outline with a square of ember hatching down its left, the
+   number in the square's top corner level with the title, and beside it the
+   title and what it means, both in the drawings' label type. All the cards the
+   same height, so the squares and the words line up from one to the next --
+   here a grid with equal rows rather than the drawing's two passes.
+   The letter's 20 of padding is off the system's grid; these sit on 24. */
+.fichas {
+  display: grid;
+  grid-auto-rows: 1fr;
+  gap: var(--space-stack-md);
+  margin: var(--space-stack-lg) 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: ficha;
+}
+
+.ficha {
+  display: flex;
+  align-items: stretch;
+  border: 1.25px solid var(--color-content-accent);
+}
+
+/* as tall as its card and square with it, so its width follows the row */
+.ficha__mark {
+  flex: none;
+  align-self: stretch;
+  aspect-ratio: 1;
+  border-right: 1.25px solid var(--color-content-accent);
+  padding: var(--space-stack-lg) var(--space-16);
+  /* R2 n1: the system's hatch at 45 degrees, a line every 12 (trazos.js) */
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--color-content-accent) 0 0.6px,
+    transparent 0.6px 12px);
+}
+
+.ficha__num {
+  font-family: var(--type-body-sm-family);
+  font-size: var(--type-body-sm-size);
+  font-weight: var(--type-body-sm-weight);
+  line-height: var(--type-body-sm-leading);
+  letter-spacing: 0.12em;
+  /* The letter sets this digit in ember; ember on marmol is 3.67:1, under AA at
+     14. The ember stays on the frame and the hatch, where the reference puts it,
+     and the number reads in ink. */
+  color: var(--color-content-default);
+  /* the drawing backs its number with paper so it reads over the hatch */
+  background: var(--color-background-default);
+  box-shadow: 0 0 0 3px var(--color-background-default);
+}
+
+.ficha__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-stack-sm);
+  padding: var(--space-stack-lg);
+}
+
+.ficha__title,
+.ficha__desc {
+  margin: 0;
+  font-family: var(--type-body-sm-family);
+  font-size: var(--type-body-sm-size);
+  line-height: var(--type-body-sm-leading);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-content-default);
+}
+.ficha__title { font-weight: var(--weight-700); }
+.ficha__desc { font-weight: var(--type-body-sm-weight); }
+
+@media (max-width: 860px) {
+  /* the square becomes a band down the card's left, as the letter does on a
+     phone (graphics.js, fichasAltas) */
+  .ficha__mark { aspect-ratio: auto; width: 44px; padding: var(--space-stack-lg) 0; }
+  .ficha__num { display: none; }
+}
+
 .to-card { padding: 32px 30px; }
 .to-card p { line-height: 1.7; }
 .mm-fact { padding: 18px 20px; }
@@ -1127,7 +1239,6 @@ a.cl-cell:hover .cl-name { color: var(--color-content-accent); }
 .quote-block { padding: 50px 46px; }
 .locked-panel { padding: 50px 46px; }
 .bv-skill { padding: 26px 30px 28px; }
-h2.sub { margin: 76px 0 28px; }
 .body-copy + .body-copy { margin-top: 26px; }
 .wk-sec { margin-top: 26px; padding-top: 20px; }
 .wk-sec li { line-height: 1.75; margin-bottom: 9px; }
@@ -1143,7 +1254,6 @@ h2.sub { margin: 76px 0 28px; }
 .pg li, .bv-ul li { line-height: 1.75; margin-bottom: 8px; }
 @media (max-width: 860px) {
   .mo-card { padding: 26px 22px; }
-  h2.sub { margin: 60px 0 22px; }
 }
 
 /* the checklist block on My onboarding: one wide card under the three */
