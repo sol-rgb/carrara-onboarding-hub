@@ -580,9 +580,6 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
 .to-card { background: var(--sage-soft); clip-path: var(--chamfer); padding: 26px 24px; }
 .to-card h3 { font-weight: var(--weight-500); font-size: var(--type-body-md-size); margin: 10px 0 8px; }
 .to-card p { font-size: var(--type-body-sm-size); color: var(--color-content-subtle); line-height: 1.6; }
-.to-list { max-width: 760px; }
-.to-list .flat-row { display: flex; gap: 16px; align-items: baseline; }
-.to-list .flat-row img { width: 10px; flex: none; position: relative; top: 1px; }
 .section-lbl { font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.12em; color: var(--taupe); margin-bottom: 8px; }
 /* the Carrara Hub gets its own card above the lists: it is the one link on this page people come back to */
 .res-feature { display: flex; margin-top: 40px; min-height: 0; text-decoration: none; color: inherit; }
@@ -594,27 +591,93 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
 .res-item { padding: 16px 0; border-bottom: 1px solid var(--hairline); font-size: var(--type-body-sm-size); }
 .res-item .d { color: var(--taupe); font-size: var(--type-body-sm-size); }
 
-/* ---------- flat rows (slack) ---------- */
-.flat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 72px; margin-top: 36px; }
-.flat-grid.three { grid-template-columns: repeat(3, 1fr); }
-.flat-row { padding: 16px 0; border-bottom: 1px solid var(--hairline); font-size: var(--type-body-sm-size); }
-.flat-row b { font-weight: var(--weight-500); }
-.flat-row .d { color: var(--color-content-subtle); }
-/* Watercooler rows are anchors so they open Slack, but they sit in the same
-   list as the plain prefix rows above and must not read as blue links. */
-a.flat-row { display: block; color: inherit; text-decoration: none; }
-a.flat-row b { border-bottom: 1px dotted rgba(45, 42, 42, 0.3); }
-a.flat-row:hover b { color: var(--color-content-accent); border-bottom-color: var(--color-content-accent); }
+/* ---------- the letter's labelled boxes (graphics.js, numeradas) ----------
+   A grid of ember boxes, each with its label in a gap in the top edge: a C1
+   cota laid along the edge, its line broken for the text and ticked at both
+   ends (trazos.js, cota). What the label means sits inside, centred.
+   The drawing sets that label in ember and in capitals. Ember is 3.67:1 at 14,
+   under AA, so ember stays on the frame and the label reads in ink; and these
+   labels are strings people type into Slack, so they keep their own case. */
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* the system has stack jobs for a column and inset jobs for a card, none for
+     the gutter between columns */
+  gap: var(--space-stack-lg) var(--space-stack-md);
+  margin-top: var(--space-stack-xl);
+}
+.spec-grid.three { grid-template-columns: repeat(3, 1fr); }
+/* a note under a grid keeps a block's distance, as it did from the old rows */
+.spec-grid + .body-copy { margin-top: var(--space-stack-lg); }
 
-/* slack channel rows with hover examples */
-.ch-row { position: relative; }
-.ch-row b { cursor: default; border-bottom: 1px dotted rgba(45,42,42,0.3); }
+.spec {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.25px solid var(--color-content-accent);
+  padding: var(--space-stack-lg);
+  text-align: center;
+  font-family: var(--type-body-sm-family);
+  font-size: var(--type-body-sm-size);
+  font-weight: var(--type-body-sm-weight);
+  line-height: var(--type-body-sm-leading);
+  color: var(--color-content-subtle);
+}
+
+/* the F3 ticks that close the cota: 7 long, as thick as an L2 */
+.spec::before,
+.spec::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  width: 1.25px;
+  height: 7px;
+  background: var(--color-content-accent);
+}
+.spec::before { left: -1.25px; }
+.spec::after { right: -1.25px; }
+
+.spec__tab {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0 var(--space-8);
+  /* the gap in the line: the label is laid on paper, as the drawing lays it */
+  background: var(--color-background-default);
+  font-weight: var(--weight-700);
+  letter-spacing: 0.12em;
+  color: var(--color-content-default);
+  white-space: nowrap;
+}
+
+/* Watercooler boxes are anchors so they open Slack and channel labels link to
+   them, but neither may read as a blue link: the label takes a dotted rule and
+   the frame doubles under the pointer. */
+a.spec { text-decoration: none; }
+a.spec .spec__tab,
+.spec__tab a {
+  color: inherit;
+  text-decoration: underline dotted;
+  text-decoration-color: var(--color-content-subtle);
+  text-underline-offset: 3px;
+}
+a.spec:hover,
+a.spec:focus-visible { box-shadow: inset 0 0 0 1.25px var(--color-content-accent); }
+a.spec:hover .spec__tab,
+.spec__tab a:hover { text-decoration-color: var(--color-content-accent); }
+a.spec:focus-visible,
+.spec__tab a:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
+
+/* slack channel boxes with hover examples */
 .hovercard {
-  /* sits beside the row (not over the rows below) and never captures the mouse */
-  display: none; position: absolute; left: min(58%, 560px); top: -10px; z-index: 60;
+  /* hangs under its own box, as wide as it, and never captures the mouse */
+  display: none; position: absolute; left: 0; top: calc(100% + var(--space-8)); z-index: 60;
+  width: 100%;
   pointer-events: none;
   background: var(--color-background-strong); color: var(--color-content-knockout); clip-path: var(--chamfer);
-  padding: 18px 20px; width: min(360px, 38vw);
+  padding: 18px 20px;
 }
 @media (max-width: 900px) { .hovercard { display: none !important; } }
 .ch-row:hover .hovercard { display: block; }
@@ -666,7 +729,7 @@ a.flat-row:hover b { color: var(--color-content-accent); border-bottom-color: va
   .view.visible { padding: var(--space-section-y) 0 var(--space-stack-xl); }
   .mark--corner { position: absolute; }
   .hero-block { display: none; }
-  .flat-grid, .flat-grid.three, .client-grid, .res-cols, .tool-grid, .chk-cols, .to-seasons { grid-template-columns: 1fr; }
+  .spec-grid, .spec-grid.three, .client-grid, .res-cols, .tool-grid, .chk-cols, .to-seasons { grid-template-columns: 1fr; }
   .hub-tiles { grid-template-columns: 1fr 1fr; }
   .timeline, .history, .ninety, .to-essentials { grid-template-columns: 1fr; }
   .rock-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
@@ -740,8 +803,6 @@ a.flat-row:hover b { color: var(--color-content-accent); border-bottom-color: va
 a.stat { text-decoration: none; color: inherit; }
 a.stat:hover .num { color: var(--color-content-accent); }
 
-.ch-row b a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(45, 42, 42, 0.25); }
-.ch-row b a:hover { color: var(--color-content-accent); border-bottom-color: var(--color-content-accent); }
 
 a.client-row { text-decoration: none; color: inherit; }
 .cdesc { font-size: var(--type-body-xs-size); color: var(--color-content-subtle); line-height: 1.5; margin-top: 3px; max-width: 48ch; }
@@ -1159,24 +1220,23 @@ a.cl-cell:hover .cl-name { color: var(--color-content-accent); }
    same height, so the squares and the words line up from one to the next --
    here a grid with equal rows rather than the drawing's two passes.
    The letter's 20 of padding is off the system's grid; these sit on 24. */
-.fichas {
+.cards {
   display: grid;
   grid-auto-rows: 1fr;
   gap: var(--space-stack-md);
   margin: var(--space-stack-lg) 0 0;
   padding: 0;
   list-style: none;
-  counter-reset: ficha;
 }
 
-.ficha {
+.card {
   display: flex;
   align-items: stretch;
   border: 1.25px solid var(--color-content-accent);
 }
 
 /* as tall as its card and square with it, so its width follows the row */
-.ficha__mark {
+.card__mark {
   flex: none;
   align-self: stretch;
   aspect-ratio: 1;
@@ -1189,7 +1249,7 @@ a.cl-cell:hover .cl-name { color: var(--color-content-accent); }
     transparent 0.6px 12px);
 }
 
-.ficha__num {
+.card__num {
   font-family: var(--type-body-sm-family);
   font-size: var(--type-body-sm-size);
   font-weight: var(--type-body-sm-weight);
@@ -1204,7 +1264,7 @@ a.cl-cell:hover .cl-name { color: var(--color-content-accent); }
   box-shadow: 0 0 0 3px var(--color-background-default);
 }
 
-.ficha__body {
+.card__body {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1212,8 +1272,8 @@ a.cl-cell:hover .cl-name { color: var(--color-content-accent); }
   padding: var(--space-stack-lg);
 }
 
-.ficha__title,
-.ficha__desc {
+.card__title,
+.card__desc {
   margin: 0;
   font-family: var(--type-body-sm-family);
   font-size: var(--type-body-sm-size);
@@ -1222,14 +1282,14 @@ a.cl-cell:hover .cl-name { color: var(--color-content-accent); }
   text-transform: uppercase;
   color: var(--color-content-default);
 }
-.ficha__title { font-weight: var(--weight-700); }
-.ficha__desc { font-weight: var(--type-body-sm-weight); }
+.card__title { font-weight: var(--weight-700); }
+.card__desc { font-weight: var(--type-body-sm-weight); }
 
 @media (max-width: 860px) {
   /* the square becomes a band down the card's left, as the letter does on a
      phone (graphics.js, fichasAltas) */
-  .ficha__mark { aspect-ratio: auto; width: 44px; padding: var(--space-stack-lg) 0; }
-  .ficha__num { display: none; }
+  .card__mark { aspect-ratio: auto; width: 44px; padding: var(--space-stack-lg) 0; }
+  .card__num { display: none; }
 }
 
 .to-card { padding: 32px 30px; }
