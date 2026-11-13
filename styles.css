@@ -608,7 +608,8 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
 }
 .spec-grid.three { grid-template-columns: repeat(3, 1fr); }
 /* a note under a grid keeps a block's distance, as it did from the old rows */
-.spec-grid + .body-copy { margin-top: var(--space-stack-lg); }
+.spec-grid + .body-copy,
+.bullets + .body-copy { margin-top: var(--space-stack-lg); }
 
 .spec {
   position: relative;
@@ -670,9 +671,81 @@ a.spec:hover .spec__tab,
 a.spec:focus-visible,
 .spec__tab a:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
 
+/* ---------- a plain list ---------- */
+.bullets {
+  margin-top: var(--space-stack-lg);
+  padding-left: var(--space-stack-lg);
+  list-style: disc;
+  color: var(--color-content-subtle);
+}
+.bullets li {
+  margin-bottom: var(--space-stack-sm);
+  font-family: var(--type-body-md-family);
+  font-size: var(--type-body-md-size);
+  font-weight: var(--type-body-md-weight);
+  line-height: var(--type-body-md-leading);
+}
+.bullets li:last-child { margin-bottom: 0; }
+.bullets b { font-weight: var(--weight-700); color: var(--color-content-default); }
+
+/* ---------- the channel tables, with hover examples ---------- */
+table.channels {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--space-stack-xl);
+  font-family: var(--type-body-sm-family);
+  font-size: var(--type-body-sm-size);
+  font-weight: var(--type-body-sm-weight);
+  line-height: var(--type-body-sm-leading);
+}
+table.channels th {
+  padding: 0 var(--space-stack-md) var(--space-stack-sm) 0;
+  border-bottom: 1px solid var(--color-border-default);
+  text-align: left;
+  font-weight: var(--type-body-sm-weight);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-content-subtle);
+}
+table.channels td {
+  padding: var(--space-stack-md) var(--space-stack-md) var(--space-stack-md) 0;
+  border-bottom: 1px solid var(--color-border-subtle);
+  vertical-align: baseline;
+}
+table.channels th:last-child,
+table.channels td:last-child { padding-right: 0; }
+/* the name column takes what the longest name needs and no more */
+table.channels th:first-child,
+table.channels td:first-child { width: 1%; }
+
+.ch-name {
+  white-space: nowrap;
+  font-weight: var(--weight-700);
+  letter-spacing: 0.12em;
+  color: var(--color-content-default);
+}
+.ch-name a {
+  color: inherit;
+  text-decoration: underline dotted;
+  text-decoration-color: var(--color-content-subtle);
+  text-underline-offset: 3px;
+}
+.ch-name a:hover { text-decoration-color: var(--color-content-accent); }
+.ch-name a:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
+.ch-what { position: relative; color: var(--color-content-subtle); }
+
+@media (max-width: 860px) {
+  /* a row at a time: the name over what it is for */
+  table.channels thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  table.channels tr { display: block; padding: var(--space-stack-md) 0; border-bottom: 1px solid var(--color-border-subtle); }
+  table.channels td { display: block; padding: 0; border: 0; }
+  table.channels td:first-child { width: auto; }
+  .ch-name { white-space: normal; }
+}
+
 /* slack channel boxes with hover examples */
 .hovercard {
-  /* hangs under its own box, as wide as it, and never captures the mouse */
+  /* hangs under the row it explains, and never captures the mouse */
   display: none; position: absolute; left: 0; top: calc(100% + var(--space-8)); z-index: 60;
   width: 100%;
   pointer-events: none;

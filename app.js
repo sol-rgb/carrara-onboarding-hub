@@ -1141,10 +1141,11 @@
     if (!grid) return;
     grid.innerHTML = WATERCOOLER.map(function (c) {
       var u = window.channelUrl && window.channelUrl(c.n);
-      var label = '<span class="spec__tab">' + esc(c.n) + '</span>'
-        + '<span class="spec__d">' + esc(c.d) + '</span>';
-      return u ? '<a class="spec" href="' + esc(u) + '" target="_blank" rel="noopener">' + label + '</a>'
-               : '<div class="spec">' + label + '</div>';
+      var name = u
+        ? '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(c.n) + '</a>'
+        : esc(c.n);
+      return '<tr><td class="ch-name">' + name + '</td>'
+        + '<td class="ch-what">' + esc(c.d) + '</td></tr>';
     }).join('');
   })();
 
@@ -1441,14 +1442,14 @@
     var grid = $('#channel-grid');
     if (!grid) return;
     CHANNELS.forEach(function (c) {
-      var d = document.createElement('div');
-      d.className = 'spec ch-row';
+      var d = document.createElement('tr');
+      d.className = 'ch-row';
       var u = window.channelUrl ? window.channelUrl(c.n) : '';
       var nameHtml = u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(c.n) + '</a>' : esc(c.n);
-      d.innerHTML = '<span class="spec__tab">' + nameHtml + '</span>'
-        + '<span class="spec__d">' + esc(c.d) + '</span>'
+      d.innerHTML = '<td class="ch-name">' + nameHtml + '</td>'
+        + '<td class="ch-what">' + esc(c.d)
         + '<div class="hovercard"><div class="hlbl">[what gets posted here]</div><ul>'
-        + c.ex.map(function (e) { return '<li>' + esc(e) + '</li>'; }).join('') + '</ul></div>';
+        + c.ex.map(function (e) { return '<li>' + esc(e) + '</li>'; }).join('') + '</ul></div></td>';
       grid.appendChild(d);
     });
   })();
