@@ -26,7 +26,6 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 button, input, select, textarea { font-weight: inherit; }
-html { scroll-behavior: smooth; }
 body {
   background: var(--color-background-default);
   color: var(--ink);
@@ -770,12 +769,6 @@ table.channels td:first-child { width: 1%; }
 /* completion */
 .complete-wrap { display: flex; align-items: center; gap: 44px; margin-top: 30px; flex-wrap: wrap; }
 .complete-wrap img { width: 160px; }
-
-
-/* ---------- motion ---------- */
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-}
 
 /* ---------- responsive ---------- */
 @media (max-width: 1200px) {
