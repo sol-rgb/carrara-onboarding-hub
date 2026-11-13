@@ -59,6 +59,19 @@ body {
    the system does not carry. */
 .grain--over { z-index: 41; }
 
+/* The block of the iso, 32 square, standing in the corner of the mat: the same
+   place and the same two paths the site and the letters give it. */
+.mark { display: block; width: 32px; height: 32px; }
+.mark__block { fill: var(--color-content-default); transition: fill var(--motion-tint-duration) var(--motion-tint-easing); }
+.mark__facet { fill: var(--color-content-knockout); fill-opacity: 0.4; }
+.mark--corner {
+  position: fixed;
+  top: calc(var(--space-mat) + var(--space-inset-md));
+  left: calc(var(--space-mat) + var(--space-inset-md));
+  z-index: 30;
+}
+.mark--corner:hover .mark__block { fill: var(--color-content-accent); }
+
 /* ---------- sidebar ---------- */
 .sidebar {
   position: fixed;
@@ -70,7 +83,6 @@ body {
   background: transparent;
   z-index: 30;
 }
-.sidebar .wordmark { width: 112px; display: block; margin-bottom: 40px; }
 .nav-wrap { position: relative; padding-left: 16px; flex: 1; }
 .nav-rail { position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px; background: rgba(45,42,42,0.08); }
 .nav-rail span { display: block; width: 100%; background: var(--orange); height: 0; transition: height 0.25s ease; }
@@ -543,11 +555,6 @@ a.flat-row:hover b { color: var(--color-content-accent); border-bottom-color: va
 .complete-wrap { display: flex; align-items: center; gap: 44px; margin-top: 30px; flex-wrap: wrap; }
 .complete-wrap img { width: 160px; }
 
-/* ---------- footer ---------- */
-footer { margin-left: 0; padding: var(--space-stack-xl) calc(var(--space-mat) + var(--space-inset-md)) var(--space-inset-md); border-top: 1px solid var(--hairline); display: flex; align-items: center; gap: 16px; }
-footer .fm { font-family: var(--rigid); font-size: 10.5px; letter-spacing: 0.1em; color: var(--taupe); }
-footer a { color: var(--taupe); }
-footer img { width: 26px; }
 
 /* ---------- motion ---------- */
 .reveal { opacity: 0; transform: translateY(12px); }
@@ -573,12 +580,11 @@ footer img { width: 26px; }
 }
 @media (max-width: 860px) {
   .sidebar { display: none; }
-  main, footer { margin-left: 0; }
+  main { margin-left: 0; }
   .topbar {
     display: flex; position: sticky; top: 0; z-index: 50; background: var(--canvas);
     border-bottom: 1px solid var(--hairline); padding: 14px 20px; align-items: center; gap: 14px;
   }
-  .topbar img { width: 96px; }
   .topbar select {
     margin-left: auto; font-family: var(--rigid); font-size: 12px;
     background: transparent; border: 1px solid var(--hairline); padding: 8px 10px; color: var(--ink);
