@@ -946,6 +946,14 @@
   var kitData = null;
   function applyKitToHub() {
     if (!kitData) return;
+    /* The cover greets the hire by name once we know it, and reads "Welcome."
+       until then -- the hub is minted per hire, but the name only arrives with
+       the kit. */
+    var coverTitle = $('#start-title');
+    if (coverTitle && kitData.firstName) {
+      coverTitle.innerHTML = 'Welcome ' + esc(kitData.firstName)
+        + '.<br>You\u2019re part of the team now.';
+    }
     var brief = $('#brief-desc');
     if (brief && kitData.client) {
       brief.innerHTML = 'Your first client is <b>' + esc(kitData.client.name) + '</b>'

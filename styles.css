@@ -64,8 +64,11 @@ body {
 /* The block of the iso, 32 square, standing in the corner of the mat: the same
    place and the same two paths the site and the letters give it. */
 .mark { display: block; width: 32px; height: 32px; }
-.mark__block { fill: var(--color-content-default); transition: fill var(--motion-tint-duration) var(--motion-tint-easing); }
-.mark__facet { fill: var(--color-content-knockout); fill-opacity: 0.4; }
+.mark__block { fill: var(--color-background-accent); transition: fill var(--motion-tint-duration) var(--motion-tint-easing); }
+/* the cube's shaded plane is a fixed shade, not a content colour: a content
+   job would flip it to a highlight under the dark theme. Tier 2 has no job
+   for a shade, so this one reaches tier 1 (see onboarding-hub-gaps.md). */
+.mark__facet { fill: var(--quarry-900); fill-opacity: 0.4; }
 .mark--corner {
   position: fixed;
   top: calc(var(--space-mat) + var(--space-inset-md));
@@ -116,6 +119,77 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
 .view.visible > * { grid-column: col; }
 .spans-wide { grid-column: wide; }
 .spans-full { grid-column: full; }
+
+/* ---------- the cover: Start here ----------
+   Figma Carrara Website 2.0, Hub / Home (345:1189). The page is the letter's:
+   one 650 column standing in the middle of the frame, nothing beside it. Every
+   number in that frame is already a token, so none is written here. The two
+   that reach tier 1 are the button's padding — tier 2 has inset jobs for a card
+   and the frame, none for a control. */
+.view.view--cover.visible {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* the frame is 800 tall and the content 768: the page, less its mat */
+  min-height: calc(100vh - 2 * var(--space-mat));
+  /* the top padding also keeps the column clear of the iso in the corner, which
+     ends at 88 -- it only reads as generous while the column is short enough to
+     centre */
+  padding: var(--space-section-y) var(--space-inset-md);
+}
+
+.cover {
+  width: var(--layout-measure-sm);
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-stack-xl);
+}
+
+.cover__text { display: flex; flex-direction: column; gap: var(--space-stack-lg); width: 100%; }
+
+.cover__title {
+  margin: 0;
+  font-family: var(--type-title-sm-family);
+  font-size: var(--type-title-sm-size);
+  font-weight: var(--type-title-sm-weight);
+  line-height: var(--type-title-sm-leading);
+  letter-spacing: var(--type-title-sm-tracking);
+  color: var(--color-content-default);
+}
+
+/* full ink, not the subtle grey the rest of the hub reads in */
+.cover__body { color: var(--color-content-default); }
+.cover__body p { margin: 0 0 var(--space-stack-md); line-height: var(--type-body-md-leading); }
+.cover__body p:last-child { margin-bottom: 0; }
+
+.btn-cover {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-8) var(--space-16);
+  border-radius: var(--shape-soft);
+  background: var(--color-background-strong);
+  color: var(--color-content-knockout);
+  font-family: var(--type-body-sm-family);
+  font-size: var(--type-body-sm-size);
+  font-weight: var(--weight-700);
+  line-height: var(--type-body-sm-leading);
+  text-decoration: none;
+}
+/* The hover moves the arrow, not the fill. Ember under knockout text reads at
+   3.14:1 in light and 3.82:1 in dark -- below AA at every step of the ramp in
+   one theme or the other -- and tier 2 has no accent surface that flips with
+   the theme, so there is no ember here to hover to (see onboarding-hub-gaps.md). */
+.btn-cover__arrow { transition: transform var(--motion-tint-duration) var(--motion-tint-easing); }
+.btn-cover:hover .btn-cover__arrow,
+.btn-cover:focus-visible .btn-cover__arrow { transform: translateX(3px); }
+.btn-cover:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
+
+/* the cover stands alone: the nav waits on the other side of the button */
+body:has(#view-start.visible) .sidebar,
+body:has(#view-start.visible) .topbar { display: none; }
 
 .eyebrow {
   font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.14em;
