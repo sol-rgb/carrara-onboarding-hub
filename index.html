@@ -10,8 +10,30 @@
 <link rel="stylesheet" href="/system/tier-1-definitions.css">
 <link rel="stylesheet" href="/system/tier-2-usage.css">
 <link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/arrival.css">
 </head>
 <body>
+
+<!-- The arrival: one sheet of glassine with a perforated strip across its
+     middle. Pulling the strip cuts the sheet in two and the halves part. -->
+<section class="vellum is-loading" id="vellum" role="button" tabindex="0"
+         aria-label="Pull the strip to open the hub" hidden>
+  <div class="vellum__sheet vellum__sheet--top" aria-hidden="true"></div>
+  <div class="vellum__sheet vellum__sheet--bot" aria-hidden="true"></div>
+  <div class="tape" id="tape" aria-hidden="true">
+    <div class="tape__strip" id="tape-strip"></div>
+    <div class="tape__pulled" id="tape-pulled"><span class="tape__hint">Pull<span class="tape__arrow">&rarr;</span></span></div>
+  </div>
+  <div class="vellum__inner">
+    <div class="vellum__words">
+      <img class="rule" src="/assets/vellum/rule-402.svg" alt="" aria-hidden="true">
+      <p class="vellum__for"><span class="vellum__label">For</span><span class="vellum__name">you</span></p>
+      <img class="rule rule--flip rule--lead" src="/assets/vellum/rule-402.svg" alt="" aria-hidden="true">
+      <p>Carrara Onboarding</p>
+      <img class="rule rule--180" src="/assets/vellum/rule-180.svg" alt="" aria-hidden="true">
+    </div>
+  </div>
+</section>
 
 <svg class="mark mark--corner" viewBox="0 0 32 32" aria-hidden="true">
   <path class="mark__block" d="M32 24L16 32H8L0 16V8L16 0H24L32 16V24Z"/>
@@ -505,5 +527,6 @@
 <script src="/markdown.js"></script>
 <script src="/my-onboarding.js"></script>
 <script src="/app.js"></script>
+<script src="/arrival.js"></script>
 </body>
 </html>

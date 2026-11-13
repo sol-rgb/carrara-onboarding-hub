@@ -81,7 +81,7 @@ body {
   padding: var(--space-section-y) 0 var(--space-inset-md);
   display: flex; flex-direction: column;
   background: transparent;
-  z-index: 30;
+  z-index: 20;   /* under the arrival's sheet, which covers the page */
 }
 .nav-wrap { position: relative; padding-left: 16px; flex: 1; }
 .nav-rail { position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px; background: rgba(45,42,42,0.08); }
