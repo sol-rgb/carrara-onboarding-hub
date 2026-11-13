@@ -773,10 +773,7 @@ table.channels td:first-child { width: 1%; }
 
 
 /* ---------- motion ---------- */
-.reveal { opacity: 0; transform: translateY(12px); }
-.reveal.in { opacity: 1; transform: none; transition: opacity 0.45s ease-out, transform 0.45s ease-out; }
 @media (prefers-reduced-motion: reduce) {
-  .reveal, .reveal.in { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
 }
 

@@ -339,7 +339,6 @@
     $$('#nav a').forEach(function (a) { a.classList.toggle('active', a.dataset.id === sec); });
     if (SECTIONS.some(function (s) { return s.id === sec; })) mnav.value = sec;
     window.scrollTo(0, 0);
-    reveal(el);
     if (sec === 'start') countUp();
     if (sec === 'templates') mountTemplates();
     nextNav(el, sec);
@@ -354,7 +353,6 @@
     $$('#nav a').forEach(function (a) { a.classList.toggle('active', a.dataset.id === 'clients'); });
     mnav.value = 'clients';
     window.scrollTo(0, 0);
-    reveal(el);
     setTimeout(function () { if (typeof updateRail === 'function') updateRail(); }, 60);
   }
   function route() {
@@ -420,15 +418,6 @@
   window.addEventListener('resize', updateRail);
 
   /* ---------- motion ---------- */
-  function reveal(root) {
-    if (!root || reduced) return;
-    var kids = Array.prototype.slice.call(root.children);
-    kids.forEach(function (k, i) {
-      k.classList.add('reveal');
-      k.classList.remove('in');
-      setTimeout(function () { k.classList.add('in'); }, 40 + i * 90);
-    });
-  }
   var counted = false;
   function countUp() {
     if (counted && !reduced) return;
