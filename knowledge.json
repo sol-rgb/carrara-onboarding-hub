@@ -1,15 +1,15 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-11-13",
+ "exported": "2026-11-14",
  "clients": [
   {
    "slug": "anthropic",
    "name": "Anthropic",
    "hubName": "Anthropic",
    "status": "active",
-   "oneLiner": "Talent narrative, careers content, events and embedded recruiting for Anthropic.",
-   "about": "We started with the Platform Engineering team's story and turned it into hiring tools: a narrative, a microsite, a recruiter hub, a podcast and recruiting dinners. With Anthropic's talent brand team we now run careers content, a Safeguards narrative and recruiting events, and embedded recruiters work Platform, Product and Enterprise & Verticals roles.",
+   "oneLiner": "Talent activation, a Platform video series, events and careers content for Anthropic.",
+   "about": "We started with the Platform Engineering team's story and turned it into hiring tools: a narrative, a microsite, a recruiter hub and recruiting dinners. Now we source for Platform Eng and Product, run the Inside Platform video series, recruiting events and careers content, and delivered a Safeguards narrative and candidate microsite.",
    "practices": [
     {
      "id": "recruiting",
@@ -26,10 +26,17 @@
    "team": [
     {
      "name": "Sol Silbenberg",
-     "role": "Coordination, narrative and tooling",
+     "role": "Client owner",
      "email": "sol@carrara.is",
      "slack": "U08M5TFAF52",
      "timezone": "America/Buenos_Aires"
+    },
+    {
+     "name": "Brandon Taleisnik",
+     "role": "Account lead",
+     "email": "brandon@carrara.is",
+     "slack": "U07JH8MAM7G",
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Kenna Meyerhoff",
@@ -39,111 +46,97 @@
      "timezone": "America/New_York"
     },
     {
-     "name": "Brandon Taleisnik",
-     "role": "Client partner",
-     "email": "brandon@carrara.is",
-     "slack": "U07JH8MAM7G",
-     "timezone": "America/Los_Angeles"
-    },
-    {
-     "name": "Gonz Sanchez",
-     "role": "Narrative and talent brand",
-     "email": "gonz@carrara.is",
-     "slack": "U07NSVAFUC9",
-     "timezone": "America/Los_Angeles"
-    },
-    {
      "name": "Alicia Donenfeld",
-     "role": "Recruiting, Platform and Product",
+     "role": "Platform Eng and Product sourcing",
      "email": "Alicia@carrara.is",
      "slack": "U07NL16P363",
      "timezone": "America/Los_Angeles"
     },
     {
-     "name": "Shannon Toomey",
-     "role": "Recruiting, Enterprise & Verticals",
-     "email": "shannon@carrara.is",
-     "slack": "U0BP5KNBXJB",
-     "timezone": "America/Los_Angeles"
-    },
-    {
      "name": "Jenna Caminiti",
-     "role": "Recruiting ops and reporting",
+     "role": "Recruiting and sourcing",
      "email": "jenna@carrara.is",
      "slack": "U0AU83VPUTA",
      "timezone": "America/New_York"
     },
     {
-     "name": "Tara O'Reilly",
-     "role": "Event operations",
-     "email": "tara@carrara.is",
-     "slack": "U0BTCTTS78V",
-     "timezone": "America/New_York"
+     "name": "Shannon Toomey",
+     "role": "Recruiting and sourcing",
+     "email": "shannon@carrara.is",
+     "slack": "U0BP5KNBXJB",
+     "timezone": "America/Los_Angeles"
+    },
+    {
+     "name": "Gonz Sanchez",
+     "role": "Talent brand and narrative",
+     "email": "gonz@carrara.is",
+     "slack": "U07NSVAFUC9",
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Matias Sanchez",
-     "role": "Careers content",
+     "role": "Talent brand and narrative",
      "email": "matias@carrara.is",
      "slack": "U08NEFER8HY",
      "timezone": "America/Buenos_Aires"
     },
     {
-     "name": "Ben Munns",
-     "role": "Account support",
-     "email": "ben@carrara.is",
-     "slack": "U099BBEJVA4",
-     "timezone": "America/Los_Angeles"
+     "name": "Tara O'Reilly",
+     "role": "Events",
+     "email": "tara@carrara.is",
+     "slack": "U0BTCTTS78V",
+     "timezone": "America/New_York"
     }
    ],
    "workstreams": [
     {
-     "title": "Embedded recruiting",
-     "detail": "Sourcing and recruiting for Platform, Product and Enterprise & Verticals roles, now with one hiring dashboard for Anthropic's recruiting leads.",
+     "title": "Platform talent activation",
+     "detail": "Sourcing for Platform Eng and Product roles, tracked in the Talent Activation Tracker on the channel canvas.",
      "points": [
       "Mined LinkedIn and X networks, with a scored review site to rate fit",
-      "Hiring dashboard with each search's pipeline, work to date and plan in one place",
-      "Calibration with hiring managers and a review of past applicants for E&V roles"
-     ]
-    },
-    {
-     "title": "Careers content",
-     "detail": "Careers site content with Anthropic's talent brand team, starting with Safeguards; handover materials are ready and the working hub now runs in Claude.",
-     "points": [
-      "Safeguards content gathered first, with an MVP page in build for review",
-      "Interviews and surveys with the Sales and Product Engineering teams",
-      "Handover materials, with the working content hub moved into Claude"
-     ]
-    },
-    {
-     "title": "Safeguards narrative",
-     "detail": "A narrative sprint for Safeguards, run like the Platform one, with the deck for the next workshop ready.",
-     "points": [
-      "Workshop deck for the next session, with speaker notes",
-      "Platform narrative before it: leader and IC interviews, a one page story, a public microsite",
+      "Talent Activation Tracker that refreshes hourly from the three recruiting trackers",
       "Platform recruiter hub with talking points, FAQs and battle cards, now run by Anthropic"
      ]
     },
     {
-     "title": "Platform podcast",
-     "detail": "A video series where each episode presents a Platform team. Publication is on hold for now.",
+     "title": "Inside Platform videos",
+     "detail": "A video series where each episode presents a Platform team. Episode 1 went live on Nov 12 and the next one films on Nov 16.",
      "points": [
-      "Set the format with the production studio: one set, each episode presents a team",
-      "Ran prep calls and wrote question sets with every guest before recording",
+      "Inside Platform Ep 1, a public video on building the Claude API",
+      "Prep calls and question sets with every guest before recording",
       "Launch site that keeps timing and comms current, with draft posts per guest"
      ]
     },
     {
      "title": "Recruiting events",
-     "detail": "Platform Table dinners ran in SF and London, and KubeCon logistics are final, with Anthropic's events team.",
+     "detail": "Recruiting events with Anthropic's events team; the KubeCon engineer dinner and happy hour ran in Salt Lake City, and recruiters have the attendee sheet.",
      "points": [
-      "Ran Platform Table dinners in SF and London with Platform engineers as hosts",
-      "Recruiting events hub with venues, vendors, an event playbook and a retro section",
-      "Each event plans a set host and time for introductions"
+      "Platform Table dinners in SF and London with Platform engineers as hosts",
+      "KubeCon engineer dinner on Nov 9 and a happy hour on Nov 10",
+      "Editable attendee sheet so recruiters can follow up after each event"
+     ]
+    },
+    {
+     "title": "Safeguards narrative",
+     "detail": "Done. The V1 narrative, a password protected candidate microsite for Safeguards Eng and a handover doc are delivered.",
+     "points": [
+      "Safeguards V1 narrative and a candidate microsite for Safeguards Eng",
+      "Handover doc covering the narrative, the site and the repo",
+      "Platform narrative before it: leader and IC interviews, a one page story, a public microsite"
+     ]
+    },
+    {
+     "title": "Careers page content",
+     "detail": "Careers site content with Anthropic's talent brand team, now tested against evals, with the failed cases being reworked next.",
+     "points": [
+      "Safeguards content gathered first, with an MVP page for review",
+      "Interviews and surveys with the Sales and Product Engineering teams",
+      "Content tested against evals, with the failed cases reworked next"
      ]
     }
    ],
    "channel": "c-anthropic",
-   "updated": "2026-10-31",
+   "updated": "2026-11-14",
    "url": "https://hub.carrara.is/clients/anthropic"
   },
   {
@@ -297,7 +290,7 @@
      "role": "Account co-lead, GTM, talent and comp",
      "email": "tina@carrara.is",
      "slack": "U07ERRXB2LA",
-     "timezone": "America/New_York"
+     "timezone": "America/Chicago"
     },
     {
      "name": "Katie Roe",
@@ -423,8 +416,8 @@
    "name": "Sphere",
    "hubName": "Sphere",
    "status": "active",
-   "oneLiner": "Case studies, events, campaigns and founder content for Sphere, now in handover.",
-   "about": "Marketing and brand for Sphere. We ran Ground Truth, an engineering event in SF hosted with a16z, then customer case studies, finance leader dinners, a partner webinar, campaigns and founder content for Nick Rudder and Alex Bowcut, now being handed over to Sphere's growth team.",
+   "oneLiner": "Case studies, events, LinkedIn content and weekly reporting for Sphere.",
+   "about": "Marketing and brand for Sphere. We ran Ground Truth, an engineering event in SF hosted with a16z, then customer case studies, finance leader dinners, campaigns and founder content for Nick Rudder and Alex Bowcut, and we're now planning The Sphere Hotel, an Aussie pub pop-up in SF in December.",
    "practices": [
     {
      "id": "talent",
@@ -441,74 +434,88 @@
    "team": [
     {
      "name": "Sophie Dicker",
-     "role": "Client lead: content, events and case studies",
+     "role": "Account lead",
      "email": "sophie@carrara.is",
      "slack": "U0B17CD5VKN",
      "timezone": "America/New_York"
     },
     {
+     "name": "Sara Hennings",
+     "role": "Event lead, The Sphere Hotel",
+     "email": "sara@carrara.is",
+     "slack": "U0B7AP5R4EL",
+     "timezone": "Africa/Harare"
+    },
+    {
+     "name": "Macarena Gonzalez Cazon",
+     "role": "Design, event assets",
+     "email": "Macarena@carrara.is",
+     "slack": "U0AALMNC8RK",
+     "timezone": "America/Buenos_Aires"
+    },
+    {
+     "name": "Yanel Bottini",
+     "role": "Design, event assets",
+     "email": "yanel@carrara.is",
+     "slack": "U09Q4PDR9BK",
+     "timezone": "America/Buenos_Aires"
+    },
+    {
      "name": "Gonz Sanchez",
-     "role": "Partner oversight and paid ads",
+     "role": "Partner on the account",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
      "timezone": "America/Los_Angeles"
-    },
-    {
-     "name": "Tara O'Reilly",
-     "role": "Events and webinar logistics",
-     "email": "tara@carrara.is",
-     "slack": "U0BTCTTS78V",
-     "timezone": "America/New_York"
     }
    ],
    "workstreams": [
     {
-     "title": "Handover",
-     "detail": "New. We're handing the work to Sphere's growth team over the next few weeks, with a handover plan and doc library shared.",
+     "title": "The Sphere Hotel",
+     "detail": "New. An Aussie pub pop-up in SF in December: the venue shortlist is down to four and the branded asset brief is with design.",
      "points": [
-      "Handover hub with the plan, checklists and a library of every doc",
-      "Weekly dashboard tracking LinkedIn, events and pipeline for the account"
+      "Event plan with the tasks, vendors and owners for the pub day",
+      "Venue finder site with a shortlist, branding ideas and capacity per venue",
+      "Asset brief for a logo, coasters, can coolers, tap handles, a menu, napkins and banners"
      ]
     },
     {
-     "title": "Case studies",
-     "detail": "Written and video customer case studies. Framer and an updated Fyxer video are live, two more cuts are in post and two more interviews are being set up.",
+     "title": "LinkedIn content",
+     "detail": "Weekly posts for Sphere and its founders, drafted and queued in Ordinal for review.",
+     "points": [
+      "Weekly question prompts to the founders that turn into posts",
+      "Image assets in Sphere's brand that go out with posts",
+      "Launch and recap posts for Ground Truth, plus clips from the panels"
+     ]
+    },
+    {
+     "title": "Case study videos",
+     "detail": "One cut is finished and scheduled for Sphere's LinkedIn, and a Sydney shoot is locked for Nov 25.",
      "points": [
       "Scripts, film crews and edits for each video, plus a written version for the site",
       "Framer case study live through the founder's LinkedIn, and an updated Fyxer video on the site",
-      "GEO notes on structure and headings so the written case studies show up in AI search"
+      "Remote directed film crew booked for the Sydney shoot"
      ]
     },
     {
-     "title": "Dinners and events",
-     "detail": "The Amsterdam finance leader dinner ran on Nov 5, a London webinar and dinner are in planning, and print assets for an SF pub day are going to design.",
+     "title": "Weekly dashboard",
+     "detail": "Each week we add a column to the metrics sheet and send the client a PDF; this week's went out.",
+     "points": [
+      "Claude skill that fills the weekly metrics sheet and builds the client PDF",
+      "Weekly LinkedIn, events and pipeline tracking for the account"
+     ]
+    },
+    {
+     "title": "Dinners and campaigns",
+     "detail": "The Amsterdam finance leader dinner ran on Nov 5, and gift sends to CFOs in SF and Amsterdam are under way, with a card for each city.",
      "points": [
       "Amsterdam run of show in two hosting formats, including a Jeffersonian dinner",
       "Menu, name cards, gift prints and a guest lookbook for the Amsterdam dinner",
-      "E-invoicing webinar: Sphere hosts and an outside expert gives the view, from a London studio"
-     ]
-    },
-    {
-     "title": "Guerrilla and mail",
-     "detail": "The SF billboard plans are folded into one guerrilla brief, and gift sends to CFOs in SF and Amsterdam are under way, with a card in design for each city.",
-     "points": [
-      "Review sites with three guerrilla concepts and SF billboard options",
-      "Send plan for a physical mail campaign to Sphere's priority accounts",
-      "Postcard size gift cards for the SF and Amsterdam CFO sends, one design per city"
-     ]
-    },
-    {
-     "title": "Founder content",
-     "detail": "LinkedIn and X posts for Nick Rudder and Alex Bowcut, scheduled in Ordinal; review has moved to Sphere's team as posting winds down.",
-     "points": [
-      "Weekly question prompts to the founders that turn into posts",
-      "Launch and recap posts for Ground Truth, plus clips from the panels",
-      "Image assets in Sphere's brand that go out with posts"
+      "Review sites with guerrilla concepts and SF billboard options"
      ]
     }
    ],
    "channel": "c-sphere",
-   "updated": "2026-11-13",
+   "updated": "2026-11-14",
    "url": "https://hub.carrara.is/clients/sphere"
   },
   {
@@ -745,8 +752,8 @@
    "name": "Grindr",
    "hubName": "Grindr",
    "status": "active",
-   "oneLiner": "Talent narrative: a live careers site, launch posts, Life pages and a recruiter hub.",
-   "about": "Talent narrative work for Grindr's engineering hiring. We designed and coded the new careers page, which Grindr's web agency Crew rebuilt in Webflow and is now live on grindr.com, and we run launch posts, the LinkedIn Life pages, a recruiter hub and engineering events.",
+   "oneLiner": "Talent narrative for Grindr: careers site, LinkedIn content, a recruiter hub and events.",
+   "about": "Talent narrative work for Grindr's engineering hiring. We designed the new careers page, now live on grindr.com, and run LinkedIn content, a recruiter hub and engineering events, now including a hacker ski house in Deer Valley.",
    "practices": [
     {
      "id": "talent",
@@ -759,34 +766,59 @@
    "team": [
     {
      "name": "Sophie Dicker",
-     "role": "Client lead",
+     "role": "Account lead",
      "email": "sophie@carrara.is",
      "slack": "U0B17CD5VKN",
      "timezone": "America/New_York"
     },
     {
-     "name": "Gonz Sanchez",
-     "role": "Partner oversight",
-     "email": "gonz@carrara.is",
-     "slack": "U07NSVAFUC9",
-     "timezone": "America/Los_Angeles"
-    },
-    {
      "name": "Tara O'Reilly",
-     "role": "Planning and events",
+     "role": "Ski house planning and events hub",
      "email": "tara@carrara.is",
      "slack": "U0BTCTTS78V",
      "timezone": "America/New_York"
     },
     {
+     "name": "Gonz Sanchez",
+     "role": "Partner on the account",
+     "email": "gonz@carrara.is",
+     "slack": "U07NSVAFUC9",
+     "timezone": "America/Los_Angeles"
+    },
+    {
      "name": "Macarena Gonzalez Cazon",
-     "role": "Design: logo and social assets",
+     "role": "Design",
      "email": "Macarena@carrara.is",
      "slack": "U0AALMNC8RK",
+     "timezone": "America/Buenos_Aires"
+    },
+    {
+     "name": "Yanel Bottini",
+     "role": "Design",
+     "email": "yanel@carrara.is",
+     "slack": "U09Q4PDR9BK",
      "timezone": "America/Buenos_Aires"
     }
    ],
    "workstreams": [
+    {
+     "title": "Hacker ski house",
+     "detail": "New. Planning has started for a hacker ski house in Deer Valley, with a task tracker, an event plan and a list of asks for Grindr's team.",
+     "points": [
+      "Task tracker with every task and its owner",
+      "List of IT and legal asks for Grindr's team, to settle early",
+      "Grindr events hub site that holds the event plans, starting with the ski house"
+     ]
+    },
+    {
+     "title": "LinkedIn talent narrative",
+     "detail": "A team posting push on LinkedIn after the careers launch, with a new banner for the AI native data stack post.",
+     "points": [
+      "Banner for the Building the AI-Native Data Stack post",
+      "Exec and employee launch posts with a launch GIF, from one distribution doc",
+      "New Grindr Mode and Engineering Life page images and photos"
+     ]
+    },
     {
      "title": "Careers page",
      "detail": "Live on grindr.com, built in Webflow from our design, with the old jobs page redirected to it.",
@@ -794,23 +826,6 @@
       "Coded prototype through v5 with a full mobile pass, built from Grindr's 2026 brand guide",
       "Employee quotes, a visa sponsorship section and open roles linked to Ashby",
       "Product area tiles reworked from Grindr's feedback, with a new tile for its AI work"
-     ]
-    },
-    {
-     "title": "Launch posts",
-     "detail": "Exec and employee LinkedIn posts and a launch GIF announcing the new site are scheduled to go out Nov 3.",
-     "points": [
-      "Distribution doc with post copy for each person and a posting schedule",
-      "Launch GIF with an all white logo, plus a 4:5 version",
-      "One main exec post with employee reshares carries the launch"
-     ]
-    },
-    {
-     "title": "LinkedIn Life pages",
-     "detail": "New Grindr Mode and Engineering tab images and photos are handed to Grindr's team.",
-     "points": [
-      "New Life page copy and branded photos",
-      "Updated Grindr Mode and Engineering tab images"
      ]
     },
     {
@@ -824,7 +839,7 @@
     }
    ],
    "channel": "p-grindr-talent-narrative",
-   "updated": "2026-11-03",
+   "updated": "2026-11-14",
    "url": "https://hub.carrara.is/clients/grindr"
   },
   {
@@ -997,8 +1012,8 @@
    "name": "Source Foundry",
    "hubName": "Source Foundry",
    "status": "active",
-   "oneLiner": "Embedded recruiting, sourcing and interview design for a stealth hardware company.",
-   "about": "We hire software and electrical engineers for a stealth hardware company, with a technician search always on. The team sources and runs outreach, sets up interview plans in the client's Ashby, briefs the client's outside agencies and tracks the work in Source OS, our internal recruiting OS.",
+   "oneLiner": "Embedded recruiting, research and sourcing for a stealth hardware company.",
+   "about": "We hire engineers for a stealth hardware company: software and electrical engineers, plus research into a new engineering profile through a research hub that scores people from public research. The team runs outreach, warm intros and screens, tracked in Source OS, our internal recruiting OS.",
    "practices": [
     {
      "id": "recruiting",
@@ -1014,6 +1029,13 @@
    "owner": "Sol Silbenberg",
    "team": [
     {
+     "name": "Sol Silbenberg",
+     "role": "Client owner, builds the research product",
+     "email": "sol@carrara.is",
+     "slack": "U08M5TFAF52",
+     "timezone": "America/Buenos_Aires"
+    },
+    {
      "name": "Joe Penn",
      "role": "Account lead",
      "email": "joe@carrara.is",
@@ -1021,81 +1043,66 @@
      "timezone": "America/Los_Angeles"
     },
     {
-     "name": "Sol Silbenberg",
-     "role": "Project ops and Source OS",
-     "email": "sol@carrara.is",
-     "slack": "U08M5TFAF52",
-     "timezone": "America/Buenos_Aires"
-    },
-    {
      "name": "Maddy West",
-     "role": "Sourcing, EE",
+     "role": "Research and EE sourcing",
      "email": "maddy@carrara.is",
      "slack": "U0C5G53N12S",
      "timezone": "America/Los_Angeles"
     },
     {
      "name": "Mackenzie Robinson",
-     "role": "Sourcing, SWE",
+     "role": "SWE sourcing",
      "email": "mackenzie@carrara.is",
      "slack": "U0BSF9FUY6R",
      "timezone": "America/Los_Angeles"
     },
     {
      "name": "Sadiqeh Agah",
-     "role": "Recruiting ops and Ashby",
+     "role": "Project coordination",
      "email": "sadiqeh@carrara.is",
      "slack": "U0ASY17UEAZ",
      "timezone": "America/Los_Angeles"
-    },
-    {
-     "name": "Greg Troxell",
-     "role": "Technicians and agencies",
-     "email": "greg@carrara.is",
-     "slack": "U0B0QPZKDV2",
-     "timezone": "America/Chicago"
     }
    ],
    "workstreams": [
     {
-     "title": "Engineering sourcing",
-     "detail": "We source software and electrical engineers off a tiered market map and run initial screens; a research hub shortlist notes why each person stands out, with warm intros next.",
+     "title": "Engineering research",
+     "detail": "Research for a new engineering profile: the research hub was demoed in person on Nov 9, feedback and rescoring are live, and a shortlist went to the client on Nov 11.",
+     "points": [
+      "Research hub of people, companies, labs and papers, with role scores and a search assistant",
+      "Feedback on each person (too low, about right, too high, plus why) rescores them",
+      "Shortlist with a note on why each person stands out, checked on LinkedIn"
+     ]
+    },
+    {
+     "title": "EE sourcing",
+     "detail": "Target companies are with the client for approval, and an EE section of the research hub has started.",
      "points": [
       "EE market map of companies to hire from, tiered with the client",
-      "Research hub of people, companies, labs and papers, with role scores and a search assistant",
+      "Outreach from the hiring manager's email and ours, with screens booked",
       "Initial screens, with a recap of each call for the hiring team"
      ]
     },
     {
-     "title": "Outreach sequences",
-     "detail": "LinkedIn and email sequences sent from the client's Ashby and the hiring manager's email, with personalized copy and follow ups updated as batches go out.",
+     "title": "SWE sourcing",
+     "detail": "Outreach continues while we calibrate the research hardware SWE profile with the client.",
      "points": [
+      "Email sequences sent as the hiring manager, plus LinkedIn outreach",
       "Stealth safe outreach copy, signed off by the client before it goes out",
-      "Follow ups in the hiring manager's voice, added to past and future sequences",
       "A/B test process: two versions split evenly, the winner becomes the next control"
      ]
     },
     {
-     "title": "Agencies and technicians",
-     "detail": "We brief the client's outside recruiting agencies, with intake and follow up workflows ready, and keep the technician search always on.",
+     "title": "Warm intros",
+     "detail": "New. Outreach for the new profile goes relationship first, through key people in the field.",
      "points": [
-      "Agency rules: approved line only, no company name, no JDs sent to candidates",
-      "Agency brief that follows the Ashby stages, with a one pager per role",
-      "Intake calls and follow up workflows for each agency"
-     ]
-    },
-    {
-     "title": "Interview plans and Ashby",
-     "detail": "Paused. A shared interview plan with a Carrara initial screen and separate SWE and EE jobs are set up; further Ashby setup is on hold.",
-     "points": [
-      "Shared interview plan with a Carrara initial screen stage, existing plans left as they are",
-      "Onsites built interview by interview, so interviewers are booked automatically",
-      "Stage emails rewritten, plus scheduling and candidate reminder recommendations"
+      "Warm intro sheet of connectors who can reach the people on the shortlist",
+      "Who do you know sheet where the client's team flags their connections"
      ]
     },
     {
      "title": "Source OS",
-     "detail": "Our internal recruiting OS and the team's source of truth for every role, now with referral analysis and agency follow up tools.",
+     "detail": "Our internal recruiting OS and the team's source of truth for every role, with Slack alerts.",
      "points": [
       "Sourcing playbook per role: search strings, company map, screening questions, outreach",
       "Claude skills per role that score call transcripts and LinkedIn profiles on competency tables",
@@ -1104,7 +1111,7 @@
     }
    ],
    "channel": "c-source-foundry",
-   "updated": "2026-11-13",
+   "updated": "2026-11-14",
    "url": "https://hub.carrara.is/clients/source-foundry"
   },
   {
@@ -1529,11 +1536,11 @@
     },
     {
      "title": "Founders School growth",
-     "detail": "New. A growth plan for Founders School is set, with funnel content, referral comms and outreach lists being drafted next.",
+     "detail": "A partnership strategy and partner list are set with warm intros under way, and admissions ops support has started with Alpha's admissions team.",
      "points": [
-      "Growth plan covering funnel content, referrals, outreach, events and partnerships",
-      "Founders Booklet, being updated with curriculum and 'why now' content",
-      "Shortlist of top referrers in the Alpha network and a first outreach lead list"
+      "Partnership strategy doc and a partner list by category, with warm paths mapped",
+      "Three admissions outreach campaigns drafted for review, plus an apply page v1 on a preview",
+      "Founders Booklet with curriculum and 'why now' content, in a final content pass"
      ]
     },
     {
@@ -1565,7 +1572,7 @@
     }
    ],
    "channel": null,
-   "updated": "2026-11-05",
+   "updated": "2026-11-14",
    "url": "https://hub.carrara.is/clients/alpha-school"
   },
   {
@@ -1894,7 +1901,7 @@
    "hubName": "January",
    "status": "active",
    "oneLiner": "Embedded recruiting for eng, security, product and G&A roles, plus recruiting ops.",
-   "about": "We run January's hiring across engineering, security, product and G&A roles, and redesigned the senior security engineer interview loop. Around it we built the recruiting ops, from Ashby automations and applicant scoring to a recruiting dashboard for January's talent leads.",
+   "about": "We run January's hiring across engineering, security, product and G&A roles, and redesigned the senior security and SWE interview loops. Around it we built the recruiting ops, from Ashby automations and applicant scoring to a recruiting dashboard and Claude screen prep for recruiters.",
    "practices": [
     {
      "id": "recruiting",
@@ -1938,6 +1945,13 @@
      "timezone": "America/Los_Angeles"
     },
     {
+     "name": "Tenzing Bhutia",
+     "role": "Recruiter, Head of Security Eng",
+     "email": "tenzing@carrara.is",
+     "slack": "U0B9LHU8KEW",
+     "timezone": "America/New_York"
+    },
+    {
      "name": "Justin Colsky",
      "role": "Recruiter, Sr. Security Eng",
      "email": "justin@carrara.is",
@@ -1945,10 +1959,10 @@
      "timezone": "America/Chicago"
     },
     {
-     "name": "Tenzing Bhutia",
-     "role": "Recruiter, Head of Security Eng",
-     "email": "tenzing@carrara.is",
-     "slack": "U0B9LHU8KEW",
+     "name": "Ali Horowitz",
+     "role": "Recruiter, S&O and Chief of Staff",
+     "email": "ali@carrara.is",
+     "slack": "U095Q8GNAJ1",
      "timezone": "America/New_York"
     },
     {
@@ -1964,12 +1978,19 @@
      "email": "kelley@carrara.is",
      "slack": "U0AT6B3QE9X",
      "timezone": "America/New_York"
+    },
+    {
+     "name": "Leonardo Lopes",
+     "role": "Automation and applicant scoring",
+     "email": "leonardo@carrara.is",
+     "slack": "U0BMBE2091P",
+     "timezone": "America/Sao_Paulo"
     }
    ],
    "workstreams": [
     {
      "title": "Engineering and G&A recruiting",
-     "detail": "Senior security engineer, head of security engineering, senior SWE, PM and chief of staff searches, plus a new senior analytics engineer search.",
+     "detail": "Security, SWE, PM, analytics engineering, chief of staff and strategy and operations searches are active.",
      "points": [
       "Security profile widened to software engineers with identity and IAM work",
       "Lookalike sourcing lists built from top candidate profiles for the security roles",
@@ -1977,25 +1998,34 @@
      ]
     },
     {
-     "title": "Security interview redesign",
-     "detail": "A new interview loop for the senior security engineer role is locked in, every candidate is on it and the old loop is retired.",
+     "title": "Interview redesigns",
+     "detail": "The SWE loop now puts coding in round one and folds the case study into systems design, with P3 roles moved over on Nov 9.",
      "points": [
-      "New loop that brings in the hiring manager's signal earlier",
-      "All candidates moved to the new loop, now the standard for the role"
+      "SWE loop: hiring manager screen plus coding up front, now standard for P3 and P4 roles",
+      "Senior security engineer loop with earlier hiring manager signal, old loop retired"
      ]
     },
     {
-     "title": "Recruiting ops and dashboard",
-     "detail": "Ashby automations, applicant scoring and a new recruiting dashboard for January's talent leads.",
+     "title": "Application review scoring",
+     "detail": "Ranked review decks are live for the senior SWE, strategy and operations and chief of staff searches.",
      "points": [
+      "Scoring that ranks each role's applicants into a swipe deck, best first",
+      "Everyone else on a ranked list, and nothing archived in Ashby automatically",
+      "Scoring compared with Ashby's own AI scoring"
+     ]
+    },
+    {
+     "title": "Recruiting ops and automation",
+     "detail": "New. Daily phone screen prep runs in Claude, with a feedback write-up step next, alongside the recruiting dashboard and recruiting management 101 docs.",
+     "points": [
+      "Claude task that pulls the day's screens from the calendar and Ashby into one view",
       "Recruiting dashboard with funnel, recruiter, goals and period comparison views",
-      "Applicant scoring that ranks each role's applicants, compared with Ashby's AI scoring",
       "Booking links, candidate emails and NDAs sent on stage change in Ashby"
      ]
     }
    ],
    "channel": null,
-   "updated": "2026-11-07",
+   "updated": "2026-11-14",
    "url": "https://hub.carrara.is/clients/january"
   },
   {
@@ -2020,18 +2050,18 @@
    "owner": "Katie Roe",
    "team": [
     {
-     "name": "Tina Khoury",
-     "role": "Account lead, people ops",
-     "email": "tina@carrara.is",
-     "slack": "U07ERRXB2LA",
-     "timezone": "America/New_York"
-    },
-    {
      "name": "Bec Bliss",
-     "role": "Recruiting lead and co-owner",
+     "role": "Co-owner, recruiting lead",
      "email": "bec@carrara.is",
      "slack": "U0BTYH2PH8E",
      "timezone": "America/New_York"
+    },
+    {
+     "name": "Tina Khoury",
+     "role": "People ops lead",
+     "email": "tina@carrara.is",
+     "slack": "U07ERRXB2LA",
+     "timezone": "America/Chicago"
     },
     {
      "name": "Katie Roe",
@@ -2074,9 +2104,34 @@
      "email": "hayley.samuels@carrara.is",
      "slack": "U077S1EQKDW",
      "timezone": "America/Denver"
+    },
+    {
+     "name": "Kelley Lantigua",
+     "role": "Recruiting coordination",
+     "email": "kelley@carrara.is",
+     "slack": "U0AT6B3QE9X",
+     "timezone": "America/New_York"
     }
    ],
    "workstreams": [
+    {
+     "title": "Embedded recruiting",
+     "detail": "Carrara recruiters run marketing, people and growth searches; the senior creative strategist search is moving to its final stage.",
+     "points": [
+      "Marketing searches: Head of PMM, senior media planner and senior creative strategist",
+      "People programs, recruiting coordinator and Head of Retention searches",
+      "Narrowed sourcing target lists for the creative and coordinator roles"
+     ]
+    },
+    {
+     "title": "Coordination and reporting",
+     "detail": "Interview scheduling and a weekly role by role update to the hiring team, plus a weekly check in and end of week rundown on recruiting coordinator finalists.",
+     "points": [
+      "Role by role recruiting update sent to the hiring team every Friday",
+      "Interview scheduling across engineering, finance and marketing roles",
+      "Talent report, and our outbound candidates synced into the client's Ashby"
+     ]
+    },
     {
      "title": "Performance reviews",
      "detail": "A review tool for Polymarket's end of year cycle, live for admins on the intranet; code cleanup and a security review come before it opens wider.",
@@ -2087,44 +2142,17 @@
      ]
     },
     {
-     "title": "Org health and offboarding",
-     "detail": "An org design view live for admins, and offboarding forms merged into the client's repo, with People team feedback next.",
+     "title": "Intranet people tools",
+     "detail": "An org design view and offboarding forms run on Polymarket's intranet, and two People team tools now connect to its backend in a pilot.",
      "points": [
       "Org design view for planning titles and reporting lines, live for admins",
-      "Roster, reporting lines, spans and layers mapped from the intranet",
-      "Offboarding forms for managers and the People team, with Slack alerts"
-     ]
-    },
-    {
-     "title": "Intranet tooling",
-     "detail": "The tools run on Polymarket's internal platform, and we're helping the People team connect two tools it built to a backend.",
-     "points": [
-      "Repo and people data access set up with the client's engineering team",
-      "Security review write-up on the tools' setup and access controls for the client",
-      "Repo README and an AGENTS.md for shared work, plus a People team Slack bot"
-     ]
-    },
-    {
-     "title": "Embedded recruiting",
-     "detail": "Carrara recruiters run marketing, people and growth searches through Nov 20, then build prospect lists and hand active candidates to Polymarket's recruiters on Nov 30.",
-     "points": [
-      "Marketing searches: Head of PMM, senior media planner and senior creative strategist",
-      "People programs, recruiting coordinator and Head of Retention searches",
-      "Narrowed sourcing target lists for the creative and coordinator roles"
-     ]
-    },
-    {
-     "title": "Coordination and reporting",
-     "detail": "Interview scheduling and a weekly role by role update to the hiring team; Polymarket's recruiters take over scheduling on Dec 1.",
-     "points": [
-      "Role by role recruiting update sent to the hiring team every Friday",
-      "Interview scheduling across engineering, finance and marketing roles",
-      "Talent report, and our outbound candidates synced into the client's Ashby"
+      "Offboarding forms for managers and the People team, with Slack alerts",
+      "Manager survey and career growth tools connected to the client's backend, in pilot"
      ]
     }
    ],
    "channel": null,
-   "updated": "2026-11-13",
+   "updated": "2026-11-14",
    "url": "https://hub.carrara.is/clients/polymarket"
   },
   {
@@ -3282,7 +3310,7 @@
      "role": "Partner",
      "email": "tina@carrara.is",
      "slack": "U07ERRXB2LA",
-     "timezone": "America/New_York"
+     "timezone": "America/Chicago"
     }
    ],
    "services": [
@@ -3542,7 +3570,7 @@
    "title": "Talent Partner",
    "email": "ania@carrara.is",
    "slack": "U07EHTT92CS",
-   "timezone": "America/Denver",
+   "timezone": "America/New_York",
    "photo": "https://hub.carrara.is/people/ania.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=ania%40carrara.is"
@@ -4004,7 +4032,7 @@
    "title": "Operations",
    "email": "margaux@carrara.is",
    "slack": "U0B6EK3H7GW",
-   "timezone": "America/New_York",
+   "timezone": "Europe/Amsterdam",
    "photo": "https://hub.carrara.is/people/margaux.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=margaux%40carrara.is"
@@ -4279,7 +4307,7 @@
    "title": "Partner",
    "email": "tina@carrara.is",
    "slack": "U07ERRXB2LA",
-   "timezone": "America/New_York",
+   "timezone": "America/Chicago",
    "photo": "https://hub.carrara.is/people/tina.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=tina%40carrara.is"
@@ -4312,7 +4340,7 @@
    "title": "Finance Partner",
    "email": "nick@carrara.is",
    "slack": "U0C4NUX9T60",
-   "timezone": "America/Denver",
+   "timezone": "America/Los_Angeles",
    "photo": "https://hub.carrara.is/people/nick.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=nick%40carrara.is"
@@ -4426,6 +4454,17 @@
    "photo": null,
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=argentina"
+  },
+  {
+   "id": "romina",
+   "name": "Romina Ideses",
+   "title": "Design Operations",
+   "email": null,
+   "slack": null,
+   "timezone": null,
+   "photo": null,
+   "linkedin": null,
+   "url": "https://hub.carrara.is/people?person=romina"
   }
  ]
 }
