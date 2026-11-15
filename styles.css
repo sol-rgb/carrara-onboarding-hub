@@ -573,9 +573,8 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
 }
 
 /* ---------- time off ---------- */
-/* the three essentials are the letter's labelled boxes (.spec); this only keeps
-   the room they take under the title and over what follows */
-.to-essentials { margin-bottom: var(--space-stack-xl); }
+/* the three essentials are the letter's labelled boxes (.spec); the subheading
+   under them brings its own 56, so there is nothing left for this to keep */
 .section-lbl { font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.12em; color: var(--taupe); margin-bottom: 8px; }
 /* the Carrara Hub gets its own card above the lists: it is the one link on this page people come back to */
 .res-feature { display: flex; margin-top: 40px; min-height: 0; text-decoration: none; color: inherit; }
@@ -1518,17 +1517,14 @@ body.chk-open { overflow: hidden; }
 body.chk-open #wk { display: none; }
 
 /* ---------- time off policy: collapsible sections ---------- */
-.to-acc-list { max-width: 760px; margin-top: 8px; }
-details.to-acc { border-bottom: 1px solid var(--hairline); }
-details.to-acc:first-child { border-top: 1px solid var(--hairline); }
-details.to-acc > summary, details.to-faq > summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-details.to-acc > summary::-webkit-details-marker, details.to-faq > summary::-webkit-details-marker { display: none; }
-details.to-acc > summary { padding: 20px 0; font-family: var(--serif); font-weight: var(--weight-400); font-size: var(--size-24); letter-spacing: -0.01em; }
-details.to-acc > summary::after, details.to-faq > summary::after { content: '+'; font-family: var(--rigid); font-size: var(--size-20); line-height: 1; color: var(--taupe); flex: none; }
-details.to-acc[open] > summary::after, details.to-faq[open] > summary::after { content: '\2212'; color: var(--color-content-accent); }
-details.to-acc > summary:hover, details.to-faq > summary:hover { color: var(--color-content-accent); }
-details.to-acc > summary:focus-visible, details.to-faq > summary:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
-details.to-acc > .pg { padding: 0 0 24px; }
+/* The policy's sections are read, not opened: each is a subheading and its text.
+   What stays folded is a question, which is what a fold is for. */
+details.to-faq > summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+details.to-faq > summary::-webkit-details-marker { display: none; }
+details.to-faq > summary::after { content: '+'; font-family: var(--rigid); font-size: var(--size-20); line-height: 1; color: var(--taupe); flex: none; }
+details.to-faq[open] > summary::after { content: '\2212'; color: var(--color-content-accent); }
+details.to-faq > summary:hover { color: var(--color-content-accent); }
+details.to-faq > summary:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
 details.to-faq { border-top: 1px solid var(--hairline); }
 details.to-faq:first-child { border-top: none; }
 details.to-faq > summary { padding: 14px 0; font-weight: var(--weight-500); font-size: var(--type-body-sm-size); line-height: var(--type-body-sm-leading); }
