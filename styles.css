@@ -1569,5 +1569,7 @@ details.to-faq > p { padding-bottom: 14px; }
   border-bottom: 1px solid var(--color-border-subtle);
   color: var(--color-content-default);
 }
+/* the holiday is what the row is about; the dates answer it */
+.hol-table td:first-child { font-weight: var(--weight-700); }
 .hol-table th:last-child, .hol-table td:last-child { padding-right: 0; }
 .hol-table td + td { font-variant-numeric: tabular-nums; white-space: nowrap; }
