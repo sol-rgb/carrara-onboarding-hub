@@ -261,14 +261,14 @@ a.textlink:hover { border-bottom-color: var(--color-content-accent); }
 .attr { font-style: italic; font-size: var(--type-body-sm-size); color: var(--taupe); }
 
 /* who we are split */
-.fact-list { margin-top: var(--space-stack-xl); }
+.fact-list { margin-top: var(--space-stack-lg); }
 .fact { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--hairline); font-size: var(--type-body-md-size); align-items: baseline; }
 .fact img { width: 11px; flex: none; position: relative; top: 1px; }
 .fact b { font-weight: var(--weight-500); }
 .quote-block { background: var(--sage-soft); clip-path: var(--rock); padding: 44px 40px; }
 
 /* ---------- history: big dynamic years ---------- */
-.history { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin: 64px 0 10px; }
+.history { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin: 64px 0 0; }
 .h-year { border-top: 2px solid var(--ink); padding-top: 12px; cursor: default; }
 .h-year .y {
   font-family: var(--rigid); font-weight: var(--weight-700); font-size: var(--type-title-lg-bold-size);
@@ -1221,7 +1221,7 @@ a.cl-cell:hover .cl-name { color: var(--color-content-accent); }
 
 /* the eyebrow over the title, Figma Hub / Home 345:1754 */
 .label {
-  margin: 0 0 var(--space-stack-lg);
+  margin: 0 0 var(--space-stack-md);
   font-family: var(--type-body-sm-family);
   font-size: var(--type-body-sm-size);
   font-weight: var(--type-body-sm-weight);
@@ -1229,8 +1229,9 @@ a.cl-cell:hover .cl-name { color: var(--color-content-accent); }
   color: var(--color-content-subtle);
 }
 
-/* an image is the column's width, as in the letter */
-.plate { margin: var(--space-stack-xl) 0 0; }
+/* an image is the column's width, as in the letter, and keeps 80 from the text
+   above and below it (gaps: the usage layer carries no job for a figure) */
+.plate { margin: var(--space-80) 0 0; }
 .plate img { display: block; width: 100%; height: auto; }
 .plate figcaption {
   margin-top: var(--space-stack-md);
@@ -1251,7 +1252,7 @@ a.cl-cell:hover .cl-name { color: var(--color-content-accent); }
   flex-direction: column;
   align-items: center;
   gap: var(--space-stack-xl);
-  margin: var(--space-stack-xl) 0 var(--space-stack-lg);
+  margin: var(--space-80) 0 var(--space-stack-lg);
 }
 .aside__rule { display: block; width: 40px; height: auto; }
 .aside__text {
@@ -1274,7 +1275,7 @@ a.cl-cell:hover .cl-name { color: var(--color-content-accent); }
   color: var(--color-content-subtle);
 }
 
-.who-intro { margin-top: var(--space-stack-xl); }
+.who-intro { margin-top: var(--space-stack-lg); }
 
 /* ---------- the letter's cards (graphics.js, fichas) ----------
    Each an ember outline with a square of ember hatching down its left, the
@@ -1283,6 +1284,9 @@ a.cl-cell:hover .cl-name { color: var(--color-content-accent); }
    same height, so the squares and the words line up from one to the next --
    here a grid with equal rows rather than the drawing's two passes.
    The letter's 20 of padding is off the system's grid; these sit on 24. */
+/* the title already holds its 24; the cards do not add their own */
+h2.sub + .cards { margin-top: 0; }
+
 .cards {
   display: grid;
   grid-auto-rows: 1fr;
