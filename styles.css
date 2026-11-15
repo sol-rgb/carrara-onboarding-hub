@@ -14,6 +14,13 @@
   --orange: var(--color-background-accent);
   --blue: var(--color-background-paper-cielo);
   --hairline: rgba(45, 42, 42, 0.14);             /* the system has no translucent border */
+  /* One grain sheet, of the two the letter and the site lay. Tier 1 carries
+     --grain-bite, which is the whole grain at ONE sheet, and says in its own words
+     that the site reaches 0.0956 with two of 0.049. The arrangement is the point:
+     one sheet under the frame and one over it, so the page carries the grain and
+     the white mat carries a fifth of what a single full sheet would put on it.
+     The second value is not in the API -- see onboarding-hub-gaps.md. */
+  --grain-sheet: 0.049;
   --serif: var(--family-serif);
   --sans: var(--family-sans);
   --rigid: var(--family-sans);
@@ -48,14 +55,14 @@ body {
 }
 .grain {
   position: fixed; inset: 0; z-index: 1; pointer-events: none;
-  opacity: var(--grain-bite);
+  opacity: var(--grain-sheet);
   background-color: var(--color-grain-ink-accent);
   -webkit-mask-image: var(--grain-mask);
   mask-image: var(--grain-mask);
 }
-/* One sheet, over the mat. Tier 1 says --grain-bite is the whole grain at one
-   sheet; the letter reaches the same place with two of its own value, which
-   the system does not carry. */
+/* The second sheet, over the mat, as the letter has it from the file: the frame
+   is paper too, and takes a grain of its own rather than none. Under it, .grain
+   sits below the mat (z 1) and grains the page. */
 .grain--over { z-index: 41; }
 
 /* The block of the iso, 32 square, standing in the corner of the mat: the same
@@ -1150,11 +1157,19 @@ body::after {
   background-color: var(--color-background-default);
 }
 
-/* The letter's figure carries a grain of its own, because there the page's
-   grain lies under it (z 1) and its paper would cover it. The hub lays its one
-   sheet over everything instead (.grain--over, z 41), so the stage is already
-   grained and a second sheet only doubles it.
-   .cronologia { background } alone, and the page's grain falls on it. */
+/* The figure's paper covers the sheet of grain that lies under the page (z 1),
+   so it carries that sheet itself and reads as the same paper. One sheet, the
+   same --grain-sheet: the one over the mat (z 41) falls on it as on everything
+   else, and the two compose to what the rest of the page carries. */
+.cronologia::before {
+  content: "";
+  position: absolute; inset: 0; pointer-events: none;
+  opacity: var(--grain-sheet);
+  background-color: var(--color-grain-ink-accent);
+  -webkit-mask-image: var(--grain-mask);
+  mask-image: var(--grain-mask);
+}
+
 
 .cronologia__escena { position: relative; z-index: 2; height: min(317px, 37svh); overflow-x: clip; }
 .cronologia__capa { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
