@@ -1225,14 +1225,20 @@ a.cl-cell:hover .cl-name { color: var(--color-content-accent); }
    drawn rules, 56 from each. Its measure is the letter's 476 -- narrower than
    the text, which is what sets it apart -- and tier 1 has no token for it
    (see onboarding-hub-gaps.md). */
+/* The quote holds who said it: the words and the line under them are one block,
+   24 apart, and the two rules keep their 56 from the text by making up the rest
+   -- the letter's own calc(56px - var(--gap-block)), written the way round this
+   flex gap needs it. */
 .aside {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-stack-xl);
-  margin: var(--space-80) 0 var(--space-stack-lg);
+  gap: var(--space-stack-lg);
+  margin: var(--space-80) 0 0;
 }
 .aside__rule { display: block; width: 40px; height: auto; }
+.aside__rule:first-child { margin-bottom: calc(var(--space-stack-xl) - var(--space-stack-lg)); }
+.aside__rule:last-child { margin-top: calc(var(--space-stack-xl) - var(--space-stack-lg)); }
 .aside__text {
   max-width: 476px;
   margin: 0;
