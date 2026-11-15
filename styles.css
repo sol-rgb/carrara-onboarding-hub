@@ -148,7 +148,7 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
 
 .cover__title,
 .page-title {
-  margin: 0;
+  margin: 0 0 var(--space-stack-lg);
   font-family: var(--type-title-sm-family);
   font-size: var(--type-title-sm-size);
   font-weight: var(--type-title-sm-weight);
@@ -156,6 +156,9 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
   letter-spacing: var(--type-title-sm-tracking);
   color: var(--color-content-default);
 }
+/* and what follows does not add its own: the grids that open a view carry
+   margins of their own further down the sheet, so this has to outrank them */
+.view.visible > .page-title + * { margin-top: 0; }
 
 /* full ink, not the subtle grey the rest of the hub reads in */
 .cover__body { color: var(--color-content-default); }
@@ -198,14 +201,7 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
 }
 .eyebrow img { width: 11px; height: auto; display: block; }
 
-h1.display {
-  font-family: var(--serif); font-weight: var(--weight-400);
-  font-size: var(--type-title-lg-bold-size);
-  letter-spacing: -0.02em; line-height: var(--type-title-lg-bold-leading);
-  max-width: 22ch; margin-bottom: 36px;
-}
 .u { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 7px; }
-h1.display sup { font-size: 0.32em; vertical-align: super; letter-spacing: 0; margin-left: 2px; }
 h2.sub {
   font-family: var(--serif); font-weight: var(--weight-400); font-size: var(--type-title-sm-size);
   letter-spacing: -0.015em; line-height: var(--type-title-sm-leading);
@@ -1259,7 +1255,6 @@ a.cl-cell:hover .cl-name { color: var(--color-content-accent); }
   color: var(--color-content-default);
 }
 
-.who-intro { margin-top: var(--space-stack-lg); }
 
 /* ---------- the letter's cards (graphics.js, fichas) ----------
    Each an ember outline with a square of ember hatching down its left, the
