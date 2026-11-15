@@ -1548,8 +1548,10 @@ details.to-faq[open] > summary::after { content: '\2212'; color: var(--color-con
 details.to-faq > summary:hover { color: var(--color-content-accent); }
 details.to-faq > summary:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
 details.to-faq { border-top: 1px solid var(--hairline); }
+/* a heading inside an answer is under the question, not level with it */
+details.to-faq h4 { font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); }
 details.to-faq:first-child { border-top: none; }
-details.to-faq > summary { padding: var(--space-stack-md) 0; font-weight: var(--weight-700); font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); }
+details.to-faq > summary { padding: var(--space-stack-md) 0; font-weight: var(--weight-700); font-size: var(--type-body-lg-size); line-height: var(--type-body-lg-leading); }
 details.to-faq > p { padding-bottom: 14px; }
 /* One size and one family, as table.channels has it: the head carries the
    drawings' tracking at the cells' size, and the dates line up on tabular
