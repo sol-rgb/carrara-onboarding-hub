@@ -1546,8 +1546,28 @@ details.to-faq { border-top: 1px solid var(--hairline); }
 details.to-faq:first-child { border-top: none; }
 details.to-faq > summary { padding: 14px 0; font-weight: var(--weight-500); font-size: var(--type-body-sm-size); line-height: var(--type-body-sm-leading); }
 details.to-faq > p { padding-bottom: 14px; }
-.hol-table { width: 100%; border-collapse: collapse; margin: 6px 0 4px; }
-.hol-table th { font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.12em; color: var(--taupe); text-align: left; font-weight: var(--weight-700); padding: 0 14px 10px 0; border-bottom: 1px solid var(--ink); }
-.hol-table td { padding: 12px 14px 12px 0; border-bottom: 1px solid var(--hairline); font-size: var(--type-body-sm-size); }
-.hol-table td:first-child { font-weight: var(--weight-500); }
-.hol-table td + td { font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.05em; color: var(--color-content-default); white-space: nowrap; }
+/* One size and one family, as table.channels has it: the head carries the
+   drawings' tracking at the cells' size, and the dates line up on tabular
+   figures rather than on a second typeface two steps smaller. */
+.hol-table {
+  width: 100%; border-collapse: collapse;
+  margin: var(--space-stack-lg) 0 var(--space-stack-lg);
+  font-family: var(--type-body-sm-family);
+  font-size: var(--type-body-sm-size);
+  font-weight: var(--type-body-sm-weight);
+  line-height: var(--type-body-sm-leading);
+}
+.hol-table th {
+  text-align: left; font-weight: var(--type-body-sm-weight);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--color-content-subtle);
+  padding: 0 var(--space-stack-md) var(--space-stack-sm) 0;
+  border-bottom: 1px solid var(--color-border-default);
+}
+.hol-table td {
+  padding: var(--space-stack-md) var(--space-stack-md) var(--space-stack-md) 0;
+  border-bottom: 1px solid var(--color-border-subtle);
+  color: var(--color-content-default);
+}
+.hol-table th:last-child, .hol-table td:last-child { padding-right: 0; }
+.hol-table td + td { font-variant-numeric: tabular-nums; white-space: nowrap; }
