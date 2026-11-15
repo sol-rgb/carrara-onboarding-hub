@@ -438,7 +438,18 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
    three lines of it, and the client logos floated wherever the text ended.
    Cards give every person the same frame and push the facts to a fixed
    footer, so the grid reads as a wall of people rather than a table. */
-.team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(272px, 1fr)); gap: 16px; margin-top: 34px; }
+/* The people are a gallery, not reading: they take the wide track, the column
+   plus the 180 either side of it, the way the letter lets a figure out of the
+   column. What filters them goes with them, so the block has one left edge.
+   At 200 the track fits four and no more -- five would need 1064 and the wide
+   track stops at 1010 -- and it steps down to three, two and one as the window
+   narrows. */
+.view.visible > .team-tools,
+.view.visible > .team-filters,
+.view.visible > .team-grid,
+.view.visible > .team-note { grid-column: wide; }
+
+.team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-top: 34px; }
 .member {
   display: flex; flex-direction: column; cursor: pointer;
   border: 1px solid var(--hairline); clip-path: var(--chamfer);
