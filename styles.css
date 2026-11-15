@@ -939,7 +939,7 @@ a.client-row:hover .cn { color: var(--color-content-accent); }
   font-weight: var(--weight-700);
   line-height: var(--type-body-md-leading);
   color: var(--color-content-default);
-  margin: var(--space-stack-lg) 0 var(--space-stack-sm);
+  margin: var(--space-stack-lg) 0 var(--space-stack-md);
 }
 .pg p { font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); color: var(--color-content-default); margin-bottom: var(--space-stack-md); }
 /* the same plain list as everywhere else (.bullets): a disc, indented by a block.
@@ -1552,7 +1552,10 @@ details.to-faq { border-top: 1px solid var(--hairline); }
 details.to-faq h4 { font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); }
 details.to-faq:first-child { border-top: none; }
 details.to-faq > summary { padding: var(--space-stack-md) 0; font-weight: var(--weight-700); font-size: var(--type-body-lg-size); line-height: var(--type-body-lg-leading); }
-details.to-faq > p { padding-bottom: 14px; }
+/* the answer closes 16 over the next question, once, rather than every paragraph
+   in it carrying a padding of its own */
+details.to-faq > :last-child { margin-bottom: 0; }
+details.to-faq[open] { padding-bottom: var(--space-stack-md); }
 /* One size and one family, as table.channels has it: the head carries the
    drawings' tracking at the cells' size, and the dates line up on tabular
    figures rather than on a second typeface two steps smaller. */
