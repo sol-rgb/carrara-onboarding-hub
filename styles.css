@@ -241,7 +241,7 @@ a.textlink:hover { border-bottom-color: var(--color-content-accent); }
   position: absolute; right: -20px; top: -26px; width: min(180px, 14vw);
   pointer-events: none;
 }
-.cta-row { margin: 44px 0 12px; display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+.cta-row { margin: var(--space-stack-xl) 0 var(--space-stack-md); display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
 .btn-primary {
   font-family: var(--rigid); font-weight: var(--weight-700); font-size: var(--type-body-xs-size); letter-spacing: 0.08em;
   background: var(--color-background-strong); color: var(--color-content-knockout); border: none; cursor: pointer;
@@ -502,7 +502,7 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
 .team-note { margin-top: 26px; font-size: var(--type-body-sm-size); color: var(--taupe); }
 
 /* ---------- clients ---------- */
-.client-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0 72px; margin-top: 44px; }
+.client-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0 72px; margin-top: var(--space-stack-xl); }
 .client-row { display: flex; gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--hairline); align-items: flex-start; cursor: pointer; }
 .cstatus { font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.1em; color: var(--taupe); border: 1px solid var(--hairline); padding: 2px 8px; margin-left: 10px; vertical-align: middle; }
 .cstatus.on { color: var(--color-content-accent); border-color: currentColor; }
