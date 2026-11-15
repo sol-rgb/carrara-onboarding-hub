@@ -589,9 +589,8 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
 .res-feature-lbl { font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.12em; color: var(--color-content-knockout); margin-bottom: 18px; }
 .res-feature-cta { font-family: var(--rigid); font-weight: var(--weight-700); font-size: var(--type-body-xs-size); letter-spacing: 0.08em; color: var(--color-content-knockout); margin-top: 28px; }
 /* the reading list is a gallery of links: it takes the wide track and fits what
-   it fits, the same 260 a client row asks for. One on its own keeps the column. */
+   it fits, the same 260 a client row asks for. */
 .res-cols { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0 72px; margin-top: var(--space-stack-xl); }
-.res-cols.one { grid-template-columns: 1fr; }
 /* the link and the line that explains it read the same size: the title was a step
    under its own description */
 .res-item { padding: var(--space-stack-md) 0; border-bottom: 1px solid var(--hairline); font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); }
