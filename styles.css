@@ -607,6 +607,7 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
   margin-top: var(--space-stack-xl);
 }
 .spec-grid.three { grid-template-columns: repeat(3, 1fr); }
+.spec-grid.one { grid-template-columns: 1fr; }
 /* a note under a grid keeps a block's distance, as it did from the old rows */
 .spec-grid + .body-copy,
 .bullets + .body-copy { margin-top: var(--space-stack-lg); }
@@ -656,6 +657,9 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
 /* Watercooler boxes are anchors so they open Slack and channel labels link to
    them, but neither may read as a blue link: the label takes a dotted rule and
    the frame doubles under the pointer. */
+/* a format and its note: the string on its own line, what it means under it */
+.spec__d b { display: block; margin-bottom: var(--space-stack-sm); color: var(--color-content-default); }
+
 a.spec { text-decoration: none; }
 a.spec .spec__tab,
 .spec__tab a {
@@ -1542,11 +1546,6 @@ details.to-faq { border-top: 1px solid var(--hairline); }
 details.to-faq:first-child { border-top: none; }
 details.to-faq > summary { padding: 14px 0; font-weight: var(--weight-500); font-size: var(--type-body-sm-size); line-height: var(--type-body-sm-leading); }
 details.to-faq > p { padding-bottom: 14px; }
-.to-format { background: var(--sage-soft); clip-path: var(--chamfer); padding: 16px 20px; margin: 12px 0; }
-.to-format-lbl { font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.13em; text-transform: uppercase; color: var(--taupe); margin-bottom: 6px; }
-.to-format b { font-weight: var(--weight-500); color: var(--ink); font-size: var(--type-body-sm-size); }
-.to-format ul { margin: 6px 0 0; }
-.to-format li { margin-bottom: 0; }
 .hol-table { width: 100%; border-collapse: collapse; margin: 6px 0 4px; }
 .hol-table th { font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.12em; color: var(--taupe); text-align: left; font-weight: var(--weight-700); padding: 0 14px 10px 0; border-bottom: 1px solid var(--ink); }
 .hol-table td { padding: 12px 14px 12px 0; border-bottom: 1px solid var(--hairline); font-size: var(--type-body-sm-size); }
