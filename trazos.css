@@ -1,0 +1,172 @@
+/* ======================================================================
+   trazos.css -- the letter's line vocabulary, as the hub reads it.
+
+   The drawing engine (trazos.js) and this vocabulary come from
+   Letters To Partners/trazos verbatim, with one change: where the letter
+   wired --tz-* to its own primitives, this file wires them to the system's
+   usage jobs. So a drawing follows the theme the way everything else does,
+   and nothing here reaches past tier 2.
+
+   The letter's own @font-face block is gone too: the hub already serves
+   Manrope and Portrait, and --tz-fuente reads the sans the page is set in.
+
+   Codes: L lines (L1 thick, L2 fine 1.25, L6 grid, L7 hair 0.6) ·
+   F ends (F1 closed arrow, F3 tick) · P points · C dimensions (trazos.js) ·
+   R fills · T texts. A line is drawn with a pen (filter tz-boli);
+   class="vectorial" turns the pen off.
+   ====================================================================== */
+
+:root {
+  --tz-display: var(--serif);
+  --tz-text: var(--sans);
+  --tz-meta: var(--sans);
+  --tz-fuente: var(--sans);
+
+  /* paper and inks: the jobs, so a drawing turns with the page */
+  --tz-papel: var(--color-background-default);
+  --tz-ink:   var(--color-content-default);
+  --tz-gris:  var(--color-content-subtle);
+  --tz-suave: var(--color-border-subtle);
+  --tz-ember: var(--color-content-accent);
+
+  /* weights, in the viewBox's units, as the letter draws them */
+  --tz-w1: 3;
+  --tz-w2: 1.25;
+  --tz-w6: 0.75;
+  --tz-w7: 0.6;
+}
+
+svg.tec { display: block; width: 100%; height: auto; overflow: visible; color: var(--tz-ink); }
+
+/* ---- Color: la tinta con la que se dibuja cualquier elemento ---------- */
+/* Las líneas toman el color de `currentColor`; los rellenos y textos también.
+   Por defecto ink. */
+.tec .ink   { color: var(--tz-ink); }
+.tec .gris  { color: var(--tz-gris); }
+.tec .suave { color: var(--tz-suave); }
+.tec .ember { color: var(--tz-ember); }
+.tec .papel { color: var(--tz-papel); }
+
+/* ---- L · Líneas --------------------------------------------------------- */
+.tec .l1, .tec .l2, .tec .l3, .tec .l4, .tec .l5, .tec .l6, .tec .l7 {
+  fill: none; stroke: currentColor; stroke-linejoin: round;
+  /* bolígrafo: temblor, presión y grano (trazos.js · Trazos.boligrafo); cada gráfico pone
+     los suyos en --tz-boli (L1), --tz-boli-fino (L2–L6) y --tz-boli-capilar (L7). */
+  filter: var(--tz-boli-fino, url(#tz-boli-fino));
+}
+.tec .l1 { filter: var(--tz-boli, url(#tz-boli)); }
+.tec .l7 { filter: var(--tz-boli-capilar, url(#tz-boli-capilar)); }
+/* vectorial: sin bolígrafo, en una línea o en todo el gráfico */
+.tec .vectorial, .tec.vectorial .l1, .tec.vectorial .l2, .tec.vectorial .l3, .tec.vectorial .l4, .tec.vectorial .l5, .tec.vectorial .l6, .tec.vectorial .l7 { filter: none; }
+.tec .l1 { stroke-width: var(--tz-w1); stroke-linecap: round; }                 /* L1 continua gruesa · el dato */
+.tec .l2 { stroke-width: var(--tz-w2); stroke-linecap: butt; }                  /* L2 continua fina · ejes, contornos, cotas */
+.tec .l3 { stroke-width: var(--tz-w2); stroke-linecap: butt; stroke-dasharray: 7 5; }        /* L3 trazos · un corte, un umbral */
+.tec .l4 { stroke-width: 1.6; stroke-linecap: round; stroke-dasharray: 0.1 4.5; }   /* L4 punteada · guía, proyección */
+.tec .l5 { stroke-width: var(--tz-w2); stroke-linecap: butt; stroke-dasharray: 12 4 1.5 4; } /* L5 trazo y punto · referencia, órbita */
+.tec .l6 { stroke-width: var(--tz-w6); stroke-linecap: butt; color: var(--tz-suave); }       /* L6 grilla */
+.tec .l7 { stroke-width: var(--tz-w7); stroke-linecap: butt; }                               /* L7 capilar · ticks, extensiones de cota */
+/* grosor a mano cuando hace falta (ej: una L1 más gruesa para el dato principal) */
+.tec .w-2 { stroke-width: 2; } .tec .w-4 { stroke-width: 4; } .tec .w-5 { stroke-width: 5; }
+
+/* ---- F · Remates (markers de trazos.js) -----------------------------------
+   Siempre del mismo color que su línea: cada tinta fija en variables cuál juego de
+   remates usar (--tz-f1 → #tz-f1-gris…), y la línea lo hereda de su clase de color o
+   de la de un grupo que la contiene. Sin tinta: ink. */
+svg.tec, .tec .ink { --tz-f1: url(#tz-f1-ink); --tz-f1-chica: url(#tz-f1-chica-ink); --tz-f1-grande: url(#tz-f1-grande-ink); --tz-f1-extra: url(#tz-f1-extra-ink); --tz-f2: url(#tz-f2-ink); --tz-f2-chica: url(#tz-f2-chica-ink); --tz-f2-grande: url(#tz-f2-grande-ink); --tz-f2-extra: url(#tz-f2-extra-ink); --tz-f3: url(#tz-f3-ink); --tz-f3-chica: url(#tz-f3-chica-ink); --tz-f3-grande: url(#tz-f3-grande-ink); --tz-f3-extra: url(#tz-f3-extra-ink); --tz-f4: url(#tz-f4-ink); --tz-f4-chica: url(#tz-f4-chica-ink); --tz-f4-grande: url(#tz-f4-grande-ink); --tz-f4-extra: url(#tz-f4-extra-ink); --tz-f5: url(#tz-f5-ink); --tz-f5-chica: url(#tz-f5-chica-ink); --tz-f5-grande: url(#tz-f5-grande-ink); --tz-f5-extra: url(#tz-f5-extra-ink); }
+.tec .gris { --tz-f1: url(#tz-f1-gris); --tz-f1-chica: url(#tz-f1-chica-gris); --tz-f1-grande: url(#tz-f1-grande-gris); --tz-f1-extra: url(#tz-f1-extra-gris); --tz-f2: url(#tz-f2-gris); --tz-f2-chica: url(#tz-f2-chica-gris); --tz-f2-grande: url(#tz-f2-grande-gris); --tz-f2-extra: url(#tz-f2-extra-gris); --tz-f3: url(#tz-f3-gris); --tz-f3-chica: url(#tz-f3-chica-gris); --tz-f3-grande: url(#tz-f3-grande-gris); --tz-f3-extra: url(#tz-f3-extra-gris); --tz-f4: url(#tz-f4-gris); --tz-f4-chica: url(#tz-f4-chica-gris); --tz-f4-grande: url(#tz-f4-grande-gris); --tz-f4-extra: url(#tz-f4-extra-gris); --tz-f5: url(#tz-f5-gris); --tz-f5-chica: url(#tz-f5-chica-gris); --tz-f5-grande: url(#tz-f5-grande-gris); --tz-f5-extra: url(#tz-f5-extra-gris); }
+.tec .suave { --tz-f1: url(#tz-f1-suave); --tz-f1-chica: url(#tz-f1-chica-suave); --tz-f1-grande: url(#tz-f1-grande-suave); --tz-f1-extra: url(#tz-f1-extra-suave); --tz-f2: url(#tz-f2-suave); --tz-f2-chica: url(#tz-f2-chica-suave); --tz-f2-grande: url(#tz-f2-grande-suave); --tz-f2-extra: url(#tz-f2-extra-suave); --tz-f3: url(#tz-f3-suave); --tz-f3-chica: url(#tz-f3-chica-suave); --tz-f3-grande: url(#tz-f3-grande-suave); --tz-f3-extra: url(#tz-f3-extra-suave); --tz-f4: url(#tz-f4-suave); --tz-f4-chica: url(#tz-f4-chica-suave); --tz-f4-grande: url(#tz-f4-grande-suave); --tz-f4-extra: url(#tz-f4-extra-suave); --tz-f5: url(#tz-f5-suave); --tz-f5-chica: url(#tz-f5-chica-suave); --tz-f5-grande: url(#tz-f5-grande-suave); --tz-f5-extra: url(#tz-f5-extra-suave); }
+.tec .ember { --tz-f1: url(#tz-f1-ember); --tz-f1-chica: url(#tz-f1-chica-ember); --tz-f1-grande: url(#tz-f1-grande-ember); --tz-f1-extra: url(#tz-f1-extra-ember); --tz-f2: url(#tz-f2-ember); --tz-f2-chica: url(#tz-f2-chica-ember); --tz-f2-grande: url(#tz-f2-grande-ember); --tz-f2-extra: url(#tz-f2-extra-ember); --tz-f3: url(#tz-f3-ember); --tz-f3-chica: url(#tz-f3-chica-ember); --tz-f3-grande: url(#tz-f3-grande-ember); --tz-f3-extra: url(#tz-f3-extra-ember); --tz-f4: url(#tz-f4-ember); --tz-f4-chica: url(#tz-f4-chica-ember); --tz-f4-grande: url(#tz-f4-grande-ember); --tz-f4-extra: url(#tz-f4-extra-ember); --tz-f5: url(#tz-f5-ember); --tz-f5-chica: url(#tz-f5-chica-ember); --tz-f5-grande: url(#tz-f5-grande-ember); --tz-f5-extra: url(#tz-f5-extra-ember); }
+.tec .papel { --tz-f1: url(#tz-f1-papel); --tz-f1-chica: url(#tz-f1-chica-papel); --tz-f1-grande: url(#tz-f1-grande-papel); --tz-f1-extra: url(#tz-f1-extra-papel); --tz-f2: url(#tz-f2-papel); --tz-f2-chica: url(#tz-f2-chica-papel); --tz-f2-grande: url(#tz-f2-grande-papel); --tz-f2-extra: url(#tz-f2-extra-papel); --tz-f3: url(#tz-f3-papel); --tz-f3-chica: url(#tz-f3-chica-papel); --tz-f3-grande: url(#tz-f3-grande-papel); --tz-f3-extra: url(#tz-f3-extra-papel); --tz-f4: url(#tz-f4-papel); --tz-f4-chica: url(#tz-f4-chica-papel); --tz-f4-grande: url(#tz-f4-grande-papel); --tz-f4-extra: url(#tz-f4-extra-papel); --tz-f5: url(#tz-f5-papel); --tz-f5-chica: url(#tz-f5-chica-papel); --tz-f5-grande: url(#tz-f5-grande-papel); --tz-f5-extra: url(#tz-f5-extra-papel); }
+.tec .f1 { marker-end: var(--tz-f1, url(#tz-f1)); } .tec .f1.ambos { marker-start: var(--tz-f1, url(#tz-f1)); }   /* F1 flecha cerrada · ejes, dirección */
+.tec .f2 { marker-end: var(--tz-f2, url(#tz-f2)); } .tec .f2.ambos { marker-start: var(--tz-f2, url(#tz-f2)); }   /* F2 flecha abierta · flujo, trayecto */
+.tec .f3 { marker-end: var(--tz-f3, url(#tz-f3)); } .tec .f3.ambos { marker-start: var(--tz-f3, url(#tz-f3)); }   /* F3 tick · cotas */
+.tec .f4 { marker-end: var(--tz-f4, url(#tz-f4)); } .tec .f4.ambos { marker-start: var(--tz-f4, url(#tz-f4)); }   /* F4 punto · termina en un nodo */
+.tec .f5 { marker-end: var(--tz-f5, url(#tz-f5)); } .tec .f5.ambos { marker-start: var(--tz-f5, url(#tz-f5)); }   /* F5 cuadrado · termina en un bloque, un estado */
+/* tamaños: se suman a la clase del remate · F1 chica / F1 grande / F1 extra (normal no lleva clase) */
+.tec .f1.f-chica { marker-end: var(--tz-f1-chica, url(#tz-f1-chica)); } .tec .f1.f-chica.ambos { marker-start: var(--tz-f1-chica, url(#tz-f1-chica)); }
+.tec .f2.f-chica { marker-end: var(--tz-f2-chica, url(#tz-f2-chica)); } .tec .f2.f-chica.ambos { marker-start: var(--tz-f2-chica, url(#tz-f2-chica)); }
+.tec .f3.f-chica { marker-end: var(--tz-f3-chica, url(#tz-f3-chica)); } .tec .f3.f-chica.ambos { marker-start: var(--tz-f3-chica, url(#tz-f3-chica)); }
+.tec .f4.f-chica { marker-end: var(--tz-f4-chica, url(#tz-f4-chica)); } .tec .f4.f-chica.ambos { marker-start: var(--tz-f4-chica, url(#tz-f4-chica)); }
+.tec .f5.f-chica { marker-end: var(--tz-f5-chica, url(#tz-f5-chica)); } .tec .f5.f-chica.ambos { marker-start: var(--tz-f5-chica, url(#tz-f5-chica)); }
+.tec .f1.f-grande { marker-end: var(--tz-f1-grande, url(#tz-f1-grande)); } .tec .f1.f-grande.ambos { marker-start: var(--tz-f1-grande, url(#tz-f1-grande)); }
+.tec .f2.f-grande { marker-end: var(--tz-f2-grande, url(#tz-f2-grande)); } .tec .f2.f-grande.ambos { marker-start: var(--tz-f2-grande, url(#tz-f2-grande)); }
+.tec .f3.f-grande { marker-end: var(--tz-f3-grande, url(#tz-f3-grande)); } .tec .f3.f-grande.ambos { marker-start: var(--tz-f3-grande, url(#tz-f3-grande)); }
+.tec .f4.f-grande { marker-end: var(--tz-f4-grande, url(#tz-f4-grande)); } .tec .f4.f-grande.ambos { marker-start: var(--tz-f4-grande, url(#tz-f4-grande)); }
+.tec .f5.f-grande { marker-end: var(--tz-f5-grande, url(#tz-f5-grande)); } .tec .f5.f-grande.ambos { marker-start: var(--tz-f5-grande, url(#tz-f5-grande)); }
+.tec .f1.f-extra { marker-end: var(--tz-f1-extra, url(#tz-f1-extra)); } .tec .f1.f-extra.ambos { marker-start: var(--tz-f1-extra, url(#tz-f1-extra)); }
+.tec .f2.f-extra { marker-end: var(--tz-f2-extra, url(#tz-f2-extra)); } .tec .f2.f-extra.ambos { marker-start: var(--tz-f2-extra, url(#tz-f2-extra)); }
+.tec .f3.f-extra { marker-end: var(--tz-f3-extra, url(#tz-f3-extra)); } .tec .f3.f-extra.ambos { marker-start: var(--tz-f3-extra, url(#tz-f3-extra)); }
+.tec .f4.f-extra { marker-end: var(--tz-f4-extra, url(#tz-f4-extra)); } .tec .f4.f-extra.ambos { marker-start: var(--tz-f4-extra, url(#tz-f4-extra)); }
+.tec .f5.f-extra { marker-end: var(--tz-f5-extra, url(#tz-f5-extra)); } .tec .f5.f-extra.ambos { marker-start: var(--tz-f5-extra, url(#tz-f5-extra)); }
+
+/* ---- P · Puntos --------------------------------------------------------- */
+/* Tamaños regulados (2026-10-26): el sistema fija el radio, no el gráfico.
+   Cuatro tamaños (radio en unidades del viewBox) y una escala global:
+     chica 3 · normal 5 (por defecto) · grande 8 · extra 12
+     class="p1 p-grande" · Trazos.tamanoPuntos(k) cambia --tz-p-escala.
+   El atributo r del <circle> se ignora. Para un radio fuera de la regla:
+   style="--pr: 7". */
+:root {
+  --tz-p-chica: 3; --tz-p-normal: 5; --tz-p-grande: 8; --tz-p-extra: 12;
+  --tz-p-escala: 1;
+}
+.tec .p1, .tec .p2, .tec .p3, .tec .p4, .tec .p5 { --pr: var(--tz-p-normal); }
+.tec .p-chica  { --pr: var(--tz-p-chica); }
+.tec .p-grande { --pr: var(--tz-p-grande); }
+.tec .p-extra  { --pr: var(--tz-p-extra); }
+.tec circle.p1, .tec circle.p2, .tec circle.p3 { r: calc(var(--pr) * var(--tz-p-escala) * 1px); }
+
+.tec .p1 { fill: currentColor; stroke: none; }                                                          /* P1 lleno */
+.tec .p2 { fill: var(--tz-papel); stroke: currentColor; stroke-width: var(--tz-w2); }                   /* P2 hueco */
+.tec .p3 { fill: currentColor; stroke: var(--tz-papel); stroke-width: calc(var(--pr) * var(--tz-p-escala) * 0.7px + 0.5px); paint-order: stroke; } /* P3 con halo · se despega de la línea */
+/* P4 cruz · el path es de radio 1 alrededor de su origen; el tamaño lo da la escala,
+   y el trazo se compensa para que quede siempre de 1.25 */
+.tec .p4 { fill: none; stroke: currentColor; stroke-linecap: butt;
+  transform: scale(calc(var(--pr) * var(--tz-p-escala)));
+  stroke-width: calc(1.25px / (var(--pr) * var(--tz-p-escala))); }
+/* P5 diana · anillo (1.2·radio) + centro lleno (0.5·radio), con aire de papel entre
+   los dos y alrededor: corta la línea donde se apoya. La dibuja Trazos.diana. */
+.tec .p5 .p5-aire   { fill: var(--tz-papel); stroke: none; r: calc(var(--pr) * var(--tz-p-escala) * 1.2px + 2.5px); }
+.tec .p5 .p5-anillo { fill: none; stroke: currentColor; stroke-width: 1.6; r: calc(var(--pr) * var(--tz-p-escala) * 1.2px); }
+.tec .p5 .p5-centro { fill: currentColor; stroke: none; r: calc(var(--pr) * var(--tz-p-escala) * 0.5px); }
+
+/* los puntos también se dibujan con bolígrafo, con el de L1 (mueve el canto sin mezclar
+   colores: la tinta corrida de las finas mezclaba el papel del hueco y la diana con el trazo) */
+.tec circle.p1, .tec circle.p2, .tec circle.p3, .tec .p4-trazo, .tec .p5 { filter: var(--tz-boli, url(#tz-boli)); }
+.tec circle.vectorial, .tec .p4-trazo.vectorial, .tec .p5.vectorial,
+.tec.vectorial circle.p1, .tec.vectorial circle.p2, .tec.vectorial circle.p3, .tec.vectorial .p4-trazo, .tec.vectorial .p5 { filter: none; }
+
+/* ---- R · Rellenos (patrones definidos por trazos.js, uno por color) ---- */
+.tec .r1 { fill: currentColor; fill-opacity: 0.14; stroke: none; }   /* R1 sólido · una zona, un área bajo la curva */
+.tec .r6 { fill: currentColor; stroke: none; }                       /* R6 tinta · lleno pleno */
+.tec .r2 { fill: url(#tz-r2-ink); }   .tec .r2.gris { fill: url(#tz-r2-gris); }   .tec .r2.ember { fill: url(#tz-r2-ember); }   .tec .r2.suave { fill: url(#tz-r2-suave); }   /* R2 rayado */
+.tec .r3 { fill: url(#tz-r3-ink); }   .tec .r3.gris { fill: url(#tz-r3-gris); }   .tec .r3.ember { fill: url(#tz-r3-ember); }   .tec .r3.suave { fill: url(#tz-r3-suave); }   /* R3 rayado cruzado */
+.tec .r4 { fill: url(#tz-r4-ink); }   .tec .r4.gris { fill: url(#tz-r4-gris); }   .tec .r4.ember { fill: url(#tz-r4-ember); }   .tec .r4.suave { fill: url(#tz-r4-suave); }   /* R4 trama de puntos */
+.tec .r5 { fill: url(#tz-r5-ink); }   .tec .r5.gris { fill: url(#tz-r5-gris); }   .tec .r5.ember { fill: url(#tz-r5-ember); }   .tec .r5.suave { fill: url(#tz-r5-suave); }   /* R5 moiré · puntos sueltos casi parejos, sin grilla */
+/* niveles de densidad de R2 y R3: n1 abierto … n5 cerrado (n3 es el de por defecto, no lleva clase).
+   "R2 nivel 4 ember" → class="r2 n4 ember" */
+.tec .r2.n1 { fill: url(#tz-r2-n1-ink); } .tec .r2.n1.gris { fill: url(#tz-r2-n1-gris); } .tec .r2.n1.ember { fill: url(#tz-r2-n1-ember); } .tec .r2.n1.suave { fill: url(#tz-r2-n1-suave); }
+.tec .r2.n2 { fill: url(#tz-r2-n2-ink); } .tec .r2.n2.gris { fill: url(#tz-r2-n2-gris); } .tec .r2.n2.ember { fill: url(#tz-r2-n2-ember); } .tec .r2.n2.suave { fill: url(#tz-r2-n2-suave); }
+.tec .r2.n3 { fill: url(#tz-r2-n3-ink); } .tec .r2.n3.gris { fill: url(#tz-r2-n3-gris); } .tec .r2.n3.ember { fill: url(#tz-r2-n3-ember); } .tec .r2.n3.suave { fill: url(#tz-r2-n3-suave); }
+.tec .r2.n4 { fill: url(#tz-r2-n4-ink); } .tec .r2.n4.gris { fill: url(#tz-r2-n4-gris); } .tec .r2.n4.ember { fill: url(#tz-r2-n4-ember); } .tec .r2.n4.suave { fill: url(#tz-r2-n4-suave); }
+.tec .r2.n5 { fill: url(#tz-r2-n5-ink); } .tec .r2.n5.gris { fill: url(#tz-r2-n5-gris); } .tec .r2.n5.ember { fill: url(#tz-r2-n5-ember); } .tec .r2.n5.suave { fill: url(#tz-r2-n5-suave); }
+.tec .r3.n1 { fill: url(#tz-r3-n1-ink); } .tec .r3.n1.gris { fill: url(#tz-r3-n1-gris); } .tec .r3.n1.ember { fill: url(#tz-r3-n1-ember); } .tec .r3.n1.suave { fill: url(#tz-r3-n1-suave); }
+.tec .r3.n2 { fill: url(#tz-r3-n2-ink); } .tec .r3.n2.gris { fill: url(#tz-r3-n2-gris); } .tec .r3.n2.ember { fill: url(#tz-r3-n2-ember); } .tec .r3.n2.suave { fill: url(#tz-r3-n2-suave); }
+.tec .r3.n3 { fill: url(#tz-r3-n3-ink); } .tec .r3.n3.gris { fill: url(#tz-r3-n3-gris); } .tec .r3.n3.ember { fill: url(#tz-r3-n3-ember); } .tec .r3.n3.suave { fill: url(#tz-r3-n3-suave); }
+.tec .r3.n4 { fill: url(#tz-r3-n4-ink); } .tec .r3.n4.gris { fill: url(#tz-r3-n4-gris); } .tec .r3.n4.ember { fill: url(#tz-r3-n4-ember); } .tec .r3.n4.suave { fill: url(#tz-r3-n4-suave); }
+.tec .r3.n5 { fill: url(#tz-r3-n5-ink); } .tec .r3.n5.gris { fill: url(#tz-r3-n5-gris); } .tec .r3.n5.ember { fill: url(#tz-r3-n5-ember); } .tec .r3.n5.suave { fill: url(#tz-r3-n5-suave); }
+.tec .r2, .tec .r3, .tec .r4, .tec .r5 { stroke: none; }
+/* relleno + contorno: sumar una línea, ej. class="r2 gris" y encima el mismo path con "l2" */
+
+/* ---- T · Textos --------------------------------------------------------- */
+/* Una sola voz (pedido de Macarena, 2026-10-26): una tipografía open source
+   (--tz-fuente: Manrope), mayúscula, tracking 0.12em, como EXPANDED o
+   SEED. Dos códigos nada más. */
+.tec text { fill: currentColor; font-family: var(--tz-fuente); font-weight: 500; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; }
+.tec .t1 { }                                      /* T1 etiqueta · THE FORK, BEFORE, THE GAP, TIME → */
+.tec .t2 { font-variant-numeric: tabular-nums; }  /* T2 cifra · $100M, 40 %, 2026 */
+.tec .t3 { font-size: 48px; letter-spacing: 0.02em; font-variant-numeric: tabular-nums; }   /* T3 cifra grande · el número que se lee primero: 23, 8 */
+/* t-fondo: la etiqueta sobre papel (filtro tz-fondo de trazos.js), para leerse sobre rayados y líneas */
+.tec .t-fondo { filter: url(#tz-fondo); }
+.tec .t-centro { text-anchor: middle; } .tec .t-fin { text-anchor: end; }
+.tec .t-vertical { writing-mode: vertical-rl; transform: rotate(180deg); transform-box: fill-box; transform-origin: center; }

@@ -1077,41 +1077,150 @@ body::after {
 /* the bio sits under the cards, not jammed against them */
 .mm-facts + p { margin-bottom: 26px; }
 
-/* team gallery: a horizontal reel with arrows. Snap so a photo always lands
-   square rather than half off the edge. */
-.gallery { position: relative; margin-top: 24px; }
-.gal-track {
-  /* proximity, not mandatory: mandatory snapping cancels a smooth scrollBy
-     outright, so the arrows silently did nothing. */
-  display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x proximity;
-  scrollbar-width: none; padding-bottom: 4px;
+/* ---------- the years in photos (cronologia.js, from the letter) ----------
+   A strip of every photo, 2024 to 2026, on one line of time. The figure holds
+   the top of the screen while the text under it goes by, and a reading head
+   travels across: the strip slides under it and each photo opens out as the
+   head reaches it. The letter turns its page to grafite for this stretch by
+   hand, naming every element it has to repaint; here the stretch simply asks
+   for the dark theme and the whole token layer turns with it (cronologia.js
+   sets data-theme on the root), which is what the three tiers are for. */
+.cronologia-tramo { margin-top: var(--space-stack-md); }
+
+/* a little more scroll after the last line, so it has gone under the paper
+   before the figure lets go (an element, not padding: the figure holds only as
+   far as the stretch's content) */
+.cronologia-tramo::after { content: ""; display: block; height: 108px; }
+
+/* The text under the photos comes in steps: each rises to the reading line,
+   under the stage, and holds there while the page scrolls on (sticky, at
+   --lectura, set by cronologia.js), fading in as it comes and out as it goes.
+   A step's height is the scroll it takes. */
+.cronologia-paso { min-height: 90svh; }
+.cronologia-paso__texto { position: sticky; top: var(--lectura, 60svh); }
+.cronologia-paso__texto p {
+  font-family: var(--type-body-md-family);
+  font-size: var(--type-body-md-size);
+  line-height: var(--type-body-md-leading);
+  color: var(--color-content-default);
+  margin: 0 0 var(--space-stack-md);
 }
-.gal-track::-webkit-scrollbar { display: none; }
-.gal-item { flex: none; width: clamp(240px, 27vw, 340px); margin: 0; scroll-snap-align: start; }
-.gal-item img {
-  width: 100%; height: 230px; object-fit: cover; display: block;
-  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
-  background: var(--sage-soft);
+.cronologia-paso__texto p:last-child { margin-bottom: 0; }
+
+/* 2026: its first line holds under the photos for the whole of the year's
+   stretch, and each of the four games is a step of its own under it */
+.cronologia-paso--fijo { min-height: 0; }
+.cronologia-paso--fijo > .cronologia-paso__texto { margin-bottom: var(--space-stack-md); }
+.cronologia-subpaso { min-height: 60svh; }
+
+/* the pile of boxes held under that line; cronologia.js sets each box's place
+   and width. With no room to hold, they run one after the other instead. */
+.juegos { position: sticky; top: var(--lectura, 60svh); }
+.juego {
+  position: absolute; isolation: isolate;
+  padding: 12px 20px;
+  background-color: var(--color-background-default);
 }
-/* The arrows used to float at mid-height, half off each edge, which put them
-   on top of the photos where they were invisible. They now sit on the heading
-   row, where the right arrow is the thing that says this reel scrolls. */
-.gal-head { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; }
-.gal-head .sub { margin-bottom: 0; }
-.gal-ctrl { display: flex; align-items: center; gap: 9px; flex: none; }
-.gal-hint { font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.13em;
-  text-transform: uppercase; color: var(--taupe); margin-right: 3px; }
-.gal-nav {
-  width: 36px; height: 36px; border: 1px solid var(--hairline); background: var(--canvas);
-  color: var(--ink); cursor: pointer; display: flex; align-items: center; justify-content: center;
-  clip-path: var(--chamfer);
-  transition: opacity 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+.juego p:last-of-type { margin-bottom: 0; }
+.juegos--corrido { position: static; height: auto !important; margin-bottom: 32px !important; }
+.juegos--corrido .juego { position: relative; left: 0 !important; top: 0 !important; width: auto !important; height: auto !important; margin-bottom: var(--space-stack-md); }
+.juego-etiqueta {
+  margin: 0 0 6px;
+  font-family: var(--type-body-sm-family);
+  font-size: var(--type-body-sm-size);
+  font-weight: var(--type-body-sm-weight);
+  line-height: var(--type-body-sm-leading);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--color-content-default);
 }
-.gal-nav:hover:not(:disabled) { color: var(--color-content-accent); }
-.gal-nav svg { width: 17px; height: 17px; }
-.gal-nav:hover:not(:disabled) { border-color: var(--ink); }
-.gal-nav:disabled { opacity: 0.25; cursor: default; }
-@media (max-width: 620px) { .gal-hint { display: none; } }
+.juego__caja { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; --tz-ink: currentColor; }
+.juego.juego--solo { position: sticky; }
+.cronologia-paso--juego { min-height: 70svh; }
+
+/* the stage: it leaves the column and takes the window's whole width */
+.cronologia {
+  --fundido: 20px;    /* the paper under the stage, ending in a clean edge */
+  --texto: 80px;      /* where the text after it starts, below the stage */
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  padding-top: 119px;   /* room over the stage for the head's label: 64 of air, the label, 16 down to the stage */
+  padding-bottom: var(--fundido);
+  margin: 0 calc(50% - 50vw) calc(var(--texto) - var(--fundido));
+  background-color: var(--color-background-default);
+}
+
+/* its paper covers the page's grain, so it carries that grain itself and
+   reads as the same sheet */
+.cronologia::before {
+  content: "";
+  position: absolute; inset: 0; pointer-events: none;
+  opacity: var(--grain-bite);
+  background-color: var(--color-grain-ink-accent);
+  -webkit-mask-image: var(--grain-mask);
+  mask-image: var(--grain-mask);
+}
+
+.cronologia__escena { position: relative; z-index: 2; height: min(317px, 37svh); overflow-x: clip; }
+.cronologia__capa { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+
+/* the line of time: a trazos scale (C4) through the middle of the strip,
+   riding with it, over every photo */
+.cronologia__escala { position: absolute; left: 0; top: 0; z-index: 300; max-width: none; overflow: visible; pointer-events: none; }
+.cronologia.is-cerca .cronologia__escala { will-change: transform; }
+/* shown at 35% all along: only the copy over the photos is drawn, so it is the
+   same faintness everywhere */
+.cronologia__escala:not(.cronologia__escala--sobre) { visibility: hidden; }
+.cronologia__escala--sobre { z-index: 450; opacity: 0.35; }
+
+/* each photo is laid at its largest and scaled down to the strip by
+   cronologia.js; far from the head it is still on the line, small and grey */
+.cronologia__foto { position: absolute; left: 0; top: 0; transform-origin: 50% 50%; }
+.cronologia.is-cerca .cronologia__foto:not(.is-lejos) { will-change: transform; }
+.cronologia__foto img { display: block; width: 100%; height: 100%; }
+.cronologia__foto.is-lejos img { filter: grayscale(1); opacity: 0.6; }
+
+/* the head: a hairline from just over the stage down past the line of time */
+.cronologia__cabezal {
+  position: absolute; top: 0; left: -1px; width: 2px;
+  color: var(--color-content-default);
+  z-index: 1; pointer-events: none; will-change: transform;
+}
+.cronologia__cabezal-sobre {
+  position: absolute; left: -1px; top: 0; width: 2px;
+  z-index: 450; opacity: 0.35;
+  color: var(--color-content-default);
+  pointer-events: none; will-change: transform;
+}
+.cronologia__trazo { position: absolute; left: -1px; top: 0; max-width: none; overflow: visible; --tz-ink: currentColor; }
+
+/* the head's label, centred over its top, in the drawings' label style */
+.cronologia__rotulo {
+  position: absolute; bottom: calc(100% - 8px); left: 0; margin: 0;
+  display: flex; flex-direction: column; align-items: center;
+  white-space: nowrap; text-align: center;
+  font-family: var(--type-body-sm-family);
+  font-size: var(--type-body-sm-size);
+  font-weight: var(--type-body-sm-weight);
+  line-height: var(--type-body-sm-leading);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--color-content-default);
+}
+.cronologia__linea { display: grid; justify-items: center; }
+.cronologia__linea > span { grid-area: 1 / 1; }
+
+/* without motion: the years one under the other, in rows */
+.cronologia.is-quieta { display: flex; flex-direction: column; gap: var(--space-40); position: static; padding: 0; margin: 0; }
+.cronologia__titulo {
+  margin: 0 0 12px;
+  font-family: var(--type-body-sm-family);
+  font-size: var(--type-body-sm-size);
+  font-weight: var(--type-body-sm-weight);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--color-content-default);
+}
+.cronologia__fila { display: flex; flex-wrap: wrap; gap: 6px; }
+.cronologia__fila img { height: 120px; width: auto; }
 
 /* ---------- brand vault ---------- */
 .bv-h { font-family: var(--serif); font-weight: var(--weight-400); font-size: var(--size-24); letter-spacing: -0.015em; margin-bottom: 14px; }
