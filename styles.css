@@ -1234,7 +1234,7 @@ a.cl-cell:hover .cl-name { color: var(--color-content-accent); }
   flex-direction: column;
   align-items: center;
   gap: var(--space-stack-lg);
-  margin: var(--space-80) 0 0;
+  margin: var(--space-80) 0;
 }
 .aside__rule { display: block; width: 40px; height: auto; }
 .aside__rule:first-child { margin-bottom: calc(var(--space-stack-xl) - var(--space-stack-lg)); }
@@ -1260,7 +1260,6 @@ a.cl-cell:hover .cl-name { color: var(--color-content-accent); }
 }
 
 .who-intro { margin-top: var(--space-stack-lg); }
-.who-team { margin-top: var(--space-stack-lg); }
 
 /* ---------- the letter's cards (graphics.js, fichas) ----------
    Each an ember outline with a square of ember hatching down its left, the
