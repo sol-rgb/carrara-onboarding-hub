@@ -392,24 +392,28 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
   font-size: var(--type-body-md-size);
   line-height: var(--type-body-md-leading);
 }
-.rock-card[data-page] { cursor: pointer; }
+.rock-card { position: relative; transition: color 0.18s ease; color: var(--color-content-default); }
+.rock-card[data-page] { cursor: pointer; padding-right: var(--space-stack-lg); }
+.rock-card[data-page]::after {
+  content: "";
+  position: absolute; right: 0; top: 22px;
+  width: 14px; height: 14px;
+  background-color: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M5 11L11 5M6.5 5H11V9.5' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M5 11L11 5M6.5 5H11V9.5' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.rock-card[data-page]:hover { color: var(--color-content-accent); }
 .rock-card h3 {
   font-family: var(--type-body-md-family);
   font-size: var(--type-body-md-size);
   font-weight: var(--weight-700);
   line-height: var(--type-body-md-leading);
-  color: var(--color-content-default);
+  color: inherit;
   margin: 0;
 }
-/* the ones with a page behind them say so, as a resource does */
-.rock-card[data-page] h3 {
-  color: var(--color-content-accent);
-  border-bottom: 1px solid rgba(235, 78, 25, 0.35);
-  display: inline-block;
-}
-.rock-card[data-page]:hover h3 { border-bottom-color: var(--color-content-accent); }
+
 .rock-card:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
-.rock-card p { color: var(--color-content-default); margin: 0; }
+.rock-card p { color: inherit; margin: 0; }
 
 /* ---------- team ---------- */
 .profile-cta {
@@ -586,8 +590,37 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
 .res-cols { margin-top: var(--space-stack-xl); }
 /* the link and the line that explains it read the same size: the title was a step
    under its own description */
-.res-item { padding: var(--space-stack-md) 0; border-bottom: 1px solid var(--hairline); font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); }
-.res-item .d { color: var(--color-content-default); }
+/* A row that goes somewhere: the name in ink, what it is under it, and an arrow
+   out to the right. The whole row is the link (the anchor is stretched over it),
+   and the row turns ember on hover. The name is not underlined: the arrow is
+   what says it leads out, and ember as text is under AA (see the register). */
+.res-item {
+  position: relative;
+  padding: var(--space-stack-md) var(--space-stack-lg) var(--space-stack-md) 0;
+  border-bottom: 1px solid var(--hairline);
+  font-size: var(--type-body-md-size);
+  line-height: var(--type-body-md-leading);
+  color: var(--color-content-default);
+  transition: color 0.18s ease;
+}
+.res-item > a.textlink {
+  color: inherit; font-weight: var(--weight-700);
+  text-decoration: none; border-bottom: 0;
+}
+.res-item > a.textlink::after { content: ""; position: absolute; inset: 0; }
+.res-item .d { color: inherit; }
+/* a link inside the description stays reachable over the stretched one */
+.res-item .d a { position: relative; z-index: 1; }
+.res-item::after {
+  content: "";
+  position: absolute; right: 0; top: 22px;
+  width: 14px; height: 14px;
+  background-color: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M5 11L11 5M6.5 5H11V9.5' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M5 11L11 5M6.5 5H11V9.5' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.res-item:hover { color: var(--color-content-accent); }
+.res-item:focus-within { outline: 2px solid var(--color-content-accent); outline-offset: 4px; }
 
 /* ---------- the letter's labelled boxes (graphics.js, numeradas) ----------
    A grid of ember boxes, each with its label in a gap in the top edge: a C1
