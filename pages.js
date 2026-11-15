@@ -3,18 +3,6 @@
    re-snapshot. Keys match links.js; anything with an entry here opens as an
    in-hub popup instead of linking out. */
 window.PAGES = {
-  coordinatorOOO: {
-    title: 'Coordinator OOO template',
-    html: '<p>A ready-made structure for going out of office as a coordinator. Duplicate it, rename it to "[Your Name] OOO", fill in the placeholders, and share with your coverage team and Carrara POCs at least one week before leaving.</p>'
-      + '<h4>What it covers</h4>'
-      + '<ul><li>Basic info: dates, availability while out, emergency contact.</li>'
-      + '<li>A coverage table per client: who covers, primary and secondary, and the scope.</li>'
-      + '<li>Per-client breakdown: POCs, open roles, active candidates, quirks.</li>'
-      + '<li>Recurring tasks and meetings that need covering.</li>'
-      + '<li>Known risks, escalation order, and your communication plan (auto-reply, Slack status).</li>'
-      + '<li>A return plan and a pre-departure checklist (confirm with Hayley, add to calendars, post in #g-ooo).</li></ul>'
-      + '<p>Ask your team lead for the current template document to duplicate.</p>'
-  },
   notionHomeBase: {
     title: 'Carrara HQ',
     html: '<p><b>Carrara is an operating firm that helps build exceptional companies through a focus on The Work.</b></p>'

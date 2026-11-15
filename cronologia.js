@@ -362,6 +362,9 @@
       if (!p.texto || !p.texto.classList.contains('juego--solo')) return;
       if (p.marco) p.marco.remove();
       var ancho = Math.round(p.texto.clientWidth), alto = Math.ceil(p.texto.offsetHeight);
+      /* the view this lives in can be laid out with no size (its hash is not on): a box
+         of nothing draws a rect of -2 and the SVG refuses it */
+      if (ancho < 4 || alto < 4) return;
       var svg = T.svg(p.texto, ancho, alto);
       svg.classList.add('juego__caja');
       svg.style.width = ancho + 'px'; svg.style.height = alto + 'px';
@@ -383,6 +386,7 @@
       paso.juegos.style.marginBottom = -pila + 'px';
       cajas.forEach(function (p) {
         var alto = Math.ceil(p.texto.offsetHeight);
+        if (ancho < 4 || alto < 4) return;
         var svg = T.svg(p.texto, ancho, alto);
         svg.classList.add('juego__caja');
         svg.style.width = ancho + 'px'; svg.style.height = alto + 'px';

@@ -179,6 +179,14 @@
         : (pg.note ? '<p class="pg-note">' + esc(pg.note) + '</p>' : '')));
     fillClientLogos($('#modal-back'), k);
   }
+  /* an anchor can name a key from links.js rather than carry the URL itself, so the
+     destination is kept in one place. A key with no link loses its anchor. */
+  [].forEach.call(document.querySelectorAll('a[data-link]'), function (a) {
+    var u = linkFor(a.getAttribute('data-link'));
+    if (!u) { a.replaceWith(a.textContent); return; }
+    a.href = u; a.target = '_blank'; a.rel = 'noopener';
+  });
+
   document.addEventListener('click', function (e) {
     var t = e.target.closest ? e.target.closest('[data-page]') : null;
     if (!t) return;
@@ -1656,9 +1664,16 @@
         ix.push({ label: c.n, hint: 'slack channel', go: function () { if (u) window.open(u, '_blank'); else location.hash = '#/slack'; } });
       });
       TOOLS.forEach(function (t) { ix.push({ label: t.n, hint: 'tool', go: function () { window.open(t.url, '_blank'); } }); });
+      ix.push({ label: 'Coordinator OOO template', hint: 'time off', go: function () {
+        location.hash = '#/timeoff';
+        var d = document.getElementById('faq-ooo-template');
+        if (!d) return;
+        d.open = true;
+        setTimeout(function () { d.scrollIntoView({ block: 'center' }); }, 60);
+      } });
       [['Home Base', 'notionHomeBase'], ['The Quarry', 'quarry'], ['Brand Vault', 'brandVault'],
        ['Team Roundup', 'teamRoundup'], ['Brand palette & typography', 'brandVaultArchive'], ['This is Carrara', 'thisIsCarrara'],
-       ['Coordinator OOO template', 'coordinatorOOO'], ['Weekly Talent Jam', 'talentTeamMeeting'], ['Ashby', 'ashby'],
+       ['Weekly Talent Jam', 'talentTeamMeeting'], ['Ashby', 'ashby'],
        ['carrara.is', 'site']].forEach(function (r) {
         if (pageFor(r[1])) { ix.push({ label: r[0], hint: 'library', go: function () { openPage(r[1]); } }); return; }
         var u = linkFor(r[1]);
