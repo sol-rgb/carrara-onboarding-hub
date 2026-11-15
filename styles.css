@@ -211,17 +211,9 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
 .eyebrow img { width: 11px; height: auto; display: block; }
 
 .u { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 7px; }
-/* A section's heading is a step under the page's title. The type jobs have no
-   title below the 28 serif -- title-md and title-lg are 34 and up -- so this is
-   the letter's own step: 18 sans, bold (.section__head). Written down in
-   onboarding-hub-gaps.md, because the API does not carry the composite. */
 h2.sub {
-  font-family: var(--type-body-lg-family);
-  font-size: var(--type-body-lg-size);
-  font-weight: var(--weight-700);
-  line-height: var(--type-body-lg-leading);
-  letter-spacing: var(--type-body-lg-tracking);
-  color: var(--color-content-default);
+  font-family: var(--serif); font-weight: var(--weight-400); font-size: var(--type-title-sm-size);
+  letter-spacing: -0.015em; line-height: var(--type-title-sm-leading);
   margin: var(--space-stack-xl) 0 var(--space-stack-lg);
 }
 .body-copy { line-height: var(--type-body-md-leading); color: var(--color-content-default); }
@@ -927,21 +919,22 @@ a.client-row:hover .cn { color: var(--color-content-accent); }
 .pal-empty { font-size: var(--type-body-sm-size); color: var(--taupe); padding: 16px 18px; }
 
 /* ---------- library page popups ---------- */
-/* a heading inside a section: one step under h2.sub, in the same sans */
+/* a heading inside a section: the letter's own step (.section__head, 18 sans
+   bold), between the 28 serif above it and the 16 body under it */
 .pg h4 {
-  font-family: var(--type-body-md-family);
-  font-size: var(--type-body-md-size);
+  font-family: var(--type-body-lg-family);
+  font-size: var(--type-body-lg-size);
   font-weight: var(--weight-700);
   line-height: var(--type-body-md-leading);
   color: var(--color-content-default);
   margin: var(--space-stack-lg) 0 var(--space-stack-sm);
 }
-.pg p { font-size: var(--type-body-sm-size); line-height: var(--type-body-sm-leading); color: var(--color-content-default); margin-bottom: var(--space-stack-md); }
+.pg p { font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); color: var(--color-content-default); margin-bottom: var(--space-stack-md); }
 /* the same plain list as everywhere else (.bullets): a disc, indented by a block.
    It used to draw a 5px square of moss paper, a marker from no system at all. */
 .pg ul, .pg ol { padding-left: var(--space-stack-lg); margin-bottom: var(--space-stack-md); }
 .pg ul { list-style: disc; }
-.pg li { font-size: var(--type-body-sm-size); line-height: var(--type-body-sm-leading); color: var(--color-content-default); margin-bottom: var(--space-stack-sm); }
+.pg li { font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); color: var(--color-content-default); margin-bottom: var(--space-stack-sm); }
 .pg b { font-weight: var(--weight-500); color: var(--ink); }
 .pg-swatches { margin-bottom: 6px; }
 .pg-swatch { display: flex; align-items: center; gap: 12px; font-size: var(--type-body-xs-size); color: var(--color-content-subtle); padding: 7px 0; border-bottom: 1px solid var(--hairline); }
