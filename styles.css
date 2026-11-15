@@ -261,7 +261,7 @@ a.textlink:hover { border-bottom-color: var(--color-content-accent); }
 .attr { font-style: italic; font-size: var(--type-body-sm-size); color: var(--taupe); }
 
 /* who we are split */
-.fact-list { margin-top: 24px; }
+.fact-list { margin-top: var(--space-stack-xl); }
 .fact { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--hairline); font-size: var(--type-body-md-size); align-items: baseline; }
 .fact img { width: 11px; flex: none; position: relative; top: 1px; }
 .fact b { font-weight: var(--weight-500); }

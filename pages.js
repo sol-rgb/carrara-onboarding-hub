@@ -17,7 +17,7 @@ window.PAGES = {
   },
   notionHomeBase: {
     title: 'Carrara HQ',
-    html: '<p><b>Carrara is an operating firm that helps founders and leaders build exceptional companies through an unrelenting focus on the work.</b></p>'
+    html: '<p><b>Carrara is an operating firm that helps build exceptional companies through a focus on The Work.</b></p>'
       + '<p>HQ is the central source of truth: core values and guiding principles, team member profiles, the Client Codex (detailed profiles of all clients, past and present), the Wisdom Warehouse (reusable client-facing content and how-to guides), and the brand pages.</p>'
       + '<h4>The four principles</h4>'
       + '<ul><li>Obsess over craft</li><li>Take agency</li><li>Progress over process</li><li>Build collective understanding</li></ul>'
@@ -41,7 +41,7 @@ window.PAGES = {
     html: '<p><b>The brand story:</b> labor and capital trend toward entropy. Misalignment wastes time, talent and energy. After the pandemic, labor and capital are finding a new balance, and Carrara exists to create meaningful relationships between work and the people delivering it.</p>'
       + '<p>We were inspired by Michelangelo: "The sculpture is already complete within the marble block… I just have to chisel away the superfluous material." Carrara is the quarry where he found stone par excellence. Potential and excellence exist and need to be revealed. Where others see blocks, we see opportunities.</p>'
       + '<h4>Messaging</h4>'
-      + '<p>Carrara is an operating firm that helps founders and leaders build exceptional companies through an unrelenting focus on the work.</p>'
+      + '<p>Carrara is an operating firm that helps build exceptional companies through a focus on The Work.</p>'
       + '<ul><li><b>Find humans:</b> executive search and embedded recruiting, delivering the people who drive critical work forward.</li>'
       + '<li><b>Form organizations:</b> embedded leadership and operational delivery across talent, finance and business management.</li></ul>'
       + '<h4>Beliefs</h4>'
