@@ -1150,16 +1150,11 @@ body::after {
   background-color: var(--color-background-default);
 }
 
-/* its paper covers the page's grain, so it carries that grain itself and
-   reads as the same sheet */
-.cronologia::before {
-  content: "";
-  position: absolute; inset: 0; pointer-events: none;
-  opacity: var(--grain-bite);
-  background-color: var(--color-grain-ink-accent);
-  -webkit-mask-image: var(--grain-mask);
-  mask-image: var(--grain-mask);
-}
+/* The letter's figure carries a grain of its own, because there the page's
+   grain lies under it (z 1) and its paper would cover it. The hub lays its one
+   sheet over everything instead (.grain--over, z 41), so the stage is already
+   grained and a second sheet only doubles it.
+   .cronologia { background } alone, and the page's grain falls on it. */
 
 .cronologia__escena { position: relative; z-index: 2; height: min(317px, 37svh); overflow-x: clip; }
 .cronologia__capa { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
