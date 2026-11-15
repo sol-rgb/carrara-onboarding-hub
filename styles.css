@@ -259,26 +259,7 @@ a.textlink:hover { border-bottom-color: var(--color-content-accent); }
 .attr { font-style: italic; font-size: var(--type-body-sm-size); color: var(--taupe); }
 
 /* who we are split */
-.fact-list { margin-top: var(--space-stack-lg); }
-.fact { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--hairline); font-size: var(--type-body-md-size); align-items: baseline; }
-.fact img { width: 11px; flex: none; position: relative; top: 1px; }
-.fact b { font-weight: var(--weight-500); }
 .quote-block { background: var(--sage-soft); clip-path: var(--rock); padding: 44px 40px; }
-
-/* ---------- history: big dynamic years ---------- */
-.history { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin: 64px 0 0; }
-.h-year { border-top: 2px solid var(--ink); padding-top: 12px; cursor: default; }
-.h-year .y {
-  font-family: var(--rigid); font-weight: var(--weight-700); font-size: var(--type-title-lg-bold-size);
-  /* the ghost year was a literal ink at 0.22, which does not follow the theme:
-     on the dark page it was grafite on grafite, 1:1 and gone. The opacity does
-     the ghosting now and the colour follows. */
-  letter-spacing: -0.01em; color: var(--color-content-default); opacity: 0.22;
-  transition: color 0.25s ease, opacity 0.25s ease;
-}
-.h-year:hover .y { color: var(--color-content-accent); opacity: 1; }
-.h-year .hl-line { font-weight: var(--weight-500); font-size: var(--type-body-md-size); margin-top: 6px; }
-.h-year p { font-size: var(--type-body-sm-size); color: var(--color-content-default); margin-top: 6px; line-height: var(--type-body-sm-leading); }
 
 /* ---------- principle cards ---------- */
 
@@ -778,7 +759,6 @@ table.channels td:first-child { width: 1%; }
 @media (max-width: 1080px) {
   .timeline { grid-template-columns: repeat(2, 1fr); }
     .t-step p { opacity: 1; max-height: none; }
-  .h-year p { display: block; }
   .tpl-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 860px) {
@@ -792,7 +772,7 @@ table.channels td:first-child { width: 1%; }
   .hero-block { display: none; }
   .spec-grid, .spec-grid.three, .client-grid, .res-cols, .tool-grid, .chk-cols, .to-seasons { grid-template-columns: 1fr; }
   .hub-tiles { grid-template-columns: 1fr 1fr; }
-  .timeline, .history, .ninety, .to-essentials { grid-template-columns: 1fr; }
+  .timeline, .ninety, .to-essentials { grid-template-columns: 1fr; }
   .rock-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
   .rock-card.s-w2, .rock-card.s-h2, .rock-card.s-h3 { grid-column: auto; grid-row: auto; min-height: 180px; }
   .stat-strip { flex-direction: column; }
@@ -1274,6 +1254,7 @@ a.cl-cell:hover .cl-name { color: var(--color-content-accent); }
 }
 
 .who-intro { margin-top: var(--space-stack-lg); }
+.who-team { margin-top: var(--space-stack-lg); }
 
 /* ---------- the letter's cards (graphics.js, fichas) ----------
    Each an ember outline with a square of ember hatching down its left, the
@@ -1369,7 +1350,6 @@ h2.sub + .cards { margin-top: 0; }
 .chk-item { padding: 13px 0; }
 .client-row { padding: 26px 0; }
 .tool-row { padding: 24px 0; }
-.fact { padding: 18px 0; }
 .qa .q { margin-bottom: 9px; }
 @media (max-width: 860px) {
   .mo-card { padding: 26px 22px; }
