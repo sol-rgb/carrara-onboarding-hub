@@ -1191,7 +1191,11 @@ body::after {
 
 /* the head's label, centred over its top, in the drawings' label style */
 .cronologia__rotulo {
-  position: absolute; bottom: calc(100% - 8px); left: 0; margin: 0;
+  /* clear of the head: the label's foot sits 8 over where the line starts, not 8 into
+     it. The letter writes this as calc(100% - 8px) and lands on the right side of the
+     line there; here that put the line through the last word. Measured on the glyphs:
+     the letter leaves 8.6, this leaves the same. */
+  position: absolute; bottom: calc(100% + 8px); left: 0; margin: 0;
   display: flex; flex-direction: column; align-items: center;
   white-space: nowrap; text-align: center;
   font-family: var(--type-body-sm-family);
