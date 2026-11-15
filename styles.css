@@ -658,7 +658,7 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
    them, but neither may read as a blue link: the label takes a dotted rule and
    the frame doubles under the pointer. */
 /* a format and its note: the string on its own line, what it means under it */
-.spec__d b { display: block; margin-bottom: var(--space-stack-sm); color: var(--color-content-default); }
+.spec__d b { display: block; color: var(--color-content-default); }
 
 a.spec { text-decoration: none; }
 a.spec .spec__tab,
