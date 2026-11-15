@@ -444,10 +444,15 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
    At 200 the track fits four and no more -- five would need 1064 and the wide
    track stops at 1010 -- and it steps down to three, two and one as the window
    narrows. */
-.view.visible > .team-tools,
-.view.visible > .team-filters,
-.view.visible > .team-grid,
-.view.visible > .team-note { grid-column: wide; }
+#view-team.visible > .team-tools,
+#view-team.visible > .team-filters,
+#view-team.visible > .team-grid,
+#view-team.visible > .team-note,
+#view-clients.visible > .client-grid,
+#view-clients.visible > #archived-wrap,
+#view-clients.visible > .team-note,
+#view-tools.visible > .tool-grid,
+#view-tools.visible > .team-note { grid-column: wide; }
 
 .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-top: 34px; }
 .member {
@@ -491,7 +496,7 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
 .team-note { margin-top: 26px; font-size: var(--type-body-sm-size); color: var(--taupe); }
 
 /* ---------- clients ---------- */
-.client-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 72px; margin-top: 44px; }
+.client-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0 72px; margin-top: 44px; }
 .client-row { display: flex; gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--hairline); align-items: flex-start; cursor: pointer; }
 .cstatus { font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.1em; color: var(--taupe); border: 1px solid var(--hairline); padding: 2px 8px; margin-left: 10px; vertical-align: middle; }
 .cstatus.on { color: var(--color-content-accent); border-color: currentColor; }
@@ -529,7 +534,7 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
 }
 
 /* ---------- tools ---------- */
-.tool-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 80px; margin-top: 42px; }
+.tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 0 80px; margin-top: 42px; }
 .tool-row { display: flex; gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--hairline); align-items: flex-start; }
 .tool-row .tlogo {
   width: 34px; height: 34px; flex: none; background: var(--color-background-sheet);
@@ -767,7 +772,6 @@ table.channels td:first-child { width: 1%; }
 @media (max-width: 1200px) {
   .rock-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 120px; }
   .rock-card.s-w2 { grid-column: span 2; }
-  .client-grid { grid-template-columns: repeat(2, 1fr); }
   .chk-cols { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 1080px) {
@@ -784,7 +788,7 @@ table.channels td:first-child { width: 1%; }
   .view.visible { padding: var(--space-section-y) 0 var(--space-stack-xl); }
   .mark--corner { position: absolute; }
   .hero-block { display: none; }
-  .spec-grid, .spec-grid.three, .client-grid, .res-cols, .tool-grid, .chk-cols, .to-seasons { grid-template-columns: 1fr; }
+  .spec-grid, .spec-grid.three, .res-cols, .chk-cols, .to-seasons { grid-template-columns: 1fr; }
   .hub-tiles { grid-template-columns: 1fr 1fr; }
   .timeline, .ninety, .to-essentials { grid-template-columns: 1fr; }
   .rock-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
