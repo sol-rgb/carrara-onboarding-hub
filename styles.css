@@ -380,42 +380,36 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
 .hub-foot-note { font-size: var(--type-body-md-size); color: var(--color-content-default); max-width: 520px; line-height: var(--type-body-md-leading); }
 
 /* ---------- rock cards (business) ---------- */
-.rock-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 104px; grid-auto-flow: dense; gap: 26px; margin-top: 48px; }
+/* The eight product lines read as a list: the name, what it is, one under the
+   next. They were eight clip-pathed cards in six colours on a four-column grid
+   with spans -- three of those colours put knockout text under AA, and the fixed
+   row height cut the longer ones off. The name is the link where the line has a
+   page behind it. */
+.rock-grid { margin-top: var(--space-stack-xl); }
 .rock-card {
-  clip-path: var(--rock);
-  padding: 28px 26px 26px;
-  display: flex; flex-direction: column; justify-content: space-between;
-  transition: transform 0.25s ease;
+  padding: var(--space-stack-md) 0;
+  border-bottom: 1px solid var(--hairline);
+  font-size: var(--type-body-md-size);
+  line-height: var(--type-body-md-leading);
 }
-.rock-card:hover { transform: translateY(-3px); }
 .rock-card[data-page] { cursor: pointer; }
-.rock-card h3 { font-family: var(--serif); font-weight: var(--weight-400); font-size: var(--size-24); letter-spacing: -0.015em; line-height: var(--type-title-sm-leading); }
-.rock-card p { font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); margin-top: 20px; color: var(--color-content-default); }
-.rock-card.c-sage { background: var(--sage-soft); }
-.rock-card.c-blue { background: rgba(178, 205, 237, 0.4); }
-.rock-card.c-sand { background: rgba(143, 133, 120, 0.16); }
-.rock-card.c-line { background: transparent; border: 1px solid var(--hairline); clip-path: none; }
-.rock-card.c-ink { background: var(--color-background-strong); }
-.rock-card.c-ink h3 { color: var(--color-content-knockout); }
-.rock-card.c-ink p { color: var(--color-content-knockout); }
-/* Moss and Ember from the brand palette. The assignment is not arbitrary: the
-   Client Codex already colours People green and Finance orange, so the cards
-   match the tags a joiner sees on the clients page. Ember carries white text,
-   the same treatment the deck's high-contrast block uses. */
-.rock-card.c-moss { background: var(--sage); }
-.rock-card.c-moss p { color: var(--color-content-default); }
-.rock-card.c-ember { background: var(--orange); }
-.rock-card.c-ember h3 { color: var(--color-content-knockout); }
-.rock-card.c-ember p { color: var(--color-content-knockout); }
-.rock-card.c-lemon { background: var(--color-background-paper-lemon); }
-.rock-card.c-lavender { background: #9F73AB; }
-.rock-card.c-lavender h3 { color: var(--color-content-knockout); }
-.rock-card.c-lavender p { color: var(--color-content-knockout); }
-.rock-card.s-w2 { grid-column: span 2; }
-.rock-card.s-h2 { grid-row: span 2; }
-.rock-card.s-h3 { grid-row: span 3; }
-.rock-card:nth-child(3n+2) { clip-path: polygon(0 8%, 7% 0, 93% 0, 100% 13%, 100% 90%, 91% 100%, 9% 100%, 0 95%); }
-.rock-card.c-line:nth-child(3n+2) { clip-path: none; }
+.rock-card h3 {
+  font-family: var(--type-body-md-family);
+  font-size: var(--type-body-md-size);
+  font-weight: var(--weight-700);
+  line-height: var(--type-body-md-leading);
+  color: var(--color-content-default);
+  margin: 0;
+}
+/* the ones with a page behind them say so, as a resource does */
+.rock-card[data-page] h3 {
+  color: var(--color-content-accent);
+  border-bottom: 1px solid rgba(235, 78, 25, 0.35);
+  display: inline-block;
+}
+.rock-card[data-page]:hover h3 { border-bottom-color: var(--color-content-accent); }
+.rock-card:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
+.rock-card p { color: var(--color-content-default); margin: 0; }
 
 /* ---------- team ---------- */
 .profile-cta {
@@ -781,8 +775,6 @@ table.channels td:first-child { width: 1%; }
 
 /* ---------- responsive ---------- */
 @media (max-width: 1200px) {
-  .rock-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 120px; }
-  .rock-card.s-w2 { grid-column: span 2; }
   .chk-cols { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 1080px) {
@@ -802,8 +794,6 @@ table.channels td:first-child { width: 1%; }
   .spec-grid, .spec-grid.three, .chk-cols, .to-seasons { grid-template-columns: 1fr; }
   .hub-tiles { grid-template-columns: 1fr 1fr; }
   .timeline, .ninety { grid-template-columns: 1fr; }
-  .rock-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
-  .rock-card.s-w2, .rock-card.s-h2, .rock-card.s-h3 { grid-column: auto; grid-row: auto; min-height: 180px; }
   .stat-strip { flex-direction: column; }
   .stat + .stat { border-left: none; border-top: 1px solid var(--hairline); padding-left: 0; padding-top: 18px; }
   table.clean td:nth-child(2) { display: none; }
