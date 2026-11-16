@@ -67,8 +67,7 @@ window.LINKS = {
   site: 'https://www.carrara.is',
   ideas: 'https://www.carrara.is/ideas',
   letter: 'https://carrara.is/ideas/letter',
-  /* the 2026 letter itself, published from the letters-to-friends repo */
-  ambitionLetter: 'https://letters-to-friends.vercel.app',
+  ambitionLetter: 'https://carrara.is/letters/ambition',
 
   /* Sourced from the Notion master onboarding checklist and HQ, Aug 2026 */
   peoplePavilion: 'https://app.notion.com/p/c611c15591624864be36996f0eaa0064',
