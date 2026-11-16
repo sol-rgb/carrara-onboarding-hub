@@ -210,6 +210,12 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
 }
 .eyebrow img { width: 11px; height: auto; display: block; }
 
+/* ---------- icons (Feather 4.29.2, MIT -- see icons.js) ----------
+   An icon is drawn at the size of the text it sits in and in its colour.
+   Nothing here names a path: the set is the one source for those. */
+[data-icon] { display: inline-flex; flex: none; width: 1em; height: 1em; }
+[data-icon] > .icon { display: block; width: 100%; height: 100%; }
+
 .u { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 7px; }
 h2.sub {
   font-family: var(--serif); font-weight: var(--weight-400); font-size: var(--type-title-sm-size);
@@ -422,14 +428,6 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
 }
 .rock-card { position: relative; transition: color 0.18s ease; color: var(--color-content-default); }
 .rock-card[data-page] { cursor: pointer; padding-right: var(--space-stack-lg); }
-.rock-card[data-page]::after {
-  content: "";
-  position: absolute; right: 0; top: 22px;
-  width: 14px; height: 14px;
-  background-color: currentColor;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M5 11L11 5M6.5 5H11V9.5' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M5 11L11 5M6.5 5H11V9.5' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
-}
 .rock-card[data-page]:hover { color: var(--color-content-accent); }
 .rock-card h3 {
   font-family: var(--type-body-md-family);
@@ -639,14 +637,8 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
 .res-item:hover .d { color: var(--color-content-default); }
 /* a link inside the description stays reachable over the stretched one */
 .res-item .d a { position: relative; z-index: 1; }
-.res-item::after {
-  content: "";
-  position: absolute; right: 0; top: 22px;
-  width: 14px; height: 14px;
-  background-color: currentColor;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M5 11L11 5M6.5 5H11V9.5' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M5 11L11 5M6.5 5H11V9.5' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
-}
+/* the arrow out, on the row's first line */
+.row-arrow { position: absolute; right: 0; top: 20px; font-size: 16px; }
 .res-item:hover { color: var(--color-content-accent); }
 .res-item:focus-within { outline: 2px solid var(--color-content-accent); outline-offset: 4px; }
 
@@ -1101,7 +1093,11 @@ body::after {
   font-family: var(--sans); font-size: var(--type-body-sm-size); color: var(--ink); background: var(--canvas);
   border: 1px solid var(--hairline); padding: 8px 30px 8px 11px; cursor: pointer;
   appearance: none; min-width: 168px;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239A938E' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  /* Feather's chevron-down, the one place an icon cannot be an element: a
+     select's own chevron is a background, so it cannot take currentColor and
+     cannot follow the theme. The geometry is the set's; the colour is written
+     here, which is the exception -- see onboarding-hub-gaps.md. */
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2359534F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
   background-repeat: no-repeat; background-position: right 11px center; background-size: 10px;
 }
 .tf select:focus-visible { outline: 2px solid var(--orange); outline-offset: 1px; }
@@ -1573,8 +1569,10 @@ body.chk-open #wk { display: none; }
    What stays folded is a question, which is what a fold is for. */
 details.to-faq > summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
 details.to-faq > summary::-webkit-details-marker { display: none; }
-details.to-faq > summary::after { content: '+'; font-family: var(--rigid); font-size: var(--size-20); line-height: 1; color: var(--taupe); flex: none; }
-details.to-faq[open] > summary::after { content: '\2212'; color: var(--color-content-accent); }
+.faq-mark { color: var(--color-content-subtle); font-size: 16px; }
+details.to-faq[open] .faq-mark { color: var(--color-content-accent); }
+details.to-faq .i-minus, details.to-faq[open] .i-plus { display: none; }
+details.to-faq[open] .i-minus { display: inline-flex; }
 details.to-faq > summary:hover { color: var(--color-content-accent); }
 details.to-faq > summary:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
 details.to-faq { border-top: 1px solid var(--hairline); }

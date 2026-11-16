@@ -273,13 +273,11 @@
     a.textContent = s.label;
     if (s.locked) {
       a.classList.add('nav-locked');
-      /* inline svg, not an emoji: it inherits colour and stays at text weight */
-      a.insertAdjacentHTML('beforeend',
-        '<svg class="nav-lock" viewBox="0 0 24 24" fill="none" aria-hidden="true">'
-        + '<rect x="5" y="11" width="14" height="9" rx="1.5" stroke="currentColor" stroke-width="1.8"/>'
-        + '<path d="M8.5 11V8a3.5 3.5 0 0 1 7 0v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>');
+      /* the icon set's lock, so there is one lock in the hub (icons.js) */
+      a.insertAdjacentHTML('beforeend', '<span class="nav-lock" data-icon="lock" aria-hidden="true"></span>');
     }
     nav.appendChild(a);
+    if (window.Icons) Icons.draw(a);
     var o = document.createElement('option');
     o.value = s.id; o.textContent = s.label;
     mnav.appendChild(o);
@@ -404,8 +402,9 @@
     var d = document.createElement('div');
     d.className = 'next-nav';
     d.innerHTML = '<a href="#/' + nxt.id + '">Next: ' + esc(nxt.label)
-      + ' <span class="btn-cover__arrow" aria-hidden="true">→</span></a>';
+      + ' <span class="btn-cover__arrow" data-icon="arrow-right" aria-hidden="true"></span></a>';
     root.appendChild(d);
+    if (window.Icons) Icons.draw(d);
   }
 
   /* orange progress rail: the fill tip tracks the active section item, growing through it as you scroll */
