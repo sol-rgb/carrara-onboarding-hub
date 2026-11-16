@@ -68,7 +68,7 @@
   var CHECKLIST = [
     { g: 'start here', cls: 'blue', items: [
       { id: 'slack', when: 'day one', t: 'Set up your Slack workspace', d: 'Join carrarais.slack.com. Fill in your Slack profile: full name, photo, title / focus area, timezone, phone number and email.',
-        html: '<div class="m-eyebrow">[start here · day one]</div><h3>Set up your Slack workspace</h3>'
+        html: '<div class="m-eyebrow">Start here · day one</div><h3>Set up your Slack workspace</h3>'
           + '<p>Join carrarais.slack.com.</p>'
           + '<p>Fill in your Slack profile. Be sure to add:</p>'
           + '<div class="pg"><ul><li>Full name</li><li>Photo</li><li>Title / focus area</li><li>Timezone</li><li>Phone number</li><li>Email</li></ul></div>'
@@ -77,7 +77,7 @@
       { id: 'tool-access', when: 'day one', t: 'Ensure tool and system access', d: 'Confirm you can open Google, Notion, Slack and the tools for your role. Anything blocked, ping Eric on Slack.', links: [{ t: 'Notion Home Base', k: 'notionHomeBase' }] },
       { id: 'payroll', when: 'day one', t: 'Payroll setup (Deel, Bill.com, or Ramp)', d: 'Deel for full-time employees, Bill.com for US contractors, Ramp for international contractors. You\'ll get an invite for the one that applies to you.', links: [{ t: 'Deel', k: 'deel' }, { t: 'Bill.com', k: 'bill' }, { t: 'Ramp', k: 'ramp' }] },
       { id: 'email-signature', when: 'day one', t: 'Set up email signature', d: 'Use the Carrara signature format from the brand templates.',
-        html: '<div class="m-eyebrow">[start here · day one]</div><h3>Set up email signature</h3>'
+        html: '<div class="m-eyebrow">Start here · day one</div><h3>Set up email signature</h3>'
           + '<p>You do this in your Carrara Gmail.</p>'
           + '<div class="pg"><ol>'
           + '<li><a class="textlink" href="' + window.LINKS.emailSigTemplate + '" target="_blank" rel="noopener">Open the email signature template ↗</a> (a Google Doc) and copy the signature.</li>'
@@ -145,13 +145,13 @@
     if (!kp) return '';
     var html = '';
     if (kp.services && kp.services.length) {
-      html += '<div class="wk-sec"><div class="wk-lbl">[how we run it]</div><ul>'
+      html += '<div class="wk-sec"><div class="wk-lbl">How we run it</div><ul>'
         + kp.services.map(function (s) {
           return '<li><a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.name) + '</a>' + (s.summary ? ': ' + esc(s.summary) : '') + '</li>';
         }).join('') + '</ul></div>';
     }
     if (kp.leads && kp.leads.length) {
-      html += '<div class="wk-sec"><div class="wk-lbl">[who to ask]</div><ul>'
+      html += '<div class="wk-sec"><div class="wk-lbl">Who to ask</div><ul>'
         + kp.leads.map(function (p) { return '<li>' + esc(p.name) + (p.role ? ', ' + esc(p.role) : '') + '</li>'; }).join('') + '</ul></div>';
     }
     html += '<div class="wk-sec"><div class="wk-links"><a href="' + esc(kp.url) + '" target="_blank" rel="noopener">' + esc(kp.name) + ' on the Carrara Hub ↗</a></div></div>';
@@ -170,7 +170,7 @@
   function openPage(k) {
     var pg = pageFor(k);
     if (!pg) return;
-    openModal((pg.eyebrow === undefined ? '<div class="m-eyebrow">[from the carrara library]</div>'
+    openModal((pg.eyebrow === undefined ? '<div class="m-eyebrow">From the Carrara library</div>'
         : (pg.eyebrow ? '<div class="m-eyebrow">' + esc(pg.eyebrow) + '</div>' : ''))
       + '<h3>' + esc(pg.title) + '</h3><div class="pg">' + pg.html + knowledgePracticeHtml(k) + '</div>'
       + notionButtonHtml(k)
@@ -551,7 +551,7 @@
             + (internal ? ' onclick="document.getElementById(\'modal-back\').classList.remove(\'show\')"' : ' target="_blank" rel="noopener"')
             + '>' + esc(l.t) + (internal ? '' : ' ↗') + '</a>';
         });
-        var body = item.html || ('<div class="m-eyebrow">[' + grp.g + (item.when ? ' · ' + item.when : '') + ']</div><h3>' + esc(item.t) + '</h3><p>' + esc(item.d) + '</p>');
+        var body = item.html || ('<div class="m-eyebrow">' + grp.g + (item.when ? ' · ' + item.when : '') + '</div><h3>' + esc(item.t) + '</h3><p>' + esc(item.d) + '</p>');
         openModal(body + (item.survey === 'top5' ? '<div id="t5-box"></div>' : '')
           + (item.survey === 'profile' ? '<div id="pv-box"></div>' : '')
           + (linksHtml ? '<p id="chk-links" style="margin-top:14px">' + linksHtml + '</p>' : ''));
@@ -631,7 +631,7 @@
     var pv = pavilion[m.name] || {};
     var role = roleOf(m);
     var av = m.avatar ? '<img src="' + m.avatar + '" alt="">' : initials(m.name);
-    var html = '<div class="m-eyebrow">[the team]</div>'
+    var html = '<div class="m-eyebrow">The team</div>'
       + '<div class="member-head"><div class="avatar big">' + av + '</div><div>'
       + '<h3>' + esc(m.name) + '</h3>'
       + (role ? '<div class="rl">' + esc(role) + (m.extra ? ' · ' + esc(m.extra) : '') + '</div>' : (m.extra ? '<div class="rl">' + esc(m.extra) + '</div>' : ''))
@@ -662,19 +662,19 @@
     if (pvClients.length) {
       /* logo above, company name below: a name alone makes you read, a logo
          alone makes you guess. Falls back to the initial when we have no domain. */
-      html += '<div class="wk-sec"><div class="wk-lbl">[clients]</div><div class="cl-grid">'
+      html += '<div class="wk-sec"><div class="wk-lbl">Clients</div><div class="cl-grid">'
         + pvClients.map(function (cn) { return clientTile(cn, 64); }).join('') + '</div></div>';
     }
     /* People Pavilion answers, question above each one so the card reads on its own */
     if (pv.answers && pv.answers.length) {
-      html += '<div class="wk-sec"><div class="wk-lbl">[in their own words]</div>'
+      html += '<div class="wk-sec"><div class="wk-lbl">In their own words</div>'
         + pv.answers.map(function (a) {
             return '<div class="qa"><div class="q">' + esc(a.q) + '</div>'
               + '<ul>' + (a.a || []).map(function (line) { return '<li>' + esc(line) + '</li>'; }).join('') + '</ul></div>';
           }).join('') + '</div>';
     }
     if (p && p.prior && p.prior.length) {
-      html += '<div class="wk-sec"><div class="wk-lbl">[before carrara]</div><ul>'
+      html += '<div class="wk-sec"><div class="wk-lbl">Before Carrara</div><ul>'
         + p.prior.map(function (x) {
             return '<li>' + (x.role ? '<b>' + esc(x.role) + '</b>, ' + esc(x.company) : '<b>' + esc(x.company) + '</b>') + '</li>';
           }).join('') + '</ul></div>';
@@ -683,7 +683,7 @@
     if (m.email) linksH.push('<a href="mailto:' + esc(m.email) + '">' + esc(m.email) + '</a>');
     var li = pv.linkedin || (p && p.linkedin);
     if (li) linksH.push('<a href="' + esc(/^https?:/.test(li) ? li : 'https://' + li) + '" target="_blank" rel="noopener">LinkedIn ↗</a>');
-    if (linksH.length) html += '<div class="wk-sec"><div class="wk-lbl">[reach them]</div><div class="wk-links">' + linksH.join('') + '</div></div>';
+    if (linksH.length) html += '<div class="wk-sec"><div class="wk-lbl">Reach them</div><div class="wk-links">' + linksH.join('') + '</div></div>';
     html += '</div>';
     if (!pv.answers || !pv.answers.length) {
       html += '<p class="pg-note">Background and working preferences live on the Carrara Hub.</p>';
@@ -1267,12 +1267,12 @@
     /* what we're doing now and who's on it come from the Knowledge Hub, which
        the daily sync and the owner survey keep current */
     if (kc && kc.workstreams && kc.workstreams.length) {
-      html += '<div class="wk-sec"><div class="wk-lbl">[what we\'re doing now]</div><ul>'
+      html += '<div class="wk-sec"><div class="wk-lbl">What we\'re doing now</div><ul>'
         + kc.workstreams.map(function (w) { return '<li><b>' + esc(w.title) + '</b>' + (w.detail ? ': ' + esc(w.detail) : '') + '</li>'; }).join('')
         + '</ul></div>';
     }
     if (kc && kc.team && kc.team.length) {
-      html += '<div class="wk-sec"><div class="wk-lbl">[who\'s on it]</div><ul>'
+      html += '<div class="wk-sec"><div class="wk-lbl">Who\'s on it</div><ul>'
         + kc.team.map(function (m) { return '<li><b>' + esc(m.name) + '</b>' + (m.role ? ': ' + esc(m.role) : '') + '</li>'; }).join('')
         + '</ul></div>';
     }
@@ -1282,13 +1282,13 @@
       ['Team', ov.teamSize], ['Key people', ov.leaders], ['Revenue model', ov.howTheyMakeMoney]
     ].filter(function (f) { return f[1]; });
     if (facts.length || cx.background) {
-      html += '<div class="wk-sec"><div class="wk-lbl">[the company]</div>';
+      html += '<div class="wk-sec"><div class="wk-lbl">The company</div>';
       if (facts.length) html += '<ul>' + facts.map(function (f) { return '<li><b>' + esc(f[0]) + '</b>: ' + esc(f[1]) + '</li>'; }).join('') + '</ul>';
       if (cx.background) html += '<p class="cp-bg">' + esc(cx.background) + '</p>';
       html += '</div>';
     }
     if (cx.engagement && cx.engagement.length && !(kc && kc.workstreams && kc.workstreams.length)) {
-      html += '<div class="wk-sec"><div class="wk-lbl">[what we do for them]</div><ul>'
+      html += '<div class="wk-sec"><div class="wk-lbl">What we do for them</div><ul>'
         + cx.engagement.map(function (b) { return '<li>' + esc(b) + '</li>'; }).join('')
         + '</ul></div>';
     }
@@ -1297,7 +1297,7 @@
     if (cx.talentPartners && cx.talentPartners.length) team.push(['Talent partner' + (cx.talentPartners.length > 1 ? 's' : ''), cx.talentPartners]);
     if (cx.coordination && cx.coordination.length) team.push(['Coordination support', cx.coordination]);
     if (team.length && !(kc && kc.team && kc.team.length)) {
-      html += '<div class="wk-sec"><div class="wk-lbl">[who runs it at carrara]</div><ul>'
+      html += '<div class="wk-sec"><div class="wk-lbl">Who runs it at Carrara</div><ul>'
         + team.map(function (t) { return '<li><b>' + esc(t[0]) + '</b>: ' + esc(t[1].join(', ')) + '</li>'; }).join('') + '</ul></div>';
     }
     var linksH = [];
@@ -1306,7 +1306,7 @@
     (cx.docs || []).forEach(function (d2) {
       linksH.push('<a href="' + esc(d2.url) + '" target="_blank" rel="noopener">' + esc(d2.label) + ' ↗</a>');
     });
-    if (linksH.length) html += '<div class="wk-sec"><div class="wk-lbl">[links and docs]</div><div class="wk-links">' + linksH.join('') + '</div></div>';
+    if (linksH.length) html += '<div class="wk-sec"><div class="wk-lbl">Links and docs</div><div class="wk-links">' + linksH.join('') + '</div></div>';
     html += '</div>';
     el.innerHTML = html;
   };
@@ -1414,7 +1414,7 @@
       var nameHtml = u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(c.n) + '</a>' : esc(c.n);
       d.innerHTML = '<td class="ch-name">' + nameHtml + '</td>'
         + '<td class="ch-what">' + esc(c.d)
-        + '<div class="hovercard"><div class="hlbl">[what gets posted here]</div><ul>'
+        + '<div class="hovercard"><div class="hlbl">What gets posted here</div><ul>'
         + c.ex.map(function (e) { return '<li>' + esc(e) + '</li>'; }).join('') + '</ul></div></td>';
       grid.appendChild(d);
     });

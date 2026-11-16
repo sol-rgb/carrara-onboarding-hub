@@ -387,13 +387,13 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
 .modal {
   background: var(--color-background-sheet);
   border-radius: var(--shape-soft);
-  width: min(480px, 94vw);
+  width: min(var(--layout-measure-sm), 94vw);
   padding: var(--space-inset-sm);
   position: relative;
 }
 .modal .m-eyebrow {
-  font-family: var(--type-body-2xs-family); font-size: var(--type-body-2xs-size);
-  line-height: var(--type-body-2xs-leading); letter-spacing: 0.12em;
+  font-family: var(--type-body-sm-family); font-size: var(--type-body-sm-size);
+  font-weight: var(--type-body-sm-weight); line-height: var(--type-body-sm-leading);
   color: var(--color-content-subtle); margin-bottom: var(--space-stack-sm);
 }
 /* the title of what you opened: the step under a page's title, as a section's
@@ -403,7 +403,13 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
   font-weight: var(--weight-700); line-height: var(--type-body-lg-leading);
   color: var(--color-content-default); margin-bottom: var(--space-stack-md);
 }
-.modal p { font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); color: var(--color-content-default); }
+/* A sheet is read closer than a page, so its prose takes the secondary size.
+   .pg is shared with the time-off policy, which is a page and keeps its 16. */
+.modal p,
+.modal .pg p,
+.modal .pg li,
+.modal .wk-sec li,
+.modal .mo-syncs li { font-size: var(--type-body-sm-size); line-height: var(--type-body-sm-leading); color: var(--color-content-default); }
 .modal .m-close {
   position: absolute; top: var(--space-stack-md); right: var(--space-stack-md);
   font-family: var(--type-body-2xs-family); font-size: var(--type-body-2xs-size);
@@ -804,7 +810,11 @@ table.channels td:first-child { width: 1%; }
 }
 @media (max-width: 900px) { .hovercard { display: none !important; } }
 .ch-row:hover .hovercard { display: block; }
-.hovercard .hlbl { font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.12em; color: var(--color-content-knockout); margin-bottom: 8px; }
+.hovercard .hlbl {
+  font-family: var(--type-body-sm-family); font-size: var(--type-body-sm-size);
+  font-weight: var(--weight-700); line-height: var(--type-body-sm-leading);
+  color: var(--color-content-knockout); margin-bottom: var(--space-stack-sm);
+}
 .hovercard ul { list-style: none; }
 .hovercard li { font-size: var(--type-body-xs-size); line-height: var(--type-body-xs-leading); padding: 5px 0; border-bottom: 1px solid rgba(237,235,234,0.12); }
 .hovercard li:last-child { border-bottom: none; }
@@ -888,7 +898,12 @@ table.channels td:first-child { width: 1%; }
 .wk-actions { margin-top: 16px; }
 .wk-sec { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--hairline); }
 .wk-sec:first-child { margin-top: 0; padding-top: 0; border-top: none; }
-.wk-lbl { font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.12em; color: var(--taupe); margin-bottom: 8px; }
+/* the heading over a list inside a sheet: the step under the sheet's own title */
+.wk-lbl {
+  font-family: var(--type-body-md-family); font-size: var(--type-body-md-size);
+  font-weight: var(--weight-700); line-height: var(--type-body-md-leading);
+  color: var(--color-content-default); margin-bottom: var(--space-stack-sm);
+}
 .wk-sec ul { list-style: disc; padding-left: var(--space-stack-lg); }
 .wk-sec li { font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); color: var(--color-content-default); margin-bottom: var(--space-stack-sm); }
 .wk-sec li b { font-weight: var(--weight-500); color: var(--ink); }
@@ -1340,8 +1355,12 @@ a.cl-cell:hover { transform: translateY(-2px); }
 a.cl-cell:hover .cl-name { color: var(--color-content-accent); }
 .cl-dot-link { display: inline-flex; line-height: 0; }
 .cl-dot-link:hover .cl-dot { outline: 1px solid var(--orange); outline-offset: 1px; }
-.pg-cl-lbl { font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--taupe); margin-bottom: 12px; }
+/* the same job as .wk-lbl, a heading over a block in a sheet, so the same voice */
+.pg-cl-lbl {
+  font-family: var(--type-body-md-family); font-size: var(--type-body-md-size);
+  font-weight: var(--weight-700); line-height: var(--type-body-md-leading);
+  color: var(--color-content-default); margin-bottom: var(--space-stack-md);
+}
 .pg-clients .cl-grid { margin-top: 0; }
 
 /* brand vault: four cards that open, rather than one endless scroll */
@@ -1538,7 +1557,6 @@ h2.sub + .cards { margin-top: 0; }
 .locked-panel { padding: 50px 46px; }
 .bv-skill { padding: 26px 30px 28px; }
 .wk-sec { margin-top: 26px; padding-top: 20px; }
-.wk-lbl { margin-bottom: 10px; }
 .wk-links a { padding: 9px 0; }
 .chk-item { padding: 13px 0; }
 .client-row { padding: 26px 0; }
