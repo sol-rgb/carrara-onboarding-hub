@@ -1,6 +1,6 @@
 {
  "source": "notion-client-codex",
- "updated": "2026-11-09",
+ "updated": "2026-11-16",
  "clients": {
   "3i Members": {
    "status": "Paused",
@@ -43,7 +43,9 @@
    "status": "Paused",
    "projectTypes": [],
    "accountManagers": [],
-   "talentPartners": [],
+   "talentPartners": [
+    "Emily Kasper"
+   ],
    "coordination": [],
    "about": null,
    "engagement": [],
@@ -323,7 +325,9 @@
    "accountManagers": [
     "Sam Blumenthal"
    ],
-   "talentPartners": [],
+   "talentPartners": [
+    "Emily Kasper"
+   ],
    "coordination": [],
    "about": "Virtual behavioral health provider focused on Medicaid populations.",
    "engagement": [
@@ -653,7 +657,8 @@
    ],
    "talentPartners": [
     "Ania Sielski",
-    "Hannah Say"
+    "Hannah Say",
+    "Emily Kasper"
    ],
    "coordination": [],
    "about": "The world's largest social app for gay, bi, trans and queer people; publicly listed.",
@@ -722,7 +727,8 @@
     "Sam Blumenthal"
    ],
    "talentPartners": [
-    "Beth Werkstell"
+    "Beth Werkstell",
+    "Emily Kasper"
    ],
    "coordination": [],
    "about": "Dating app built for long-term relationships, a wholly-owned subsidiary of Match Group.",
@@ -755,7 +761,8 @@
    "talentPartners": [
     "Tenzing Bhutia",
     "Drew Koloski",
-    "Ali Horowitz"
+    "Ali Horowitz",
+    "Emily Kasper"
    ],
    "coordination": [
     "Tess Wicks"
@@ -797,7 +804,9 @@
    "accountManagers": [
     "Sam Blumenthal"
    ],
-   "talentPartners": [],
+   "talentPartners": [
+    "Emily Kasper"
+   ],
    "coordination": [],
    "about": "Open-source frameworks and the LangSmith platform for building, testing and monitoring AI agents in production.",
    "engagement": [],
@@ -1053,7 +1062,9 @@
    "accountManagers": [
     "Joe Penn"
    ],
-   "talentPartners": [],
+   "talentPartners": [
+    "Emily Kasper"
+   ],
    "coordination": [],
    "about": "Philanthropic arm of OpenAI, funding life sciences and disease research, AI resilience, and civil society programmes.",
    "engagement": [],
@@ -1073,7 +1084,8 @@
    ],
    "talentPartners": [
     "Justin Colsky",
-    "Ania Sielski"
+    "Ania Sielski",
+    "Emily Kasper"
    ],
    "coordination": [
     "Hayley Samuels",
