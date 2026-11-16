@@ -413,7 +413,8 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
 }
 
 .rock-card:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
-.rock-card p { color: inherit; margin: 0; }
+.rock-card p { color: var(--color-content-subtle); margin: 0; transition: color 0.18s ease; }
+.rock-card[data-page]:hover p { color: var(--color-content-default); }
 
 /* ---------- team ---------- */
 .profile-cta {
@@ -608,7 +609,8 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
   text-decoration: none; border-bottom: 0;
 }
 .res-item > a.textlink::after { content: ""; position: absolute; inset: 0; }
-.res-item .d { color: inherit; }
+.res-item .d { color: var(--color-content-subtle); transition: color 0.18s ease; }
+.res-item:hover .d { color: var(--color-content-default); }
 /* a link inside the description stays reachable over the stretched one */
 .res-item .d a { position: relative; z-index: 1; }
 .res-item::after {
