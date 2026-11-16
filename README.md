@@ -110,6 +110,9 @@ Sign in with Google, Carrara accounts only (`middleware.js`, `api/auth/login.js`
 - `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`: that client. In the Google Cloud console it lists this site's address plus `/api/auth/google` as an authorized redirect URI (the vercel.app address too).
 - `AUTH_SECRET`: optional, signs the session cookie. Without it the client secret signs it.
 - `ALLOWED_EMAILS`: optional, comma separated, for people without a carrara.is Google Workspace account.
+- `AUTH_ORIGIN`: optional, where preview deployments sign in. Defaults to `https://onboarding.carrara.is`.
+
+Preview deployments sign in through production. Google only returns to redirect URIs listed on the client, and every preview has a new address, so a preview sends Google back to `onboarding.carrara.is`, which checks the account and hands the result back to the preview in a signed token that lasts two minutes. Nothing to add in the Google Cloud console per preview. Production and previews must share the signing secret (`AUTH_SECRET`, else `GOOGLE_CLIENT_SECRET`); if they differ, preview sign in fails closed. The flow is described in `api/_lib/signin.js` and checked by `node scripts/verify-preview-signin.js`.
 
 Only verified @carrara.is Google Workspace accounts get in (the `hd` claim is carrara.is), plus `ALLOWED_EMAILS`. A session ends after 60 minutes without use, and after 24 hours at most. Then Google asks again, one click on the account chooser. That is also what stops a leaver: once their Workspace account is suspended, Google refuses them at the next sign in.
 
