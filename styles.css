@@ -896,7 +896,7 @@ table.channels td:first-child { width: 1%; }
 .wk-err { font-family: var(--sans); font-size: var(--type-body-2xs-size); color: var(--color-content-accent); margin-top: 10px; display: none; }
 .wk-err.show { display: block; }
 .wk-actions { margin-top: 16px; }
-.wk-sec { margin-top: var(--space-stack-xl); }
+.wk-sec { margin-top: var(--space-40); }
 .wk-sec:first-child { margin-top: 0; }
 /* the heading over a list inside a sheet: the step under the sheet's own title */
 .wk-lbl {
@@ -1004,7 +1004,7 @@ a.client-row:hover .cn { color: var(--color-content-accent); }
 .pg-swatch span { width: 34px; height: 22px; flex: none; }
 .pg-swatch b { font-weight: var(--weight-500); color: var(--ink); margin-right: 4px; white-space: nowrap; }
 .pg-note { font-family: var(--sans); font-size: var(--type-body-2xs-size); letter-spacing: 0.08em; color: var(--taupe); margin-top: 18px; }
-.pg-clients { font-size: var(--type-body-sm-size); color: var(--color-content-subtle); margin-top: var(--space-stack-xl); }
+.pg-clients { font-size: var(--type-body-sm-size); color: var(--color-content-subtle); margin-top: var(--space-40); }
 .pg-clients b { color: var(--ink); font-weight: var(--weight-500); }
 .modal { max-height: 80vh; overflow-y: auto; }
 
@@ -1143,9 +1143,9 @@ body::after {
 .cl-grid { display: flex; flex-wrap: wrap; gap: var(--space-stack-sm); margin-top: 4px; }
 .cl-cell {
   display: inline-flex; align-items: center; gap: var(--space-stack-sm);
-  background: var(--color-background-subtle);
+  border: 1px solid var(--color-border-subtle);
   border-radius: var(--shape-soft);
-  padding: 6px var(--space-stack-md) 6px 8px;
+  padding: var(--space-stack-sm);
 }
 .cl-mark {
   width: 18px; height: 18px; flex: none;
@@ -1358,8 +1358,7 @@ body::after {
 
 /* client logo tiles are links now, so they need to look and behave like one */
 a.cl-cell { color: inherit; text-decoration: none; transition: transform 0.15s ease; }
-a.cl-cell:hover { background: var(--color-background-strong); }
-a.cl-cell:hover .cl-name { color: var(--color-content-knockout); }
+a.cl-cell:hover { background: var(--color-background-subtle); }
 .cl-dot-link { display: inline-flex; line-height: 0; }
 .cl-dot-link:hover .cl-dot { outline: 1px solid var(--orange); outline-offset: 1px; }
 /* the same job as .wk-lbl, a heading over a block in a sheet, so the same voice */
