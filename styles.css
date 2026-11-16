@@ -231,7 +231,8 @@ a.textlink,
 a.spec .spec__tab,
 .spec__tab a,
 .ch-name a,
-.member .em a {
+.member .em a,
+.mo-body a {
   color: inherit;
   border-bottom: 0;
   text-decoration: underline dotted;
@@ -242,14 +243,16 @@ a.textlink:hover,
 a.spec:hover .spec__tab,
 .spec__tab a:hover,
 .ch-name a:hover,
-.member .em a:hover {
+.member .em a:hover,
+.mo-body a:hover {
   text-decoration-style: solid;
   text-decoration-color: currentColor;
 }
 a.textlink:focus-visible,
 .spec__tab a:focus-visible,
 .ch-name a:focus-visible,
-.member .em a:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
+.member .em a:focus-visible,
+.mo-body a:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
 
 /* chips */
 .chip-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 6px; }
@@ -1030,8 +1033,6 @@ body::after {
 .mo-body p:last-child { margin-bottom: 0; }
 .mo-body ul, .mo-body ol { margin-left: 20px; }
 .mo-body li { font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); color: var(--color-content-default); margin-bottom: var(--space-stack-sm); }
-.mo-body a { color: var(--color-content-accent); text-decoration: none; border-bottom: 1px solid rgba(235, 78, 25, 0.35); }
-.mo-body a:hover { border-bottom-color: var(--color-content-accent); }
 
 .mo-extra { max-width: 720px; margin-top: 60px; }
 .mo-extra .wk-sec p, .mo-extra .wk-sec li { font-size: var(--type-body-sm-size); }
