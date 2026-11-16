@@ -15,40 +15,48 @@
 </head>
 <body>
 
-<!-- The arrival: one sheet of glassine with a perforated strip across its
-     middle. Pulling the strip cuts the sheet in two and the halves part. -->
-<section class="vellum is-loading" id="vellum" role="button" tabindex="0"
-         aria-label="Pull the strip to open the hub" hidden>
-  <div class="vellum__sheet vellum__sheet--top" aria-hidden="true"></div>
-  <div class="vellum__sheet vellum__sheet--bot" aria-hidden="true"></div>
-  <div class="tape" id="tape" aria-hidden="true">
-    <div class="tape__strip" id="tape-strip"></div>
-    <div class="tape__pulled" id="tape-pulled"><span class="tape__hint">Pull<span class="tape__arrow">&rarr;</span></span></div>
-  </div>
-  <div class="vellum__inner">
-    <div class="vellum__words">
-      <img class="rule" src="/assets/vellum/rule-402.svg" alt="" aria-hidden="true">
-      <p class="vellum__for"><span class="vellum__label">For</span><span class="vellum__name">you</span></p>
-      <img class="rule rule--flip rule--lead" src="/assets/vellum/rule-402.svg" alt="" aria-hidden="true">
-      <p>Carrara Onboarding</p>
-      <img class="rule rule--180" src="/assets/vellum/rule-180.svg" alt="" aria-hidden="true">
+<!-- The arrival: a ticket, torn from its stub. One button in. -->
+<section class="arrival is-loading" id="arrival" aria-label="Your ticket into the hub" hidden>
+  <div class="ticket">
+    <div class="ticket__pic">
+      <canvas class="ticket__sky" id="arrival-sky" aria-hidden="true"></canvas>
+      <img src="/assets/ticket/quarry.png" alt="" aria-hidden="true">
+    </div>
+    <div class="ticket__info">
+      <div class="tk-field">
+        <div class="tk-k">Passenger:</div>
+        <div class="tk-v" id="tk-name">You</div>
+      </div>
+      <img class="tk-rule" src="/assets/ticket/divider.svg" alt="" aria-hidden="true">
+      <div class="tk-field">
+        <div class="tk-k">Chapter:</div>
+        <div class="tk-v">Carrara</div>
+      </div>
+      <img class="tk-rule" src="/assets/ticket/divider.svg" alt="" aria-hidden="true">
+      <div class="tk-field">
+        <div class="tk-k">Start</div>
+        <div class="tk-date" id="tk-date"></div>
+      </div>
+      <a class="btn" id="tk-go" href="#/start">Begin your journey <span data-icon="arrow-right" aria-hidden="true"></span></a>
     </div>
   </div>
 </section>
 
-<svg class="mark mark--corner" viewBox="0 0 32 32" aria-hidden="true">
-  <path class="mark__block" d="M32 24L16 32H8L0 16V8L16 0H24L32 16V24Z"/>
-  <path class="mark__facet" d="M0 16L16 0L0 8V16Z"/>
-</svg>
+<a class="mark--corner" href="#/start" aria-label="Back to the start">
+  <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+    <path class="mark__block" d="M32 24L16 32H8L0 16V8L16 0H24L32 16V24Z"/>
+    <path class="mark__facet" d="M0 16L16 0L0 8V16Z"/>
+  </svg>
+</a>
 <div class="grain" aria-hidden="true"></div>
 <div class="mat" aria-hidden="true"></div>
 <div class="grain grain--over" aria-hidden="true"></div>
 
-<aside class="sidebar">
-  <div class="nav-wrap">
-    <div class="nav-rail"><span id="nav-rail-fill"></span></div>
-    <nav id="nav"></nav>
-  </div>
+<!-- About Carrara is the one item with pages inside it, so it is the one thing
+     with an index: the letter's rail, in the margin, sticky. -->
+<aside class="sidebar" id="walk-index" aria-label="About Carrara" hidden>
+  <nav id="nav"></nav>
+  <a class="rail-out" href="#/start"><span data-icon="arrow-left" aria-hidden="true"></span>Your checklist</a>
 </aside>
 
 <div class="topbar">
@@ -66,8 +74,14 @@
           <p>You were chosen because of the craft, judgment, and energy you bring, and we can&rsquo;t wait to see how you&rsquo;ll carve your path here. At Carrara, every person has impact, and your arrival expands what we can do together.</p>
           <p>Over the coming days, you&rsquo;ll get the context, tools, and connections you need to get started, but from day one, you&rsquo;ll also be contributing to the work that matters. We&rsquo;ll provide the playground, but you&rsquo;ll have the agency to dive in where your expertise spikes and your energy creates value.</p>
           <p>Welcome to the team. We&rsquo;re excited to build what&rsquo;s next with you.</p>
+          <div class="cover__sign">
+            <p class="cover__sign-mark">Gonz</p>
+            <p class="cover__sign-name">Gonzalo Sanchez Sarmiento</p>
+            <p class="cover__sign-role">I grow stuff</p>
+          </div>
         </div>
       </div>
+      <div id="cover-checklist"></div>
       <a class="btn-cover" id="btn-tour" href="#/who">Let&rsquo;s start <span class="btn-cover__arrow" data-icon="arrow-right" aria-hidden="true"></span></a>
     </div>
   </section>
@@ -194,29 +208,15 @@
     </div>
 
     <div class="team-tools">
-      <input class="team-search" id="team-search" type="text" placeholder="Filter by name or role" aria-label="Filter team">
-      <span class="team-count" id="team-count"></span>
+      <span class="tf"><input class="team-search" id="team-search" type="text" placeholder="Filter by name or role" aria-label="Filter by name or role"><button class="tf-x" type="button" data-clears="team-search" aria-label="Clear the name filter" hidden><span data-icon="x" aria-hidden="true"></span></button></span>
+      <span class="tf"><select id="f-team" aria-label="Filter by department"><option value="">All departments</option></select><button class="tf-x" type="button" data-clears="f-team" aria-label="Clear the department filter" hidden><span data-icon="x" aria-hidden="true"></span></button></span>
+      <span class="tf"><select id="f-client" aria-label="Filter by client"><option value="">All clients</option></select><button class="tf-x" type="button" data-clears="f-client" aria-label="Clear the client filter" hidden><span data-icon="x" aria-hidden="true"></span></button></span>
+      <span class="tf"><select id="f-loc" aria-label="Filter by location"><option value="">Anywhere</option></select><button class="tf-x" type="button" data-clears="f-loc" aria-label="Clear the location filter" hidden><span data-icon="x" aria-hidden="true"></span></button></span>
     </div>
-    <div class="team-filters" id="team-filters">
-      <label class="tf"><span>Department</span><select id="f-team"><option value="">All departments</option></select></label>
-      <label class="tf"><span>Client</span><select id="f-client"><option value="">All clients</option></select></label>
-      <label class="tf"><span>Location</span><select id="f-loc"><option value="">Anywhere</option></select></label>
-      <button class="tf-clear" id="f-clear" hidden>Clear</button>
-    </div>
+    <p class="team-count" id="team-count"></p>
     <div class="team-grid" id="team-grid"></div>
-    <p class="team-note" id="team-note">Pulled from Slack. Photos and titles come straight from Slack profiles, so set yours and it shows up here.</p>
+    <p class="team-note" id="team-note"></p>
 
-  </section>
-
-  <!-- code of conduct: locked until Kenna's draft lands -->
-  <section class="view" id="view-conduct">
-    <p class="label">Code of conduct</p>
-    <h1 class="page-title">Code of conduct.</h1>
-    <div class="locked-panel">
-      <span class="lock-lg" data-icon="lock" aria-hidden="true"></span>
-      <div class="lk-t">Coming soon</div>
-      <p class="body-copy muted">How we expect people to show up and work with each other and with clients. Kenna is writing it. You will be asked to read and acknowledge it here.</p>
-    </div>
   </section>
 
   <!-- the business -->
@@ -241,7 +241,7 @@
   <section class="view" id="view-slack">
     <p class="label">How we communicate</p>
     <h1 class="page-title">How to read our Slack.</h1>
-    <p class="body-copy">Prefixes tell you what a channel is for. Once you know the pattern, the workspace reads itself.</p>
+    <p class="body-copy">Join at <a class="textlink" data-link="slackWorkspace">carrarais.slack.com</a>, then set up your profile. Prefixes tell you what a channel is for: once you know the pattern, the workspace reads itself.</p>
     <div class="spec-grid three">
       <div class="spec"><span class="spec__tab">g-</span><span class="spec__d">company-wide, everyone's in.</span></div>
       <div class="spec"><span class="spec__tab">f-</span><span class="spec__d">function teams (talent, GTM, ops).</span></div>
@@ -261,43 +261,32 @@
       <li><b>Where you're based</b>: city and country, so people know your hours.</li>
       <li><b>Timezone</b>: set it correctly. We work across four continents.</li>
     </ul>
-    <p class="body-copy muted">Phone number is optional, add it if you're happy being reached that way.</p>
+    <p class="body-copy">Phone number is optional, add it if you're happy being reached that way.</p>
     <h2 class="sub">Know these from day one</h2>
-    <p class="body-copy muted">Hover a channel to see the kind of thing that gets posted there.</p>
-    <table class="channels">
-      <thead><tr><th>Channel</th><th>What it&rsquo;s for</th></tr></thead>
-      <tbody id="channel-grid"></tbody>
-    </table>
+    <div class="ch-grid" id="channel-grid"></div>
 
     <h2 class="sub">The watercooler</h2>
-    <p class="body-copy muted">None of this is required reading. It's where the team is human, and the fastest way to stop being the new person.</p>
-    <table class="channels">
-      <thead><tr><th>Channel</th><th>What it&rsquo;s for</th></tr></thead>
-      <tbody id="water-grid"></tbody>
-    </table>
+    <p class="body-copy">None of this is required reading. It's where the team is human, and the fastest way to stop being the new person.</p>
+    <div class="ch-grid" id="water-grid"></div>
   </section>
 
   <!-- clients -->
   <section class="view" id="view-clients">
     <p class="label">Our clients</p>
-    <h1 class="page-title">Who we're working with right now. <span class="internal-tag">internal only</span></h1>
+    <h1 class="page-title">Who we're working with right now<span class="internal-tag">internal only</span></h1>
     <div class="client-grid" id="client-grid"></div>
     <div id="archived-wrap" hidden>
       <h2 class="sub">Companies we've worked with</h2>
-      <p class="body-copy muted">Past and paused engagements, <span id="archived-count"></span>. Useful context when a name comes up in a call.</p>
       <div class="client-grid" id="client-grid-archived"></div>
     </div>
     <p class="team-note" id="client-note"></p>
   </section>
 
-  <!-- client detail page (rendered by app.js, route #/client/<slug>) -->
-  <section class="view" id="view-clientpage"></section>
-
   <!-- tools -->
   <section class="view" id="view-tools">
     <p class="label">Our tools</p>
     <h1 class="page-title">Your toolkit and your stipend.</h1>
-    <p class="body-copy">A 200 dollar monthly SaaS stipend via Ramp covers any tools that help you do your best work. These are the ones the team runs on.</p>
+    <p class="body-copy">A 200 dollar monthly SaaS stipend via Ramp covers any tools that help you do your best work. These are the ones the team runs on. Your Google account, Slack and <a class="textlink" data-link="notionHomeBase">Notion Home Base</a> come with the job and should open on day one. Start with the Quarry, our AI harness: <a class="textlink" data-link="quarry">the setup guide</a> walks you through Claude, the Obsidian vault and Cowork.</p>
     <div class="tool-grid" id="tool-grid"></div>
   </section>
 
@@ -341,7 +330,7 @@
       <div class="bv-skill">
         <div class="bv-skill-txt">
           <div class="bv-sh">Apps and pages</div>
-          <p>The same system as build rules: tokens, type scale, the chamfer, and what to check before you ship. For landing pages, internal tools and anything vibe-coded.</p>
+          <p>The same system as build rules: tokens, type scale, shape, and what to check before you ship. For landing pages, internal tools and anything vibe-coded.</p>
         </div>
         <div class="bv-skill-act">
           <button class="btn-primary bv-skill-copy" data-skill="/assets/skills/carrara-app-brand.md">Copy</button>
@@ -510,7 +499,7 @@
   <div class="chk-pop-panel" role="dialog" aria-modal="true" aria-labelledby="chk-pop-title">
     <button class="m-close" id="chk-pop-close" aria-label="Close"><span data-icon="x" aria-hidden="true"></span></button>
     <h2 class="chk-pop-title" id="chk-pop-title">Everything to get done.</h2>
-    <p class="body-copy muted" style="font-size:13.5px">Click the box to check off. Click the item or the i for details.</p>
+    <p class="body-copy">Click the box to check off. Click the item or the i for details.</p>
     <div class="progress-wrap">
       <div class="progress-bar"><span id="chk-fill"></span></div>
       <div class="progress-pct" id="chk-pct">0%</div>
@@ -558,6 +547,7 @@
 <script src="/app.js"></script>
 <script src="/trazos.js"></script>
 <script src="/cronologia.js"></script>
+<script src="/arrival-sky.js"></script>
 <script src="/arrival.js"></script>
 </body>
 </html>

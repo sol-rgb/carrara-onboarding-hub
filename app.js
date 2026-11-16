@@ -7,24 +7,26 @@
      failing quietly somewhere downstream. */
   var MO = window.MyOnboarding;
 
+  /* The hub is no longer one road through everything. The checklist is, and
+     these pages are what its items open.
+
+     walk: true marks the five that make up a single item -- "About Carrara" --
+     and they are chained front to back in this order, ending in a button that
+     ticks that item off. The rest are what a task opens: a hire reaches them
+     from their item and goes back to the list, not on to the next page. */
   var SECTIONS = [
     { id: 'start',     label: 'Start here' },
-    { id: 'who',       label: 'Who we are' },
-    { id: 'team',      label: 'The team' },
-    { id: 'business',  label: 'The business' },
+    { id: 'who',       label: 'Who we are',        walk: true },
+    { id: 'team',      label: 'The team',          walk: true },
+    { id: 'business',  label: 'The business',      walk: true },
+    { id: 'clients',   label: 'Our clients',       walk: true },
+    { id: 'resources', label: 'Resources',         walk: true },
     { id: 'slack',     label: 'How we communicate' },
-    { id: 'clients',   label: 'Our clients' },
     { id: 'tools',     label: 'Our tools' },
     { id: 'timeoff',   label: 'Time off policy' },
-    { id: 'resources', label: 'Resources' },
-    /* locked: reachable, but marked so nobody expects content yet */
-    { id: 'conduct',   label: 'Code of conduct', locked: true },
-    /* LAST, and hidden until every section above has been visited. */
     { id: MO.SECTION_ID, label: 'My onboarding' }
   ];
-  /* every id except the hire's own section: what the reveal is decided from */
-  var OTHER_IDS = SECTIONS.filter(function (s) { return s.id !== MO.SECTION_ID; })
-    .map(function (s) { return s.id; });
+  var WALK = SECTIONS.filter(function (s) { return s.walk; });
 
   var CHANNELS = [
     { n: '#g-announcements', d: 'team-wide announcements.', ex: ['Company-wide updates from the partners', 'Policy and process changes everyone should see'] },
@@ -67,14 +69,13 @@
      so filling a blank in links.js lights the link up everywhere at once. */
   var CHECKLIST = [
     { g: 'start here', cls: 'blue', items: [
-      { id: 'slack', when: 'day one', t: 'Set up your Slack workspace', d: 'Join carrarais.slack.com. Fill in your Slack profile: full name, photo, title / focus area, timezone, phone number and email.',
-        html: '<div class="m-eyebrow">Start here · day one</div><h3>Set up your Slack workspace</h3>'
-          + '<p>Join carrarais.slack.com.</p>'
-          + '<p>Fill in your Slack profile. Be sure to add:</p>'
-          + '<div class="pg"><ul><li>Full name</li><li>Photo</li><li>Title / focus area</li><li>Timezone</li><li>Phone number</li><li>Email</li></ul></div>'
-          + '<p class="m-note" style="margin-top:6px">Optional: about you, birthday, name pronunciation, pronouns.</p>',
-        links: [{ t: 'Open Slack', k: 'slackWorkspace' }, { t: 'The Slack guide', k: '#/slack' }] },
-      { id: 'tool-access', when: 'day one', t: 'Ensure tool and system access', d: 'Confirm you can open Google, Notion, Slack and the tools for your role. Anything blocked, ping Eric on Slack.', links: [{ t: 'Notion Home Base', k: 'notionHomeBase' }] },
+      { id: 'welcome', when: 'day one', t: 'About Carrara', d: 'Walk through who we are, how we work and our clients.', tour: true },
+      /* The page says all of this, and better: how to get in, what each
+         profile field is for, what the prefixes mean. The item is the task and
+         the arrow; it used to carry its own shorter copy of the same thing. */
+      { id: 'slack', when: 'day one', t: 'Set up your Slack workspace', d: 'Join the workspace, then fill in your profile properly: it is how the rest of the company finds you.',
+        links: [{ t: 'How we communicate', k: '#/slack' }] },
+      { id: 'tool-access', when: 'day one', t: 'Ensure tool and system access', d: 'Confirm you can open Google, Notion, Slack and the tools for your role. Anything blocked, ping Eric on Slack.', links: [{ t: 'Our tools', k: '#/tools' }] },
       { id: 'payroll', when: 'day one', t: 'Payroll setup (Deel, Bill.com, or Ramp)', d: 'Deel for full-time employees, Bill.com for US contractors, Ramp for international contractors. You\'ll get an invite for the one that applies to you.', links: [{ t: 'Deel', k: 'deel' }, { t: 'Bill.com', k: 'bill' }, { t: 'Ramp', k: 'ramp' }] },
       { id: 'email-signature', when: 'day one', t: 'Set up email signature', d: 'Use the Carrara signature format from the brand templates.',
         html: '<div class="m-eyebrow">Start here · day one</div><h3>Set up email signature</h3>'
@@ -95,7 +96,11 @@
       { id: 'benefits', when: 'week one', t: 'Understand your benefits (full-time employees only)', d: 'What you\'re enrolled in, what you need to elect, and by when. Ask Eric on Slack if anything is unclear or if you\'re a contractor and not sure what applies to you.' }
     ]},
     { g: 'get to know carrara', cls: '', items: [
-      { id: 'quarry', when: 'week one', t: 'Set up the Quarry', d: 'Our AI harness. Download the Claude app and log in with your Carrara Google account, set up an Obsidian vault, point Cowork at it, then run /workspace-initialization, /workspace-migration and /sync. Do this in week one: most of how we work assumes it.', links: [{ t: 'Quarry setup guide', k: 'quarry' }, { t: 'The tools we use', k: '#/tools' }] },
+      /* The tools page is what "Ensure tool and system access" opens now, so
+         this item goes where its own task is written: the setup guide. The
+         page still names the guide, which is a page pointing at a document
+         rather than two items opening the same place. */
+      { id: 'quarry', when: 'week one', t: 'Set up the Quarry', d: 'Our AI harness: Claude, an Obsidian vault and Cowork. Do this in week one, because most of how we work assumes it.', links: [{ t: 'Quarry setup guide', k: 'quarry' }] },
       { id: 'carrara-hub', when: 'week one', t: 'Get oriented on the Carrara Hub', d: 'Start at hub.carrara.is and click around.', links: [{ t: 'Open the Carrara Hub', k: 'https://hub.carrara.is' }] },
       { id: 'time-off', when: 'week one', t: 'Review Time-Off Policy', d: 'Read the Time-Off & Holiday Policy page in this hub. Two minutes now saves confusion later.', links: [{ t: 'Time-Off & Holiday Policy', k: '#/timeoff' }] },
       { id: 'ashby', when: 'week two', t: 'Talent team only: get oriented on Ashby', d: 'Our ATS. Ask in #g-ashby-support if you get stuck.', links: [{ t: 'Open Ashby', k: 'ashby' }, { t: '#g-ashby-support', k: 'ch:g-ashby-support' }] }
@@ -120,6 +125,36 @@
 
   /* pages.js content opens as an in-hub popup instead of linking out */
   function pageFor(k) { return (window.PAGES && window.PAGES[k]) || null; }
+
+  /* A checklist item's links, as they are written in both places that show them:
+     the popup's details and the row standing open on the cover. A key that
+     resolves to nothing simply does not render, so filling a blank in links.js
+     lights the link up in both at once. With firstAsButton the first one that
+     resolves is drawn as the hub's button -- on the cover an open item should
+     say what to do now, not offer a row of equal links. */
+  function itemLinks(item, firstAsButton) {
+    var html = '', n = 0;
+    (item.links || []).forEach(function (l) {
+      var page = pageFor(l.k);
+      var u = page ? '#' : linkFor(l.k);
+      if (!page && !u) return;
+      n++;
+      var btn = firstAsButton && n === 1;
+      var internal = page || u.charAt(0) === '#';
+      html += '<a class="' + (btn ? 'btn' : 'textlink') + '" href="' + esc(u) + '"'
+        + (page ? ' data-page="' + esc(l.k) + '"' : '')
+        /* a hash link leaves the popup behind it; a pages.js key opens its own */
+        + (page ? ''
+           : internal ? ' onclick="document.getElementById(\'modal-back\').classList.remove(\'show\')"'
+                      : ' target="_blank" rel="noopener"')
+        + '>' + esc(l.t)
+        + (btn ? '<span data-icon="arrow-' + (internal ? 'right' : 'up-right') + '" aria-hidden="true"></span>'
+               : (internal ? '' : ' ↗'))
+        + '</a>';
+    });
+    return html;
+  }
+
   /* Offering pages declare their clients by name; the logos are drawn at open
      time from live client data, so a client that changes domain or drops off
      the roster updates here without anyone editing pages.js. When the Knowledge
@@ -202,12 +237,12 @@
   });
 
   var TOOLS = [
-    { n: 'Claude', dmn: 'claude.ai', url: 'https://claude.ai', d: 'Our go-to AI, and the base of the Quarry. Log in with your Carrara Google account on the Team plan, then run the Quarry setup so you get the shared skills. Cowork for most work, Claude Code in the terminal.', tag: 'carrara provided' },
+    { n: 'Claude', dmn: 'claude.ai', url: 'https://claude.ai', d: 'Our go-to AI, and the base of the Quarry. Log in with your Carrara Google account on the Team plan, then run the Quarry setup so you get the shared skills. Cowork for most work, Claude Code in the terminal.', tag: 'Carrara provided' },
     { n: 'Obsidian', dmn: 'obsidian.md', url: 'https://obsidian.md', d: 'Where your Quarry vault lives: notes, memories and skills that Claude reads and writes. Sync needs a paid subscription, which fits inside your monthly SaaS stipend on Ramp.', tag: '' },
     { n: 'Ashby', dmn: 'ashbyhq.com', url: 'https://app.ashbyhq.com', d: 'Our ATS, and the system of record for every search. Talent team gets oriented in week one; ask anything in #g-ashby-support.', tag: 'talent team' },
-    { n: 'Granola', dmn: 'granola.ai', url: 'https://granola.ai', d: 'AI meeting notes so you stay present. We run it on every client call.', tag: 'carrara provided' },
-    { n: 'Loom', dmn: 'loom.com', url: 'https://loom.com', d: 'Async walkthroughs and client handoffs instead of another meeting.', tag: 'carrara provided' },
-    { n: 'Reclaim', dmn: 'reclaim.ai', url: 'https://reclaim.ai', d: 'Merges calendars across the multiple client accounts you\'ll juggle.', tag: 'carrara provided' },
+    { n: 'Granola', dmn: 'granola.ai', url: 'https://granola.ai', d: 'AI meeting notes so you stay present. We run it on every client call.', tag: 'Carrara provided' },
+    { n: 'Loom', dmn: 'loom.com', url: 'https://loom.com', d: 'Async walkthroughs and client handoffs instead of another meeting.', tag: 'Carrara provided' },
+    { n: 'Reclaim', dmn: 'reclaim.ai', url: 'https://reclaim.ai', d: 'Merges calendars across the multiple client accounts you\'ll juggle.', tag: 'Carrara provided' },
     { n: 'ChatGPT', dmn: 'chatgpt.com', url: 'https://chat.openai.com', d: 'Everyday copilot for quick brainstorms and rewrites.', tag: '' },
     { n: 'Whisper Flow', dmn: 'whisperflow.com', url: 'https://whisperflow.com', d: 'Voice keyboard. Dictate Slack messages and notes while juggling threads.', tag: '' },
     { n: 'CleanShot', dmn: 'cleanshot.com', url: 'https://cleanshot.com', d: 'Screenshots, GIFs, scrolling capture. Our default for async documentation.', tag: '' },
@@ -239,8 +274,19 @@
     box.innerHTML = html;
     Icons.draw(box);
     mBack.classList.add('show');
+    /* the page behind holds still while a sheet is over it, the way it already
+       does behind the checklist */
+    document.body.classList.add('modal-open');
+    /* the sheet is the scroller and it is the same element every time, so a new
+       one has to be put back to its top rather than opening where the last was
+       left */
+    var sheet = mBack.querySelector('.modal');
+    if (sheet) { void sheet.offsetHeight; sheet.scrollTop = 0; }
   }
-  function closeModal() { mBack.classList.remove('show'); }
+  function closeModal() {
+    mBack.classList.remove('show');
+    document.body.classList.remove('modal-open');
+  }
   $('#modal-close').addEventListener('click', closeModal);
   mBack.addEventListener('click', function (e) { if (e.target === mBack) closeModal(); });
   /* Escape closes the top layer only: an item's details sit above the checklist */
@@ -271,18 +317,18 @@
 
   /* ---------- nav ---------- */
   var nav = $('#nav'), mnav = $('#mobile-nav');
-  SECTIONS.forEach(function (s, i) {
+  /* The index holds the walk and nothing else. It is About Carrara's table of
+     contents -- that item is the only one with pages inside it -- so it is
+     numbered like the letter's rail and it appears only on those pages. */
+  WALK.forEach(function (s, i) {
     var a = document.createElement('a');
     a.href = '#/' + s.id;
     a.dataset.id = s.id;
-    a.textContent = s.label;
-    if (s.locked) {
-      a.classList.add('nav-locked');
-      /* the icon set's lock, so there is one lock in the hub (icons.js) */
-      a.insertAdjacentHTML('beforeend', '<span class="nav-lock" data-icon="lock" aria-hidden="true"></span>');
-    }
+    a.innerHTML = '<span class="rail__num">' + ('0' + (i + 1)).slice(-2) + '</span>'
+      + '<span class="rail__info"><span class="rail__name">' + esc(s.label) + '</span></span>';
     nav.appendChild(a);
-    if (window.Icons) Icons.draw(a);
+  });
+  SECTIONS.forEach(function (s) {
     var o = document.createElement('option');
     o.value = s.id; o.textContent = s.label;
     mnav.appendChild(o);
@@ -291,8 +337,6 @@
 
   /* ---------- my onboarding: visits, reveal, badge ---------- */
   var visited = store(MO.VISITED_KEY) || [];
-
-  function revealed() { return MO.allVisited(visited, OTHER_IDS); }
 
   function recordVisit(id) {
     // Re-read the store rather than trusting this tab's in-memory `visited`:
@@ -312,7 +356,7 @@
      than being created on reveal: one place builds them, and the reveal is a
      single attribute flip that also survives a hashchange. */
   function syncMyOnboardingNav() {
-    var state = MO.navState(visited, OTHER_IDS, !!store(MO.SEEN_KEY));
+    var state = MO.navState(!!store(MO.SEEN_KEY));
     var link = document.querySelector('#nav a[data-id="' + MO.SECTION_ID + '"]');
     var opt = mnav.querySelector('option[value="' + MO.SECTION_ID + '"]');
     if (link) {
@@ -334,12 +378,9 @@
       // The badge is spent the moment the section is opened, and the visit is
       // what triggers the refetch: the section re-verifies with the saved code
       // on EVERY visit (spec decision 6), never renders a cached copy as if it
-      // were current. But only once the section has actually been REVEALED --
-      // a direct #/my-onboarding hash visit before the walk is complete must
-      // not spend a badge that was never earned, or the hire loses the NEW
-      // indicator (and their UI route back to it) the moment they finish the
-      // walk for real.
-      if (revealed()) store(MO.SEEN_KEY, true);
+      // were current. The badge is spent by opening the section, which is the
+      // only thing it ever meant: there is no walk to finish first any more.
+      store(MO.SEEN_KEY, true);
       mountMyOnboarding();
       refreshKit();
     }
@@ -348,24 +389,33 @@
     var el = $('#view-' + sec);
     if (el) el.classList.add('visible');
     $$('#nav a').forEach(function (a) { a.classList.toggle('active', a.dataset.id === sec); });
+    /* the index belongs to About Carrara: on any other page there is nothing
+       to index, and the body says so for the narrow layout to read */
+    var onWalk = WALK.some(function (w) { return w.id === sec; });
+    var aside = $('#walk-index');
+    if (aside) aside.hidden = !onWalk;
+    document.body.classList.toggle('has-index', onWalk);
     if (SECTIONS.some(function (s) { return s.id === sec; })) mnav.value = sec;
     window.scrollTo(0, 0);
     if (sec === 'start') countUp();
     if (sec === 'templates') mountTemplates();
     nextNav(el, sec);
-    setTimeout(function () { if (typeof updateRail === 'function') updateRail(); }, 60);
   }
+  /* #/client/<slug> was a page of its own. The client is a sheet now, so the old
+     address opens the list with that sheet over it; links already sent still land.
+     The slug is kept when the client data has not arrived yet (the hash is read
+     before the fetch returns), and the list tries it again once it has. */
+  var pendingClient = '';
   function showClientPage(slug) {
-    current = 'clientpage';
-    $$('.view').forEach(function (v) { v.classList.remove('visible'); });
-    if (window.renderClientPage) window.renderClientPage(slug);
-    var el = $('#view-clientpage');
-    if (el) el.classList.add('visible');
-    $$('#nav a').forEach(function (a) { a.classList.toggle('active', a.dataset.id === 'clients'); });
-    mnav.value = 'clients';
-    window.scrollTo(0, 0);
-    setTimeout(function () { if (typeof updateRail === 'function') updateRail(); }, 60);
+    /* the address becomes the list's, the way the old #/checklist link does:
+       closing the sheet should not leave a client's address standing */
+    history.replaceState(null, '', location.pathname + location.search + '#/clients');
+    show('clients');
+    pendingClient = (window.openClientSheet && window.openClientSheet(slug)) ? '' : slug;
   }
+  window.retryPendingClient = function () {
+    if (pendingClient && window.openClientSheet && window.openClientSheet(pendingClient)) pendingClient = '';
+  };
   function route() {
     var h = (location.hash || '#/start').replace('#/', '');
     /* Old #/checklist links (emails, welcome.json, bookmarks) still land: they
@@ -383,51 +433,53 @@
   }
   window.addEventListener('hashchange', route);
 
-  /* footer link so the hub reads front to back without going via the sidebar */
+  /* The foot of a page, which is where a page says what it is part of.
+
+     On the walk it is the next page, and on the last one it is the end of an
+     item: a button that ticks "About Carrara" off and puts the hire back on
+     their list. Every other page is something a task opened, so its way out is
+     back to the list rather than on to a page nobody asked for -- reading the
+     Slack guide used to push you into Our clients. */
   function nextNav(root, sec) {
     if (!root) return;
     var old = root.querySelector('.next-nav');
     if (old) old.parentNode.removeChild(old);
-    /* The cover carries its own "Let's start", pointing at this same next
-       section -- a second button here would just repeat it. */
+    /* the cover is the list; it does not need a way back to itself */
     if (sec === 'start') return;
-    var i = SECTIONS.findIndex(function (s) { return s.id === sec; });
-    if (i < 0 || i >= SECTIONS.length - 1) return;
-    var nxt = SECTIONS[i + 1];
-    /* The hire's own section must not be announced before the reveal announces
-       it. There is no sidebar to fall back on now, so rather than leaving the
-       step with no way on, the button points at the first section still
-       unseen -- which is why the reveal has not happened yet. */
-    if (nxt.id === MO.SECTION_ID && !revealed()) {
-      nxt = SECTIONS.filter(function (s) {
-        return s.id !== MO.SECTION_ID && visited.indexOf(s.id) < 0;
-      })[0];
-      if (!nxt) return;
-    }
+    var i = WALK.findIndex(function (s) { return s.id === sec; });
     var d = document.createElement('div');
     d.className = 'next-nav';
-    d.innerHTML = '<a href="#/' + nxt.id + '">Next: ' + esc(nxt.label)
-      + ' <span class="btn-cover__arrow" data-icon="arrow-right" aria-hidden="true"></span></a>';
+    if (i > -1 && i < WALK.length - 1) {
+      d.innerHTML = '<a href="#/' + WALK[i + 1].id + '">Next: ' + esc(WALK[i + 1].label)
+        + ' <span class="btn-cover__arrow" data-icon="arrow-right" aria-hidden="true"></span></a>';
+    } else if (i === WALK.length - 1) {
+      d.innerHTML = '<button type="button" class="btn" id="walk-done">Done! Mark as completed'
+        + ' <span data-icon="check" aria-hidden="true"></span></button>';
+    } else {
+      d.innerHTML = '<a href="#/start">Back to your checklist</a>';
+    }
     root.appendChild(d);
+    var mark = d.querySelector('#walk-done');
+    if (mark) mark.addEventListener('click', function () {
+      /* The walk ends on the list, at the item it belongs to, and the item is
+         crossed off while the hire is watching: finishing something is worth
+         seeing come off the list, and arriving back at a page is not that.
+         The two waits are the route and the scroll, in that order. */
+      location.hash = '#/start';
+      setTimeout(function () {
+        var row = $('#cover-checklist .ck-row[data-id="welcome"]');
+        if (row) row.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        setTimeout(function () {
+          var api = itemApi.welcome;
+          if (!api || chkState['k:welcome']) return;
+          justTicked = 'welcome';
+          api.toggle();
+          justTicked = null;
+        }, 600);
+      }, 160);
+    });
     if (window.Icons) Icons.draw(d);
   }
-
-  /* orange progress rail: the fill tip tracks the active section item, growing through it as you scroll */
-  function updateRail() {
-    var fill = $('#nav-rail-fill');
-    if (!fill) return;
-    var active = document.querySelector('#nav a.active');
-    if (!active) { fill.style.height = '0'; return; }
-    var doc = document.documentElement;
-    var scrollable = doc.scrollHeight - window.innerHeight;
-    var frac = scrollable > 0 ? Math.min(1, window.scrollY / scrollable) : 1;
-    var wrap = document.querySelector('.nav-wrap');
-    var navTop = document.querySelector('#nav').offsetTop;
-    var h = navTop + active.offsetTop + active.offsetHeight * frac;
-    fill.style.height = Math.max(6, h) + 'px';
-  }
-  window.addEventListener('scroll', updateRail, { passive: true });
-  window.addEventListener('resize', updateRail);
 
   /* ---------- motion ---------- */
   var counted = false;
@@ -527,6 +579,11 @@
   })();
   var groupsEl = $('#chk-groups');
   var flat = [];
+  /* An item's two actions -- tick it, open what it asks of you -- are written
+     once, in the popup's loop below, and kept here by id so the cover's own
+     list can call them. Both lists read and write the same chkState, and
+     renderProgress redraws the cover whenever either of them changes it. */
+  var itemApi = {};
   CHECKLIST.forEach(function (grp, gi) {
     var g = document.createElement('div');
     g.className = 'chk-group';
@@ -544,26 +601,15 @@
         renderProgress();
       }
       function details() {
-        var linksHtml = '';
-        (item.links || []).forEach(function (l) {
-          if (pageFor(l.k)) {
-            linksHtml += '<a class="textlink" style="margin-right:16px" href="#" data-page="' + esc(l.k) + '">' + esc(l.t) + '</a>';
-            return;
-          }
-          var u = linkFor(l.k);
-          if (!u) return;
-          var internal = u.charAt(0) === '#';
-          linksHtml += '<a class="textlink" style="margin-right:16px" href="' + esc(u) + '"'
-            + (internal ? ' onclick="document.getElementById(\'modal-back\').classList.remove(\'show\')"' : ' target="_blank" rel="noopener"')
-            + '>' + esc(l.t) + (internal ? '' : ' ↗') + '</a>';
-        });
+        var linksHtml = itemLinks(item);
         var body = item.html || ('<div class="m-eyebrow">' + grp.g + (item.when ? ' · ' + item.when : '') + '</div><h3>' + esc(item.t) + '</h3><p>' + esc(item.d) + '</p>');
         openModal(body + (item.survey === 'top5' ? '<div id="t5-box"></div>' : '')
           + (item.survey === 'profile' ? '<div id="pv-box"></div>' : '')
-          + (linksHtml ? '<p id="chk-links" style="margin-top:14px">' + linksHtml + '</p>' : ''));
+          + (linksHtml ? '<p id="chk-links" class="ck-acts">' + linksHtml + '</p>' : ''));
         if (item.survey === 'top5') renderTop5((myProfile && myProfile.name) || '');
         if (item.survey === 'profile') mountProfileSurvey(function () { if (!chkState[key]) toggle(); });
       }
+      itemApi[item.id] = { toggle: toggle, details: details };
       row.querySelector('.box').addEventListener('click', toggle);
       row.querySelector('.box').addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
       row.querySelector('.txt').addEventListener('click', details);
@@ -573,11 +619,89 @@
     groupsEl.appendChild(g);
   });
   function chkCount() { return flat.filter(function (k) { return chkState[k]; }).length; }
+  /* The checklist IS the start page. It used to sit at the end of the walk,
+     reachable only once you had read everything in front of it. The letter still
+     opens the page -- it is the welcome, and it is read, not done -- but the
+     plan begins right under it, and reading it is the list's first item rather
+     than a gate standing before the list.
+
+     Nothing folds. An item is a name, what it asks of you under it, and an
+     arrow to where it is done: three things, all of them on the page, so the
+     whole plan can be read without opening anything. The tick on the left is
+     the only other thing a row holds. */
+  (function () {
+    /* the way into the walk is the first item's own arrow now, so the cover's
+       button goes; it stays in the markup for a page that never ran this */
+    var btn = $('#btn-tour');
+    if (btn) btn.parentNode.removeChild(btn);
+  })();
+
+  /* Where an item's arrow goes. One link and nothing else to say: straight
+     there. Steps, a survey, or more than one link: the popup, which is the one
+     place that can hold all of them. Nothing to open at all -- a 1:1, an I-9
+     someone sends you -- and there is no arrow, because there is nowhere to go. */
+  function coverGoes(item) {
+    /* The arrow starts the walk; it does not finish it. It used to tick the item
+       on the way out, which crossed off a thing the hire had not done yet. */
+    if (item.tour) return { how: 'hash', url: '#/who' };
+    if (item.survey || item.html) return { how: 'modal' };
+    var links = (item.links || []).filter(function (l) { return pageFor(l.k) || linkFor(l.k); });
+    if (!links.length) return null;
+    if (links.length > 1) return { how: 'modal' };
+    if (pageFor(links[0].k)) return { how: 'page', key: links[0].k };
+    var u = linkFor(links[0].k);
+    return { how: u.charAt(0) === '#' ? 'hash' : 'ext', url: u };
+  }
+
+  /* the id the walk just crossed off, held for the one render that draws it */
+  var justTicked = null;
+
+  function coverRow(item) {
+    var on = !!chkState['k:' + item.id];
+    var go = coverGoes(item);
+    var open = '<div class="ck-go ck-go--flat">';
+    if (go && go.how === 'modal') open = '<button type="button" class="ck-go" data-open="' + esc(item.id) + '">';
+    else if (go && go.how === 'page') open = '<a class="ck-go" href="#" data-page="' + esc(go.key) + '">';
+    else if (go && go.how === 'ext') open = '<a class="ck-go" href="' + esc(go.url) + '" target="_blank" rel="noopener">';
+    else if (go) open = '<a class="ck-go" href="' + esc(go.url) + '">';
+    return '<div class="ck-row' + (on ? ' done' : '')
+      + (item.id === justTicked ? ' ck-row--ticked' : '') + '" data-id="' + esc(item.id) + '">'
+      + '<span class="ck-box" role="checkbox" tabindex="0" aria-checked="' + (on ? 'true' : 'false') + '"'
+      + ' aria-label="Mark ' + esc(item.t) + ' done">'
+      + '<span data-icon="check" aria-hidden="true"></span></span>'
+      + open
+      + '<span class="ck-text"><span class="ck-t">' + esc(item.t) + '</span>'
+      + (item.d ? '<span class="ck-d">' + esc(item.d) + '</span>' : '') + '</span>'
+      + (go ? '<span class="ck-arrow" data-icon="arrow-' + (go.how === 'ext' ? 'up-right' : 'right')
+            + '" aria-hidden="true"></span>' : '')
+      + (go && go.how === 'modal' ? '</button>' : go ? '</a>' : '</div>')
+      + '</div>';
+  }
+
+  function renderCoverChecklist() {
+    var box = $('#cover-checklist');
+    if (!box) return;
+    var done = chkCount(), total = flat.length;
+    var pct = total ? Math.round(done / total * 100) : 0;
+    var h = '<h2 class="ck-title">Your checklist</h2>'
+      + '<p class="ck-intro">We put this list together so you can set yourself up for success.'
+      + ' Tick each one off as you go.</p>'
+      + '<div class="ck-meter"><div class="progress-bar"><span style="width:' + pct + '%"></span></div>'
+      + '<p class="ck-count"><b>' + done + ' of ' + total + '</b> done</p></div>';
+    CHECKLIST.forEach(function (grp) {
+      h += '<div class="ck-group"><div class="ck-label">' + esc(grp.g) + '</div>';
+      grp.items.forEach(function (item) { h += coverRow(item); });
+      h += '</div>';
+    });
+    box.innerHTML = h;
+    if (window.Icons) Icons.draw(box);
+  }
   function renderProgress() {
     var done = chkCount(), total = flat.length;
     var pct = Math.round(done / total * 100);
     $('#chk-fill').style.width = pct + '%';
     $('#chk-pct').textContent = pct + '%';
+    renderCoverChecklist();
     var meta = $('#meta-checklist');
     if (meta) meta.textContent = 'checklist: ' + done + '/' + total;
     $('#done-moment').classList.toggle('show', pct === 100);
@@ -589,6 +713,35 @@
     renderProgress();
   });
   renderProgress();
+  /* The box is refilled, never replaced, so one pair of listeners on it serves
+     every row. A row that goes somewhere is a real link and needs nothing from
+     here; only the tick and the rows that open the popup are handled. Nothing
+     ticks itself: every item on this list is crossed off by the hire. */
+  (function () {
+    var box = $('#cover-checklist');
+    if (!box) return;
+    function act(e) {
+      if (!e.target.closest) return;
+      var row = e.target.closest('.ck-row');
+      if (!row) return;
+      var id = row.getAttribute('data-id');
+      var api = itemApi[id];
+      if (!api) return;
+      var tick = e.target.closest('.ck-box');
+      var opens = e.target.closest('[data-open]');
+      if (!tick && !opens) return;
+      /* only the tick answers the keyboard here: a button and a link answer it
+         themselves, and a click is what reaches this either way */
+      if (e.type === 'keydown') {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        if (!tick) return;
+      }
+      e.preventDefault();
+      if (opens) api.details(); else api.toggle();
+    }
+    box.addEventListener('click', act);
+    box.addEventListener('keydown', act);
+  })();
 
   /* ---------- team ---------- */
   var teamData = [];
@@ -631,70 +784,12 @@
     var pv = pavilion[m.name] || {};
     return fromPops ? (m.location || pv.location || '') : (pv.location || '');
   }
-  function openMemberModal(m) {
-    applyKnowledgePeople();
-    var p = profileData[m.name];
-    var pv = pavilion[m.name] || {};
-    var role = roleOf(m);
-    var av = m.avatar ? '<img src="' + m.avatar + '" alt="">' : initials(m.name);
-    var html = '<div class="m-eyebrow">The team</div>'
-      + '<div class="member-head"><div class="avatar big">' + av + '</div><div>'
-      + '<h3>' + esc(m.name) + '</h3>'
-      + (role ? '<div class="rl">' + esc(role) + (m.extra ? ' · ' + esc(m.extra) : '') + '</div>' : (m.extra ? '<div class="rl">' + esc(m.extra) + '</div>' : ''))
-      + '</div></div><div class="pg">';
-    /* location and department get their own labelled rows. Cramming both onto
-       one line made it read as a single fact instead of two. The one-liner stays
-       up top next to the name. */
-    var groups = deptsOf(m);
-    var dept = groups.join(', ');
-    var loc = locOf(m);
-    var groupFact = '';
-    if (dept && fromPops && grouping === 'practices') {
-      groupFact = '<div class="mm-fact"><div class="mm-k">Practices</div><div class="mm-v mm-chips">'
-        + groups.map(function (g) { return '<span class="mm-chip">' + esc(g) + '</span>'; }).join('') + '</div></div>';
-    } else if (dept) {
-      groupFact = '<div class="mm-fact"><div class="mm-k">Department</div><div class="mm-v">' + esc(dept) + '</div></div>';
-    }
-    if (loc || dept) {
-      html += '<div class="mm-facts">'
-        + (loc ? '<div class="mm-fact"><div class="mm-k">Based in</div><div class="mm-v">' + esc(loc) + '</div></div>' : '')
-        + groupFact
-        + '</div>';
-    }
-    /* their own words first, then the researched summary as a fallback */
-    if (pv.about) html += '<p>' + esc(pv.about) + '</p>';
-    else if (p && p.summary) html += '<p>' + esc(p.summary) + '</p>';
-    var pvClients = clientsFor(m);
-    if (pvClients.length) {
-      /* logo above, company name below: a name alone makes you read, a logo
-         alone makes you guess. Falls back to the initial when we have no domain. */
-      html += '<div class="wk-sec"><div class="wk-lbl">Clients</div><div class="cl-grid">'
-        + pvClients.map(function (cn) { return clientTile(cn, 64); }).join('') + '</div></div>';
-    }
-    /* People Pavilion answers, question above each one so the card reads on its own */
-    if (pv.answers && pv.answers.length) {
-      html += '<div class="wk-sec"><div class="wk-lbl">In their own words</div>'
-        + pv.answers.map(function (a) {
-            return '<div class="qa"><div class="q">' + esc(a.q) + '</div>'
-              + '<ul>' + (a.a || []).map(function (line) { return '<li>' + esc(line) + '</li>'; }).join('') + '</ul></div>';
-          }).join('') + '</div>';
-    }
-    if (p && p.prior && p.prior.length) {
-      html += '<div class="wk-sec"><div class="wk-lbl">Before Carrara</div><ul>'
-        + p.prior.map(function (x) {
-            return '<li>' + (x.role ? '<b>' + esc(x.role) + '</b>, ' + esc(x.company) : '<b>' + esc(x.company) + '</b>') + '</li>';
-          }).join('') + '</ul></div>';
-    }
-    var linksH = ['<a href="https://hub.carrara.is/people?person=' + encodeURIComponent(m.email || m.name) + '" target="_blank" rel="noopener">Full profile on the Carrara Hub ↗</a>'];
-    if (m.email) linksH.push('<a href="mailto:' + esc(m.email) + '">' + esc(m.email) + '</a>');
-    var li = pv.linkedin || (p && p.linkedin);
-    if (li) linksH.push('<a href="' + esc(/^https?:/.test(li) ? li : 'https://' + li) + '" target="_blank" rel="noopener">LinkedIn ↗</a>');
-    if (linksH.length) html += '<div class="wk-sec"><div class="wk-lbl">Reach them</div><div class="wk-links">' + linksH.join('') + '</div></div>';
-    html += '</div>';
-    if (!pv.answers || !pv.answers.length) {
-      html += '<p class="pg-note">Background and working preferences live on the Carrara Hub.</p>';
-    }
-    openModal(html);
+  /* A person used to open a sheet of their own, assembled here out of a public
+     web-search summary, their Pavilion answers and prior roles. Their profile on
+     the Carrara Hub is the one that is kept, so the card goes straight there and
+     the sheet is gone. */
+  function hubProfileUrl(m) {
+    return 'https://hub.carrara.is/people?person=' + encodeURIComponent(m.email || m.name);
   }
   var teamFilter = { team: '', client: '', loc: '' };
   /* options come from the data, not a hardcoded list, so a new team or location
@@ -736,6 +831,20 @@
     fill('#f-client', clients, 'All clients');
     fill('#f-loc', locs, 'Anywhere');
   }
+  /* A filter that is on says so in its own control: the chosen value is already
+     the select's own text, so what is missing is the way back out. The chevron
+     gives way to a cross that takes that one filter off, and the search carries
+     the same cross once there is something typed in it. */
+  function markFilters() {
+    $$('.team-tools .tf').forEach(function (shell) {
+      var ctrl = shell.querySelector('select, input');
+      var x = shell.querySelector('.tf-x');
+      if (!ctrl || !x) return;
+      var on = !!ctrl.value;
+      shell.classList.toggle('is-set', on);
+      x.hidden = !on;
+    });
+  }
   function wireFilters() {
     [['#f-team', 'team'], ['#f-client', 'client'], ['#f-loc', 'loc']].forEach(function (pair) {
       var el = $(pair[0]);
@@ -745,11 +854,16 @@
         renderTeam($('#team-search').value);
       });
     });
-    var clear = $('#f-clear');
-    if (clear) clear.addEventListener('click', function () {
-      teamFilter = { team: '', client: '', loc: '' };
-      ['#f-team', '#f-client', '#f-loc'].forEach(function (x) { if ($(x)) $(x).value = ''; });
-      renderTeam($('#team-search').value);
+    $$('.team-tools .tf-x').forEach(function (x) {
+      x.addEventListener('click', function () {
+        var ctrl = document.getElementById(x.getAttribute('data-clears'));
+        if (!ctrl) return;
+        ctrl.value = '';
+        if (ctrl.id === 'f-team') teamFilter.team = '';
+        if (ctrl.id === 'f-client') teamFilter.client = '';
+        if (ctrl.id === 'f-loc') teamFilter.loc = '';
+        renderTeam($('#team-search').value);
+      });
     });
   }
 
@@ -817,44 +931,38 @@
       return !q || hay.indexOf(q) >= 0;
     });
     shown.forEach(function (m) {
-      var d = document.createElement('div');
+      var d = document.createElement('a');
       d.className = 'member';
-      d.setAttribute('role', 'button');
-      d.setAttribute('tabindex', '0');
+      d.href = hubProfileUrl(m);
+      d.target = '_blank';
+      d.rel = 'noopener';
       var av = m.avatar ? '<img src="' + m.avatar + '" alt="" loading="lazy">' : initials(m.name);
       var pv = pavilion[m.name] || {};
       var role = roleOf(m);
+      /* the marks say who someone works with and nothing more: a name on hover,
+         no link of their own. The card underneath is the one thing to click. */
       var logos = clientsFor(m).slice(0, 5).map(function (cn) {
         var c = clientData.filter(function (x) { return x.name === cn; })[0];
         return c && c.domain
-          ? '<a class="cl-dot-link" href="https://' + esc(c.domain) + '" target="_blank" rel="noopener" title="' + esc(cn) + '">'
-            + '<img class="cl-dot" src="' + favicon(c.domain, 32) + '" alt="' + esc(cn) + '" loading="lazy"></a>'
+          ? '<img class="cl-dot" src="' + favicon(c.domain, 32) + '" alt="' + esc(cn) + '" title="' + esc(cn) + '" loading="lazy">'
           : '<span class="cl-dot txt" title="' + esc(cn) + '">' + esc(cn.charAt(0)) + '</span>';
       }).join('');
-      /* location and logos live in a footer pinned to the bottom of the card,
-         so they line up across a row whatever length the role runs to */
-      var where = [MO.groupsText(deptsOf(m), fromPops ? grouping : 'department'), locOf(m)].filter(Boolean).join(' · ');
-      var foot = (where ? '<div class="loc-sm">' + esc(where) + '</div>' : '')
-        + (logos ? '<div class="cl-row">' + logos + '</div>' : '');
-      /* the footer is a sibling of .info, not a child: an auto margin only
-         reaches the card's own free space from one level up */
+      /* four things and no more: the face, the name, the role, and the marks of
+         who they work with. Department and location are what the filters above
+         are for, so the card does not repeat them. The footer is a sibling of
+         .info, not a child: an auto margin only reaches the card's own free
+         space from one level up */
       d.innerHTML = '<div class="avatar">' + av + '</div><div class="info">'
-        + '<div class="nm">' + esc(m.name) + (m.isNew ? ' <span class="newtag">[new]</span>' : '') + '</div>'
-        + (role ? '<div class="rl-sm">' + esc(role) + '</div>' : '')
+        + '<div class="nm">' + esc(m.name) + (m.isNew ? '<span class="newtag">new</span>' : '') + '</div>'
+        + '<div class="rl-sm">' + esc(role || '') + '</div>'
         + '</div>'
-        + (foot ? '<div class="mb-foot">' + foot + '</div>' : '');
-      d.addEventListener('click', function (e) {
-        if (e.target.closest('a')) return;
-        openMemberModal(m);
-      });
-      d.addEventListener('keydown', function (e) {
-        if ((e.key === 'Enter' || e.key === ' ') && !e.target.closest('a')) { e.preventDefault(); openMemberModal(m); }
-      });
+        + (logos ? '<div class="mb-foot"><div class="cl-row">' + logos + '</div></div>' : '')
+        + '<span class="row-arrow" data-icon="arrow-up-right" aria-hidden="true"></span>';
+      Icons.draw(d);
       grid.appendChild(d);
     });
     $('#team-count').textContent = shown.length + ' people';
-    var anyFilter = !!(teamFilter.team || teamFilter.client || teamFilter.loc);
-    if ($('#f-clear')) $('#f-clear').hidden = !anyFilter;
+    markFilters();
   }
   $('#team-search').addEventListener('input', function (e) { renderTeam(e.target.value); });
   /* Who works on which client comes from the Client Codex staffing (account
@@ -941,12 +1049,8 @@
       wireFilters();
       refreshStats();
       mountMyOnboarding();
-      if (data.source === 'pops') {
-        $('#team-note').textContent = 'Live from POps, Carrara\'s people directory. Titles, locations and '
-          + (grouping === 'practices' ? 'practice areas' : 'departments') + ' come from POps; photos still come from Slack profiles.';
-      } else if (data.source === 'slack') {
-        $('#team-note').textContent = 'Live from the #f-company-ops-general Slack channel, refreshed every two weeks. Photos and roles come from Slack profiles: set yours and it shows here.';
-      }
+      /* where the list comes from used to be written out under it. The note is
+         gone; the line below it is kept for when there is no list to show. */
     })
     .catch(function () { $('#team-note').textContent = 'Team list is unavailable right now.'; });
 
@@ -967,16 +1071,14 @@
       brief.innerHTML = 'Your first client is <b>' + esc(kitData.client.name) + '</b>'
         + (kitData.client.lead ? ', led by ' + esc(kitData.client.lead.replace(/\.+$/, '')) + '.' : '.')
         + (kitData.manager && kitData.manager.name ? ' Your manager is ' + esc(kitData.manager.name) + '.' : '')
-        /* The popup no longer holds any of this, so it is no longer where this
-           line sends people: before the reveal there is nowhere to send them
-           yet, and after it there is exactly one place. */
-        + (revealed()
-            ? ' <a class="textlink" href="#/' + MO.SECTION_ID + '">My onboarding</a> has who to meet and your first 90 days.'
-            : ' Work your way through the hub: a section made just for you appears at the end.');
+        /* The popup no longer holds any of this, and the section is no longer
+           hidden until the hub has been walked, so there is one place to send
+           people and it is always there. */
+        + ' <a class="textlink" href="#/' + MO.SECTION_ID + '">My onboarding</a> has who to meet and your first 90 days.';
     }
     if (kitData.client) {
-      $$('#client-grid .client-row').forEach(function (row) {
-        var nm = row.querySelector('.cn');
+      $$('#client-grid .cl-item').forEach(function (row) {
+        var nm = row.querySelector('.cl-nm');
         if (nm && nm.textContent === kitData.client.name && !row.querySelector('.mine-tag')) {
           row.classList.add('mine');
           nm.insertAdjacentHTML('beforeend', '<span class="mine-tag">your first client</span>');
@@ -1145,8 +1247,8 @@
       var name = u
         ? '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(c.n) + '</a>'
         : esc(c.n);
-      return '<tr><td class="ch-name">' + name + '</td>'
-        + '<td class="ch-what">' + esc(c.d) + '</td></tr>';
+      return '<div class="ch-cell"><div class="ch-name">' + name + '</div>'
+        + '<div class="ch-what">' + esc(c.d) + '</div></div>';
     }).join('');
   })();
 
@@ -1241,15 +1343,11 @@
     list.sort(function (a, b) { return a.name.localeCompare(b.name); });
     return list;
   }
-  window.renderClientPage = function (slug) {
-    var el = $('#view-clientpage');
-    if (!el) return;
-    var c = clientData.filter(function (x) { return clientSlug(x.name) === slug; })[0];
-    if (!c) {
-      el.innerHTML = '<div class="client-page"><a class="textlink" href="#/clients">← All clients</a>'
-        + '<p class="body-copy" style="margin-top:24px">' + (clientData.length ? 'No client with that address.' : 'Loading…') + '</p></div>';
-      return;
-    }
+  /* A client reads as a sheet, the same one a product line opens: the mark, the
+     name in the serif, then the sections under their labels and the way out at
+     the foot. It used to be a page of its own at #/client/<slug>; that address
+     still works and lands here, over the list. */
+  function clientSheetHtml(c) {
     var cx = (codexData.clients || {})[c.name] || {};
     var kc = knowledgeClient(c.name);
     /* type of work: the Knowledge Hub's practices when it has the client, else the Codex's */
@@ -1260,16 +1358,19 @@
       : c.domain
         ? '<img src="' + favicon(c.domain, 128) + '" alt="" onerror="this.parentNode.textContent=\'' + esc(c.name.charAt(0)) + '\'">'
         : esc(c.name.charAt(0));
-    var html = '<div class="client-page"><a class="textlink" href="#/clients">← All clients</a>'
-      + '<div class="cp-head"><div class="clogo cp-logo">' + logo + '</div><div>'
-      + '<h1 class="cp-name">' + esc(c.name)
-      + (status ? ' <span class="cstatus' + (status === 'active' ? ' on' : '') + '">' + esc(status) + '</span>' : '')
-      + '</h1>'
-      + (types.length ? '<div class="wk-tags">' + types.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>' : '')
-      + '</div></div>';
+    var html = '<div class="cp-mark">' + logo + '</div>'
+      + '<h3>' + esc(c.name)
+      + (status ? '<span class="cstatus' + (status === 'active' ? ' on' : '') + '">' + esc(status) + '</span>' : '')
+      + '</h3>';
+    /* the kinds of work belong to the name, not to the body: they sit between
+       the two, and the body starts 40 under them */
+    if (types.length) {
+      html += '<div class="client-tags">' + types.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>';
+    }
+    html += '<div class="pg">';
     var about = (kc && kc.oneLiner) || cx.about || c.description || '';
-    if (about) html += '<p class="body-copy cp-about">' + esc(about) + '</p>';
-    if (kc && kc.about && kc.about !== about) html += '<p class="body-copy cp-about">' + esc(kc.about) + '</p>';
+    if (about) html += '<p>' + esc(about) + '</p>';
+    if (kc && kc.about && kc.about !== about) html += '<p>' + esc(kc.about) + '</p>';
     /* what we're doing now and who's on it come from the Knowledge Hub, which
        the daily sync and the owner survey keep current */
     if (kc && kc.workstreams && kc.workstreams.length) {
@@ -1290,7 +1391,7 @@
     if (facts.length || cx.background) {
       html += '<div class="wk-sec"><div class="wk-lbl">The company</div>';
       if (facts.length) html += '<ul>' + facts.map(function (f) { return '<li><b>' + esc(f[0]) + '</b>: ' + esc(f[1]) + '</li>'; }).join('') + '</ul>';
-      if (cx.background) html += '<p class="cp-bg">' + esc(cx.background) + '</p>';
+      if (cx.background) html += '<p>' + esc(cx.background) + '</p>';
       html += '</div>';
     }
     if (cx.engagement && cx.engagement.length && !(kc && kc.workstreams && kc.workstreams.length)) {
@@ -1306,15 +1407,27 @@
       html += '<div class="wk-sec"><div class="wk-lbl">Who runs it at Carrara</div><ul>'
         + team.map(function (t) { return '<li><b>' + esc(t[0]) + '</b>: ' + esc(t[1].join(', ')) + '</li>'; }).join('') + '</ul></div>';
     }
+    /* the site and whatever docs there are read as a list; the hub page is the
+       way out of the sheet, so it takes the button, as a product line's does */
     var linksH = [];
-    if (kc && kc.url) linksH.push('<a href="' + esc(kc.url) + '" target="_blank" rel="noopener">Full page on the Carrara Hub ↗</a>');
-    if (c.domain) linksH.push('<a href="https://' + esc(c.domain) + '" target="_blank" rel="noopener">' + esc(c.domain) + ' ↗</a>');
+    if (c.domain) linksH.push('<a href="https://' + esc(c.domain) + '" target="_blank" rel="noopener">' + esc(c.domain) + '</a>');
     (cx.docs || []).forEach(function (d2) {
-      linksH.push('<a href="' + esc(d2.url) + '" target="_blank" rel="noopener">' + esc(d2.label) + ' ↗</a>');
+      linksH.push('<a href="' + esc(d2.url) + '" target="_blank" rel="noopener">' + esc(d2.label) + '</a>');
     });
     if (linksH.length) html += '<div class="wk-sec"><div class="wk-lbl">Links and docs</div><div class="wk-links">' + linksH.join('') + '</div></div>';
-    html += '</div>';
-    el.innerHTML = html;
+    if (kc && kc.url) {
+      html += '<div class="wk-sec wk-out"><a class="btn" href="' + esc(kc.url) + '" target="_blank" rel="noopener">'
+        + esc(c.name) + ' on the Carrara Hub <span data-icon="arrow-up-right" aria-hidden="true"></span></a></div>';
+    }
+    return html + '</div>';
+  }
+  /* Opens a client by its slug. Returns false when the client data has not
+     arrived yet, so the caller can try again once it has. */
+  window.openClientSheet = function (slug) {
+    var c = clientData.filter(function (x) { return clientSlug(x.name) === slug; })[0];
+    if (!c) return false;
+    openModal(clientSheetHtml(c));
+    return true;
   };
   /* live from Notion via /api/clients when NOTION_TOKEN is set; bundled snapshots otherwise */
   Promise.all([
@@ -1364,24 +1477,37 @@
       var cx = (codexData.clients || {})[c.name] || {};
       return cx.status === 'Active';
     }
+    /* A client is a row in a list, the same row the resources page uses: the
+       name in ink, who leads it and what we do there under it, and an arrow out
+       to its page on the Carrara Hub. The hub's own URL is the only one that can
+       be trusted -- six of the thirty-three it gives do not follow from the name
+       (Modal Labs is /modal, Deeptune is /mercor), so a derived one would send
+       people to the wrong client, not just to nothing. A client the Knowledge
+       Hub does not carry has no page to go to, and its row says so by being a
+       row rather than a link. */
     function row(c) {
-      var d = document.createElement('div');
-      d.className = 'client-row';
-      d.setAttribute('role', 'button');
-      d.setAttribute('tabindex', '0');
-      var logo = c.domain
+      var kc = knowledgeClient(c.name);
+      var url = kc && kc.url;
+      var d = document.createElement(url ? 'a' : 'div');
+      d.className = 'res-item cl-item' + (url ? '' : ' res-item--flat');
+      if (url) {
+        d.href = url;
+        d.target = '_blank';
+        d.rel = 'noopener';
+      }
+      var mark = c.domain
         ? '<img src="' + favicon(c.domain, 64) + '" alt="" loading="lazy" onerror="this.parentNode.textContent=\'' + esc(c.name.charAt(0)) + '\'">'
         : esc(c.name.charAt(0));
-      var tags = tagsFor(c);
-      d.innerHTML = '<div class="clogo">' + logo + '</div><div><div class="cn">' + esc(c.name) + '</div>'
-        + (c.lead ? '<div class="lead">lead: ' + esc(c.lead) + '</div>' : '')
-        + (c.description ? '<div class="cdesc">' + esc(c.description) + '</div>' : '')
-        + (tags.length ? '<div class="client-tags">' + tags.map(function (w) { return '<span>' + esc(w) + '</span>'; }).join('') + '</div>' : '')
-        + '</div>';
-      d.addEventListener('click', function () { location.hash = '#/client/' + clientSlug(c.name); });
-      d.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); location.hash = '#/client/' + clientSlug(c.name); } });
+      d.innerHTML = '<span class="cl-logo">' + mark + '</span>'
+        + '<span class="cl-body"><span class="cl-nm">' + esc(c.name) + '</span>'
+        + (c.lead ? '<span class="d">Lead: ' + esc(c.lead) + '</span>' : '')
+        + (c.description ? '<span class="d">' + esc(c.description) + '</span>' : '')
+        + '</span>'
+        + (url ? '<span class="row-arrow" data-icon="arrow-up-right" aria-hidden="true"></span>' : '');
+      if (window.Icons) Icons.draw(d);
       return d;
     }
+
     var current = clientData.filter(isActive);
     var archived = clientData.filter(function (c) { return !isActive(c); });
     current.forEach(function (c) { grid.appendChild(row(c)); });
@@ -1389,15 +1515,12 @@
       archived.forEach(function (c) { archGrid.appendChild(row(c)); });
       var wrap = $('#archived-wrap');
       if (wrap) wrap.hidden = archived.length === 0;
-      var cnt = $('#archived-count');
-      if (cnt) cnt.textContent = archived.length + (archived.length === 1 ? ' company' : ' companies');
     }
     $('#client-note').textContent = (knowledge.clients.length
-      ? 'Current work and teams from the Carrara Hub (updated ' + (knowledge.exported || '') + '), company facts from the Client Codex. '
+      ? 'Current work and teams from the Carrara Hub (updated ' + (knowledge.exported || '') + '), company facts from the Client Codex.'
       : (data.source === 'notion'
-        ? 'Live from the Client Codex in Notion, refreshed hourly. Last update: ' + (data.updated || '') + '. '
-        : 'Sourced from the Client Codex. Last update: ' + (data.updated || '') + '. '))
-      + 'Click a client for its full page.';
+        ? 'Live from the Client Codex in Notion, refreshed hourly. Last update: ' + (data.updated || '') + '.'
+        : 'Sourced from the Client Codex. Last update: ' + (data.updated || '') + '.'));
     refreshStats();
     /* the team grid draws client logos out of clientData, and team.json usually
        lands first. Re-render once the clients are in or every card falls back
@@ -1405,7 +1528,7 @@
     if (teamData.length) renderTeam($('#team-search') ? $('#team-search').value : '');
     applyKitToHub();
     /* deep links to a client page arriving before data loaded */
-    if (location.hash.indexOf('#/client/') === 0 && window.renderClientPage) window.renderClientPage(location.hash.slice(9));
+    if (window.retryPendingClient) window.retryPendingClient();
   });
   var clientData = [];
 
@@ -1414,14 +1537,14 @@
     var grid = $('#channel-grid');
     if (!grid) return;
     CHANNELS.forEach(function (c) {
-      var d = document.createElement('tr');
-      d.className = 'ch-row';
+      var d = document.createElement('div');
+      d.className = 'ch-cell';
       var u = window.channelUrl ? window.channelUrl(c.n) : '';
       var nameHtml = u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(c.n) + '</a>' : esc(c.n);
-      d.innerHTML = '<td class="ch-name">' + nameHtml + '</td>'
-        + '<td class="ch-what">' + esc(c.d)
+      d.innerHTML = '<div class="ch-name">' + nameHtml + '</div>'
+        + '<div class="ch-what">' + esc(c.d) + '</div>'
         + '<div class="hovercard"><div class="hlbl">What gets posted here</div><ul>'
-        + c.ex.map(function (e) { return '<li>' + esc(e) + '</li>'; }).join('') + '</ul></div></td>';
+        + c.ex.map(function (e) { return '<li>' + esc(e) + '</li>'; }).join('') + '</ul></div>';
       grid.appendChild(d);
     });
   })();
@@ -1435,7 +1558,9 @@
       d.innerHTML = '<div class="tlogo"><img src="' + favicon(t.dmn, 64) + '" alt="" loading="lazy"></div>'
         + '<div><div class="tn">' + esc(t.n) + (t.tag ? '<span class="tag">' + esc(t.tag) + '</span>' : '') + '</div>'
         + '<div class="td">' + esc(t.d) + (t.tag ? ' Request access from Eric on Slack.' : '') + '</div></div>'
-        + '<div class="ta"><a href="' + t.url + '" target="_blank" rel="noopener">Get it</a></div>';
+        + '<div class="ta"><a class="btn" href="' + t.url + '" target="_blank" rel="noopener">'
+        + 'Get it <span data-icon="arrow-up-right" aria-hidden="true"></span></a></div>';
+      Icons.draw(d);
       grid.appendChild(d);
     });
   })();
@@ -1526,7 +1651,7 @@
     pill.addEventListener('click', function () {
       // After the reveal the popup is a doorway, not a container (spec decision
       // 1): everything it used to hold lives in the section now.
-      if (saved && saved.data && MO.navState(visited, OTHER_IDS, true) !== 'hidden') {
+      if (saved && saved.data && MO.navState(true) !== 'hidden') {
         location.hash = '#/' + MO.SECTION_ID;
         return;
       }
@@ -1573,7 +1698,7 @@
       syncMyOnboardingNav();
       // NOT named `open` — that is this IIFE's own panel-opening function, and
       // shadowing it here would break resetKit below.
-      var hasSection = MO.navState(visited, OTHER_IDS, true) !== 'hidden';
+      var hasSection = MO.navState(true) !== 'hidden';
       body.innerHTML = '<h3>Welcome, ' + esc(d.firstName) + '.</h3>'
         + (hasSection
             ? '<p>Your section is ready. <a class="textlink" href="#/' + MO.SECTION_ID + '">Open My onboarding</a> '
@@ -1631,7 +1756,7 @@
       saved = store('carrara_welcome');
       if (saved && saved.data && !panel.hidden) renderUnlocked(saved.data);
       else if (saved && saved.data) {
-        pillLabel.textContent = (MO.navState(visited, OTHER_IDS, true) !== 'hidden' ? 'Your onboarding, ' : 'Your welcome kit, ') + saved.data.firstName;
+        pillLabel.textContent = (MO.navState(true) !== 'hidden' ? 'Your onboarding, ' : 'Your welcome kit, ') + saved.data.firstName;
       }
     });
     /* the section's own "Not you?" button, which lives outside this IIFE */
@@ -1646,9 +1771,7 @@
 
     function buildIndex() {
       var ix = [];
-      /* the same reveal the sidebar honours: a hidden section is not findable */
       SECTIONS.forEach(function (s) {
-        if (s.id === MO.SECTION_ID && !revealed()) return;
         ix.push({ label: s.label, hint: 'section', go: function () { location.hash = '#/' + s.id; } });
       });
       CHECKLIST.forEach(function (g) { g.items.forEach(function (it) {

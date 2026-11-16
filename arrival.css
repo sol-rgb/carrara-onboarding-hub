@@ -1,244 +1,253 @@
-/* The arrival, ported from the letter (Carrara Identity/Letters To Partners/idea-4).
+/* THE ARRIVAL -- a ticket.
 
-   The hub arrives under one sheet of glassine with a perforated strip run across
-   its middle. Pulling the strip cuts the sheet in two and the halves part.
+   The hub used to open behind a sheet of glassine you tore along a perforated
+   strip. This is the same idea said shorter: a ticket, torn from its stub along
+   the same perforation, with the passenger's name on it and one button in.
 
-   What changed on the way over: the letter's palette names are the system's jobs
-   here, the mark is not repeated on the sheet because the hub already stands the
-   iso in the corner of the mat, and the cover is set in the hub's own sans —
-   the letter's typewriter faces are not in the system. */
+   Figma: Carrara Website 2.0, node 383:1412.
 
-:root {
-  --vellum-tex: url("/assets/vellum/paper-bkg.png");
-  --vellum-alpha: 0.9;
-  --tilt: 0deg;
-  --strip-at: calc(50vh - 18px);   /* where the tear strip crosses the page */
-  --strip-h: 36px;
-}
+   Three things in the design the hub does not have, and what they became here
+   (written up in onboarding-hub-gaps.md):
+     - Courier Prime Bold for the three labels. The hub carried two families and
+       no monospace; this is its third face, self-hosted beside the other two,
+       and it is the ticket's alone.
+     - Portrait Bold for the name and the chapter. Only the Medium cut is
+       licensed, so they are set in it.
+     - A perforation drawn as circles filled with the page's blue. Painted that
+       way it would stop working the moment the page is not blue, so it is a
+       mask here: the ticket's own edge is cut, whatever is behind it.
+   ------------------------------------------------------------------------- */
 
-.vellum {
+.arrival {
   position: fixed;
   inset: 0;
-  z-index: 25;
-  cursor: grab;
-  touch-action: none;
-  -webkit-user-select: none;
-  user-select: none;
-  transition: opacity 0.45s ease;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-stack-xl) var(--space-stack-lg);
+  /* The ticket is handed to you over the place it is for: Carrara at
+     44°04'N, 10°05'E, contours and all. The sheet multiplies into the cielo
+     rather than sitting on it, so the contour lines stay dark and the whole
+     field still turns over with the theme, because the colour underneath is a
+     tier 2 job. The paper is a neutral grey, mean (236, 236, 236), which means
+     the multiply DEEPENS the blue without turning it: the field stays the hue
+     the token says and only goes darker where the chart is. (An earlier sheet
+     was printed on cream and warmed it. Worth measuring whenever one is
+     swapped, because the rule is written around what the paper is.)
+
+     The sheet is drawn in the window's own proportion -- 2000 x 1021, near two
+     to one -- so it fills without bare ground at the sides and with very
+     little thrown away. The cost is resolution: 1021 tall has to carry a
+     window that is 768 tall at dpr 2, which is 1536 device pixels, so the
+     sheet is magnified about 1.5x here, 1.76x on a 1440 window and 2.1x on a
+     1920 one. A contour line is one pixel in the drawing, so magnified it
+     softens -- less than it looks, since the chart only prints at half. The
+     fix, if the lines ever read as broken, is not CSS: it is the same framing
+     exported at twice the pixels, around 4000 x 2042.
+
+     The chart is held at half strength, and the veil that does it is the CIELO
+     at half, not white. A background-image cannot take an `opacity` of its own,
+     so this is a second background layer laid over the first: the sheet
+     multiplies into the colour underneath as before, and the veil sits on the
+     result at `normal`, which lands the field exactly halfway between the bare
+     cielo and the full print. Veiling with white instead would wash the blue
+     out as it faded the chart; veiling with the cielo takes the chart out and
+     leaves the blue where it was. It is mixed from the token rather than
+     written down, so the whole thing still turns over with the theme. */
+  --chart-veil: color-mix(in srgb, var(--color-background-paper-cielo) 50%, transparent);
+  background-color: var(--color-background-paper-cielo);
+  background-image:
+    linear-gradient(var(--chart-veil), var(--chart-veil)),
+    url('/assets/ticket/map.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: normal, multiply;
+  overflow: auto;
+  /* A transition is read off the state being entered, so this one is the way
+     IN and `.is-open` below carries the way out. One hardcoded 620ms used to
+     do both jobs, which is why the ticket took the exit's time to arrive. */
+  transition: opacity var(--motion-enter-duration) var(--motion-enter-easing);
+}
+/* The page the ticket is handed to you on is paper too, so it takes the grain
+   the rest of the hub takes -- tier 2's own accent grain ink, which is ember.
+   One sheet at --grain-bite, which tier 1 defines as the whole grain at one
+   sheet; the hub's two-sheet arrangement is for the mat, and there is no mat
+   here. Fixed rather than absolute so it stays put if the ticket has to
+   scroll in a short window. */
+.arrival::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: var(--grain-bite);
+  background-color: var(--color-grain-ink-accent);
+  -webkit-mask-image: var(--grain-mask);
+  mask-image: var(--grain-mask);
+}
+.arrival[hidden] { display: none; }
+.arrival.is-loading { opacity: 0; }
+.arrival.is-open {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 620ms var(--motion-exit-easing);
 }
 
-.vellum.is-pulling { cursor: grabbing; }
-.vellum[hidden] { display: none; }
-.vellum:focus-visible { outline: 2px solid var(--color-content-subtle); outline-offset: -6px; }
+/* the page behind holds still, and blurs a little, while the ticket is up */
+body.is-sealed { overflow: hidden; }
+body.is-sealed main { filter: blur(1.5px); }
+body.is-loading main, body.is-loading .sidebar { visibility: hidden; }
 
-/* the sheet waits, out of sight, until its paper has come in whole; the hub under
-   it waits with it, so nothing shows half made */
-.vellum.is-loading { opacity: 0; pointer-events: none; }
-body.is-loading main, body.is-loading .sidebar, body.is-loading .topbar { visibility: hidden; }
+/* ---------------------------------------------------------------- the ticket */
+.ticket {
+  --ticket-w: 320px;
+  --scallop: 5px;          /* the radius of a punched half-circle */
+  --notch: 16px;           /* half the diagonal of the waist's diamond */
+  width: var(--ticket-w);
+  flex: none;
+  position: relative;
+  /* The scalloped top and bottom are cut out of the ticket, not painted over
+     it: a repeating radial gradient as a mask, transparent inside each circle.
+     The 18px step and the 5px radius are the design's own (its strip is 298
+     wide and holds 17 dots). */
+  /* The circle sits ON the edge, not above it, so half of it is bitten out of
+     the ticket. Declared twice because the two layers have to intersect, and
+     mask-composite has to come after the shorthand, which resets it. */
+  -webkit-mask:
+    radial-gradient(circle at 9px 0, transparent 5px, #000 5.5px) 0 0 / 18px 100% repeat-x,
+    radial-gradient(circle at 9px 100%, transparent 5px, #000 5.5px) 0 100% / 18px 100% repeat-x;
+  mask:
+    radial-gradient(circle at 9px 0, transparent 5px, #000 5.5px) 0 0 / 18px 100% repeat-x,
+    radial-gradient(circle at 9px 100%, transparent 5px, #000 5.5px) 0 100% / 18px 100% repeat-x;
+  mask-composite: intersect;
+}
 
-/* The sheet is two pieces in one box; each shows a different part of the same
-   scan through its own clip, so the creases run on across the tear. The scan
-   carries its own alpha — it is the paper's thickness, not a fill behind it. */
-.vellum__sheet {
+/* the picture half: the quarry, printed in ember */
+.ticket__pic {
+  position: relative;
+  height: var(--ticket-w);
+  overflow: hidden;
+  background: var(--color-background-accent);
+}
+/* The sky is struck on the same plate as the engraving and multiplies into the
+   ember the same way, so the two are one print rather than a picture over a
+   picture. arrival-sky.js prints it; it is under the engraving by DOM order. */
+.ticket__sky {
   position: absolute;
   inset: 0;
-  background: var(--vellum-tex) center / cover no-repeat;
-  opacity: var(--vellum-alpha);
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
-  transform: rotate(var(--tilt));
-  transition: transform 1250ms cubic-bezier(0.5, 0, 0.15, 1), opacity 620ms ease 640ms;
-}
-
-/* the straight fallback; arrival.js redraws both edges along the strip with the
-   small teeth a perforation leaves */
-.vellum__sheet--top { clip-path: polygon(0 0, 100% 0, 100% var(--strip-at), 0 var(--strip-at)); }
-.vellum__sheet--bot {
-  clip-path: polygon(
-    0 calc(var(--strip-at) + var(--strip-h)),
-    100% calc(var(--strip-at) + var(--strip-h)),
-    100% 100%,
-    0 100%);
-}
-
-/* ---------------------------------------------------------------- the tear strip */
-.tape {
-  position: absolute;
-  left: 0; right: 0;
-  top: var(--strip-at);
-  height: var(--strip-h);
+  /* A canvas is a replaced element, so `inset` alone leaves it at its own
+     intrinsic size -- the device-pixel size of the buffer, which is twice the
+     plate on a retina screen. It is told the plate's size here. */
+  width: 100%;
+  height: 100%;
+  display: block;
   pointer-events: none;
-  transition: transform 1250ms cubic-bezier(0.5, 0, 0.15, 1), opacity 620ms ease 640ms;
 }
+/* The quarry is a PLATE laid over the sky, not an engraving multiplied into
+   the ember. It carries its own ember -- measured at rgb(235, 78, 25), which is
+   --color-background-accent exactly, so where it meets the bare plate there is
+   no seam -- and it is fully transparent above the ridge, so the weather behind
+   it shows through there and through every gap in the hatching. That is what
+   lets the sky run the whole plate instead of being faded out above the
+   mountain: the mountain does the masking, with its own alpha.
 
-/* the two rows of holes, top and bottom, over the sheet's own paper */
-.tape__strip {
+   It therefore takes no blend mode. Multiplying an opaque plate would only put
+   the sky back through the rock.
+
+   Full width, and hung 7.5% of the plate BELOW the floor so more sky is open
+   above the ridge -- a third of the stamp rather than a quarter. That crop
+   costs nothing: the bottom 11% of the drawing was measured and carries no
+   hatching at all, only the flat ember that the plate behind it already is.
+   7.5% of 320 is 24px against 25px of dead ground, so this is as far as it
+   goes before the quarry starts losing its own foot. */
+.ticket__pic img {
   position: absolute;
-  top: -1px; bottom: -1px; left: 0; right: 0;
-  background:
-    repeating-linear-gradient(90deg, var(--color-border-default) 0 3px, transparent 3px 6px) left top / 100% 1px no-repeat,
-    repeating-linear-gradient(90deg, var(--color-border-default) 0 3px, transparent 3px 6px) left bottom / 100% 1px no-repeat,
-    var(--vellum-tex) var(--tex-x, 0) var(--tex-y, 0) / var(--tex-w, 100%) var(--tex-h, 100%) no-repeat;
-  opacity: var(--vellum-alpha);
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
+  left: 0;
+  bottom: -7.5%;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
 }
 
-/* the torn-off length, folded back over the strip and held by the reader */
-.tape__pulled {
-  position: absolute;
-  top: -1px; bottom: -1px; left: 0;
-  width: 0;
-  transform-origin: 0 50%;
+/* the stub: what the ticket says */
+.ticket__info {
+  height: var(--ticket-w);
+  background: var(--color-background-default);
+  padding: var(--space-inset-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
 }
 
-/* Paper bows, it does not hinge: the length in the hand is carried in a row of
-   short pieces laid end to end along the curve it makes, so the two rows of
-   holes run on from one to the next and keep their perforation round the bend. */
-.tape__seg {
-  position: absolute;
-  top: 0; bottom: 0; left: 0;
-  transform-origin: 0 50%;
-  background:
-    repeating-linear-gradient(90deg, var(--color-border-default) 0 3px, transparent 3px 6px) left top / 100% 1px no-repeat,
-    repeating-linear-gradient(90deg, var(--color-border-default) 0 3px, transparent 3px 6px) left bottom / 100% 1px no-repeat,
-    var(--vellum-tex) var(--tex-x, 0) var(--tex-y, 0) / var(--tex-w, 100%) var(--tex-h, 100%) no-repeat;
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
-  transition: transform 460ms cubic-bezier(0.22, 1.1, 0.36, 1);
-}
-
-/* the fold at the tear darkens the paper just behind it */
-.tape__seg--fold::before {
+/* the waist, where a ticket is torn: a diamond of the page's own colour bitten
+   out of each side, on the seam between the picture and the stub */
+.ticket::before,
+.ticket::after {
   content: "";
   position: absolute;
-  top: 0; bottom: 0; left: 0;
-  width: 8px;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0));
-}
-
-.tape__seg--end { border-radius: 0 2px 2px 0; }
-
-/* the shadow it throws: the same row, flat and blurred as one, laid under it */
-.tape__shadow {
-  position: absolute;
-  top: 0; bottom: 0; left: 0;
-  width: 0;
-  transform: translateY(3px);
-  filter: blur(3px);
-}
-
-.tape__shade {
-  position: absolute;
-  top: 0; bottom: 0; left: 0;
-  transform-origin: 0 50%;
-  background: rgba(0, 0, 0, 0.17);
-  transition: transform 460ms cubic-bezier(0.22, 1.1, 0.36, 1);
-}
-
-/* in the hand it follows without easing; let go and the paper comes back level */
-.vellum.is-pulling .tape__seg,
-.vellum.is-pulling .tape__shade { transition: none; }
-
-.tape__hint {
-  position: absolute;
-  top: 0; bottom: 0; left: 0;
-  width: 72px;
   z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 12px;
-  gap: 4px;
-  font-family: var(--sans);
-  font-size: var(--type-body-sm-size);
-  font-weight: var(--type-body-sm-weight);
-  line-height: 1;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-content-subtle);
-  white-space: nowrap;
-  transition: opacity 200ms ease;
-}
-
-.tape__arrow { font-size: var(--type-body-2xs-size); line-height: 11px; }
-
-.vellum.is-started .tape__hint { opacity: 0; }
-
-/* left alone, the free end gives a small tug of its own */
-.vellum.is-hinting .tape__pulled { animation: tug 1100ms cubic-bezier(0.4, 0, 0.2, 1); }
-
-@keyframes tug {
-  0%, 100% { transform: translateX(0); }
-  22% { transform: translateX(9px); }
-  44% { transform: translateX(1px); }
-  64% { transform: translateX(5px); }
-}
-
-/* the words sit in the corner of the page, clear of the mat and the iso */
-.vellum__inner {
-  position: absolute;
-  left: calc(var(--space-mat) + var(--space-inset-md));
-  top: calc(var(--space-mat) + var(--space-inset-md) + 72px);
-  width: min(402px, calc(100% - 112px));
+  top: var(--ticket-w);
+  width: calc(var(--notch) * 2);
+  height: calc(var(--notch) * 2);
+  background: var(--color-background-paper-cielo);
+  transform: translateY(-50%) rotate(45deg);
   pointer-events: none;
-  transition: transform 1250ms cubic-bezier(0.5, 0, 0.15, 1), opacity 620ms ease 640ms;
 }
+.ticket::before { left: 0; transform: translate(-50%, -50%) rotate(45deg); }
+.ticket::after { right: 0; transform: translate(50%, -50%) rotate(45deg); }
 
-.vellum__words { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
-
-.vellum__words p {
-  margin: 0;
-  font-family: var(--sans);
-  font-size: var(--type-body-sm-size);
-  font-weight: var(--type-body-sm-weight);
-  line-height: 1.5;
-  color: var(--color-content-subtle);
-}
-
-.vellum__for {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  height: 25px;
-  width: 100%;
-}
-
-.vellum__label { text-transform: uppercase; letter-spacing: 0.12em; }
-
-.vellum__name {
-  flex: 1 0 0;
-  min-width: 0;
-  padding-top: 4px;
-  font-weight: var(--weight-700);
-  letter-spacing: 0.1em;
+/* ---------------------------------------------------------------- its fields */
+/* The label belongs to the value under it, so nothing sits between them: the
+   air they do read with is the leading of a 28 serif over a 12 monospace, which
+   is enough on its own. */
+.tk-field { display: flex; flex-direction: column; gap: 0; }
+/* the design's typewriter, which is the ticket's whole voice: Courier Prime
+   Bold, 12, uppercase, on its own tracking rather than the hub's 0.12em --
+   a monospace is already wide and does not want the extra */
+.tk-k {
+  font-family: 'Courier Prime', ui-monospace, monospace;
+  font-size: var(--type-body-xs-size);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--color-content-default);
 }
+.tk-v {
+  font-family: var(--type-title-sm-family);
+  font-size: var(--type-title-sm-size);
+  font-weight: var(--type-title-sm-weight);
+  line-height: var(--type-title-sm-leading);
+  letter-spacing: var(--type-title-sm-tracking);
+  color: var(--color-content-default);
+}
+/* the date is read as figures, not as a word, so it keeps the sans and the
+   spaces the design puts between its parts */
+.tk-date {
+  font-family: var(--type-body-lg-family);
+  font-size: var(--size-24);
+  font-weight: var(--weight-400);
+  line-height: 1;
+  color: var(--color-content-default);
+  font-variant-numeric: tabular-nums;
+}
+/* the letter's own drawn rule, not a border */
+.tk-rule { display: block; width: 100%; height: 2px; }
+/* the button is the one thing on the stub you act on, so it stands apart from
+   the last thing you read */
+.ticket__info .btn { width: 100%; justify-content: center; margin-top: var(--space-stack-md); }
 
-/* the rules are the letter's own, ruled in red over the paper */
-.rule { display: block; width: 100%; height: 2px; margin: -1px 0; }
-.rule--lead { margin-bottom: 1px; }
-.rule--flip { transform: scaleX(-1); }
-.rule--180 { width: 180px; }
-
-/* opening: with the strip gone the sheet is in two, and the halves part along
-   the tear — the top one up with the words on it, the bottom one down */
-.vellum.is-open .vellum__sheet--top { transform: rotate(var(--tilt)) translateY(-101%); opacity: 0; }
-.vellum.is-open .vellum__sheet--bot { transform: rotate(var(--tilt)) translateY(101%); opacity: 0; }
-.vellum.is-open .tape { transform: translateY(-75vh); opacity: 0; }
-.vellum.is-open .vellum__inner { transform: translateY(-75vh); opacity: 0; }
-
-/* nothing moves under the sheet while it is still closed */
-body.is-sealed { overflow: hidden; }
-
-/* under the sealed sheet the hub reads soft, just out of focus; it comes sharp
-   as the sheet goes (the sheet's own backdrop blur is lost to its clip in some
-   browsers) */
-main { transition: filter 700ms ease; }
-body.is-sealed main { filter: blur(1.5px); }
+/* ------------------------------------------------------------------- narrow */
+@media (max-width: 420px) {
+  .ticket { --ticket-w: min(320px, calc(100vw - 2 * var(--space-stack-lg))); }
+}
+/* short windows: the ticket scrolls rather than being cut off */
+@media (max-height: 740px) {
+  .arrival { align-items: flex-start; }
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .vellum__sheet, .tape, .tape__seg, .tape__shade, .vellum__inner, main { transition: none; }
-  .vellum.is-hinting .tape__pulled { animation: none; }
+  .arrival { transition: none; }
 }

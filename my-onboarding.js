@@ -41,18 +41,14 @@
      because a list was missing would be the one failure nobody would notice.
      An EMPTY otherIds is never "all visited": with no sections to walk, there
      is nothing to have finished. */
-  function allVisited(visited, otherIds) {
-    var list = Array.isArray(visited) ? visited : [];
-    var ids = Array.isArray(otherIds) ? otherIds : [];
-    return ids.length > 0 && ids.every(function (id) { return list.indexOf(id) > -1; });
-  }
-
-  /* What the nav should show. 'hidden' until the hub has been walked; 'new'
-     until the section itself has been opened once; 'plain' after that. A hire
-     whose section never appears is a visible pipeline failure -- the reveal
-     doubles as a health check (spec decision 2), so it is never shown early. */
-  function navState(visited, otherIds, seen) {
-    if (!allVisited(visited, otherIds)) return 'hidden';
+  /* What the nav should show: 'new' until the section has been opened once,
+     'plain' after that. It used to be hidden until the hire had visited every
+     section, which made sense while reading the hub WAS the onboarding. The
+     checklist is the onboarding now, reading is one item of eighteen, and a
+     hire could do seventeen real things and still not see their own plan
+     because they had not clicked through four reference pages. The gate is
+     gone (see onboarding-hub-gaps.md). */
+  function navState(seen) {
     return seen ? 'plain' : 'new';
   }
 
@@ -221,12 +217,13 @@
      progress. Every field is optional; the section renders without any of it. */
   function renderSection(kit, ctx) {
     if (!kit) {
-      /* Revealed by walking the hub, which anyone can do -- so this state is
-         reachable and has to say something useful rather than nothing. */
+      /* The section is in the nav from the start now, so this is what most
+         people see first and it has to stand on its own. It used to send them
+         to the welcome kit popup at the bottom right, which is not in the
+         markup any more (see onboarding-hub-gaps.md, 35). */
       return '<h1 class="display">Your onboarding.</h1>'
         + '<p class="body-copy">Your hiring manager writes this part: your first client, who to '
-        + 'meet, and your first 90 days. Open the welcome kit at the bottom right and enter your '
-        + 'access code to see yours.</p>'
+        + 'meet, and your first 90 days. It appears here once they have written it.</p>'
         + checklistBlock((ctx || {}).checklist);
     }
     ctx = ctx || {};
@@ -356,7 +353,6 @@
     VISITED_KEY: VISITED_KEY,
     SEEN_KEY: SEEN_KEY,
     addVisit: addVisit,
-    allVisited: allVisited,
     navState: navState,
     parseSyncWith: parseSyncWith,
     renderSection: renderSection,

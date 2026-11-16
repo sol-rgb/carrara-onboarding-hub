@@ -117,8 +117,8 @@ window.PAGES = {
       + '<li>Runs high-touch searches for mission-critical leadership roles, typically at the C-suite, VP, or other highly specialized level.</li>'
       + '<li>Develops the success profile, maps the market, activates Carrara\'s network, conducts targeted outreach, and manages assessment, references, and closing.</li>'
       + '<li>Usually builds on an existing Carrara relationship, giving the search team a deeper understanding of the client\'s strategy, culture, and leadership needs than a standalone search firm would have.</li>'
+      + '<li>Searches usually grow out of an account we already run, so ask the client lead rather than looking for a standalone list.</li>'
       + '</ul>'
-      + '<p class="pg-clients">Searches usually grow out of an account we already run, so ask the client lead rather than looking for a standalone list.</p>'
   },
   skuPeopleOps: {
     title: 'People Ops',
@@ -249,7 +249,7 @@ window.PAGES = {
       + '<tr><td><span class="sw" style="background:#FFFF80"></span>Lemon</td><td>#FFFF80</td><td></td></tr>'
       + '</tbody>'
       + '</table></div>'
-      + '<p class="body-copy muted" style="font-size:13px">Each family also carries shades from 50 to 950 following Tailwind conventions, for UI states, depth and hierarchy.</p>'
+      + '<p class="body-copy">Each family also carries shades from 50 to 950 following Tailwind conventions, for UI states, depth and hierarchy.</p>'
       + '</div>'
   },
   bvExpressions: {
