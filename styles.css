@@ -392,27 +392,6 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
 .modal .m-actions { margin-top: 22px; display: flex; gap: 14px; align-items: center; }
 .m-note { font-size: var(--type-body-xs-size); color: var(--taupe); margin-top: 12px; }
 
-/* ---------- carrara hub (preview) ---------- */
-.hub-shot { display: block; position: relative; margin-top: 40px; border: 1px solid var(--hairline); background: var(--color-background-sheet); clip-path: var(--chamfer); text-decoration: none; color: inherit; transition: transform 0.25s ease; }
-.hub-shot:hover { transform: translateY(-3px); }
-.hub-shot img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; }
-.hub-bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; border-bottom: 1px solid var(--hairline); background: var(--canvas); }
-.hub-bar span { width: 9px; height: 9px; border-radius: 50%; background: var(--hairline); }
-.hub-bar em { font-style: normal; font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.04em; color: var(--taupe); margin-left: 10px; }
-.hub-open { position: absolute; right: 22px; bottom: 22px; font-family: var(--rigid); font-weight: var(--weight-700); font-size: var(--type-body-xs-size); letter-spacing: 0.08em; background: var(--orange); color: var(--color-content-knockout); padding: 14px 22px; clip-path: var(--chamfer); }
-.hub-tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 34px; }
-.hub-tile { display: block; text-decoration: none; color: inherit; }
-.hub-tile-img { display: block; aspect-ratio: 16 / 10; overflow: hidden; border: 1px solid var(--hairline); background: var(--color-background-sheet); }
-.hub-tile-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform 0.3s ease; }
-.hub-tile:hover .hub-tile-img img { transform: scale(1.03); }
-.hub-tile-img.bottom img { object-position: bottom; }
-.hub-tile:hover .hub-tile-t { color: var(--color-content-accent); }
-.hub-tile-t { display: block; font-family: var(--serif); font-weight: var(--weight-400); font-size: var(--size-20); letter-spacing: -0.01em; margin-top: 14px; }
-.hub-tile-d { display: block; font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); color: var(--color-content-default); margin-top: 6px; }
-.hub-foot { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; margin-top: 44px; }
-.hub-foot .btn-primary { text-decoration: none; }
-.hub-foot-note { font-size: var(--type-body-md-size); color: var(--color-content-default); max-width: 520px; line-height: var(--type-body-md-leading); }
-
 /* ---------- rock cards (business) ---------- */
 /* The eight product lines read as a list: the name, what it is, one under the
    next. They were eight clip-pathed cards in six colours on a four-column grid
@@ -827,7 +806,6 @@ table.channels td:first-child { width: 1%; }
   .mark--corner { position: absolute; }
   .hero-block { display: none; }
   .spec-grid, .spec-grid.three, .chk-cols, .to-seasons { grid-template-columns: 1fr; }
-  .hub-tiles { grid-template-columns: 1fr 1fr; }
   .timeline, .ninety { grid-template-columns: 1fr; }
   .stat-strip { flex-direction: column; }
   .stat + .stat { border-left: none; border-top: 1px solid var(--hairline); padding-left: 0; padding-top: 18px; }

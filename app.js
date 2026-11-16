@@ -15,7 +15,6 @@
     { id: 'business',  label: 'The business' },
     { id: 'clients',   label: 'Our clients' },
     { id: 'tools',     label: 'Our tools' },
-    { id: 'hub',       label: 'Carrara hub' },
     { id: 'timeoff',   label: 'Time off policy' },
     { id: 'resources', label: 'Resources' },
     /* locked: reachable, but marked so nobody expects content yet */
