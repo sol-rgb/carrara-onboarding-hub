@@ -113,6 +113,11 @@
   --space-stack-sm: var(--space-8);      /* between index rows */
   --space-stack-md: var(--space-16);     /* between paragraphs */
   --space-stack-lg: var(--space-24);     /* between blocks in a column */
+  /* Between the sections of a sheet: tighter than a page's rhythm, wider than a
+     block's. It sits at 40, between lg and xl, and is named for its intention
+     rather than taking an xl slot: renaming the ramp would move --space-stack-xl
+     from 56 to 40 under every product that already reads it. */
+  --space-stack-sheet: var(--space-40);
   --space-stack-xl: var(--space-56);     /* around a card */
   --space-stack-2xl: var(--space-fluid-section);   /* between major sections, 80 to 160 */
 

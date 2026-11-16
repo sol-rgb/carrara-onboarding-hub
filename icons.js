@@ -22,7 +22,8 @@
     'lock': '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path>',
     'plus': '<line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>',
     'minus': '<line x1="5" y1="12" x2="19" y2="12"></line>',
-    'chevron-down': '<polyline points="6 9 12 15 18 9"></polyline>'
+    'chevron-down': '<polyline points="6 9 12 15 18 9"></polyline>',
+    'x': '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>'
   };
 
   var OPEN = '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"'

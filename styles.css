@@ -413,9 +413,10 @@ table.clean td:last-child { font-family: var(--sans); font-size: var(--type-body
 .modal .mo-syncs li { font-size: var(--type-body-sm-size); line-height: var(--type-body-sm-leading); color: var(--color-content-default); }
 .modal .m-close {
   position: absolute; top: var(--space-stack-md); right: var(--space-stack-md);
-  font-family: var(--type-body-2xs-family); font-size: var(--type-body-2xs-size);
+  display: flex; padding: 4px;
   background: none; border: none; color: var(--color-content-subtle); cursor: pointer;
 }
+.m-close [data-icon] { width: 18px; height: 18px; }
 .modal .m-close:hover { color: var(--color-content-accent); }
 .modal .m-close:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
 .modal label {
@@ -896,8 +897,8 @@ table.channels td:first-child { width: 1%; }
 .wk-err { font-family: var(--sans); font-size: var(--type-body-2xs-size); color: var(--color-content-accent); margin-top: 10px; display: none; }
 .wk-err.show { display: block; }
 .wk-actions { margin-top: 16px; }
-.wk-sec { margin-top: var(--space-40); }
-.wk-sec:first-child { margin-top: 0; }
+.wk-sec { margin-top: var(--space-stack-sheet); padding-top: var(--space-stack-sheet); border-top: 1px solid var(--color-border-subtle); }
+.wk-sec:first-child { margin-top: 0; padding-top: 0; border-top: none; }
 /* the heading over a list inside a sheet: the step under the sheet's own title */
 .wk-lbl {
   font-family: var(--type-body-md-family); font-size: var(--type-body-md-size);
@@ -1004,7 +1005,7 @@ a.client-row:hover .cn { color: var(--color-content-accent); }
 .pg-swatch span { width: 34px; height: 22px; flex: none; }
 .pg-swatch b { font-weight: var(--weight-500); color: var(--ink); margin-right: 4px; white-space: nowrap; }
 .pg-note { font-family: var(--sans); font-size: var(--type-body-2xs-size); letter-spacing: 0.08em; color: var(--taupe); margin-top: 18px; }
-.pg-clients { font-size: var(--type-body-sm-size); color: var(--color-content-subtle); margin-top: var(--space-40); }
+.pg-clients { font-size: var(--type-body-sm-size); color: var(--color-content-subtle); margin-top: var(--space-stack-sheet); padding-top: var(--space-stack-sheet); border-top: 1px solid var(--color-border-subtle); }
 .pg-clients b { color: var(--ink); font-weight: var(--weight-500); }
 .modal { max-height: 80vh; overflow-y: auto; }
 
