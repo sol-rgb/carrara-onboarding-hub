@@ -223,8 +223,33 @@ h2.sub {
 /* a note under a block: the secondary size, not the 13 it was written inline as,
    which is off every step the system has (11, 12, 14, 16, 18) */
 .body-copy.muted { font-size: var(--type-body-sm-size); line-height: var(--type-body-sm-leading); }
-a.textlink { color: var(--color-content-accent); text-decoration: none; border-bottom: 1px solid rgba(235, 78, 25, 0.35); }
-a.textlink:hover { border-bottom-color: var(--color-content-accent); }
+/* An inline link, one rule for the whole hub (the letter's own: color inherit,
+   underline dotted). The words read in the ink they sit in; the dotted rule
+   says it is a link, and on hover that rule closes into a solid one. The colour
+   does not move: ember as text is under AA, and the line already says it. */
+a.textlink,
+a.spec .spec__tab,
+.spec__tab a,
+.ch-name a,
+.member .em a {
+  color: inherit;
+  border-bottom: 0;
+  text-decoration: underline dotted;
+  text-decoration-color: var(--color-content-subtle);
+  text-underline-offset: 3px;
+}
+a.textlink:hover,
+a.spec:hover .spec__tab,
+.spec__tab a:hover,
+.ch-name a:hover,
+.member .em a:hover {
+  text-decoration-style: solid;
+  text-decoration-color: currentColor;
+}
+a.textlink:focus-visible,
+.spec__tab a:focus-visible,
+.ch-name a:focus-visible,
+.member .em a:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
 
 /* chips */
 .chip-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 6px; }
@@ -480,8 +505,6 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
 .member .nm { font-weight: var(--weight-500); font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); margin-bottom: 6px; transition: color 0.18s ease; }
 .member .rl { font-size: var(--type-body-xs-size); color: var(--taupe); line-height: var(--type-body-xs-leading); }
 .member .em { font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.04em; }
-.member .em a { color: var(--taupe); text-decoration: none; }
-.member .em a:hover { color: var(--color-content-accent); }
 .member .newtag { font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.08em; color: var(--color-content-accent); }
 /* margin-top auto pins the footer to the bottom, so location and logos line
    up across a row no matter how long the role above them runs. */
@@ -694,19 +717,9 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
 .spec__d b { display: block; color: var(--color-content-default); }
 
 a.spec { text-decoration: none; }
-a.spec .spec__tab,
-.spec__tab a {
-  color: inherit;
-  text-decoration: underline dotted;
-  text-decoration-color: var(--color-content-subtle);
-  text-underline-offset: 3px;
-}
+a.spec:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
 a.spec:hover,
 a.spec:focus-visible { box-shadow: inset 0 0 0 1.25px var(--color-content-accent); }
-a.spec:hover .spec__tab,
-.spec__tab a:hover { text-decoration-color: var(--color-content-accent); }
-a.spec:focus-visible,
-.spec__tab a:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
 
 /* ---------- a plain list ---------- */
 .bullets {
@@ -761,14 +774,6 @@ table.channels td:first-child { width: 1%; }
   letter-spacing: 0.12em;
   color: var(--color-content-default);
 }
-.ch-name a {
-  color: inherit;
-  text-decoration: underline dotted;
-  text-decoration-color: var(--color-content-subtle);
-  text-underline-offset: 3px;
-}
-.ch-name a:hover { text-decoration-color: var(--color-content-accent); }
-.ch-name a:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
 .ch-what { position: relative; color: var(--color-content-default); }
 
 @media (max-width: 860px) {
