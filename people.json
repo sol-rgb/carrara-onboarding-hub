@@ -1,6 +1,6 @@
 {
  "source": "notion-team-directory",
- "updated": "2026-11-09",
+ "updated": "2026-11-16",
  "_partnerNote": "partner:true marks the firm's partner group, not the Talent Partner role. Edit here; the hero stat counts this flag.",
  "people": [
   {
@@ -364,14 +364,22 @@
    "email": "emily@carrara.is",
    "location": "Ojai",
    "role": "Embedded talent acquisition and strategy",
-   "about": "",
-   "values": "",
+   "about": "I’m a proud Michigander now based in Ojai, a small mountain town in Southern California. I bring more than a decade of talent experience, partnering with technology companies ranging from seed-stage startups to Series D and publicly traded organizations. I work closely with hiring managers to understand their evolving needs and lead both technical and non-technical searches.",
+   "values": "Vulnerability, Transparency, Optimism",
    "linkedin": "https://www.linkedin.com/in/emily-kasper-0916572a/",
    "teams": [
     "Talent Acquisition"
    ],
    "clients": [
-    "Perchwell"
+    "Perchwell",
+    "OpenAI Foundation",
+    "LangChain",
+    "Grindr",
+    "Hinge",
+    "Brave Health",
+    "AgentSync",
+    "January",
+    "Owner"
    ],
    "answers": [],
    "partner": false
