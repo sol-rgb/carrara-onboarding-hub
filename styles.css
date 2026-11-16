@@ -239,7 +239,8 @@ a.spec .spec__tab,
 .ch-name a,
 .member .em a,
 .mo-body a,
-.wk-sec a {
+.wk-sec a,
+.tool-row .ta a {
   color: inherit;
   border-bottom: 0;
   text-decoration: underline dotted;
@@ -252,7 +253,8 @@ a.spec:hover .spec__tab,
 .ch-name a:hover,
 .member .em a:hover,
 .mo-body a:hover,
-.wk-sec a:hover {
+.wk-sec a:hover,
+.tool-row .ta a:hover {
   text-decoration-style: solid;
   text-decoration-color: currentColor;
 }
@@ -280,7 +282,7 @@ a.textlink:focus-visible,
 }
 .cta-row { margin: var(--space-stack-xl) 0 var(--space-stack-md); display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
 .btn-primary {
-  font-family: var(--rigid); font-weight: var(--weight-700); font-size: var(--type-body-xs-size); letter-spacing: 0.08em;
+  font-weight: var(--weight-700); font-size: var(--type-body-sm-size);
   background: var(--color-background-strong); color: var(--color-content-knockout); border: none; cursor: pointer;
   padding: 16px 32px; clip-path: var(--chamfer);
   transition: background 0.2s ease;
@@ -481,7 +483,7 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
   padding: 11px 16px; width: 280px; clip-path: var(--chamfer); outline: none;
 }
 .team-search:focus { border-color: var(--taupe); }
-.team-count { font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.08em; color: var(--taupe); }
+.team-count { font-size: var(--type-body-sm-size); line-height: var(--type-body-sm-leading); color: var(--color-content-subtle); }
 /* One real card per person. The old layout was five hairline-separated rows
    per line, so cards ran ragged: a person with no role sat next to one with
    three lines of it, and the client logos floated wherever the text ended.
@@ -568,16 +570,18 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
 }
 .client-row .clogo img { width: 20px; height: 20px; object-fit: contain; }
 .client-row .cn { font-weight: var(--weight-500); font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); }
-.client-row .lead { font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.06em; color: var(--taupe); margin-top: 5px; }
+.client-row .lead { font-size: var(--type-body-xs-size); line-height: var(--type-body-xs-leading); color: var(--color-content-subtle); margin-top: 5px; }
 .client-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
 .client-tags span {
-  font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.06em;
-  color: var(--taupe); border: 1px solid var(--hairline); padding: 3px 8px;
+  font-size: var(--type-body-xs-size); line-height: var(--type-body-xs-leading);
+  color: var(--color-content-subtle); border: 1px solid var(--color-border-subtle);
+  border-radius: var(--shape-soft); padding: 3px 8px;
 }
 .internal-tag {
-  font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.1em; color: var(--color-content-accent);
-  border: 1px solid rgba(235, 78, 25, 0.4); padding: 4px 10px; margin-left: 14px;
-  clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 0 100%);
+  font-size: var(--type-body-xs-size); line-height: var(--type-body-xs-leading);
+  color: var(--color-content-accent);
+  border: 1px solid rgba(235, 78, 25, 0.4); border-radius: var(--shape-soft);
+  padding: 4px 10px; margin-left: var(--space-stack-md);
 }
 
 /* ---------- tools ---------- */
@@ -590,10 +594,10 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
 }
 .tool-row .tlogo img { width: 22px; height: 22px; object-fit: contain; }
 .tool-row .tn { font-weight: var(--weight-500); font-size: var(--type-body-md-size); }
-.tool-row .tn .tag { font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.07em; color: var(--taupe); border: 1px solid var(--hairline); padding: 2px 6px; margin-left: 8px; vertical-align: 2px; }
+.tool-row .tn .tag { font-size: var(--type-body-xs-size); color: var(--color-content-subtle); border: 1px solid var(--color-border-subtle); border-radius: var(--shape-soft); padding: 2px 6px; margin-left: var(--space-stack-sm); vertical-align: 2px; }
 .tool-row .td { font-size: var(--type-body-md-size); color: var(--color-content-default); margin-top: 3px; line-height: var(--type-body-md-leading); }
 .tool-row .ta { margin-left: auto; flex: none; }
-.tool-row .ta a { font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.07em; color: var(--color-content-accent); text-decoration: none; white-space: nowrap; }
+.tool-row .ta a { font-size: var(--type-body-sm-size); white-space: nowrap; }
 
 /* ---------- templates ---------- */
 .tpl-top { display: flex; gap: 12px; flex-wrap: wrap; margin: 26px 0 6px; }
@@ -767,8 +771,6 @@ table.channels th {
   border-bottom: 1px solid var(--color-border-default);
   text-align: left;
   font-weight: var(--type-body-sm-weight);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
   color: var(--color-content-subtle);
 }
 table.channels td {
@@ -785,7 +787,6 @@ table.channels td:first-child { width: 1%; }
 .ch-name {
   white-space: nowrap;
   font-weight: var(--weight-700);
-  letter-spacing: 0.12em;
   color: var(--color-content-default);
 }
 .ch-what { position: relative; color: var(--color-content-default); }
@@ -1091,7 +1092,7 @@ body::after {
 }
 /* team cards: role, location and the client logos someone actually sits on */
 .rl-sm { font-size: var(--type-body-xs-size); color: var(--ardesia); line-height: var(--type-body-xs-leading); }
-.loc-sm { font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.09em; text-transform: uppercase; color: var(--taupe); }
+.loc-sm { font-size: var(--type-body-xs-size); line-height: var(--type-body-xs-leading); color: var(--color-content-subtle); }
 .cl-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 .cl-dot { width: 17px; height: 17px; border-radius: 3px; object-fit: contain; background: var(--sage-soft); }
 .cl-dot.txt { display: inline-flex; align-items: center; justify-content: center; font-family: var(--rigid); font-size: var(--type-body-2xs-size); font-weight: var(--weight-700); color: var(--ardesia); }
@@ -1113,7 +1114,7 @@ body::after {
 /* team filters: always visible, never collapsed */
 .team-filters { display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-end; margin: 22px 0 8px; }
 .tf { display: flex; flex-direction: column; gap: 5px; }
-.tf span { font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.12em; text-transform: uppercase; color: var(--taupe); }
+.tf span { font-size: var(--type-body-sm-size); line-height: var(--type-body-sm-leading); color: var(--color-content-subtle); }
 .tf select {
   font-family: var(--sans); font-size: var(--type-body-sm-size); color: var(--ink); background: var(--canvas);
   border: 1px solid var(--hairline); padding: 8px 30px 8px 11px; cursor: pointer;
@@ -1625,7 +1626,6 @@ details.to-faq[open] { padding-bottom: var(--space-stack-md); }
 }
 .hol-table th {
   text-align: left; font-weight: var(--type-body-sm-weight);
-  letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--color-content-subtle);
   padding: 0 var(--space-stack-md) var(--space-stack-sm) 0;
   border-bottom: 1px solid var(--color-border-default);
