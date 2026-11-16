@@ -3062,6 +3062,47 @@
    "channel": null,
    "updated": null,
    "url": "https://hub.carrara.is/clients/trace"
+  },
+  {
+   "slug": "pace",
+   "name": "Pace",
+   "hubName": "Pace",
+   "status": "active",
+   "oneLiner": "",
+   "about": null,
+   "practices": [
+    {
+     "id": "talent",
+     "name": "Talent platform"
+    },
+    {
+     "id": "recruiting",
+     "name": "Embedded recruiting"
+    }
+   ],
+   "website": null,
+   "logo": null,
+   "owner": "Brandon Taleisnik",
+   "team": [
+    {
+     "name": "Brandon Taleisnik",
+     "role": "Account lead",
+     "email": "brandon@carrara.is",
+     "slack": "U07JH8MAM7G",
+     "timezone": "America/Los_Angeles"
+    },
+    {
+     "name": "Catherine Ardila",
+     "role": "Pipeline and agencies",
+     "email": "catherine@carrara.is",
+     "slack": "U0A09PCP63V",
+     "timezone": "America/New_York"
+    }
+   ],
+   "workstreams": [],
+   "channel": "c-pace",
+   "updated": null,
+   "url": "https://hub.carrara.is/clients/pace"
   }
  ],
  "practices": [
@@ -3175,7 +3216,8 @@
     "Exponential Energy",
     "LiteLLM",
     "LangChain",
-    "Poetic"
+    "Poetic",
+    "Pace"
    ],
    "url": "https://hub.carrara.is/practices/recruiting"
   },
@@ -3330,7 +3372,8 @@
     "January",
     "LiteLLM",
     "Poetic",
-    "Trace"
+    "Trace",
+    "Pace"
    ],
    "url": "https://hub.carrara.is/practices/talent"
   },
