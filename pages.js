@@ -82,15 +82,6 @@ window.PAGES = {
       + '<a href="https://drive.google.com/drive/folders/1b5PzG1YinbMbLwIa8IOVPtJN-_SjSmqk" target="_blank" rel="noopener">Images, blocks and patterns, Drive folder ↗</a>'
       + '</div>'
   },
-  teamRoundup: {
-    title: 'Team Roundup',
-    html: '<p>The monthly company-wide catch-up: wins, client updates, and where the business is heading. Everyone joins.</p>'
-      + '<p>Agendas and recaps are archived after each session. Your manager will make sure the invite is on your calendar; if it\'s not there by week one, ask.</p>'
-      + '<div class="wk-links">'
-      + '<a href="https://app.notion.com/p/carrara/Roundup-Archive-13d6b1a6e6e780a6bc3ff12e110e42b0" target="_blank" rel="noopener">Roundup Archive on Notion ↗</a>'
-      + '</div>',
-    note: ''
-  },
   talentTeamMeeting: {
     title: 'Weekly Talent Jam',
     html: '<p>The full talent team syncs once a week: open roles across clients, process questions, hiring experiments worth copying, and team news.</p>'
