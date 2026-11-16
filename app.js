@@ -154,7 +154,8 @@
       html += '<div class="wk-sec"><div class="wk-lbl">Who to ask</div><ul>'
         + kp.leads.map(function (p) { return '<li>' + esc(p.name) + (p.role ? ', ' + esc(p.role) : '') + '</li>'; }).join('') + '</ul></div>';
     }
-    html += '<div class="wk-sec"><div class="wk-links"><a href="' + esc(kp.url) + '" target="_blank" rel="noopener">' + esc(kp.name) + ' on the Carrara Hub ↗</a></div></div>';
+    html += '<div class="wk-sec wk-out"><a class="btn" href="' + esc(kp.url) + '" target="_blank" rel="noopener">'
+      + esc(kp.name) + ' on the Carrara Hub <span data-icon="arrow-up-right" aria-hidden="true"></span></a></div>';
     return html;
   }
 
@@ -233,7 +234,12 @@
 
   /* ---------- modal ---------- */
   var mBack = $('#modal-back');
-  function openModal(html) { $('#modal-content').innerHTML = html; mBack.classList.add('show'); }
+  function openModal(html) {
+    var box = $('#modal-content');
+    box.innerHTML = html;
+    Icons.draw(box);
+    mBack.classList.add('show');
+  }
   function closeModal() { mBack.classList.remove('show'); }
   $('#modal-close').addEventListener('click', closeModal);
   mBack.addEventListener('click', function (e) { if (e.target === mBack) closeModal(); });

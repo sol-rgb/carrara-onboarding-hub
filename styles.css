@@ -173,7 +173,12 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
 .cover__body p { margin: 0 0 var(--space-stack-md); line-height: var(--type-body-md-leading); }
 .cover__body p:last-child { margin-bottom: 0; }
 
-.btn-cover {
+/* The hub's one button: a dark pill, a knockout label, an arrow beside it. Three
+   places wear it -- the cover, the step's next button, and the way out of a sheet
+   -- so it is declared once here and each of them names it. */
+.btn,
+.btn-cover,
+.next-nav a {
   display: inline-flex;
   align-items: center;
   gap: var(--space-8);
@@ -190,12 +195,19 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
 /* The hover moves the arrow, not the fill. Ember under knockout text reads at
    3.14:1 in light and 3.82:1 in dark -- below AA at every step of the ramp in
    one theme or the other -- and tier 2 has no accent surface that flips with
-   the theme, so there is no ember here to hover to (see onboarding-hub-gaps.md). */
+   the theme, so there is no ember here to hover to (see onboarding-hub-gaps.md).
+   An arrow travels the way it points: on, or off to another site. */
+.btn [data-icon],
 .btn-cover__arrow { transition: transform var(--motion-tint-duration) var(--motion-tint-easing); }
+.btn:hover [data-icon="arrow-right"],
+.btn:focus-visible [data-icon="arrow-right"],
 .btn-cover:hover .btn-cover__arrow,
 .btn-cover:focus-visible .btn-cover__arrow,
 .next-nav a:hover .btn-cover__arrow,
 .next-nav a:focus-visible .btn-cover__arrow { transform: translateX(3px); }
+.btn:hover [data-icon="arrow-up-right"],
+.btn:focus-visible [data-icon="arrow-up-right"] { transform: translate(2px, -2px); }
+.btn:focus-visible,
 .btn-cover:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
 
 /* The hub is walked, not browsed: no nav anywhere, and every step carries the
@@ -231,14 +243,15 @@ h2.sub {
 /* An inline link, one rule for the whole hub (the letter's own: color inherit,
    underline dotted). The words read in the ink they sit in; the dotted rule
    says it is a link, and on hover that rule closes into a solid one. The colour
-   does not move: ember as text is under AA, and the line already says it. */
+   does not move: ember as text is under AA, and the line already says it.
+   A button is not an inline link, so .btn is held out of it. */
 a.textlink,
 a.spec .spec__tab,
 .spec__tab a,
 .ch-name a,
 .member .em a,
-.mo-body a,
-.wk-sec a,
+.mo-body a:not(.btn),
+.wk-sec a:not(.btn),
 .tool-row .ta a {
   color: inherit;
   border-bottom: 0;
@@ -251,8 +264,8 @@ a.spec:hover .spec__tab,
 .spec__tab a:hover,
 .ch-name a:hover,
 .member .em a:hover,
-.mo-body a:hover,
-.wk-sec a:hover,
+.mo-body a:not(.btn):hover,
+.wk-sec a:not(.btn):hover,
 .tool-row .ta a:hover {
   text-decoration-style: solid;
   text-decoration-color: currentColor;
@@ -261,8 +274,8 @@ a.textlink:focus-visible,
 .spec__tab a:focus-visible,
 .ch-name a:focus-visible,
 .member .em a:focus-visible,
-.mo-body a:focus-visible,
-.wk-sec a:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
+.mo-body a:not(.btn):focus-visible,
+.wk-sec a:not(.btn):focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
 
 /* chips */
 .chip-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 6px; }
@@ -908,6 +921,8 @@ table.channels td:first-child { width: 1%; }
 .wk-sec ul { list-style: disc; padding-left: var(--space-stack-lg); }
 .wk-sec li { font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); color: var(--color-content-default); margin-bottom: var(--space-stack-sm); }
 .wk-sec li b { font-weight: var(--weight-500); color: var(--ink); }
+/* the last section of a sheet is the way out of it: one button, no rule over it */
+.wk-sec.wk-out { border-top: none; padding-top: 0; }
 .wk-links a { display: block; font-size: var(--type-body-sm-size); padding: 7px 0; color: var(--color-content-accent); text-decoration: none; border-bottom: 1px solid var(--hairline); }
 .wk-links a:last-child { border-bottom: none; }
 .wk-links a:hover { color: var(--ink); }
@@ -938,20 +953,6 @@ a.client-row:hover .cn { color: var(--color-content-accent); }
 
 /* the step's own button, the cover's, 56 under the last thing on the page */
 .next-nav { margin-top: var(--space-stack-xl); }
-.next-nav a {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-8);
-  padding: var(--space-8) var(--space-16);
-  border-radius: var(--shape-soft);
-  background: var(--color-background-strong);
-  color: var(--color-content-knockout);
-  font-family: var(--type-body-sm-family);
-  font-size: var(--type-body-sm-size);
-  font-weight: var(--weight-700);
-  line-height: var(--type-body-sm-leading);
-  text-decoration: none;
-}
 .next-nav a:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
 
 /* ---------- search palette ---------- */
