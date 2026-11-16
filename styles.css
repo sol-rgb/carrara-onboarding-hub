@@ -238,7 +238,8 @@ a.spec .spec__tab,
 .spec__tab a,
 .ch-name a,
 .member .em a,
-.mo-body a {
+.mo-body a,
+.wk-sec a {
   color: inherit;
   border-bottom: 0;
   text-decoration: underline dotted;
@@ -250,7 +251,8 @@ a.spec:hover .spec__tab,
 .spec__tab a:hover,
 .ch-name a:hover,
 .member .em a:hover,
-.mo-body a:hover {
+.mo-body a:hover,
+.wk-sec a:hover {
   text-decoration-style: solid;
   text-decoration-color: currentColor;
 }
@@ -258,7 +260,8 @@ a.textlink:focus-visible,
 .spec__tab a:focus-visible,
 .ch-name a:focus-visible,
 .member .em a:focus-visible,
-.mo-body a:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
+.mo-body a:focus-visible,
+.wk-sec a:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
 
 /* chips */
 .chip-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 6px; }
@@ -370,27 +373,58 @@ table.clean td:last-child { font-family: var(--rigid); font-size: var(--type-bod
 .done-moment .line { font-family: var(--serif); font-weight: var(--weight-400); font-size: var(--size-24); letter-spacing: -0.015em; }
 
 /* ---------- modal ---------- */
+/* A sheet laid over the page. It takes the system's own corner -- --shape-soft,
+   2px -- rather than the chamfer, which is the letter's cut and belongs to the
+   drawings. Everything in here reads a job: the only literal left is the scrim's
+   alpha, which the system has no token for (see onboarding-hub-gaps.md). */
 .modal-back {
   display: none; position: fixed; inset: 0; z-index: 90;
-  background: rgba(45, 42, 42, 0.35); align-items: center; justify-content: center; padding: 20px;
+  background: rgba(45, 42, 42, 0.35);
+  align-items: center; justify-content: center;
+  padding: var(--space-stack-lg);
 }
 .modal-back.show { display: flex; }
 .modal {
-  background: var(--canvas); clip-path: var(--chamfer); width: min(480px, 94vw);
-  padding: 30px 30px 26px; position: relative;
+  background: var(--color-background-sheet);
+  border-radius: var(--shape-soft);
+  width: min(480px, 94vw);
+  padding: var(--space-inset-sm);
+  position: relative;
 }
-.modal .m-eyebrow { font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.12em; color: var(--taupe); margin-bottom: 10px; }
-.modal h3 { font-family: var(--serif); font-weight: var(--weight-400); font-size: var(--size-20); letter-spacing: -0.015em; margin-bottom: 10px; }
-.modal p { font-size: var(--type-body-md-size); color: var(--color-content-default); }
-.modal .m-close { position: absolute; top: 14px; right: 16px; font-family: var(--rigid); font-size: var(--type-body-2xs-size); background: none; border: none; color: var(--taupe); cursor: pointer; }
-.modal label { display: block; font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.1em; color: var(--taupe); margin: 16px 0 6px; }
+.modal .m-eyebrow {
+  font-family: var(--type-body-2xs-family); font-size: var(--type-body-2xs-size);
+  line-height: var(--type-body-2xs-leading); letter-spacing: 0.12em;
+  color: var(--color-content-subtle); margin-bottom: var(--space-stack-sm);
+}
+/* the title of what you opened: the step under a page's title, as a section's
+   heading is. The serif ramp has no size below 28, which is why this is sans. */
+.modal h3 {
+  font-family: var(--type-body-lg-family); font-size: var(--type-body-lg-size);
+  font-weight: var(--weight-700); line-height: var(--type-body-lg-leading);
+  color: var(--color-content-default); margin-bottom: var(--space-stack-md);
+}
+.modal p { font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); color: var(--color-content-default); }
+.modal .m-close {
+  position: absolute; top: var(--space-stack-md); right: var(--space-stack-md);
+  font-family: var(--type-body-2xs-family); font-size: var(--type-body-2xs-size);
+  background: none; border: none; color: var(--color-content-subtle); cursor: pointer;
+}
+.modal .m-close:hover { color: var(--color-content-accent); }
+.modal .m-close:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
+.modal label {
+  display: block; font-family: var(--type-body-2xs-family); font-size: var(--type-body-2xs-size);
+  letter-spacing: 0.1em; color: var(--color-content-subtle);
+  margin: var(--space-stack-md) 0 var(--space-stack-sm);
+}
 .modal input, .modal textarea, .modal select {
-  width: 100%; font-family: var(--sans); font-size: var(--type-body-sm-size); color: var(--ink);
-  background: var(--color-background-sheet); border: 1px solid var(--hairline); padding: 11px 12px; outline: none;
+  width: 100%; font-family: var(--type-body-sm-family); font-size: var(--type-body-sm-size);
+  line-height: var(--type-body-sm-leading); color: var(--color-content-default);
+  background: var(--color-background-default); border: 1px solid var(--color-border-default);
+  border-radius: var(--shape-soft); padding: var(--space-stack-sm) var(--space-stack-md); outline: none;
 }
-.modal input:focus, .modal textarea:focus { border-color: var(--taupe); }
-.modal .m-actions { margin-top: 22px; display: flex; gap: 14px; align-items: center; }
-.m-note { font-size: var(--type-body-xs-size); color: var(--taupe); margin-top: 12px; }
+.modal input:focus, .modal textarea:focus { border-color: var(--color-content-accent); }
+.modal .m-actions { margin-top: var(--space-stack-lg); display: flex; gap: var(--space-stack-md); align-items: center; }
+.m-note { font-size: var(--type-body-xs-size); line-height: var(--type-body-xs-leading); color: var(--color-content-subtle); margin-top: var(--space-stack-md); }
 
 /* ---------- rock cards (business) ---------- */
 /* The eight product lines read as a list: the name, what it is, one under the
@@ -855,9 +889,8 @@ table.channels td:first-child { width: 1%; }
 .wk-sec { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--hairline); }
 .wk-sec:first-child { margin-top: 0; padding-top: 0; border-top: none; }
 .wk-lbl { font-family: var(--rigid); font-size: var(--type-body-2xs-size); letter-spacing: 0.12em; color: var(--taupe); margin-bottom: 8px; }
-.wk-sec ul { list-style: none; }
-.wk-sec li { font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); color: var(--color-content-default); padding-left: 14px; position: relative; margin-bottom: var(--space-stack-sm); }
-.wk-sec li::before { content: ''; position: absolute; left: 0; top: 9px; width: 5px; height: 5px; background: var(--sage); }
+.wk-sec ul { list-style: disc; padding-left: var(--space-stack-lg); }
+.wk-sec li { font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); color: var(--color-content-default); margin-bottom: var(--space-stack-sm); }
 .wk-sec li b { font-weight: var(--weight-500); color: var(--ink); }
 .wk-links a { display: block; font-size: var(--type-body-sm-size); padding: 7px 0; color: var(--color-content-accent); text-decoration: none; border-bottom: 1px solid var(--hairline); }
 .wk-links a:last-child { border-bottom: none; }
@@ -989,9 +1022,8 @@ body::after {
 .mo-card-name { font-family: var(--serif); font-weight: var(--weight-400); font-size: var(--size-24); letter-spacing: -0.015em; line-height: var(--type-title-sm-leading); }
 .mo-card-line { font-size: var(--type-body-sm-size); color: var(--color-content-subtle); margin-top: 4px; }
 .mo-card .wk-links { margin-top: 12px; }
-.mo-syncs { list-style: none; margin-top: 2px; }
-.mo-syncs li { font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); color: var(--color-content-default); padding-left: 14px; position: relative; margin-bottom: var(--space-stack-sm); }
-.mo-syncs li::before { content: ''; position: absolute; left: 0; top: 10px; width: 5px; height: 5px; background: var(--sage); }
+.mo-syncs { list-style: disc; padding-left: var(--space-stack-lg); margin-top: 2px; }
+.mo-syncs li { font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); color: var(--color-content-default); margin-bottom: var(--space-stack-sm); }
 .mo-syncs li b { font-weight: var(--weight-500); color: var(--ink); }
 
 /* the 30/60/90: a chamfer-marker timeline */
@@ -1303,7 +1335,7 @@ body::after {
    the hero: the metaphor lands harder next to the words that explain it */
 
 /* client logo tiles are links now, so they need to look and behave like one */
-a.cl-cell { text-decoration: none; transition: transform 0.15s ease; }
+a.cl-cell { color: inherit; text-decoration: none; transition: transform 0.15s ease; }
 a.cl-cell:hover { transform: translateY(-2px); }
 a.cl-cell:hover .cl-name { color: var(--color-content-accent); }
 .cl-dot-link { display: inline-flex; line-height: 0; }
@@ -1501,7 +1533,7 @@ h2.sub + .cards { margin-top: 0; }
 }
 
 .mm-fact { padding: 18px 20px; }
-.modal { padding: 36px 36px 32px; }
+.modal { padding: var(--space-inset-md); }
 .quote-block { padding: 50px 46px; }
 .locked-panel { padding: 50px 46px; }
 .bv-skill { padding: 26px 30px 28px; }
