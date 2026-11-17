@@ -334,7 +334,7 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
 .ck-tally {
   flex: none; white-space: nowrap;
   font-family: 'Courier Prime', ui-monospace, monospace;
-  font-size: var(--type-body-xs-size);
+  font-size: var(--type-body-sm-size);
   line-height: 1.2;
   letter-spacing: 0.04em;
   color: var(--color-content-subtle);
@@ -369,10 +369,16 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
 @media (prefers-reduced-motion: reduce) { .ck-chev { transition: none; } }
 /* the section's name in the ticket's hand: the same typewriter the arrival
    labels its fields with (.tk-k in arrival.css), which is the hub's third face */
+/* The Courier that names a section, and the tally beside it, go up a step to
+   14 while the rows come down a step to it. A monospace reads smaller than a
+   sans at the same size -- its letters are set on a wider body, so the eye
+   takes the fit, not the height -- so the head and its rows at one size is not
+   two things the same size. The head is still the head: it is in another
+   typeface, in caps, and bold. */
 .ck-label {
   margin-bottom: var(--space-stack-sm);
   font-family: 'Courier Prime', ui-monospace, monospace;
-  font-size: var(--type-body-xs-size);
+  font-size: var(--type-body-sm-size);
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: 0.04em;
@@ -401,8 +407,8 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
 .ck-text { flex: 1; min-width: 0; }
 .ck-t {
   display: block;
-  font-family: var(--type-body-md-family); font-size: var(--type-body-md-size);
-  font-weight: var(--weight-700); line-height: var(--type-body-md-leading);
+  font-family: var(--type-body-sm-family); font-size: var(--type-body-sm-size);
+  font-weight: var(--weight-700); line-height: var(--type-body-sm-leading);
   color: var(--color-content-default);
   transition: color var(--motion-tint-duration) var(--motion-tint-easing);
 }
@@ -1875,7 +1881,17 @@ body::after {
 
 /* first client + week-one syncs: hairline chamfer cards, the 30/60/90 idiom */
 .mo-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
-.mo-card { border: 1px solid var(--card-edge); border-radius: var(--shape-soft); padding: 24px 22px; }
+/* The four cards sit on the sheet's own white, not on the page behind it. They
+   were the page's colour with a hairline around them, which asks the border to
+   do all the work of saying "this is a thing"; the paper says it first, and the
+   border only draws its edge. It is the usage job, not a colour, so the dark
+   theme turns it with everything else. */
+.mo-card {
+  background: var(--color-background-sheet);
+  border: 1px solid var(--card-edge);
+  border-radius: var(--shape-soft);
+  padding: 24px 22px;
+}
 /* The name a card is about: a heading inside a section, which is the step
    .pg h4 holds -- 18 sans bold, between the 28 serif above and the 16 body
    under it (register, 63). It was serif at a raw 24, a size the ramp does not
@@ -1921,11 +1937,11 @@ body::after {
    rules -- a timeline with no thread, where the number was the only thing
    holding a stretch together and it held it from outside.
 
-   The boxes stack flush, so between two of them the lower box's top edge and
-   the upper box's bottom edge are drawn as two separate strokes a hair apart.
-   That is the point: two drawn lines next to each other read as two sheets,
-   where one line reads as a rule. */
-.mo-plan { display: grid; margin-top: var(--space-stack-lg); max-width: 860px; }
+   The boxes are three sheets with air between them, not one stack ruled into
+   parts. Flush, their two edges met as a doubled line that read as a divider
+   and gave the three a single outline; 16 is enough that each sheet closes on
+   its own and little enough that they still read as one set. */
+.mo-plan { display: grid; gap: var(--space-stack-md); margin-top: var(--space-stack-lg); max-width: 860px; }
 .mo-leaf { position: relative; padding: var(--space-stack-lg); }
 /* The edge is DRAWN, with the pen trazos.js keeps in the page's defs: the
    filter is on a layer of its own, so the wobble is in the line and never in
