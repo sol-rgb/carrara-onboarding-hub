@@ -1392,9 +1392,9 @@
      web-search summary, their Pavilion answers and prior roles. Their profile on
      the Carrara Hub is the one that is kept, so the card goes straight there and
      the sheet is gone. */
-  function hubProfileUrl(m) {
-    return 'https://hub.carrara.is/people?person=' + encodeURIComponent(m.email || m.name);
-  }
+  /* One address, in my-onboarding.js, because the faces on that page open the
+     same profile this card does. */
+  function hubProfileUrl(m) { return MO.hubProfileUrl(m); }
   var teamFilter = { team: '', client: '', loc: '' };
   /* options come from the data, not a hardcoded list, so a new team or location
      in Notion shows up in the dropdown on the next refresh without a code change */
@@ -1793,17 +1793,8 @@
     el.innerHTML = MO.renderSection(kitData, myOnboardingCtx());
     /* The "Not you?" button and the checklist card are both gone from the
        section, and their handlers with them. */
-    var flip = el.querySelector('.mo-flip');
-    if (flip) {
-      var turn = function (e) {
-        if (e.target.closest('a')) return;
-        if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
-        e.preventDefault();
-        flip.classList.toggle('flipped');
-      };
-      flip.addEventListener('click', turn);
-      flip.addEventListener('keydown', turn);
-    }
+    /* The manager's card does not flip any more, so the handler that turned it
+       is gone too: a listener looking for markup that is never rendered. */
     /* This runs again whenever a kit lands, and it rewrites the whole view,
        which takes with it the back link and the mark that show() appended after
        it. Both are idempotent, so putting them back is safe even when this ran
