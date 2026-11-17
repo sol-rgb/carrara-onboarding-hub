@@ -6,6 +6,8 @@
      if the script order in index.html ever slips, this throws here rather than
      failing quietly somewhere downstream. */
   var MO = window.MyOnboarding;
+  /* checklist-sync.js, loaded just before this file: the checklist's modes. */
+  var CS = window.ChecklistSync;
 
   /* The hub is no longer one road through everything. The checklist is, and
      these pages are what its items open.
@@ -588,6 +590,10 @@
     if (!item) return;
 
     var done = !!chkState['k:' + item.id];
+    /* Someone else's checklist (viewer mode) shows a done item as done and
+       offers nothing to press: no mark at all until the hire ticks it. */
+    var viewer = chkMode === 'viewer';
+    if (viewer && !done) return;
     var d = document.createElement('div');
     d.className = 'page-mark';
     /* Done, the box wears the STATE: the same filled mark a ticked row wears on
@@ -597,12 +603,15 @@
        them away from the control they just used. Its hover shows the unmarked
        look, which is a preview of what pressing it does. */
     d.innerHTML = '<button type="button" class="pager__item pager__item--done'
-      + (done ? ' is-complete' : '') + '" id="page-done">'
+      + (done ? ' is-complete' : '') + '" id="page-done"'
+      + (viewer ? ' disabled aria-disabled="true"' : '') + '>'
       + '<span data-icon="check" aria-hidden="true"></span>'
       + '<span class="pager__name">' + (done ? 'Completed' : 'Mark as completed') + '</span>'
       + '</button>';
 
     d.querySelector('#page-done').addEventListener('click', function () {
+      /* the mode can turn viewer after this was drawn */
+      if (chkMode === 'viewer') return;
       if (chkState['k:' + item.id]) {
         /* Undoing is a correction, so it happens where you are. */
         if (itemApi[item.id]) itemApi[item.id].toggle();
@@ -684,6 +693,12 @@
       right = '<a class="pager__item pager__item--next" href="#/' + next.sec + '">'
         + '<span class="pager__name">Next: ' + esc(labelOf(next.sec)) + '</span>'
         + '<span data-icon="arrow-right" aria-hidden="true"></span></a>';
+    } else if (chkMode === 'viewer') {
+      /* Someone else's checklist: nothing here ticks, so the foot is only the
+         way back to the list. */
+      right = '<a class="pager__item pager__item--done" href="#/start">'
+        + '<span class="pager__name">Back to the checklist</span>'
+        + '<span data-icon="arrow-right" aria-hidden="true"></span></a>';
     } else if (sectionIsARead(grp)) {
       /* The last page of a section that IS its reading: finishing it finishes
          the section, so the door says so and ticks the lot.
@@ -713,6 +728,8 @@
 
     var done = d.querySelector('#section-done');
     if (done) done.addEventListener('click', function () {
+      /* the mode can turn viewer after this was drawn */
+      if (chkMode === 'viewer') return;
       var ids = grp.items.map(function (i) { return i.id; });
       /* Already completed: this press takes the section back off, here, the
          same way the page's own mark does. It unticks exactly what it ticked. */
@@ -829,6 +846,8 @@
 
   /* ---------- checklist ---------- */
   var chkState = store('carrara_checklist') || {};
+  /* 'local' until /api/checklist says otherwise: see "checklist progress in POps" below */
+  var chkMode = 'local';
   /* Ticks used to be saved by position (g0i3). Positions moved when the groups did, so
      carry any old tick over to the item it belonged to, once. */
   (function () {
@@ -861,12 +880,16 @@
       flat.push(key);
       var row = document.createElement('div');
       row.className = 'chk-item' + (chkState[key] ? ' done' : '');
+      row.dataset.key = key;
       row.innerHTML = '<div class="box" role="checkbox" tabindex="0"></div><div class="txt">' + esc(item.t) + '</div><div class="info" title="Details">i</div>';
       function toggle() {
+        /* someone else's checklist: read only */
+        if (chkMode === 'viewer') return;
         chkState[key] = !chkState[key];
         row.classList.toggle('done', !!chkState[key]);
         store('carrara_checklist', chkState);
         renderProgress();
+        if (chkMode === 'hire') queueChecklistSave();
       }
       function details() {
         var linksHtml = itemLinks(item);
@@ -974,8 +997,11 @@
     else if (go) open = '<a class="ck-go" href="' + esc(go.url) + '">';
     return '<div class="ck-row' + (on ? ' done' : '')
       + (justTicked.indexOf(item.id) > -1 ? ' ck-row--ticked' : '') + '" data-id="' + esc(item.id) + '">'
-      + '<span class="ck-box" role="checkbox" tabindex="0" aria-checked="' + (on ? 'true' : 'false') + '"'
-      + ' aria-label="Mark ' + esc(item.t) + ' done">'
+      + '<span class="ck-box" role="checkbox" '
+      + (chkMode === 'viewer' ? 'aria-disabled="true"' : 'tabindex="0"')
+      + ' aria-checked="' + (on ? 'true' : 'false') + '"'
+      /* a viewer can mark nothing, so the box is named for the item alone */
+      + ' aria-label="' + (chkMode === 'viewer' ? esc(item.t) : 'Mark ' + esc(item.t) + ' done') + '">'
       + '<span data-icon="check" aria-hidden="true"></span></span>'
       + open
       /* Title only. The list is read as a list -- the eye runs down seventeen
@@ -1043,12 +1069,18 @@
     if (!box) return;
     var done = chkCount(), total = flat.length;
     var pct = total ? Math.round(done / total * 100) : 0;
-    var h = '<h2 class="ck-title">Your checklist</h2>'
-      + '<p class="ck-intro">We put this list together so you can set yourself up for success.'
-      + ' Tick each one off as you go.</p>'
+    /* Someone else's checklist (viewer mode): the hire's ticks, read only, so
+       it is named for the hire and carries no call to action. */
+    var viewer = chkMode === 'viewer';
+    var first = checklistOwnerFirst();
+    box.classList.toggle('is-readonly', viewer);
+    var h = '<h2 class="ck-title">' + (viewer ? esc(CS.ownerTitle(first)) : 'Your checklist') + '</h2>'
+      + '<p class="ck-intro">' + (viewer ? esc(CS.ownerOnly(first))
+        : 'We put this list together so you can set yourself up for success.'
+          + ' Tick each one off as you go.') + '</p>'
       + '<div class="ck-meter"><div class="progress-bar"><span style="width:' + pct + '%"></span></div>'
       + '<p class="ck-count"><b>' + done + ' of ' + total + '</b> done</p></div>'
-      + ctaHtml()
+      + (viewer ? '' : ctaHtml())
       /* What the sheet IS, above; what there is to do, below. The line between
          them is the sheet's own perforation, on the step its torn edges are cut
          to. Decorative: the section heads carry the structure. */
@@ -1124,7 +1156,9 @@
     renderCoverChecklist();
     var meta = $('#meta-checklist');
     if (meta) meta.textContent = 'checklist: ' + done + '/' + total;
-    if (pct === 100 && lastPct !== null && lastPct < 100 && !store(DONE_SEEN)) {
+    /* Never for a viewer: the hire's last tick is the hire's moment, and the
+       viewer's own DONE_SEEN is not theirs to spend either. */
+    if (pct === 100 && lastPct !== null && lastPct < 100 && chkMode !== 'viewer' && !store(DONE_SEEN)) {
       store(DONE_SEEN, true);
       doneMoment();
     }
@@ -1132,12 +1166,14 @@
     if (current === MO.SECTION_ID) mountMyOnboarding();
   }
   $('#chk-reset').addEventListener('click', function () {
+    if (chkMode === 'viewer') return;
     /* Starting the list over means the ending has not happened yet. */
     store(DONE_SEEN, false);
     lastPct = null;
     chkState = {}; store('carrara_checklist', chkState);
     $$('.chk-item').forEach(function (r) { r.classList.remove('done'); });
     renderProgress();
+    if (chkMode === 'hire') queueChecklistSave();
   });
   renderProgress();
   /* The box is refilled, never replaced, so one pair of listeners on it serves
@@ -1165,6 +1201,8 @@
       }
       e.preventDefault();
       if (opens) { api.details(); return; }
+      /* someone else's checklist: the boxes show, they do not tick */
+      if (chkMode === 'viewer') return;
       /* An item crossing itself off is worth watching, which is what the walk's
          Done used to be for. Ticking from the list is the only place that
          happens now, so the strike is armed here: toggle redraws the rows, and
@@ -1176,6 +1214,139 @@
     box.addEventListener('click', act);
     box.addEventListener('keydown', act);
   })();
+
+  /* ---------- checklist progress in POps ----------
+     With a saved kit, /api/checklist says whose checklist this is (the
+     decisions live in checklist-sync.js, driven by scripts/verify-checklist.js):
+       local   no kit, role "unknown" or any failure: everything above, as it
+               always was, ticks in carrara_checklist only
+       hire    the ticks live in POps; this browser keeps a copy and saves the
+               full set shortly after each change
+       viewer  someone else opened the hire's link: the hire's ticks, read
+               only, and this browser's own carrara_checklist is left alone
+     window.__CHECKLIST__, when set, stands in for what /api/checklist would
+     answer, so the three modes can be previewed from a static file server. */
+  var CHK_ITEMS = CS.itemsOf(CHECKLIST);
+  var chkCode = null;      /* the code the current mode was decided for */
+  var chkReading = false, chkReadAgain = false;
+  var chkSaver = null;
+
+  function checklistApi(body) {
+    if (window.__CHECKLIST__) return Promise.resolve({ status: 200, body: window.__CHECKLIST__ });
+    return fetch('/api/checklist', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+      .then(function (r) { return r.json().then(function (j) { return { status: r.status, body: j }; }, function () { return { status: r.status, body: null }; }); });
+  }
+  function currentChecklistCode() {
+    var saved = store('carrara_welcome');
+    if (saved && saved.code) return saved.code;
+    return window.__CHECKLIST__ ? '' : null;
+  }
+  /* The hire's first name for a viewer's checklist. kitData lands only when
+     /api/welcome answers, which can be after /api/checklist did (or never), so
+     the saved kit stands in, but only when it is the kit this mode was decided
+     for: never another hire's name on this hire's list. */
+  function checklistOwnerFirst() {
+    if (kitData && kitData.firstName) return kitData.firstName;
+    var saved = store('carrara_welcome');
+    if (saved && chkCode && saved.code === chkCode && saved.data && saved.data.firstName) return saved.data.firstName;
+    return '';
+  }
+  function paintChecklist() {
+    $$('.chk-item').forEach(function (r) { r.classList.toggle('done', !!chkState[r.dataset.key]); });
+    var viewer = chkMode === 'viewer';
+    chkPop.classList.toggle('chk-readonly', viewer);
+    $$('.chk-item .box').forEach(function (b) {
+      if (viewer) b.setAttribute('aria-disabled', 'true'); else b.removeAttribute('aria-disabled');
+    });
+    var resetBtn = $('#chk-reset'), hint = $('#chk-hint'), owner = $('#chk-owner');
+    if (resetBtn) resetBtn.hidden = viewer;
+    if (hint) hint.hidden = viewer;
+    if (owner) {
+      owner.hidden = !viewer;
+      owner.textContent = viewer ? CS.ownerNote(checklistOwnerFirst()) : '';
+    }
+    renderProgress();
+    /* The page on screen redraws its marks for the new mode. nextNav is
+       idempotent and only replaces the foot, so nothing scrolls or replays. */
+    if (current && current !== 'start') nextNav($('#view-' + current), current);
+  }
+  function setChecklistMode(mode, state) {
+    if (chkSaver && mode !== 'hire') { chkSaver.stop(); chkSaver = null; }
+    chkMode = mode;
+    chkState = state;
+    /* A swap of mode or state is not the hire ticking the last item: the first
+       render after it counts as boot, so loading a finished list from POps
+       never plays the ending. */
+    lastPct = null;
+    paintChecklist();
+  }
+  /* Back to the browser's own ticks, exactly as before. */
+  function checklistToLocal() {
+    chkCode = null;
+    setChecklistMode('local', store('carrara_checklist') || {});
+  }
+  function clearChecklistFlags() {
+    store(CS.SYNCED_KEY, null);
+    store(CS.PENDING_KEY, null);
+  }
+  function queueChecklistSave() {
+    store(CS.PENDING_KEY, chkCode);
+    if (chkSaver) chkSaver.queue();
+  }
+  function makeChecklistSaver(code) {
+    var saver = CS.createSaver({
+      delay: CS.DEBOUNCE_MS,
+      /* reads chkState when it runs, so the latest state wins */
+      send: function () {
+        return checklistApi({ code: code, save: CS.savePayload(chkState, CHK_ITEMS) })
+          .then(function (r) { return CS.saveOutcome(r.status, r.body); }, function () { return 'failed'; });
+      },
+      onDone: function (outcome, busy) {
+        /* failed or refused: the ticks stay here, marked "not saved yet" */
+        if (saver !== chkSaver || outcome !== 'saved') return;
+        store(CS.SYNCED_KEY, code);
+        if (!busy) store(CS.PENDING_KEY, null);
+      }
+    });
+    return saver;
+  }
+  /* Decide the mode again: on load, on unlock, after the kit refresh. */
+  function syncChecklist() {
+    /* A ?code= link is still being looked up: the saved kit may be the last
+       hire's, so nothing is decided until it settles (carrara:kit-settled). */
+    if (window.CarraraKitPending) return;
+    var code = currentChecklistCode();
+    if (code === null) { if (chkMode !== 'local') checklistToLocal(); return; }
+    /* a different code: never show the last person's mode while asking */
+    if (code !== chkCode && chkMode !== 'local') checklistToLocal();
+    if (chkReading) { chkReadAgain = true; return; }
+    chkReading = true;
+    checklistApi({ code: code })
+      .then(function (r) { return r.status === 200 ? r.body : null; }, function () { return null; })
+      .then(function (answer) {
+        chkReading = false;
+        if (chkReadAgain) { chkReadAgain = false; syncChecklist(); return; }
+        if (currentChecklistCode() !== code) return;
+        var d = CS.decideLoad({
+          answer: answer,
+          local: store('carrara_checklist') || {},
+          keys: flat,
+          synced: CS.flagSet(store(CS.SYNCED_KEY), code),
+          pending: CS.flagSet(store(CS.PENDING_KEY), code)
+        });
+        if (d.mode === 'local') { if (chkMode !== 'local') checklistToLocal(); return; }
+        chkCode = code;
+        if (d.mode === 'hire') {
+          store('carrara_checklist', d.state);
+          if (chkSaver) chkSaver.stop();
+          chkSaver = makeChecklistSaver(code);
+        }
+        setChecklistMode(d.mode, d.state);
+        if (d.save) { store(CS.PENDING_KEY, code); chkSaver.now(); }
+      });
+  }
+  window.addEventListener('carrara:kit-updated', syncChecklist);
+  window.addEventListener('carrara:kit-settled', syncChecklist);
 
   /* ---------- team ---------- */
   var teamData = [];
@@ -2228,9 +2399,11 @@
           .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
           .then(function (res) {
             if (!res.ok) { renderLocked(res.j.error || 'That code does not look right.'); return; }
+            if (!saved || saved.code !== code) clearChecklistFlags();
             saved = { code: code, data: res.j };
             store('carrara_welcome', saved);
             renderUnlocked(res.j);
+            syncChecklist();
           })
           .catch(function () { renderLocked('Could not reach the hub. Check your connection and try again.'); });
       }
@@ -2271,6 +2444,8 @@
       saved = null;
       store('carrara_welcome', null);
       kitData = null;
+      clearChecklistFlags();
+      checklistToLocal();
       mountMyOnboarding();
       pillLabel.textContent = 'New here? Open your welcome kit';
       renderLocked();
@@ -2410,4 +2585,6 @@
      the same endpoint, so refreshing on top of it would be the same call twice
      on the slowest load a hire ever has -- their first. */
   if (!unlockFromUrl()) refreshKit();
+  /* and the checklist's mode, from the saved kit, before that refresh lands */
+  syncChecklist();
 })();

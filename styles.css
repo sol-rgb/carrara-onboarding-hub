@@ -435,6 +435,10 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
 }
 .ck-box:hover { border-color: var(--color-content-subtle); color: var(--color-content-subtle); }
 .ck-box:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
+/* Someone else's checklist (viewer mode): the boxes show the hire's ticks and
+   do not click, so no pointer and no hover preview of a tick. */
+#cover-checklist.is-readonly .ck-box { cursor: default; }
+#cover-checklist.is-readonly .ck-row:not(.done) .ck-box:hover { border-color: var(--card-edge); color: transparent; }
 .ck-row.done .ck-box {
   background: var(--color-background-strong);
   border-color: var(--color-background-strong);
@@ -1758,6 +1762,14 @@ a.client-row { text-decoration: none; color: inherit; }
    shorthand, and it resets the font-size the box above has already set, which
    once put this label at the page's 16 while the link beside it sat at 14 */
 button.pager__item { cursor: pointer; background: none; }
+/* A viewer's Completed mark: the state, not a control, so its hover keeps the
+   filled look instead of previewing an untick. */
+button.pager__item:disabled { cursor: default; }
+.pager__item.is-complete:disabled:hover {
+  background: var(--color-background-strong);
+  border-color: var(--color-background-strong);
+  color: var(--color-content-knockout);
+}
 /* The tick takes no rule of its own: `[data-icon]` is 1em, so it comes out at
    the 14 of the label it sits with, exactly as the arrows in the other halves
    do. It spent a while inside an outline circle, echoing the one the list
@@ -2421,6 +2433,8 @@ h2.sub + .cards { margin-top: 0; }
 .chk-pop-panel .m-close { position: absolute; top: 18px; right: 22px; font-family: var(--sans); font-size: var(--type-body-2xs-size); background: none; border: none; color: var(--taupe); cursor: pointer; }
 .chk-pop-title { font-family: var(--serif); font-weight: var(--weight-400); font-size: var(--type-title-md-size); letter-spacing: -0.02em; line-height: var(--type-title-md-leading); margin-bottom: 14px; }
 .chk-pop .startover { margin-top: 28px; }
+/* someone else's checklist (viewer mode): the boxes show, they do not click */
+.chk-pop.chk-readonly .chk-item .box { cursor: default; }
 body.chk-open,
 body.modal-open { overflow: hidden; }
 @media (max-width: 860px) {

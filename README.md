@@ -53,6 +53,8 @@ One-time Slack app setup:
 
 `/api/profile` uses the same token to post new joiner self-intros from the team page.
 
+Checklist ticks are saved in POps once the hire has a kit: `/api/checklist` calls POps' `/api/hub-progress/<plan key>` with `POPS_PLAN_TOKEN`, so the hire's ticks follow them to any device and anyone else who opens the hire's link sees them read only. `POPS_PROGRESS_URL`: optional, defaults to `https://carrara-pops.work/api/hub-progress`. Without the token the checklist stays in the browser as before. `node scripts/verify-checklist.js` checks it.
+
 ### Clients and offerings from the Carrara Hub (`/api/knowledge`)
 
 The Carrara Knowledge Hub (hub.carrara.is, repo `sol-rgb/carrara-knowledge-hub`) is the source of truth for which clients we have, what we are doing for them, who is on each team and what each offering runs. `/api/knowledge` fetches all of that from the hub's `/api/onboarding-export` (built fresh on every hub deploy), caches it at the edge for an hour, and falls back to the bundled `knowledge.json` snapshot when the key is missing or the hub doesn't answer.

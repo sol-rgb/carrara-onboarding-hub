@@ -17,6 +17,9 @@
 //                 check, never redirect
 //   4. outside:   the /api 401, the cron bearer, the matcher, and an unset
 //                 GOOGLE_CLIENT_ID leaving the site open
+//   5. node:      api/_lib/signin.js's readSession (what API functions such as
+//                 api/checklist.js use) agrees with middleware.js's on every
+//                 cookie here, and gives { email, name } and nothing more
 // Session cookies come from api/_lib/signin.js's startSession where they can,
 // and are signed by hand the same way where a test needs to set the times.
 // Exits non-zero when any check fails.
@@ -53,7 +56,7 @@ process.env.WELCOME_SECRET = 'verify-session-welcome-secret';
 process.env.POPS_HUB_TOKEN = 'verify-session-pops-token';
 delete process.env.POPS_PLAN_TOKEN;
 
-const { startSession } = require('../api/_lib/signin.js');
+const { startSession, readSession: nodeSession } = require('../api/_lib/signin.js');
 const mint = require('../api/mint.js');
 
 const ORIGIN = 'https://onboarding.example.com';
@@ -304,6 +307,46 @@ async function main() {
   for (const p of ['/', '/team.json', '/api/team']) {
     check('(l) the matcher covers ' + p, matcher.test(p), pattern);
   }
+
+  // ------------------------------------------------------------- node
+  console.log('\n[node] api/_lib/signin.js readSession agrees with middleware.js');
+
+  t = nowSeconds();
+  const nodeReq = (token) => ({ headers: { cookie: 'other=1; hub_session=' + token + '; x=y' } });
+  const sameEdge = sign({ email: 'ada@carrara.is', name: 'Ada', iat: t - 2 * HOUR, seen: t - HOUR, exp: t - 2 * HOUR + 24 * HOUR });
+  const cases = [
+    ['fresh', fresh.token, t], ['idle 61 minutes', idle, t], ['iat 25 hours ago', old, t],
+    ['tampered signature', body + '.' + flipped, t], ['changed payload', forged + '.' + sig, t],
+    ['old 30 day cookie', legacy, t], ['seen exactly 60 minutes ago', sameEdge, t],
+    ['seen 60 minutes and 1 second ago', sameEdge, t + 1], ['at the second of exp', atExp, t],
+    ['refreshed by the middleware', gCookie.token, t], ['quiet 6 minutes', quiet, t],
+    ['signature with a stray character', fresh.token + '!', t], ['three parts', fresh.token + '.x', t],
+    ['empty', '', t], ['no signature', body, t]
+  ];
+  for (const [label, token, at] of cases) {
+    const edge = !!(await mw.readSession(token, SECRET, at));
+    const node = !!nodeSession(nodeReq(token), at);
+    check('(node) ' + label + ': both ' + (edge ? 'accept' : 'refuse'), edge === node, { edge, node });
+  }
+  const who = nodeSession(nodeReq(fresh.token));
+  check('(node) a fresh session gives { email, name } only',
+    JSON.stringify(who) === JSON.stringify({ email: 'ada@carrara.is', name: 'Ada Lovelace' }), who);
+  check('(node) no cookie header is null', nodeSession({ headers: {} }) === null);
+  check('(node) a request with no headers is null', nodeSession({}) === null);
+  check('(node) a hub_kit cookie alone is null', nodeSession({ headers: { cookie: 'hub_kit=' + fresh.token } }) === null);
+  const noEmail = sign({ name: 'Ada', iat: t, seen: t, exp: t + HOUR });
+  check('(node) a signed session with no email is null', nodeSession(nodeReq(noEmail)) === null);
+  process.env.AUTH_SECRET = 'another-secret';
+  check('(node) a different AUTH_SECRET refuses it', nodeSession(nodeReq(fresh.token)) === null);
+  delete process.env.AUTH_SECRET;
+  process.env.GOOGLE_CLIENT_SECRET = SECRET;
+  check('(node) GOOGLE_CLIENT_SECRET signs when AUTH_SECRET is unset, as in middleware.js', !!nodeSession(nodeReq(fresh.token)));
+  delete process.env.GOOGLE_CLIENT_SECRET;
+  check('(node) no secret at all is null', nodeSession(nodeReq(fresh.token)) === null);
+  process.env.AUTH_SECRET = SECRET;
+  delete process.env.GOOGLE_CLIENT_ID;
+  check('(node) GOOGLE_CLIENT_ID unset (site open) is null', nodeSession(nodeReq(fresh.token)) === null);
+  process.env.GOOGLE_CLIENT_ID = 'verify-session-client-id';
 
   console.log('');
   finished = true;

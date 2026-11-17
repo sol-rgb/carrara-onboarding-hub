@@ -192,3 +192,7 @@ module.exports = async (req, res) => {
     links
   });
 };
+
+// Shared with api/checklist.js, which needs the same plan key from the same
+// code. Exported as it is, nothing about it changes here.
+module.exports.decode = decode;

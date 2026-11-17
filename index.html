@@ -735,7 +735,8 @@
   <div class="chk-pop-panel" role="dialog" aria-modal="true" aria-labelledby="chk-pop-title">
     <button class="m-close" id="chk-pop-close" aria-label="Close"><span data-icon="x" aria-hidden="true"></span></button>
     <h2 class="chk-pop-title" id="chk-pop-title">Everything to get done.</h2>
-    <p class="body-copy">Click the box to check off. Click the item or the i for details.</p>
+    <p class="body-copy" id="chk-hint">Click the box to check off. Click the item or the i for details.</p>
+    <p class="body-copy" id="chk-owner" hidden></p>
     <div class="progress-wrap">
       <div class="progress-bar"><span id="chk-fill"></span></div>
       <div class="progress-pct" id="chk-pct">0%</div>
@@ -773,6 +774,7 @@
 <script src="/pages.js"></script>
 <script src="/markdown.js"></script>
 <script src="/my-onboarding.js"></script>
+<script src="/checklist-sync.js"></script>
 <script src="/app.js"></script>
 <script src="/trazos.js"></script>
 <script src="/cronologia.js"></script>

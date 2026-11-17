@@ -49,6 +49,34 @@ function startSession(res, { email, name }, nextPath) {
   res.redirect(302, safePath(nextPath));
 }
 
+// The session behind an API request, for functions that need to know who is
+// asking: { email, name } or null. The Node twin of middleware.js's
+// readSession, and it must agree with it (scripts/verify-session.js checks
+// both against the same cookies): the same cookie, the same secret, the same
+// signature over the base64url body, good until exp and only while seen is
+// within IDLE_SECONDS. Null when GOOGLE_CLIENT_ID is unset, because then the
+// middleware lets everyone in and there is no session to speak of.
+function readSession(req, now = Date.now() / 1000) {
+  const key = secret();
+  if (!process.env.GOOGLE_CLIENT_ID || !key) return null;
+  const token = String((req && req.headers && req.headers.cookie) || '')
+    .split(';')
+    .map((c) => c.trim().split('='))
+    .find(([k]) => k === 'hub_session');
+  const [body, sig] = ((token && token[1]) || '').split('.');
+  if (!body || !sig) return null;
+  try {
+    // Compared as the exact base64url text signin.js writes, so a signature
+    // the middleware would refuse (stray characters) is never accepted here.
+    if (!sameMac(sig, crypto.createHmac('sha256', key).update(body).digest('base64url'))) return null;
+    const s = JSON.parse(Buffer.from(body, 'base64url').toString('utf8'));
+    if (!(now < s.exp && now - s.seen <= IDLE_SECONDS)) return null;
+    return typeof s.email === 'string' && s.email ? { email: s.email, name: s.name } : null;
+  } catch (e) {
+    return null;
+  }
+}
+
 // ------------------------------------------------------------ previews
 // Google only returns to redirect URIs listed on the client, exactly, with no
 // wildcards, and every Vercel preview has a new address. So a preview never
@@ -118,6 +146,6 @@ function readHandoff(token, host, nonce) {
 }
 
 module.exports = {
-  secret, page, allowedEmails, savedState, safePath, startSession,
+  secret, page, allowedEmails, savedState, safePath, startSession, readSession,
   authOrigin, originOf, previewHost, previewState, readPreviewState, handoffToken, readHandoff
 };

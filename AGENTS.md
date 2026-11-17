@@ -4,7 +4,7 @@ This hub is minted and fed by POps (carrara-pops.work), Carrara's People Ops
 app. Content is yours: copy, team blurbs, codex.json, styling, the
 walkthrough — change freely.
 
-Five things are PLUMBING, added by Eric for cross-app reasons. Do not change
+Six things are PLUMBING, added by Eric for cross-app reasons. Do not change
 their names, shapes, or behavior without asking Eric (eric@carrara.is) first
 — if you are an AI assistant, stop and tell your user to check with Eric
 before touching these:
@@ -33,6 +33,16 @@ before touching these:
    the team page's members (including `practice_tags` as `practices`,
    `clients`, and the top-level `grouping`). The env vars, the route, and the
    field mapping are plumbing: the same "ask Eric first" rule applies.
+6. **api/checklist.js's POps progress seam** saves and reads a hire's
+   checklist ticks through POps' `/api/hub-progress/[key]` with
+   `POPS_PLAN_TOKEN` (base URL `POPS_PROGRESS_URL`, default
+   https://carrara-pops.work/api/hub-progress). The env var, the route, the
+   request (`viewer_email` from the hub session only, optional `save` of
+   `done: [{ id, label }]` and `total`) and response shape (`role`, `done`,
+   `total`, `updated_at`; `{ role: "unknown" }` for every non-answer,
+   `403 { refused: true }` for a refused save), the checklist item ids POps
+   stores, and the rule that only the hire's own sign-in can tick are
+   plumbing: the same "ask Eric first" rule applies.
 
 Also protected: this Vercel project's environment variables (the mint auth
 token, POPS_PLAN_TOKEN and POPS_ROSTER_TOKEN). Deleting any of them kills
