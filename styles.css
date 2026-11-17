@@ -366,6 +366,13 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
    counting. Shut sections keep the index's own rhythm and need none of it. */
 .ck-group.is-open .ck-head { padding-bottom: var(--space-stack-sm); }
 .ck-group.is-open + .ck-group { margin-top: var(--space-stack-lg); }
+/* and the rule between them sits in the middle of that air. The head's own 16
+   against the 24 above it put the line nearer the section it opens than the
+   one it closed -- deliberate once (register, 81: a rule that is equidistant
+   divides nothing), and wrong here now that the rows have come down to 14 and
+   the whole block is tighter. At this size the lopsided rule stopped reading
+   as "this line belongs below" and started reading as a mistake. 24 both ways. */
+.ck-group.is-open + .ck-group > .ck-head { padding-top: var(--space-stack-lg); }
 @media (prefers-reduced-motion: reduce) { .ck-chev { transition: none; } }
 /* the section's name in the ticket's hand: the same typewriter the arrival
    labels its fields with (.tk-k in arrival.css), which is the hub's third face */
