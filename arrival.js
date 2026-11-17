@@ -26,8 +26,15 @@
   /* The passenger is the hire, when the hub knows who that is: the welcome kit
      is stored under this key once they have entered their code, or once POps'
      ?code= link has unlocked it for them. Before that the ticket is simply
-     made out to you. */
+     made out to you.
+
+     A ?code= link changes who that is, and app.js only learns the answer after
+     the ticket is drawn. Until then the saved kit may be the last hire who used
+     this browser, so while the link is in flight the ticket names nobody. A
+     non-breaking space holds the line's height so the ticket does not jump
+     when the name arrives. */
   function passenger() {
+    if (window.CarraraKitPending) return '\u00a0';
     try {
       var saved = JSON.parse(localStorage.getItem('carrara_welcome') || 'null');
       var d = saved && saved.data;
@@ -109,6 +116,16 @@
     }
     window.scrollTo(0, 0);
   }
+
+  /* The name is filled again when the link's answer lands (a new kit is saved)
+     and when the lookup settles either way. A failed lookup saves nothing, so
+     the ticket falls back to whoever was saved before, or to you. */
+  function refillName() {
+    var nm = document.getElementById('tk-name');
+    if (nm) nm.textContent = passenger();
+  }
+  window.addEventListener('carrara:kit-updated', refillName);
+  window.addEventListener('carrara:kit-settled', refillName);
 
   var go = document.getElementById('tk-go');
   if (go) go.addEventListener('click', function (e) { e.preventDefault(); openUp(); });

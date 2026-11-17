@@ -1663,6 +1663,12 @@
     qs.delete('code');
     var rest = qs.toString();
     history.replaceState(null, '', location.pathname + (rest ? '?' + rest : '') + location.hash);
+    /* The arrival ticket is drawn right after this, before the answer can land,
+       and the kit saved in this browser may be the last hire's. Saying a link
+       is in flight lets the ticket wait for the right name instead of showing
+       the wrong one. Every outcome settles it, so the ticket never waits on an
+       answer that is not coming. */
+    window.CarraraKitPending = true;
     fetch('/api/welcome', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -1677,7 +1683,11 @@
         mountMyOnboarding();
         window.dispatchEvent(new Event('carrara:kit-updated'));
       })
-      .catch(function () { /* offline: the hub stands, the section waits */ });
+      .catch(function () { /* offline: the hub stands, the section waits */ })
+      .then(function () {
+        window.CarraraKitPending = false;
+        window.dispatchEvent(new Event('carrara:kit-settled'));
+      });
     return true;
   }
 
