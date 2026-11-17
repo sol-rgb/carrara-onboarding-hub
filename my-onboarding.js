@@ -190,6 +190,22 @@
     return /(^|\s)[A-Za-z]\.$/.test(t) ? t : t.replace(/\.+$/, '');
   }
 
+  /* THE HEAD OF A STRETCH. The manager writes a bold first line for each one,
+     in the shape "<when>: <what>" -- "By day 60: Increased responsibility". The
+     box is headed with the number and the WHAT, because the when is what the
+     number already says, and the line is not printed twice.
+
+     Nothing is assumed about how they write: no bold first line and the head is
+     the number alone, no colon and the whole line is used. Uppercasing is left
+     to CSS, so what a screen reader says is still what the manager typed. */
+  function leafHead(day, body) {
+    var m = /^\s*\*\*(.+?)\*\*\s*(?:\n|$)/.exec(body || '');
+    var title = m ? m[1].trim() : '';
+    var colon = title.indexOf(':');
+    if (colon > -1 && title.slice(colon + 1).trim()) title = title.slice(colon + 1).trim();
+    return { head: title ? day + '/ ' + title : day, rest: m ? body.slice(m[0].length) : body };
+  }
+
   function initials(name) {
     return String(name || '').split(/\s+/).slice(0, 2)
       .map(function (w) { return w.charAt(0); }).join('').toUpperCase();
@@ -261,11 +277,15 @@
          content, and a card that hides half of itself asks to be discovered --
          on the one card whose whole job is to be used. Both ways stand on the
          front now, and nothing else does. */
-      top += '<div class="mo-card mo-top"><div class="wk-lbl">Your manager</div>'
+      top += '<div class="mo-card mo-top"><div class="mo-card-title">Your manager</div>'
         + avatar({ name: mgrName, avatar: m.avatar }, 'mo-mgr-av')
         + '<div class="mo-card-name">' + esc(mgrName) + '</div>'
         + (m.role ? '<p class="mo-card-line">' + esc(m.role) + '</p>' : '')
-        + '<div class="wk-links">'
+        /* Not wk-links: that is a stack of ember rows with a rule under each,
+           which is a LIST of destinations. These two are the same sentence said
+           twice -- how to reach one person -- so they take the hub's one inline
+           link: the ink they sit in, with a dotted rule under the words. */
+        + '<div class="mo-reach">'
         + (dm ? '<a href="' + esc(dm) + '" target="_blank" rel="noopener">Message on Slack ↗</a>' : '')
         + (m.email ? '<a href="mailto:' + esc(m.email) + '">' + esc(m.email) + '</a>' : '')
         + '</div></div>';
@@ -278,7 +298,7 @@
     var teamLabel = kit.team && kit.team.label ? kit.team.label : 'Your team';
     var namesTheTeam = teamLabel.trim().toLowerCase() !== 'your team';
     var peers = Array.isArray(ctx.peers) ? ctx.peers : [];
-    top += '<div class="mo-card mo-top"><div class="wk-lbl">Your team</div>'
+    top += '<div class="mo-card mo-top"><div class="mo-card-title">Your team</div>'
       + (namesTheTeam ? '<div class="mo-card-name">' + esc(teamLabel) + '</div>' : '')
       + (peers.length
           ? '<p class="mo-card-line">' + peers.length + (peers.length === 1 ? ' person does' : ' people do')
@@ -287,12 +307,15 @@
                which is what the team page's cards already open. The link that
                used to sit under them went to the hub's own team page filtered by
                practice, which is not where their profile lives. */
-            + '<div class="mo-faces">' + peers.slice(0, 8).map(function (p) {
+            /* Everyone, not eight and a tally. "+5" named five people the
+               hire is about to work with and showed them a number instead, on
+               the one card whose job is to say who they are -- and the five it
+               hid were the five at the end of the alphabet, every time. */
+            + '<div class="mo-faces">' + peers.map(function (p) {
                 return '<a class="mo-face-link" href="' + esc(hubProfileUrl(p)) + '"'
                   + ' target="_blank" rel="noopener" title="' + esc(p.name) + '">'
                   + avatar(p, 'mo-face') + '</a>';
               }).join('')
-            + (peers.length > 8 ? '<span class="mo-face mo-more">+' + (peers.length - 8) + '</span>' : '')
             + '</div>'
           : '<p class="mo-card-line">The people you will work alongside.</p>')
       + '</div>';
@@ -316,10 +339,16 @@
          it says who wrote it, in that order. */
       h += '<h2 class="sub">Your first 90 days</h2>'
         + '<p class="body-copy">Written by your manager. Bring questions to your day-one 1:1.</p>'
-        + '<div class="mo-timeline">'
+        /* Three boxes, one under the next, each headed in caps and then its
+           prose. It was a left column of big numbers against a right column of
+           text, joined by rules: a timeline with no thread, where the number
+           was the only thing holding a stretch together and it held it from
+           outside. A box holds its own. */
+        + '<div class="mo-plan">'
         + steps.map(function (s) {
-            return '<div class="mo-step"><div class="mo-day">' + s[0] + '</div>'
-              + '<div class="mo-body">' + md.renderMarkdown(plan[s[1]]) + '</div></div>';
+            var leaf = leafHead(s[0], plan[s[1]]);
+            return '<section class="mo-leaf"><h3 class="mo-leaf__head">' + esc(leaf.head) + '</h3>'
+              + '<div class="mo-body">' + md.renderMarkdown(leaf.rest) + '</div></section>';
           }).join('')
         + '</div>';
     }
