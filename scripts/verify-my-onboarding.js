@@ -397,6 +397,10 @@ async function main() {
     && withCtx.indexOf('<div class="mo-card-title">Book time with them in week one</div>') > -1);
   check('the client is one line: the name, then who leads it',
     withCtx.indexOf('<p class="mo-card-fact">Anthropic, Sol S.</p>') > -1);
+  /* and nothing under it: the card is the fact. The clients page is in the nav
+     and on the checklist, so a third door to it from inside this card was the
+     page offering what the hub already offers twice. */
+  check('and nothing under it', withCtx.indexOf('All clients and who leads them') === -1);
   check('a lead\'s initial keeps its dot, a sentence does not',
     mo.renderSection(Object.assign({}, KIT, { client: { name: 'LiteLLM', lead: 'Joe Penn.' } }))
       .indexOf('LiteLLM, Joe Penn<') > -1);

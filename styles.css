@@ -1887,15 +1887,18 @@ body::after {
 }
 .mo-card-line { font-size: var(--type-body-sm-size); color: var(--color-content-subtle); margin-top: 4px; }
 /* On the lower two cards the LABEL is the title: "Your first client" is what
-   the card is about, and LiteLLM is the answer to it. Same recipe as a card's
-   name, because that is what it has become -- the ink, not the grey, and the
-   weight that goes with it. */
+   the card is about, and LiteLLM is the answer to it. The ink, not the grey.
+
+   It sits at 16, the same step as the line under it, and carries the weight
+   alone. At 18 it was a third size on a card that holds two facts, and the
+   longer of the two titles -- "Book time with them in week one" -- took two
+   lines for it, which set the two cards' first lines at different heights. */
 .mo-card-title {
-  font-family: var(--type-body-lg-family);
-  font-size: var(--type-body-lg-size);
+  font-family: var(--type-body-md-family);
+  font-size: var(--type-body-md-size);
   font-weight: var(--weight-700);
   line-height: var(--type-body-md-leading);
-  letter-spacing: var(--type-body-lg-tracking);
+  letter-spacing: var(--type-body-md-tracking);
   color: var(--color-content-default);
   margin-bottom: var(--space-stack-sm);
 }
