@@ -1954,6 +1954,36 @@
       .then(function () { kitRefreshing = false; });
   }
 
+  /* The saved copy standing is what that comment promises, and it is this.
+     kitData only ever came from an answer, so the one thing that used to put
+     the saved kit on screen was the welcome popup, and it left with its markup.
+     Since then a hub whose /api/welcome failed was the anonymous one for the
+     whole visit -- "Welcome." on the cover, no section, no first day on the
+     ticket -- and every other hub was anonymous until the refresh answered.
+
+     So the saved kit dresses the page at boot, through the same three steps an
+     answer takes, and a fresh answer replaces it exactly as before. It never
+     does while a ?code= link is being looked up: the kit saved here may be
+     another hire's, and the link belongs to whoever just clicked it. If that
+     lookup fails, the saved kit is the best we have, so it runs again when the
+     lookup settles; a lookup that landed has set kitData, and then this does
+     nothing. It announces carrara:kit-updated and never kit-settled, so it
+     cannot call itself. */
+  /* It says whether it dressed the page, because the boot needs to know: see
+     the last lines of the file. */
+  function seedKitFromSaved() {
+    if (kitData || window.CarraraKitPending) return false;
+    var saved = store('carrara_welcome');
+    var d = saved && saved.data;
+    if (!d || typeof d !== 'object' || Array.isArray(d)) return false;
+    kitData = d;
+    applyKitToHub();
+    mountMyOnboarding();
+    window.dispatchEvent(new Event('carrara:kit-updated'));
+    return true;
+  }
+  window.addEventListener('carrara:kit-settled', seedKitFromSaved);
+
   /* One place that renders a client as a logo. Used by the team grid, a person's
      card and the offering popups, so a logo means the same thing everywhere and
      always opens the client's own site. Falls back to a letter when we have no
@@ -2630,6 +2660,15 @@
      the same endpoint, so refreshing on top of it would be the same call twice
      on the slowest load a hire ever has -- their first. */
   if (!unlockFromUrl()) refreshKit();
-  /* and the checklist's mode, from the saved kit, before that refresh lands */
-  syncChecklist();
+  /* The saved kit stands in until that answer lands. It comes after the line
+     above on purpose: unlockFromUrl raises CarraraKitPending, and that is what
+     keeps a link for one hire from being dressed with another hire's saved kit.
+     Run any earlier and nothing would be in flight yet to stop it.
+
+     Then the checklist's mode, from the saved kit, before that refresh lands.
+     A seed has already asked for it: its carrara:kit-updated runs
+     syncChecklist, and asking again here would queue a second read behind the
+     first and throw the first answer away, one wasted call to POps on every
+     load. So the boot asks only when nothing was seeded. */
+  if (!seedKitFromSaved()) syncChecklist();
 })();

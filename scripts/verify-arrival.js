@@ -12,6 +12,11 @@
 //   e.   the lookup fails -- the ticket falls back to what it shows today
 //   f.   app.js raises the pending flag before it asks, and settles it on a
 //        good answer, a refused answer and a network error alike
+//   g-i. the ticket's first day: where it comes from, when a refresh keeps it,
+//        and the Start row arrival.js shows and hides for it
+//   j.   the boot: the saved kit dresses the page until a fresh one lands,
+//        never while a link for another hire is in flight, and again when
+//        that link fails
 // Exits non-zero when any check fails.
 
 const fs = require('fs');
@@ -174,6 +179,87 @@ async function driveRefresh(savedData, fresh) {
   vm.runInContext('var kitData = null; var kitRefreshing = false;\n' + src + '\nrefreshKit();', ctx);
   for (let n = 0; n < 10; n++) await new Promise((r) => setImmediate(r));
   return { stored: box.carrara_welcome.data.startDate, used: ctx.kitData && ctx.kitData.startDate };
+}
+
+// The boot of app.js with the kit's whole path around it: the real
+// unlockFromUrl, refreshKit, publishStartDate and seedKitFromSaved, the real
+// listeners app.js hangs on the kit's two events for them, and the real last
+// lines of the file, in the order they are written. Every /api/welcome answer
+// is held until the check gives it, so a check can look at the page while a
+// lookup is still in flight. A function the code does not have yet is simply
+// left out, and the checks say what is missing.
+function bootPage(opts) {
+  const MO = require(path.join(ROOT, 'my-onboarding.js'));
+  const box = {};
+  if (opts.saved !== undefined) box.carrara_welcome = JSON.parse(JSON.stringify(opts.saved));
+  const events = [];
+  const listeners = {};
+  const win = {
+    addEventListener(type, fn) { (listeners[type] = listeners[type] || []).push(fn); },
+    dispatchEvent(e) {
+      events.push(e.type);
+      (listeners[e.type] || []).slice().forEach((fn) => fn(e));
+      return true;
+    }
+  };
+  const calls = { apply: [], mount: [] };
+  const asks = [];
+  const chkAsks = [];
+  const ctx = {
+    window: win,
+    location: { search: opts.link ? '?code=' + opts.link : '', pathname: '/', hash: '' },
+    URLSearchParams,
+    history: { replaceState() {} },
+    Event: class { constructor(type) { this.type = type; } },
+    JSON, Object, Array, MO,
+    store: (k, v) => { if (v === undefined) return box[k] === undefined ? null : box[k]; box[k] = v; },
+    // The checklist's real syncChecklist runs too, so a check can count what
+    // it asks /api/checklist. Its answer is chosen per page: by default none
+    // ever comes, which is how the checks above see the page.
+    CS: require(path.join(ROOT, 'checklist-sync.js')),
+    flat: [], chkMode: 'local', chkState: {}, chkSaver: null,
+    checklistToLocal() { ctx.chkMode = 'local'; ctx.chkCode = null; },
+    setChecklistMode(m, st) { ctx.chkMode = m; ctx.chkState = st; },
+    makeChecklistSaver() { return { now() {}, stop() {}, queue() {} }; },
+    checklistApi(body) {
+      chkAsks.push(body.code);
+      return opts.checklist ? Promise.resolve(opts.checklist(body)) : new Promise(() => {});
+    },
+    fetch: (url, init) => new Promise((resolve, reject) => {
+      asks.push({ code: JSON.parse(init.body).code, resolve, reject });
+    })
+  };
+  vm.createContext(ctx);
+  ctx.applyKitToHub = () => calls.apply.push(ctx.kitData && ctx.kitData.name);
+  ctx.mountMyOnboarding = () => calls.mount.push(ctx.kitData && ctx.kitData.name);
+  const names = ['isDay', 'sameFirstAndInitial', 'publishStartDate', 'unlockFromUrl', 'refreshKit', 'seedKitFromSaved',
+    'currentChecklistCode', 'syncChecklist'];
+  const src = names.map(liftFn).filter(Boolean).join('\n');
+  const hooks = APP.split('\n').filter((line) =>
+    /^\s*window\.addEventListener\('carrara:kit-(updated|settled)', (publishStartDate|seedKitFromSaved|syncChecklist)\);\s*$/.test(line)
+  ).join('\n');
+  const bootAt = APP.indexOf('if (!unlockFromUrl()) refreshKit();');
+  const boot = bootAt < 0 ? '' : APP.slice(bootAt, APP.lastIndexOf('})();'));
+  vm.runInContext('var kitData = null; var kitRefreshing = false; var teamData = [];\n'
+    + 'var chkCode = null, chkReading = false, chkReadAgain = false;\n'
+    + src + '\n' + hooks + '\n' + boot, ctx);
+  const flush = async () => { for (let n = 0; n < 10; n++) await new Promise((r) => setImmediate(r)); };
+  return {
+    has: (name) => typeof ctx[name] === 'function',
+    bootFound: bootAt >= 0,
+    kit: () => ctx.kitData,
+    date: () => win.CarraraStartDate,
+    pending: () => win.CarraraKitPending,
+    events, calls, asks, chkAsks, flush,
+    chkMode: () => ctx.chkMode,
+    async answer(i, outcome) {
+      const a = asks[i];
+      if (outcome === 'reject') a.reject(new Error('offline'));
+      else if (outcome === 'notok') a.resolve({ ok: false, json: () => Promise.resolve({ error: 'nope' }) });
+      else a.resolve({ ok: true, json: () => Promise.resolve(JSON.parse(JSON.stringify(outcome))) });
+      await flush();
+    }
+  };
 }
 
 const blank = (s) => String(s).trim() === '';
@@ -347,6 +433,116 @@ async function main() {
     check('and reads "11  .  18  .  2026"', p.date() === '11  .  18  .  2026', p.date());
     p.setStart(undefined);
     check('clearing the date hides the row again', p.dateHidden() && p.date() === '', { date: p.date() });
+  }
+
+  console.log('\n[j] app.js boot: the saved kit dresses the page until a fresh one lands');
+  {
+    const romina = { name: 'Romina', firstName: 'Romina', startDate: '2026-11-18', plan: null, syncWith: [] };
+    const karishma = { name: 'Karishma', firstName: 'Karishma', startDate: '2026-12-07', plan: null, syncWith: [] };
+    const probe = bootPage({});
+    check('seedKitFromSaved is found in app.js', probe.has('seedKitFromSaved'));
+    check('the boot line is found in app.js', probe.bootFound);
+
+    for (const outcome of ['reject', 'notok']) {
+      const label = outcome === 'reject' ? 'the refresh is offline' : 'the refresh is refused';
+      const p = bootPage({ saved: { code: 'c-romina', data: romina } });
+      check(label + ': at boot the saved kit is in use', p.kit() && p.kit().name === 'Romina', p.kit());
+      check(label + ': the hub was dressed with it once', JSON.stringify(p.calls.apply) === '["Romina"]', p.calls.apply);
+      check(label + ': My onboarding was mounted with it once', JSON.stringify(p.calls.mount) === '["Romina"]', p.calls.mount);
+      check(label + ': carrara:kit-updated fired once', p.events.filter((e) => e === 'carrara:kit-updated').length === 1, p.events);
+      check(label + ': the saved first day reaches the ticket', p.date() === '2026-11-18', p.date());
+      check(label + ': seeding does not dispatch carrara:kit-settled', p.events.indexOf('carrara:kit-settled') < 0, p.events);
+      check(label + ': the refresh still asks with the saved code', p.asks.length === 1 && p.asks[0].code === 'c-romina', p.asks.length);
+      await p.answer(0, outcome);
+      check(label + ': after it fails the saved kit still stands', p.kit() && p.kit().name === 'Romina', p.kit());
+      check(label + ': and nothing was dressed twice', p.calls.apply.length === 1 && p.calls.mount.length === 1, p.calls);
+    }
+
+    {
+      const p = bootPage({});
+      check('nothing saved: nothing is seeded', p.kit() === null, p.kit());
+      check('nothing saved: nothing is dressed or mounted', p.calls.apply.length === 0 && p.calls.mount.length === 0, p.calls);
+      check('nothing saved: no event', p.events.length === 0, p.events);
+      check('nothing saved: no first day', p.date() === undefined, p.date());
+    }
+
+    for (const [label, saved] of [
+      ['a saved kit with no data', { code: 'c-romina' }],
+      ['a saved kit whose data is a string', { code: 'c-romina', data: 'Romina' }],
+      ['a saved kit whose data is a list', { code: 'c-romina', data: ['Romina'] }]
+    ]) {
+      const p = bootPage({ saved });
+      check(label + ': nothing is seeded', p.kit() === null, p.kit());
+      check(label + ': nothing is dressed and no event', p.calls.apply.length === 0 && p.events.length === 0, { calls: p.calls, events: p.events });
+      await p.answer(0, 'reject');
+      check(label + ': nor after the refresh fails', p.kit() === null && p.events.length === 0, { kit: p.kit(), events: p.events });
+    }
+
+    for (const outcome of ['reject', 'notok']) {
+      const label = outcome === 'reject' ? '(offline)' : '(refused)';
+      const p = bootPage({ saved: { code: 'c-karishma', data: karishma }, link: 'romina' });
+      check('Karishma saved, a link for Romina in flight ' + label + ': at boot nothing is seeded (the forbidden case)',
+        p.kit() === null, p.kit());
+      check('  nothing is dressed or mounted with Karishma', p.calls.apply.length === 0 && p.calls.mount.length === 0, p.calls);
+      check('  no carrara:kit-updated while the link is looked up', p.events.indexOf('carrara:kit-updated') < 0, p.events);
+      check('  Karishma\'s first day is not on the ticket', p.date() === undefined, p.date());
+      check('  only the link is asked about, not the saved code', p.asks.length === 1 && p.asks[0].code === 'romina', p.asks.map((a) => a.code));
+      await p.answer(0, outcome);
+      check('  once the link fails and settles, the saved kit is used', p.kit() && p.kit().name === 'Karishma', p.kit());
+      check('  dressed and mounted once', JSON.stringify(p.calls.apply) === '["Karishma"]' && JSON.stringify(p.calls.mount) === '["Karishma"]', p.calls);
+      check('  its first day reaches the ticket', p.date() === '2026-12-07', p.date());
+      check('  settled exactly once, then updated (no loop)',
+        JSON.stringify(p.events.filter((e) => e.indexOf('carrara:kit-') === 0)) === JSON.stringify(['carrara:kit-settled', 'carrara:kit-updated']), p.events);
+    }
+
+    {
+      const p = bootPage({ saved: { code: 'c-karishma', data: karishma }, link: 'romina' });
+      await p.answer(0, romina);
+      check('the link lookup succeeds: the link\'s kit is in use', p.kit() && p.kit().name === 'Romina', p.kit());
+      check('  the settle after it does not put Karishma back', JSON.stringify(p.calls.apply) === '["Romina"]', p.calls.apply);
+      check('  Romina\'s first day is on the ticket', p.date() === '2026-11-18', p.date());
+      check('  one update, one settle',
+        JSON.stringify(p.events.filter((e) => e.indexOf('carrara:kit-') === 0)) === JSON.stringify(['carrara:kit-updated', 'carrara:kit-settled']), p.events);
+    }
+
+    {
+      const p = bootPage({ saved: { code: 'c-romina', data: romina } });
+      const fresh = Object.assign({}, romina, { firstName: 'Romi', startDate: '2026-12-02' });
+      await p.answer(0, fresh);
+      check('a refresh that answers after a seed replaces the seeded kit', p.kit() && p.kit().firstName === 'Romi', p.kit());
+      check('  with its own first day', p.date() === '2026-12-02', p.date());
+      check('  dressed twice: the seed, then the fresh kit', JSON.stringify(p.calls.apply) === '["Romina","Romina"]' && p.kit().firstName === 'Romi', p.calls.apply);
+      check('  and never settled', p.events.indexOf('carrara:kit-settled') < 0, p.events);
+    }
+
+    // The checklist is read once per load. Each read is a call through to POps,
+    // and a second one queued behind the first throws the first answer away.
+    const unknown = () => ({ status: 200, body: { role: 'unknown' } });
+    {
+      const p = bootPage({ saved: { code: 'c-romina', data: romina }, checklist: unknown });
+      await p.flush();
+      check('a saved kit and no link: exactly one checklist read before the refresh answers',
+        JSON.stringify(p.chkAsks) === '["c-romina"]', p.chkAsks);
+    }
+    {
+      const p = bootPage({ checklist: unknown });
+      await p.flush();
+      check('nothing saved: the checklist asks nothing, as before', p.chkAsks.length === 0, p.chkAsks);
+      check('  and stays in the browser\'s own mode', p.chkMode() === 'local', p.chkMode());
+    }
+    {
+      const p = bootPage({ saved: { code: 'c-romina' }, checklist: unknown });
+      await p.flush();
+      check('a saved code with no kit (nothing seeded): the boot still decides the checklist, once',
+        JSON.stringify(p.chkAsks) === '["c-romina"]', p.chkAsks);
+    }
+    {
+      const p = bootPage({ saved: { code: 'c-karishma', data: karishma }, link: 'romina', checklist: unknown });
+      await p.flush();
+      check('a link in flight: the checklist asks nothing until the lookup settles', p.chkAsks.length === 0, p.chkAsks);
+      await p.answer(0, 'reject');
+      check('  once it settles, the checklist asks for the saved code', p.chkAsks.length >= 1 && p.chkAsks.every((c) => c === 'c-karishma'), p.chkAsks);
+    }
   }
 
   finished = true;
