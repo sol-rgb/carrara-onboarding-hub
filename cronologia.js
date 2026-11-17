@@ -102,6 +102,13 @@
   var MINI = 40;          /* the strip's photos, how high */
   var HUECO = 4;          /* and the room between them */
   var MARGEN = 0.12;      /* the head travels from this far in on the left to as far in on the right */
+  /* On a narrow stage the head's travel is cut back. The label is centred on
+     the head and kept whole in the window, so the wider the travel the longer
+     the label spends pinned against a mat with the head walking away from its
+     own name. At 375 the letter's 0.12 sends the head from 45 to 330 while the
+     label is 135 wide even wrapped: it can only follow between 83 and 292.
+     0.2 brings the travel inside that, and the head still crosses the stage. */
+  var MARGEN_ANGOSTO = 0.2, ESTRECHA = 560;
   var APAISADA = 1.3;     /* a photo at its largest fills the stage's height, as long as it is no wider than this many times that height */
 
   var src = function (a, f) { return '/assets/cronologia/' + a + '/' + f[0] + '.jpg'; };
@@ -491,7 +498,7 @@
         if (y < b.y) { s = a.s + (y - a.y) / ((b.y - a.y) || 1) * (b.s - a.s); año = a.año; break; }
       }
     }
-    var m = W * MARGEN, cx = m + (s / LARGO) * (W - 2 * m), base = cx - s;
+    var m = W * (W < ESTRECHA ? MARGEN_ANGOSTO : MARGEN), cx = m + (s / LARGO) * (W - 2 * m), base = cx - s;
     var mitad = H / 2, onda = W * ONDA;
     var linea = mitad;   /* the line of time runs through the middle of the strip */
     cabezal.style.transform = 'translateX(' + cx.toFixed(1) + 'px)';
