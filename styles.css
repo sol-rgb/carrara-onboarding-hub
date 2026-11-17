@@ -2244,6 +2244,26 @@ body::after {
 .cronologia__linea { display: grid; justify-items: center; }
 .cronologia__linea > span { grid-area: 1 / 1; }
 
+/* THE LABEL ON A NARROW STAGE. It is centred on the head and kept whole in the
+   window, and on one line "We might have a game" is 191 wide. At 375 that
+   leaves it room to follow the head between 111 and 263, while the head runs
+   from 45 to 330 -- so for most of a year the label sits against the mat and
+   the head walks away from its own name. Measured, pinned at left 15 from
+   scroll 200 all the way to 1400.
+
+   Wrapped it is about 135 wide and follows from 83 to 292, which with the
+   narrow stage's shorter travel (cronologia.js, MARGEN_ANGOSTO) is nearly the
+   whole of it. The label grows upward, into the 64 of air the stage already
+   holds over itself for exactly this. */
+@media (max-width: 860px) {
+  /* A WIDTH, not a max-width. The label is a centred flex column, so with only
+     a ceiling its lines shrink to their longest WORD: "We might have a game"
+     came out 51 wide and seven lines tall. Given the width outright, and the
+     lines told to take it, the text wraps where it was meant to. */
+  .cronologia__rotulo { white-space: normal; width: 36vw; }
+  .cronologia__rotulo .cronologia__linea { width: 100%; justify-items: stretch; }
+}
+
 /* without motion: the years one under the other, in rows */
 .cronologia.is-quieta { display: flex; flex-direction: column; gap: var(--space-40); position: static; padding: 0; margin: 0; }
 .cronologia__titulo {
