@@ -258,13 +258,16 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
      ticket's shape, because the radius is the same share of the step. */
   --perf: 32px;             /* the step */
   --perf-bite: 9px;         /* the radius: the ticket's 5 of 18, at this step */
+  /* Named because the perforation inside has to cancel it exactly, and it
+     narrows on a small window. */
+  --sheet-pad: var(--space-inset-md);
   width: 100%;
   background: var(--color-background-sheet);
   /* The sides keep their hairline. The torn edges cannot have one: a border is
      drawn at the element's edge and the cut would chop it into arcs. */
   border-left: 1px solid var(--card-edge);
   border-right: 1px solid var(--card-edge);
-  padding: var(--space-inset-md);
+  padding: var(--sheet-pad);
   -webkit-mask:
     radial-gradient(circle at calc(var(--perf) / 2) 0,
       transparent var(--perf-bite), #000 calc(var(--perf-bite) + 0.5px)) 0 0 / var(--perf) 100% repeat-x,
@@ -298,7 +301,49 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
   line-height: var(--type-body-sm-leading); color: var(--color-content-subtle);
 }
 .ck-count b { font-weight: var(--weight-700); color: var(--color-content-default); }
-.ck-group { margin-top: var(--space-stack-xl); }
+/* A section is separated by a RULE rather than by a gap. Closed, the five of
+   them are an index: the line does the dividing, so the air between them is the
+   head's own padding and nothing more -- 56 of margin each was reading as five
+   loose things on a page instead of one list. The head takes the same padding a
+   row's link takes, so heads and rows keep one rhythm whichever are open. */
+.ck-group { border-top: 1px solid var(--card-edge); }
+/* The section's head: its name, how much of it is done, and the chevron saying
+   it folds. The whole line is the control, because a name with a count beside
+   it is one thing to press, not three. */
+.ck-head {
+  display: flex; align-items: center; gap: var(--space-stack-md);
+  width: 100%; margin: 0; padding: var(--space-stack-md) 0;
+  background: none; border: 0; font: inherit; color: inherit;
+  text-align: left; cursor: pointer;
+}
+.ck-head:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
+.ck-head .ck-label { flex: 1; min-width: 0; margin-bottom: 0; }
+/* The tally wears the same typewriter as the name, a weight lighter, so the
+   head reads as one stamped line rather than a label with data bolted on. */
+.ck-tally {
+  flex: none; white-space: nowrap;
+  font-family: 'Courier Prime', ui-monospace, monospace;
+  font-size: var(--type-body-xs-size);
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  color: var(--color-content-subtle);
+}
+.ck-chev {
+  flex: none; font-size: var(--type-body-md-size);
+  color: var(--color-content-subtle);
+  transition: transform var(--motion-tint-duration) var(--motion-tint-easing);
+}
+.ck-head:hover .ck-label, .ck-head:hover .ck-tally, .ck-head:hover .ck-chev {
+  color: var(--color-content-accent);
+}
+.ck-group.is-open .ck-chev { transform: rotate(180deg); }
+/* Closed is CLOSED, not collapsed to nothing: the rows leave the layout rather
+   than animating to zero height. A height transition has to be measured or
+   faked with grid rows, and a fold that is wrong about its own height for one
+   frame is worse than a fold that simply is not animated. */
+.ck-items { display: none; }
+.ck-group.is-open .ck-items { display: block; }
+@media (prefers-reduced-motion: reduce) { .ck-chev { transition: none; } }
 /* the section's name in the ticket's hand: the same typewriter the arrival
    labels its fields with (.tk-k in arrival.css), which is the hub's third face */
 .ck-label {
@@ -315,8 +360,10 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
    pinned to the top of a block. A title long enough to wrap still centres against
    both its lines, which is what a two-line row wants anyway. */
 .ck-row { display: flex; align-items: center; gap: var(--space-stack-md); border-bottom: 1px solid var(--card-edge); }
-/* the sheet's own edge closes the list; a rule above it would be a loose end */
-.ck-group:last-child .ck-row:last-child { border-bottom: 0; }
+/* The last row of a section keeps no rule of its own: the next section's line
+   is already there, and at the end of the sheet its torn edge closes the list.
+   Either way a rule there would be doubled or a loose end. */
+.ck-group .ck-row:last-child { border-bottom: 0; }
 /* The row's air is the link's own padding, so a click lands anywhere in the row
    and not only on the line of text. A row with nowhere to go keeps the padding
    and loses the cursor. */
@@ -394,7 +441,7 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
   100% { transform: scale(1); }
 }
 @media (max-width: 860px) {
-  #cover-checklist { padding: var(--space-stack-lg); }
+  #cover-checklist { --sheet-pad: var(--space-stack-lg); }
 }
 @media (prefers-reduced-motion: reduce) {
   .ck-arrow { transition: color var(--motion-tint-duration) var(--motion-tint-easing); }
@@ -419,7 +466,47 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
   font-weight: var(--weight-700);
   line-height: var(--type-body-sm-leading);
   text-decoration: none;
+  max-width: 100%;
 }
+/* "Continue: Payroll setup (Deel, Bill.com, or Ramp)" is a whole item title, so
+   the label wraps inside the button instead of pushing it off the sheet. */
+.btn-cover__label { min-width: 0; }
+/* Inside the sheet now, between the meter and the perforation. */
+#cover-checklist .btn-cover { margin: var(--space-stack-lg) 0 0; }
+/* The head of the sheet and the list of things to do are two different orders
+   of thing, so what divides them is not another hairline: it is the same
+   perforation the sheet is torn along. Dots on the edges' own step, centred
+   where the teeth are centred, so the three lines of holes are in column. They
+   are drawn rather than punched -- a real hole needs a third mask layer at a
+   y the content decides, and a tear line that is one scroll wrong is worse
+   than a printed one. --perf and its step come from #cover-checklist. */
+.ck-perf {
+  /* The holes are the EDGES' own holes: same step, same radius. Small grey dots
+     read as a dotted rule printed on the paper; at the size the teeth are cut
+     to, the row reads as the same tool went through the middle of the sheet.
+     They are painted in the colour BEHIND the sheet rather than cut out of it:
+     a real hole needs a mask layer at a y the content decides, and the grain
+     lies over the whole page at z 2000, so a hole and a hole-coloured circle
+     catch the same noise. Both colours are jobs, so the dark theme follows. */
+  height: calc(var(--perf-bite) * 2);
+  margin: var(--space-stack-sheet) 0;
+  background-image: radial-gradient(circle at calc(var(--perf) / 2) 50%,
+    var(--color-background-default) var(--perf-bite),
+    transparent calc(var(--perf-bite) + 0.5px));
+  background-size: var(--perf) 100%;
+  background-repeat: repeat-x;
+  /* It runs off both sides: pulled out past the padding AND past the hairline
+     border, so the row cuts the sheet's edge instead of stopping politely
+     inside it, and the pattern is shifted half a step so a hole sits ON the
+     left edge and is halved by it -- which is what a perforation looks like
+     where it meets the edge of the paper. At 650 the last hole lands a pixel
+     short of the right edge and is halved there too. */
+  margin-left: calc((var(--sheet-pad) + 1px) * -1);
+  margin-right: calc((var(--sheet-pad) + 1px) * -1);
+  background-position: calc(var(--perf) / -2) 0;
+}
+/* the perforation is that section's rule, so it keeps none of its own */
+.ck-perf + .ck-group { border-top: 0; }
 /* The hover moves the arrow, not the fill. Ember under knockout text reads at
    3.14:1 in light and 3.82:1 in dark -- below AA at every step of the ramp in
    one theme or the other -- and tier 2 has no accent surface that flips with
@@ -1423,8 +1510,12 @@ a.spec:focus-visible { box-shadow: inset 0 0 0 1.25px var(--color-content-accent
      sit on whatever scrolls under it -- it stays in the frame's corner and
      scrolls away with the page. */
   .view.visible { padding: var(--space-section-y) 0 var(--space-stack-xl); }
-  .mark--corner { position: absolute; }
-  .page-up { position: absolute; }
+  .mark--corner { position: absolute; left: var(--space-inset-md); }
+  /* .page-up's own mobile rule is further down the file, next to the rule it
+     overrides. It was here, and lost: a media query adds no specificity, so the
+     plain .page-up { position: fixed } 120 lines below simply won. The link
+     stayed glued to the window on a phone and slid over whatever scrolled under
+     it. */
   .hero-block { display: none; }
   .spec-grid, .spec-grid.three, .chk-cols, .to-seasons { grid-template-columns: 1fr; }
   .timeline, .ninety { grid-template-columns: 1fr; }
@@ -1557,6 +1648,24 @@ a.client-row { text-decoration: none; color: inherit; }
 .page-up[hidden] { display: none; }
 .page-up:hover { color: var(--color-content-default); }
 .page-up:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
+/* On a phone the way back stands BESIDE the cube rather than under it, on the
+   cube's own line, and the two of them line up with the text: the cube used to
+   sit a mat's width in from the margin everything else is read against, which
+   is a difference of 16 that has no meaning. Being absolute, the pair scrolls
+   away with the top of the page instead of riding over the page on the way
+   down. The height is the cube's, so the words centre against it.
+
+   This block sits after the base rule on purpose. A media query carries no
+   specificity of its own, so the override has to come later in the file to
+   win -- which is exactly what the copy of it 120 lines up could not do. */
+@media (max-width: 860px) {
+  .page-up {
+    position: absolute;
+    top: calc(var(--space-mat) + var(--space-inset-md));
+    left: calc(var(--space-inset-md) + 32px + var(--space-stack-md));
+    height: 32px;
+  }
+}
 
 /* The foot steps between sections. Two halves that keep their sides: at either
    end of the read the empty half holds its place, so the one that is there does

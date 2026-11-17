@@ -292,7 +292,7 @@
   var BRAND_FOLDER = '1z2fPx_iK4xBdTGiTrwo6JNQ1OQxDkzoM';
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var $ = function (s) { return document.querySelector(s); };
+  var $ = function (s, root) { return (root || document).querySelector(s); };
   var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
   function favicon(domain, size) { return 'https://www.google.com/s2/favicons?domain=' + domain + '&sz=' + (size || 64); }
@@ -581,7 +581,9 @@
         return;
       }
       /* Completing is progress, so it happens where it can be SEEN: on the
-         list, with the row crossing itself off. */
+         list, with the row crossing itself off -- which means its section has
+         to be open when we get there. */
+      openGroupOf(item.id);
       location.hash = '#/start';
       setTimeout(function () {
         var row = $('#cover-checklist .ck-row[data-id="' + item.id + '"]');
@@ -862,12 +864,52 @@
      arrow to where it is done: three things, all of them on the page, so the
      whole plan can be read without opening anything. The tick on the left is
      the only other thing a row holds. */
-  (function () {
-    /* the way into the walk is the first item's own arrow now, so the cover's
-       button goes; it stays in the markup for a page that never ran this */
-    var btn = $('#btn-tour');
-    if (btn) btn.parentNode.removeChild(btn);
-  })();
+  /* The cover's one action. It was removed when the walk stopped being a gate:
+     the first item's own arrow was the way in, so the button looked redundant.
+     Reading the cover proved otherwise. Twenty-three rows weigh the same, and
+     the row that is the beginning looks exactly like the row that is the I-9,
+     so nothing on the page said where to start. The button is back, ABOVE the
+     list rather than under it, and it names the next undone thing rather than
+     the first: it is still the one obvious move on day nine. */
+  /* Walks CHECKLIST rather than `flat`, which holds the KEYS ('k:who') and not
+     the items: it is what the counts are measured against, and its name invites
+     exactly this mistake. */
+  function nextUndone() {
+    for (var g = 0; g < CHECKLIST.length; g++) {
+      var items = CHECKLIST[g].items;
+      for (var i = 0; i < items.length; i++) {
+        var item = items[i];
+        if (chkState['k:' + item.id]) continue;
+        var go = coverGoes(item);
+        /* Only somewhere the button can actually send you. A row whose only way
+           in is its own popup is reachable from the row and nowhere else, so
+           the button passes over it rather than pointing at a dead href. */
+        if (go && (go.how === 'hash' || go.how === 'ext' || go.how === 'page')) {
+          return { item: item, go: go };
+        }
+      }
+    }
+    return null;
+  }
+  /* It is drawn WITH the list, inside the sheet, under the meter: the one thing
+     to do next belongs with the thing it is next in, not floating above the
+     paper. Nothing left to do and there is no button at all -- an empty list
+     has already been congratulated. */
+  function ctaHtml() {
+    var next = nextUndone();
+    if (!next) return '';
+    var ext = next.go.how === 'ext';
+    var page = next.go.how === 'page';
+    return '<a class="btn-cover" id="btn-tour"'
+      + ' href="' + (page ? '#' : esc(next.go.url)) + '"'
+      + (page ? ' data-page="' + esc(next.go.key) + '"' : '')
+      + (ext ? ' target="_blank" rel="noopener"' : '') + '>'
+      + '<span class="btn-cover__label">'
+      + esc(chkCount() ? 'Continue: ' + next.item.t : 'Start here')
+      + '</span>'
+      + '<span class="btn-cover__arrow" data-icon="arrow-' + (ext ? 'up-right' : 'right')
+      + '" aria-hidden="true"></span></a>';
+  }
 
   /* Where an item's arrow goes. One link and nothing else to say: straight
      there. Steps, a survey, or more than one link: the popup, which is the one
@@ -918,6 +960,55 @@
       + '</div>';
   }
 
+  /* WHICH SECTIONS ARE OPEN, and why they are not locked.
+
+     Eric read the cover and said a checklist straight away is intense, which it
+     is: twenty-three rows is someone's first fortnight in one breath. The first
+     section is the walk, so on a first visit it is the only one open, and once
+     it is done they all open for good.
+
+     What they never are is DISABLED. Greying the rest would not reduce the
+     volume, only the agency -- twenty-three grey rows are still twenty-three
+     rows, and now they also say no. And the day does not run in our order: the
+     I-9 lands in an inbox when Eric sends it, the 1:1 when the manager books
+     it. A hub that refuses those is a hub arguing with the company. Every
+     section is one click away, always.
+
+     This lives in a variable because the cover re-renders on every tick, so a
+     section you opened by hand would otherwise close under you. */
+  var ckOpen = null;
+  var ckOpenedAll = false;
+  function groupDone(grp) {
+    return grp.items.every(function (it) { return !!chkState['k:' + it.id]; });
+  }
+  function ckOpenState() {
+    if (!ckOpen) {
+      /* Closed, all of them. The sheet opens as an index: five lines, five
+         counts, the whole shape of the fortnight in one look and not a row of
+         it demanded yet. The way in is the button above, which names the one
+         thing to do; the list is there for whoever wants to see what is
+         coming. */
+      var walked = groupDone(CHECKLIST[0]);
+      ckOpenedAll = walked;
+      ckOpen = {};
+      CHECKLIST.forEach(function (g) { ckOpen[g.g] = walked; });
+    }
+    /* The moment the walk is finished, the rest of the plan opens. Once only:
+       after that, open and closed are the reader's business. */
+    if (!ckOpenedAll && groupDone(CHECKLIST[0])) {
+      ckOpenedAll = true;
+      CHECKLIST.forEach(function (g) { ckOpen[g.g] = true; });
+    }
+    return ckOpen;
+  }
+  /* An item ticked from its own page is crossed off on the list while the hire
+     watches, which cannot happen inside a section that is folded shut. */
+  function openGroupOf(id) {
+    var st = ckOpenState();
+    CHECKLIST.forEach(function (g) {
+      if (g.items.some(function (it) { return it.id === id; })) st[g.g] = true;
+    });
+  }
   function renderCoverChecklist() {
     var box = $('#cover-checklist');
     if (!box) return;
@@ -927,15 +1018,47 @@
       + '<p class="ck-intro">We put this list together so you can set yourself up for success.'
       + ' Tick each one off as you go.</p>'
       + '<div class="ck-meter"><div class="progress-bar"><span style="width:' + pct + '%"></span></div>'
-      + '<p class="ck-count"><b>' + done + ' of ' + total + '</b> done</p></div>';
-    CHECKLIST.forEach(function (grp) {
-      h += '<div class="ck-group"><div class="ck-label">' + esc(grp.g) + '</div>';
+      + '<p class="ck-count"><b>' + done + ' of ' + total + '</b> done</p></div>'
+      + ctaHtml()
+      /* What the sheet IS, above; what there is to do, below. The line between
+         them is the sheet's own perforation, on the step its torn edges are cut
+         to. Decorative: the section heads carry the structure. */
+      + '<div class="ck-perf" aria-hidden="true"></div>';
+    var open = ckOpenState();
+    CHECKLIST.forEach(function (grp, i) {
+      var isOpen = !!open[grp.g];
+      var gid = 'ck-items-' + i;
+      var gdone = grp.items.filter(function (it) { return !!chkState['k:' + it.id]; }).length;
+      h += '<div class="ck-group' + (isOpen ? ' is-open' : '') + '">'
+        + '<button type="button" class="ck-head" data-group="' + esc(grp.g) + '"'
+        + ' aria-expanded="' + (isOpen ? 'true' : 'false') + '" aria-controls="' + gid + '">'
+        + '<span class="ck-label">' + esc(grp.g) + '</span>'
+        + '<span class="ck-tally">' + gdone + ' of ' + grp.items.length + '</span>'
+        + '<span class="ck-chev" data-icon="chevron-down" aria-hidden="true"></span>'
+        + '</button>'
+        + '<div class="ck-items" id="' + gid + '">';
       grp.items.forEach(function (item) { h += coverRow(item); });
-      h += '</div>';
+      h += '</div></div>';
     });
     box.innerHTML = h;
     if (window.Icons) Icons.draw(box);
   }
+  /* The head is redrawn on every tick, so the toggle is delegated and the class
+     is flipped in place rather than re-rendering: the list does not need to be
+     rebuilt to fold one section of it. */
+  (function () {
+    var box = $('#cover-checklist');
+    if (!box) return;
+    box.addEventListener('click', function (e) {
+      var head = e.target.closest ? e.target.closest('.ck-head') : null;
+      if (!head) return;
+      var g = head.getAttribute('data-group');
+      var st = ckOpenState();
+      st[g] = !st[g];
+      head.parentNode.classList.toggle('is-open', st[g]);
+      head.setAttribute('aria-expanded', st[g] ? 'true' : 'false');
+    });
+  })();
   /* The last tick on the list. Shown once, ever: a congratulation that comes
      back every time the hub is opened is not a congratulation.
 
