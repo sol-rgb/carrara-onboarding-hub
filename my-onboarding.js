@@ -170,10 +170,6 @@
 
   /* Who a hire asks when the answer is not their manager's to give. Content,
      not plumbing: edit freely. */
-  var HELPERS = [
-    { name: 'Eric Fernandez', what: 'access, tools, pay and paperwork' },
-    { name: 'Kenna Meyerhoff', what: 'anything about how we work' }
-  ];
 
   function initials(name) {
     return String(name || '').split(/\s+/).slice(0, 2)
@@ -192,62 +188,50 @@
      without an access code: the checklist is everyone's, the plan is the
      manager's. app.js makes the whole card open the checklist popup; the
      #/checklist link is the same door for anything that only has a link. */
-  function checklistBlock(chk) {
-    var has = chk && chk.total;
-    var pct = has ? Math.round(chk.done / chk.total * 100) : 0;
-    return '<div class="mo-checklist" role="button" tabindex="0" aria-haspopup="dialog"><div class="wk-lbl">[your checklist]</div>'
-      + '<div class="mo-card-name">Everything to get done.</div>'
-      + '<p class="mo-card-line">Start here, get to know Carrara, and connect with people: Slack, access, payroll, your 1:1s.'
-      + (has ? ' You are at <b>' + chk.done + ' of ' + chk.total + '</b>.' : '') + '</p>'
-      + (has ? '<div class="progress-wrap mo-progress"><div class="progress-bar"><span style="width:' + pct + '%"></span></div>'
-          + '<div class="progress-pct">' + pct + '%</div></div>' : '')
-      + '<div class="wk-links"><a href="#/checklist">' + (has && chk.done ? 'Pick up your checklist' : 'Open your checklist') + '</a></div></div>';
-  }
+  /* checklistBlock is gone. It drew a card pointing at the checklist, and the
+     checklist is what opens this page -- true with a kit and without one, so
+     keeping it for the empty state was keeping a circle for the reader least
+     able to tell it was one. */
 
-  /* The whole section, as one HTML string.
-     Every value from POps or from clients.json goes through esc() or through
-     md.renderMarkdown(), which escapes first -- there is no third path.
-     A missing block is omitted, never opened empty: the manager may have
-     answered one question or none. Attribute values are interpolated inside
-     DOUBLE quotes only -- esc() escapes " but not ', by design, because it is
-     POps' escaper and POps' templates quote the same way.
-
-     ctx is what app.js knows and the kit does not: the manager's photo and
-     email from the team roster, the people on the hire's team, and checklist
-     progress. Every field is optional; the section renders without any of it. */
   function renderSection(kit, ctx) {
     if (!kit) {
       /* The section is in the nav from the start now, so this is what most
          people see first and it has to stand on its own. It used to send them
          to the welcome kit popup at the bottom right, which is not in the
          markup any more (see onboarding-hub-gaps.md, 35). */
-      return '<h1 class="display">Your onboarding.</h1>'
+      return '<p class="label">For you</p>'
+        + '<h1 class="page-title">Read your 30/60/90 plan.</h1>'
         + '<p class="body-copy">Your hiring manager writes this part: your first client, who to '
-        + 'meet, and your first 90 days. It appears here once they have written it.</p>'
-        + checklistBlock((ctx || {}).checklist);
+        + 'meet, and your first 90 days. It appears here once they have written it.</p>';
     }
     ctx = ctx || {};
 
     var plan = kit.plan || {};
     var mgrName = kit.manager && kit.manager.name ? kit.manager.name : '';
-    var h = '<h1 class="display">Your onboarding, ' + esc(kit.firstName || 'welcome') + '.</h1>';
+    /* The hub's page opening, which this section had never used: the eyebrow
+       that names the page and the 28 serif title under it. It used to lead with
+       <h1 class="display">, and `display` has no rule anywhere in styles.css --
+       nor does `h1` -- so that heading was the browser's own default, Manrope
+       32 bold, the only heading in the hub not set by the type system. It did
+       not look like a decision because it was not one. */
+    /* The row that opens this page and the page say the same thing, which is
+       what entry 53 asks for. The greeting moved out: the cover letter already
+       says the hire's name, and a second hello two pages in is one too many. */
+    var h = '<p class="label">For you</p>'
+      + '<h1 class="page-title">Read your 30/60/90 plan.</h1>';
 
-    var intro = text(plan.manager_intro);
-    if (intro) {
-      h += '<div class="quote-block mo-note">'
-        + '<div class="pull">' + md.renderMarkdown(intro) + '</div>'
-        /* Without a name the attribution is the role on its own. Appending the
-           role to the fallback read "Your hiring manager, your hiring manager." */
-        + '<p class="attr">'
-        + (mgrName ? esc(mgrName) + ', your hiring manager.' : 'Your hiring manager.')
-        + '</p></div>';
-    }
+    /* The manager's note is not here any more: it is the letter on the cover,
+       which is where a note written to the hire belongs and where they read it
+       first (register, 71). It rendered here as a quote block, two screens in,
+       while the cover carried a fixed paragraph set signed by somebody else.
+       `plan.manager_intro` is still plan content for planIsEmpty -- it is the
+       manager's writing either way, it is just printed somewhere else. */
 
     /* ---- the three cards: your team, your manager, questions ---- */
     var top = '';
     var teamLabel = kit.team && kit.team.label ? kit.team.label : 'Your team';
     var peers = Array.isArray(ctx.peers) ? ctx.peers : [];
-    top += '<div class="mo-card mo-top"><div class="wk-lbl">[your team]</div>'
+    top += '<div class="mo-card mo-top"><div class="wk-lbl">Your team</div>'
       + '<div class="mo-card-name">' + esc(teamLabel) + '</div>'
       + (peers.length
           ? '<p class="mo-card-line">' + peers.length + (peers.length === 1 ? ' person does' : ' people do')
@@ -270,12 +254,12 @@
          back. Hover flips it on a desktop, a tap (the button) everywhere. */
       top += '<div class="mo-card mo-top mo-flip" tabindex="0" role="button" aria-label="Flip to see how to reach '
         + esc(mgrName) + '"><div class="mo-flip-in">'
-        + '<div class="mo-face-front"><div class="wk-lbl">[your manager]</div>'
+        + '<div class="mo-face-front"><div class="wk-lbl">Your manager</div>'
         + avatar({ name: mgrName, avatar: m.avatar }, 'mo-mgr-av')
         + '<div class="mo-card-name">' + esc(mgrName) + '</div>'
         + (m.role ? '<p class="mo-card-line">' + esc(m.role) + '</p>' : '')
         + '<p class="mo-flip-hint">Flip for how to reach them</p></div>'
-        + '<div class="mo-face-back"><div class="wk-lbl">[reach ' + esc(mgrName.split(/\s+/)[0]) + ']</div>'
+        + '<div class="mo-face-back"><div class="wk-lbl">Reach ' + esc(mgrName.split(/\s+/)[0]) + '</div>'
         + '<div class="wk-links">'
         + (dm ? '<a href="' + esc(dm) + '" target="_blank" rel="noopener">Message on Slack ↗</a>' : '')
         + (m.email ? '<a href="mailto:' + esc(m.email) + '">' + esc(m.email) + '</a>' : '')
@@ -283,26 +267,21 @@
         + '</div></div></div>';
     }
 
-    var noDumb = channel('g-no-dumb-questions');
-    top += '<div class="mo-card mo-top"><div class="wk-lbl">[questions]</div>'
-      + '<div class="mo-card-name">Ask early, ask often.</div>'
-      + '<ul class="mo-syncs">'
-      + (mgrName ? '<li><b>' + esc(mgrName) + '</b>: your work, your client, your plan</li>' : '')
-      + HELPERS.filter(function (x) { return x.name !== mgrName; }).map(function (x) {
-          return '<li><b>' + esc(x.name) + '</b>: ' + esc(x.what) + '</li>';
-        }).join('')
-      + '</ul>'
-      + (noDumb ? '<div class="wk-links"><a href="' + esc(noDumb) + '" target="_blank" rel="noopener">#g-no-dumb-questions ↗</a></div>' : '')
-      + '</div>';
-    h += '<div class="mo-cards mo-cards-3">' + top + '</div>';
-    h += checklistBlock(ctx.checklist);
+    /* Two cards, not three. The third was [questions] -- "Ask early, ask often"
+       and a list of who to ask -- which is advice rather than this hire's team
+       or this hire's plan, and this page is those two things now.
+
+       The checklist card went with it: the checklist is what sends people HERE
+       now that this section is a row on it, so a card pointing back was a
+       circle. The no-kit state keeps one, because there it is the only thing
+       on the page worth offering. */
+    h += '<div class="mo-cards mo-cards-top">' + top + '</div>';
 
     /* ---- the plan ---- */
     var steps = STEPS.filter(function (s) { return text(plan[s[1]]); });
     if (steps.length) {
-      h += '<h2 class="sub">Your first 90 days</h2>'
-        + '<p class="body-copy muted" style="font-size:13px">Written by your manager. Bring questions to '
-        + 'your day-one 1:1.</p>'
+      /* No subhead: the page is called this. */
+      h += '<p class="body-copy">Written by your manager. Bring questions to your day-one 1:1.</p>'
         + '<div class="mo-timeline">'
         + steps.map(function (s) {
             return '<div class="mo-step"><div class="mo-day">' + s[0] + '</div>'
@@ -314,7 +293,7 @@
     /* ---- client and week-one people ---- */
     var cards = '';
     if (kit.client && kit.client.name) {
-      cards += '<div class="mo-card"><div class="wk-lbl">[your first client]</div>'
+      cards += '<div class="mo-card"><div class="wk-lbl">Your first client</div>'
         + '<div class="mo-card-name">' + esc(kit.client.name) + '</div>'
         + (kit.client.lead ? '<p class="mo-card-line">Led by ' + esc(String(kit.client.lead).replace(/\.+$/, '')) + '.</p>' : '')
         + (kit.client.work && kit.client.work.length
@@ -328,7 +307,7 @@
     if (kit.syncWith && kit.syncWith.length) {
       /* The manager's own words about their own people: names and reasons are
          free text, NOT markdown. esc() is the only path they take. */
-      cards += '<div class="mo-card"><div class="wk-lbl">[book time with them in week one]</div>'
+      cards += '<div class="mo-card"><div class="wk-lbl">Book time with them in week one</div>'
         + '<ul class="mo-syncs">'
         + kit.syncWith.map(function (s) {
             return '<li><b>' + esc(s.name) + '</b>' + (s.why ? ': ' + esc(s.why) : '') + '</li>';
@@ -339,12 +318,11 @@
 
     var extra = '';
     if (kit.team && kit.team.how && kit.team.how.length) {
-      extra += '<div class="wk-sec"><div class="wk-lbl">[how ' + esc(String(kit.team.label || 'your team').toLowerCase()) + ' works here]</div><ul>'
+      extra += '<div class="wk-sec"><div class="wk-lbl">How ' + esc(String(kit.team.label || 'your team').toLowerCase()) + ' works here</div><ul>'
         + kit.team.how.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>';
     }
     h += '<div class="mo-extra">' + extra + '</div>';
 
-    h += '<button class="wk-reset mo-reset" id="mo-reset">Not you? Enter a different code</button>';
     return h;
   }
 

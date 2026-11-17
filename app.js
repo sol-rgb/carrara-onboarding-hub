@@ -14,19 +14,37 @@
      and they are chained front to back in this order, ending in a button that
      ticks that item off. The rest are what a task opens: a hire reaches them
      from their item and goes back to the list, not on to the next page. */
+  /* Every page here is reached from the checklist and goes back to it. There
+     used to be a WALK -- five of these strung together in order, with an index
+     in the margin and a Done at the end -- because About Carrara was one item
+     with pages inside it. It is five items now, so there is no inside, no
+     sequence to index, and no last page to finish. */
   var SECTIONS = [
     { id: 'start',     label: 'Start here' },
-    { id: 'who',       label: 'Who we are',        walk: true },
-    { id: 'team',      label: 'The team',          walk: true },
-    { id: 'business',  label: 'The business',      walk: true },
-    { id: 'clients',   label: 'Our clients',       walk: true },
-    { id: 'resources', label: 'Resources',         walk: true },
+    { id: 'who',       label: 'Who we are' },
+    { id: 'team',      label: 'The team' },
+    { id: 'business',  label: 'The business' },
+    { id: 'clients',   label: 'Our clients' },
+    { id: 'resources', label: 'Resources' },
     { id: 'slack',     label: 'How we communicate' },
+    { id: 'payroll',   label: 'Payroll' },
+    { id: 'signature', label: 'Email signature' },
+    { id: 'time-tracking', label: 'Time tracking' },
+    { id: 'i9',        label: 'I-9 verification' },
+    { id: 'benefits',  label: 'Benefits' },
     { id: 'tools',     label: 'Our tools' },
+    { id: 'quarry',    label: 'The Quarry' },
+    { id: 'carrara-hub', label: 'Carrara Hub' },
     { id: 'timeoff',   label: 'Time off policy' },
-    { id: MO.SECTION_ID, label: 'My onboarding' }
+    { id: 'ashby',     label: 'Ashby' },
+    { id: 'manager-1on1', label: 'First 1:1' },
+    { id: 'recurring-1on1', label: 'Weekly 1:1' },
+    { id: 'team-calls', label: 'Team calls' },
+    { id: 'profile',   label: 'People profile' },
+    { id: 'meet-people', label: 'Meet people' },
+    { id: 'top5',      label: 'Top 5' },
+    { id: MO.SECTION_ID, label: 'For you' }
   ];
-  var WALK = SECTIONS.filter(function (s) { return s.walk; });
 
   var CHANNELS = [
     { n: '#g-announcements', d: 'team-wide announcements.', ex: ['Company-wide updates from the partners', 'Policy and process changes everyone should see'] },
@@ -68,50 +86,63 @@
      or 'ch:<channel>' for a Slack channel. Unresolvable keys simply do not render,
      so filling a blank in links.js lights the link up everywhere at once. */
   var CHECKLIST = [
-    { g: 'start here', cls: 'blue', items: [
-      { id: 'welcome', when: 'day one', t: 'About Carrara', d: 'Walk through who we are, how we work and our clients.', tour: true },
+    /* About Carrara was one item that started a five-page walk. Its pages are
+       items of their own now -- one row, one page, one tick -- which is the
+       same list doing the job the walk and its index were doing between them. */
+    { g: 'About Carrara', cls: 'blue', read: true, items: [
+      { id: 'who',       when: 'day one', t: 'Who we are',    d: 'What Carrara is, and what the focus on The Work means.', links: [{ t: 'Who we are', k: '#/who' }] },
+      { id: 'team',      when: 'day one', t: 'The team',      d: 'Who you are working with, and how the partner group is put together.', links: [{ t: 'The team', k: '#/team' }] },
+      { id: 'business',  when: 'day one', t: 'The business',  d: 'The eight product lines, and how the work reaches clients.', links: [{ t: 'The business', k: '#/business' }] },
+      { id: 'clients',   when: 'day one', t: 'Our clients',   d: 'Who we build with, and what we do for them.', links: [{ t: 'Our clients', k: '#/clients' }] },
+      { id: 'resources', when: 'day one', t: 'Resources',     d: 'The things you should be able to open, in one place.', links: [{ t: 'Resources', k: '#/resources' }] }
+    ]},
+    { g: 'Set up your workspace', cls: '', items: [
       /* The page says all of this, and better: how to get in, what each
          profile field is for, what the prefixes mean. The item is the task and
          the arrow; it used to carry its own shorter copy of the same thing. */
       { id: 'slack', when: 'day one', t: 'Set up your Slack workspace', d: 'Join the workspace, then fill in your profile properly: it is how the rest of the company finds you.',
         links: [{ t: 'How we communicate', k: '#/slack' }] },
-      { id: 'tool-access', when: 'day one', t: 'Ensure tool and system access', d: 'Confirm you can open Google, Notion, Slack and the tools for your role. Anything blocked, ping Eric on Slack.', links: [{ t: 'Our tools', k: '#/tools' }] },
-      { id: 'payroll', when: 'day one', t: 'Payroll setup (Deel, Bill.com, or Ramp)', d: 'Deel for full-time employees, Bill.com for US contractors, Ramp for international contractors. You\'ll get an invite for the one that applies to you.', links: [{ t: 'Deel', k: 'deel' }, { t: 'Bill.com', k: 'bill' }, { t: 'Ramp', k: 'ramp' }] },
+      /* "Set up your tools", not "Ensure tool and system access", so the row and
+         the page it opens lead on the same word. That is what makes the Slack
+         pair above read: the item is the task and the page is what you will
+         learn, and SLACK carries across both. Here the item led on access and
+         the page leads on the toolkit, so the thread was buried even though
+         both are about tools. */
+      { id: 'tool-access', when: 'day one', t: 'Set up your tools', d: 'Confirm you can open Google, Notion, Slack and the tools for your role, and spend the SaaS stipend on whatever else you need. Anything blocked, ping Eric on Slack.', links: [{ t: 'Our tools', k: '#/tools' }] },
+      { id: 'payroll', when: 'day one', t: 'Payroll setup (Deel, Bill.com, or Ramp)', d: 'Deel for full-time employees, Bill.com for US contractors, Ramp for international contractors. You\'ll get an invite for the one that applies to you.', links: [{ t: 'Payroll', k: '#/payroll' }] },
       { id: 'email-signature', when: 'day one', t: 'Set up email signature', d: 'Use the Carrara signature format from the brand templates.',
-        html: '<div class="m-eyebrow">Start here · day one</div><h3>Set up email signature</h3>'
-          + '<p>You do this in your Carrara Gmail.</p>'
-          + '<div class="pg"><ol>'
-          + '<li><a class="textlink" href="' + window.LINKS.emailSigTemplate + '" target="_blank" rel="noopener">Open the email signature template ↗</a> (a Google Doc) and copy the signature.</li>'
-          + '<li>Go to your Carrara Gmail inbox.</li>'
-          + '<li>Click the <b>Settings</b> icon (top right), then <b>See all Settings</b>.</li>'
-          + '<li>Scroll down to <b>Signature</b> and click <b>Create New</b>. Name it <b>Carrara</b>.</li>'
-          + '<li>Paste the signature you copied from the template.</li>'
-          + '<li>Change the text to your own name and role.</li>'
-          + '<li>Under <b>Signature Defaults</b>, set <b>For New Emails Use</b> to <b>Carrara</b>, and <b>On Reply/Forward Use</b> to <b>Carrara</b>.</li>'
-          + '<li>Scroll to the bottom and click <b>Save Changes</b>.</li>'
-          + '</ol></div>',
-        links: [{ t: 'Full guide on Notion', k: 'emailSignatureGuide' }] },
-      { id: 'time-tracking', when: 'week one', t: 'Set up time tracking', d: 'Your hours help us accurately track client work, allocate expenses, and support client billing and internal reporting, so please make sure they\'re complete and submitted on time.', links: [{ t: 'Strata: Logging Client Hours', k: 'strataLogging' }] },
-      { id: 'i9', when: 'day one', t: 'I-9 verification (full-time employees only)', d: 'US full-time employees complete I-9 employment eligibility verification. Eric sends this over; get it back the same week so payroll isn\'t held up.' },
-      { id: 'benefits', when: 'week one', t: 'Understand your benefits (full-time employees only)', d: 'What you\'re enrolled in, what you need to elect, and by when. Ask Eric on Slack if anything is unclear or if you\'re a contractor and not sure what applies to you.' }
+        links: [{ t: 'Email signature', k: '#/signature' }] },
+      { id: 'time-tracking', when: 'week one', t: 'Set up time tracking', d: 'Your hours help us accurately track client work, allocate expenses, and support client billing and internal reporting, so please make sure they\'re complete and submitted on time.', links: [{ t: 'Time tracking', k: '#/time-tracking' }] },
+      { id: 'i9', when: 'day one', t: 'I-9 verification (full-time employees only)', d: 'US full-time employees complete I-9 employment eligibility verification. Eric sends this over; get it back the same week so payroll isn\'t held up.', links: [{ t: 'I-9 verification', k: '#/i9' }] },
+      { id: 'benefits', when: 'week one', t: 'Understand your benefits (full-time employees only)', d: 'What you\'re enrolled in, what you need to elect, and by when. Ask Eric on Slack if anything is unclear or if you\'re a contractor and not sure what applies to you.', links: [{ t: 'Benefits', k: '#/benefits' }] }
     ]},
-    { g: 'get to know carrara', cls: '', items: [
-      /* The tools page is what "Ensure tool and system access" opens now, so
-         this item goes where its own task is written: the setup guide. The
-         page still names the guide, which is a page pointing at a document
-         rather than two items opening the same place. */
-      { id: 'quarry', when: 'week one', t: 'Set up the Quarry', d: 'Our AI harness: Claude, an Obsidian vault and Cowork. Do this in week one, because most of how we work assumes it.', links: [{ t: 'Quarry setup guide', k: 'quarry' }] },
-      { id: 'carrara-hub', when: 'week one', t: 'Get oriented on the Carrara Hub', d: 'Start at hub.carrara.is and click around.', links: [{ t: 'Open the Carrara Hub', k: 'https://hub.carrara.is' }] },
+    { g: 'Get to know Carrara', cls: '', items: [
+      /* Each of these opens a page of its own now, and the page is what carries
+         the way out -- the setup guide, the hub itself, Ashby. The row used to
+         link straight out, which meant the item could be opened and read in
+         full without ever being marked, and meant the tools page was the only
+         place the Quarry was explained. */
+      { id: 'quarry', when: 'week one', t: 'Set up the Quarry', d: 'Our AI harness: Claude, an Obsidian vault and Cowork. Do this in week one, because most of how we work assumes it.', links: [{ t: 'The Quarry', k: '#/quarry' }] },
+      { id: 'carrara-hub', when: 'week one', t: 'Get oriented on the Carrara Hub', d: 'Start at hub.carrara.is and click around.', links: [{ t: 'Carrara Hub', k: '#/carrara-hub' }] },
       { id: 'time-off', when: 'week one', t: 'Review Time-Off Policy', d: 'Read the Time-Off & Holiday Policy page in this hub. Two minutes now saves confusion later.', links: [{ t: 'Time-Off & Holiday Policy', k: '#/timeoff' }] },
-      { id: 'ashby', when: 'week two', t: 'Talent team only: get oriented on Ashby', d: 'Our ATS. Ask in #g-ashby-support if you get stuck.', links: [{ t: 'Open Ashby', k: 'ashby' }, { t: '#g-ashby-support', k: 'ch:g-ashby-support' }] }
+      { id: 'ashby', when: 'week two', t: 'Talent team only: get oriented on Ashby', d: 'Our ATS. Ask in #g-ashby-support if you get stuck.', links: [{ t: 'Ashby', k: '#/ashby' }] }
     ]},
-    { g: 'connect with people', cls: '', items: [
-      { id: 'manager-1on1', when: 'day one', t: 'Day 1 manager 1:1', d: 'Your first 1:1: align on your 90-day plan, week one priorities, and how you\'ll work together.' },
-      { id: 'recurring-1on1', when: 'week one', t: 'Set up a recurring 1:1 with your manager', d: 'Get a weekly slot on the calendar before the week ends.' },
-      { id: 'team-calls', when: 'week one', t: "Confirm you're added to all team calls", d: 'Standing team meetings, the monthly Team Roundup, and any client syncs relevant to your role.', links: [{ t: 'Team Roundup', k: 'teamRoundup' }] },
-      { id: 'profile', when: 'week one', t: 'Fill out your people profile', d: 'Create your profile in the Carrara Hub so the team can get to know you.', links: [{ t: 'The team directory', k: '#/team' }], survey: 'profile' },
-      { id: 'meet-people', when: 'week two', t: 'Meet the people on your list', d: 'Your manager picks who you should meet in your first two weeks: your client lead, the people on your account, and a couple of others.', links: [{ t: 'The team wall', k: '#/team' }] },
-      { id: 'top5', t: 'Submit your Top 5', d: 'Name the five best people you have ever worked with, one submission per person. It seeds our network with people we already trust, and it\'s one of the most useful things you can do in your first week.', survey: 'top5' }
+    { g: 'Connect with people', cls: '', items: [
+      { id: 'manager-1on1', when: 'day one', t: 'Have your first 1:1 with your manager', d: 'Your first 1:1: align on your 90-day plan, week one priorities, and how you\'ll work together.', links: [{ t: 'Day 1 manager 1:1', k: '#/manager-1on1' }] },
+      { id: 'recurring-1on1', when: 'week one', t: 'Book a weekly 1:1 with your manager', d: 'Get a weekly slot on the calendar before the week ends.', links: [{ t: 'Recurring 1:1', k: '#/recurring-1on1' }] },
+      { id: 'team-calls', when: 'week one', t: "Confirm you're added to all team calls", d: 'Standing team meetings, the monthly Team Roundup, and any client syncs relevant to your role.', links: [{ t: 'Team calls', k: '#/team-calls' }] },
+      { id: 'profile', when: 'week one', t: 'Fill out your people profile', d: 'Create your profile in the Carrara Hub so the team can get to know you.', links: [{ t: 'People profile', k: '#/profile' }] },
+      { id: 'meet-people', when: 'week two', t: 'Meet the people on your list', d: 'Your manager picks who you should meet in your first two weeks: your client lead, the people on your account, and a couple of others.', links: [{ t: 'Meet people', k: '#/meet-people' }] },
+      { id: 'top5', t: 'Submit your Top 5', d: 'Name the five best people you have ever worked with, one submission per person. It seeds our network with people we already trust, and it\'s one of the most useful things you can do in your first week.', links: [{ t: 'Top 5', k: '#/top5' }] }
+    ]},
+    /* The hire's own section, and the only group here that is about them rather
+       than about Carrara -- which is why it comes last. It is on the list at all
+       because nothing else in the hub pointed at it: no link in any page, no
+       #nav to hold one, and an option in a select that measures as invisible.
+       The 30/60/90 plan their manager wrote is in there, and until now the only
+       way to it was knowing the address. */
+    { g: 'For you', cls: '', items: [
+      { id: 'my-plan', when: 'day one', t: 'Read your 30/60/90 plan', d: 'What your manager wrote for your first 90 days, with your first client and who to sync with in week one.', links: [{ t: 'For you', k: '#/my-onboarding' }] }
     ]}
   ];
 
@@ -269,8 +300,13 @@
 
   /* ---------- modal ---------- */
   var mBack = $('#modal-back');
+  var mLeaving = null;
   function openModal(html) {
     var box = $('#modal-content');
+    /* A sheet opened while the last one is still leaving takes the screen back
+       at once: the two classes can never be on together. */
+    if (mLeaving) { clearTimeout(mLeaving); mLeaving = null; }
+    mBack.classList.remove('closing');
     box.innerHTML = html;
     Icons.draw(box);
     mBack.classList.add('show');
@@ -284,9 +320,28 @@
     if (sheet) { void sheet.offsetHeight; sheet.scrollTop = 0; }
   }
   function closeModal() {
-    mBack.classList.remove('show');
     document.body.classList.remove('modal-open');
+    /* The content stays in the DOM until the next openModal replaces it, so a
+       film left playing goes on playing behind a scrim nobody can see. It stops
+       as the sheet STARTS leaving, not once it is gone. */
+    var film = mBack.querySelector('video');
+    if (film) { try { film.pause(); } catch (e) {} }
+    mBack.classList.remove('show');
+    if (reduced) return;
+    /* display:none would cut the exit off before any of it could be seen, so
+       'show' hands over to 'closing', which keeps the sheet on screen for
+       exactly as long as it takes to leave. The class comes off when the
+       animation ends -- and on a timer as well, because an animation that never
+       runs would otherwise leave a scrim over the page for good. */
+    mBack.classList.add('closing');
+    mLeaving = setTimeout(doneLeaving, 600);
   }
+  function doneLeaving(e) {
+    if (e && e.target !== mBack) return;   /* the sheet's own animation, not the scrim's */
+    if (mLeaving) { clearTimeout(mLeaving); mLeaving = null; }
+    mBack.classList.remove('closing');
+  }
+  mBack.addEventListener('animationend', doneLeaving);
   $('#modal-close').addEventListener('click', closeModal);
   mBack.addEventListener('click', function (e) { if (e.target === mBack) closeModal(); });
   /* Escape closes the top layer only: an item's details sit above the checklist */
@@ -316,18 +371,7 @@
   chkPop.addEventListener('click', function (e) { if (e.target === chkPop) closeChecklist(); });
 
   /* ---------- nav ---------- */
-  var nav = $('#nav'), mnav = $('#mobile-nav');
-  /* The index holds the walk and nothing else. It is About Carrara's table of
-     contents -- that item is the only one with pages inside it -- so it is
-     numbered like the letter's rail and it appears only on those pages. */
-  WALK.forEach(function (s, i) {
-    var a = document.createElement('a');
-    a.href = '#/' + s.id;
-    a.dataset.id = s.id;
-    a.innerHTML = '<span class="rail__num">' + ('0' + (i + 1)).slice(-2) + '</span>'
-      + '<span class="rail__info"><span class="rail__name">' + esc(s.label) + '</span></span>';
-    nav.appendChild(a);
-  });
+  var mnav = $('#mobile-nav');
   SECTIONS.forEach(function (s) {
     var o = document.createElement('option');
     o.value = s.id; o.textContent = s.label;
@@ -371,7 +415,7 @@
   /* ---------- router ---------- */
   var current = null;
   function show(id) {
-    var sec = SECTIONS.some(function (s) { return s.id === id; }) || id === 'complete' ? id : 'start';
+    var sec = SECTIONS.some(function (s) { return s.id === id; }) ? id : 'start';
     current = sec;
     recordVisit(sec);
     if (sec === MO.SECTION_ID) {
@@ -388,17 +432,16 @@
     $$('.view').forEach(function (v) { v.classList.remove('visible'); });
     var el = $('#view-' + sec);
     if (el) el.classList.add('visible');
-    $$('#nav a').forEach(function (a) { a.classList.toggle('active', a.dataset.id === sec); });
-    /* the index belongs to About Carrara: on any other page there is nothing
-       to index, and the body says so for the narrow layout to read */
-    var onWalk = WALK.some(function (w) { return w.id === sec; });
-    var aside = $('#walk-index');
-    if (aside) aside.hidden = !onWalk;
-    document.body.classList.toggle('has-index', onWalk);
     if (SECTIONS.some(function (s) { return s.id === sec; })) mnav.value = sec;
     window.scrollTo(0, 0);
     if (sec === 'start') countUp();
     if (sec === 'templates') mountTemplates();
+    /* The Top 5 form was mounted by the modal that carried it. It has a page of
+       its own now, so the page is what mounts it -- same function, same box,
+       and a fresh form each time the page is opened, exactly as reopening the
+       popup used to give one. */
+    if (sec === 'top5') renderTop5(whoIsSubmitting());
+    topNav(el, sec);
     nextNav(el, sec);
   }
   /* #/client/<slug> was a page of its own. The client is a sheet now, so the old
@@ -440,42 +483,226 @@
      their list. Every other page is something a task opened, so its way out is
      back to the list rather than on to a page nobody asked for -- reading the
      Slack guide used to push you into Our clients. */
-  function nextNav(root, sec) {
-    if (!root) return;
-    var old = root.querySelector('.next-nav');
-    if (old) old.parentNode.removeChild(old);
-    /* the cover is the list; it does not need a way back to itself */
-    if (sec === 'start') return;
-    var i = WALK.findIndex(function (s) { return s.id === sec; });
-    var d = document.createElement('div');
-    d.className = 'next-nav';
-    if (i > -1 && i < WALK.length - 1) {
-      d.innerHTML = '<a href="#/' + WALK[i + 1].id + '">Next: ' + esc(WALK[i + 1].label)
-        + ' <span class="btn-cover__arrow" data-icon="arrow-right" aria-hidden="true"></span></a>';
-    } else if (i === WALK.length - 1) {
-      d.innerHTML = '<button type="button" class="btn" id="walk-done">Done! Mark as completed'
-        + ' <span data-icon="check" aria-hidden="true"></span></button>';
-    } else {
-      d.innerHTML = '<a href="#/start">Back to your checklist</a>';
+  /* The page an item opens, when it opens one of ours. */
+  function pageOf(item) {
+    var links = (item.links || []);
+    for (var i = 0; i < links.length; i++) {
+      if (links[i].k.indexOf('#/') === 0) return links[i].k.slice(2);
     }
-    root.appendChild(d);
-    var mark = d.querySelector('#walk-done');
-    if (mark) mark.addEventListener('click', function () {
-      /* The walk ends on the list, at the item it belongs to, and the item is
-         crossed off while the hire is watching: finishing something is worth
-         seeing come off the list, and arriving back at a page is not that.
-         The two waits are the route and the scroll, in that order. */
+    return '';
+  }
+
+  /* A page belongs to ONE section of the list: the first that opens it. Two
+     items can open the same page -- "Meet the people on your list" opens the
+     team page, which About Carrara already owns -- and the first owner wins, so
+     a page is read as part of one section and only one. */
+  function sectionOfPage(sec) {
+    for (var i = 0; i < CHECKLIST.length; i++) {
+      for (var j = 0; j < CHECKLIST[i].items.length; j++) {
+        if (pageOf(CHECKLIST[i].items[j]) === sec) return CHECKLIST[i];
+      }
+    }
+    return null;
+  }
+
+  /* The pages of a section, in the list's order, and only the ones it owns. */
+  function pagesOfSection(grp) {
+    if (!grp) return [];
+    var out = [];
+    grp.items.forEach(function (item) {
+      var sec = pageOf(item);
+      if (sec && sectionOfPage(sec) === grp) out.push({ id: item.id, sec: sec });
+    });
+    return out;
+  }
+
+  /* The item a page belongs to -- the first in the list that opens it. */
+  function itemOfPage(sec) {
+    var grp = sectionOfPage(sec);
+    if (!grp) return null;
+    return grp.items.filter(function (item) { return pageOf(item) === sec; })[0] || null;
+  }
+
+  /* A section is a READ when going through its pages IS doing it -- only then
+     can one door at the end finish the whole thing. About Carrara is that; Set
+     up your workspace is not, because payroll, the I-9 and benefits happen
+     somewhere else entirely.
+
+     The section SAYS so rather than it being worked out from whether every item
+     has a page. Those two were the same thing while About Carrara was the only
+     section with a page for every item, and they are not the same thing at all:
+     giving the other items pages of their own would have silently turned a list
+     of errands into a read and replaced their marks with one door. */
+  function sectionIsARead(grp) {
+    return !!(grp && grp.read && grp.items.length);
+  }
+
+  /* The way out of a page stands on the MAT, under the mark, not inside the
+     page: the mark is the way back to the start and this is the way back to the
+     list, so the two belong together. It is written into the markup once and
+     only shown or hidden here. */
+  function topNav(root, sec) {
+    var up = $('#page-up');
+    if (up) up.hidden = sec === 'start';
+  }
+
+  /* The foot steps between the pages of ONE section and stops there. Running it
+     through every page of the hub made the read endless: eight pages chained
+     end to end with no point at which anything had been finished. A section is
+     a few pages and then a door. */
+  function pageMark(root, sec) {
+    var old = root.querySelector('.page-mark');
+    if (old) old.parentNode.removeChild(old);
+    var grp = sectionOfPage(sec);
+    if (!grp || sectionIsARead(grp)) return;
+    var item = itemOfPage(sec);
+    if (!item) return;
+
+    var done = !!chkState['k:' + item.id];
+    var d = document.createElement('div');
+    d.className = 'page-mark';
+    /* Done, the box wears the STATE: the same filled mark a ticked row wears on
+       the list. It is still a button, because whatever can be marked here has
+       to be able to be unmarked here -- the thing that ticked it is the thing
+       in front of you, and sending someone to the list to undo it is sending
+       them away from the control they just used. Its hover shows the unmarked
+       look, which is a preview of what pressing it does. */
+    d.innerHTML = '<button type="button" class="pager__item pager__item--done'
+      + (done ? ' is-complete' : '') + '" id="page-done">'
+      + '<span data-icon="check" aria-hidden="true"></span>'
+      + '<span class="pager__name">' + (done ? 'Completed' : 'Mark as completed') + '</span>'
+      + '</button>';
+
+    d.querySelector('#page-done').addEventListener('click', function () {
+      if (chkState['k:' + item.id]) {
+        /* Undoing is a correction, so it happens where you are. */
+        if (itemApi[item.id]) itemApi[item.id].toggle();
+        pageMark(root, sec);
+        return;
+      }
+      /* Completing is progress, so it happens where it can be SEEN: on the
+         list, with the row crossing itself off. */
       location.hash = '#/start';
       setTimeout(function () {
-        var row = $('#cover-checklist .ck-row[data-id="welcome"]');
+        var row = $('#cover-checklist .ck-row[data-id="' + item.id + '"]');
         if (row) row.scrollIntoView({ block: 'center', behavior: 'smooth' });
         setTimeout(function () {
-          var api = itemApi.welcome;
-          if (!api || chkState['k:welcome']) return;
-          justTicked = 'welcome';
-          api.toggle();
-          justTicked = null;
-        }, 600);
+          justTicked = [item.id];
+          if (itemApi[item.id]) itemApi[item.id].toggle();
+          justTicked = [];
+        }, 500);
+      }, 160);
+    });
+    if (window.Icons) Icons.draw(d);
+    root.appendChild(d);
+  }
+
+  function nextNav(root, sec) {
+    if (!root) return;
+    var old = root.querySelector('.pager');
+    if (old) old.parentNode.removeChild(old);
+    if (sec === 'start') return;
+
+    var grp = sectionOfPage(sec);
+    var pages = pagesOfSection(grp);
+    var at = pages.findIndex(function (c) { return c.sec === sec; });
+    if (at < 0) return;
+
+    /* A page in a section that is NOT just a read carries its own mark. Those
+       pages ask you to do something off the site -- join the workspace, get
+       into the tools, read a policy and know it -- so finishing one is not the
+       same as reaching the end of it, and nobody else can tell. It sits under
+       the content and over the pager: the mark belongs to this page, the pager
+       belongs to the section, and you mark the thing before you move on.
+
+       A section that IS its reading does not get this. Reading it IS doing it,
+       and it already ends on a door that marks the lot. */
+    pageMark(root, sec);
+    /* ...and it gets NOTHING ELSE. There is no next, because these pages are
+       not a sequence: each is one task of the list, done on its own and
+       returned from. The pager belongs to a section you read through. */
+    if (!sectionIsARead(grp)) return;
+
+    var prev = at > 0 ? pages[at - 1] : null;
+    var next = at < pages.length - 1 ? pages[at + 1] : null;
+    var d = document.createElement('nav');
+    d.className = 'pager';
+    d.setAttribute('aria-label', 'Section');
+
+    function labelOf(id) {
+      var row = SECTIONS.filter(function (x) { return x.id === id; })[0];
+      return row ? row.label : id;
+    }
+    /* At the end of a section the back is a SQUARE with the arrow and nothing
+       else: it goes to the page you have just read, so its name is the one
+       thing you do not need told, and the room it gives up is room the door
+       gets. Mid-section it still names where it goes. */
+    var closing = !next;
+    var left = prev
+      ? (closing
+        ? '<a class="pager__item pager__item--back" href="#/' + prev.sec + '"'
+          + ' aria-label="Back to ' + esc(labelOf(prev.sec)) + '">'
+          + '<span data-icon="arrow-left" aria-hidden="true"></span></a>'
+        : '<a class="pager__item pager__item--prev" href="#/' + prev.sec + '">'
+          + '<span data-icon="arrow-left" aria-hidden="true"></span>'
+          + '<span class="pager__name">Prev: ' + esc(labelOf(prev.sec)) + '</span></a>')
+      : '<span></span>';
+
+    var right;
+    if (next) {
+      right = '<a class="pager__item pager__item--next" href="#/' + next.sec + '">'
+        + '<span class="pager__name">Next: ' + esc(labelOf(next.sec)) + '</span>'
+        + '<span data-icon="arrow-right" aria-hidden="true"></span></a>';
+    } else if (sectionIsARead(grp)) {
+      /* The last page of a section that IS its reading: finishing it finishes
+         the section, so the door says so and ticks the lot.
+
+         Unless the lot is already ticked, in which case there is no door --
+         there is the answer, worn exactly as a page's own mark wears it and as
+         a ticked row wears it on the list. A section half ticked still offers
+         the door, because marking it completed is still a true thing to do. */
+      var allDone = grp.items.every(function (it) { return !!chkState['k:' + it.id]; });
+      right = '<button type="button" class="pager__item pager__item--done'
+        + (allDone ? ' is-complete' : '') + '" id="section-done">'
+        + '<span data-icon="check" aria-hidden="true"></span>'
+        + '<span class="pager__name">'
+        + (allDone ? 'Completed' : 'Mark section as completed') + '</span></button>';
+    } else {
+      /* The last page of a section that is only PARTLY a reading. Reading it
+         does not finish the section, so this closes the read and ticks nothing;
+         the items are ticked on the list, deliberately, one at a time. */
+      right = '<a class="pager__item pager__item--done" href="#/start">'
+        + '<span class="pager__name">Back to your checklist</span>'
+        + '<span data-icon="arrow-right" aria-hidden="true"></span></a>';
+    }
+
+    if (closing) d.className = 'pager pager--closing';
+    d.innerHTML = left + right;
+    root.appendChild(d);
+
+    var done = d.querySelector('#section-done');
+    if (done) done.addEventListener('click', function () {
+      var ids = grp.items.map(function (i) { return i.id; });
+      /* Already completed: this press takes the section back off, here, the
+         same way the page's own mark does. It unticks exactly what it ticked. */
+      if (ids.every(function (id) { return !!chkState['k:' + id]; })) {
+        ids.forEach(function (id) { if (itemApi[id]) itemApi[id].toggle(); });
+        nextNav(root, sec);
+        return;
+      }
+      /* Only what is not already ticked, so pressing it twice cannot untick a
+         section. The strike is armed for all of them at once: the list is where
+         this lands, so this is a thing with someone watching. */
+      var fresh = ids.filter(function (id) { return !chkState['k:' + id]; });
+      location.hash = '#/start';
+      setTimeout(function () {
+        var first = $('#cover-checklist .ck-row[data-id="' + ids[0] + '"]');
+        if (first) first.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        setTimeout(function () {
+          justTicked = fresh;
+          fresh.forEach(function (id) { if (itemApi[id]) itemApi[id].toggle(); });
+          justTicked = [];
+        }, 500);
       }, 160);
     });
     if (window.Icons) Icons.draw(d);
@@ -504,20 +731,41 @@
     counted = true;
   }
 
+  /* Who is submitting. The sheet has to carry this -- a row with a name and
+     nobody attached to it is a recommendation from no one -- but the hub
+     already knows it: the access code resolves to a full name, and it is the
+     name the cover greets you by.
+
+     The field used to prefill from myProfile, which is declared null at the top
+     of this file and never assigned anywhere, so it had never once filled
+     anything in. Everyone has typed their own name into a hub that was already
+     printing it two screens earlier.
+
+     The stored kit is read as well as the live one, because show() can run
+     before the refetch lands, and because a reload empties kitData while
+     localStorage still has it. Empty when there is no kit at all, which is the
+     case the field has to stay visible and editable for. */
+  function whoIsSubmitting() {
+    var saved = store('carrara_welcome');
+    return (kitData && kitData.name)
+      || (saved && saved.data && saved.data.name)
+      || '';
+  }
+
   /* ---------- top 5 survey: one submission per person, rows land in a Google Sheet via /api/top5 ---------- */
   function renderTop5(yourName) {
     var box = $('#t5-box');
     if (!box) return;
     box.innerHTML = '<div class="pf-group">5 best people you\'ve worked with</div>'
-      + '<p class="m-note" style="margin:0">Please be sure to submit each person individually, five in total.</p>'
+      + '<p class="body-copy">Please be sure to submit each person individually, five in total.</p>'
       + '<label>Your name</label><input id="t5-you" value="' + esc(yourName) + '">'
       + '<label>Name</label><input id="t5-name">'
       + '<label>LinkedIn</label><input id="t5-li">'
-      + '<div class="pf-group">where you worked together</div>'
+      + '<div class="pf-group">Where you worked together</div>'
       + '<label>What company?</label><input id="t5-company">'
       + '<label>Relationship type</label><input id="t5-rel" placeholder="Manager, Direct Report, Peer, etc.">'
       + '<label>When did you work together?</label><input id="t5-year" inputmode="numeric" maxlength="4" placeholder="What year. Ex: 2021">'
-      + '<div class="pf-group">about them</div>'
+      + '<div class="pf-group">About them</div>'
       + '<label>Relationship strength: what were they amazing at?</label><textarea id="t5-strength" rows="3"></textarea>'
       + '<label>Notes</label><textarea id="t5-notes" rows="3"></textarea>'
       + '<input id="t5-website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">'
@@ -539,24 +787,13 @@
         .then(function () {
           var n = (store('carrara_top5_count') || 0) + 1;
           store('carrara_top5_count', n);
-          box.innerHTML = '<div class="pf-group">submitted</div>'
+          box.innerHTML = '<div class="pf-group">Submitted</div>'
             + '<p>Thanks. ' + esc(data.name) + ' is in. ' + (n >= 5 ? 'That is your five.' : n + ' of 5 so far.') + '</p>'
             + '<div class="m-actions"><button class="btn-primary" id="t5-another">Submit another person</button></div>';
           $('#t5-another').addEventListener('click', function () { renderTop5(data.yourName); });
         })
         .catch(function () { btn.disabled = false; msg.textContent = 'That did not send. Try again in a moment.'; });
     });
-  }
-
-  /* One profile editor and one database, in the signed-in Knowledge Hub. */
-  function mountProfileSurvey() {
-    var box = $('#pv-box');
-    if (!box) return;
-    var links = $('#chk-links');
-    if (links) links.remove();
-    box.innerHTML = '<p>Your profile lives in the Carrara Hub.</p>'
-      + '<div class="m-actions"><a class="btn-primary" href="https://hub.carrara.is/people?profile=edit" target="_blank" rel="noopener">Create or edit my profile ↗</a></div>'
-      + '<p class="m-note">Sign in with your Carrara account. Return here and mark this step complete after saving.</p>';
   }
 
   /* ---------- checklist ---------- */
@@ -603,11 +840,7 @@
       function details() {
         var linksHtml = itemLinks(item);
         var body = item.html || ('<div class="m-eyebrow">' + grp.g + (item.when ? ' · ' + item.when : '') + '</div><h3>' + esc(item.t) + '</h3><p>' + esc(item.d) + '</p>');
-        openModal(body + (item.survey === 'top5' ? '<div id="t5-box"></div>' : '')
-          + (item.survey === 'profile' ? '<div id="pv-box"></div>' : '')
-          + (linksHtml ? '<p id="chk-links" class="ck-acts">' + linksHtml + '</p>' : ''));
-        if (item.survey === 'top5') renderTop5((myProfile && myProfile.name) || '');
-        if (item.survey === 'profile') mountProfileSurvey(function () { if (!chkState[key]) toggle(); });
+        openModal(body + (linksHtml ? '<p id="chk-links" class="ck-acts">' + linksHtml + '</p>' : ''));
       }
       itemApi[item.id] = { toggle: toggle, details: details };
       row.querySelector('.box').addEventListener('click', toggle);
@@ -641,12 +874,15 @@
      place that can hold all of them. Nothing to open at all -- a 1:1, an I-9
      someone sends you -- and there is no arrow, because there is nowhere to go. */
   function coverGoes(item) {
-    /* The arrow starts the walk; it does not finish it. It used to tick the item
-       on the way out, which crossed off a thing the hire had not done yet. */
-    if (item.tour) return { how: 'hash', url: '#/who' };
     if (item.survey || item.html) return { how: 'modal' };
     var links = (item.links || []).filter(function (l) { return pageFor(l.k) || linkFor(l.k); });
-    if (!links.length) return null;
+    /* Every item on the list now opens a page of its own, so on the cover this
+       fallback is unreachable. It stays because the popup checklist renders the
+       same items through details(), and because an item added tomorrow with a
+       description and no page should still have somewhere to say it rather than
+       being a title and a tick. The rule it protects has not changed: an item
+       is a task and an arrow, and the detail is wherever the arrow lands. */
+    if (!links.length) return item.d ? { how: 'modal' } : null;
     if (links.length > 1) return { how: 'modal' };
     if (pageFor(links[0].k)) return { how: 'page', key: links[0].k };
     var u = linkFor(links[0].k);
@@ -654,7 +890,8 @@
   }
 
   /* the id the walk just crossed off, held for the one render that draws it */
-  var justTicked = null;
+  /* The rows being struck right now: a section can finish several at once. */
+  var justTicked = [];
 
   function coverRow(item) {
     var on = !!chkState['k:' + item.id];
@@ -665,13 +902,16 @@
     else if (go && go.how === 'ext') open = '<a class="ck-go" href="' + esc(go.url) + '" target="_blank" rel="noopener">';
     else if (go) open = '<a class="ck-go" href="' + esc(go.url) + '">';
     return '<div class="ck-row' + (on ? ' done' : '')
-      + (item.id === justTicked ? ' ck-row--ticked' : '') + '" data-id="' + esc(item.id) + '">'
+      + (justTicked.indexOf(item.id) > -1 ? ' ck-row--ticked' : '') + '" data-id="' + esc(item.id) + '">'
       + '<span class="ck-box" role="checkbox" tabindex="0" aria-checked="' + (on ? 'true' : 'false') + '"'
       + ' aria-label="Mark ' + esc(item.t) + ' done">'
       + '<span data-icon="check" aria-hidden="true"></span></span>'
       + open
-      + '<span class="ck-text"><span class="ck-t">' + esc(item.t) + '</span>'
-      + (item.d ? '<span class="ck-d">' + esc(item.d) + '</span>' : '') + '</span>'
+      /* Title only. The list is read as a list -- the eye runs down seventeen
+         titles -- and a line of description under each one turns that into
+         seventeen paragraphs. The detail lives where the arrow goes, and for
+         the items that open a popup it is still the popup's body. */
+      + '<span class="ck-text"><span class="ck-t">' + esc(item.t) + '</span></span>'
       + (go ? '<span class="ck-arrow" data-icon="arrow-' + (go.how === 'ext' ? 'up-right' : 'right')
             + '" aria-hidden="true"></span>' : '')
       + (go && go.how === 'modal' ? '</button>' : go ? '</a>' : '</div>')
@@ -696,6 +936,34 @@
     box.innerHTML = h;
     if (window.Icons) Icons.draw(box);
   }
+  /* The last tick on the list. Shown once, ever: a congratulation that comes
+     back every time the hub is opened is not a congratulation.
+
+     It fires on the CROSSING rather than on the state. renderProgress also runs
+     at boot, so a hire who finished last week would otherwise be congratulated
+     again on every visit -- lastPct starts null precisely so the first call can
+     never fire it, whatever the saved list says. */
+  var DONE_SEEN = 'carrara_done_seen';
+  var lastPct = null;
+  function doneMoment() {
+    var who = kitData && kitData.firstName ? ' ' + esc(kitData.firstName) : '';
+    /* The film leads, because it is the reaction and the words are the caption.
+       It carries no controls: there is nothing to operate, no sound to turn up
+       (autoplay is muted everywhere by rule), and it loops because a reaction
+       does not end. aria-hidden because it says nothing a reader needs -- the
+       heading under it carries the whole message. */
+    openModal(
+      '<div class="moment">'
+      + '<video class="moment-film" src="/assets/moments/made-it.mp4"'
+      + ' autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>'
+      + '<h3>Wow, you made it' + who + '!</h3>'
+      + '<p>We are really happy to have you onboard. We promise it\u2019s going to be '
+      + 'intense, but fun!</p>'
+      + '<span class="moment-mark" aria-hidden="true"></span>'
+      + '</div>'
+    );
+  }
+
   function renderProgress() {
     var done = chkCount(), total = flat.length;
     var pct = Math.round(done / total * 100);
@@ -704,10 +972,17 @@
     renderCoverChecklist();
     var meta = $('#meta-checklist');
     if (meta) meta.textContent = 'checklist: ' + done + '/' + total;
-    $('#done-moment').classList.toggle('show', pct === 100);
+    if (pct === 100 && lastPct !== null && lastPct < 100 && !store(DONE_SEEN)) {
+      store(DONE_SEEN, true);
+      doneMoment();
+    }
+    lastPct = pct;
     if (current === MO.SECTION_ID) mountMyOnboarding();
   }
   $('#chk-reset').addEventListener('click', function () {
+    /* Starting the list over means the ending has not happened yet. */
+    store(DONE_SEEN, false);
+    lastPct = null;
     chkState = {}; store('carrara_checklist', chkState);
     $$('.chk-item').forEach(function (r) { r.classList.remove('done'); });
     renderProgress();
@@ -737,7 +1012,14 @@
         if (!tick) return;
       }
       e.preventDefault();
-      if (opens) api.details(); else api.toggle();
+      if (opens) { api.details(); return; }
+      /* An item crossing itself off is worth watching, which is what the walk's
+         Done used to be for. Ticking from the list is the only place that
+         happens now, so the strike is armed here: toggle redraws the rows, and
+         the row being ticked reads this on its way through. */
+      justTicked = [id];
+      api.toggle();
+      justTicked = [];
     }
     box.addEventListener('click', act);
     box.addEventListener('keydown', act);
@@ -751,7 +1033,6 @@
   /* what the filter, cards and modal group people by: "practices" (POps, several
      per person) or "department". Set from data.grouping; absent reads department. */
   var grouping = 'department';
-  var myProfile = null; // Shared profiles are edited in the Knowledge Hub.
   function initials(name) {
     return name.split(/\s+/).slice(0, 2).map(function (w) { return w.charAt(0); }).join('').toUpperCase();
   }
@@ -899,27 +1180,13 @@
     var grid = $('#team-grid');
     grid.innerHTML = '';
     var q = (filter || '').toLowerCase();
+    /* Everyone on this wall comes from the roster, the hire included. The hub
+       used to keep a profile of its own in localStorage and splice the hire in
+       at the front before the roster knew about them; profiles moved to the
+       Carrara Hub in Oct 2026 and that branch has been unreachable since. It
+       was removed along with the rest of what it fed -- see the register,
+       entry 65, for why leaving it there was worse than it looked. */
     var list = teamData.slice();
-    if (myProfile && !list.some(function (m) { return m.email === myProfile.email; })) {
-      /* their own entry renders through the same path as everyone else's, so the
-         photo, clients and answers they just typed show immediately */
-      list.unshift({ name: myProfile.name, title: myProfile.team || '', email: myProfile.email || '',
-        avatar: myProfile.photo || '', isNew: true, extra: myProfile.location });
-      pavilion[myProfile.name] = {
-        role: myProfile.team || '', location: myProfile.location || '',
-        teams: myProfile.team ? [myProfile.team] : [],
-        /* a hire who just joined is not in the Codex yet: their own pick shows */
-        isMine: true,
-        clients: myProfile.client ? [myProfile.client] : [],
-        about: myProfile.background || '',
-        linkedin: myProfile.linkedin || '',
-        answers: Object.keys(myProfile.answers || {}).map(function (k) {
-          var q = null;
-          PAVILION_Q.forEach(function (g) { g.qs.forEach(function (x) { if (x[0] === k) q = x[1]; }); });
-          return q ? { q: q, a: [myProfile.answers[k]] } : null;
-        }).filter(Boolean)
-      };
-    }
     var shown = list.filter(function (m) {
       var pv = pavilion[m.name] || {};
       if (teamFilter.team && deptsOf(m).indexOf(teamFilter.team) === -1) return false;
@@ -953,7 +1220,7 @@
          .info, not a child: an auto margin only reaches the card's own free
          space from one level up */
       d.innerHTML = '<div class="avatar">' + av + '</div><div class="info">'
-        + '<div class="nm">' + esc(m.name) + (m.isNew ? '<span class="newtag">new</span>' : '') + '</div>'
+        + '<div class="nm">' + esc(m.name) + '</div>'
         + '<div class="rl-sm">' + esc(role || '') + '</div>'
         + '</div>'
         + (logos ? '<div class="mb-foot"><div class="cl-row">' + logos + '</div></div>' : '')
@@ -992,7 +1259,6 @@
   }
   function clientsOf(name) {
     var pv = pavilion[name] || {};
-    if (pv.isMine) return pv.clients || [];
     if (!codexByPerson) return [];
     var out = (codexByPerson[pv.name || name] || codexByPerson[name] || []).slice();
     /* plus the active client teams the Knowledge Hub keeps from Slack and the owner survey */
@@ -1056,6 +1322,9 @@
 
   /* ---------- welcome kit -> hub personalization ---------- */
   var kitData = null;
+  /* The cover's own letter, as the page shipped it. Captured the first time a
+     manager's note replaces it, so the generic one can come back. */
+  var coverLetter = null;
   function applyKitToHub() {
     if (!kitData) return;
     /* The cover greets the hire by name once we know it, and reads "Welcome."
@@ -1066,6 +1335,45 @@
       coverTitle.innerHTML = 'Welcome ' + esc(kitData.firstName)
         + '.<br>You\u2019re part of the team now.';
     }
+    /* The letter on the cover is the manager's, once they have written one.
+
+       It is not "styled like" the letter -- it IS the letter. The cover opens
+       the hub with a greeting and a signed note, and until now that note was
+       one fixed paragraph set signed by Gonzalo for everyone. The manager's
+       intro was rendering in My onboarding instead, as a quote block two
+       screens in. The hire reads the cover first, so the cover is where a note
+       written to them belongs.
+
+       The generic letter is the fallback and has to survive, for a visitor with
+       no kit and for a hire whose manager has not written anything yet, so the
+       original markup is kept on the first swap rather than rebuilt from a
+       string. Everything else about the block is the cover's own: same body
+       rule, same three-line signature, same hand. */
+    var coverBody = $('.cover__body');
+    var intro = kitData.plan && typeof kitData.plan.manager_intro === 'string'
+      ? kitData.plan.manager_intro.trim() : '';
+    var mgrName = kitData.manager && kitData.manager.name ? kitData.manager.name : '';
+    if (coverBody) {
+      if (coverLetter === null) coverLetter = coverBody.innerHTML;
+      if (intro && mgrName && window.CarraraMarkdown) {
+        /* the roster carries what the manager does; the kit does not */
+        var mgrRole = '';
+        if (teamData && teamData.length) {
+          var mRow = teamData.filter(function (x) { return x.name === mgrName; })[0]
+            || teamData.filter(function (x) { return sameFirstAndInitial(x.name, mgrName); })[0];
+          if (mRow) mgrRole = roleOf(mRow) || '';
+        }
+        coverBody.innerHTML = window.CarraraMarkdown.renderMarkdown(intro)
+          + '<div class="cover__sign">'
+          + '<p class="cover__sign-mark">' + esc(mgrName.split(/\s+/)[0]) + '</p>'
+          + '<p class="cover__sign-name">' + esc(mgrName) + '</p>'
+          + (mgrRole ? '<p class="cover__sign-role">' + esc(mgrRole) + '</p>' : '')
+          + '</div>';
+      } else {
+        coverBody.innerHTML = coverLetter;
+      }
+    }
+
     var brief = $('#brief-desc');
     if (brief && kitData.client) {
       brief.innerHTML = 'Your first client is <b>' + esc(kitData.client.name) + '</b>'
@@ -1074,7 +1382,7 @@
         /* The popup no longer holds any of this, and the section is no longer
            hidden until the hub has been walked, so there is one place to send
            people and it is always there. */
-        + ' <a class="textlink" href="#/' + MO.SECTION_ID + '">My onboarding</a> has who to meet and your first 90 days.';
+        + ' <a class="textlink" href="#/' + MO.SECTION_ID + '">For you</a> has your team and the plan they wrote for you.';
     }
     if (kitData.client) {
       $$('#client-grid .cl-item').forEach(function (row) {
@@ -1101,7 +1409,6 @@
   }
   function myOnboardingCtx() {
     var ctx = {};
-    if (typeof flat !== 'undefined' && flat.length) ctx.checklist = { done: chkCount(), total: flat.length };
     if (!kitData) return ctx;
     var mgr = kitData.manager || {};
     if (mgr.name && teamData && teamData.length) {
@@ -1137,18 +1444,8 @@
     var el = $('#view-' + MO.SECTION_ID);
     if (!el) return;
     el.innerHTML = MO.renderSection(kitData, myOnboardingCtx());
-    var reset = el.querySelector('#mo-reset');
-    if (reset) reset.addEventListener('click', function () { window.dispatchEvent(new Event('carrara:kit-reset')); });
-    var chk = el.querySelector('.mo-checklist');
-    if (chk) {
-      var openChk = function (e) {
-        if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
-        e.preventDefault();
-        openChecklist();
-      };
-      chk.addEventListener('click', openChk);
-      chk.addEventListener('keydown', openChk);
-    }
+    /* The "Not you?" button and the checklist card are both gone from the
+       section, and their handlers with them. */
     var flip = el.querySelector('.mo-flip');
     if (flip) {
       var turn = function (e) {
@@ -1160,6 +1457,12 @@
       flip.addEventListener('click', turn);
       flip.addEventListener('keydown', turn);
     }
+    /* This runs again whenever a kit lands, and it rewrites the whole view,
+       which takes with it the back link and the mark that show() appended after
+       it. Both are idempotent, so putting them back is safe even when this ran
+       from inside show() a moment ago. */
+    if (current === MO.SECTION_ID) { topNav(el, MO.SECTION_ID); nextNav(el, MO.SECTION_ID); }
+
     /* "Meet your team" opens the team page already filtered to their team */
     el.querySelectorAll('a[data-team-filter]').forEach(function (a) {
       a.addEventListener('click', function () {
@@ -1173,6 +1476,57 @@
         renderTeam($('#team-search').value);
       });
     });
+  }
+
+  /* Exchange a code in the address bar for the hire's kit.
+
+     This is how everyone arrives. POps mints
+     'https://' + host + '/?code=' + code (api/mint.js) and emails it; there is
+     nothing to paste and nowhere to paste it. The reader for that parameter
+     used to live in the welcome popup and drove its form -- it set #wk-code and
+     clicked #wk-unlock -- so when that markup left the page the emailed link
+     stopped doing anything at all, silently, for everyone. Register, 68.
+
+     It needs no markup. The landing steps are refreshKit's, which never did.
+
+     The code is the whole authorization, so it comes out of the address bar
+     before anything else happens: it should not sit in a URL that gets shared,
+     bookmarked or pasted into a channel. A code in the link outranks a kit
+     already saved in this browser, because on a shared machine the link belongs
+     to whoever just clicked it.
+
+     A bad or retired code fails quietly, which is a gap rather than a decision:
+     there is no surface to report it on now, and the hub still works without a
+     kit. The hire loses their own section, which says it is waiting on their
+     manager -- true for a missing plan, misleading for a bad code. */
+  function unlockFromUrl() {
+    var qs = new URLSearchParams(location.search);
+    var code = qs.get('code');
+    if (!code) return false;
+    /* Only the code comes out. The line this replaced rebuilt the address as
+       pathname + hash, which dropped every other parameter with it -- and
+       arrival.js parses location.search when IT loads, which is after this, so
+       a ?code= link silently cancelled ?replay=0 and anything else we ever put
+       beside it. Deleting one key says what is meant. */
+    qs.delete('code');
+    var rest = qs.toString();
+    history.replaceState(null, '', location.pathname + (rest ? '?' + rest : '') + location.hash);
+    fetch('/api/welcome', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code: code })
+    })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (!j) return;
+        store('carrara_welcome', { code: code, data: j });
+        kitData = j;
+        applyKitToHub();
+        mountMyOnboarding();
+        window.dispatchEvent(new Event('carrara:kit-updated'));
+      })
+      .catch(function () { /* offline: the hub stands, the section waits */ });
+    return true;
   }
 
   /* The saved kit is a FALLBACK for an offline or failed refresh, never the
@@ -1485,6 +1839,37 @@
        people to the wrong client, not just to nothing. A client the Knowledge
        Hub does not carry has no page to go to, and its row says so by being a
        row rather than a link. */
+    /* A past engagement is a CELL: the logo and the name beside it, the same
+       chip the offering pages use for their client lists. Not the lead and not
+       what we did -- the lead has moved on and the work is finished, so neither
+       is a fact about today -- and not a row either, because fifty-one rows is
+       fifty-one rows however little each one says. Cells sit along each other
+       and wrap.
+
+       It is `clientTile`'s markup rather than `clientTile` itself, because that
+       one sends you to the company's own site and these should go to its page
+       on the Carrara Hub -- the eight that have one. The rest are chips. */
+    function pastCell(c) {
+      var kc = knowledgeClient(c.name);
+      var url = kc && kc.url;
+      var mark = c.domain
+        ? '<img src="' + favicon(c.domain, 64) + '" alt="" loading="lazy">'
+        : '<span class="cl-init">' + esc(String(c.name).charAt(0)) + '</span>';
+      var el = document.createElement(url ? 'a' : 'div');
+      el.className = 'cl-cell' + (url ? ' is-linked' : '');
+      if (url) {
+        el.href = url;
+        el.target = '_blank';
+        el.rel = 'noopener';
+        el.title = 'Open ' + c.name + ' on the Carrara Hub';
+      } else {
+        el.title = c.name;
+      }
+      el.innerHTML = '<div class="cl-mark">' + mark + '</div>'
+        + '<div class="cl-name">' + esc(c.name) + '</div>';
+      return el;
+    }
+
     function row(c) {
       var kc = knowledgeClient(c.name);
       var url = kc && kc.url;
@@ -1512,7 +1897,8 @@
     var archived = clientData.filter(function (c) { return !isActive(c); });
     current.forEach(function (c) { grid.appendChild(row(c)); });
     if (archGrid) {
-      archived.forEach(function (c) { archGrid.appendChild(row(c)); });
+      archGrid.className = 'cl-grid cl-grid--past';
+      archived.forEach(function (c) { archGrid.appendChild(pastCell(c)); });
       var wrap = $('#archived-wrap');
       if (wrap) wrap.hidden = archived.length === 0;
     }
@@ -1558,8 +1944,13 @@
       d.innerHTML = '<div class="tlogo"><img src="' + favicon(t.dmn, 64) + '" alt="" loading="lazy"></div>'
         + '<div><div class="tn">' + esc(t.n) + (t.tag ? '<span class="tag">' + esc(t.tag) + '</span>' : '') + '</div>'
         + '<div class="td">' + esc(t.d) + (t.tag ? ' Request access from Eric on Slack.' : '') + '</div></div>'
-        + '<div class="ta"><a class="btn" href="' + t.url + '" target="_blank" rel="noopener">'
-        + 'Get it <span data-icon="arrow-up-right" aria-hidden="true"></span></a></div>';
+        /* Just the arrow. "Get it" was a filled button saying what every row on
+           the page already says by being a row with a destination, and eight of
+           them stacked made a column of buttons out of a list of tools. The
+           icon is aria-hidden, so the link carries the name a sighted reader
+           gets from the row it sits in. */
+        + '<div class="ta"><a class="ta-go" href="' + t.url + '" target="_blank" rel="noopener"'
+        + ' aria-label="Open ' + esc(t.n) + '"><span data-icon="arrow-up-right" aria-hidden="true"></span></a></div>';
       Icons.draw(d);
       grid.appendChild(d);
     });
@@ -1636,8 +2027,8 @@
 
   /* The guided tour is gone. Sequential movement lives in the "Next: <section>"
      link at the foot of every page, and visits are recorded by show() either
-     way, so My onboarding still reveals itself once the hub has been walked. */
-  $('#btn-home').addEventListener('click', function () { location.hash = '#/start'; });
+     way, so My onboarding still reveals itself once the hub has been walked.
+     Its last screen, #/complete, went with it: the ending is the modal now. */
 
   /* ---------- welcome kit popup ---------- */
   (function () {
@@ -1851,6 +2242,10 @@
   route();
   /* Every load re-verifies the saved code with POps behind it (spec decision 6).
      The section itself refetches on every visit; this is the boot copy, so a
-     hire who lands straight on the hub sees a current kit, not yesterday's. */
-  refreshKit();
+     hire who lands straight on the hub sees a current kit, not yesterday's.
+
+     A code in the address bar is handled instead: it fetches the same kit from
+     the same endpoint, so refreshing on top of it would be the same call twice
+     on the slowest load a hire ever has -- their first. */
+  if (!unlockFromUrl()) refreshKit();
 })();

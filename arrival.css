@@ -103,7 +103,10 @@ body.is-loading main, body.is-loading .sidebar { visibility: hidden; }
 .ticket {
   --ticket-w: 320px;
   --scallop: 5px;          /* the radius of a punched half-circle */
-  --notch: 16px;           /* half the diagonal of the waist's diamond */
+  --notch: 16px;           /* half the SIDE of the waist's diamond */
+  /* and so half its diagonal, which is how far it actually reaches into the
+     ticket: a square stood on its corner is wider than its own side */
+  --bite: calc(var(--notch) * 1.41421356);
   width: var(--ticket-w);
   flex: none;
   position: relative;
@@ -121,6 +124,23 @@ body.is-loading main, body.is-loading .sidebar { visibility: hidden; }
     radial-gradient(circle at 9px 0, transparent 5px, #000 5.5px) 0 0 / 18px 100% repeat-x,
     radial-gradient(circle at 9px 100%, transparent 5px, #000 5.5px) 0 100% / 18px 100% repeat-x;
   mask-composite: intersect;
+  /* The waist is CUT too, for the same reason the scalloped edges are. It used
+     to be two diamonds of the page's own colour laid over the seam, which only
+     works while the page behind is a flat colour -- against the chart they read
+     as two blue patches sitting on it rather than as a tear. Clipped, whatever
+     is behind the ticket carries on through the bite, contour lines and all.
+     The clip and the mask are independent and both apply: the mask punches the
+     scallops, the clip takes the waist. */
+  clip-path: polygon(
+    0 0, 100% 0,
+    100% calc(var(--ticket-w) - var(--bite)),
+    calc(100% - var(--bite)) var(--ticket-w),
+    100% calc(var(--ticket-w) + var(--bite)),
+    100% 100%, 0 100%,
+    0 calc(var(--ticket-w) + var(--bite)),
+    var(--bite) var(--ticket-w),
+    0 calc(var(--ticket-w) - var(--bite))
+  );
 }
 
 /* the picture half: the quarry, printed in ember */
@@ -181,22 +201,6 @@ body.is-loading main, body.is-loading .sidebar { visibility: hidden; }
   align-items: stretch;
 }
 
-/* the waist, where a ticket is torn: a diamond of the page's own colour bitten
-   out of each side, on the seam between the picture and the stub */
-.ticket::before,
-.ticket::after {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  top: var(--ticket-w);
-  width: calc(var(--notch) * 2);
-  height: calc(var(--notch) * 2);
-  background: var(--color-background-paper-cielo);
-  transform: translateY(-50%) rotate(45deg);
-  pointer-events: none;
-}
-.ticket::before { left: 0; transform: translate(-50%, -50%) rotate(45deg); }
-.ticket::after { right: 0; transform: translate(50%, -50%) rotate(45deg); }
 
 /* ---------------------------------------------------------------- its fields */
 /* The label belongs to the value under it, so nothing sits between them: the

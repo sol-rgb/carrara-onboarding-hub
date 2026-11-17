@@ -25,7 +25,6 @@
   --sage-soft: var(--color-background-default);   /* marmol, not a sage */
   --orange: var(--color-background-accent);
   --blue: var(--color-background-paper-cielo);
-  --hairline: rgba(45, 42, 42, 0.14);             /* the system has no translucent border */
   /* The edge of a card that sits on the sheet, not on the page. Tier 2's subtle
      border is drawn for the page: on a sheet it is right in light and invisible
      in dark, where --color-background-sheet and --color-border-subtle are the
@@ -127,75 +126,6 @@ body {
 }
 .mark--corner:hover .mark__block { fill: var(--color-content-accent); }
 .mark--corner:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 4px; }
-
-/* ---------- sidebar ---------- */
-.sidebar {
-  position: fixed;
-  top: var(--space-mat); bottom: var(--space-mat);
-  left: calc(var(--space-mat) + var(--space-inset-md));
-  width: var(--side);
-  padding: var(--space-section-y) 0 var(--space-inset-md);
-  display: flex; flex-direction: column;
-  background: transparent;
-  z-index: 20;   /* under the arrival's sheet, which covers the page */
-}
-/* The index of About Carrara, set like the letter's rail (letters-to-friends,
-   idea-4 on main, nav.rail): the ordinal in the typewriter, quiet until it is
-   the page you are on, and the name beside it in ink at every step. The name
-   never changes -- the number is what says where you are -- and the name's line
-   starts 4 under the number's, which is what makes the ordinal read as a
-   superscript instead of a column of figures. No rule down the margin: the
-   letter has none, and the numbers already are the column. */
-.sidebar nav { display: flex; flex-direction: column; gap: var(--space-stack-sm); }
-.sidebar nav a {
-  display: flex; gap: var(--space-stack-sm); align-items: flex-start;
-  font-family: var(--type-body-sm-family); font-size: var(--type-body-sm-size);
-  line-height: var(--type-body-sm-leading);
-  text-decoration: none; padding: 0;
-}
-.sidebar nav a .rail__num {
-  flex: none;
-  font-family: 'Courier Prime', ui-monospace, monospace;
-  font-weight: 700; color: var(--rail-num);
-  transition: color var(--motion-tint-duration) var(--motion-tint-easing);
-}
-.sidebar nav a .rail__info { flex: 1 1 auto; min-width: 0; padding-top: var(--space-4); }
-.sidebar nav a .rail__name {
-  font-weight: var(--weight-700);
-  color: var(--color-content-default);
-}
-.sidebar nav a:hover .rail__num,
-.sidebar nav a.active .rail__num { color: var(--color-content-default); }
-.sidebar nav a:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
-/* the way out of the item, under its own pages */
-.rail-out {
-  margin-top: var(--space-stack-lg);
-  display: inline-flex; align-items: center; gap: var(--space-stack-sm);
-  font-family: var(--type-body-sm-family); font-size: var(--type-body-sm-size);
-  line-height: var(--type-body-sm-leading); color: var(--color-content-subtle);
-  text-decoration: none;
-  transition: color var(--motion-tint-duration) var(--motion-tint-easing);
-}
-.rail-out [data-icon] { font-size: var(--type-body-sm-size); }
-.rail-out:hover { color: var(--color-content-default); }
-.rail-out:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
-
-/* Under 1200 the margin is not wide enough to hold a column beside the reading
-   one, so the index does what the letter's does: it stops being a margin and
-   becomes a row over the page. The page gives up its top air to make room. */
-@media (max-width: 1200px) {
-  .sidebar {
-    position: static; width: auto; z-index: auto;
-    display: block;
-    max-width: var(--layout-measure-sm);
-    margin: 0 auto;
-    padding: var(--space-section-y) var(--space-inset-md) 0;
-  }
-  .sidebar nav { flex-direction: row; flex-wrap: wrap; gap: var(--space-stack-sm) var(--space-stack-lg); }
-  .sidebar nav a .rail__info { flex: none; }
-  .rail-out { margin-top: var(--space-stack-md); }
-  body.has-index .view.visible { padding-top: var(--space-stack-xl); }
-}
 
 .topbar { display: none; }
 
@@ -315,11 +245,37 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
    under it an item is a name, what it asks of you, and an arrow to where it is
    done. The tick is on the left, where a hand looking for it goes. */
 #cover-checklist {
+  /* The list is torn off the same pad as the ticket, so its top and bottom are
+     CUT rather than drawn: a repeating radial gradient as a mask, transparent
+     inside each circle, the circle sitting ON the edge so half of it is bitten
+     out and the page behind shows through. Declared twice because the two
+     layers have to intersect, and mask-composite has to come after the
+     shorthand, which resets it.
+
+     The ticket's teeth are 18px apart on a 320-wide stub. This sheet is 650, so
+     the same step would give it forty teeth and read as a frill instead of a
+     tear; the step is scaled to leave about twenty. The tooth keeps the
+     ticket's shape, because the radius is the same share of the step. */
+  --perf: 32px;             /* the step */
+  --perf-bite: 9px;         /* the radius: the ticket's 5 of 18, at this step */
   width: 100%;
   background: var(--color-background-sheet);
-  border: 1px solid var(--card-edge);
-  border-radius: var(--shape-soft);
+  /* The sides keep their hairline. The torn edges cannot have one: a border is
+     drawn at the element's edge and the cut would chop it into arcs. */
+  border-left: 1px solid var(--card-edge);
+  border-right: 1px solid var(--card-edge);
   padding: var(--space-inset-md);
+  -webkit-mask:
+    radial-gradient(circle at calc(var(--perf) / 2) 0,
+      transparent var(--perf-bite), #000 calc(var(--perf-bite) + 0.5px)) 0 0 / var(--perf) 100% repeat-x,
+    radial-gradient(circle at calc(var(--perf) / 2) 100%,
+      transparent var(--perf-bite), #000 calc(var(--perf-bite) + 0.5px)) 0 100% / var(--perf) 100% repeat-x;
+  mask:
+    radial-gradient(circle at calc(var(--perf) / 2) 0,
+      transparent var(--perf-bite), #000 calc(var(--perf-bite) + 0.5px)) 0 0 / var(--perf) 100% repeat-x,
+    radial-gradient(circle at calc(var(--perf) / 2) 100%,
+      transparent var(--perf-bite), #000 calc(var(--perf-bite) + 0.5px)) 0 100% / var(--perf) 100% repeat-x;
+  mask-composite: intersect;
 }
 .ck-title {
   margin: 0 0 var(--space-stack-sm);
@@ -355,7 +311,10 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
   text-transform: uppercase;
   color: var(--color-content-default);
 }
-.ck-row { display: flex; align-items: flex-start; gap: var(--space-stack-md); border-bottom: 1px solid var(--card-edge); }
+/* A row is one line now, so the tick and the arrow sit centred on it rather than
+   pinned to the top of a block. A title long enough to wrap still centres against
+   both its lines, which is what a two-line row wants anyway. */
+.ck-row { display: flex; align-items: center; gap: var(--space-stack-md); border-bottom: 1px solid var(--card-edge); }
 /* the sheet's own edge closes the list; a rule above it would be a loose end */
 .ck-group:last-child .ck-row:last-child { border-bottom: 0; }
 /* The row's air is the link's own padding, so a click lands anywhere in the row
@@ -363,7 +322,7 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
    and loses the cursor. */
 .ck-go {
   flex: 1; min-width: 0;
-  display: flex; align-items: flex-start; gap: var(--space-stack-md);
+  display: flex; align-items: center; gap: var(--space-stack-md);
   margin: 0; padding: var(--space-stack-md) 0; border: 0; background: none;
   text-align: left; font: inherit; color: inherit; text-decoration: none;
   cursor: pointer;
@@ -377,14 +336,10 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
   color: var(--color-content-default);
   transition: color var(--motion-tint-duration) var(--motion-tint-easing);
 }
-.ck-d {
-  display: block;
-  font-family: var(--type-body-md-family); font-size: var(--type-body-md-size);
-  line-height: var(--type-body-md-leading); color: var(--color-content-subtle);
-}
 .ck-arrow {
+  /* The optical nudge that lined this up with the first line of a block is gone
+     with the block: the row centres it now. */
   flex: none; font-size: var(--type-body-md-size);
-  margin-top: calc((var(--type-body-md-size) * var(--type-body-md-leading) - var(--type-body-md-size)) / 2);
   color: var(--color-content-subtle);
   transition: color var(--motion-tint-duration) var(--motion-tint-easing),
               transform var(--motion-tint-duration) var(--motion-tint-easing);
@@ -396,7 +351,10 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
    the check knocked out of it. The glyph is there all along, in the ring's own
    colour, so it shows faintly under the cursor and says what the ring is for. */
 .ck-box {
-  flex: none; width: 24px; height: 24px; margin-top: var(--space-stack-md);
+  /* No nudge: the row centres it. The margin that used to line it up with the
+     first line of a block put it half that margin below centre once the block
+     became a single line. */
+  flex: none; width: 24px; height: 24px;
   display: flex; align-items: center; justify-content: center;
   font-size: var(--type-body-sm-size);
   border: 1px solid var(--card-edge); border-radius: var(--shape-circle);
@@ -448,8 +406,7 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
    places wear it -- the cover, the step's next button, and the way out of a sheet
    -- so it is declared once here and each of them names it. */
 .btn,
-.btn-cover,
-.next-nav a {
+.btn-cover {
   display: inline-flex;
   align-items: center;
   gap: var(--space-8);
@@ -473,19 +430,14 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
 .btn:hover [data-icon="arrow-right"],
 .btn:focus-visible [data-icon="arrow-right"],
 .btn-cover:hover .btn-cover__arrow,
-.btn-cover:focus-visible .btn-cover__arrow,
-.next-nav a:hover .btn-cover__arrow,
-.next-nav a:focus-visible .btn-cover__arrow { transform: translateX(3px); }
+.btn-cover:focus-visible .btn-cover__arrow { transform: translateX(3px); }
 .btn:hover [data-icon="arrow-up-right"],
 .btn:focus-visible [data-icon="arrow-up-right"] { transform: translate(2px, -2px); }
 .btn:focus-visible,
 .btn-cover:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
 
-/* The sidebar used to be hidden outright: the hub was one road, so every step
-   carried the button to the next one and there was nothing to browse. It is
-   About Carrara's index now -- the only item with pages inside it -- and
-   app.js hides it on every other page. The mobile select is still dead. */
-.sidebar[hidden] { display: none; }
+/* #mobile-nav and its .topbar are still built on load and still hidden. The
+   checklist is the navigation now, so neither has a job. */
 .topbar { display: none; }
 
 .eyebrow {
@@ -509,6 +461,29 @@ h2.sub {
 }
 .body-copy { line-height: var(--type-body-md-leading); color: var(--color-content-default); }
 .body-copy + .body-copy { margin-top: var(--space-stack-md); }
+/* A paragraph carries no margin of its own -- paragraphs space themselves by
+   the rule above -- so anything that is NOT another paragraph lands flush
+   against it. A block of prose followed by a list was touching it: the list
+   began tighter than the 8 between its own items. It takes the same air one
+   paragraph gives another, which is more than the list spends inside itself,
+   so the block reads as a block. */
+.body-copy + .pg { margin-top: var(--space-stack-md); }
+/* The same thing the other way round: a paragraph that CLOSES a block is not
+   the sibling of a paragraph either, so it landed flush against the last row.
+
+   A block set in PROSE takes its own 56 less a line of it, which is 40. That is
+   the same sum the rule near the top of this file makes for a block set under a
+   page TITLE -- 56 less 24 -- and for the same reason: the block carries one
+   measure of air and what it sits against decides how much comes back off.
+   Written as the subtraction rather than as whichever token happens to equal
+   40, so the relationship survives the next time one of them moves.
+
+   Scoped to the pair, so only a block in prose is touched. Measured across
+   every view: one element matches each of these, and it is the payroll list.
+   The resources page puts its block under the title and is governed by that
+   other rule, unchanged at 32. */
+.body-copy + .res-cols { margin-top: calc(var(--space-stack-xl) - var(--space-stack-md)); }
+.res-cols + .body-copy { margin-top: calc(var(--space-stack-xl) - var(--space-stack-md)); }
 
 /* An inline link, one rule for the whole hub (the letter's own: color inherit,
    underline dotted). The words read in the ink they sit in; the dotted rule
@@ -560,27 +535,50 @@ a.textlink:focus-visible,
   position: absolute; right: -20px; top: -26px; width: min(180px, 14vw);
   pointer-events: none;
 }
-.cta-row { margin: var(--space-stack-xl) 0 var(--space-stack-md); display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+/* The hub's one control height, 48, stated the way .pager__item states it
+   rather than added up out of padding. This was 16px of padding on a 21px line,
+   which came out at 53 and read as a bigger button than the ones a page ends
+   with -- same family of control, two heights. The side padding matches theirs
+   too. It stays filled: on the Top 5 page it sits a few inches above "Mark as
+   completed", and if both were outline the one that posts a person and the one
+   that ticks the item would be the same button twice. */
 .btn-primary {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 48px;
   font-weight: var(--weight-700); font-size: var(--type-body-sm-size);
   background: var(--color-background-strong); color: var(--color-content-knockout); border: none; cursor: pointer;
-  padding: 16px 32px; border-radius: var(--shape-soft);
+  padding: 0 var(--space-stack-lg); border-radius: var(--shape-soft);
   transition: background 0.2s ease;
 }
 .btn-primary:hover { background: var(--orange); }
 .cta-note { font-size: var(--type-body-sm-size); color: var(--taupe); }
 .startover { font-family: var(--sans); font-size: var(--type-body-2xs-size); letter-spacing: 0.06em; color: var(--taupe); background: none; border: none; cursor: pointer; text-decoration: underline; }
 
-.stat-strip { display: flex; margin-top: 64px; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); max-width: 900px; }
+.stat-strip { display: flex; margin-top: 64px; border-top: 1px solid var(--card-edge); border-bottom: 1px solid var(--card-edge); max-width: 900px; }
 .stat { flex: 1; padding: 22px 26px 22px 0; }
-.stat + .stat { border-left: 1px solid var(--hairline); padding-left: 26px; }
+.stat + .stat { border-left: 1px solid var(--card-edge); padding-left: 26px; }
 .stat .num { font-family: var(--sans); font-weight: var(--weight-700); font-size: var(--size-34); }
 .stat .lbl { font-family: var(--sans); font-size: var(--type-body-2xs-size); letter-spacing: 0.1em; color: var(--taupe); margin-top: 3px; }
 
 /* ---------- pull quote ---------- */
+/* The manager's note to the hire, and the only thing wearing this class.
+
+   It was set at --type-title-sm, which is the page title's own step. That
+   passed unnoticed while the section's heading was an unstyled <h1> at the
+   browser's 32 bold sans: different enough family and weight that the note
+   still read as the second thing. Putting the heading on the system made them
+   identical -- two 28 serif lines stacked, the second of which is not a title.
+
+   It is prose now, at the step the rest of the hub gives prose, which is also
+   what it is: a few sentences a person wrote to another person. The italic
+   .attr under it is what says whose voice it is, and that was always doing the
+   work the size was being asked to do. */
 .pull {
-  font-family: var(--serif); font-weight: var(--weight-400); font-size: var(--type-title-sm-size);
-  line-height: var(--type-title-sm-leading); letter-spacing: -0.015em;
+  font-family: var(--type-body-md-family);
+  font-size: var(--type-body-md-size);
+  font-weight: var(--type-body-md-weight);
+  line-height: var(--type-body-md-leading);
+  letter-spacing: var(--type-body-md-tracking);
   margin: 0 0 10px;
 }
 .attr { font-style: italic; font-size: var(--type-body-sm-size); color: var(--taupe); }
@@ -596,7 +594,7 @@ a.textlink:focus-visible,
 
 /* 30/60/90 */
 .ninety { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin: 26px 0 8px; }
-.n-card { border: 1px solid var(--hairline); border-radius: var(--shape-soft); padding: 22px; }
+.n-card { border: 1px solid var(--card-edge); border-radius: var(--shape-soft); padding: 22px; }
 .n-card .d30 { font-family: var(--sans); font-weight: var(--weight-700); font-size: var(--type-title-sm-size); }
 .n-card .f { font-weight: var(--weight-500); font-size: var(--type-body-sm-size); margin: 8px 0 4px; }
 .n-card .feel { font-style: italic; font-size: var(--type-body-sm-size); color: var(--taupe); }
@@ -608,7 +606,7 @@ table.clean th {
   color: var(--taupe); text-align: left; font-weight: var(--weight-700);
   padding: 0 14px 12px 0; border-bottom: 1px solid var(--ink);
 }
-table.clean td { padding: 14px 14px 14px 0; border-bottom: 1px solid var(--hairline); font-size: var(--type-body-sm-size); vertical-align: top; }
+table.clean td { padding: 14px 14px 14px 0; border-bottom: 1px solid var(--card-edge); font-size: var(--type-body-sm-size); vertical-align: top; }
 table.clean td:first-child { font-weight: var(--weight-500); white-space: nowrap; }
 table.clean td:last-child { font-family: var(--sans); font-size: var(--type-body-2xs-size); letter-spacing: 0.05em; color: var(--color-content-default); white-space: nowrap; }
 
@@ -624,7 +622,7 @@ table.clean td:last-child { font-family: var(--sans); font-size: var(--type-body
 .chk-group { margin-top: 34px; }
 .chk-group .glabel { font-family: var(--sans); font-size: var(--type-body-2xs-size); letter-spacing: 0.14em; color: var(--taupe); margin-bottom: 6px; }
 .chk-group .glabel.blue { background: var(--blue); color: var(--ink); display: inline-block; padding: 2px 8px; }
-.chk-item { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--hairline); }
+.chk-item { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--card-edge); }
 .chk-item .box {
   width: 19px; height: 19px; flex: none; border: 1.5px solid var(--taupe); cursor: pointer;
   border-radius: var(--shape-soft);
@@ -634,16 +632,12 @@ table.clean td:last-child { font-family: var(--sans); font-size: var(--type-body
 .chk-item .txt { font-size: var(--type-body-sm-size); cursor: pointer; flex: 1; transition: color 0.2s ease; }
 .chk-item.done .txt { color: var(--taupe); text-decoration: line-through; text-decoration-thickness: 1px; }
 .chk-item .info {
-  font-family: var(--sans); font-size: var(--type-body-2xs-size); color: var(--taupe); border: 1px solid var(--hairline);
+  font-family: var(--sans); font-size: var(--type-body-2xs-size); color: var(--taupe); border: 1px solid var(--card-edge);
   width: 18px; height: 18px; flex: none; display: flex; align-items: center; justify-content: center;
   cursor: pointer; border-radius: var(--shape-soft);
 }
 .chk-item .info:hover { color: var(--color-content-accent); border-color: var(--color-content-accent); }
 .reset-link { margin-top: 24px; }
-.done-moment { display: none; align-items: center; gap: 26px; margin-top: 46px; }
-.done-moment.show { display: flex; }
-.done-moment img { width: 84px; }
-.done-moment .line { font-family: var(--serif); font-weight: var(--weight-400); font-size: var(--size-24); letter-spacing: -0.015em; }
 
 /* ---------- modal ---------- */
 /* A sheet laid over the page, on the system's own corner: --shape-soft, 2px, the
@@ -656,7 +650,40 @@ table.clean td:last-child { font-family: var(--sans); font-size: var(--type-body
   align-items: center; justify-content: center;
   padding: var(--space-stack-lg);
 }
-.modal-back.show { display: flex; }
+/* A sheet arrives and leaves rather than appearing and vanishing. The scrim
+   fades; the sheet rises a little behind it and settles back on the way out.
+   Both take the system's named effects, and both stop where motion is asked to
+   stop -- there, closeModal drops the sheet on the spot instead. */
+.modal-back.show {
+  display: flex;
+  animation: scrim-in var(--motion-enter-duration) var(--motion-enter-easing) both;
+}
+.modal-back.show .modal {
+  animation: sheet-in var(--motion-enter-duration) var(--motion-enter-easing) both;
+}
+/* Leaving: still displayed, no longer in the way of the page underneath. */
+.modal-back.closing {
+  display: flex;
+  pointer-events: none;
+  animation: scrim-out var(--motion-exit-duration) var(--motion-exit-easing) both;
+}
+.modal-back.closing .modal {
+  animation: sheet-out var(--motion-exit-duration) var(--motion-exit-easing) both;
+}
+@keyframes scrim-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scrim-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes sheet-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes sheet-out {
+  from { opacity: 1; transform: none; }
+  to { opacity: 0; transform: translateY(8px) scale(0.99); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .modal-back.show, .modal-back.show .modal,
+  .modal-back.closing, .modal-back.closing .modal { animation: none; }
+}
 .modal {
   background: var(--color-background-sheet);
   border-radius: var(--shape-soft);
@@ -696,20 +723,98 @@ table.clean td:last-child { font-family: var(--sans); font-size: var(--type-body
 .m-close [data-icon] { width: 18px; height: 18px; }
 .modal .m-close:hover { color: var(--color-content-accent); }
 .modal .m-close:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
-.modal label {
-  display: block; font-family: var(--type-body-2xs-family); font-size: var(--type-body-2xs-size);
-  letter-spacing: 0.1em; color: var(--color-content-subtle);
+/* A field's name is small body text, and that is all it is.
+
+   It used to take its size from --type-body-2xs and then overrule that same
+   token's tracking with a hardcoded 0.1em. The tracking is not arbitrary in
+   this system: it is what UPPERCASE earns. .pf-group and .pf-opt carry 0.13em
+   and 0.08em and both are uppercase, and every body token on the ramp is
+   --tracking-none. Set on sentence case, it read as letters pushed apart for no
+   reason -- the only body text in the hub carrying tracking at all.
+
+   It names one job now, the whole of it rather than four fifths: body-sm with
+   its own leading, weight and tracking.
+
+   It went to body-xs first, on the reasoning that a label should be a step
+   under the field it names. Yan looked at it and asked for 14. She is right,
+   and the reason is that a form is not a hierarchy: the label, the hint and the
+   value you type are all the same kind of small print, read at the same
+   distance, one after another. Setting them on one step makes a column of
+   fields read as a column. What tells the label from the value is colour --
+   subtle against default ink -- which is the difference that means something
+   here. Size was saying "less important", which a field's own name is not. */
+.modal label, .form-sheet label {
+  display: block;
+  font-family: var(--type-body-sm-family);
+  font-size: var(--type-body-sm-size);
+  line-height: var(--type-body-sm-leading);
+  font-weight: var(--type-body-sm-weight);
+  letter-spacing: var(--type-body-sm-tracking);
+  color: var(--color-content-subtle);
   margin: var(--space-stack-md) 0 var(--space-stack-sm);
 }
-.modal input, .modal textarea, .modal select {
+.modal input, .modal textarea, .modal select,
+.form-sheet input, .form-sheet textarea, .form-sheet select {
   width: 100%; font-family: var(--type-body-sm-family); font-size: var(--type-body-sm-size);
   line-height: var(--type-body-sm-leading); color: var(--color-content-default);
   background: var(--color-background-default); border: 1px solid var(--color-border-default);
   border-radius: var(--shape-soft); padding: var(--space-stack-sm) var(--space-stack-md); outline: none;
 }
-.modal input:focus, .modal textarea:focus { border-color: var(--color-content-accent); }
-.modal .m-actions { margin-top: var(--space-stack-lg); display: flex; gap: var(--space-stack-md); align-items: center; }
-.m-note { font-size: var(--type-body-xs-size); line-height: var(--type-body-xs-leading); color: var(--color-content-subtle); margin-top: var(--space-stack-md); }
+.modal input:focus, .modal textarea:focus,
+.form-sheet input:focus, .form-sheet textarea:focus { border-color: var(--color-content-accent); }
+.modal .m-actions, .form-sheet .m-actions { margin-top: var(--space-stack-lg); display: flex; gap: var(--space-stack-md); align-items: center; }
+
+/* A form standing on a page of its own rather than inside a popup. The form's
+   own rules were written against .modal, which is what a form used to mean, so
+   every one of them now names this class too. The air above it is the air a
+   block of rows takes under prose (entry 56's pair), because that is what it
+   is: a block, under prose. */
+.form-sheet { margin-top: calc(var(--space-stack-xl) - var(--space-stack-md)); }
+/* The form's status line, and only that: "Sending...", "Add your name.", the
+   failure after a post. It used to carry the note under a part head as well,
+   until that note became what it always was -- a paragraph under a subhead, set
+   as .body-copy. The two had nothing in common but a class. A status reports on
+   a control, so it stays at the labels' step, quiet and beside them. */
+.m-note {
+  font-family: var(--type-body-sm-family);
+  font-size: var(--type-body-sm-size);
+  line-height: var(--type-body-sm-leading);
+  font-weight: var(--type-body-sm-weight);
+  letter-spacing: var(--type-body-sm-tracking);
+  color: var(--color-content-subtle);
+  margin-top: var(--space-stack-md);
+}
+
+/* The completion moment is the one sheet in the hub with nothing to read and
+   nothing to do: no list, no links, no form. So it is the one sheet that is
+   centred, and the one cut well under the reading measure the others take --
+   650 is a width for prose, and there is no prose here. */
+.modal:has(.moment) { width: min(420px, 94vw); }
+.moment { text-align: center; }
+.moment h3 { margin-bottom: var(--space-stack-md); }
+/* The film, held well under its own 468 so it is never upscaled. */
+.moment-film {
+  display: block;
+  width: min(200px, 100%);
+  height: auto;
+  margin: 0 auto var(--space-stack-lg);
+  border-radius: var(--shape-soft);
+  background: var(--color-background-sheet);
+}
+/* The wordmark signs it off. It is a background rather than an <img> because
+   the file carries its ember as a hardcoded fill, which no theme can reach:
+   the brand's own rule is ember on light and white on dark, so the dark theme
+   swaps the file. Decorative, and marked so in the markup. */
+.moment-mark {
+  display: block;
+  width: min(280px, 100%);
+  aspect-ratio: 222 / 40;
+  margin: var(--space-stack-xl) auto 0;
+  background: url('assets/logo/carrara-wordmark-ember.svg') center / contain no-repeat;
+}
+[data-theme="dark"] .moment-mark {
+  background-image: url('assets/logo/carrara-wordmark-white.svg');
+}
 
 /* ---------- rock cards (business) ---------- */
 /* The eight product lines read as a list: the name, what it is, one under the
@@ -720,7 +825,7 @@ table.clean td:last-child { font-family: var(--sans); font-size: var(--type-body
 .rock-grid { margin-top: var(--space-stack-xl); }
 .rock-card {
   padding: var(--space-stack-md) 0;
-  border-bottom: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--card-edge);
   font-size: var(--type-body-md-size);
   line-height: var(--type-body-md-leading);
 }
@@ -751,7 +856,7 @@ table.clean td:last-child { font-family: var(--sans); font-size: var(--type-body
 }
 .team-search {
   font-family: var(--sans); font-size: var(--type-body-sm-size); color: var(--ink);
-  background: var(--canvas); border: 1px solid var(--hairline);
+  background: var(--canvas); border: 1px solid var(--card-edge);
   padding: 8px 11px; width: 240px; border-radius: var(--shape-soft); outline: none;
 }
 .team-search:focus { border-color: var(--taupe); }
@@ -964,8 +1069,7 @@ table.clean td:last-child { font-family: var(--sans); font-size: var(--type-body
 .wk-tags span,
 .internal-tag,
 .cstatus,
-.mine-tag,
-.member .newtag {
+.mine-tag {
   display: inline-block;
   font-family: var(--type-body-xs-family);
   font-size: var(--type-body-xs-size);
@@ -989,21 +1093,18 @@ table.clean td:last-child { font-family: var(--sans); font-size: var(--type-body
 .wk-tags span::first-letter,
 .internal-tag::first-letter,
 .cstatus::first-letter,
-.mine-tag::first-letter,
-.member .newtag::first-letter { text-transform: uppercase; }
+.mine-tag::first-letter { text-transform: uppercase; }
 /* the papers and the inks, and nothing else */
 .client-tags span,
 .tool-row .tn .tag { border-color: var(--color-border-subtle); }
 .wk-tags span { background: var(--color-background-default); }
-.mine-tag,
-.member .newtag { border-color: var(--color-content-accent); color: var(--color-content-accent); }
+.mine-tag { border-color: var(--color-content-accent); color: var(--color-content-accent); }
 /* the ones that sit inside a 28 serif title keep 8 from the word and ride on
    its capitals; the ones beside a 16 name sit a little lower */
 .internal-tag,
 .cstatus { margin-left: var(--space-stack-sm); vertical-align: 4px; }
 .tool-row .tn .tag,
-.mine-tag,
-.member .newtag { margin-left: var(--space-stack-sm); vertical-align: 1px; }
+.mine-tag { margin-left: var(--space-stack-sm); vertical-align: 1px; }
 /* The hub's label voice -- Manrope, 11, uppercase, 0.12em -- not the serif it
    would otherwise inherit from the title it sits in. The tracking puts a gap
    after the last letter that the padding would double, so the right side gives
@@ -1040,24 +1141,35 @@ table.clean td:last-child { font-family: var(--sans); font-size: var(--type-body
   margin-top: var(--space-stack-sm); line-height: var(--type-body-md-leading);
 }
 .tool-row .ta { margin-left: auto; flex: none; }
+/* The way out of a tool row: the same bare arrow a .res-item uses, at the same
+   size, turning ember on hover. It rides down to the middle of the name beside
+   it, since the row aligns its cells to the top. */
+.ta-go {
+  display: inline-flex; align-items: center;
+  font-size: 16px; color: inherit;
+  padding-top: 5px;
+  transition: color 0.2s ease;
+}
+.ta-go:hover { color: var(--color-content-accent); }
+.ta-go:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 4px; }
 
 /* ---------- templates ---------- */
 .tpl-top { display: flex; gap: 12px; flex-wrap: wrap; margin: 26px 0 6px; }
 .tpl-top a {
   font-family: var(--sans); font-size: var(--type-body-2xs-size); letter-spacing: 0.07em; text-decoration: none;
-  color: var(--ink); border: 1px solid var(--hairline); padding: 11px 18px; border-radius: var(--shape-soft);
+  color: var(--ink); border: 1px solid var(--card-edge); padding: 11px 18px; border-radius: var(--shape-soft);
   display: inline-flex; align-items: center; gap: 9px;
 }
 .tpl-top a:hover { border-color: var(--color-content-accent); color: var(--color-content-accent); }
 .tpl-top a img { width: 10px; }
 .tpl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 34px 40px; }
-.tpl { margin-top: 34px; border-top: 1px solid var(--hairline); padding-top: 18px; }
+.tpl { margin-top: 34px; border-top: 1px solid var(--card-edge); padding-top: 18px; }
 .tpl-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
 .tpl-head .tn { font-weight: var(--weight-500); font-size: var(--type-body-md-size); }
-.tpl-head .tt { font-family: var(--sans); font-size: var(--type-body-2xs-size); letter-spacing: 0.1em; color: var(--taupe); border: 1px solid var(--hairline); padding: 2px 8px; }
+.tpl-head .tt { font-family: var(--sans); font-size: var(--type-body-2xs-size); letter-spacing: 0.1em; color: var(--taupe); border: 1px solid var(--card-edge); padding: 2px 8px; }
 .tpl-head .acts { margin-left: auto; display: flex; gap: 16px; }
 .tpl-head .acts a { font-family: var(--sans); font-size: var(--type-body-2xs-size); letter-spacing: 0.07em; color: var(--color-content-accent); text-decoration: none; }
-.tpl-frame { border: 1px solid var(--hairline); border-radius: var(--shape-soft); height: 420px; background: var(--color-background-sheet); position: relative; }
+.tpl-frame { border: 1px solid var(--card-edge); border-radius: var(--shape-soft); height: 420px; background: var(--color-background-sheet); position: relative; }
 .tpl-frame iframe { width: 100%; height: 100%; border: 0; }
 .tpl-fallback {
   position: absolute; inset: 0; display: flex; flex-direction: column; gap: 10px;
@@ -1087,7 +1199,7 @@ table.clean td:last-child { font-family: var(--sans); font-size: var(--type-body
 .res-item {
   position: relative;
   padding: var(--space-stack-md) var(--space-stack-lg) var(--space-stack-md) 0;
-  border-bottom: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--card-edge);
   font-size: var(--type-body-md-size);
   line-height: var(--type-body-md-leading);
   color: var(--color-content-default);
@@ -1295,10 +1407,6 @@ a.spec:focus-visible { box-shadow: inset 0 0 0 1.25px var(--color-content-accent
 }
 .btn-next:hover { background: var(--orange); }
 
-/* completion */
-.complete-wrap { display: flex; align-items: center; gap: 44px; margin-top: 30px; flex-wrap: wrap; }
-.complete-wrap img { width: 160px; }
-
 /* ---------- responsive ---------- */
 @media (max-width: 1200px) {
   .chk-cols { grid-template-columns: 1fr 1fr; }
@@ -1316,11 +1424,12 @@ a.spec:focus-visible { box-shadow: inset 0 0 0 1.25px var(--color-content-accent
      scrolls away with the page. */
   .view.visible { padding: var(--space-section-y) 0 var(--space-stack-xl); }
   .mark--corner { position: absolute; }
+  .page-up { position: absolute; }
   .hero-block { display: none; }
   .spec-grid, .spec-grid.three, .chk-cols, .to-seasons { grid-template-columns: 1fr; }
   .timeline, .ninety { grid-template-columns: 1fr; }
   .stat-strip { flex-direction: column; }
-  .stat + .stat { border-left: none; border-top: 1px solid var(--hairline); padding-left: 0; padding-top: 18px; }
+  .stat + .stat { border-left: none; border-top: 1px solid var(--card-edge); padding-left: 0; padding-top: 18px; }
   table.clean td:nth-child(2) { display: none; }
 }
 
@@ -1340,13 +1449,13 @@ a.spec:focus-visible { box-shadow: inset 0 0 0 1.25px var(--color-content-accent
 @media (prefers-reduced-motion: reduce) { .wk-dot { animation: none; } }
 .wk-panel {
   width: 356px; max-width: calc(100vw - 44px); max-height: min(72vh, 640px);
-  background: var(--canvas); border: 1px solid var(--hairline);
+  background: var(--canvas); border: 1px solid var(--card-edge);
   box-shadow: 0 18px 50px rgba(45, 42, 42, 0.18);
   border-radius: var(--shape-soft);
   display: flex; flex-direction: column;
 }
 .wk-panel[hidden] { display: none; }
-.wk-head { display: flex; align-items: center; justify-content: flex-end; padding: 16px 18px 12px; border-bottom: 1px solid var(--hairline); flex: none; }
+.wk-head { display: flex; align-items: center; justify-content: flex-end; padding: 16px 18px 12px; border-bottom: 1px solid var(--card-edge); flex: none; }
 .wk-eyebrow { font-family: var(--sans); font-size: var(--type-body-2xs-size); letter-spacing: 0.12em; color: var(--taupe); }
 .wk-close { font-family: var(--sans); font-size: var(--type-body-2xs-size); background: none; border: none; color: var(--taupe); cursor: pointer; }
 .wk-close:hover { color: var(--ink); }
@@ -1356,7 +1465,7 @@ a.spec:focus-visible { box-shadow: inset 0 0 0 1.25px var(--color-content-accent
 .wk-body label { display: block; font-family: var(--sans); font-size: var(--type-body-2xs-size); letter-spacing: 0.1em; color: var(--taupe); margin: 14px 0 6px; }
 .wk-body input {
   width: 100%; font-family: var(--sans); font-size: var(--type-body-sm-size); color: var(--ink);
-  background: var(--color-background-sheet); border: 1px solid var(--hairline); padding: 10px 11px; outline: none;
+  background: var(--color-background-sheet); border: 1px solid var(--card-edge); padding: 10px 11px; outline: none;
 }
 .wk-body input:focus { border-color: var(--taupe); }
 .wk-err { font-family: var(--sans); font-size: var(--type-body-2xs-size); color: var(--color-content-accent); margin-top: 10px; display: none; }
@@ -1365,17 +1474,42 @@ a.spec:focus-visible { box-shadow: inset 0 0 0 1.25px var(--color-content-accent
 .wk-sec { margin-top: var(--space-stack-sheet); padding-top: var(--space-stack-sheet); border-top: 1px solid var(--color-border-subtle); }
 .wk-sec:first-child { margin-top: 0; padding-top: 0; border-top: none; }
 /* the heading over a list inside a sheet: the step under the sheet's own title */
+/* What a card is about, which is the job .label does at the top of every page,
+   so it is set the same way: 14, weight 500, subtle, 16 under it.
+
+   It was body copy at 16 bold in full ink, inside brackets -- [your team],
+   [your manager] -- a label idiom this section invented and nothing else in the
+   hub uses. Brackets and weight were both doing what quiet small type does
+   everywhere else, which left the label competing with the name under it. The
+   brackets are gone from the strings too: they were the style, not the words. */
 .wk-lbl {
-  font-family: var(--type-body-md-family); font-size: var(--type-body-md-size);
-  font-weight: var(--weight-700); line-height: var(--type-body-md-leading);
-  color: var(--color-content-default); margin-bottom: var(--space-stack-lg);
+  font-family: var(--type-body-sm-family);
+  font-size: var(--type-body-sm-size);
+  font-weight: var(--type-body-sm-weight);
+  line-height: var(--type-body-sm-leading);
+  letter-spacing: var(--type-body-sm-tracking);
+  color: var(--color-content-subtle);
+  margin-bottom: var(--space-stack-md);
+}
+/* Inside a client or offering sheet the same class is doing a different job:
+   not a label on a card but the heading over a list -- "How we run it", "Who to
+   ask", "Links and docs". Those keep the weight they had. One class over two
+   jobs again; split here rather than let the card's needs quietly restyle eight
+   headings in the sheets. */
+.wk-sec .wk-lbl {
+  font-family: var(--type-body-md-family);
+  font-size: var(--type-body-md-size);
+  font-weight: var(--weight-700);
+  line-height: var(--type-body-md-leading);
+  color: var(--color-content-default);
+  margin-bottom: var(--space-stack-lg);
 }
 .wk-sec ul { list-style: disc; padding-left: var(--space-stack-lg); }
 .wk-sec li { font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); color: var(--color-content-default); margin-bottom: var(--space-stack-sm); }
 .wk-sec li b { font-weight: var(--weight-500); color: var(--ink); }
 /* the last section of a sheet is the way out of it: one button, no rule over it */
 .wk-sec.wk-out { border-top: none; padding-top: 0; }
-.wk-links a { display: block; font-size: var(--type-body-sm-size); padding: 7px 0; color: var(--color-content-accent); text-decoration: none; border-bottom: 1px solid var(--hairline); }
+.wk-links a { display: block; font-size: var(--type-body-sm-size); padding: 7px 0; color: var(--color-content-accent); text-decoration: none; border-bottom: 1px solid var(--card-edge); }
 .wk-links a:last-child { border-bottom: none; }
 .wk-links a:hover { color: var(--ink); }
 .wk-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
@@ -1405,13 +1539,114 @@ a.client-row { text-decoration: none; color: inherit; }
 .client-row:hover .cn { color: var(--color-content-accent); }
 .client-row.mine { outline: 2px solid var(--orange); outline-offset: -2px; }
 
-/* the step's own button, the cover's, 56 under the last thing on the page */
-.next-nav { margin-top: var(--space-stack-xl); }
-/* the end of the walk is a button, not a link: it ticks the item off before it
-   sends the hire back, so it needs the element's own resets over .btn */
-.next-nav button.btn { border: 0; cursor: pointer; }
-.next-nav a:focus-visible,
-.next-nav button:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
+/* The way out of a page is UP: back to the list it was opened from, and not at
+   the foot where the ways ALONG are. It stands on the mat under the mark, which
+   is the other way back -- the mark to the start, this to the list -- so both
+   are in the margin and neither is inside the page it leaves. */
+.page-up {
+  position: fixed;
+  top: calc(var(--space-mat) + var(--space-inset-md) + 32px + var(--space-stack-md));
+  left: calc(var(--space-mat) + var(--space-inset-md));
+  z-index: 30;
+  display: inline-flex; align-items: center; gap: var(--space-stack-sm);
+  font-family: var(--type-body-sm-family); font-size: var(--type-body-sm-size);
+  line-height: var(--type-body-sm-leading);
+  color: var(--color-content-subtle); text-decoration: none;
+  transition: color var(--motion-tint-duration) var(--motion-tint-easing);
+}
+.page-up[hidden] { display: none; }
+.page-up:hover { color: var(--color-content-default); }
+.page-up:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
+
+/* The foot steps between sections. Two halves that keep their sides: at either
+   end of the read the empty half holds its place, so the one that is there does
+   not slide across to the middle. The rule above it closes the page first. */
+.pager {
+  /* The square the back collapses to when it closes a section: the height of
+     the box beside it, so it comes out square. One number now, because the
+     height is one number -- it used to be a sum of padding, leading and borders
+     and had to be re-derived every time one of them moved. */
+  --pager-square: 48px;
+  /* No rule over it. A page that ends in a list already has a rule between
+     every row, so one more above the foot reads as the next row rather than as
+     the end of the page -- the boxes close it on their own. The air the rule
+     used to sit in is kept, as space rather than as a line. */
+  margin-top: calc(var(--space-stack-xl) + var(--space-stack-lg));
+  display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-stack-md);
+}
+.pager__item {
+  display: flex; align-items: center; gap: var(--space-stack-sm);
+  /* A control height, stated rather than added up. It used to be vertical
+     padding, which made the box as tall as whatever was inside it -- and what
+     was inside it was the tick, not the line of text, so it came out at 58. The
+     system has no token for the height of a control, so this is a number: tier
+     1's --size-* are a TYPE scale, and borrowing one here would say this box is
+     as tall as a headline is big, which is not a thing anyone meant. */
+  min-height: 48px;
+  padding: 0 var(--space-stack-lg);
+  border: 1px solid var(--card-edge);
+  font-family: var(--type-body-sm-family); font-size: var(--type-body-sm-size);
+  line-height: var(--type-body-sm-leading);
+  color: var(--color-content-default); text-decoration: none;
+  transition: background-color var(--motion-tint-duration) var(--motion-tint-easing),
+              color var(--motion-tint-duration) var(--motion-tint-easing);
+}
+.pager__item--next { justify-content: flex-end; text-align: right; }
+/* A page that is work rather than reading carries its own mark, under the
+   content and over the pager. Full width, because it is the one thing this page
+   asks of you; the pager under it is the way along, which is a different job. */
+.page-mark {
+  margin-top: calc(var(--space-stack-xl) + var(--space-stack-lg));
+  display: grid;
+}
+.page-mark .pager__item { justify-content: center; }
+/* Done: the filled mark a ticked row wears on the list, so the page and the row
+   say the same thing the same way. */
+.pager__item.is-complete {
+  background: var(--color-background-strong);
+  border-color: var(--color-background-strong);
+  color: var(--color-content-knockout);
+}
+/* Its hover is the UNMARKED look, which is a preview of what pressing it does:
+   the only thing left to do to a completed thing is to un-complete it. */
+.pager__item.is-complete:hover {
+  background: none;
+  border-color: var(--card-edge);
+  color: var(--color-content-default);
+}
+
+/* The foot that CLOSES a section is weighted: the back gives up its half and
+   becomes a square with the arrow in it, and the door takes the room. Going
+   back is returning to the page you just read, so its name is the one thing
+   you do not need told; finishing the section is the thing worth the width. */
+.pager--closing { grid-template-columns: var(--pager-square) 1fr; }
+.pager__item--back { padding: 0; justify-content: center; }
+.pager__item--done { justify-content: center; }
+/* a <button> needs its own resets, but NOT `font: inherit` -- that is a
+   shorthand, and it resets the font-size the box above has already set, which
+   once put this label at the page's 16 while the link beside it sat at 14 */
+button.pager__item { cursor: pointer; background: none; }
+/* The tick takes no rule of its own: `[data-icon]` is 1em, so it comes out at
+   the 14 of the label it sits with, exactly as the arrows in the other halves
+   do. It spent a while inside an outline circle, echoing the one the list
+   carries at the head of a row -- but a row's circle is a control you press,
+   and this is a word's punctuation. At this size the ring read as a different
+   object rather than as the same one. */
+.pager__item:hover {
+  background: var(--color-background-strong);
+  color: var(--color-content-knockout);
+}
+.pager__item:focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
+.pager__item [data-icon] { flex: none; }
+
+/* Side by side needs two columns of room. Under that they stack, and the one
+   that comes first in the read comes first down the page. */
+@media (max-width: 720px) {
+  /* two blocks of text do not fit side by side; a square and a door still do */
+  .pager { grid-template-columns: 1fr; }
+  .pager--closing { grid-template-columns: var(--pager-square) 1fr; }
+  .pager__item--next { justify-content: flex-start; text-align: left; }
+}
 
 /* ---------- search palette ---------- */
 .pal-back {
@@ -1422,13 +1657,13 @@ a.client-row { text-decoration: none; color: inherit; }
 .pal-back.show { display: flex; }
 .pal {
   width: 520px; max-width: calc(100vw - 40px);
-  background: var(--canvas); border: 1px solid var(--hairline);
+  background: var(--canvas); border: 1px solid var(--card-edge);
   box-shadow: 0 24px 60px rgba(45, 42, 42, 0.25);
   border-radius: var(--shape-soft);
 }
 .pal input {
   width: 100%; font-family: var(--sans); font-size: var(--type-body-md-size); color: var(--ink);
-  background: transparent; border: none; border-bottom: 1px solid var(--hairline);
+  background: transparent; border: none; border-bottom: 1px solid var(--card-edge);
   padding: 16px 18px; outline: none;
 }
 .pal-list { max-height: 46vh; overflow-y: auto; padding: 6px 0; }
@@ -1457,9 +1692,13 @@ a.client-row { text-decoration: none; color: inherit; }
 .pg ul, .pg ol { padding-left: var(--space-stack-lg); margin-bottom: var(--space-stack-md); }
 .pg ul { list-style: disc; }
 .pg li { font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); color: var(--color-content-default); margin-bottom: var(--space-stack-sm); }
-.pg b { font-weight: var(--weight-500); color: var(--ink); }
+/* The hub's bold. It was --weight-500 and --ink, which measure at exactly the
+   weight and the colour of the text around them, so a <b> in here drew nothing
+   at all: the controls you are told to click in the signature steps and the
+   lead-ins in the time-off list all read as plain sentence. */
+.pg b { font-weight: var(--weight-700); color: var(--color-content-default); }
 .pg-swatches { margin-bottom: 6px; }
-.pg-swatch { display: flex; align-items: center; gap: 12px; font-size: var(--type-body-xs-size); color: var(--color-content-subtle); padding: 7px 0; border-bottom: 1px solid var(--hairline); }
+.pg-swatch { display: flex; align-items: center; gap: 12px; font-size: var(--type-body-xs-size); color: var(--color-content-subtle); padding: 7px 0; border-bottom: 1px solid var(--card-edge); }
 .pg-swatch:last-child { border-bottom: none; }
 .pg-swatch span { width: 34px; height: 22px; flex: none; }
 .pg-swatch b { font-weight: var(--weight-500); color: var(--ink); margin-right: 4px; white-space: nowrap; }
@@ -1480,10 +1719,6 @@ body::after {
 
 
 /* ---------- my onboarding: the hire's own section ---------- */
-/* the NEW badge, in the team page's newtag idiom */
-.sidebar nav a .nav-new { font-family: var(--sans); font-size: var(--type-body-2xs-size); letter-spacing: 0.08em; color: var(--color-content-accent); }
-.sidebar nav a[hidden] { display: none; }
-
 /* the manager's note: the same rock-clipped quote block as Who we are */
 .mo-note { max-width: 860px; margin-bottom: 46px; }
 .mo-note .pull p { margin: 0 0 10px; }
@@ -1493,8 +1728,19 @@ body::after {
 
 /* first client + week-one syncs: hairline chamfer cards, the 30/60/90 idiom */
 .mo-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
-.mo-card { border: 1px solid var(--hairline); border-radius: var(--shape-soft); padding: 24px 22px; }
-.mo-card-name { font-family: var(--serif); font-weight: var(--weight-400); font-size: var(--size-24); letter-spacing: -0.015em; line-height: var(--type-title-sm-leading); }
+.mo-card { border: 1px solid var(--card-edge); border-radius: var(--shape-soft); padding: 24px 22px; }
+/* The name a card is about: a heading inside a section, which is the step
+   .pg h4 holds -- 18 sans bold, between the 28 serif above and the 16 body
+   under it (register, 63). It was serif at a raw 24, a size the ramp does not
+   carry and the hub uses nowhere else. */
+.mo-card-name {
+  font-family: var(--type-body-lg-family);
+  font-size: var(--type-body-lg-size);
+  font-weight: var(--weight-700);
+  line-height: var(--type-body-md-leading);
+  letter-spacing: var(--type-body-lg-tracking);
+  color: var(--color-content-default);
+}
 .mo-card-line { font-size: var(--type-body-sm-size); color: var(--color-content-subtle); margin-top: 4px; }
 .mo-card .wk-links { margin-top: 12px; }
 .mo-syncs { list-style: disc; padding-left: var(--space-stack-lg); margin-top: 2px; }
@@ -1503,7 +1749,7 @@ body::after {
 
 /* the 30/60/90: a chamfer-marker timeline */
 .mo-timeline { display: grid; gap: 4px; margin-top: 26px; max-width: 860px; }
-.mo-step { display: grid; grid-template-columns: 78px 1fr; gap: 26px; align-items: start; border-top: 1px solid var(--hairline); padding: 26px 0 4px; }
+.mo-step { display: grid; grid-template-columns: 78px 1fr; gap: 26px; align-items: start; border-top: 1px solid var(--card-edge); padding: 26px 0 4px; }
 .mo-day { font-family: var(--sans); font-weight: var(--weight-700); font-size: var(--type-title-sm-size); line-height: 1; position: relative; padding-top: 14px; }
 .mo-day::before { content: ''; position: absolute; top: -27px; left: 0; width: 12px; height: 12px; background: var(--orange); border-radius: var(--shape-soft); }
 .mo-body p { font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); color: var(--color-content-default); margin-bottom: var(--space-stack-md); }
@@ -1518,6 +1764,8 @@ body::after {
 
 /* the three cards under the manager's note: team, manager, questions */
 .mo-cards-3 { grid-template-columns: repeat(3, 1fr); margin-bottom: 54px; }
+/* the top pair: the hire's team and the hire's manager, two across */
+.mo-cards-top { margin-bottom: 54px; }
 .mo-top { display: flex; flex-direction: column; }
 .mo-top .wk-links { margin-top: auto; padding-top: 12px; }
 .mo-top .mo-syncs { margin-top: 12px; }
@@ -1568,7 +1816,7 @@ body::after {
 /* team filters: always visible, never collapsed */
 .team-tools select {
   font-family: var(--sans); font-size: var(--type-body-sm-size); color: var(--ink); background: var(--canvas);
-  border: 1px solid var(--hairline); padding: 8px 30px 8px 11px; cursor: pointer;
+  border: 1px solid var(--card-edge); padding: 8px 30px 8px 11px; cursor: pointer;
   appearance: none; min-width: 168px;
   /* Feather's chevron-down, the one place an icon cannot be an element: a
      select's own chevron is a background, so it cannot take currentColor and
@@ -1580,17 +1828,48 @@ body::after {
 .team-tools select:focus-visible { outline: 2px solid var(--orange); outline-offset: 1px; }
 
 /* profile form: grouped so a long form still scans */
-.pf-group { font-family: var(--sans); font-size: var(--type-body-2xs-size); letter-spacing: 0.13em; text-transform: uppercase;
-  color: var(--color-content-accent); margin: 24px 0 4px; padding-bottom: 6px; border-bottom: 1px solid var(--hairline); }
-.pf-group:first-of-type { margin-top: 8px; }
-.pf-opt { font-family: var(--sans); font-size: var(--type-body-2xs-size); letter-spacing: 0.08em; text-transform: uppercase; color: var(--taupe); margin-left: 6px; }
-.pf-hint { font-size: var(--type-body-xs-size); color: var(--taupe); margin-top: -4px; margin-bottom: 8px; }
+/* The head of a part of a form is a heading INSIDE a section, which the hub
+   already has a step for: .pg h4, 18 sans bold, and its comment says the job
+   exactly -- "between the 28 serif above it and the 16 body under it". That is
+   this page: the 28 serif is the page title, the 16 body is the note and the
+   prose, and these sit between them.
+
+   Four passes to get here, and the first three were each a smaller version of
+   the same error. It began 11px uppercase ember with a rule under it. Then bold
+   body copy, which fixed how loud it was but left it on the same step as the
+   prose it heads. Then h2.sub's 28 serif, which fixed the step by borrowing the
+   head of a PAGE SECTION -- too big, because these are not page sections, they
+   are parts inside one. Now the step that was always there for this.
+
+   The lesson is not "look for an existing step", which I did each time. It is
+   that a heading's size is set by what it sits BETWEEN, and I kept choosing it
+   by what it sits above.
+
+   No rule between parts: 56px of air does it, and a hairline as well was the
+   belt and the braces. The first head keeps no top margin because .form-sheet
+   has already set the form down. */
+.pf-group {
+  font-family: var(--type-body-lg-family);
+  font-size: var(--type-body-lg-size);
+  font-weight: var(--weight-700);
+  line-height: var(--type-body-md-leading);
+  letter-spacing: var(--type-body-lg-tracking);
+  color: var(--color-content-default);
+  margin: var(--space-stack-xl) 0 var(--space-stack-md);
+}
+.pf-group:first-of-type { margin-top: 0; }
 
 /* client tiles in a person's card: mark on top, company name underneath */
 /* A client reads as a tag: the mark, then the name beside it, on a fill. They sit
    one after the next and wrap, so a list of twelve is a paragraph of marks rather
    than a grid of cards. */
 .cl-grid { display: flex; flex-wrap: wrap; gap: var(--space-stack-sm); margin-top: 4px; }
+/* The past engagements, laid along each other instead of stacked: the same chip
+   the offering pages use for their client lists, so the page has one way of
+   showing a client in small and not two. It only needs its own air above. */
+.cl-grid--past { margin-top: var(--space-stack-md); }
+/* the eight that have a page on the Carrara Hub say so in ink */
+.cl-grid--past > .is-linked .cl-name { color: var(--color-content-accent); }
 .cl-cell {
   display: inline-flex; align-items: center; gap: var(--space-stack-sm);
   border: 1px solid var(--color-border-subtle);
@@ -1771,7 +2050,7 @@ body::after {
 .bv-sh { font-family: var(--sans); font-size: var(--type-body-2xs-size); letter-spacing: 0.13em; text-transform: uppercase;
   color: var(--color-content-accent); margin: 30px 0 10px; }
 .bv-fig { margin: 22px 0; max-width: 720px; }
-.bv-fig img { width: 100%; display: block; border: 1px solid var(--hairline); background: var(--sage-soft); }
+.bv-fig img { width: 100%; display: block; border: 1px solid var(--card-edge); background: var(--sage-soft); }
 .bv-fig figcaption { font-size: var(--type-body-sm-size); color: var(--taupe); margin-top: 9px; line-height: var(--type-body-sm-leading); }
 .bv-fig figcaption b { color: var(--ink); font-weight: var(--weight-500); }
 .bv-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px; margin-top: 8px; }
@@ -1782,7 +2061,7 @@ body::after {
 .bv-assets a { color: var(--color-content-accent); text-decoration: none; border-bottom: 1px solid rgba(235,78,25,0.35); }
 .bv-table { border-collapse: collapse; width: 100%; font-size: var(--type-body-sm-size); min-width: 460px; }
 .bv-table th { text-align: left; font-family: var(--sans); font-size: var(--type-body-2xs-size); letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--taupe); padding: 9px 14px; border-bottom: 1px solid var(--hairline); }
+  text-transform: uppercase; color: var(--taupe); padding: 9px 14px; border-bottom: 1px solid var(--card-edge); }
 .bv-table td { padding: 10px 14px; border-bottom: 1px solid var(--hair-soft, rgba(45,42,42,0.07)); color: var(--color-content-default); }
 .bv-table td:first-child { color: var(--ink); display: flex; align-items: center; gap: 10px; }
 .sw { width: 15px; height: 15px; flex: none; display: inline-block; }
@@ -1810,7 +2089,7 @@ a.cl-cell:hover { background: var(--color-background-subtle); }
    picture of what is inside plus the name of it. */
 .bv-card {
   display: block; width: 100%; text-align: left; cursor: pointer;
-  border: 1px solid var(--hairline); background: var(--canvas);
+  border: 1px solid var(--card-edge); background: var(--canvas);
   border-radius: var(--shape-soft); padding: 12px 12px 16px;
   transition: border-color 0.18s ease;
 }
@@ -1832,7 +2111,7 @@ a.cl-cell:hover { background: var(--color-background-subtle); }
 .bv-skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 24px; }
 .bv-skill {
   display: flex; flex-direction: column; justify-content: space-between; gap: 22px;
-  border: 1px solid var(--hairline); border-radius: var(--shape-soft); padding: 22px 26px 24px;
+  border: 1px solid var(--card-edge); border-radius: var(--shape-soft); padding: 22px 26px 24px;
 }
 .bv-skill-txt { min-width: 0; }
 .bv-skill-txt p { font-size: var(--type-body-md-size); color: var(--color-content-default); line-height: var(--type-body-md-leading); margin-top: 7px; }
@@ -2001,15 +2280,9 @@ h2.sub + .cards { margin-top: 0; }
   .mo-card { padding: 26px 22px; }
 }
 
-/* the checklist block on My onboarding: one wide card under the three */
-.mo-checklist { border: 1px solid var(--hairline); border-radius: var(--shape-soft); padding: 30px 28px; margin: -30px 0 64px; max-width: 100%; }
-.mo-checklist .progress-wrap { max-width: 640px; }
-.mo-checklist .wk-links { max-width: 640px; }
-.body-copy + .mo-checklist { margin-top: 40px; }
-@media (max-width: 860px) { .mo-checklist { padding: 26px 22px; margin-top: -10px; } }
 
-/* the checklist popup, opened from the My onboarding card. Sits under the
-   generic modal (z 90) so an item's details open on top of it. */
+/* the checklist popup, still opened by the legacy #/checklist address. Sits
+   under the generic modal (z 90) so an item's details open on top of it. */
 .chk-pop { position: fixed; inset: 0; z-index: 80; background: rgba(45, 42, 42, 0.35); display: flex; align-items: center; justify-content: center; padding: 28px; }
 .chk-pop[hidden] { display: none; }
 .chk-pop-panel { position: relative; background: var(--canvas); border-radius: var(--shape-soft); width: min(1180px, 100%); max-height: calc(100vh - 56px); overflow-y: auto; padding: 48px 52px 44px; }
@@ -2018,10 +2291,6 @@ h2.sub + .cards { margin-top: 0; }
 .chk-pop .startover { margin-top: 28px; }
 body.chk-open,
 body.modal-open { overflow: hidden; }
-.mo-checklist { cursor: pointer; transition: border-color 0.18s ease; }
-.mo-checklist:hover { border-color: var(--taupe); }
-.mo-checklist:hover .wk-links a { color: var(--ink); }
-.mo-checklist:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
 @media (max-width: 860px) {
   .chk-pop { padding: 0; }
   .chk-pop-panel { max-height: 100vh; height: 100%; padding: 52px 20px 32px; }
@@ -2039,7 +2308,7 @@ details.to-faq .i-minus, details.to-faq[open] .i-plus { display: none; }
 details.to-faq[open] .i-minus { display: inline-flex; }
 details.to-faq > summary:hover { color: var(--color-content-accent); }
 details.to-faq > summary:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
-details.to-faq { border-top: 1px solid var(--hairline); }
+details.to-faq { border-top: 1px solid var(--card-edge); }
 /* a heading inside an answer is under the question, not level with it */
 details.to-faq h4 { font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); }
 details.to-faq:first-child { border-top: none; }

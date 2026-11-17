@@ -48,16 +48,13 @@
     <path class="mark__facet" d="M0 16L16 0L0 8V16Z"/>
   </svg>
 </a>
+<!-- The way out of a page, under the mark: the mark goes to the start and this
+     goes to the list, so the two ways back stand together on the mat rather
+     than one on the mat and one inside the page. -->
+<a class="page-up" id="page-up" href="#/start" hidden><span data-icon="arrow-left" aria-hidden="true"></span>Your checklist</a>
 <div class="grain" aria-hidden="true"></div>
 <div class="mat" aria-hidden="true"></div>
 <div class="grain grain--over" aria-hidden="true"></div>
-
-<!-- About Carrara is the one item with pages inside it, so it is the one thing
-     with an index: the letter's rail, in the margin, sticky. -->
-<aside class="sidebar" id="walk-index" aria-label="About Carrara" hidden>
-  <nav id="nav"></nav>
-  <a class="rail-out" href="#/start"><span data-icon="arrow-left" aria-hidden="true"></span>Your checklist</a>
-</aside>
 
 <div class="topbar">
   <select id="mobile-nav" aria-label="Section"></select>
@@ -283,6 +280,95 @@
   </section>
 
   <!-- tools -->
+  <!-- Payroll. Three routes, and you only ever use one of them; which one is
+       decided by how you are engaged, not by you. The facts here are the ones
+       the checklist item already carried. -->
+  <section class="view" id="view-payroll">
+    <p class="label">Payroll</p>
+    <h1 class="page-title">Payroll runs through one of three, and you only use yours.</h1>
+    <p class="body-copy">Which one depends on how you are engaged with Carrara. You do not have to work it out or sign up anywhere: an invite arrives for the one that applies to you.</p>
+
+    <div class="res-cols">
+      <div class="res-item"><a class="textlink" data-link="deel" href="#">Deel</a><div class="d">Full-time employees.</div><span class="row-arrow" data-icon="arrow-up-right" aria-hidden="true"></span></div>
+      <div class="res-item"><a class="textlink" data-link="bill" href="#">Bill.com</a><div class="d">US contractors.</div><span class="row-arrow" data-icon="arrow-up-right" aria-hidden="true"></span></div>
+      <div class="res-item"><a class="textlink" data-link="ramp" href="#">Ramp</a><div class="d">International contractors.</div><span class="row-arrow" data-icon="arrow-up-right" aria-hidden="true"></span></div>
+    </div>
+
+    <p class="body-copy">Accept the invite and finish the setup when it lands. If nothing has arrived and you are not sure which of the three is yours, ask Eric on Slack rather than guessing.</p>
+  </section>
+
+  <!-- Time tracking. The copy is the Strata guide's own, and so is the title:
+       the page is called what the thing is called. The two destinations are
+       the place you log and the guide to logging, named and nothing else --
+       a row whose name says it needs no line under it saying it again. -->
+  <section class="view" id="view-time-tracking">
+    <p class="label">Time tracking</p>
+    <h1 class="page-title">Logging Client Hours</h1>
+    <p class="body-copy">Strata is where you log the hours you spend on each client, every month.</p>
+    <p class="body-copy">Logging hours helps us understand what each engagement really takes. It shows us when an account is growing beyond what we planned, helps us put the right people on the right work, and lets us scope and price engagements so nobody ends up stretched thin.</p>
+
+    <div class="res-cols">
+      <div class="res-item"><a class="textlink" data-link="strata" href="#">Access to Strata</a><span class="row-arrow" data-icon="arrow-up-right" aria-hidden="true"></span></div>
+      <div class="res-item"><a class="textlink" data-link="strataLogging" href="#">Strata Notion Guide</a><span class="row-arrow" data-icon="arrow-up-right" aria-hidden="true"></span></div>
+    </div>
+  </section>
+
+  <!-- I-9. Everything on this page is in the checklist row it came from, and
+       the row is two sentences, so the page is two sentences. An earlier draft
+       added that contractors can tick it off, that this is "the one piece of
+       paperwork" that holds up payroll, and that Eric fields questions about
+       acceptable documentation. None of that is written down anywhere in the
+       hub: it was inference dressed as fact. What is missing here is missing
+       because POps has not written it yet. -->
+  <section class="view" id="view-i9">
+    <p class="label">I-9 verification</p>
+    <h1 class="page-title">I-9 verification (US full-time employees only)</h1>
+    <p class="body-copy">US full-time employees complete I-9 employment eligibility verification. Eric sends this over; get it back the same week so payroll isn't held up.</p>
+    <p class="body-copy">Anything else about it goes to Eric on Slack.</p>
+  </section>
+
+  <!-- Benefits. Same story as the I-9 above, and worse: an earlier draft said
+       Eric walks you through all three, that elections have a window to do
+       early rather than late, and that most of this does not apply to
+       contractors. None of those three is in the source, which is the
+       checklist row and nothing else. They are gone, and so is the last of it:
+       "all three are about you rather than about the policy" was a frame I
+       added, and it implies a policy document nobody mentioned.
+
+       The qualifier lives in the TITLE, as it does on the checklist row it
+       came from. Buried in the paragraph a contractor reads three lines before
+       finding out none of them are theirs. -->
+  <section class="view" id="view-benefits">
+    <p class="label">Benefits</p>
+    <h1 class="page-title">Your benefits (full-time employees only)</h1>
+    <p class="body-copy">Three things to find out: what you are enrolled in, what you need to elect, and by when.</p>
+    <p class="body-copy">Ask Eric on Slack if anything is unclear, or if you are a contractor and not sure what applies to you.</p>
+  </section>
+
+  <!-- The email signature was a popup with eight steps in it. A popup cannot be
+       marked done, cannot be linked to and cannot be come back to, and every
+       other item on the list opens a page, so this one does too. -->
+  <section class="view" id="view-signature">
+    <p class="label">Email signature</p>
+    <h1 class="page-title">Set your Carrara signature.</h1>
+    <p class="body-copy">You do this once, in your Carrara Gmail. The signature lives in a Google Doc template: copy it out, then change the name and the role to yours.</p>
+
+    <div class="pg">
+      <ol>
+        <li>Open <a class="textlink" data-link="emailSigTemplate">the email signature template</a> and copy the signature.</li>
+        <li>Go to your Carrara Gmail inbox.</li>
+        <li>Click the <b>Settings</b> icon, top right, then <b>See all settings</b>.</li>
+        <li>Scroll down to <b>Signature</b> and click <b>Create new</b>. Name it <b>Carrara</b>.</li>
+        <li>Paste the signature you copied from the template.</li>
+        <li>Change the text to your own name and role.</li>
+        <li>Under <b>Signature defaults</b>, set <b>For new emails use</b> and <b>On reply/forward use</b> to <b>Carrara</b>.</li>
+        <li>Scroll to the bottom and click <b>Save changes</b>.</li>
+      </ol>
+    </div>
+
+    <p class="body-copy"><a class="textlink" data-link="emailSignatureGuide">The full guide on Notion</a> if you get stuck.</p>
+  </section>
+
   <section class="view" id="view-tools">
     <p class="label">Our tools</p>
     <h1 class="page-title">Your toolkit and your stipend.</h1>
@@ -350,6 +436,73 @@
   </section>
 
   <!-- time off -->
+  <!-- Get to know Carrara: the three pages below, plus the Time-Off policy that
+       follows them, which came from POps already written.
+
+       These three did not. Each one is assembled from what the hub already says
+       about it somewhere else -- the checklist row, and the tool cards on the
+       tools page -- and nothing else. Where the hub does not say what something
+       involves, the page points at whoever does instead of describing it. -->
+
+  <!-- The Quarry. Three sources, all of them already written: the checklist row
+       (what it is, and why week one), the Claude card (the account, the Team
+       plan, the shared skills, Cowork and Claude Code) and the Obsidian card
+       (what the vault holds, and that Sync is paid and goes on the stipend).
+       What running the setup actually involves is in the guide on Notion, so
+       this page names the guide rather than retelling it. -->
+  <section class="view" id="view-quarry">
+    <p class="label">The Quarry</p>
+    <h1 class="page-title">Setting up the Quarry</h1>
+    <p class="body-copy">The Quarry is our AI harness: Claude, an Obsidian vault and Cowork. Do it in week one, because most of how we work assumes it.</p>
+
+    <div class="pg">
+      <ul>
+        <li><b>Claude.</b> Our go-to AI, and the base of the Quarry. Log in with your Carrara Google account on the Team plan, then run the Quarry setup so you get the shared skills.</li>
+        <li><b>The Obsidian vault.</b> Where your notes, memories and skills live, and what Claude reads and writes. Sync needs a paid subscription, which fits inside your monthly SaaS stipend on Ramp.</li>
+        <li><b>Cowork.</b> Where most of the work happens, with Claude Code in the terminal for the rest.</li>
+      </ul>
+    </div>
+
+    <p class="body-copy">The setup guide walks you through all three.</p>
+
+    <div class="res-cols">
+      <div class="res-item"><a class="textlink" data-link="quarry" href="#">Quarry setup guide</a><span class="row-arrow" data-icon="arrow-up-right" aria-hidden="true"></span></div>
+    </div>
+  </section>
+
+  <!-- The Carrara Hub. The resources page already describes it in one good
+       paragraph, which is the content here; the checklist row adds the only
+       instruction there is, which is to go and click around. The profile is
+       named because it lives there, but it is its own checklist item further
+       down, so this page does not ask for it. -->
+  <section class="view" id="view-carrara-hub">
+    <p class="label">Carrara Hub</p>
+    <h1 class="page-title">Where the company keeps its memory</h1>
+    <p class="body-copy">The hub holds every client and what we are doing for them, who is on each team, and how each practice runs, with an Ask bar that answers from all of it.</p>
+    <p class="body-copy">This site gets you through week one; the hub is where you go after that. Your own profile lives there too, and filling it out is its own item further down the list.</p>
+    <p class="body-copy">Start at hub.carrara.is and click around.</p>
+
+    <div class="res-cols">
+      <div class="res-item"><a class="textlink" href="https://hub.carrara.is" target="_blank" rel="noopener">Carrara Hub</a><span class="row-arrow" data-icon="arrow-up-right" aria-hidden="true"></span></div>
+    </div>
+  </section>
+
+  <!-- Ashby. Thin, and it should be: the hub says what Ashby is, who it is for
+       and where to ask, and that is the whole of it. What "get oriented" means
+       is not written down anywhere, so the page does not invent a procedure --
+       it hands you the tool and the channel. If POps or the talent team write
+       an orientation, it belongs here. -->
+  <section class="view" id="view-ashby">
+    <p class="label">Ashby</p>
+    <h1 class="page-title">Getting oriented on Ashby (talent team only)</h1>
+    <p class="body-copy">Ashby is our ATS, and the system of record for every search. This one is for the talent team.</p>
+    <p class="body-copy">Ask anything in <a class="textlink" data-link="ch:g-ashby-support" href="#">#g-ashby-support</a>.</p>
+
+    <div class="res-cols">
+      <div class="res-item"><a class="textlink" data-link="ashby" href="#">Ashby</a><span class="row-arrow" data-icon="arrow-up-right" aria-hidden="true"></span></div>
+    </div>
+  </section>
+
   <section class="view" id="view-timeoff">
     <p class="label">Time-Off &amp; Holiday Policy</p>
     <h1 class="page-title">At Carrara, we operate at a high level; which means we also need time to reset. Great work comes from people who are energized, not running on fumes.</h1>
@@ -461,6 +614,103 @@
   </section>
 
   <!-- resources -->
+  <!-- Connect with people. Six items, six pages, which closes the last section
+       that still opened popups. A destination inside the hub gets a plain right
+       arrow and one that leaves gets the up-right arrow, so the row says where
+       it is taking you before you press it. -->
+
+  <!-- The day one 1:1. The row is the whole content: three things to come out
+       of the call.
+
+       It pointed at My onboarding for a draft, and that was wrong twice over.
+       The reader is standing in the onboarding, so sending them to "the
+       onboarding" is a page telling them to go where they already are. And the
+       90-day plan is not a document to go and read before the call; it is what
+       the call produces. A page that hands you a destination for something you
+       are about to make together is sending you to the wrong place. -->
+  <section class="view" id="view-manager-1on1">
+    <p class="label">First 1:1</p>
+    <h1 class="page-title">Your first 1:1 with your manager</h1>
+    <p class="body-copy">Three things to come out of it: your 90-day plan, your priorities for week one, and how the two of you will work together.</p>
+  </section>
+
+  <!-- The standing 1:1. One instruction, and the hub has nothing else on it, so
+       the page is one instruction.
+
+       It used to carry a second line saying that the day one 1:1 was its own
+       item above this one. That line was the symptom: the two rows read as the
+       same errand twice, so the page had to explain the list it was sitting in.
+       The rows say it themselves now -- HAVE your first one, BOOK the weekly
+       one -- so the line is gone rather than being left to say it twice. -->
+  <section class="view" id="view-recurring-1on1">
+    <p class="label">Weekly 1:1</p>
+    <h1 class="page-title">A weekly slot with your manager</h1>
+    <p class="body-copy">Get a weekly 1:1 on the calendar with your manager before the week ends.</p>
+  </section>
+
+  <!-- Team calls. The row names the three kinds of call; the resources page
+       already had a good paragraph on the Team Roundup, which is the only one
+       of the three the hub describes, so it is here in full. -->
+  <section class="view" id="view-team-calls">
+    <p class="label">Team calls</p>
+    <h1 class="page-title">The calls you should be on</h1>
+    <p class="body-copy">Standing team meetings, the monthly Team Roundup, and any client syncs relevant to your role. Confirm you have been added to all of them.</p>
+    <p class="body-copy">The Team Roundup is the monthly company-wide catch-up: wins, client updates, and where the business is heading. Everyone joins, and your manager puts the invite on your calendar. Agendas and recaps are archived after each session.</p>
+
+    <div class="res-cols">
+      <div class="res-item"><a class="textlink" data-link="teamRoundup" href="#">Team Roundup</a><span class="row-arrow" data-icon="arrow-up-right" aria-hidden="true"></span></div>
+    </div>
+  </section>
+
+  <!-- The people profile. This was never a form: the popup held one line and a
+       button out to the hub, which is a page's job. Everything here was in that
+       popup, including the instruction to come back and mark it.
+
+       One destination, because there is only one thing to do. The team
+       directory was here too, carried over from the row's old link list, and it
+       does not help you write your own profile -- it is where you go to read
+       other people's. Same mistake as the 90-day plan in the 1:1 page: a link
+       that is related to the subject is not the same as a link the reader
+       needs. -->
+  <section class="view" id="view-profile">
+    <p class="label">People profile</p>
+    <h1 class="page-title">Your profile in the Carrara Hub</h1>
+    <p class="body-copy">Create your profile in the Carrara Hub so the team can get to know you. Sign in with your Carrara account, and come back here to mark this step once you have saved it.</p>
+
+    <div class="res-cols">
+      <div class="res-item"><a class="textlink" href="https://hub.carrara.is/people?profile=edit" target="_blank" rel="noopener">Create or edit my profile</a><span class="row-arrow" data-icon="arrow-up-right" aria-hidden="true"></span></div>
+    </div>
+  </section>
+
+  <!-- Meet people. Who you meet is your manager's list, not the hub's, so the
+       page says what kind of people are on it and stops.
+
+       It shipped with two destinations and kept neither. My onboarding went
+       because this site cannot send you to this site; the team wall went
+       because browsing a directory is not how you meet the people your manager
+       named. Both were inherited from the row's old link list rather than
+       chosen for this page, which is the mechanism in entry 60. -->
+  <section class="view" id="view-meet-people">
+    <p class="label">Meet people</p>
+    <h1 class="page-title">The people to meet in your first two weeks</h1>
+    <p class="body-copy">Your manager picks who: your client lead, the people on your account, and a couple of others.</p>
+  </section>
+
+  <!-- Top 5. The one real form in the hub, and the only item here that was a
+       popup for a good reason. It is a page now because the row calls it one of
+       the most useful things you can do in week one, and a popup cannot be
+       linked to, returned to or marked. The form itself is untouched: the same
+       fields posting the same body to /api/top5. show() mounts it into the box
+       below, the way the modal used to. -->
+  <section class="view" id="view-top5">
+    <p class="label">Top 5</p>
+    <h1 class="page-title">Submit your Top 5</h1>
+    <p class="body-copy">Name the five best people you have ever worked with, one submission per person.</p>
+    <p class="body-copy">It seeds our network with people we already trust, and it's one of the most useful things you can do in your first week.</p>
+
+    <div class="form-sheet" id="t5-box"></div>
+  </section>
+
   <section class="view" id="view-resources">
     <p class="label">Resources</p>
     <h1 class="page-title">Check out a few helpful links to orient around how we show up and engage with each other and our clients.</h1>
@@ -479,19 +729,6 @@
   <!-- my onboarding (rendered by app.js from the welcome kit; hidden until
        every other section has been visited) -->
   <section class="view" id="view-my-onboarding"></section>
-
-  <!-- completion -->
-  <section class="view" id="view-complete">
-    <div class="complete-wrap">
-      <img src="/assets/logo/carrara-iso-ember.svg" alt="">
-      <div>
-        <p class="label">The last step</p>
-        <h1 class="page-title">Done. Now go do the work.</h1>
-        <p class="body-copy">Your checklist stays in My onboarding for the rest of your first weeks. Come back anytime.</p>
-        <div class="cta-row"><button class="btn-primary" id="btn-home">Back to the hub</button></div>
-      </div>
-    </div>
-  </section>
 </main>
 
 <!-- the checklist: a popup opened from My onboarding (and any #/checklist link) -->
@@ -506,13 +743,6 @@
     </div>
     <div class="chk-cols" id="chk-groups"></div>
     <button class="startover reset-link" id="chk-reset">Reset checklist</button>
-    <div class="done-moment" id="done-moment">
-      <img src="/assets/logo/carrara-iso-ember.svg" alt="">
-      <div>
-        <div class="line">Done. Now go do the work.</div>
-        <p class="body-copy" style="margin-top:8px">Your checklist stays in My onboarding. Come back anytime.</p>
-      </div>
-    </div>
   </div>
 </div>
 

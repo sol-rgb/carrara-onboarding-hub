@@ -287,25 +287,29 @@ async function main() {
     Object.keys(config.countries).every((k) => config.countries[k].notes === undefined), config.countries);
 
   // ---------------------------------------------------------------- reveal
-  console.log('\n[reveal] the section appears when the hub has been walked');
-  const OTHERS = ['start', 'who', 'week', 'team', 'slack', 'checklist', 'business', 'clients', 'tools', 'templates', 'timeoff', 'resources'];
-  check('hidden with nothing visited', mo.navState([], OTHERS, false) === 'hidden');
-  check('hidden one section short', mo.navState(OTHERS.slice(0, -1), OTHERS, false) === 'hidden', OTHERS.slice(0, -1));
-  check('NEW once every other section is visited', mo.navState(OTHERS, OTHERS, false) === 'new');
-  check('plain once the section itself has been opened', mo.navState(OTHERS, OTHERS, true) === 'plain');
-  check('order does not matter', mo.navState(OTHERS.slice().reverse(), OTHERS, false) === 'new');
-  check('a stale extra id does not block the reveal', mo.navState(OTHERS.concat(['retired-section']), OTHERS, false) === 'new');
-  check('an empty section list never reveals', mo.navState([], [], false) === 'hidden');
-  // Bad input hides. A missing list is a bug somewhere else; revealing early
-  // because of one would be the failure nobody notices.
-  check('a missing visited list never reveals', mo.navState(null, OTHERS, false) === 'hidden');
-  check('a missing section list never reveals', mo.navState(OTHERS, null, false) === 'hidden');
+  console.log('\n[reveal] the nav badge');
+  /* navState used to be navState(visited, sections, seen) and could return
+     'hidden': the section stayed out of sight until the hire had opened every
+     other one. That gate was removed on purpose -- the checklist is the
+     onboarding now, and a hire could do seventeen real things and still not see
+     their own plan for want of clicking through four reference pages.
+     my-onboarding.js carries the reasoning.
+
+     Eight checks here were still calling the three-argument signature and
+     asserting 'hidden', so they had failed from the day the gate went: the
+     first argument landed in `seen`, and a non-empty array is truthy. They
+     assert the one-argument contract that exists now. */
+  check('new before the section has been opened', mo.navState(false) === 'new');
+  check('plain once the section itself has been opened', mo.navState(true) === 'plain');
+  check('nothing hides it any more: the walk gate is gone',
+    [undefined, null, 0, ''].every((v) => mo.navState(v) === 'new'),
+    [undefined, null, 0, ''].map((v) => mo.navState(v)));
   check('addVisit is idempotent', mo.addVisit(mo.addVisit([], 'who'), 'who').length === 1);
   check('addVisit never records the section itself', mo.addVisit([], mo.SECTION_ID).length === 0);
   check('addVisit survives a missing list', mo.addVisit(null, 'who').length === 1, mo.addVisit(null, 'who'));
   check('addVisit does not mutate its input', (function () {
     const before = ['who'];
-    mo.addVisit(before, 'week');
+    mo.addVisit(before, 'team');
     return before.length === 1;
   })());
 
@@ -327,9 +331,19 @@ async function main() {
     }
   };
   const full = mo.renderSection(KIT);
-  check('names the hire in the display heading', full.indexOf('Your onboarding, Ada.') > -1);
-  check("renders the manager's note through the vendored renderer", full.indexOf('<strong>Ada</strong>') > -1);
-  check("attributes it to the manager", full.indexOf('Sol Silbenberg') > -1);
+  /* The page is titled with the words of the row that opens it, and it does
+     NOT greet the hire: the cover letter already said their name, and a second
+     hello two pages in is one too many (register, 73). */
+  check('is titled with the words of its checklist row',
+    full.indexOf('Read your 30/60/90 plan.') > -1 && full.indexOf('For you') > -1);
+  check('and does not greet the hire a second time', full.indexOf(', Ada.') === -1);
+  /* The note moved to the cover letter (register, 71), so the section must not
+     print it twice. The renderer it goes through, and the escaping that comes
+     with it, are app.js's business now; what this file owns is that the section
+     has let go of it. */
+  check("does not render the manager's note: the cover letter has it",
+    full.indexOf('<strong>Ada</strong>') === -1 && full.indexOf('quote-block') === -1);
+  check("still names the manager, on their card", full.indexOf('Sol Silbenberg') > -1);
   check('renders the first client', full.indexOf('Anthropic') > -1);
   check('renders the syncs', full.indexOf('River Slate') > -1 && full.indexOf('runs the pod') > -1);
   check('renders the 30 and 90 steps', full.indexOf('>30<') > -1 && full.indexOf('>90<') > -1);
@@ -337,10 +351,19 @@ async function main() {
   check('renders plan bullets as a list', full.indexOf('<li>Shadow two engagements</li>') > -1);
   check('no longer carries the pay line', full.indexOf('day-one email covers it') === -1);
   check('no longer carries the Enneagram', full.toLowerCase().indexOf('enneagram') === -1);
-  check('links the checklist from the section', full.indexOf('href="#/checklist"') > -1);
-  check('renders the your team / manager / questions cards',
-    full.indexOf('[your team]') > -1 && full.indexOf('[your manager]') > -1 && full.indexOf('[questions]') > -1);
-  check('the questions card names who to ping', full.indexOf('Eric Fernandez') > -1);
+  /* The checklist is what sends people to this section now, so a card pointing
+     back at it would be a circle. Only the no-kit state keeps one, and it is
+     checked further down where that state is. */
+  check('does not point back at the checklist it is reached from',
+    full.indexOf('href="#/checklist"') === -1);
+  /* Two cards: the hire's team and the hire's manager. The third was
+     [questions], advice rather than this hire's team or plan. */
+  check('renders the team and manager cards',
+    full.indexOf('>Your team<') > -1 && full.indexOf('>Your manager<') > -1);
+  /* The brackets were the style, not the words (register, 72), so this also
+     guards against them creeping back into the strings. */
+  check('and no longer the questions card or the bracket idiom',
+    full.indexOf('questions]') === -1 && full.indexOf('[your') === -1);
 
   const withCtx = mo.renderSection(KIT, {
     manager: { avatar: '/assets/people/sol.jpg', email: 'sol@carrara.is', role: 'Partner' },
@@ -352,7 +375,6 @@ async function main() {
     withCtx.indexOf('/assets/people/sol.jpg') > -1 && withCtx.indexOf('mailto:sol@carrara.is') > -1);
   check('the team card counts the peers', withCtx.indexOf('2 people do the same kind of work') > -1);
   check('the team card links to the filtered team page', withCtx.indexOf('data-team-filter="Talent Acquisition"') > -1);
-  check('the checklist block shows progress', withCtx.indexOf('3 of 12') > -1 && withCtx.indexOf('width:25%') > -1);
   const hostileCtx = mo.renderSection(KIT, {
     manager: { avatar: '"><script>alert(6)</script>', email: '"><b>x', role: '<i>r</i>' },
     peers: [{ name: '<script>alert(7)</script>', avatar: '' }],
@@ -370,7 +392,11 @@ async function main() {
   check('escapes a hostile first name', hostile.indexOf('<img src=x') === -1, hostile.slice(0, 200));
   check('escapes a hostile manager name', hostile.indexOf('<script>alert(2)') === -1);
   check('escapes a hostile sync name', hostile.indexOf('<b>x</b>') === -1);
-  check('escapes a hostile plan body', hostile.indexOf('<script>alert(3)') === -1);
+  /* Vacuous here on purpose, and kept as the guard that says so: the section no
+     longer prints manager_intro at all, so a hostile one cannot reach it. If
+     this ever starts passing for a different reason -- the note coming back --
+     the check above it fails first and says which. */
+  check('a hostile plan body cannot reach the section', hostile.indexOf('alert(3)') === -1);
 
   // The manager's sync lines are free text, not markdown: they take esc() and
   // nothing else. This walks the WHOLE path -- the raw answer POps returns,
@@ -396,21 +422,27 @@ async function main() {
   }));
   check('an all-null plan opens no note and no timeline',
     emptyPlan.indexOf('quote-block') === -1 && emptyPlan.indexOf('mo-timeline') === -1, emptyPlan.slice(0, 200));
-  check('and still names the hire and renders the client and syncs',
-    emptyPlan.indexOf('Your onboarding, Ada.') > -1 && emptyPlan.indexOf('Anthropic') > -1
+  check('and still renders the client and syncs',
+    emptyPlan.indexOf('Read your 30/60/90 plan.') > -1 && emptyPlan.indexOf('Anthropic') > -1
       && emptyPlan.indexOf('River Slate') > -1);
-  check('and still renders the three top cards', emptyPlan.indexOf('[your team]') > -1);
+  check('and still renders the top cards', emptyPlan.indexOf('>Your team<') > -1);
 
   const planless = mo.renderSection(Object.assign({}, KIT, { plan: null }));
   check('a planless kit still renders the client and syncs', planless.indexOf('Anthropic') > -1 && planless.indexOf('River Slate') > -1);
   check('and opens no empty timeline', planless.indexOf('mo-timeline') === -1);
 
   const locked = mo.renderSection(null);
-  check('no kit at all points at the welcome kit', locked.indexOf('access code') > -1, locked);
-  check('no kit still shows the checklist', locked.indexOf('href="#/checklist"') > -1);
-  const lockedCtx = mo.renderSection(null, { checklist: { done: 5, total: 19 } });
-  check('and its progress when app.js passes it', lockedCtx.indexOf('5 of 19') > -1);
-  check('the checklist sits above the plan', full.indexOf('[your checklist]') < full.indexOf('Your first 90 days'));
+  /* This used to send the reader to the welcome kit popup, which is not in the
+     markup any more (register, 35). The state has to stand on its own now, so
+     what it owes the reader is a plain account of what will appear here and who
+     writes it -- and NOT a pointer to a popup that no longer exists. */
+  check('no kit says what will appear here', locked.indexOf('first 90 days') > -1, locked);
+  check('and no longer points at a welcome kit that is gone', locked.indexOf('access code') === -1, locked);
+  /* Not even here. The checklist is what opens this page, with a kit and
+     without one, so a card pointing back at it was a circle either way -- and
+     the empty state is where the reader is least able to see that it is one. */
+  check('no kit does not point back at the checklist either',
+    locked.indexOf('href="#/checklist"') === -1 && locked.indexOf('mo-checklist') === -1);
   check('and never claims to be somebody', locked.indexOf('undefined') === -1, locked);
 
   // The kit /api/welcome actually returns has to render: the two sides of this
@@ -420,7 +452,7 @@ async function main() {
   global.fetch = realFetch;
   const liveHtml = mo.renderSection(live.body);
   check('the live /api/welcome payload renders a section',
-    liveHtml.indexOf('Your onboarding, Ada.') > -1 && liveHtml.indexOf('mo-timeline') > -1, liveHtml.slice(0, 160));
+    liveHtml.indexOf('Read your 30/60/90 plan.') > -1 && liveHtml.indexOf('mo-timeline') > -1, liveHtml.slice(0, 160));
   check('without the payload\'s pay pointer', liveHtml.indexOf(live.body.payNote) === -1);
   check('and the manager\'s syncs, not the derivation', liveHtml.indexOf('River Slate') > -1);
 
