@@ -23,7 +23,12 @@ before touching these:
    The plan fields the hub reads are an allowlist: `manager_intro`,
    `thirty_days`, `sixty_days`, `ninety_days`, `sync_with`, and `practices`
    (the hire's practice areas, a string array, `[]` when absent; it picks
-   "your team" on My onboarding and never counts as plan content).
+   "your team" on My onboarding and never counts as plan content). The hub
+   also reads `start_date` from the plan read (the hire's first day,
+   `YYYY-MM-DD` or null); api/welcome.js passes it on as the top-level
+   `startDate` (`''` when POps answered without a usable date, `null` when
+   POps did not answer), it dates the arrival ticket, and it never counts as
+   plan content.
 4. **clients.json** — POps matches these client names EXACTLY. Renaming or
    removing an entry silently strips the client section from every hub
    minted for that client, with no error anywhere.

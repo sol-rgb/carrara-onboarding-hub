@@ -79,6 +79,19 @@ function planList(plan, key) {
   return Array.isArray(v) ? v.filter((x) => typeof x === 'string').map((x) => x.trim()).filter(Boolean) : [];
 }
 
+/** The hire's first day from the plan read, in three states. A plan that came
+ *  back with start_date as 'YYYY-MM-DD' gives that date. A plan that came back
+ *  without a usable one gives '': POps answered and has no date. No plan at all
+ *  gives null: POps did not answer, so nobody here knows, and the page keeps
+ *  whatever date it saved before. Anything looser than the exact form (a
+ *  timestamp, a day-first date, a number) is no date, because the ticket reads
+ *  the parts off the string and would read it wrong. */
+function planDay(plan) {
+  if (!plan) return null;
+  const v = plan.start_date;
+  return typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v) ? v : '';
+}
+
 function decode(code) {
   const parts = String(code || '').trim().split('.');
   if (parts.length !== 2) return null;
@@ -189,6 +202,10 @@ module.exports = async (req, res) => {
       ninety_days: planText(plan, 'ninety_days'),
       practices: planList(plan, 'practices')
     } : null,
+    // The hire's first day, for the arrival ticket. It travels on the plan read
+    // but lives out here, beside plan rather than in it, so it can never count
+    // as plan content: a date is not the manager's words.
+    startDate: planDay(plan),
     links
   });
 };

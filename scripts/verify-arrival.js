@@ -63,10 +63,18 @@ function kit(name) {
 }
 
 // One fresh page: a store, a window that really dispatches, and the ticket.
+// The date line sits in a .tk-field with a .tk-rule just before it, the way
+// index.html lays it out, because fillDate hides the two together.
 function load(opts) {
   const store = new Map();
   if (opts.saved) store.set('carrara_welcome', kit(opts.saved));
   const els = { arrival: el('arrival'), 'tk-name': el('tk-name'), 'tk-date': el('tk-date'), 'tk-go': el('tk-go') };
+  const dateRule = el('tk-date-rule');
+  dateRule.classList.add('tk-rule');
+  const dateField = el('tk-date-field');
+  dateField.classList.add('tk-field');
+  dateField.previousElementSibling = dateRule;
+  els['tk-date'].parentNode = dateField;
   const listeners = {};
   const win = {
     CarraraKitPending: !!opts.pending,
@@ -104,8 +112,68 @@ function load(opts) {
   return {
     name: () => els['tk-name'].textContent,
     save: (n) => store.set('carrara_welcome', kit(n)),
-    settle: (pending, type) => { win.CarraraKitPending = pending; win.dispatchEvent(new ctx.Event(type)); }
+    settle: (pending, type) => { win.CarraraKitPending = pending; win.dispatchEvent(new ctx.Event(type)); },
+    date: () => els['tk-date'].textContent,
+    dateShown: () => !dateField.hidden && !dateRule.hidden,
+    dateHidden: () => dateField.hidden && dateRule.hidden,
+    setStart: (v) => {
+      if (v === undefined) delete win.CarraraStartDate; else win.CarraraStartDate = v;
+      win.dispatchEvent(new ctx.Event('carrara:start-date'));
+    }
   };
+}
+
+// Lift any named function out of app.js by its braces.
+function liftFn(name) {
+  const start = APP.indexOf('function ' + name + '(');
+  if (start < 0) return null;
+  let i = APP.indexOf('{', start), depth = 0;
+  for (; i < APP.length; i++) {
+    if (APP[i] === '{') depth++;
+    else if (APP[i] === '}' && --depth === 0) break;
+  }
+  return APP.slice(start, i + 1);
+}
+
+// publishStartDate with what it reads around it: the kit, the team list, and
+// a window that records every announcement. isDay may not exist on old code,
+// in which case the lift is simply left out and the checks say so.
+function startDatePage() {
+  const events = [];
+  const win = { dispatchEvent(e) { events.push(e.type); return true; } };
+  const ctx = { window: win, Event: class { constructor(type) { this.type = type; } } };
+  vm.createContext(ctx);
+  const src = ['isDay', 'sameFirstAndInitial', 'publishStartDate'].map(liftFn).filter(Boolean).join('\n');
+  vm.runInContext('var kitData = null; var teamData = [];\n' + src, ctx);
+  return {
+    run(kitValue, team) {
+      ctx.kitData = kitValue;
+      if (team) ctx.teamData = team;
+      events.length = 0;
+      ctx.publishStartDate();
+      return { date: win.CarraraStartDate, events: events.slice() };
+    }
+  };
+}
+
+// refreshKit with a saved kit and a fresh answer, returning what it stored and
+// what it now uses. The plan rule it shares a home with is the real one.
+async function driveRefresh(savedData, fresh) {
+  const MO = require(path.join(ROOT, 'my-onboarding.js'));
+  const box = { carrara_welcome: { code: 'c', data: savedData } };
+  const ctx = {
+    window: { dispatchEvent() { return true; } },
+    Event: class { constructor(type) { this.type = type; } },
+    JSON, Object, Array, MO,
+    store: (k, v) => { if (v === undefined) return box[k]; box[k] = v; },
+    applyKitToHub() {}, mountMyOnboarding() {},
+    fetch: () => Promise.resolve({ ok: true, json: () => Promise.resolve(JSON.parse(JSON.stringify(fresh))) })
+  };
+  vm.createContext(ctx);
+  const src = ['isDay', 'refreshKit'].map(liftFn).filter(Boolean).join('\n');
+  vm.runInContext('var kitData = null; var kitRefreshing = false;\n' + src + '\nrefreshKit();', ctx);
+  for (let n = 0; n < 10; n++) await new Promise((r) => setImmediate(r));
+  return { stored: box.carrara_welcome.data.startDate, used: ctx.kitData && ctx.kitData.startDate };
 }
 
 const blank = (s) => String(s).trim() === '';
@@ -217,6 +285,68 @@ async function main() {
         JSON.stringify(offline.log) === JSON.stringify(['event:carrara:kit-settled:pending=false']), offline.log);
       check('a network error leaves the flag down', offline.pendingAfter === false, offline.pendingAfter);
     }
+  }
+
+  console.log('\n[g] app.js publishStartDate: the kit\'s own date first, the team list after');
+  {
+    const p = startDatePage();
+    const romina = { name: 'Romina', startDate: '2026-11-18' };
+    let r = p.run(romina);
+    check('the kit\'s date is published with no team list loaded', r.date === '2026-11-18', r);
+    check('and announced once', JSON.stringify(r.events) === JSON.stringify(['carrara:start-date']), r.events);
+    r = p.run(romina);
+    check('publishing the same date again announces nothing', r.date === '2026-11-18' && r.events.length === 0, r);
+
+    const q = startDatePage();
+    r = q.run({ name: 'Ada Lovelace' }, [{ name: 'Ada Lovelace', startDate: '2026-12-01' }]);
+    check('a kit with no date falls back to the team list and finds a full-name match', r.date === '2026-12-01', r);
+
+    const real = [{ name: 'Romina Ideses', startDate: '2026-11-20' }, { name: 'Gonz Sanchez', startDate: '2024-01-01' }];
+    const s = startDatePage();
+    r = s.run({ name: 'Romina', startDate: '2026-11-18' }, real);
+    check('"Romina" with a list row "Romina Ideses" and a kit date publishes the kit date', r.date === '2026-11-18', r);
+    const t = startDatePage();
+    r = t.run({ name: 'Romina' }, real);
+    check('"Romina" with no kit date publishes nothing, as today', r.date === undefined && r.events.length === 0, r);
+
+    const u = startDatePage();
+    u.run({ name: 'Romina', startDate: '2026-11-18' });
+    r = u.run({ name: 'Karishma' });
+    check('a date set for one kit is cleared when the next kit has none', !r.date, r);
+    check('with exactly one announcement', JSON.stringify(r.events) === JSON.stringify(['carrara:start-date']), r.events);
+    r = u.run({ name: 'Karishma' });
+    check('nothing changed, nothing announced', !r.date && r.events.length === 0, r);
+    const v = startDatePage();
+    r = v.run(null);
+    check('no kit and no date announces nothing', r.date === undefined && r.events.length === 0, r);
+    r = v.run({ name: 'Romina', startDate: '2026-11-18T00:00:00Z' });
+    check('a timestamp on the kit is not a date', r.date === undefined && r.events.length === 0, r);
+  }
+
+  console.log('\n[h] app.js refreshKit keeps a saved first day only when POps did not answer');
+  {
+    const base = { name: 'Romina', plan: null, syncWith: [] };
+    const saved = Object.assign({}, base, { startDate: '2026-11-18' });
+    let r = await driveRefresh(saved, Object.assign({}, base, { startDate: null }));
+    check('a refresh answering startDate null keeps the saved date (stored)', r.stored === '2026-11-18', r);
+    check('and in use', r.used === '2026-11-18', r);
+    r = await driveRefresh(saved, Object.assign({}, base, { startDate: '' }));
+    check('a refresh answering "" replaces it', r.stored === '' && r.used === '', r);
+    r = await driveRefresh(saved, Object.assign({}, base, { startDate: '2026-12-02' }));
+    check('a refresh answering a different date replaces it', r.stored === '2026-12-02' && r.used === '2026-12-02', r);
+    r = await driveRefresh(base, Object.assign({}, base, { startDate: null }));
+    check('with nothing saved, a null answer stays null', r.stored === null && r.used === null, r);
+  }
+
+  console.log('\n[i] the real arrival.js shows and hides the Start row');
+  {
+    const p = load({ saved: 'Romina' });
+    check('with no date the Start row is hidden', p.dateHidden() && p.date() === '', { date: p.date() });
+    p.setStart('2026-11-18');
+    check('a published date shows the row', p.dateShown(), { date: p.date() });
+    check('and reads "11  .  18  .  2026"', p.date() === '11  .  18  .  2026', p.date());
+    p.setStart(undefined);
+    check('clearing the date hides the row again', p.dateHidden() && p.date() === '', { date: p.date() });
   }
 
   finished = true;

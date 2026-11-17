@@ -313,6 +313,55 @@ async function main() {
   const zeroName = await callMintSafe(Object.assign({}, valid, { name: 0 }), TOKEN);
   check('name: 0 still reports the required-field error', !zeroName.threw && zeroName.res.statusCode === 400 && bodyOf(zeroName).error === 'name and manager are required', bodyOf(zeroName));
 
+  // ------------------------------------------------------------- start date
+  // The hire's first day rides on the plan read (#120). It comes back as a
+  // top-level startDate, never inside plan: a date is not the manager's words
+  // and must never make an empty plan look written. Three states, and the
+  // difference between the last two is the whole point:
+  //   'YYYY-MM-DD'  POps answered with a date
+  //   ''            POps answered and has no usable date
+  //   null          POps did not answer, so nobody knows
+  // The counting stub is set aside for these calls and put back after, so the
+  // network check below still counts only the calls it was written for.
+  console.log('\n[start date] the plan read carries the first day as a top-level startDate');
+  const countingFetch = global.fetch;
+  const planWith = (extra) => async () => ({
+    ok: true, status: 200,
+    json: async () => Object.assign({ manager_intro: null, thirty_days: null, sixty_days: null, ninety_days: null, sync_with: null, practices: [] }, extra)
+  });
+  const dated = await callMint(valid, TOKEN);
+  global.fetch = planWith({ start_date: '2026-11-18' });
+  const withDate = await callWelcome(dated.body.code);
+  check('a plan with start_date 2026-11-18 gives startDate 2026-11-18', withDate.body.startDate === '2026-11-18', withDate.body.startDate);
+  check('the plan never gains a start_date key', withDate.body.plan && !('start_date' in withDate.body.plan), withDate.body.plan);
+  check('nor a startDate key', withDate.body.plan && !('startDate' in withDate.body.plan), withDate.body.plan);
+  const unusable = [
+    ['null', { start_date: null }],
+    ['missing', {}],
+    ['a timestamp', { start_date: '2026-11-18T00:00:00Z' }],
+    ['a day-first date', { start_date: '18/11/2026' }],
+    ['a number', { start_date: 20261118 }]
+  ];
+  for (const [label, extra] of unusable) {
+    global.fetch = planWith(extra);
+    const r = await callWelcome(dated.body.code);
+    check('start_date ' + label + ' gives startDate "" (POps answered, no usable date)', r.body.startDate === '', r.body.startDate);
+    check('start_date ' + label + ': the plan never gains a start_date key', r.body.plan && !('start_date' in r.body.plan), r.body.plan);
+  }
+  global.fetch = async () => ({ ok: false, status: 500, json: async () => ({}) });
+  const popsDown = await callWelcome(dated.body.code);
+  check('POps failing gives startDate null (unknown)', popsDown.statusCode === 200 && popsDown.body.startDate === null, popsDown.body.startDate);
+  global.fetch = async () => { throw new Error('offline'); };
+  const popsGone = await callWelcome(dated.body.code);
+  check('POps unreachable gives startDate null (unknown)', popsGone.statusCode === 200 && popsGone.body.startDate === null, popsGone.body.startDate);
+  global.fetch = planWith({ start_date: '2026-11-18' });
+  const noKeyCode = await callMint(Object.assign({}, valid, { planKey: null }), TOKEN);
+  const noKeyBack = await callWelcome(noKeyCode.body.code);
+  check('a code with no plan key still unlocks', noKeyBack.statusCode === 200 && noKeyBack.body.name === valid.name, noKeyBack.body);
+  check('a code with no plan key carries no plan, as before', noKeyBack.body.plan === null, noKeyBack.body.plan);
+  check('a code with no plan key gives startDate null', noKeyBack.body.startDate === null, noKeyBack.body.startDate);
+  global.fetch = countingFetch;
+
   // ---------------------------------------------------------------- network
   // Confirm the stub actually did the job above, rather than sitting unused:
   // exactly the 4 calls the investigator measured against the real POps host

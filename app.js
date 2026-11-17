@@ -1724,24 +1724,49 @@
   /* What the section knows beyond the kit: the manager's photo and email from
      the roster, the people on the hire's team, and checklist progress. Any of
      it can be missing (roster still loading, offline); the section copes. */
-  /* THE TICKET'S START DATE, which is a JOIN and therefore has two halves:
-     the hire's name (from the kit, which a ?code= link may still be fetching)
-     and the roster (a second fetch, with start_date on it). Whichever lands
-     last completes it, so this runs after both and simply returns when it has
-     only one. The name is matched the way the manager's is: exactly, then on a
-     first name plus a last initial, and never on a first name alone.
+  /* A first day as POps writes it, 'YYYY-MM-DD' and nothing else. A timestamp
+     or a day-first date is not one: the ticket reads the parts off the string,
+     so anything looser would be read wrong rather than not at all. */
+  function isDay(v) {
+    return typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v);
+  }
+
+  /* THE TICKET'S START DATE. POps sends it exactly, inside the plan read the
+     kit already makes (startDate on the kit, #120), and that is the first
+     place to look: it needs no roster, so it does not wait for one.
+
+     The roster is the fallback, for a kit from before POps sent the date. That
+     is a JOIN and therefore has two halves: the hire's name (from the kit,
+     which a ?code= link may still be fetching) and the roster (a second fetch,
+     with start_date on it). Whichever lands last completes it, so this runs
+     after both. The name is matched the way the manager's is: exactly, then on
+     a first name plus a last initial, and never on a first name alone. That
+     last rule is why the join misses real hires, whose link carries "Romina"
+     while the roster says "Romina Ideses", and why the kit's own date comes
+     first.
 
      An empty start_date in POps means NOT KNOWN, which is what no roster at
      all means too -- both leave window.CarraraStartDate unset and the ticket
      drops the row. The old behaviour, filling in today, was the one answer
-     that looked right and never was. */
+     that looked right and never was. A date left over from another kit loaded
+     in this page is cleared, so a ticket never shows one hire's first day to
+     the next; and when nothing changed nothing is announced. */
   function publishStartDate() {
+    var day = kitData && isDay(kitData.startDate) ? kitData.startDate : '';
     var name = kitData && kitData.name;
-    if (!name || !teamData.length) return;
-    var row = teamData.filter(function (x) { return x.name === name; })[0]
-      || teamData.filter(function (x) { return sameFirstAndInitial(x.name, name); })[0];
-    if (!row || !row.startDate) return;
-    window.CarraraStartDate = row.startDate;
+    if (!day && name && teamData.length) {
+      var row = teamData.filter(function (x) { return x.name === name; })[0]
+        || teamData.filter(function (x) { return sameFirstAndInitial(x.name, name); })[0];
+      if (row && row.startDate) day = row.startDate;
+    }
+    if (day) {
+      if (window.CarraraStartDate === day) return;
+      window.CarraraStartDate = day;
+      window.dispatchEvent(new Event('carrara:start-date'));
+      return;
+    }
+    if (!window.CarraraStartDate) return;
+    delete window.CarraraStartDate;
     window.dispatchEvent(new Event('carrara:start-date'));
   }
   window.addEventListener('carrara:kit-updated', publishStartDate);
@@ -1914,6 +1939,11 @@
           j.plan = Object.assign({}, stored.plan, freshPractices ? { practices: freshPractices } : {});
           j.syncWith = stored.syncWith;
         }
+        // The first day has the same floor. A null startDate means POps did not
+        // answer, which says nothing about the date, so a date already saved
+        // stands. When POps did answer, its word wins: a new date replaces the
+        // old one, and '' (no date any more) clears it.
+        if (j.startDate == null && isDay(stored.startDate)) j.startDate = stored.startDate;
         store('carrara_welcome', { code: saved.code, data: j });
         kitData = j;
         applyKitToHub();
