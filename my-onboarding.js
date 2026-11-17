@@ -144,7 +144,7 @@
     return (Array.isArray(members) ? members : []).filter(function (m) {
       if (!m || !m.name || m.name === managerName || m.name === hireName) return false;
       return (Array.isArray(m.practices) ? m.practices : []).some(function (p) { return mine.indexOf(p) > -1; });
-    }).map(function (m) { return { name: m.name, avatar: m.avatar || '' }; })
+    }).map(function (m) { return { name: m.name, avatar: m.avatar || '', email: m.email || ''  }; })
       .sort(function (a, b) { return a.name.localeCompare(b.name); });
   }
 
@@ -170,6 +170,25 @@
 
   /* Who a hire asks when the answer is not their manager's to give. Content,
      not plumbing: edit freely. */
+
+  /* A person's profile on the Carrara Hub, which is the profile the company
+     keeps. The team page has sent people there for a while; the faces on this
+     page do now too, so the address is written once -- here, in the module the
+     verifier can drive, rather than twice in two files. */
+  function hubProfileUrl(p) {
+    return 'https://hub.carrara.is/people?person='
+      + encodeURIComponent((p && (p.email || p.name)) || '');
+  }
+
+  /* "Led by Sol S." ended in a full stop this page supplied, so the stop was
+     stripped off the name before it was printed. The line is "Anthropic, Sol S."
+     now, with no sentence around it, and a blanket strip turns an initial into
+     a typo: Sol S. becomes Sol S. So the dot comes off only when it is not the
+     last letter of an initial. */
+  function dropFullStop(v) {
+    var t = String(v == null ? '' : v).trim();
+    return /(^|\s)[A-Za-z]\.$/.test(t) ? t : t.replace(/\.+$/, '');
+  }
 
   function initials(name) {
     return String(name || '').split(/\s+/).slice(0, 2)
@@ -227,45 +246,56 @@
        `plan.manager_intro` is still plan content for planIsEmpty -- it is the
        manager's writing either way, it is just printed somewhere else. */
 
-    /* ---- the three cards: your team, your manager, questions ---- */
+    /* ---- the two top cards: your manager, then your team ----
+       The manager comes first because they are the one person on this page the
+       hire will actually talk to on day one; the team is the room behind them.
+       Left to right says that, so it is the order the markup is written in. */
     var top = '';
-    var teamLabel = kit.team && kit.team.label ? kit.team.label : 'Your team';
-    var peers = Array.isArray(ctx.peers) ? ctx.peers : [];
-    top += '<div class="mo-card mo-top"><div class="wk-lbl">Your team</div>'
-      + '<div class="mo-card-name">' + esc(teamLabel) + '</div>'
-      + (peers.length
-          ? '<p class="mo-card-line">' + peers.length + (peers.length === 1 ? ' person does' : ' people do')
-            + ' the same kind of work you do.</p>'
-            + '<div class="mo-faces">' + peers.slice(0, 8).map(function (p) {
-                return '<span title="' + esc(p.name) + '">' + avatar(p, 'mo-face') + '</span>';
-              }).join('')
-            + (peers.length > 8 ? '<span class="mo-face mo-more">+' + (peers.length - 8) + '</span>' : '')
-            + '</div>'
-          : '<p class="mo-card-line">The people you will work alongside.</p>')
-      + '<div class="wk-links"><a href="#/team"'
-      + (ctx.teamFilter ? ' data-team-filter="' + esc(ctx.teamFilter) + '"' : '')
-      + '>Meet your team</a></div></div>';
 
     if (mgrName) {
       var m = ctx.manager || {};
       var dm = kit.manager.id && typeof window !== 'undefined' && window.LINKS
         ? window.LINKS.slackWorkspace + '/team/' + kit.manager.id : '';
-      /* A card that flips: the face on the front, how to reach them on the
-         back. Hover flips it on a desktop, a tap (the button) everywhere. */
-      top += '<div class="mo-card mo-top mo-flip" tabindex="0" role="button" aria-label="Flip to see how to reach '
-        + esc(mgrName) + '"><div class="mo-flip-in">'
-        + '<div class="mo-face-front"><div class="wk-lbl">Your manager</div>'
+      /* This card used to flip: the face on the front, how to reach them on the
+         back. Two ways to reach one person is not a second side's worth of
+         content, and a card that hides half of itself asks to be discovered --
+         on the one card whose whole job is to be used. Both ways stand on the
+         front now, and nothing else does. */
+      top += '<div class="mo-card mo-top"><div class="wk-lbl">Your manager</div>'
         + avatar({ name: mgrName, avatar: m.avatar }, 'mo-mgr-av')
         + '<div class="mo-card-name">' + esc(mgrName) + '</div>'
         + (m.role ? '<p class="mo-card-line">' + esc(m.role) + '</p>' : '')
-        + '<p class="mo-flip-hint">Flip for how to reach them</p></div>'
-        + '<div class="mo-face-back"><div class="wk-lbl">Reach ' + esc(mgrName.split(/\s+/)[0]) + '</div>'
         + '<div class="wk-links">'
         + (dm ? '<a href="' + esc(dm) + '" target="_blank" rel="noopener">Message on Slack ↗</a>' : '')
         + (m.email ? '<a href="mailto:' + esc(m.email) + '">' + esc(m.email) + '</a>' : '')
-        + '</div><p class="mo-card-line">Your day-one 1:1 is with them. Bring your questions on the plan below.</p>'
-        + '</div></div></div>';
+        + '</div></div>';
     }
+
+    /* The card is already labelled "Your team"; naming it again under the label
+       said the same words twice, because team.label falls back to exactly that
+       string. It is printed only when POps has a real name for the team that is
+       not the label over it. */
+    var teamLabel = kit.team && kit.team.label ? kit.team.label : 'Your team';
+    var namesTheTeam = teamLabel.trim().toLowerCase() !== 'your team';
+    var peers = Array.isArray(ctx.peers) ? ctx.peers : [];
+    top += '<div class="mo-card mo-top"><div class="wk-lbl">Your team</div>'
+      + (namesTheTeam ? '<div class="mo-card-name">' + esc(teamLabel) + '</div>' : '')
+      + (peers.length
+          ? '<p class="mo-card-line">' + peers.length + (peers.length === 1 ? ' person does' : ' people do')
+            + ' the same kind of work you do.</p>'
+            /* Each face is the door to that person's profile on the Carrara Hub,
+               which is what the team page's cards already open. The link that
+               used to sit under them went to the hub's own team page filtered by
+               practice, which is not where their profile lives. */
+            + '<div class="mo-faces">' + peers.slice(0, 8).map(function (p) {
+                return '<a class="mo-face-link" href="' + esc(hubProfileUrl(p)) + '"'
+                  + ' target="_blank" rel="noopener" title="' + esc(p.name) + '">'
+                  + avatar(p, 'mo-face') + '</a>';
+              }).join('')
+            + (peers.length > 8 ? '<span class="mo-face mo-more">+' + (peers.length - 8) + '</span>' : '')
+            + '</div>'
+          : '<p class="mo-card-line">The people you will work alongside.</p>')
+      + '</div>';
 
     /* Two cards, not three. The third was [questions] -- "Ask early, ask often"
        and a list of who to ask -- which is advice rather than this hire's team
@@ -280,8 +310,12 @@
     /* ---- the plan ---- */
     var steps = STEPS.filter(function (s) { return text(plan[s[1]]); });
     if (steps.length) {
-      /* No subhead: the page is called this. */
-      h += '<p class="body-copy">Written by your manager. Bring questions to your day-one 1:1.</p>'
+      /* It used to open straight on "Written by your manager", which is a
+         caption with nothing above it to caption: the reader met the sentence
+         before they met the thing. The head names what follows, the line under
+         it says who wrote it, in that order. */
+      h += '<h2 class="sub">Your first 90 days</h2>'
+        + '<p class="body-copy">Written by your manager. Bring questions to your day-one 1:1.</p>'
         + '<div class="mo-timeline">'
         + steps.map(function (s) {
             return '<div class="mo-step"><div class="mo-day">' + s[0] + '</div>'
@@ -293,21 +327,21 @@
     /* ---- client and week-one people ---- */
     var cards = '';
     if (kit.client && kit.client.name) {
-      cards += '<div class="mo-card"><div class="wk-lbl">Your first client</div>'
-        + '<div class="mo-card-name">' + esc(kit.client.name) + '</div>'
-        + (kit.client.lead ? '<p class="mo-card-line">Led by ' + esc(String(kit.client.lead).replace(/\.+$/, '')) + '.</p>' : '')
-        + (kit.client.work && kit.client.work.length
-            ? '<div class="wk-tags">' + kit.client.work.map(function (w) { return '<span>' + esc(w) + '</span>'; }).join('') + '</div>'
-            : '')
-        + '<div class="wk-links">'
-        + (kit.client.domain ? '<a href="https://' + esc(kit.client.domain) + '" target="_blank" rel="noopener">' + esc(kit.client.domain) + ' ↗</a>' : '')
-        + '<a href="#/clients">All clients and who leads them</a></div>'
+      /* What the card IS leads it, and what it holds follows in one line.
+         It read the other way round: a grey label, then the client's name as
+         the heading, then "Led by" on its own line, then the practice as a tag.
+         Four weights for two facts. */
+      cards += '<div class="mo-card"><div class="mo-card-title">Your first client</div>'
+        + '<p class="mo-card-fact">' + esc(kit.client.name)
+        + (kit.client.lead ? ', ' + esc(dropFullStop(kit.client.lead)) : '')
+        + '</p>'
+        + '<div class="wk-links"><a href="#/clients">All clients and who leads them</a></div>'
         + '</div>';
     }
     if (kit.syncWith && kit.syncWith.length) {
       /* The manager's own words about their own people: names and reasons are
          free text, NOT markdown. esc() is the only path they take. */
-      cards += '<div class="mo-card"><div class="wk-lbl">Book time with them in week one</div>'
+      cards += '<div class="mo-card"><div class="mo-card-title">Book time with them in week one</div>'
         + '<ul class="mo-syncs">'
         + kit.syncWith.map(function (s) {
             return '<li><b>' + esc(s.name) + '</b>' + (s.why ? ': ' + esc(s.why) : '') + '</li>';
@@ -316,12 +350,13 @@
     }
     if (cards) h += '<h2 class="sub">Who you will work with</h2><div class="mo-cards">' + cards + '</div>';
 
-    var extra = '';
-    if (kit.team && kit.team.how && kit.team.how.length) {
-      extra += '<div class="wk-sec"><div class="wk-lbl">How ' + esc(String(kit.team.label || 'your team').toLowerCase()) + ' works here</div><ul>'
-        + kit.team.how.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>';
-    }
-    h += '<div class="mo-extra">' + extra + '</div>';
+    /* "How your team works here" is gone, and with it the last thing on this
+       page that was about Carrara rather than about this hire: three bullets
+       saying the manager will explain the team, that we are async first, and to
+       read Ways of Working in week two. The first is what the 1:1 is; the other
+       two are the hub's own pages, which the checklist already walks them to.
+       kit.team.how is still in the wire contract and still arrives; this page
+       simply is not where it belongs. */
 
     return h;
   }
@@ -334,6 +369,7 @@
     navState: navState,
     parseSyncWith: parseSyncWith,
     renderSection: renderSection,
+    hubProfileUrl: hubProfileUrl,
     TEAM_DIRECTORY: TEAM_DIRECTORY,
     groupingOf: groupingOf,
     groupLabels: groupLabels,

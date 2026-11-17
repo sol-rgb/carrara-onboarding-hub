@@ -374,7 +374,34 @@ async function main() {
   check("the manager card carries the roster photo and email",
     withCtx.indexOf('/assets/people/sol.jpg') > -1 && withCtx.indexOf('mailto:sol@carrara.is') > -1);
   check('the team card counts the peers', withCtx.indexOf('2 people do the same kind of work') > -1);
-  check('the team card links to the filtered team page', withCtx.indexOf('data-team-filter="Talent Acquisition"') > -1);
+  /* The link under the faces went to the team page filtered by practice, which
+     is not where a person's profile lives. Each face is the door now. */
+  check('each face opens that person on the Carrara Hub',
+    withCtx.indexOf('hub.carrara.is/people?person=') > -1);
+  check('and the team page link under them is gone', withCtx.indexOf('Meet your team') === -1);
+  /* The Slack link is built from window.LINKS, which this file does not have,
+     so the mail link is the one reachable thing to assert on here. What matters
+     either way is that both stand on the card's front. */
+  check('the manager is reachable on the card itself, not behind a flip',
+    withCtx.indexOf('mo-flip') === -1 && withCtx.indexOf('Flip for how to reach') === -1
+    && withCtx.indexOf('mailto:sol@carrara.is') > -1);
+  check('the manager card comes before the team card',
+    withCtx.indexOf('Your manager') < withCtx.indexOf('Your team'));
+  check('the team card does not name itself twice',
+    withCtx.split('Your team').length - 1 === 1, withCtx.indexOf('Your team'));
+  check('the plan has a head of its own above its caption',
+    withCtx.indexOf('<h2 class="sub">Your first 90 days</h2>') > -1
+    && withCtx.indexOf('Your first 90 days') < withCtx.indexOf('Written by your manager'));
+  check('the lower cards lead with what they are',
+    withCtx.indexOf('<div class="mo-card-title">Your first client</div>') > -1
+    && withCtx.indexOf('<div class="mo-card-title">Book time with them in week one</div>') > -1);
+  check('the client is one line: the name, then who leads it',
+    withCtx.indexOf('<p class="mo-card-fact">Anthropic, Sol S.</p>') > -1);
+  check('a lead\'s initial keeps its dot, a sentence does not',
+    mo.renderSection(Object.assign({}, KIT, { client: { name: 'LiteLLM', lead: 'Joe Penn.' } }))
+      .indexOf('LiteLLM, Joe Penn<') > -1);
+  check('"How your team works here" is not on this page any more',
+    withCtx.toLowerCase().indexOf('works here') === -1 && withCtx.indexOf('Pods per client.') === -1);
   const hostileCtx = mo.renderSection(KIT, {
     manager: { avatar: '"><script>alert(6)</script>', email: '"><b>x', role: '<i>r</i>' },
     peers: [{ name: '<script>alert(7)</script>', avatar: '' }],
@@ -504,7 +531,8 @@ async function main() {
   const peers = mo.practicePeers(['Talent Platform', 'Embedded Recruiting'], ROSTER, 'Sol Silbenberg', 'Ada Lovelace');
   check('peers: everyone sharing a practice, minus the manager and the hire, sorted by name',
     JSON.stringify(peers) === JSON.stringify([
-      { name: 'Bea Corvid', avatar: '' }, { name: 'Cy Ardent', avatar: '' }, { name: 'Zed Marlowe', avatar: 'z.png' }
+      { name: 'Bea Corvid', avatar: '', email: '' }, { name: 'Cy Ardent', avatar: '', email: '' },
+      { name: 'Zed Marlowe', avatar: 'z.png', email: '' }
     ]), peers);
   check('peers: a hire with no practices has none', mo.practicePeers([], ROSTER, 'Sol Silbenberg', 'Ada Lovelace').length === 0);
 
@@ -520,8 +548,9 @@ async function main() {
   check('TEAM_DIRECTORY still holds talent and finance for the snapshot path',
     JSON.stringify(Object.keys(mo.TEAM_DIRECTORY).sort()) === JSON.stringify(['finance', 'talent']));
   const ptHtml = mo.renderSection(KITP, { teamFilter: pt.teamFilter, peers: pt.peers });
-  check('the section renders the practice peers and links to the first practice',
-    ptHtml.indexOf('3 people do') > -1 && ptHtml.indexOf('data-team-filter="Embedded Recruiting"') > -1, ptHtml.slice(0, 200));
+  check('the section renders the practice peers, each one a door to their profile',
+    ptHtml.indexOf('3 people do') > -1
+    && ptHtml.indexOf('hub.carrara.is/people?person=Bea%20Corvid') > -1, ptHtml.slice(0, 200));
 
   console.log('');
   finished = true;
