@@ -42,21 +42,44 @@
     } catch (e) { return 'You'; }
   }
 
-  /* The design dates the ticket 11 . 18 . 2026. There is no start date in what
-     POps mints -- the access code carries name, country, project, client and
-     manager, and nothing else -- so the ticket is dated the day it is opened,
-     which is the day the journey it is a ticket for begins. */
-  function today() {
-    var d = new Date();
-    var pad = function (n) { return n < 10 ? '0' + n : String(n); };
-    return pad(d.getMonth() + 1) + '  .  ' + pad(d.getDate()) + '  .  ' + d.getFullYear();
+  /* The design dates the ticket 11 . 18 . 2026, and the date it wants is the
+     hire's first day. The access code does not carry one -- it carries name,
+     country, project, client and manager -- so this used to fill in today, and
+     a field labelled Start that says today is wrong on every day but one, and
+     says something different each time the same person opens it.
+
+     POps knows. The hire is on the roster from the day they are created, with
+     status 'onboarding' and start_date beside it, and app.js publishes it here
+     once it has both halves. Until then, and when POps has no date for this
+     hire, the ticket says nothing rather than guessing.
+
+     The parts are read off the string instead of through Date(): '2026-11-18'
+     parsed as a date is midnight UTC, which is still the 17th anywhere west of
+     London, so a hire in Buenos Aires would be handed the day before theirs. */
+  function startsOn() {
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(window.CarraraStartDate || ''));
+    return m ? m[2] + '  .  ' + m[3] + '  .  ' + m[1] : '';
+  }
+
+  /* The Start line and the rule above it are one thing. A label with nothing
+     under it reads as broken rather than as unknown, so with no date the whole
+     row leaves and the ticket stands on Passenger and Chapter. */
+  function fillDate() {
+    var dt = document.getElementById('tk-date');
+    if (!dt) return;
+    var when = startsOn();
+    dt.textContent = when;
+    var field = dt.parentNode;
+    if (!field || !field.classList || !field.classList.contains('tk-field')) return;
+    field.hidden = !when;
+    var rule = field.previousElementSibling;
+    if (rule && rule.classList && rule.classList.contains('tk-rule')) rule.hidden = !when;
   }
 
   function fill() {
     var nm = document.getElementById('tk-name');
-    var dt = document.getElementById('tk-date');
     if (nm) nm.textContent = passenger();
-    if (dt) dt.textContent = today();
+    fillDate();
   }
 
   function seal() {
@@ -126,6 +149,9 @@
   }
   window.addEventListener('carrara:kit-updated', refillName);
   window.addEventListener('carrara:kit-settled', refillName);
+  /* The date is a join of the kit and the roster, so it lands on its own clock,
+     after the name and sometimes after the ticket has been sitting there. */
+  window.addEventListener('carrara:start-date', fillDate);
 
   var go = document.getElementById('tk-go');
   if (go) go.addEventListener('click', function (e) { e.preventDefault(); openUp(); });
