@@ -610,6 +610,7 @@ a.spec .spec__tab,
 .ch-name a,
 .member .em a,
 .mo-body a:not(.btn),
+.mo-reach a,
 .wk-sec a:not(.btn):not(.cl-cell) {
   color: inherit;
   border-bottom: 0;
@@ -623,6 +624,7 @@ a.spec:hover .spec__tab,
 .ch-name a:hover,
 .member .em a:hover,
 .mo-body a:not(.btn):hover,
+.mo-reach a:hover,
 .wk-sec a:not(.btn):not(.cl-cell):hover {
   text-decoration-style: solid;
   text-decoration-color: currentColor;
@@ -632,6 +634,7 @@ a.textlink:focus-visible,
 .ch-name a:focus-visible,
 .member .em a:focus-visible,
 .mo-body a:not(.btn):focus-visible,
+.mo-reach a:focus-visible,
 .wk-sec a:not(.btn):not(.cl-cell):focus-visible { outline: 2px solid var(--color-content-accent); outline-offset: 3px; }
 
 /* chips */
@@ -1905,23 +1908,49 @@ body::after {
 /* and the answer under it, on one line */
 .mo-card-fact { font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); color: var(--color-content-default); }
 .mo-card .wk-links { margin-top: 12px; }
+/* how to reach one person: two inline links, stacked, with nothing ruled
+   between them because they are not a list of places to go */
+.mo-reach { display: grid; justify-items: start; gap: var(--space-stack-sm); margin-top: var(--space-stack-md); }
 .mo-syncs { list-style: disc; padding-left: var(--space-stack-lg); margin-top: 2px; }
 .mo-syncs li { font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); color: var(--color-content-default); margin-bottom: var(--space-stack-sm); }
 .mo-syncs li b { font-weight: var(--weight-500); color: var(--ink); }
 
 /* the 30/60/90: a chamfer-marker timeline */
-/* Three blocks, and the air between them is what says they are three. It was
-   4px of gap against 26px of padding, so each rule sat hard under the block it
-   had just ended and a long way from the one it opened: the reader met the line
-   as a full stop rather than as a heading. Now 56 above the rule and 24 under
-   it, which is the same thing entry 81 settled on the checklist -- a rule
-   belongs to what comes AFTER it. */
-.mo-timeline { display: grid; gap: var(--space-stack-xl); margin-top: var(--space-stack-lg); max-width: 860px; }
-.mo-step { display: grid; grid-template-columns: 78px 1fr; gap: 26px; align-items: start; border-top: 1px solid var(--card-edge); padding: var(--space-stack-lg) 0 0; }
-/* The orange square that used to sit on the rule above each number is gone. It
-   was the only bead on a timeline that has no thread: nothing joins the three
-   steps but the rules themselves, so a marker on each one marked nothing. */
-.mo-day { font-family: var(--sans); font-weight: var(--weight-700); font-size: var(--type-title-sm-size); line-height: 1; }
+/* THE PLAN: three boxes, one under the next, each holding its own stretch.
+   It was a left column of big numbers against a right column of text, joined by
+   rules -- a timeline with no thread, where the number was the only thing
+   holding a stretch together and it held it from outside.
+
+   The boxes stack flush, so between two of them the lower box's top edge and
+   the upper box's bottom edge are drawn as two separate strokes a hair apart.
+   That is the point: two drawn lines next to each other read as two sheets,
+   where one line reads as a rule. */
+.mo-plan { display: grid; margin-top: var(--space-stack-lg); max-width: 860px; }
+.mo-leaf { position: relative; padding: var(--space-stack-lg); }
+/* The edge is DRAWN, with the pen trazos.js keeps in the page's defs: the
+   filter is on a layer of its own, so the wobble is in the line and never in
+   the words inside it. inset 0 puts it on the border box; the filter's region
+   is far wider than the box, so the displacement is never clipped. */
+.mo-leaf::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--color-content-default);
+  filter: var(--tz-boli, url(#tz-boli));
+  pointer-events: none;
+}
+.mo-leaf__head {
+  font-family: var(--sans);
+  font-size: var(--type-body-sm-size);
+  font-weight: var(--weight-500);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-content-default);
+  margin-bottom: var(--space-stack-md);
+}
+/* A stretch with a head and no prose is a head alone in its box, which is a
+   true thing to show: the manager wrote the heading and not the rest. */
+.mo-leaf .mo-body:empty { display: none; }
 .mo-body p { font-size: var(--type-body-md-size); line-height: var(--type-body-md-leading); color: var(--color-content-default); margin-bottom: var(--space-stack-md); }
 .mo-body p:last-child { margin-bottom: 0; }
 .mo-body ul, .mo-body ol { margin-left: 20px; }
@@ -1933,7 +1962,12 @@ body::after {
 /* the three cards under the manager's note: team, manager, questions */
 .mo-cards-3 { grid-template-columns: repeat(3, 1fr); margin-bottom: 54px; }
 /* the top pair: the hire's team and the hire's manager, two across */
-.mo-cards-top { margin-bottom: 54px; }
+/* The sections of this page are spaced by ONE thing: the 56 that h2.sub
+   already carries above itself. This card grid used to add 54 of its own on
+   top of that, and the two did not collapse, so the gap above "Your first 90
+   days" was 110 against the 56 above "Who you will work with" -- the same kind
+   of break, measured two ways. */
+.mo-cards-top { margin-bottom: 0; }
 .mo-top { display: flex; flex-direction: column; }
 .mo-top .wk-links { margin-top: auto; padding-top: 12px; }
 .mo-top .mo-syncs { margin-top: 12px; }
@@ -1951,7 +1985,6 @@ body::after {
   border-radius: var(--shape-circle);
 }
 .mo-face { width: 34px; height: 34px; font-size: var(--type-body-2xs-size); }
-.mo-more { background: var(--sage-soft); font-size: var(--type-body-2xs-size); }
 .mo-mgr-av { width: 64px; height: 64px; font-size: var(--type-body-lg-size); margin: 4px 0 14px; border-radius: var(--shape-circle); }
 .mo-face img, .mo-mgr-av img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); }
 .mo-progress { margin: 6px 0 10px; }
@@ -1959,7 +1992,6 @@ body::after {
 
 @media (max-width: 860px) {
   .mo-cards { grid-template-columns: 1fr; }
-  .mo-step { grid-template-columns: 1fr; gap: 8px; }
 }
 /* team cards: role, location and the client logos someone actually sits on */
 /* what they do, under their name, in the ink -- like a client's lead */

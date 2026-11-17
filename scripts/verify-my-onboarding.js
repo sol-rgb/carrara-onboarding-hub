@@ -389,6 +389,38 @@ async function main() {
     withCtx.indexOf('Your manager') < withCtx.indexOf('Your team'));
   check('the team card does not name itself twice',
     withCtx.split('Your team').length - 1 === 1, withCtx.indexOf('Your team'));
+  /* Each stretch is a box with a head of its own, taken from the manager's bold
+     first line: the number, then the WHAT, because the WHEN is what the number
+     says. Uppercasing is CSS, so the text stays as the manager typed it. */
+  check('a stretch is a box', withCtx.indexOf('<section class="mo-leaf"><h3 class="mo-leaf__head">') > -1);
+  /* This KIT's stretches have no bold first line, which is the fallback: the
+     head is the number alone rather than a number and an invented subject. */
+  check('with no heading to take, the head is the number alone',
+    withCtx.indexOf('<h3 class="mo-leaf__head">30</h3>') > -1);
+  (function () {
+    const written = mo.renderSection(Object.assign({}, KIT, {
+      plan: {
+        thirty_days: '**First 30 days: Onboarding and learning**\n\nGet to know the people.',
+        sixty_days: '**Increased responsibility**\n\nOwn the account.',
+        ninety_days: 'No heading at all, just prose.'
+      }
+    }));
+    check('the head is the number and the WHAT, never the WHEN twice',
+      written.indexOf('<h3 class="mo-leaf__head">30/ Onboarding and learning</h3>') > -1);
+    check('a heading with no colon is used whole',
+      written.indexOf('<h3 class="mo-leaf__head">60/ Increased responsibility</h3>') > -1);
+    check('and the heading is not printed again inside the prose',
+      written.indexOf('First 30 days: Onboarding and learning</strong>') === -1
+      && written.indexOf('Get to know the people.') > -1);
+    check('prose with no heading keeps all of itself',
+      written.indexOf('<h3 class="mo-leaf__head">90</h3>') > -1
+      && written.indexOf('No heading at all, just prose.') > -1);
+  }());
+  check('the top two cards are headed the way the lower two are',
+    withCtx.indexOf('<div class="mo-card-title">Your manager</div>') > -1
+    && withCtx.indexOf('<div class="mo-card-title">Your team</div>') > -1);
+  check('the manager is reached through inline links, not a list of rows',
+    withCtx.indexOf('<div class="mo-reach">') > -1);
   check('the plan has a head of its own above its caption',
     withCtx.indexOf('<h2 class="sub">Your first 90 days</h2>') > -1
     && withCtx.indexOf('Your first 90 days') < withCtx.indexOf('Written by your manager'));
@@ -452,7 +484,7 @@ async function main() {
     plan: { manager_intro: null, thirty_days: null, sixty_days: null, ninety_days: null }
   }));
   check('an all-null plan opens no note and no timeline',
-    emptyPlan.indexOf('quote-block') === -1 && emptyPlan.indexOf('mo-timeline') === -1, emptyPlan.slice(0, 200));
+    emptyPlan.indexOf('quote-block') === -1 && emptyPlan.indexOf('mo-plan') === -1, emptyPlan.slice(0, 200));
   check('and still renders the client and syncs',
     emptyPlan.indexOf('Read your 30/60/90 plan.') > -1 && emptyPlan.indexOf('Anthropic') > -1
       && emptyPlan.indexOf('River Slate') > -1);
@@ -460,7 +492,7 @@ async function main() {
 
   const planless = mo.renderSection(Object.assign({}, KIT, { plan: null }));
   check('a planless kit still renders the client and syncs', planless.indexOf('Anthropic') > -1 && planless.indexOf('River Slate') > -1);
-  check('and opens no empty timeline', planless.indexOf('mo-timeline') === -1);
+  check('and opens no empty timeline', planless.indexOf('mo-plan') === -1);
 
   const locked = mo.renderSection(null);
   /* This used to send the reader to the welcome kit popup, which is not in the
@@ -483,7 +515,7 @@ async function main() {
   global.fetch = realFetch;
   const liveHtml = mo.renderSection(live.body);
   check('the live /api/welcome payload renders a section',
-    liveHtml.indexOf('Read your 30/60/90 plan.') > -1 && liveHtml.indexOf('mo-timeline') > -1, liveHtml.slice(0, 160));
+    liveHtml.indexOf('Read your 30/60/90 plan.') > -1 && liveHtml.indexOf('mo-plan') > -1, liveHtml.slice(0, 160));
   check('without the payload\'s pay pointer', liveHtml.indexOf(live.body.payNote) === -1);
   check('and the manager\'s syncs, not the derivation', liveHtml.indexOf('River Slate') > -1);
 
