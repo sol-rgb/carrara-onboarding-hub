@@ -1638,6 +1638,7 @@
       wireFilters();
       refreshStats();
       mountMyOnboarding();
+      publishStartDate();
       /* where the list comes from used to be written out under it. The note is
          gone; the line below it is kept for when there is no list to show. */
     })
@@ -1723,6 +1724,29 @@
   /* What the section knows beyond the kit: the manager's photo and email from
      the roster, the people on the hire's team, and checklist progress. Any of
      it can be missing (roster still loading, offline); the section copes. */
+  /* THE TICKET'S START DATE, which is a JOIN and therefore has two halves:
+     the hire's name (from the kit, which a ?code= link may still be fetching)
+     and the roster (a second fetch, with start_date on it). Whichever lands
+     last completes it, so this runs after both and simply returns when it has
+     only one. The name is matched the way the manager's is: exactly, then on a
+     first name plus a last initial, and never on a first name alone.
+
+     An empty start_date in POps means NOT KNOWN, which is what no roster at
+     all means too -- both leave window.CarraraStartDate unset and the ticket
+     drops the row. The old behaviour, filling in today, was the one answer
+     that looked right and never was. */
+  function publishStartDate() {
+    var name = kitData && kitData.name;
+    if (!name || !teamData.length) return;
+    var row = teamData.filter(function (x) { return x.name === name; })[0]
+      || teamData.filter(function (x) { return sameFirstAndInitial(x.name, name); })[0];
+    if (!row || !row.startDate) return;
+    window.CarraraStartDate = row.startDate;
+    window.dispatchEvent(new Event('carrara:start-date'));
+  }
+  window.addEventListener('carrara:kit-updated', publishStartDate);
+  window.addEventListener('carrara:kit-settled', publishStartDate);
+
   function sameFirstAndInitial(a, b) {
     var pa = String(a || '').trim().toLowerCase().split(/\s+/);
     var pb = String(b || '').trim().toLowerCase().split(/\s+/);
