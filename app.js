@@ -414,6 +414,30 @@
 
   /* ---------- router ---------- */
   var current = null;
+  /* "Your checklist" is named for where it goes, so it goes there. Every page
+     change lands at the top, and the top of the start page is the letter: read
+     once, on the first day. The list underneath it is the thing people come
+     back to, and the link that says its name should not make them scroll for
+     it. Only that link sets this -- the mark in the corner still opens the
+     start page at its beginning, and so does the browser's own back button. */
+  var toTheList = false;
+  function landOnList() {
+    var sheet = $('#cover-checklist');
+    if (!sheet) return;
+    /* A little air above it, so the torn edge still reads as torn: flush with
+       the top of the window its teeth are cut off by it. The gap is the
+       system's own distance between blocks in a column, read from the token
+       rather than guessed at here. */
+    var air = parseFloat(getComputedStyle(document.documentElement)
+      .getPropertyValue('--space-stack-lg')) || 24;
+    var y = sheet.getBoundingClientRect().top + (window.pageYOffset || 0) - air;
+    /* The browser clamps this to the foot of the page, and on both widths it
+       does: the sheet is the last thing on the cover, so the list arrives at
+       the top of as much as there is left to show rather than at exactly the
+       gap above. Asking for the gap is still right -- it is what happens on a
+       cover with anything under it, and what the clamp falls back from. */
+    window.scrollTo(0, y > 0 ? y : 0);
+  }
   function show(id) {
     var sec = SECTIONS.some(function (s) { return s.id === id; }) ? id : 'start';
     current = sec;
@@ -434,6 +458,7 @@
     if (el) el.classList.add('visible');
     if (SECTIONS.some(function (s) { return s.id === sec; })) mnav.value = sec;
     window.scrollTo(0, 0);
+    if (toTheList) { toTheList = false; if (sec === 'start') landOnList(); }
     if (sec === 'start') countUp();
     if (sec === 'templates') mountTemplates();
     /* The Top 5 form was mounted by the modal that carried it. It has a page of
@@ -545,6 +570,10 @@
     var up = $('#page-up');
     if (up) up.hidden = sec === 'start';
   }
+  (function () {
+    var up = $('#page-up');
+    if (up) up.addEventListener('click', function () { toTheList = true; });
+  })();
 
   /* The foot steps between the pages of ONE section and stops there. Running it
      through every page of the hub made the read endless: eight pages chained
