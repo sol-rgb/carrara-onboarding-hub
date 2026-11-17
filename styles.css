@@ -306,7 +306,18 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
    head's own padding and nothing more -- 56 of margin each was reading as five
    loose things on a page instead of one list. The head takes the same padding a
    row's link takes, so heads and rows keep one rhythm whichever are open. */
-.ck-group { border-top: 1px solid var(--card-edge); }
+.ck-group {
+  /* The rule that opens a section runs to the sheet's two edges, the way the
+     perforation does, while the rules between rows stay inside the text. Two
+     weights of line, so which one divides sections and which one divides items
+     is visible before reading a word of either. The group is pulled out to the
+     border box and padded back by the same amount, so its rows do not move. */
+  border-top: 1px solid var(--card-edge);
+  margin-left: calc((var(--sheet-pad) + 1px) * -1);
+  margin-right: calc((var(--sheet-pad) + 1px) * -1);
+  padding-left: calc(var(--sheet-pad) + 1px);
+  padding-right: calc(var(--sheet-pad) + 1px);
+}
 /* The section's head: its name, how much of it is done, and the chevron saying
    it folds. The whole line is the control, because a name with a count beside
    it is one thing to press, not three. */
@@ -343,6 +354,18 @@ main { margin-left: 0; min-height: 100vh; position: relative; z-index: 2; }
    frame is worse than a fold that simply is not animated. */
 .ck-items { display: none; }
 .ck-group.is-open .ck-items { display: block; }
+/* An open section has to bind to its rows and let go of the next one. Shut,
+   every head is the same distance from every other and the sheet reads as an
+   index, which is right. Open, that same even rhythm made the head of the NEXT
+   section read as one more row of this one: it stood exactly as far from the
+   last check as the checks stood from each other.
+
+   So, only while it is open: the head sits CLOSER to its first row than the
+   rows sit to each other, and the section after it starts a clear distance
+   below. 24 against 32 against 56, which is an order you can see without
+   counting. Shut sections keep the index's own rhythm and need none of it. */
+.ck-group.is-open .ck-head { padding-bottom: var(--space-stack-sm); }
+.ck-group.is-open + .ck-group { margin-top: var(--space-stack-lg); }
 @media (prefers-reduced-motion: reduce) { .ck-chev { transition: none; } }
 /* the section's name in the ticket's hand: the same typewriter the arrival
    labels its fields with (.tk-k in arrival.css), which is the hub's third face */
