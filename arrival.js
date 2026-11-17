@@ -95,8 +95,19 @@
     document.body.classList.remove('is-sealed');
     if (window.ArrivalSky) window.ArrivalSky.stop();
     setTimeout(function () { arrival.hidden = true; }, reduced ? 0 : 640);
-    var first = document.querySelector('#view-start .btn-cover');
-    if (first) first.focus();
+    /* Focus has to leave the ticket, because the ticket is about to be hidden
+       and focus on a hidden element is focus nowhere. It goes to the TOP of the
+       letter rather than to the first button: the button lives a long way down
+       inside the checklist now, and focusing it scrolled the window to it, so
+       the hub opened on the list instead of on the welcome. preventScroll says
+       the same thing a second way, and the scroll is put at the top outright,
+       because opening the hub is arriving at the beginning of it. */
+    var first = document.getElementById('start-title')
+      || document.querySelector('#view-start .btn-cover');
+    if (first) {
+      try { first.focus({ preventScroll: true }); } catch (e) { first.focus(); }
+    }
+    window.scrollTo(0, 0);
   }
 
   var go = document.getElementById('tk-go');
