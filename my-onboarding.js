@@ -334,9 +334,7 @@
       cards += '<div class="mo-card"><div class="mo-card-title">Your first client</div>'
         + '<p class="mo-card-fact">' + esc(kit.client.name)
         + (kit.client.lead ? ', ' + esc(dropFullStop(kit.client.lead)) : '')
-        + '</p>'
-        + '<div class="wk-links"><a href="#/clients">All clients and who leads them</a></div>'
-        + '</div>';
+        + '</p></div>';
     }
     if (kit.syncWith && kit.syncWith.length) {
       /* The manager's own words about their own people: names and reasons are
