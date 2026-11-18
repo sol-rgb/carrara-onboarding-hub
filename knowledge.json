@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-11-17",
+ "exported": "2026-11-18",
  "clients": [
   {
    "slug": "anthropic",
@@ -471,7 +471,7 @@
    "workstreams": [
     {
      "title": "The Sphere Hotel",
-     "detail": "New. An Aussie pub pop-up in SF in December: the venue shortlist is down to four, and the first round of branded asset designs is with the client.",
+     "detail": "An Aussie pub pop-up in SF in December: the venue choice is down to two, and the branded designs are being revised from Sphere's feedback while signage options are sourced.",
      "points": [
       "Event plan with the tasks, vendors and owners for the pub day",
       "Venue finder site with a shortlist, branding ideas and capacity per venue",
@@ -506,7 +506,7 @@
     },
     {
      "title": "Dinners and campaigns",
-     "detail": "The Amsterdam finance leader dinner ran on Nov 5, and gift sends to CFOs in SF and Amsterdam are under way, with a card for each city.",
+     "detail": "The Amsterdam finance leader dinner ran on Nov 5, CFO gift sends are under way, and a vendor scorecard PDF is in design for Sphere's Nov 25 e-invoicing webinar.",
      "points": [
       "Amsterdam run of show in two hosting formats, including a Jeffersonian dinner",
       "Menu, name cards, gift prints and a guest lookbook for the Amsterdam dinner",
@@ -515,7 +515,7 @@
     }
    ],
    "channel": "c-sphere",
-   "updated": "2026-11-17",
+   "updated": "2026-11-18",
    "url": "https://hub.carrara.is/clients/sphere"
   },
   {
@@ -977,7 +977,7 @@
     },
     {
      "title": "Ad creative",
-     "detail": "Weekly creative batches from briefs, each aimed at one persona, plus the copy, creative, a site banner and a day by day promotion plan for cfo.ai's first live event.",
+     "detail": "Weekly creative batches from briefs, each aimed at one persona; cfo.ai's first live event ran on Nov 17, and clips from the recording are being cut for organic posts.",
      "points": [
       "Weekly creative review site where the client signs off each batch",
       "Testimonial video ads cut from customer interviews, each with its own hook",
@@ -1004,7 +1004,7 @@
     }
    ],
    "channel": "c-cfo-ai",
-   "updated": "2026-11-13",
+   "updated": "2026-11-18",
    "url": "https://hub.carrara.is/clients/runway"
   },
   {
@@ -1084,8 +1084,8 @@
      ]
     },
     {
-     "title": "SWE sourcing",
-     "detail": "Outreach continues while we calibrate the research hardware SWE profile with the client.",
+     "title": "SWE and ME sourcing",
+     "detail": "SWE outreach continues while we calibrate the research hardware SWE profile, and mechanical engineer sequences are starting from a client approved list.",
      "points": [
       "Email sequences sent as the hiring manager, plus LinkedIn outreach",
       "Stealth safe outreach copy, signed off by the client before it goes out",
@@ -1112,7 +1112,7 @@
     }
    ],
    "channel": "c-source-foundry",
-   "updated": "2026-11-17",
+   "updated": "2026-11-18",
    "url": "https://hub.carrara.is/clients/source-foundry"
   },
   {
@@ -1324,7 +1324,7 @@
      "role": "Engagement lead",
      "email": "daniel@carrara.is",
      "slack": "U08TKMZG083",
-     "timezone": "Africa/Harare"
+     "timezone": "Australia/Canberra"
     },
     {
      "name": "Calvin Li",
@@ -1393,7 +1393,7 @@
    "workstreams": [
     {
      "title": "Hertzcules billing app",
-     "detail": "A Databricks app for no-show and cancellation fee billing, live with Hertz's receivables team; payment tracker fixes are under way.",
+     "detail": "A Databricks app for no-show and cancellation fee billing, live with Hertz's receivables team; a report of set aside fees by reason is being built into it.",
      "points": [
       "Billing logic tab with a SQL editor, scheduled versions and a change log",
       "Checks that set aside rebookings and rentals still out, so billing can run on the 1st",
@@ -1420,7 +1420,7 @@
     },
     {
      "title": "Dealer Direct",
-     "detail": "The Jarvis rep tool, dealer emails and texts, and a partner collections tracker; regional price history is live in Jarvis and reps are getting a walkthrough of the Outlook integration.",
+     "detail": "The Jarvis rep tool, dealer emails and texts, and a partner collections tracker; the Advent feed drop now clears itself hourly, and reps' feedback on the Outlook features is being collected.",
      "points": [
       "Jarvis: dealer and prospect lists from the Advent feed, with pricing, inventory and a hitlist",
       "SendGrid dealer emails after a sale, a purchase email pilot and Twilio texts in registration",
@@ -1429,7 +1429,7 @@
     }
    ],
    "channel": "c-hertz-external",
-   "updated": "2026-11-17",
+   "updated": "2026-11-18",
    "url": "https://hub.carrara.is/clients/hertz"
   },
   {
@@ -1473,7 +1473,7 @@
      "role": "Account lead",
      "email": "ben@carrara.is",
      "slack": "U099BBEJVA4",
-     "timezone": "America/Chicago"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Nathan Peadon",
@@ -3070,40 +3070,121 @@
    "name": "Pace",
    "hubName": "Pace",
    "status": "active",
-   "oneLiner": "",
-   "about": null,
+   "oneLiner": "Embedded recruiting and talent ops for Pace: engineering, Agent PM and AE hiring.",
+   "about": "We run Pace's Product Engineering, Agent PM and Enterprise AE hiring from inside their team, from sourcing and screens to scheduling and agencies. We also fix the system under it: Ashby cleanup, a pacing model, agency briefs and Pace Talent OS.",
    "practices": [
-    {
-     "id": "talent",
-     "name": "Talent platform"
-    },
     {
      "id": "recruiting",
      "name": "Embedded recruiting"
+    },
+    {
+     "id": "talent",
+     "name": "Talent platform"
     }
    ],
-   "website": null,
-   "logo": null,
+   "website": "withpace.com",
+   "logo": "https://hub.carrara.is/logos/pace.png",
    "owner": "Brandon Taleisnik",
    "team": [
     {
      "name": "Brandon Taleisnik",
-     "role": "Account lead",
+     "role": "Engagement lead, pacing model",
      "email": "brandon@carrara.is",
      "slack": "U07JH8MAM7G",
      "timezone": "America/New_York"
     },
     {
      "name": "Catherine Ardila",
-     "role": "Pipeline and agencies",
+     "role": "Talent platform, agencies and Pace Talent OS",
      "email": "catherine@carrara.is",
      "slack": "U0A09PCP63V",
      "timezone": "America/New_York"
+    },
+    {
+     "name": "Greg Troxell",
+     "role": "Product Engineering recruiting",
+     "email": "greg@carrara.is",
+     "slack": "U0B0QPZKDV2",
+     "timezone": "America/Chicago"
+    },
+    {
+     "name": "Hallie Slamowitz",
+     "role": "Agent PM recruiting",
+     "email": "hallie@carrara.is",
+     "slack": "U071E5JFE5A",
+     "timezone": "America/New_York"
+    },
+    {
+     "name": "Julia Tupy",
+     "role": "GTM recruiting and AE market map",
+     "email": "julia@carrara.is",
+     "slack": "U06DF9YP6EM",
+     "timezone": "America/Los_Angeles"
+    },
+    {
+     "name": "Hayley Samuels",
+     "role": "Recruiting ops, Ashby and candidate dashboard",
+     "email": "hayley.samuels@carrara.is",
+     "slack": "U077S1EQKDW",
+     "timezone": "America/Denver"
+    },
+    {
+     "name": "Kelley Lantigua",
+     "role": "Interview scheduling and coordination",
+     "email": "kelley@carrara.is",
+     "slack": "U0AT6B3QE9X",
+     "timezone": "America/New_York"
     }
    ],
-   "workstreams": [],
+   "workstreams": [
+    {
+     "title": "Embedded recruiting",
+     "detail": "We run Pace's Product Engineering, Agent PM and Enterprise AE searches from intake to offer, with screens, outreach and trackers.",
+     "points": [
+      "Intake doc and calibration list per role, with profile archetypes for Agent PM",
+      "Outreach copy and a sourcing brief for Product Engineering, and an NYC market map for AEs",
+      "Candidate trackers synced with Ashby each morning, and a Slack channel per onsite candidate"
+     ]
+    },
+    {
+     "title": "Coordination and Ashby",
+     "detail": "We run scheduling and interviewer comms for our roles and are cleaning up Pace's Ashby, now connected to Slack.",
+     "points": [
+      "Ashby audit, deduped feedback forms, a grouped interview plan and stale candidate cleanup",
+      "Feedback reminders in Slack, plus a note to new interviewers before they join a loop",
+      "Candidate travel guides for onsites, with and without dinner"
+     ]
+    },
+    {
+     "title": "Agency management",
+     "detail": "We're taking over Pace's recruiting agencies, with a brief per role and a call with each agency to hand it over.",
+     "points": [
+      "Agency brief site with a Pace overview and a brief per role, written as Pace's own",
+      "Recurring syncs with the main agencies, with us replying to their submissions",
+      "Source attribution cleanup so each agency candidate is credited correctly"
+     ]
+    },
+    {
+     "title": "Pacing and plans",
+     "detail": "A waterfall pacing model and go-get plans set what each search needs, and network mining with Pace's teams is starting.",
+     "points": [
+      "Waterfall pacing model from Ashby data, one tab per role, with pass through by source",
+      "Go-get plans per role on the levers for volume, pass through and close rate",
+      "LinkedIn connection exports from Pace's GTM, Agent PM and engineering teams for network mining"
+     ]
+    },
+    {
+     "title": "Pace Talent OS",
+     "detail": "Our hub for the Pace work, connected to Ashby, next to a candidate dashboard with alerts and interviewer training.",
+     "points": [
+      "Talent OS with reporting, agency briefs and docs, plus an admin tab for what's running",
+      "Candidate dashboard with Ashby alerts for high scores, referrals, late feedback and withdrawals",
+      "Interviewer training tab that tracks shadow and reverse shadow sessions"
+     ]
+    }
+   ],
    "channel": "c-pace",
-   "updated": null,
+   "updated": "2026-11-18",
    "url": "https://hub.carrara.is/clients/pace"
   }
  ],
@@ -3650,7 +3731,7 @@
      "role": "Partner",
      "email": "daniel@carrara.is",
      "slack": "U08TKMZG083",
-     "timezone": "Africa/Harare"
+     "timezone": "Australia/Canberra"
     },
     {
      "name": "Sam Blumenthal",
@@ -3776,7 +3857,7 @@
    "title": "Operating Partner",
    "email": "ben@carrara.is",
    "slack": "U099BBEJVA4",
-   "timezone": "America/Chicago",
+   "timezone": "America/Los_Angeles",
    "photo": "https://hub.carrara.is/people/ben.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=ben%40carrara.is"
@@ -3864,7 +3945,7 @@
    "title": "Partner",
    "email": "daniel@carrara.is",
    "slack": "U08TKMZG083",
-   "timezone": "Africa/Harare",
+   "timezone": "Australia/Canberra",
    "photo": "https://hub.carrara.is/people/dan.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=daniel%40carrara.is"
@@ -4183,7 +4264,7 @@
    "title": "Operations",
    "email": "margaux@carrara.is",
    "slack": "U0B6EK3H7GW",
-   "timezone": "America/New_York",
+   "timezone": "Europe/Amsterdam",
    "photo": "https://hub.carrara.is/people/margaux.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=margaux%40carrara.is"
@@ -4612,10 +4693,21 @@
    "title": "Design Operations",
    "email": "romina@carrara.is",
    "slack": "U0CHJE7P51C",
-   "timezone": "America/New_York",
+   "timezone": "America/Buenos_Aires",
    "photo": "https://hub.carrara.is/people/romina.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=romina%40carrara.is"
+  },
+  {
+   "id": "vanessa",
+   "name": "Vanessa Montalvo",
+   "title": "Talent Operations",
+   "email": null,
+   "slack": null,
+   "timezone": null,
+   "photo": null,
+   "linkedin": null,
+   "url": "https://hub.carrara.is/people?person=vanessa"
   }
  ]
 }
