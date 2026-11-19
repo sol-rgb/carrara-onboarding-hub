@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-11-18",
+ "exported": "2026-11-19",
  "clients": [
   {
    "slug": "anthropic",
@@ -71,7 +71,7 @@
      "role": "Talent brand and narrative",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/New_York"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Matias Sanchez",
@@ -332,7 +332,7 @@
      "role": "Core talent partner, US",
      "email": "julia@carrara.is",
      "slack": "U06DF9YP6EM",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Mary Petrino",
@@ -465,7 +465,7 @@
      "role": "Partner on the account",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/New_York"
+     "timezone": "America/Bogota"
     }
    ],
    "workstreams": [
@@ -555,7 +555,7 @@
      "role": "Engagement lead and growth",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/New_York"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Savannah Keener",
@@ -688,7 +688,7 @@
      "role": "Narrative",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/New_York"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Sol Silbenberg",
@@ -783,7 +783,7 @@
      "role": "Partner on the account",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/New_York"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Macarena Gonzalez Cazon",
@@ -911,7 +911,7 @@
      "role": "Lead, strategy and client updates",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/New_York"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Reza Saeedi",
@@ -950,7 +950,7 @@
     },
     {
      "name": "Agostina Aranda",
-     "role": "Ad resizes and event banners",
+     "role": "Ad resizes, event banners and video clips",
      "email": "agostina@carrara.is",
      "slack": "U0BH44HEMSP",
      "timezone": "America/Argentina/Buenos_Aires"
@@ -968,7 +968,7 @@
     },
     {
      "title": "Landing pages",
-     "detail": "Persona pages, pricing and an inspiration gallery are live on cfo.ai; the listicles, Founding Fractionals and twelve compare pages are in pull requests, and an accounting firms page is on a preview.",
+     "detail": "Persona pages, pricing and an inspiration gallery are live on cfo.ai; listicles, Founding Fractionals and compare pages are in pull requests, and a new fractional CFO page is in copy review.",
      "points": [
       "Persona pages, a pricing update and an inspiration gallery, shipped into cfo.ai's site",
       "Onboarding call booking on the homepage, fractional CFO page and pricing",
@@ -1004,7 +1004,7 @@
     }
    ],
    "channel": "c-cfo-ai",
-   "updated": "2026-11-18",
+   "updated": "2026-11-19",
    "url": "https://hub.carrara.is/clients/runway"
   },
   {
@@ -1051,7 +1051,7 @@
     },
     {
      "name": "Mackenzie Robinson",
-     "role": "SWE sourcing",
+     "role": "SWE and ME sourcing",
      "email": "mackenzie@carrara.is",
      "slack": "U0BSF9FUY6R",
      "timezone": "America/Los_Angeles"
@@ -1105,14 +1105,14 @@
      "title": "Source OS",
      "detail": "Our internal recruiting OS and the team's source of truth for every role, with Slack alerts.",
      "points": [
-      "Sourcing playbook per role: search strings, company map, screening questions, outreach",
+      "Roles section per search: job details, calibration, sourcing, screen questions and handoff",
       "Claude skills per role that score call transcripts and LinkedIn profiles on competency tables",
       "Referral analysis, agency follow up tools and a reference check guide"
      ]
     }
    ],
    "channel": "c-source-foundry",
-   "updated": "2026-11-18",
+   "updated": "2026-11-19",
    "url": "https://hub.carrara.is/clients/source-foundry"
   },
   {
@@ -1162,7 +1162,7 @@
      "role": "GTM",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/New_York"
+     "timezone": "America/Bogota"
     }
    ],
    "workstreams": [
@@ -1244,7 +1244,7 @@
      "role": "Launch",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/New_York"
+     "timezone": "America/Bogota"
     }
    ],
    "workstreams": [
@@ -1598,7 +1598,7 @@
      "role": "Lead",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/New_York"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Matias Sanchez",
@@ -2218,8 +2218,8 @@
      "title": "Paid media",
      "detail": "We run ads for Bee Frontier on Meta, Google and TikTok, with Meta now on a new ad account and changes made from each weekly report.",
      "points": [
-      "Meta placement review, with low click placements like Audience Network being cut",
-      "TikTok paused for a week to see how much it adds to sales",
+      "Meta placement reviews, cutting low click placements like Audience Network and the right column",
+      "TikTok kept off after a one week pause test of how much it adds to sales",
       "Google search split into brand, non-brand and competitor campaigns, with keyword cleanups"
      ]
     },
@@ -2234,10 +2234,10 @@
     },
     {
      "title": "Creative refresh",
-     "detail": "Each week we call which live ads to keep, hold or pause, and write briefs for new ones, with new video briefs in progress.",
+     "detail": "Each week we call which live ads to keep, hold or pause and write briefs for new ones; Black Friday search headlines and videos are ready for the sale.",
      "points": [
       "Keep, rework or pause call on every live ad, with briefs for new ones",
-      "New Google search ad copy, shared with the client",
+      "New Google search ad copy, including Black Friday headlines on competitor terms",
       "Walkthrough of our creative testing approach for Bee's creative team at Amazon"
      ]
     },
@@ -2260,7 +2260,7 @@
     }
    ],
    "channel": null,
-   "updated": "2026-11-03",
+   "updated": "2026-11-19",
    "url": "https://hub.carrara.is/clients/amazon"
   },
   {
@@ -2671,11 +2671,11 @@
    "workstreams": [
     {
      "title": "Engineering hiring",
-     "detail": "Staff, security and head of engineering searches run with LiteLLM's founders and outside agencies, with LinkedIn outreach now live.",
+     "detail": "Staff, security and head of engineering searches run with LiteLLM's founders and outside agencies, with LinkedIn outreach live and paced daily.",
      "points": [
-      "Staff Engineer, AI and Staff Engineer, Systems and Reliability JDs published",
-      "Agency brief and one pager so partner agencies pitch the roles the same way",
-      "LinkedIn outreach sequences, deduped against who was already contacted"
+      "Published JDs, plus an agency brief and one pager so partner agencies pitch roles the same way",
+      "Research on systems engineers who fixed messy backends, checked against public work and tiered",
+      "LinkedIn outreach sequences, deduped against past contacts and sent under a daily cap"
      ]
     },
     {
@@ -2706,7 +2706,7 @@
     }
    ],
    "channel": "c-litellm",
-   "updated": "2026-11-17",
+   "updated": "2026-11-19",
    "url": "https://hub.carrara.is/clients/litellm"
   },
   {
@@ -3119,7 +3119,7 @@
      "role": "GTM recruiting and AE market map",
      "email": "julia@carrara.is",
      "slack": "U06DF9YP6EM",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Hayley Samuels",
@@ -3654,7 +3654,7 @@
      "role": "Partner",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/New_York"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Heath Jamieson",
@@ -3802,7 +3802,7 @@
    "title": "Talent Partner",
    "email": "ania@carrara.is",
    "slack": "U07EHTT92CS",
-   "timezone": "America/New_York",
+   "timezone": "America/Denver",
    "photo": "https://hub.carrara.is/people/ania.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=ania%40carrara.is"
@@ -4022,7 +4022,7 @@
    "title": "Partner",
    "email": "gonz@carrara.is",
    "slack": "U07NSVAFUC9",
-   "timezone": "America/New_York",
+   "timezone": "America/Bogota",
    "photo": "https://hub.carrara.is/people/gonz.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=gonz%40carrara.is"
@@ -4121,7 +4121,7 @@
    "title": "Talent Partner",
    "email": "julia@carrara.is",
    "slack": "U06DF9YP6EM",
-   "timezone": "America/Los_Angeles",
+   "timezone": "America/New_York",
    "photo": "https://hub.carrara.is/people/julia.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=julia%40carrara.is"
@@ -4572,7 +4572,7 @@
    "title": "Finance Partner",
    "email": "nick@carrara.is",
    "slack": "U0C4NUX9T60",
-   "timezone": "Asia/Seoul",
+   "timezone": "America/New_York",
    "photo": "https://hub.carrara.is/people/nick.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=nick%40carrara.is"
