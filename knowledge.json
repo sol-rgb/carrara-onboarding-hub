@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-11-19",
+ "exported": "2026-11-20",
  "clients": [
   {
    "slug": "anthropic",
@@ -71,7 +71,7 @@
      "role": "Talent brand and narrative",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Bogota"
+     "timezone": "America/Buenos_Aires"
     },
     {
      "name": "Matias Sanchez",
@@ -465,13 +465,13 @@
      "role": "Partner on the account",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Bogota"
+     "timezone": "America/Buenos_Aires"
     }
    ],
    "workstreams": [
     {
      "title": "The Sphere Hotel",
-     "detail": "An Aussie pub pop-up in SF in December: the venue choice is down to two, and the branded designs are being revised from Sphere's feedback while signage options are sourced.",
+     "detail": "An Aussie pub pop-up in SF on Dec 11: the venue is booked, and window stickers and signage are in design while the final colors are picked.",
      "points": [
       "Event plan with the tasks, vendors and owners for the pub day",
       "Venue finder site with a shortlist, branding ideas and capacity per venue",
@@ -506,16 +506,16 @@
     },
     {
      "title": "Dinners and campaigns",
-     "detail": "The Amsterdam finance leader dinner ran on Nov 5, CFO gift sends are under way, and a vendor scorecard PDF is in design for Sphere's Nov 25 e-invoicing webinar.",
+     "detail": "The Amsterdam finance leader dinner ran on Nov 5, CFO gift sends are under way, and a fillable vendor scorecard PDF is done for Sphere's Nov 25 e-invoicing webinar.",
      "points": [
       "Amsterdam run of show in two hosting formats, including a Jeffersonian dinner",
       "Menu, name cards, gift prints and a guest lookbook for the Amsterdam dinner",
-      "Review sites with guerrilla concepts and SF billboard options"
+      "Vendor scorecard PDF with pass or fail checks, 1 to 5 scores and weighted totals"
      ]
     }
    ],
    "channel": "c-sphere",
-   "updated": "2026-11-18",
+   "updated": "2026-11-20",
    "url": "https://hub.carrara.is/clients/sphere"
   },
   {
@@ -555,7 +555,7 @@
      "role": "Engagement lead and growth",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Bogota"
+     "timezone": "America/Buenos_Aires"
     },
     {
      "name": "Savannah Keener",
@@ -597,7 +597,7 @@
      "role": "Recruiting advice",
      "email": "joe@carrara.is",
      "slack": "U065ASSS339",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     }
    ],
    "workstreams": [
@@ -688,7 +688,7 @@
      "role": "Narrative",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Bogota"
+     "timezone": "America/Buenos_Aires"
     },
     {
      "name": "Sol Silbenberg",
@@ -783,7 +783,7 @@
      "role": "Partner on the account",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Bogota"
+     "timezone": "America/Buenos_Aires"
     },
     {
      "name": "Macarena Gonzalez Cazon",
@@ -911,7 +911,7 @@
      "role": "Lead, strategy and client updates",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Bogota"
+     "timezone": "America/Buenos_Aires"
     },
     {
      "name": "Reza Saeedi",
@@ -977,7 +977,7 @@
     },
     {
      "title": "Ad creative",
-     "detail": "Weekly creative batches from briefs, each aimed at one persona; cfo.ai's first live event ran on Nov 17, and clips from the recording are being cut for organic posts.",
+     "detail": "Weekly creative batches from briefs, each aimed at one persona; this week's static ads are in review, and follow ups to the Nov 17 event's attendees are split by RSVP type.",
      "points": [
       "Weekly creative review site where the client signs off each batch",
       "Testimonial video ads cut from customer interviews, each with its own hook",
@@ -1004,7 +1004,7 @@
     }
    ],
    "channel": "c-cfo-ai",
-   "updated": "2026-11-19",
+   "updated": "2026-11-20",
    "url": "https://hub.carrara.is/clients/runway"
   },
   {
@@ -1040,7 +1040,7 @@
      "role": "Account lead",
      "email": "joe@carrara.is",
      "slack": "U065ASSS339",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Maddy West",
@@ -1076,7 +1076,7 @@
     },
     {
      "title": "EE sourcing",
-     "detail": "Target companies are with the client for approval, and an EE section of the research hub has started.",
+     "detail": "Target companies are tiered with the client, and new EE leads from public research go into Source OS for the team to review.",
      "points": [
       "EE market map of companies to hire from, tiered with the client",
       "Outreach from the hiring manager's email and ours, with screens booked",
@@ -1112,7 +1112,7 @@
     }
    ],
    "channel": "c-source-foundry",
-   "updated": "2026-11-19",
+   "updated": "2026-11-20",
    "url": "https://hub.carrara.is/clients/source-foundry"
   },
   {
@@ -1162,7 +1162,7 @@
      "role": "GTM",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Bogota"
+     "timezone": "America/Buenos_Aires"
     }
    ],
    "workstreams": [
@@ -1216,7 +1216,7 @@
      "role": "Recruiting lead",
      "email": "joe@carrara.is",
      "slack": "U065ASSS339",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Sadiqeh Agah",
@@ -1244,7 +1244,7 @@
      "role": "Launch",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Bogota"
+     "timezone": "America/Buenos_Aires"
     }
    ],
    "workstreams": [
@@ -1373,7 +1373,7 @@
      "role": "Transporters admin",
      "email": "kim@carrara.is",
      "slack": "U0ASZBGV138",
-     "timezone": "America/New_York"
+     "timezone": "America/Indiana/Indianapolis"
     },
     {
      "name": "Macarena Gonzalez Cazon",
@@ -1598,7 +1598,7 @@
      "role": "Lead",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Bogota"
+     "timezone": "America/Buenos_Aires"
     },
     {
      "name": "Matias Sanchez",
@@ -1692,7 +1692,7 @@
      "role": "Lead",
      "email": "joe@carrara.is",
      "slack": "U065ASSS339",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Mary Petrino",
@@ -2017,16 +2017,16 @@
     },
     {
      "title": "Recruiting ops and automation",
-     "detail": "New. Daily phone screen prep runs in Claude, with a feedback write-up step next, alongside the recruiting dashboard and recruiting management 101 docs.",
+     "detail": "Daily phone screen prep runs in Claude, and the weekly hiring manager update now lists archived candidates, live on the senior security role first.",
      "points": [
       "Claude task that pulls the day's screens from the calendar and Ashby into one view",
-      "Recruiting dashboard with funnel, recruiter, goals and period comparison views",
-      "Booking links, candidate emails and NDAs sent on stage change in Ashby"
+      "Weekly update section of candidates archived that week after at least a phone screen",
+      "Recruiting dashboard with funnel, recruiter, goals and period comparison views"
      ]
     }
    ],
    "channel": null,
-   "updated": "2026-11-14",
+   "updated": "2026-11-20",
    "url": "https://hub.carrara.is/clients/january"
   },
   {
@@ -2289,7 +2289,7 @@
      "role": "Lead",
      "email": "joe@carrara.is",
      "slack": "U065ASSS339",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     }
    ],
    "workstreams": [],
@@ -2326,7 +2326,7 @@
      "role": "Account lead",
      "email": "joe@carrara.is",
      "slack": "U065ASSS339",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Savannah Keener",
@@ -2637,7 +2637,7 @@
      "role": "Account lead",
      "email": "joe@carrara.is",
      "slack": "U065ASSS339",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Alicia Donenfeld",
@@ -2671,11 +2671,11 @@
    "workstreams": [
     {
      "title": "Engineering hiring",
-     "detail": "Staff, security and head of engineering searches run with LiteLLM's founders and outside agencies, with LinkedIn outreach live and paced daily.",
+     "detail": "Staff, security, backend and head of engineering searches run with LiteLLM's founders and outside agencies; the systems search is now split into backend and performance testing roles.",
      "points": [
       "Published JDs, plus an agency brief and one pager so partner agencies pitch roles the same way",
-      "Research on systems engineers who fixed messy backends, checked against public work and tiered",
-      "LinkedIn outreach sequences, deduped against past contacts and sent under a daily cap"
+      "Deep research on engineers with public proof of work, now a weekly sourcing flow in LiteLLM OS",
+      "LinkedIn and email outreach sequences, deduped against past contacts and sent under a daily cap"
      ]
     },
     {
@@ -2697,7 +2697,7 @@
     },
     {
      "title": "Talent narrative",
-     "detail": "Narrative v2 is with the founders, and v1 copy for the careers page and the other talent assets is drafted from it.",
+     "detail": "Narrative v2 is with the founders and is now being turned into careers page copy, a founder video script and a founder blog post.",
      "points": [
       "Narrative built from founder interviews and an intake survey",
       "Candidate one pager on the product, team and interview loop, sent in confirmation emails",
@@ -2706,7 +2706,7 @@
     }
    ],
    "channel": "c-litellm",
-   "updated": "2026-11-19",
+   "updated": "2026-11-20",
    "url": "https://hub.carrara.is/clients/litellm"
   },
   {
@@ -3175,7 +3175,7 @@
     },
     {
      "title": "Pace Talent OS",
-     "detail": "Our hub for the Pace work, connected to Ashby, next to a candidate dashboard with alerts and interviewer training.",
+     "detail": "Our hub for the Pace work, connected to Ashby; strong yes alerts and the candidate dashboard's feedback reminders now go out through it.",
      "points": [
       "Talent OS with reporting, agency briefs and docs, plus an admin tab for what's running",
       "Candidate dashboard with Ashby alerts for high scores, referrals, late feedback and withdrawals",
@@ -3184,7 +3184,7 @@
     }
    ],
    "channel": "c-pace",
-   "updated": "2026-11-18",
+   "updated": "2026-11-20",
    "url": "https://hub.carrara.is/clients/pace"
   }
  ],
@@ -3230,7 +3230,7 @@
      "role": "Partner",
      "email": "joe@carrara.is",
      "slack": "U065ASSS339",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Alicia Donenfeld",
@@ -3654,7 +3654,7 @@
      "role": "Partner",
      "email": "gonz@carrara.is",
      "slack": "U07NSVAFUC9",
-     "timezone": "America/Bogota"
+     "timezone": "America/Buenos_Aires"
     },
     {
      "name": "Heath Jamieson",
@@ -4022,7 +4022,7 @@
    "title": "Partner",
    "email": "gonz@carrara.is",
    "slack": "U07NSVAFUC9",
-   "timezone": "America/Bogota",
+   "timezone": "America/Buenos_Aires",
    "photo": "https://hub.carrara.is/people/gonz.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=gonz%40carrara.is"
@@ -4110,7 +4110,7 @@
    "title": "Partner",
    "email": "joe@carrara.is",
    "slack": "U065ASSS339",
-   "timezone": "America/Los_Angeles",
+   "timezone": "America/New_York",
    "photo": "https://hub.carrara.is/people/joe.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=joe%40carrara.is"
@@ -4187,7 +4187,7 @@
    "title": "Operating Partner",
    "email": "kim@carrara.is",
    "slack": "U0ASZBGV138",
-   "timezone": "America/New_York",
+   "timezone": "America/Indiana/Indianapolis",
    "photo": "https://hub.carrara.is/people/kim.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=kim%40carrara.is"
@@ -4264,7 +4264,7 @@
    "title": "Operations",
    "email": "margaux@carrara.is",
    "slack": "U0B6EK3H7GW",
-   "timezone": "Europe/Amsterdam",
+   "timezone": "Europe/London",
    "photo": "https://hub.carrara.is/people/margaux.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=margaux%40carrara.is"
