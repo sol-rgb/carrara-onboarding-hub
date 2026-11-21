@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-11-20",
+ "exported": "2026-11-21",
  "clients": [
   {
    "slug": "anthropic",
@@ -193,7 +193,7 @@
      "role": "Sourcing, SRE and security",
      "email": "justin@carrara.is",
      "slack": "U062N4MN5DE",
-     "timezone": "America/Chicago"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Brandon Taleisnik",
@@ -346,7 +346,7 @@
      "role": "Recruiting",
      "email": "justin@carrara.is",
      "slack": "U062N4MN5DE",
-     "timezone": "America/Chicago"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Arthur Matuszewski",
@@ -995,16 +995,16 @@
     },
     {
      "title": "Performance reporting",
-     "detail": "A live dashboard for Meta and Google, now showing where lead form leads come from, plus a persona testing report; a new version of the fractional CFO dashboard lists the data it still needs.",
+     "detail": "A live dashboard for Meta and Google plus a persona testing report; v2 of the fractional CFO dashboard is done and ready for cfo.ai's team to report from.",
      "points": [
       "Real time performance dashboard for Meta and Google",
       "Persona testing report on how each persona's ads and pages perform",
-      "Fractional CFO dashboard in cfo.ai's product, with the data it can't pull yet labeled"
+      "Fractional CFO dashboard in cfo.ai's product, with a little backfill left"
      ]
     }
    ],
    "channel": "c-cfo-ai",
-   "updated": "2026-11-20",
+   "updated": "2026-11-21",
    "url": "https://hub.carrara.is/clients/runway"
   },
   {
@@ -1373,7 +1373,7 @@
      "role": "Transporters admin",
      "email": "kim@carrara.is",
      "slack": "U0ASZBGV138",
-     "timezone": "America/Indiana/Indianapolis"
+     "timezone": "America/Chicago"
     },
     {
      "name": "Macarena Gonzalez Cazon",
@@ -1393,7 +1393,7 @@
    "workstreams": [
     {
      "title": "Hertzcules billing app",
-     "detail": "A Databricks app for no-show and cancellation fee billing, live with Hertz's receivables team; a report of set aside fees by reason is being built into it.",
+     "detail": "A Databricks app for no-show and cancellation fee billing, live with Hertz's receivables team; Add book now creates real billing books and the evidence carries full customer care threads.",
      "points": [
       "Billing logic tab with a SQL editor, scheduled versions and a change log",
       "Checks that set aside rebookings and rentals still out, so billing can run on the 1st",
@@ -1420,7 +1420,7 @@
     },
     {
      "title": "Dealer Direct",
-     "detail": "The Jarvis rep tool, dealer emails and texts, and a partner collections tracker; the Advent feed drop now clears itself hourly, and reps' feedback on the Outlook features is being collected.",
+     "detail": "The Jarvis rep tool, dealer emails and texts, and a partner collections tracker; a third dealer email batch is ready, and fixes from reps' Outlook feedback are in beta.",
      "points": [
       "Jarvis: dealer and prospect lists from the Advent feed, with pricing, inventory and a hitlist",
       "SendGrid dealer emails after a sale, a purchase email pilot and Twilio texts in registration",
@@ -1429,7 +1429,7 @@
     }
    ],
    "channel": "c-hertz-external",
-   "updated": "2026-11-18",
+   "updated": "2026-11-21",
    "url": "https://hub.carrara.is/clients/hertz"
   },
   {
@@ -1902,7 +1902,7 @@
    "hubName": "January",
    "status": "active",
    "oneLiner": "Embedded recruiting for eng, security, product and G&A roles, plus recruiting ops.",
-   "about": "We run January's hiring across engineering, security, product and G&A roles, and redesigned the senior security and SWE interview loops. Around it we built the recruiting ops, from Ashby automations and applicant scoring to a recruiting dashboard and Claude screen prep for recruiters.",
+   "about": "We run January's hiring across engineering, security, product and G&A roles, redesigned the senior security and SWE interview loops, and are onboarding January's in-house recruiting team. Around it we built the recruiting ops, from Ashby automations and applicant scoring to recruiting and sourcing dashboards and Claude screen prep.",
    "practices": [
     {
      "id": "recruiting",
@@ -1957,7 +1957,7 @@
      "role": "Recruiter, Sr. Security Eng",
      "email": "justin@carrara.is",
      "slack": "U062N4MN5DE",
-     "timezone": "America/Chicago"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Ali Horowitz",
@@ -1978,7 +1978,7 @@
      "role": "Recruiting coordination",
      "email": "kelley@carrara.is",
      "slack": "U0AT6B3QE9X",
-     "timezone": "America/New_York"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Leonardo Lopes",
@@ -1991,42 +1991,43 @@
    "workstreams": [
     {
      "title": "Engineering and G&A recruiting",
-     "detail": "Security, SWE, PM, analytics engineering, chief of staff and strategy and operations searches are active.",
+     "detail": "Engineering, product and chief of staff searches are active, with a funnel review alongside the engineering leads.",
      "points": [
-      "Security profile widened to software engineers with identity and IAM work",
-      "Lookalike sourcing lists built from top candidate profiles for the security roles",
-      "Re-engagement emails to past candidates, sent for the hiring manager"
+      "Funnel review with engineering leads and a hiring manager outreach pilot agreed",
+      "SWE loop with coding up front, and a senior security loop with earlier hiring manager signal",
+      "Candidate pitch decks refreshed for every open engineering role"
      ]
     },
     {
-     "title": "Interview redesigns",
-     "detail": "The SWE loop now puts coding in round one and folds the case study into systems design, with P3 roles moved over on Nov 9.",
+     "title": "In-house team handoff",
+     "detail": "We're onboarding January's in-house recruiting team, with onboarding sessions done and shadowing next.",
      "points": [
-      "SWE loop: hiring manager screen plus coding up front, now standard for P3 and P4 roles",
-      "Senior security engineer loop with earlier hiring manager signal, old loop retired"
+      "Onboarding plan and sessions for January's in-house recruiters",
+      "Warm candidate nurture list so the in-house team keeps relationships going",
+      "Build prompts so the team can recreate the dashboards and calculator"
      ]
     },
     {
-     "title": "Application review scoring",
-     "detail": "Ranked review decks are live for the senior SWE, strategy and operations and chief of staff searches.",
+     "title": "Recruiting analytics",
+     "detail": "The recruiting metrics dashboard is shared with January's team, and a sourcing dashboard and capacity calculator are built.",
+     "points": [
+      "Recruiting metrics dashboard with Ashby funnel, scorecard and team views, for January to own",
+      "Sourcing dashboard of weekly sourcing against target and pipeline by role",
+      "Capacity calculator that plans recruiter workload by role"
+     ]
+    },
+    {
+     "title": "Screening and scoring",
+     "detail": "Applicant scoring and daily Claude screen prep run for recruiters, and the recruiter screen now asks for a project example.",
      "points": [
       "Scoring that ranks each role's applicants into a swipe deck, best first",
-      "Everyone else on a ranked list, and nothing archived in Ashby automatically",
-      "Scoring compared with Ashby's own AI scoring"
-     ]
-    },
-    {
-     "title": "Recruiting ops and automation",
-     "detail": "Daily phone screen prep runs in Claude, and the weekly hiring manager update now lists archived candidates, live on the senior security role first.",
-     "points": [
       "Claude task that pulls the day's screens from the calendar and Ashby into one view",
-      "Weekly update section of candidates archived that week after at least a phone screen",
-      "Recruiting dashboard with funnel, recruiter, goals and period comparison views"
+      "Recruiter screen moved to a project example question after calibration with the EMs"
      ]
     }
    ],
    "channel": null,
-   "updated": "2026-11-20",
+   "updated": "2026-11-21",
    "url": "https://hub.carrara.is/clients/january"
   },
   {
@@ -2111,7 +2112,7 @@
      "role": "Recruiting coordination",
      "email": "kelley@carrara.is",
      "slack": "U0AT6B3QE9X",
-     "timezone": "America/New_York"
+     "timezone": "America/Bogota"
     }
    ],
    "workstreams": [
@@ -2162,7 +2163,7 @@
    "hubName": "Amazon (Bee + Fauna Robotics)",
    "status": "active",
    "oneLiner": "Paid media, ad creative and finance support for Bee, Amazon's AI wearable.",
-   "about": "We run paid ads for Bee Frontier on Meta, Google and TikTok, refresh the ad creative, onboard the UGC creators who film for our ads and send a weekly performance report. On the finance side we built a planning model and keep the monthly books for Bee and Fauna Robotics.",
+   "about": "We run paid ads for Bee Frontier and Bee Eclipse on Meta, Google and TikTok, refresh the ad creative, onboard the UGC creators who film for our ads and send a weekly performance report. On the finance side we built a planning model and keep the monthly books for Bee and Fauna Robotics.",
    "practices": [
     {
      "id": "marketing",
@@ -2216,34 +2217,34 @@
    "workstreams": [
     {
      "title": "Paid media",
-     "detail": "We run ads for Bee Frontier on Meta, Google and TikTok, with Meta now on a new ad account and changes made from each weekly report.",
+     "detail": "Black Friday ads are live on Meta, Google and TikTok, and Bee Eclipse pre-order ads run on Meta.",
      "points": [
-      "Meta placement reviews, cutting low click placements like Audience Network and the right column",
-      "TikTok kept off after a one week pause test of how much it adds to sales",
+      "Black Friday ad sets for parents, professionals and ADHD, plus a Meta remarketing campaign",
+      "TikTok back on for Black Friday, with TikTok Shop ads launched",
       "Google search split into brand, non-brand and competitor campaigns, with keyword cleanups"
      ]
     },
     {
-     "title": "Weekly performance report",
-     "detail": "A report page goes to the client every week, alongside a testing roadmap we agreed with them.",
+     "title": "Performance reporting",
+     "detail": "A report page goes to the client every week, and through the sale a paid update goes to the client's leadership twice a day.",
      "points": [
       "Weekly report web page with a read per channel and next steps",
-      "Attribution model that splits store sales across ad channels",
-      "Experiment pipeline doc, including an hour of day bid test on Google"
+      "Twice daily paid update for the client's leadership, with its own page on the report hub",
+      "Attribution model that splits store sales across ad channels"
      ]
     },
     {
      "title": "Creative refresh",
-     "detail": "Each week we call which live ads to keep, hold or pause and write briefs for new ones; Black Friday search headlines and videos are ready for the sale.",
+     "detail": "Bee Eclipse and Black Friday creative went through the client's review, and motion ads are cut for Eclipse and Frontier.",
      "points": [
       "Keep, rework or pause call on every live ad, with briefs for new ones",
-      "New Google search ad copy, including Black Friday headlines on competitor terms",
-      "Walkthrough of our creative testing approach for Bee's creative team at Amazon"
+      "Motion video ads for Bee Eclipse and Bee Frontier, with Black Friday versions",
+      "Google search ad copy, including Black Friday headlines on competitor terms"
      ]
     },
     {
      "title": "UGC creators",
-     "detail": "Onboarding the UGC creators who film Frontier videos for our TikTok and Meta ads; the first call is done and a second session is planned.",
+     "detail": "UGC creators film Frontier videos for our TikTok and Meta ads, and their first full month of videos is in.",
      "points": [
       "Kickoff deck on the product, how Amazon wants it described and what makes a video work",
       "Onboarding calls run with the UGC agency that manages the creators",
@@ -2260,7 +2261,7 @@
     }
    ],
    "channel": null,
-   "updated": "2026-11-19",
+   "updated": "2026-11-21",
    "url": "https://hub.carrara.is/clients/amazon"
   },
   {
@@ -2658,7 +2659,7 @@
      "role": "Recruiting coordinator",
      "email": "kelley@carrara.is",
      "slack": "U0AT6B3QE9X",
-     "timezone": "America/New_York"
+     "timezone": "America/Bogota"
     },
     {
      "name": "Matias Sanchez",
@@ -2671,7 +2672,7 @@
    "workstreams": [
     {
      "title": "Engineering hiring",
-     "detail": "Staff, security, backend and head of engineering searches run with LiteLLM's founders and outside agencies; the systems search is now split into backend and performance testing roles.",
+     "detail": "Backend, performance testing, security and head of engineering searches run with LiteLLM's founders and outside agencies.",
      "points": [
       "Published JDs, plus an agency brief and one pager so partner agencies pitch roles the same way",
       "Deep research on engineers with public proof of work, now a weekly sourcing flow in LiteLLM OS",
@@ -2680,33 +2681,33 @@
     },
     {
      "title": "Inbound review",
-     "detail": "Every inbound applicant is scored in LiteLLM OS, and the founders review the shortlist one candidate at a time.",
+     "detail": "Every inbound applicant is scored in LiteLLM OS on rubrics per role, and the founders review the shortlist one candidate at a time.",
      "points": [
-      "Scoring rubric built from calls, Slack and company info",
+      "Scoring rubrics for backend and performance roles, built from calls, Slack and company info",
       "Founder yes or no review page with links for each candidate",
       "Slack roundup on Mondays and Thursdays when a top applicant lands"
      ]
     },
     {
      "title": "Ashby and postings",
-     "detail": "We now post LiteLLM's jobs in Ashby and keep the pipeline clean.",
+     "detail": "We post LiteLLM's jobs in Ashby and keep the pipeline clean.",
      "points": [
-      "Stale candidates cleared and active roles mapped",
-      "Head of CS role posted"
+      "Senior and staff backend engineer roles posted into one backend pipeline",
+      "Head of CS role posted, and stale and low tier applicants archived"
      ]
     },
     {
      "title": "Talent narrative",
-     "detail": "Narrative v2 is with the founders and is now being turned into careers page copy, a founder video script and a founder blog post.",
+     "detail": "Narrative v2 is with the founders, and the careers page is in design, with first drafts reviewed.",
      "points": [
       "Narrative built from founder interviews and an intake survey",
       "Candidate one pager on the product, team and interview loop, sent in confirmation emails",
-      "Careers page design brief, with the page copy to be fitted to the designer's layout"
+      "Careers page on what LiteLLM does, why join, how we work, the hiring process and open roles"
      ]
     }
    ],
    "channel": "c-litellm",
-   "updated": "2026-11-20",
+   "updated": "2026-11-21",
    "url": "https://hub.carrara.is/clients/litellm"
   },
   {
@@ -3133,7 +3134,7 @@
      "role": "Interview scheduling and coordination",
      "email": "kelley@carrara.is",
      "slack": "U0AT6B3QE9X",
-     "timezone": "America/New_York"
+     "timezone": "America/Bogota"
     }
    ],
    "workstreams": [
@@ -4132,7 +4133,7 @@
    "title": "Talent Partner",
    "email": "justin@carrara.is",
    "slack": "U062N4MN5DE",
-   "timezone": "America/Chicago",
+   "timezone": "America/Los_Angeles",
    "photo": "https://hub.carrara.is/people/justin-c.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=justin%40carrara.is"
@@ -4165,7 +4166,7 @@
    "title": "Talent Operations",
    "email": "kelley@carrara.is",
    "slack": "U0AT6B3QE9X",
-   "timezone": "America/New_York",
+   "timezone": "America/Bogota",
    "photo": "https://hub.carrara.is/people/kelley.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=kelley%40carrara.is"
@@ -4187,7 +4188,7 @@
    "title": "Operating Partner",
    "email": "kim@carrara.is",
    "slack": "U0ASZBGV138",
-   "timezone": "America/Indiana/Indianapolis",
+   "timezone": "America/Chicago",
    "photo": "https://hub.carrara.is/people/kim.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=kim%40carrara.is"
