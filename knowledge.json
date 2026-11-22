@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-11-21",
+ "exported": "2026-11-22",
  "clients": [
   {
    "slug": "anthropic",
@@ -50,7 +50,7 @@
      "role": "Platform Eng and Product sourcing",
      "email": "Alicia@carrara.is",
      "slack": "U07NL16P363",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Jenna Caminiti",
@@ -165,7 +165,7 @@
      "role": "Lead and interim talent ops lead",
      "email": "Alicia@carrara.is",
      "slack": "U07NL16P363",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Jenna Caminiti",
@@ -437,7 +437,7 @@
      "role": "Account lead",
      "email": "sophie@carrara.is",
      "slack": "U0B17CD5VKN",
-     "timezone": "America/New_York"
+     "timezone": "Australia/Canberra"
     },
     {
      "name": "Sara Hennings",
@@ -769,7 +769,7 @@
      "role": "Account lead",
      "email": "sophie@carrara.is",
      "slack": "U0B17CD5VKN",
-     "timezone": "America/New_York"
+     "timezone": "Australia/Canberra"
     },
     {
      "name": "Tara O'Reilly",
@@ -1978,7 +1978,7 @@
      "role": "Recruiting coordination",
      "email": "kelley@carrara.is",
      "slack": "U0AT6B3QE9X",
-     "timezone": "America/Bogota"
+     "timezone": "America/New_York"
     },
     {
      "name": "Leonardo Lopes",
@@ -2112,7 +2112,7 @@
      "role": "Recruiting coordination",
      "email": "kelley@carrara.is",
      "slack": "U0AT6B3QE9X",
-     "timezone": "America/Bogota"
+     "timezone": "America/New_York"
     }
    ],
    "workstreams": [
@@ -2320,7 +2320,7 @@
      "role": "Account lead",
      "email": "Alicia@carrara.is",
      "slack": "U07NL16P363",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Joe Penn",
@@ -2645,7 +2645,7 @@
      "role": "Recruiting lead",
      "email": "Alicia@carrara.is",
      "slack": "U07NL16P363",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Hayley Samuels",
@@ -2659,7 +2659,7 @@
      "role": "Recruiting coordinator",
      "email": "kelley@carrara.is",
      "slack": "U0AT6B3QE9X",
-     "timezone": "America/Bogota"
+     "timezone": "America/New_York"
     },
     {
      "name": "Matias Sanchez",
@@ -2876,7 +2876,7 @@
      "role": "Lead and interim talent ops lead",
      "email": "Alicia@carrara.is",
      "slack": "U07NL16P363",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Jenna Caminiti",
@@ -3134,7 +3134,7 @@
      "role": "Interview scheduling and coordination",
      "email": "kelley@carrara.is",
      "slack": "U0AT6B3QE9X",
-     "timezone": "America/Bogota"
+     "timezone": "America/New_York"
     }
    ],
    "workstreams": [
@@ -3238,7 +3238,7 @@
      "role": "Partner",
      "email": "Alicia@carrara.is",
      "slack": "U07NL16P363",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Brandon Taleisnik",
@@ -3781,7 +3781,7 @@
    "title": "Partner",
    "email": "Alicia@carrara.is",
    "slack": "U07NL16P363",
-   "timezone": "America/Los_Angeles",
+   "timezone": "America/New_York",
    "photo": "https://hub.carrara.is/people/alicia.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=Alicia%40carrara.is"
@@ -4166,7 +4166,7 @@
    "title": "Talent Operations",
    "email": "kelley@carrara.is",
    "slack": "U0AT6B3QE9X",
-   "timezone": "America/Bogota",
+   "timezone": "America/New_York",
    "photo": "https://hub.carrara.is/people/kelley.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=kelley%40carrara.is"
@@ -4441,7 +4441,7 @@
    "title": "Coordinator",
    "email": "shayne@carrara.is",
    "slack": "U0ATMC40UJZ",
-   "timezone": "Asia/Chongqing",
+   "timezone": "America/Los_Angeles",
    "photo": "https://hub.carrara.is/people/shayne.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=shayne%40carrara.is"
@@ -4474,7 +4474,7 @@
    "title": "GTM Partner",
    "email": "sophie@carrara.is",
    "slack": "U0B17CD5VKN",
-   "timezone": "America/New_York",
+   "timezone": "Australia/Canberra",
    "photo": "https://hub.carrara.is/people/soph.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=sophie%40carrara.is"
@@ -4573,7 +4573,7 @@
    "title": "Finance Partner",
    "email": "nick@carrara.is",
    "slack": "U0C4NUX9T60",
-   "timezone": "America/New_York",
+   "timezone": "Asia/Tokyo",
    "photo": "https://hub.carrara.is/people/nick.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=nick%40carrara.is"
@@ -4709,6 +4709,17 @@
    "photo": null,
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=vanessa"
+  },
+  {
+   "id": "ed",
+   "name": "Ed Lyndt",
+   "title": "M&A",
+   "email": null,
+   "slack": null,
+   "timezone": null,
+   "photo": null,
+   "linkedin": null,
+   "url": "https://hub.carrara.is/people?person=ed"
   }
  ]
 }
