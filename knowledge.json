@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-11-22",
+ "exported": "2026-11-23",
  "clients": [
   {
    "slug": "anthropic",
@@ -179,7 +179,7 @@
      "role": "Coordination, Ashby and network mining",
      "email": "maggie@carrara.is",
      "slack": "U0A88MMCL4T",
-     "timezone": "America/New_York"
+     "timezone": "America/Cancun"
     },
     {
      "name": "Giovanna Borgiotti",
@@ -360,7 +360,7 @@
      "role": "Recruiting",
      "email": "maggie@carrara.is",
      "slack": "U0A88MMCL4T",
-     "timezone": "America/New_York"
+     "timezone": "America/Cancun"
     }
    ],
    "workstreams": [
@@ -1787,7 +1787,7 @@
      "role": "Recruiting ops and tools",
      "email": "maggie@carrara.is",
      "slack": "U0A88MMCL4T",
-     "timezone": "America/New_York"
+     "timezone": "America/Cancun"
     },
     {
      "name": "Leonardo Lopes",
@@ -2564,7 +2564,7 @@
      "role": "Pre-boarding support",
      "email": "maggie@carrara.is",
      "slack": "U0A88MMCL4T",
-     "timezone": "America/New_York"
+     "timezone": "America/Cancun"
     },
     {
      "name": "Kenna Meyerhoff",
@@ -4254,7 +4254,7 @@
    "title": "Talent Operations",
    "email": "maggie@carrara.is",
    "slack": "U0A88MMCL4T",
-   "timezone": "America/New_York",
+   "timezone": "America/Cancun",
    "photo": "https://hub.carrara.is/people/maggie.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=maggie%40carrara.is"
@@ -4573,7 +4573,7 @@
    "title": "Finance Partner",
    "email": "nick@carrara.is",
    "slack": "U0C4NUX9T60",
-   "timezone": "Asia/Tokyo",
+   "timezone": "America/New_York",
    "photo": "https://hub.carrara.is/people/nick.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=nick%40carrara.is"
