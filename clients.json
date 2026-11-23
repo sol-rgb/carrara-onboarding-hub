@@ -1,6 +1,6 @@
 {
  "source": "client-codex",
- "updated": "2026-11-16",
+ "updated": "2026-11-23",
  "clients": [
   {
    "name": "3i Members",
@@ -256,6 +256,13 @@
    "work": []
   },
   {
+   "name": "ElevenLabs",
+   "domain": "",
+   "lead": "",
+   "description": "",
+   "work": []
+  },
+  {
    "name": "Evidenza",
    "domain": "",
    "lead": "",
@@ -496,7 +503,8 @@
    "description": "",
    "work": [
     "Embedded recruiting",
-    "Talent Platform"
+    "Talent Platform",
+    "BizOps"
    ]
   },
   {

@@ -1,6 +1,6 @@
 {
  "source": "notion-client-codex",
- "updated": "2026-11-16",
+ "updated": "2026-11-23",
  "clients": {
   "3i Members": {
    "status": "Paused",
@@ -535,6 +535,18 @@
    "background": null,
    "docs": []
   },
+  "ElevenLabs": {
+   "status": "Active",
+   "projectTypes": [],
+   "accountManagers": [],
+   "talentPartners": [],
+   "coordination": [],
+   "about": null,
+   "engagement": [],
+   "overview": {},
+   "background": null,
+   "docs": []
+  },
   "Evidenza": {
    "status": "Paused",
    "projectTypes": [],
@@ -796,7 +808,7 @@
    "docs": []
   },
   "LangChain": {
-   "status": "Active",
+   "status": "Paused",
    "projectTypes": [
     "Talent Platform",
     "Embedded recruiting"
@@ -817,7 +829,7 @@
    "docs": []
   },
   "Lipdub AI": {
-   "status": "Active",
+   "status": "Paused",
    "projectTypes": [
     "Marketing/Growth"
    ],
@@ -1057,7 +1069,8 @@
    "status": "Active",
    "projectTypes": [
     "Embedded recruiting",
-    "Talent Platform"
+    "Talent Platform",
+    "BizOps"
    ],
    "accountManagers": [
     "Joe Penn"
