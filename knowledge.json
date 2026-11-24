@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-11-23",
+ "exported": "2026-11-24",
  "clients": [
   {
    "slug": "anthropic",
@@ -36,7 +36,7 @@
      "role": "Account lead",
      "email": "brandon@carrara.is",
      "slack": "U07JH8MAM7G",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Kenna Meyerhoff",
@@ -200,7 +200,7 @@
      "role": "Partner",
      "email": "brandon@carrara.is",
      "slack": "U07JH8MAM7G",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     }
    ],
    "workstreams": [
@@ -297,7 +297,7 @@
      "role": "People ops lead, review tool and HRIS",
      "email": "katie@carrara.is",
      "slack": "U093W3WSNMN",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Hannah Say",
@@ -444,7 +444,7 @@
      "role": "Event lead, The Sphere Hotel",
      "email": "sara@carrara.is",
      "slack": "U0B7AP5R4EL",
-     "timezone": "Africa/Harare"
+     "timezone": "Europe/Amsterdam"
     },
     {
      "name": "Macarena Gonzalez Cazon",
@@ -471,11 +471,11 @@
    "workstreams": [
     {
      "title": "The Sphere Hotel",
-     "detail": "An Aussie pub pop-up in SF on Dec 11: the venue is booked, and window stickers and signage are in design while the final colors are picked.",
+     "detail": "An Aussie pub pop-up in SF on Dec 11: the venue is booked, the style and type are set, and the door sign, window decals, flags and step and repeats are in design.",
      "points": [
       "Event plan with the tasks, vendors and owners for the pub day",
       "Venue finder site with a shortlist, branding ideas and capacity per venue",
-      "Designs for a logo, coasters, can coolers, tap handles, a menu, napkins and signage"
+      "Designs for a logo, coasters, tap handles, a menu, napkins, signage, flags and step and repeats"
      ]
     },
     {
@@ -515,7 +515,7 @@
     }
    ],
    "channel": "c-sphere",
-   "updated": "2026-11-20",
+   "updated": "2026-11-24",
    "url": "https://hub.carrara.is/clients/sphere"
   },
   {
@@ -968,7 +968,7 @@
     },
     {
      "title": "Landing pages",
-     "detail": "Persona pages, pricing and an inspiration gallery are live on cfo.ai; listicles, Founding Fractionals and compare pages are in pull requests, and a new fractional CFO page is in copy review.",
+     "detail": "Persona pages, pricing and an inspiration gallery are live on cfo.ai; listicles, Founding Fractionals, compare pages, an accounting firms page and a nav and footer pass are in pull requests, and the fractional CFO page is in review.",
      "points": [
       "Persona pages, a pricing update and an inspiration gallery, shipped into cfo.ai's site",
       "Onboarding call booking on the homepage, fractional CFO page and pricing",
@@ -977,7 +977,7 @@
     },
     {
      "title": "Ad creative",
-     "detail": "Weekly creative batches from briefs, each aimed at one persona; this week's static ads are in review, and follow ups to the Nov 17 event's attendees are split by RSVP type.",
+     "detail": "Weekly creative batches from briefs, each aimed at one persona; this week's static ads are uploaded to Atelier, and two testimonial clips with new hooks are ready to ship.",
      "points": [
       "Weekly creative review site where the client signs off each batch",
       "Testimonial video ads cut from customer interviews, each with its own hook",
@@ -995,16 +995,16 @@
     },
     {
      "title": "Performance reporting",
-     "detail": "A live dashboard for Meta and Google plus a persona testing report; v2 of the fractional CFO dashboard is done and ready for cfo.ai's team to report from.",
+     "detail": "A live dashboard for Meta and Google plus a persona testing report; the dashboard in cfo.ai's product now also covers the weekly GTM standup numbers and site traffic.",
      "points": [
       "Real time performance dashboard for Meta and Google",
       "Persona testing report on how each persona's ads and pages perform",
-      "Fractional CFO dashboard in cfo.ai's product, with a little backfill left"
+      "Fractional CFO and GTM dashboard in cfo.ai's product, with standup numbers and site traffic"
      ]
     }
    ],
    "channel": "c-cfo-ai",
-   "updated": "2026-11-21",
+   "updated": "2026-11-24",
    "url": "https://hub.carrara.is/clients/runway"
   },
   {
@@ -1373,7 +1373,7 @@
      "role": "Transporters admin",
      "email": "kim@carrara.is",
      "slack": "U0ASZBGV138",
-     "timezone": "America/Chicago"
+     "timezone": "America/Indiana/Indianapolis"
     },
     {
      "name": "Macarena Gonzalez Cazon",
@@ -1393,7 +1393,7 @@
    "workstreams": [
     {
      "title": "Hertzcules billing app",
-     "detail": "A Databricks app for no-show and cancellation fee billing, live with Hertz's receivables team; Add book now creates real billing books and the evidence carries full customer care threads.",
+     "detail": "A Databricks app for no-show and cancellation fee billing, live with Hertz's receivables team; generating month end invoice PDFs with the right fee labels is being specced next.",
      "points": [
       "Billing logic tab with a SQL editor, scheduled versions and a change log",
       "Checks that set aside rebookings and rentals still out, so billing can run on the 1st",
@@ -1420,16 +1420,16 @@
     },
     {
      "title": "Dealer Direct",
-     "detail": "The Jarvis rep tool, dealer emails and texts, and a partner collections tracker; a third dealer email batch is ready, and fixes from reps' Outlook feedback are in beta.",
+     "detail": "The Jarvis rep tool, dealer emails and a partner collections tracker; the Outlook integration and a live rep dashboard are out, and personalized dealer emails run on their own.",
      "points": [
       "Jarvis: dealer and prospect lists from the Advent feed, with pricing, inventory and a hitlist",
-      "SendGrid dealer emails after a sale, a purchase email pilot and Twilio texts in registration",
-      "Regional clearing price history in Jarvis and a dashboard of the payment and close emails"
+      "Outlook integration in Jarvis and a live dashboard for reps",
+      "Personalized dealer email marketing, automated with A/B testing"
      ]
     }
    ],
    "channel": "c-hertz-external",
-   "updated": "2026-11-21",
+   "updated": "2026-11-24",
    "url": "https://hub.carrara.is/clients/hertz"
   },
   {
@@ -1487,7 +1487,7 @@
      "role": "Event ops",
      "email": "sara@carrara.is",
      "slack": "U0B7AP5R4EL",
-     "timezone": "Africa/Harare"
+     "timezone": "Europe/Amsterdam"
     },
     {
      "name": "Bryan Gunawan",
@@ -1633,7 +1633,7 @@
      "role": "Team",
      "email": "katie@carrara.is",
      "slack": "U093W3WSNMN",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Sol Silbenberg",
@@ -1773,7 +1773,7 @@
      "role": "Account lead",
      "email": "brandon@carrara.is",
      "slack": "U07JH8MAM7G",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Austin Kane",
@@ -1929,7 +1929,7 @@
      "role": "Account lead",
      "email": "brandon@carrara.is",
      "slack": "U07JH8MAM7G",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Drew Koloski",
@@ -2070,7 +2070,7 @@
      "role": "People ops lead, performance and people product",
      "email": "katie@carrara.is",
      "slack": "U093W3WSNMN",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Jim Ji",
@@ -2197,7 +2197,7 @@
      "role": "Operating plan model",
      "email": "katie@carrara.is",
      "slack": "U093W3WSNMN",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Chris Gonzalez",
@@ -2550,7 +2550,7 @@
      "role": "People automations",
      "email": "katie@carrara.is",
      "slack": "U093W3WSNMN",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Roohi Ahuja",
@@ -2663,9 +2663,16 @@
     },
     {
      "name": "Matias Sanchez",
-     "role": "Talent narrative",
+     "role": "Talent narrative and careers page copy",
      "email": "matias@carrara.is",
      "slack": "U08NEFER8HY",
+     "timezone": "America/Buenos_Aires"
+    },
+    {
+     "name": "Romina Ideses",
+     "role": "Careers page design",
+     "email": "romina@carrara.is",
+     "slack": "U0CHJE7P51C",
      "timezone": "America/Buenos_Aires"
     }
    ],
@@ -2690,24 +2697,25 @@
     },
     {
      "title": "Ashby and postings",
-     "detail": "We post LiteLLM's jobs in Ashby and keep the pipeline clean.",
+     "detail": "We post LiteLLM's jobs in Ashby and keep the pipeline clean, with the security searches now in two roles.",
      "points": [
       "Senior and staff backend engineer roles posted into one backend pipeline",
+      "Security pipelines merged into two roles: Security Engineer and Detection and Response",
       "Head of CS role posted, and stale and low tier applicants archived"
      ]
     },
     {
      "title": "Talent narrative",
-     "detail": "Narrative v2 is with the founders, and the careers page is in design, with first drafts reviewed.",
+     "detail": "Narrative v2 is with the founders, and V1 of the careers page is built and going to the founder for review.",
      "points": [
       "Narrative built from founder interviews and an intake survey",
       "Candidate one pager on the product, team and interview loop, sent in confirmation emails",
-      "Careers page on what LiteLLM does, why join, how we work, the hiring process and open roles"
+      "Careers page V1 on LiteLLM's visual identity, with a technical section before the founders' video"
      ]
     }
    ],
    "channel": "c-litellm",
-   "updated": "2026-11-21",
+   "updated": "2026-11-24",
    "url": "https://hub.carrara.is/clients/litellm"
   },
   {
@@ -3092,7 +3100,7 @@
      "role": "Engagement lead, pacing model",
      "email": "brandon@carrara.is",
      "slack": "U07JH8MAM7G",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Catherine Ardila",
@@ -3245,7 +3253,7 @@
      "role": "Partner",
      "email": "brandon@carrara.is",
      "slack": "U07JH8MAM7G",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     }
    ],
    "services": [
@@ -3346,7 +3354,7 @@
      "role": "Partner",
      "email": "brandon@carrara.is",
      "slack": "U07JH8MAM7G",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Kenna Meyerhoff",
@@ -3880,7 +3888,7 @@
    "title": "Partner",
    "email": "brandon@carrara.is",
    "slack": "U07JH8MAM7G",
-   "timezone": "America/New_York",
+   "timezone": "America/Los_Angeles",
    "photo": "https://hub.carrara.is/people/brandon.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=brandon%40carrara.is"
@@ -4155,7 +4163,7 @@
    "title": "Operating Partner",
    "email": "katie@carrara.is",
    "slack": "U093W3WSNMN",
-   "timezone": "America/New_York",
+   "timezone": "America/Los_Angeles",
    "photo": "https://hub.carrara.is/people/katie.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=katie%40carrara.is"
@@ -4188,7 +4196,7 @@
    "title": "Operating Partner",
    "email": "kim@carrara.is",
    "slack": "U0ASZBGV138",
-   "timezone": "America/Chicago",
+   "timezone": "America/Indiana/Indianapolis",
    "photo": "https://hub.carrara.is/people/kim.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=kim%40carrara.is"
@@ -4265,7 +4273,7 @@
    "title": "Operations",
    "email": "margaux@carrara.is",
    "slack": "U0B6EK3H7GW",
-   "timezone": "Europe/London",
+   "timezone": "Europe/Amsterdam",
    "photo": "https://hub.carrara.is/people/margaux.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=margaux%40carrara.is"
@@ -4408,7 +4416,7 @@
    "title": "Business Operations",
    "email": "sara@carrara.is",
    "slack": "U0B7AP5R4EL",
-   "timezone": "Africa/Harare",
+   "timezone": "Europe/Amsterdam",
    "photo": "https://hub.carrara.is/people/sara.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=sara%40carrara.is"
@@ -4573,7 +4581,7 @@
    "title": "Finance Partner",
    "email": "nick@carrara.is",
    "slack": "U0C4NUX9T60",
-   "timezone": "America/New_York",
+   "timezone": "America/Phoenix",
    "photo": "https://hub.carrara.is/people/nick.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=nick%40carrara.is"
