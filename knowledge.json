@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-11-24",
+ "exported": "2026-11-25",
  "clients": [
   {
    "slug": "anthropic",
@@ -91,7 +91,7 @@
    "workstreams": [
     {
      "title": "Platform talent activation",
-     "detail": "Sourcing for Platform Eng and Product roles, tracked in the Talent Activation Tracker on the channel canvas.",
+     "detail": "Sourcing for Platform Eng and Product roles, tracked in the Talent Activation Tracker on the channel canvas, plus network mining for Labs.",
      "points": [
       "Mined LinkedIn and X networks, with a scored review site to rate fit",
       "Talent Activation Tracker that refreshes hourly from the three recruiting trackers",
@@ -100,7 +100,7 @@
     },
     {
      "title": "Inside Platform videos",
-     "detail": "A video series where each episode presents a Platform team. Episode 1 went live on Nov 12 and the next one films on Nov 16.",
+     "detail": "A video series where each episode presents a Platform team. Episode 1 went live on Nov 12, and Episode 2 was set to post on Nov 24.",
      "points": [
       "Inside Platform Ep 1, a public video on building the Claude API",
       "Prep calls and question sets with every guest before recording",
@@ -136,7 +136,7 @@
     }
    ],
    "channel": "c-anthropic",
-   "updated": "2026-11-14",
+   "updated": "2026-11-25",
    "url": "https://hub.carrara.is/clients/anthropic"
   },
   {
@@ -583,7 +583,7 @@
      "role": "Growth outbound and enriched lists",
      "email": "pranav@carrara.is",
      "slack": "U0B0R326N4C",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Sol Silbenberg",
@@ -946,7 +946,7 @@
      "role": "Creative briefs, event copy, content docs and network lists",
      "email": "pranav@carrara.is",
      "slack": "U0B0R326N4C",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Agostina Aranda",
@@ -1061,7 +1061,7 @@
      "role": "Project coordination",
      "email": "sadiqeh@carrara.is",
      "slack": "U0ASY17UEAZ",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/Phoenix"
     }
    ],
    "workstreams": [
@@ -1223,7 +1223,7 @@
      "role": "Coordination and Ashby",
      "email": "sadiqeh@carrara.is",
      "slack": "U0ASY17UEAZ",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/Phoenix"
     },
     {
      "name": "Hayley Samuels",
@@ -1373,7 +1373,7 @@
      "role": "Transporters admin",
      "email": "kim@carrara.is",
      "slack": "U0ASZBGV138",
-     "timezone": "America/Indiana/Indianapolis"
+     "timezone": "America/New_York"
     },
     {
      "name": "Macarena Gonzalez Cazon",
@@ -1424,12 +1424,12 @@
      "points": [
       "Jarvis: dealer and prospect lists from the Advent feed, with pricing, inventory and a hitlist",
       "Outlook integration in Jarvis and a live dashboard for reps",
-      "Personalized dealer email marketing, automated with A/B testing"
+      "Personalized dealer emails, automated with A/B testing and a delivery quote link"
      ]
     }
    ],
    "channel": "c-hertz-external",
-   "updated": "2026-11-24",
+   "updated": "2026-11-25",
    "url": "https://hub.carrara.is/clients/hertz"
   },
   {
@@ -2692,7 +2692,7 @@
      "points": [
       "Scoring rubrics for backend and performance roles, built from calls, Slack and company info",
       "Founder yes or no review page with links for each candidate",
-      "Slack roundup on Mondays and Thursdays when a top applicant lands"
+      "Slack roundups: top applicants on Mondays and Thursdays, interviews awaiting feedback daily"
      ]
     },
     {
@@ -2706,7 +2706,7 @@
     },
     {
      "title": "Talent narrative",
-     "detail": "Narrative v2 is with the founders, and V1 of the careers page is built and going to the founder for review.",
+     "detail": "Narrative v2 is with the founders; the founder has seen V1 of the careers page, and V2 is being built from our own review.",
      "points": [
       "Narrative built from founder interviews and an intake survey",
       "Candidate one pager on the product, team and interview loop, sent in confirmation emails",
@@ -2715,7 +2715,7 @@
     }
    ],
    "channel": "c-litellm",
-   "updated": "2026-11-24",
+   "updated": "2026-11-25",
    "url": "https://hub.carrara.is/clients/litellm"
   },
   {
@@ -4196,7 +4196,7 @@
    "title": "Operating Partner",
    "email": "kim@carrara.is",
    "slack": "U0ASZBGV138",
-   "timezone": "America/Indiana/Indianapolis",
+   "timezone": "America/New_York",
    "photo": "https://hub.carrara.is/people/kim.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=kim%40carrara.is"
@@ -4328,7 +4328,7 @@
    "title": "Marketing Operations",
    "email": "pranav@carrara.is",
    "slack": "U0B0R326N4C",
-   "timezone": "America/Los_Angeles",
+   "timezone": "America/New_York",
    "photo": "https://hub.carrara.is/people/pranav.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=pranav%40carrara.is"
@@ -4394,7 +4394,7 @@
    "title": "Talent Operations",
    "email": "sadiqeh@carrara.is",
    "slack": "U0ASY17UEAZ",
-   "timezone": "America/Los_Angeles",
+   "timezone": "America/Phoenix",
    "photo": "https://hub.carrara.is/people/sadiqeh.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=sadiqeh%40carrara.is"
@@ -4449,7 +4449,7 @@
    "title": "Coordinator",
    "email": "shayne@carrara.is",
    "slack": "U0ATMC40UJZ",
-   "timezone": "America/Los_Angeles",
+   "timezone": "Asia/Chongqing",
    "photo": "https://hub.carrara.is/people/shayne.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=shayne%40carrara.is"
@@ -4581,7 +4581,7 @@
    "title": "Finance Partner",
    "email": "nick@carrara.is",
    "slack": "U0C4NUX9T60",
-   "timezone": "America/Phoenix",
+   "timezone": "America/Denver",
    "photo": "https://hub.carrara.is/people/nick.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=nick%40carrara.is"
