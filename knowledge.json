@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-11-25",
+ "exported": "2026-11-26",
  "clients": [
   {
    "slug": "anthropic",
@@ -461,6 +461,13 @@
      "timezone": "America/Buenos_Aires"
     },
     {
+     "name": "Agostina Aranda",
+     "role": "Design, signs, flags and step and repeats",
+     "email": "agostina@carrara.is",
+     "slack": "U0BH44HEMSP",
+     "timezone": "America/Argentina/Buenos_Aires"
+    },
+    {
      "name": "Gonz Sanchez",
      "role": "Partner on the account",
      "email": "gonz@carrara.is",
@@ -471,7 +478,7 @@
    "workstreams": [
     {
      "title": "The Sphere Hotel",
-     "detail": "An Aussie pub pop-up in SF on Dec 11: the venue is booked, the style and type are set, and the door sign, window decals, flags and step and repeats are in design.",
+     "detail": "An Aussie pub pop-up in SF on Dec 11: the venue, style, type and teal color are set, merch is being ordered, and the signs, flags and step and repeats are in design.",
      "points": [
       "Event plan with the tasks, vendors and owners for the pub day",
       "Venue finder site with a shortlist, branding ideas and capacity per venue",
@@ -515,7 +522,7 @@
     }
    ],
    "channel": "c-sphere",
-   "updated": "2026-11-24",
+   "updated": "2026-11-26",
    "url": "https://hub.carrara.is/clients/sphere"
   },
   {
@@ -968,7 +975,7 @@
     },
     {
      "title": "Landing pages",
-     "detail": "Persona pages, pricing and an inspiration gallery are live on cfo.ai; listicles, Founding Fractionals, compare pages, an accounting firms page and a nav and footer pass are in pull requests, and the fractional CFO page is in review.",
+     "detail": "Persona pages, pricing and an inspiration gallery are live on cfo.ai; the accounting firms page is approved, listicles, Founding Fractionals, compare pages and a nav and footer pass are in pull requests, and the fractional CFO page is in review.",
      "points": [
       "Persona pages, a pricing update and an inspiration gallery, shipped into cfo.ai's site",
       "Onboarding call booking on the homepage, fractional CFO page and pricing",
@@ -977,7 +984,7 @@
     },
     {
      "title": "Ad creative",
-     "detail": "Weekly creative batches from briefs, each aimed at one persona; this week's static ads are uploaded to Atelier, and two testimonial clips with new hooks are ready to ship.",
+     "detail": "Weekly creative batches from briefs, each aimed at one persona; creative review is moving onto Atelier, and creative and copy for the Finance Foundations event are done.",
      "points": [
       "Weekly creative review site where the client signs off each batch",
       "Testimonial video ads cut from customer interviews, each with its own hook",
@@ -1004,7 +1011,7 @@
     }
    ],
    "channel": "c-cfo-ai",
-   "updated": "2026-11-24",
+   "updated": "2026-11-26",
    "url": "https://hub.carrara.is/clients/runway"
   },
   {
@@ -1076,7 +1083,7 @@
     },
     {
      "title": "EE sourcing",
-     "detail": "Target companies are tiered with the client, and new EE leads from public research go into Source OS for the team to review.",
+     "detail": "Target companies are tiered with the client, and EE outreach now runs from a second client inbox, with a new lead list ranked on the Source OS rubric.",
      "points": [
       "EE market map of companies to hire from, tiered with the client",
       "Outreach from the hiring manager's email and ours, with screens booked",
@@ -1085,7 +1092,7 @@
     },
     {
      "title": "SWE and ME sourcing",
-     "detail": "SWE outreach continues while we calibrate the research hardware SWE profile, and mechanical engineer sequences are starting from a client approved list.",
+     "detail": "SWE outreach continues while we calibrate the research hardware SWE profile, and mechanical engineer sequences now run from the hiring manager's inbox at a steady daily pace.",
      "points": [
       "Email sequences sent as the hiring manager, plus LinkedIn outreach",
       "Stealth safe outreach copy, signed off by the client before it goes out",
@@ -1103,7 +1110,7 @@
     },
     {
      "title": "Source OS",
-     "detail": "Our internal recruiting OS and the team's source of truth for every role, with Slack alerts.",
+     "detail": "Our internal recruiting OS and the team's source of truth for every role, with Slack alerts and a daily update on each inbox's sending room.",
      "points": [
       "Roles section per search: job details, calibration, sourcing, screen questions and handoff",
       "Claude skills per role that score call transcripts and LinkedIn profiles on competency tables",
@@ -1112,7 +1119,7 @@
     }
    ],
    "channel": "c-source-foundry",
-   "updated": "2026-11-20",
+   "updated": "2026-11-26",
    "url": "https://hub.carrara.is/clients/source-foundry"
   },
   {
@@ -1393,7 +1400,7 @@
    "workstreams": [
     {
      "title": "Hertzcules billing app",
-     "detail": "A Databricks app for no-show and cancellation fee billing, live with Hertz's receivables team; generating month end invoice PDFs with the right fee labels is being specced next.",
+     "detail": "A Databricks app for no-show and cancellation fee billing, live with Hertz's receivables team; a monthly newsletter built from its data is in mockup, and month end invoice PDFs are specced next.",
      "points": [
       "Billing logic tab with a SQL editor, scheduled versions and a change log",
       "Checks that set aside rebookings and rentals still out, so billing can run on the 1st",
@@ -1429,7 +1436,7 @@
     }
    ],
    "channel": "c-hertz-external",
-   "updated": "2026-11-25",
+   "updated": "2026-11-26",
    "url": "https://hub.carrara.is/clients/hertz"
   },
   {
@@ -1780,7 +1787,7 @@
      "role": "Recruiting systems and data",
      "email": "austin@carrara.is",
      "slack": "U05FMQS5547",
-     "timezone": "America/New_York"
+     "timezone": "America/Los_Angeles"
     },
     {
      "name": "Maggie Stout",
@@ -2217,10 +2224,10 @@
    "workstreams": [
     {
      "title": "Paid media",
-     "detail": "Black Friday ads are live on Meta, Google and TikTok, and Bee Eclipse pre-order ads run on Meta.",
+     "detail": "Black Friday and Cyber Monday ads run on Meta, Google and TikTok with every click sent to Amazon, and Bee Eclipse pre-order ads run on Meta.",
      "points": [
       "Black Friday ad sets for parents, professionals and ADHD, plus a Meta remarketing campaign",
-      "TikTok back on for Black Friday, with TikTok Shop ads launched",
+      "TikTok Shop paused for the sale, with TikTok spend moved into Meta remarketing and traffic",
       "Google search split into brand, non-brand and competitor campaigns, with keyword cleanups"
      ]
     },
@@ -2261,7 +2268,7 @@
     }
    ],
    "channel": null,
-   "updated": "2026-11-21",
+   "updated": "2026-11-26",
    "url": "https://hub.carrara.is/clients/amazon"
   },
   {
@@ -2679,7 +2686,7 @@
    "workstreams": [
     {
      "title": "Engineering hiring",
-     "detail": "Backend, performance testing, security and head of engineering searches run with LiteLLM's founders and outside agencies.",
+     "detail": "Backend, performance testing, security and head of engineering searches run with LiteLLM's founders and outside agencies, plus referrals from the team's networks.",
      "points": [
       "Published JDs, plus an agency brief and one pager so partner agencies pitch roles the same way",
       "Deep research on engineers with public proof of work, now a weekly sourcing flow in LiteLLM OS",
@@ -2715,7 +2722,7 @@
     }
    ],
    "channel": "c-litellm",
-   "updated": "2026-11-25",
+   "updated": "2026-11-26",
    "url": "https://hub.carrara.is/clients/litellm"
   },
   {
@@ -3844,7 +3851,7 @@
    "title": "Operating Partner",
    "email": "austin@carrara.is",
    "slack": "U05FMQS5547",
-   "timezone": "America/New_York",
+   "timezone": "America/Los_Angeles",
    "photo": "https://hub.carrara.is/people/austin.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=austin%40carrara.is"
@@ -4581,7 +4588,7 @@
    "title": "Finance Partner",
    "email": "nick@carrara.is",
    "slack": "U0C4NUX9T60",
-   "timezone": "America/Denver",
+   "timezone": "America/Phoenix",
    "photo": "https://hub.carrara.is/people/nick.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=nick%40carrara.is"
