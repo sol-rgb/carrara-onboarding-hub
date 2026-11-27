@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-11-26",
+ "exported": "2026-11-27",
  "clients": [
   {
    "slug": "anthropic",
@@ -186,7 +186,7 @@
      "role": "Sourcing, PM, security and identity",
      "email": "giovanna@carrara.is",
      "slack": "U0ANM181AQ4",
-     "timezone": "America/New_York"
+     "timezone": "America/Manaus"
     },
     {
      "name": "Justin Colsky",
@@ -513,7 +513,7 @@
     },
     {
      "title": "Dinners and campaigns",
-     "detail": "The Amsterdam finance leader dinner ran on Nov 5, CFO gift sends are under way, and a fillable vendor scorecard PDF is done for Sphere's Nov 25 e-invoicing webinar.",
+     "detail": "Finance leader dinners ran in Amsterdam on Nov 5 and London on Nov 25, CFO gift sends are under way, and a vendor scorecard PDF is done for Sphere's e-invoicing webinar.",
      "points": [
       "Amsterdam run of show in two hosting formats, including a Jeffersonian dinner",
       "Menu, name cards, gift prints and a guest lookbook for the Amsterdam dinner",
@@ -1352,7 +1352,7 @@
      "role": "Dealer Direct lead",
      "email": "tan@carrara.is",
      "slack": "U0BG4SC977H",
-     "timezone": "Europe/Amsterdam"
+     "timezone": "Asia/Chongqing"
     },
     {
      "name": "Enzo Budasoff",
@@ -1787,7 +1787,7 @@
      "role": "Recruiting systems and data",
      "email": "austin@carrara.is",
      "slack": "U05FMQS5547",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Maggie Stout",
@@ -1808,7 +1808,7 @@
      "role": "Recruiter, customer success",
      "email": "giovanna@carrara.is",
      "slack": "U0ANM181AQ4",
-     "timezone": "America/New_York"
+     "timezone": "America/Manaus"
     },
     {
      "name": "Tenzing Bhutia",
@@ -3851,7 +3851,7 @@
    "title": "Operating Partner",
    "email": "austin@carrara.is",
    "slack": "U05FMQS5547",
-   "timezone": "America/Los_Angeles",
+   "timezone": "America/New_York",
    "photo": "https://hub.carrara.is/people/austin.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=austin%40carrara.is"
@@ -4027,7 +4027,7 @@
    "title": "Talent Partner",
    "email": "giovanna@carrara.is",
    "slack": "U0ANM181AQ4",
-   "timezone": "America/New_York",
+   "timezone": "America/Manaus",
    "photo": "https://hub.carrara.is/people/giovanna.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=giovanna%40carrara.is"
@@ -4280,7 +4280,7 @@
    "title": "Operations",
    "email": "margaux@carrara.is",
    "slack": "U0B6EK3H7GW",
-   "timezone": "Europe/Amsterdam",
+   "timezone": "America/New_York",
    "photo": "https://hub.carrara.is/people/margaux.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=margaux%40carrara.is"
@@ -4456,7 +4456,7 @@
    "title": "Coordinator",
    "email": "shayne@carrara.is",
    "slack": "U0ATMC40UJZ",
-   "timezone": "Asia/Chongqing",
+   "timezone": "America/Los_Angeles",
    "photo": "https://hub.carrara.is/people/shayne.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=shayne%40carrara.is"
@@ -4511,7 +4511,7 @@
    "title": "Operating Partner",
    "email": "tan@carrara.is",
    "slack": "U0BG4SC977H",
-   "timezone": "Europe/Amsterdam",
+   "timezone": "Asia/Chongqing",
    "photo": "https://hub.carrara.is/people/tan.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=tan%40carrara.is"
@@ -4588,7 +4588,7 @@
    "title": "Finance Partner",
    "email": "nick@carrara.is",
    "slack": "U0C4NUX9T60",
-   "timezone": "America/Phoenix",
+   "timezone": "America/Denver",
    "photo": "https://hub.carrara.is/people/nick.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=nick%40carrara.is"
