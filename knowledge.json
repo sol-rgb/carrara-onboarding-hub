@@ -1,7 +1,7 @@
 {
  "source": "carrara-knowledge-hub",
  "hub": "https://hub.carrara.is",
- "exported": "2026-11-27",
+ "exported": "2026-11-28",
  "clients": [
   {
    "slug": "anthropic",
@@ -85,7 +85,7 @@
      "role": "Events",
      "email": "tara@carrara.is",
      "slack": "U0BTCTTS78V",
-     "timezone": "America/New_York"
+     "timezone": "Australia/Canberra"
     }
    ],
    "workstreams": [
@@ -783,7 +783,7 @@
      "role": "Ski house planning and events hub",
      "email": "tara@carrara.is",
      "slack": "U0BTCTTS78V",
-     "timezone": "America/New_York"
+     "timezone": "Australia/Canberra"
     },
     {
      "name": "Gonz Sanchez",
@@ -875,7 +875,7 @@
      "role": "Lead",
      "email": "heath@carrara.is",
      "slack": "U066H6LQC8M",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Nic Touron",
@@ -946,7 +946,7 @@
      "role": "Compare pages: design, copy, research and fact checks",
      "email": "tara@carrara.is",
      "slack": "U0BTCTTS78V",
-     "timezone": "America/New_York"
+     "timezone": "Australia/Canberra"
     },
     {
      "name": "Pranav Mutatkar",
@@ -1155,7 +1155,7 @@
      "role": "Leadership",
      "email": "heath@carrara.is",
      "slack": "U066H6LQC8M",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Eric Fernandez",
@@ -1352,7 +1352,7 @@
      "role": "Dealer Direct lead",
      "email": "tan@carrara.is",
      "slack": "U0BG4SC977H",
-     "timezone": "Asia/Chongqing"
+     "timezone": "Europe/Amsterdam"
     },
     {
      "name": "Enzo Budasoff",
@@ -1373,7 +1373,7 @@
      "role": "Transporters setup",
      "email": "heath@carrara.is",
      "slack": "U066H6LQC8M",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Kim Hackmann",
@@ -1473,7 +1473,7 @@
      "role": "Account lead",
      "email": "heath@carrara.is",
      "slack": "U066H6LQC8M",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Ben Munns",
@@ -2197,7 +2197,7 @@
      "role": "Account lead",
      "email": "heath@carrara.is",
      "slack": "U066H6LQC8M",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Katie Roe",
@@ -2785,7 +2785,7 @@
    "slug": "langchain",
    "name": "LangChain",
    "hubName": "LangChain",
-   "status": "active",
+   "status": "past",
    "oneLiner": "Embedded recruiting for LangChain's engineering manager, engineering and PM roles.",
    "about": "Carrara recruiters ran LangChain's engineering manager, engineering and product manager searches. Open searches are moving to LangChain's in-house team in October, with a closing report from us.",
    "practices": [
@@ -3314,7 +3314,6 @@
     "Polymarket",
     "Exponential Energy",
     "LiteLLM",
-    "LangChain",
     "Poetic",
     "Pace"
    ],
@@ -3619,7 +3618,7 @@
      "role": "Partner",
      "email": "heath@carrara.is",
      "slack": "U066H6LQC8M",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     }
    ],
    "services": [],
@@ -3677,7 +3676,7 @@
      "role": "Partner",
      "email": "heath@carrara.is",
      "slack": "U066H6LQC8M",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     }
    ],
    "services": [
@@ -3740,7 +3739,7 @@
      "role": "Partner",
      "email": "heath@carrara.is",
      "slack": "U066H6LQC8M",
-     "timezone": "America/Los_Angeles"
+     "timezone": "America/New_York"
     },
     {
      "name": "Dan Sia",
@@ -3972,7 +3971,7 @@
    "title": "Finance Operations",
    "email": "dave@carrara.is",
    "slack": "U08MWMCMEGG",
-   "timezone": "Asia/Chongqing",
+   "timezone": "Asia/Taipei",
    "photo": "https://hub.carrara.is/people/dave.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=dave%40carrara.is"
@@ -4093,7 +4092,7 @@
    "title": "Partner",
    "email": "heath@carrara.is",
    "slack": "U066H6LQC8M",
-   "timezone": "America/Los_Angeles",
+   "timezone": "America/New_York",
    "photo": "https://hub.carrara.is/people/heath.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=heath%40carrara.is"
@@ -4456,7 +4455,7 @@
    "title": "Coordinator",
    "email": "shayne@carrara.is",
    "slack": "U0ATMC40UJZ",
-   "timezone": "America/Los_Angeles",
+   "timezone": "Asia/Chongqing",
    "photo": "https://hub.carrara.is/people/shayne.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=shayne%40carrara.is"
@@ -4511,7 +4510,7 @@
    "title": "Operating Partner",
    "email": "tan@carrara.is",
    "slack": "U0BG4SC977H",
-   "timezone": "Asia/Chongqing",
+   "timezone": "Europe/Amsterdam",
    "photo": "https://hub.carrara.is/people/tan.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=tan%40carrara.is"
@@ -4522,7 +4521,7 @@
    "title": "GTM Partner",
    "email": "tara@carrara.is",
    "slack": "U0BTCTTS78V",
-   "timezone": "America/New_York",
+   "timezone": "Australia/Canberra",
    "photo": "https://hub.carrara.is/people/tara.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=tara%40carrara.is"
@@ -4588,7 +4587,7 @@
    "title": "Finance Partner",
    "email": "nick@carrara.is",
    "slack": "U0C4NUX9T60",
-   "timezone": "America/Denver",
+   "timezone": "America/Phoenix",
    "photo": "https://hub.carrara.is/people/nick.jpg",
    "linkedin": null,
    "url": "https://hub.carrara.is/people?person=nick%40carrara.is"
